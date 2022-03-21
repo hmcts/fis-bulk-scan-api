@@ -1,7 +1,7 @@
 version: '2.1'
 
 services:
-  spring-boot-template:
+  family-bulk-scan-api:
     build:
       context: .
       args:
