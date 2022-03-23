@@ -130,8 +130,8 @@ project.tasks['check'].dependsOn integration
 
 sonarqube {
   properties {
-    property "sonar.projectName", "Reform :: family-bulk-scan-api"
-    property "sonar.projectKey", "uk.gov.hmcts.reform:family-bulk-scan-api"
+    property "sonar.projectName", "fis :: fis-bulk-scan-api"
+    property "sonar.projectKey", "uk.gov.hmcts.reform:fis-bulk-scan-api"
     property "sonar.coverage.jacoco.xmlReportPaths", "${jacocoTestReport.reports.xml.destination.path}"
   }
 }
@@ -205,7 +205,7 @@ dependencies {
 mainClassName = 'uk.gov.hmcts.reform.bulkscan.Application'
 
 bootJar {
-  archiveFileName = "family-bulk-scan-api.jar"
+  archiveFileName = "fis-bulk-scan-api.jar"
 
   manifest {
     attributes('Implementation-Version': project.version.toString())

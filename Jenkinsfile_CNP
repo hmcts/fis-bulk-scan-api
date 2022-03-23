@@ -3,7 +3,11 @@
 @Library("Infrastructure")
 
 def type = "java"
-def product = "family"
+def product = "fis"
 def component = "bulk-scan-api"
 
-withPipeline(type, product, component) {}
+def branchesToSync = ['demo']
+
+withPipeline(type, product, component) {
+  syncBranchesWithMaster(branchesToSync)
+}
