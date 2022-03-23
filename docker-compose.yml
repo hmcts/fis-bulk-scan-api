@@ -1,7 +1,7 @@
 version: '2.1'
 
 services:
-  family-bulk-scan-api:
+  fis-bulk-scan-api:
     build:
       context: .
       args:
