@@ -6,6 +6,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
+import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
+import uk.gov.hmcts.reform.bulkscan.model.Status;
 
 @RestController
 @RequestMapping(path = "/",
@@ -30,10 +32,14 @@ public class BulkScanEndpoint {
         @ApiResponse(code = 404, message = "Form name not found")
 
     })
-    public ResponseEntity<String> validateOcrData(@RequestHeader(SERVICEAUTHORIZATION) String s2sToken,
+    public ResponseEntity<BulkScanValidationResponse> validateOcrData(@RequestHeader(SERVICEAUTHORIZATION) String s2sToken,
                                                   @RequestHeader(CONTENT_TYPE) String contentType,
                                                   @RequestBody final BulkScanValidationRequest bulkScanValidationRequest) {
 
-        return new ResponseEntity<String>("ok", HttpStatus.OK);
+  BulkScanValidationResponse bulkScanResponse=new BulkScanValidationResponse();
+  bulkScanResponse.setStatus(Status.SUCCESS);
+  bulkScanResponse.setWarnings("Warning");
+  bulkScanResponse.setErrors("Errors");
+  return new ResponseEntity<BulkScanValidationResponse>(bulkScanResponse, HttpStatus.OK);
     }
 }
