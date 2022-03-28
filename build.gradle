@@ -182,6 +182,11 @@ ext {
 }
 
 dependencies {
+  compileOnly("org.projectlombok:lombok:1.18.16")
+  testCompileOnly("org.projectlombok:lombok:1.18.16")
+  annotationProcessor("org.projectlombok:lombok:1.18.16")
+  testAnnotationProcessor("org.projectlombok:lombok:1.18.16")
+
   implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web'
   implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator'
   implementation group: 'org.springframework.boot', name: 'spring-boot-starter-aop'
@@ -198,6 +203,8 @@ dependencies {
   implementation group: 'io.springfox', name: 'springfox-swagger2', version: '3.0.0'
   implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '3.0.0'
   implementation group: 'io.springfox', name: 'springfox-spring-webflux', version: '3.0.0'
+  implementation 'junit:junit:4.13.1'
+
 
 
   testImplementation(platform('org.junit:junit-bom:5.8.2'))
