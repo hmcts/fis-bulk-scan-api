@@ -13,5 +13,5 @@ import java.util.List;
 @NoArgsConstructor
 //@AllArgsConstructor
 public class BulkScanValidationRequest {
-    public List<OcrDataField> ocrdatafields;
+    public List<OcrDataField> ocr_data_fields;
 }

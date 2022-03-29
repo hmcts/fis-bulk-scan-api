@@ -34,7 +34,7 @@ public class BulkScanEndpoint {
     public static final String SERVICEAUTHORIZATION = "serviceauthorization";
     public static final String CONTENT_TYPE = "content-type";
 
-    @PostMapping //(value = "/forms/{case_type}/validate-ocr/")
+    @PostMapping (value = "/forms/{case_type}/validate-ocr/")
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation(
         value = "",
@@ -54,8 +54,8 @@ public class BulkScanEndpoint {
         Warnings warnings = new Warnings();
         Errors errors = new Errors();
         List<String> itemsList = new ArrayList<>();
-        List<OcrDataField> ocrDataField = bulkScanValidationRequest.getOcrdatafields();
-        itemsList.add(ocrDataField.get(0).getName() + " " + ocrDataField.get(0).getValue());
+        List<OcrDataField> ocrDataField = bulkScanValidationRequest.getOcr_data_fields();
+        itemsList.add(ocrDataField.get(0).getName() + "_" + ocrDataField.get(0).getValue());
         warnings.setItems(itemsList);
         errors.setItems(null);
         BulkScanValidationResponse bulkScanResponse = new BulkScanValidationResponse();

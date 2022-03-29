@@ -32,7 +32,7 @@ class BulkScanEndpointTest {
         ocrDataField.setValue("Value");
         ocrArray.add(ocrDataField);
         BulkScanValidationRequest bulkScanValidationRequest = new BulkScanValidationRequest();
-        bulkScanValidationRequest.setOcrdatafields(ocrArray);
+        bulkScanValidationRequest.setOcr_data_fields(ocrArray);
         assertNotNull(bulkScanValidationRequest.toString());
         //BulkScanValidationResponse bulkScanValidationResponse = new BulkScanValidationResponse();
         String s2sToken = "serviceauthorization";
@@ -52,7 +52,7 @@ class BulkScanEndpointTest {
         ocrDataField.setValue("ocrdatafieldvalue");
         ocrArray.add(ocrDataField);
         BulkScanValidationRequest bulkScanValidationRequest = new BulkScanValidationRequest();
-        bulkScanValidationRequest.setOcrdatafields(ocrArray);
+        bulkScanValidationRequest.setOcr_data_fields(ocrArray);
         BulkScanValidationResponse bulkScanValidationResponse = new BulkScanValidationResponse();
         bulkScanValidationResponse.setErrors(null);
         String s2sToken = "serviceauthorization";
