@@ -1,25 +1,35 @@
+tags:
+  ccd-idam-pr: false
+
+xui-webapp:
+  enabled: false
+
+idam-pr:
+  enabled: false
+
 java:
   applicationPort: 8090
-  image: 'hmctspublic.azurecr.io/fis/bulk-scan-api:latest'
-  ingressHost: fis-bulk-scan-api-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal
-  aadIdentityName: fis
+  image: 'hmctspublic.azurecr.io/family/bulk-scan-api:latest'
+  ingressHost: family-bulk-scan-api-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal
+  aadIdentityName: family
+  autoscaling:
+    enabled: true
+    maxReplicas: 9
+    minReplicas: 6
+    targetCPUUtilizationPercentage: 80
 
-  environment:
-    NODE_ENV: production
-    REFORM_TEAM: fis
-    REFORM_SERVICE_NAME: fis-bulk-scan-api
-
-    SERVICE_AUTH_PROVIDER_URL: 'http://rpe-service-auth-provider-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal'
-    IDAM_WEB_URL: 'https://idam-web-public.{{ .Values.global.environment }}.platform.hmcts.net/login'
-    IDAM_API_URL: 'https://idam-api.{{ .Values.global.environment }}.platform.hmcts.net/o/token'
-
-  Uncomment once the vault containing the app insights key has been set up
   keyVaults:
-    fis:
+    family:
       secrets:
-        - idam-ui-secret
-        - idam-system-user-name
-        - idam-system-user-password
-        - s2s-secret
-        - AppInsightsInstrumentationKey
+       - name: AppInsightsInstrumentationKey
+         alias: azure.application-insights.instrumentation-key
 
+ environment:
+ NOTIFY_TEMPLATE_SIGN_IN_FAMILY_URL: https://family-web.{{ .Values.global.environment }}.platform.hmcts.net/
+    S2S_URL: http://rpe-service-auth-provider-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal
+    IDAM_API_REDIRECT_URL: https://family-cos-api-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal/authenticated
+    IDAM_API_BASEURL: https://idam-api.{{ .Values.global.environment }}.platform.hmcts.net
+    CASE_DATA_STORE_BASEURL: http://ccd-data-store-api-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal
+    CITIZEN_UPDATE_CASE_STATE_ENABLED: false
+    DOC_ASSEMBLY_URL: http://dg-docassembly-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal
+    DOCUMENT_MANAGEMENT_URL: http://dm-store-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal
