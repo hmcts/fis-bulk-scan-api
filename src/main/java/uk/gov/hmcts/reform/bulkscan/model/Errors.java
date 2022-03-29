@@ -3,11 +3,11 @@ package uk.gov.hmcts.reform.bulkscan.model;
 import lombok.Data;
 import lombok.ToString;
 
-import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @ToString
 
 public class Errors {
-    public ArrayList<String> items;
+    public List<String> items;
 }
