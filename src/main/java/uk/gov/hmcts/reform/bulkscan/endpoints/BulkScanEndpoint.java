@@ -5,9 +5,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
-import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
-import uk.gov.hmcts.reform.bulkscan.model.Status;
+import uk.gov.hmcts.reform.bulkscan.model.*;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @RestController
 @RequestMapping(path = "/",
@@ -37,9 +38,17 @@ public class BulkScanEndpoint {
                                                   @RequestBody final BulkScanValidationRequest bulkScanValidationRequest) {
 
   BulkScanValidationResponse bulkScanResponse=new BulkScanValidationResponse();
+  Warnings warnings=new Warnings();
+  Errors errors=new Errors();
+  ArrayList<String> itemsList=new ArrayList<>();
+  ArrayList<OcrDataField> ocrDataField=bulkScanValidationRequest.getOcr_data_fields();
+  itemsList.add(ocrDataField.get(0).getName()+" "+ocrDataField.get(0).getValue());
+  warnings.setItems(itemsList);
+  errors.setItems(null);
   bulkScanResponse.setStatus(Status.SUCCESS);
-  bulkScanResponse.setWarnings("Warning");
-  bulkScanResponse.setErrors("Errors");
+  bulkScanResponse.setWarnings(warnings);
+  bulkScanResponse.setErrors(errors);
   return new ResponseEntity<BulkScanValidationResponse>(bulkScanResponse, HttpStatus.OK);
     }
 }
+
