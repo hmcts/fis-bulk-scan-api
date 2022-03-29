@@ -158,7 +158,7 @@ dependencyCheck {
     // Disable scanning of .NET related binaries
     assemblyEnabled = false
   }
-  skipConfigurations = [
+  /*skipConfigurations = [
     "checkstyle",
     "compileOnly",
     "pmd",
@@ -167,7 +167,7 @@ dependencyCheck {
     "smokeTest",
     "contractTestRuntimeClasspath",
     "contractTestCompileClasspath"
-  ]
+  ]*/
 }
 
 repositories {
