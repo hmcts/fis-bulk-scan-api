@@ -54,7 +54,7 @@ public class BulkScanEndpoint {
         Warnings warnings = new Warnings();
         Errors errors = new Errors();
         List<String> itemsList = new ArrayList<>();
-        List<OcrDataField> ocrDataField = bulkScanValidationRequest.getOcr_data_fields();
+        List<OcrDataField> ocrDataField = bulkScanValidationRequest.getOcrdatafields();
         itemsList.add(ocrDataField.get(0).getName() + "_" + ocrDataField.get(0).getValue());
         warnings.setItems(itemsList);
         errors.setItems(null);
