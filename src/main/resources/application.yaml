@@ -9,7 +9,7 @@ management:
     web:
       base-path: /
       exposure:
-        include: health, info, prometheus
+        include: health, info
 
 springdoc:
   packagesToScan: uk.gov.hmcts.reform.bulkscan.controllers
