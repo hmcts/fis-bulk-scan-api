@@ -21,8 +21,8 @@ data "azurerm_key_vault_secret" "microservicekey_fis-bulk-scan-api" {
   key_vault_id = data.azurerm_key_vault.s2s_vault.id
 }
 
-resource "azurerm_key_vault_secret" "s2s-secret-bulkscan-api" {
-  name         = "s2s-secret-bulkscan-api"
+resource "azurerm_key_vault_secret" "s2s-secret" {
+  name         = "s2s-secret"
   value        = data.azurerm_key_vault_secret.microservicekey_fis-bulk-scan-api.value
   key_vault_id = data.azurerm_key_vault.fis_key_vault.id
 }
