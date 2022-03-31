@@ -9,7 +9,7 @@ management:
     web:
       base-path: /
       exposure:
-        include: health, info, prometheus
+        include: health, info
 
 springdoc:
   packagesToScan: uk.gov.hmcts.reform.bulkscan.controllers
@@ -48,6 +48,6 @@ azure:
 
 idam:
   s2s-auth:
-    url: ${S2S_URL:http://localhost:4552}
+    url: ${SERVICE_AUTH_PROVIDER_URL:http://localhost:4552}
     secret: ${S2S_SECRET:AAAAAAAAAAAAAAAA}
     microservice: fis_bulk_scan_api
