@@ -35,34 +35,27 @@ public class BulkScanValidationService {
     }
 
     private void validateOcrDataFields(BulkScanValidationRequest bulkRequest) {
-        try {
-            // Validate field names
-            ArrayList<String> item = new ArrayList<>();
-            List<String> input = bulkRequest.getOcrdatafields().stream().map(ocrDataField
+        // Validate field names
+        ArrayList<String> item = new ArrayList<>();
+        List<String> input = bulkRequest.getOcrdatafields().stream().map(ocrDataField
                                                                                  -> ocrDataField.getName()).collect(
                 Collectors.toList());
-            Stream.of(BulkScanValidationMandatoryFields.values())
-                .forEach(fieldName -> validateOcrDataFieldName(fieldName.getKey(), input, item));
+        Stream.of(BulkScanValidationMandatoryFields.values())
+            .forEach(fieldName -> validateOcrDataFieldName(fieldName.getKey(), input, item));
 
-            //Validate Field Values
-            long ocrNullValue = bulkRequest.getOcrdatafields().stream()
+        //Validate Field Values
+        long ocrNullValue = bulkRequest.getOcrdatafields().stream()
                 .filter(ocrDataField -> ocrDataField.getValue() == null).count();
-            if (ocrNullValue == 0) {
-                if (bulkRequest.getOcrdatafields().stream()
+        if (ocrNullValue == 0) {
+            if (bulkRequest.getOcrdatafields().stream()
                     .filter(ocrDataField -> ocrDataField.getValue().trim().isEmpty())
                     .findAny().isPresent()) {
-                    item.add("Value should not be empty");
-                    errors.setItems(item);
-                    bulkScanResponse.setErrors(errors);
-                }
-            } else {
-                item.add("Values should not be null");
+                item.add("Value should not be empty");
                 errors.setItems(item);
                 bulkScanResponse.setErrors(errors);
             }
-        } catch (Exception e) {
-            ArrayList<String> item = new ArrayList<>();
-            item.add("Value should not be null or empty");
+        } else {
+            item.add("Values should not be null");
             errors.setItems(item);
             bulkScanResponse.setErrors(errors);
         }
