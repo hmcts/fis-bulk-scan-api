@@ -1,16 +1,19 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
+
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
+import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationMandatoryFields;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.Errors;
 import uk.gov.hmcts.reform.bulkscan.model.Status;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 
 @NoArgsConstructor
 @Service
@@ -18,8 +21,6 @@ public class BulkScanValidationService {
 
     BulkScanValidationResponse bulkScanResponse;
     Errors errors;
-    List<String> fieldsToBeValidated =
-        Arrays.asList("appellant_firstName", "appellant_lastName", "appellant_address", "appellant_contactNumber");
 
     public BulkScanValidationResponse validateBulkService(BulkScanValidationRequest bulkRequest) {
         bulkScanResponse = new BulkScanValidationResponse();
@@ -40,7 +41,8 @@ public class BulkScanValidationService {
             List<String> input = bulkRequest.getOcrdatafields().stream().map(ocrDataField
                                                                                  -> ocrDataField.getName()).collect(
                 Collectors.toList());
-            fieldsToBeValidated.stream().forEach(fieldName -> validateOcrDataFieldName(fieldName, input, item));
+            Stream.of(BulkScanValidationMandatoryFields.values())
+                .forEach(fieldName -> validateOcrDataFieldName(fieldName.getKey(), input, item));
 
             //Validate Field Values
             long ocrNullValue = bulkRequest.getOcrdatafields().stream()
