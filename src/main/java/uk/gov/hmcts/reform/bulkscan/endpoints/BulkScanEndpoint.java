@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
+import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.Errors;
@@ -51,6 +53,7 @@ public class BulkScanEndpoint {
         validateOcrData(@RequestHeader(SERVICEAUTHORIZATION)
                         String s2sToken, @RequestHeader(CONTENT_TYPE) String contentType,
                     @RequestBody final BulkScanValidationRequest bulkScanValidationRequest) {
+
         Warnings warnings = new Warnings();
         Errors errors = new Errors();
         List<String> itemsList = new ArrayList<>();
@@ -58,11 +61,49 @@ public class BulkScanEndpoint {
         itemsList.add(ocrDataField.get(0).getName() + "_" + ocrDataField.get(0).getValue());
         warnings.setItems(itemsList);
         errors.setItems(null);
+
         BulkScanValidationResponse bulkScanResponse = new BulkScanValidationResponse();
         bulkScanResponse.setStatus(Status.SUCCESS);
         bulkScanResponse.setWarnings(warnings);
         bulkScanResponse.setErrors(errors);
         return new ResponseEntity<BulkScanValidationResponse>(bulkScanResponse, HttpStatus.OK);
     }
-}
 
+    @PostMapping (value = "/transform-exception-record")
+    @ResponseStatus(HttpStatus.CREATED)
+    @ApiOperation(
+        value = "",
+        notes = " "
+    )
+    @ApiResponses(value = {
+        @ApiResponse(code = 200, message = "Transformation of exception record into case data has been successful"),
+        @ApiResponse(code = 400, message =
+            "Request failed due to malformed syntax (and only for that reason). "
+                + "This response results in a general error presented to the caseworker in CCD."),
+        @ApiResponse(code = 401, message = "Provided S2S token is missing or invalid"),
+        @ApiResponse(code = 403, message = "Calling service is not authorised to use the endpoint"),
+        @ApiResponse(code = 404, message =
+            "Exception record is well-formed, but the data it contains is invalid and case can't be created. "
+                + "Messages from the body will be shown to the caseworker.")
+
+    })
+    public ResponseEntity<BulkScanTransformationResponse>
+        transformationOcrData(@RequestHeader(SERVICEAUTHORIZATION)
+                            String s2sToken, @RequestHeader(CONTENT_TYPE) String contentType,
+                        @RequestBody final BulkScanTransformationRequest bulkScanTransformationRequest) {
+
+        Warnings warnings = new Warnings();
+        Errors errors = new Errors();
+        List<String> itemsList = new ArrayList<>();
+        List<OcrDataField> ocrDataField = bulkScanTransformationRequest.getOcrdatafields();
+        itemsList.add(ocrDataField.get(0).getName() + "_" + ocrDataField.get(0).getValue());
+        warnings.setItems(itemsList);
+        errors.setItems(null);
+
+        BulkScanTransformationResponse bulkScanResponse = new BulkScanTransformationResponse();
+        bulkScanResponse.setCaseCreationDetails(bulkScanResponse.caseCreationDetails);
+        bulkScanResponse.setWarnings(warnings);
+        bulkScanResponse.setErrors(errors);
+        return new ResponseEntity<BulkScanTransformationResponse>(bulkScanResponse, HttpStatus.OK);
+    }
+}
