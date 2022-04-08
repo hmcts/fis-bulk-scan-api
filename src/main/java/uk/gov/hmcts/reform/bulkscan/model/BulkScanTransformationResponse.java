@@ -5,10 +5,11 @@ import lombok.ToString;
 
 @Data
 @ToString
-public class BulkScanValidationResponse {
+public class BulkScanTransformationResponse {
 
-    public Enum<Status> status;
+    public CaseCreationDetails caseCreationDetails;
     public Warnings warnings;
     public Errors errors;
+
 
 }

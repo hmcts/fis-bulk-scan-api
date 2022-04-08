@@ -9,6 +9,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import uk.gov.hmcts.reform.bulkscan.endpoints.BulkScanEndpoint;
+import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
+import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
@@ -17,7 +19,8 @@ import uk.gov.hmcts.reform.bulkscan.services.BulkScanValidationService;
 import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
-
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertSame;
 
 
 @ExtendWith(MockitoExtension.class)
@@ -42,8 +45,6 @@ class BulkScanEndpointTest {
         ocrArray.add(ocrDataField);
         BulkScanValidationRequest bulkScanValidationRequest = new BulkScanValidationRequest();
         bulkScanValidationRequest.setOcrdatafields(ocrArray);
-        //assertNotNull(bulkScanValidationRequest.toString());
-        //BulkScanValidationResponse bulkScanValidationResponse = new BulkScanValidationResponse();
         String s2sToken = "serviceauthorization";
         String contentType = "content-type";
         ResponseEntity<BulkScanValidationResponse> response =
@@ -52,5 +53,23 @@ class BulkScanEndpointTest {
 
     }
 
+
+    @Test
+    void testTransformationOcrDataWithSuccess() {
+        ArrayList<OcrDataField> ocrArray = new ArrayList<>();
+        OcrDataField ocrDataField = new OcrDataField();
+        ocrDataField.setName("Name");
+        ocrDataField.setValue("Value");
+        ocrArray.add(ocrDataField);
+        BulkScanTransformationRequest bulkScanTransformationRequest = new BulkScanTransformationRequest();
+        bulkScanTransformationRequest.setOcrdatafields(ocrArray);
+        assertNotNull(bulkScanTransformationRequest.toString());
+        String s2sToken = "serviceauthorization";
+        String contentType = "content-type";
+        ResponseEntity<BulkScanTransformationResponse> response =
+            bulkScanEndpoint.transformationOcrData(s2sToken, contentType, bulkScanTransformationRequest);
+        assertSame(response.getStatusCode(), HttpStatus.OK);
+
+    }
 
 }
