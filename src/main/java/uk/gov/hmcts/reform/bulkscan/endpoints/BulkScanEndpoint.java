@@ -4,6 +4,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -21,6 +22,7 @@ import uk.gov.hmcts.reform.bulkscan.model.Errors;
 import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
 import uk.gov.hmcts.reform.bulkscan.model.Status;
 import uk.gov.hmcts.reform.bulkscan.model.Warnings;
+import uk.gov.hmcts.reform.bulkscan.services.BulkScanValidationService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,7 +38,10 @@ public class BulkScanEndpoint {
     public static final String SERVICEAUTHORIZATION = "serviceauthorization";
     public static final String CONTENT_TYPE = "content-type";
 
-    @PostMapping (value = "/forms/{case_type}/validate-ocr/")
+    @Autowired
+    BulkScanValidationService bulkScanValidationService;
+
+    @PostMapping(value = "/forms/{case_type}/validate-ocr/")
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation(
         value = "",
@@ -66,6 +71,7 @@ public class BulkScanEndpoint {
         bulkScanResponse.setStatus(Status.SUCCESS);
         bulkScanResponse.setWarnings(warnings);
         bulkScanResponse.setErrors(errors);
+
         return new ResponseEntity<BulkScanValidationResponse>(bulkScanResponse, HttpStatus.OK);
     }
 
