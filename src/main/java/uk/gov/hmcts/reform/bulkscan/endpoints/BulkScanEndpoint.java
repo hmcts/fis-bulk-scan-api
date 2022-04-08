@@ -20,7 +20,6 @@ import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.Errors;
 import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
-import uk.gov.hmcts.reform.bulkscan.model.Status;
 import uk.gov.hmcts.reform.bulkscan.model.Warnings;
 import uk.gov.hmcts.reform.bulkscan.services.BulkScanValidationService;
 
@@ -55,11 +54,11 @@ public class BulkScanEndpoint {
 
     })
     public ResponseEntity<BulkScanValidationResponse>
-    validateOcrData(@RequestHeader(SERVICEAUTHORIZATION)
-                        String s2sToken, @RequestHeader(CONTENT_TYPE) String contentType,
-                    @RequestBody final BulkScanValidationRequest bulkScanValidationRequest) {
+        validateOcrData(@RequestHeader(SERVICEAUTHORIZATION)
+                            String s2sToken, @RequestHeader(CONTENT_TYPE) String contentType,
+                        @RequestBody final BulkScanValidationRequest bulkScanValidationRequest) {
         BulkScanValidationResponse bulkScanResponse =
-            bulkScanValidationService.validateBulkService(bulkScanValidationRequest);
+                bulkScanValidationService.validateBulkService(bulkScanValidationRequest);
         return new ResponseEntity<BulkScanValidationResponse>(bulkScanResponse, HttpStatus.OK);
     }
 
