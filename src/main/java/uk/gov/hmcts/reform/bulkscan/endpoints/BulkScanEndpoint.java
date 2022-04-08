@@ -55,23 +55,11 @@ public class BulkScanEndpoint {
 
     })
     public ResponseEntity<BulkScanValidationResponse>
-        validateOcrData(@RequestHeader(SERVICEAUTHORIZATION)
+    validateOcrData(@RequestHeader(SERVICEAUTHORIZATION)
                         String s2sToken, @RequestHeader(CONTENT_TYPE) String contentType,
                     @RequestBody final BulkScanValidationRequest bulkScanValidationRequest) {
-
-        Warnings warnings = new Warnings();
-        Errors errors = new Errors();
-        List<String> itemsList = new ArrayList<>();
-        List<OcrDataField> ocrDataField = bulkScanValidationRequest.getOcrdatafields();
-        itemsList.add(ocrDataField.get(0).getName() + "_" + ocrDataField.get(0).getValue());
-        warnings.setItems(itemsList);
-        errors.setItems(null);
-
-        BulkScanValidationResponse bulkScanResponse = new BulkScanValidationResponse();
-        bulkScanResponse.setStatus(Status.SUCCESS);
-        bulkScanResponse.setWarnings(warnings);
-        bulkScanResponse.setErrors(errors);
-
+        BulkScanValidationResponse bulkScanResponse =
+            bulkScanValidationService.validateBulkService(bulkScanValidationRequest);
         return new ResponseEntity<BulkScanValidationResponse>(bulkScanResponse, HttpStatus.OK);
     }
 
