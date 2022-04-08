@@ -10,7 +10,6 @@ import java.util.List;
 @Data
 @ToString
 @NoArgsConstructor
-//@AllArgsConstructor
 public class BulkScanTransformationRequest {
 
     @JsonProperty("case_type_id")

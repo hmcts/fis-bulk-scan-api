@@ -45,8 +45,6 @@ class BulkScanEndpointTest {
         ocrArray.add(ocrDataField);
         BulkScanValidationRequest bulkScanValidationRequest = new BulkScanValidationRequest();
         bulkScanValidationRequest.setOcrdatafields(ocrArray);
-        //assertNotNull(bulkScanValidationRequest.toString());
-        //BulkScanValidationResponse bulkScanValidationResponse = new BulkScanValidationResponse();
         String s2sToken = "serviceauthorization";
         String contentType = "content-type";
         ResponseEntity<BulkScanValidationResponse> response =
@@ -66,13 +64,11 @@ class BulkScanEndpointTest {
         BulkScanTransformationRequest bulkScanTransformationRequest = new BulkScanTransformationRequest();
         bulkScanTransformationRequest.setOcrdatafields(ocrArray);
         assertNotNull(bulkScanTransformationRequest.toString());
-        //BulkScanTransformationResponse bulkScanTransformationResponse = new BulkScanTransformationResponse();
         String s2sToken = "serviceauthorization";
         String contentType = "content-type";
         ResponseEntity<BulkScanTransformationResponse> response =
             bulkScanEndpoint.transformationOcrData(s2sToken, contentType, bulkScanTransformationRequest);
         assertSame(response.getStatusCode(), HttpStatus.OK);
-        //assertEquals(response.getStatusCode(), HttpStatus.OK);
 
     }
 
