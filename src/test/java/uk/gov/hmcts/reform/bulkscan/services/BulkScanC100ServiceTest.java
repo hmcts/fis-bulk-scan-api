@@ -1,9 +1,12 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
+import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
+import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
@@ -13,12 +16,13 @@ import java.util.ArrayList;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.mockito.Mockito.mock;
 
 @ExtendWith(MockitoExtension.class)
-class BulkScanValidationServiceTest {
+class BulkScanC100ServiceTest {
 
     @InjectMocks
-    BulkScanValidationService bulkScanValidationService;
+    BulkScanC100Service bulkScanValidationService;
 
     @Test
      void testValidationServiceWithSuccessStatus() throws Exception {
@@ -42,7 +46,7 @@ class BulkScanValidationServiceTest {
         BulkScanValidationRequest bulkScanValidationRequest = new BulkScanValidationRequest();
         bulkScanValidationRequest.setOcrdatafields(ocrArray);
         BulkScanValidationResponse bulkScanResponse =
-            bulkScanValidationService.validateBulkService(bulkScanValidationRequest);
+            bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(bulkScanResponse.status, Status.SUCCESS);
     }
 
@@ -64,7 +68,7 @@ class BulkScanValidationServiceTest {
         BulkScanValidationRequest bulkScanValidationRequest = new BulkScanValidationRequest();
         bulkScanValidationRequest.setOcrdatafields(ocrArray);
         BulkScanValidationResponse bulkScanResponse =
-            bulkScanValidationService.validateBulkService(bulkScanValidationRequest);
+            bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(bulkScanResponse.status, Status.ERRORS);
     }
 
@@ -82,7 +86,7 @@ class BulkScanValidationServiceTest {
         BulkScanValidationRequest bulkScanValidationRequest = new BulkScanValidationRequest();
         bulkScanValidationRequest.setOcrdatafields(ocrArray);
         BulkScanValidationResponse bulkScanResponse =
-            bulkScanValidationService.validateBulkService(bulkScanValidationRequest);
+            bulkScanValidationService.validate(bulkScanValidationRequest);
         assertNotNull(bulkScanResponse.getErrors());
         assertEquals(bulkScanResponse.status, Status.ERRORS);
     }
@@ -108,9 +112,16 @@ class BulkScanValidationServiceTest {
         BulkScanValidationRequest bulkScanValidationRequest = new BulkScanValidationRequest();
         bulkScanValidationRequest.setOcrdatafields(ocrArray);
         BulkScanValidationResponse bulkScanResponse =
-            bulkScanValidationService.validateBulkService(bulkScanValidationRequest);
+            bulkScanValidationService.validate(bulkScanValidationRequest);
         assertNotNull(bulkScanResponse.getErrors());
         assertEquals(bulkScanResponse.status, Status.ERRORS);
+    }
+
+    @Test
+    void testTransform() {
+        BulkScanTransformationResponse bulkScanTransformationResponse =
+                bulkScanValidationService.transform(mock(BulkScanTransformationRequest.class));
+        Assertions.assertNull(bulkScanTransformationResponse);
     }
 
 }

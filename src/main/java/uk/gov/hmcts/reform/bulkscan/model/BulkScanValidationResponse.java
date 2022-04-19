@@ -10,5 +10,4 @@ public class BulkScanValidationResponse {
     public Enum<Status> status;
     public Warnings warnings;
     public Errors errors;
-
 }

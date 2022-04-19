@@ -1,32 +1,43 @@
-/*package uk.gov.hmcts.reform.bulkscan.controllers;
+package uk.gov.hmcts.reform.bulkscan.controllers;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
-import uk.gov.hmcts.reform.bulkscan.endpoints.BulkScanEndpoint;
-import uk.gov.hmcts.reform.bulkscan.services.BulkScanValidationService;
+import uk.gov.hmcts.reform.bulkscan.Application;
 
-import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static uk.gov.hmcts.reform.bulkscan.utils.Constants.WELCOME_BULK_SCAN_API_MESSAGE;
 
-@WebMvcTest
+@SpringBootTest(classes = {Application.class})
+@AutoConfigureMockMvc
 class GetWelcomeTest {
+
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
     @Autowired
     private transient MockMvc mockMvc;
 
+    @BeforeAll
+    static void setUp() {
+        OBJECT_MAPPER.registerModule(new JavaTimeModule());
+    }
 
     @DisplayName("Should welcome upon root request with 200 response code")
     @Test
     void welcomeRootEndpoint() throws Exception {
-        //MvcResult response = mockMvc.perform(get("/")).andExpect(status().isOk()).andReturn();
+        MvcResult response = mockMvc
+                .perform(get("/"))
+                .andExpect(status().isOk()).andReturn();
 
-
-        //assertThat(rootController.welcome().toString()).startsWith("Welcome");
+        assertEquals(WELCOME_BULK_SCAN_API_MESSAGE, response.getResponse().getContentAsString());
     }
-}*/
+}

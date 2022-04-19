@@ -128,10 +128,16 @@ jacocoTestReport {
 project.tasks['sonarqube'].dependsOn jacocoTestReport
 project.tasks['check'].dependsOn integration
 
+def sonarExclusions = [
+        '**uk/gov/hmcts/reform/bulkscan/model/**',
+        '**uk/gov/hmcts/reform/config/**'
+]
+
 sonarqube {
   properties {
     property "sonar.projectName", "fis :: fis-bulk-scan-api"
     property "sonar.projectKey", "uk.gov.hmcts.reform:fis-bulk-scan-api"
+    property "sonar.exclusions", sonarExclusions.join(", ")
     property "sonar.coverage.jacoco.xmlReportPaths", "${jacocoTestReport.reports.xml.destination.path}"
   }
 }

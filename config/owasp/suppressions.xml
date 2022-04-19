@@ -27,6 +27,10 @@
   <suppress>
     <notes>spring-*-5.3.12</notes>
     <cve>CVE-2021-22060</cve>
+    <cve>CVE-2022-22950</cve>
+    <cve>CVE-2013-4152</cve>
+    <cve>CVE-2014-0054</cve>
+    <cve>CVE-2013-7315</cve>
   </suppress>
   <suppress>
     <notes>logback-*-1.2.6</notes>
@@ -39,6 +43,7 @@
   <suppress>
     <notes>log4j-api-2.17.0</notes>
     <cve>CVE-2021-44832</cve>
+    <cve>CVE-2021-44228</cve>
   </suppress>
   <suppress>
     <notes>log4j-to-slf4j-2.17.0</notes>

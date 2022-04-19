@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -18,13 +19,13 @@ import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
-import uk.gov.hmcts.reform.bulkscan.model.Errors;
-import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
-import uk.gov.hmcts.reform.bulkscan.model.Warnings;
-import uk.gov.hmcts.reform.bulkscan.services.BulkScanValidationService;
+import uk.gov.hmcts.reform.bulkscan.model.FormType;
+import uk.gov.hmcts.reform.bulkscan.services.BulkScanC100Service;
+import uk.gov.hmcts.reform.bulkscan.services.BulkScanFL401Service;
+import uk.gov.hmcts.reform.bulkscan.services.BulkScanFL403Service;
+import uk.gov.hmcts.reform.bulkscan.services.BulkScanService;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 
 
 @RestController
@@ -38,10 +39,16 @@ public class BulkScanEndpoint {
     public static final String CONTENT_TYPE = "content-type";
 
     @Autowired
-    BulkScanValidationService bulkScanValidationService;
+    BulkScanC100Service bulkScanC100Service;
 
-    @PostMapping(value = "/forms/{case_type}/validate-ocr/")
-    @ResponseStatus(HttpStatus.CREATED)
+    @Autowired
+    BulkScanFL401Service bulkScanFL401Service;
+
+    @Autowired
+    BulkScanFL403Service bulkScanFL403Service;
+
+    @PostMapping(value = "/forms/{form-type}/validate-ocr")
+    @ResponseStatus(HttpStatus.OK)
     @ApiOperation(
         value = "",
         notes = " "
@@ -54,12 +61,14 @@ public class BulkScanEndpoint {
 
     })
     public ResponseEntity<BulkScanValidationResponse>
-        validateOcrData(@RequestHeader(SERVICEAUTHORIZATION)
-                            String s2sToken, @RequestHeader(CONTENT_TYPE) String contentType,
+        validateOcrData(@RequestHeader(SERVICEAUTHORIZATION) String s2sToken,
+                        @RequestHeader(CONTENT_TYPE) String contentType,
+                        @PathVariable("form-type") FormType formType,
                         @RequestBody final BulkScanValidationRequest bulkScanValidationRequest) {
+
         BulkScanValidationResponse bulkScanResponse =
-                bulkScanValidationService.validateBulkService(bulkScanValidationRequest);
-        return new ResponseEntity<BulkScanValidationResponse>(bulkScanResponse, HttpStatus.OK);
+                Objects.requireNonNull(bulkScanServiceType(formType)).validate(bulkScanValidationRequest);
+        return new ResponseEntity<>(bulkScanResponse, HttpStatus.OK);
     }
 
     @PostMapping (value = "/transform-exception-record")
@@ -85,18 +94,22 @@ public class BulkScanEndpoint {
                             String s2sToken, @RequestHeader(CONTENT_TYPE) String contentType,
                         @RequestBody final BulkScanTransformationRequest bulkScanTransformationRequest) {
 
-        Warnings warnings = new Warnings();
-        Errors errors = new Errors();
-        List<String> itemsList = new ArrayList<>();
-        List<OcrDataField> ocrDataField = bulkScanTransformationRequest.getOcrdatafields();
-        itemsList.add(ocrDataField.get(0).getName() + "_" + ocrDataField.get(0).getValue());
-        warnings.setItems(itemsList);
-        errors.setItems(null);
+        BulkScanTransformationResponse bulkScanTransformationResponse =
+                Objects.requireNonNull(bulkScanServiceType(FormType.valueOf(bulkScanTransformationRequest
+                                .getCaseTypeId()))).transform(bulkScanTransformationRequest);
+        return new ResponseEntity<>(bulkScanTransformationResponse, HttpStatus.OK);
+    }
 
-        BulkScanTransformationResponse bulkScanResponse = new BulkScanTransformationResponse();
-        bulkScanResponse.setCaseCreationDetails(bulkScanResponse.caseCreationDetails);
-        bulkScanResponse.setWarnings(warnings);
-        bulkScanResponse.setErrors(errors);
-        return new ResponseEntity<BulkScanTransformationResponse>(bulkScanResponse, HttpStatus.OK);
+    private BulkScanService bulkScanServiceType(FormType formType) {
+        switch (formType) {
+            case C100:
+                return bulkScanC100Service;
+            case FL401:
+                return bulkScanFL401Service;
+            case FL403:
+                return bulkScanFL403Service;
+            default:
+                return null;
+        }
     }
 }
