@@ -24,10 +24,15 @@ import uk.gov.hmcts.reform.bulkscan.model.Errors;
 import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
 import uk.gov.hmcts.reform.bulkscan.model.Warnings;
 
+import java.util.Objects;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 
+import uk.gov.hmcts.reform.bulkscan.model.FormType;
+import uk.gov.hmcts.reform.bulkscan.services.BulkScanC100Service;
+import uk.gov.hmcts.reform.bulkscan.services.BulkScanFL401Service;
+import uk.gov.hmcts.reform.bulkscan.services.BulkScanFL403Service;
+import uk.gov.hmcts.reform.bulkscan.services.BulkScanService;
 
 @RestController
 @RequestMapping(path = "/",
@@ -39,7 +44,7 @@ public class BulkScanEndpoint {
     public static final String SERVICEAUTHORIZATION = "serviceauthorization";
     public static final String CONTENT_TYPE = "content-type";
 
-    @PostMapping(value = "/forms/{case_type}/validate")
+    @PostMapping(value = "/forms/{form-type}/validate-ocr")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(
         value = "",

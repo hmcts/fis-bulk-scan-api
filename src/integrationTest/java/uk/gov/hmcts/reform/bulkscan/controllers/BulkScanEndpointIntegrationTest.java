@@ -25,6 +25,8 @@ import static uk.gov.hmcts.reform.bulkscan.utils.Constants.C100_CASE_TYPE_TRANSF
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.FL401_CASE_TYPE_TRANSFORM_ENDPOINT;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.FL401_CASE_TYPE_VALIDATE_ENDPOINT;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.FL403_CASE_TYPE_TRANSFORM_ENDPOINT;
+import static uk.gov.hmcts.reform.bulkscan.utils.Constants.CASE_TYPE_TRANSFORM_ENDPOINT;
+import static uk.gov.hmcts.reform.bulkscan.utils.Constants.FL401_CASE_TYPE_VALIDATE_ENDPOINT;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.FL403_CASE_TYPE_VALIDATE_ENDPOINT;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.SERVICE_AUTHORIZATION;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.SERVICE_AUTHORIZATION_VALUE;
@@ -87,12 +89,13 @@ class BulkScanEndpointIntegrationTest {
     @DisplayName("should test transform request case type C100")
     @Test
     void shouldTestTransformRequestCaseTypeC100() throws Exception {
-        mockMvc.perform(post(C100_CASE_TYPE_TRANSFORM_ENDPOINT)
+        mockMvc.perform(post(CASE_TYPE_TRANSFORM_ENDPOINT)
                         .contentType(APPLICATION_JSON)
                         .header(SERVICE_AUTHORIZATION, SERVICE_AUTHORIZATION_VALUE)
                         .content(OBJECT_MAPPER.writeValueAsString(
                                 BulkScanTransformationRequest.builder()
                                         .ocrdatafields(dataFieldList)
+                                        .caseTypeId(C100.name())
                                         .build())))
                 .andExpect(status().isOk()).andReturn();
     }
@@ -100,12 +103,13 @@ class BulkScanEndpointIntegrationTest {
     @DisplayName("should test transform request case type FL401")
     @Test
     void shouldTestTransformRequestCaseTypeFL401() throws Exception {
-        mockMvc.perform(post(FL401_CASE_TYPE_TRANSFORM_ENDPOINT)
+        mockMvc.perform(post(CASE_TYPE_TRANSFORM_ENDPOINT)
                         .contentType(APPLICATION_JSON)
                         .header(SERVICE_AUTHORIZATION, SERVICE_AUTHORIZATION_VALUE)
                         .content(OBJECT_MAPPER.writeValueAsString(
                                 BulkScanTransformationRequest.builder()
                                         .ocrdatafields(dataFieldList)
+                                        .caseTypeId(FL401.name())
                                         .build())))
                 .andExpect(status().isOk()).andReturn();
     }
@@ -113,12 +117,14 @@ class BulkScanEndpointIntegrationTest {
     @DisplayName("should test transform request case type FL403")
     @Test
     void shouldTestTransformRequestCaseTypeFL403() throws Exception {
-        mockMvc.perform(post(FL403_CASE_TYPE_TRANSFORM_ENDPOINT)
+        mockMvc.perform(post(CASE_TYPE_TRANSFORM_ENDPOINT)
                         .contentType(APPLICATION_JSON)
                         .header(SERVICE_AUTHORIZATION, SERVICE_AUTHORIZATION_VALUE)
                         .content(OBJECT_MAPPER.writeValueAsString(
                                 BulkScanTransformationRequest.builder()
                                         .ocrdatafields(dataFieldList)
+                                        .caseTypeId(FL403.name())
+
                                         .build())))
                 .andExpect(status().isOk()).andReturn();
     }

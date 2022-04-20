@@ -129,8 +129,8 @@ project.tasks['sonarqube'].dependsOn jacocoTestReport
 project.tasks['check'].dependsOn integration
 
 def sonarExclusions = [
-  '**uk/gov/hmcts/reform/bulkscan/model/**',
-  '**uk/gov/hmcts/reform/config/**'
+        '**uk/gov/hmcts/reform/bulkscan/model/**',
+        '**uk/gov/hmcts/reform/config/**'
 ]
 
 sonarqube {
