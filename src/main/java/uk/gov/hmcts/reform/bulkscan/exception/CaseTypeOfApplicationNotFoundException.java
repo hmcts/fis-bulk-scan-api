@@ -1,5 +1,8 @@
 package uk.gov.hmcts.reform.bulkscan.exception;
 
-public class CaseTypeOfApplicationNotFoundException extends RuntimeException {
-    private String message;
+import java.io.Serializable;
+
+public class CaseTypeOfApplicationNotFoundException extends RuntimeException implements Serializable {
+    private static final long serialVersionUID = 1234567890343L;
+    String message;
 }

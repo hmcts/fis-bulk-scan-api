@@ -8,8 +8,6 @@ import org.mockito.InjectMocks;
 import org.mockito.junit.jupiter.MockitoExtension;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
-import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
-import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
 
 import static org.mockito.Mockito.mock;
 
@@ -19,13 +17,6 @@ class BulkScanFL401ServiceTest {
 
     @InjectMocks
     BulkScanFL401Service bulkScanFL401Service;
-
-    @Test
-     void testValidate() {
-        BulkScanValidationResponse bulkScanResponse =
-                bulkScanFL401Service.validate(mock(BulkScanValidationRequest.class));
-        Assertions.assertNull(bulkScanResponse);
-    }
 
     @Test
     void testTransform() {

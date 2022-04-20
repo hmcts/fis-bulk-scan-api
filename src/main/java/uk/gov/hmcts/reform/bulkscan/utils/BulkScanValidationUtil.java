@@ -11,19 +11,20 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 import java.util.List;
+import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class BulkScanValidationUtil {
+public final class BulkScanValidationUtil {
 
     private BulkScanValidationUtil() {
 
     }
 
     public static boolean isDateValid(String dateStr, String format) {
-        DateFormat sdf = new SimpleDateFormat(format);
+        DateFormat sdf = new SimpleDateFormat(format, Locale.UK);
         sdf.setLenient(false);
         try {
             sdf.parse(dateStr);
@@ -58,28 +59,28 @@ public class BulkScanValidationUtil {
 
         List<String> mandatoryErrors = ocrdatafields.stream().filter(eachData ->
             mandatoryFields.contains(eachData.getName()) && ObjectUtils.isEmpty(eachData.getValue()))
-                .map(eachData -> (eachData.getName() + BulkScanConstants.MANDATORY_ERROR_MESSAGE))
+                .map(eachData -> eachData.getName() + BulkScanConstants.MANDATORY_ERROR_MESSAGE)
             .collect(Collectors.toList());
 
         List<String> dateFormatErrors = ocrdatafields.stream()
             .filter(eachData -> dateFields.getFieldNames().contains(eachData.getName())
                 && !ObjectUtils.isEmpty(eachData.getValue())
                 && isDateValid(eachData.getValue(),dateFields.getRegex()))
-            .map(eachData -> (eachData.getName() + BulkScanConstants.DATE_FORMAT_ERROR_MESSAGE))
+            .map(eachData -> eachData.getName() + BulkScanConstants.DATE_FORMAT_ERROR_MESSAGE)
             .collect(Collectors.toList());
 
         List<String> emailFormatErrors = ocrdatafields.stream()
             .filter(eachData -> emailFields.getFieldNames().contains(eachData.getName())
                 && !ObjectUtils.isEmpty(eachData.getValue())
                 && isValidEmail(eachData.getValue(),emailFields.getRegex()))
-            .map(eachData -> (eachData.getName() + BulkScanConstants.EMAIL_FORMAT_ERROR_MESSAGE))
+            .map(eachData -> eachData.getName() + BulkScanConstants.EMAIL_FORMAT_ERROR_MESSAGE)
             .collect(Collectors.toList());
 
         List<String> numericErrors = ocrdatafields.stream()
             .filter(eachData -> numericFields.getFieldNames().contains(eachData.getName())
                 && !ObjectUtils.isEmpty(eachData.getValue())
                 && StringUtils.isNumeric(eachData.getValue()))
-            .map(eachData -> (eachData.getName() + BulkScanConstants.NUMERIC_ERROR_MESSAGE))
+            .map(eachData -> eachData.getName() + BulkScanConstants.NUMERIC_ERROR_MESSAGE)
             .collect(Collectors.toList());
 
         return Stream.of(mandatoryErrors, dateFormatErrors, emailFormatErrors, numericErrors)

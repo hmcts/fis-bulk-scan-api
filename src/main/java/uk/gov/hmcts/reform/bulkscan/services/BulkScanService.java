@@ -4,11 +4,11 @@ import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
-import uk.gov.hmcts.reform.bulkscan.model.CaseType;
+import uk.gov.hmcts.reform.bulkscan.model.FormType;
 
 public interface BulkScanService {
 
-    CaseType getCaseType();
+    FormType getCaseType();
 
     BulkScanValidationResponse validate(BulkScanValidationRequest bulkScanValidationRequest);
 

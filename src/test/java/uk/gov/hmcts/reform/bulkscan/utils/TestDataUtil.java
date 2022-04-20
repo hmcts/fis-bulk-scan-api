@@ -5,7 +5,7 @@ import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
 import java.util.Arrays;
 import java.util.List;
 
-public class TestDataUtil {
+public final class TestDataUtil {
 
     private TestDataUtil() {
 

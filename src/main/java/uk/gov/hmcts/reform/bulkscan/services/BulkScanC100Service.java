@@ -9,6 +9,7 @@ import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.CaseType;
 import uk.gov.hmcts.reform.bulkscan.model.Errors;
+import uk.gov.hmcts.reform.bulkscan.model.FormType;
 import uk.gov.hmcts.reform.bulkscan.model.Status;
 import uk.gov.hmcts.reform.bulkscan.utils.BulkScanValidationUtil;
 
@@ -21,8 +22,8 @@ public class BulkScanC100Service implements BulkScanService {
     BulkScanFormValidationConfigManager configManager;
 
     @Override
-    public CaseType getCaseType() {
-        return CaseType.C100;
+    public FormType getCaseType() {
+        return FormType.C100;
     }
 
     @Override

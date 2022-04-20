@@ -20,21 +20,21 @@ public class BulkScanFormValidationConfigManager {
 
     @Data
     public static class ValidationConfig {
-        private List<String> mandatoryFields;
-        private RegexValidationConfig regexValidationFields;
+        List<String> mandatoryFields;
+        RegexValidationConfig regexValidationFields;
     }
 
     @Data
     public static class RegexValidationConfig {
-        private RegexFieldsConfig dateFields;
-        private RegexFieldsConfig emailFields;
-        private RegexFieldsConfig numericFields;
+        RegexFieldsConfig dateFields;
+        RegexFieldsConfig emailFields;
+        RegexFieldsConfig numericFields;
     }
 
     @Data
     public static class RegexFieldsConfig {
-        private List<String> fieldNames;
-        private String regex;
+        List<String> fieldNames;
+        String regex;
     }
 
     public ValidationConfig getValidationConfig(CaseType caseType) {

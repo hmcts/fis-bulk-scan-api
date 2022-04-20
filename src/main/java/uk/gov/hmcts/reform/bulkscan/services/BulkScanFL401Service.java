@@ -11,6 +11,7 @@ import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.CaseType;
 import uk.gov.hmcts.reform.bulkscan.model.Errors;
+import uk.gov.hmcts.reform.bulkscan.model.FormType;
 import uk.gov.hmcts.reform.bulkscan.model.Status;
 import uk.gov.hmcts.reform.bulkscan.utils.BulkScanValidationUtil;
 
@@ -35,8 +36,8 @@ public class BulkScanFL401Service implements BulkScanService {
     }
 
     @Override
-    public CaseType getCaseType() {
-        return CaseType.FL401;
+    public FormType getCaseType() {
+        return FormType.FL401;
     }
 
     @Override

@@ -6,7 +6,7 @@ import uk.gov.hmcts.reform.bulkscan.model.Status;
 
 @Builder(toBuilder = true)
 public class BulkScanExceptionResponse {
-    private Enum<Status> status;
-    private Errors errors;
-    private String message;
+    Enum<Status> status;
+    Errors errors;
+    String message;
 }
