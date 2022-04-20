@@ -52,7 +52,7 @@ public class BulkScanEndpoint {
         @ApiResponse(code = 404, message = "Form name not found")
 
     })
-    public ResponseEntity<BulkScanValidationResponse>
+    public ResponseEntity<?>
         validateOcrData(@RequestHeader(SERVICEAUTHORIZATION) String s2sToken,
                         @RequestHeader(CONTENT_TYPE) String contentType,
                         @PathVariable("case_type") CaseType caseType,

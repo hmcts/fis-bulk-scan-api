@@ -129,8 +129,8 @@ project.tasks['sonarqube'].dependsOn jacocoTestReport
 project.tasks['check'].dependsOn integration
 
 def sonarExclusions = [
-        '**uk/gov/hmcts/reform/bulkscan/model/**',
-        '**uk/gov/hmcts/reform/config/**'
+  '**uk/gov/hmcts/reform/bulkscan/model/**',
+  '**uk/gov/hmcts/reform/config/**'
 ]
 
 sonarqube {
@@ -180,11 +180,12 @@ repositories {
   mavenLocal()
   mavenCentral()
   maven { url 'https://jitpack.io' }
+  jcenter()
 }
 
 def versions = [
   springfoxSwagger  : '3.0.0',
-  s2sClient         : '3.1.1',
+  s2sClient         : '4.0.0',
 ]
 
 ext {
@@ -247,5 +248,5 @@ rootProject.tasks.named("processSmokeTestResources") {
 }
 
 wrapper {
-    distributionType = Wrapper.DistributionType.ALL
+  distributionType = Wrapper.DistributionType.ALL
 }

@@ -3,7 +3,6 @@ package uk.gov.hmcts.reform.bulkscan.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanFormValidationConfigManager;
-import uk.gov.hmcts.reform.bulkscan.exception.BulkScanValidationException;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
@@ -32,7 +31,8 @@ public class BulkScanC100Service implements BulkScanService {
         List<String> errors = BulkScanValidationUtil.validateFields(bulkRequest.getOcrdatafields(),
                                                        configManager.getValidationConfig(CaseType.C100));
         if (!errors.isEmpty()) {
-            throw new BulkScanValidationException(Errors.builder().items(errors).build());
+            return BulkScanValidationResponse.builder().status(Status.ERRORS)
+                .errors(Errors.builder().items(errors).build()).build();
         }
         return BulkScanValidationResponse.builder().status(Status.SUCCESS).build();
     }

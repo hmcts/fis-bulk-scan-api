@@ -9,7 +9,6 @@ import uk.gov.hmcts.reform.bulkscan.endpoints.BulkScanEndpoint;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
-import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
 import uk.gov.hmcts.reform.bulkscan.utils.TestDataUtil;
 
@@ -35,7 +34,7 @@ class BulkScanEndpointTest {
     void testC100ValidationHappyPath() throws Exception {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder()
             .ocrdatafields(TestDataUtil.getC100Data()).build();
-        ResponseEntity<BulkScanValidationResponse> response =
+        ResponseEntity<?> response =
             bulkScanEndpoint.validateOcrData(S2S_TOKEN, CONTENT_TYPE, C100, bulkScanValidationRequest);
         assertEquals(response.getStatusCode(),HttpStatus.OK);
     }
@@ -44,7 +43,7 @@ class BulkScanEndpointTest {
     void testFL401ValidationService() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder()
             .ocrdatafields(TestDataUtil.getC100Data()).build();
-        ResponseEntity<BulkScanValidationResponse> response =
+        ResponseEntity<?> response =
             bulkScanEndpoint.validateOcrData(S2S_TOKEN, CONTENT_TYPE, FL401, bulkScanValidationRequest);
         assertEquals(response.getStatusCode(),HttpStatus.OK);
     }
@@ -53,7 +52,7 @@ class BulkScanEndpointTest {
     void testFL403ValidationService() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder()
             .ocrdatafields(TestDataUtil.getC100Data()).build();
-        ResponseEntity<BulkScanValidationResponse> response =
+        ResponseEntity<?> response =
             bulkScanEndpoint.validateOcrData(S2S_TOKEN, CONTENT_TYPE, FL403, bulkScanValidationRequest);
         assertEquals(response.getStatusCode(),HttpStatus.OK);
     }
