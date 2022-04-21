@@ -28,7 +28,7 @@ public class BulkScanFL403Service implements BulkScanService {
     public BulkScanValidationResponse validate(BulkScanValidationRequest bulkScanValidationRequest) {
         // Validating the Fields..
         List<String> errors = BulkScanValidationUtil.validateFields(bulkScanValidationRequest.getOcrdatafields(),
-                                                                    configManager.getValidationConfig(CaseType.C100));
+                                                                    configManager.getValidationConfig(CaseType.FL403));
         if (!errors.isEmpty()) {
             throw new BulkScanValidationException(Errors.builder().items(errors).build());
         }
