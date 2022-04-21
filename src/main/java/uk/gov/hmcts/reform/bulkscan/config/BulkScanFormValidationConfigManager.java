@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
-import uk.gov.hmcts.reform.bulkscan.model.CaseType;
+import uk.gov.hmcts.reform.bulkscan.model.FormType;
 
 import java.util.List;
 import java.util.Map;
@@ -37,7 +37,7 @@ public class BulkScanFormValidationConfigManager {
         String regex;
     }
 
-    public ValidationConfig getValidationConfig(CaseType caseType) {
+    public ValidationConfig getValidationConfig(FormType caseType) {
         return caseTypeofApplication.get(caseType.name());
     }
 }

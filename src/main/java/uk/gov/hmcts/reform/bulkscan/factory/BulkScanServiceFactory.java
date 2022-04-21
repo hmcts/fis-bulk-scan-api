@@ -2,7 +2,6 @@ package uk.gov.hmcts.reform.bulkscan.factory;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import uk.gov.hmcts.reform.bulkscan.exception.CaseTypeOfApplicationNotFoundException;
 import uk.gov.hmcts.reform.bulkscan.model.FormType;
 import uk.gov.hmcts.reform.bulkscan.services.BulkScanService;
 
@@ -23,10 +22,6 @@ public final class BulkScanServiceFactory {
     }
 
     public static BulkScanService getService(FormType caseType) {
-        BulkScanService service = bulkScanServiceCache.get(caseType);
-        if (service == null) {
-            throw new CaseTypeOfApplicationNotFoundException();
-        }
-        return service;
+        return bulkScanServiceCache.get(caseType);
     }
 }
