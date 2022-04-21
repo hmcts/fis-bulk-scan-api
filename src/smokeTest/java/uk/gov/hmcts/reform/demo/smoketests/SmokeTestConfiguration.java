@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.bulkscan.smoketests;
+package uk.gov.hmcts.reform.demo.smoketests;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.PropertySource;

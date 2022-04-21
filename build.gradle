@@ -130,7 +130,10 @@ project.tasks['check'].dependsOn integration
 
 def sonarExclusions = [
         '**uk/gov/hmcts/reform/bulkscan/model/**',
-        '**uk/gov/hmcts/reform/config/**'
+        '**uk/gov/hmcts/reform/bulkscan/config/**',
+        '**uk/gov/hmcts/reform/bulkscan/constants/**',
+        '**uk/gov/hmcts/reform/bulkscan/helper/**',
+        '**uk/gov/hmcts/reform/bulkscan/utils/**',
 ]
 
 sonarqube {
@@ -248,5 +251,5 @@ rootProject.tasks.named("processSmokeTestResources") {
 }
 
 wrapper {
-    distributionType = Wrapper.DistributionType.ALL
+  distributionType = Wrapper.DistributionType.ALL
 }

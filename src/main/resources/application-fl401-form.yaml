@@ -1,0 +1,23 @@
+uk:
+  gov:
+    hmcts:
+      form-validation:
+        caseTypeofApplication:
+          FL401:
+            mandatoryFields:
+                - appellant_firstName
+                - appellant_lastName
+            regexValidationFields:
+              dateFields:
+                fieldNames:
+                  - appellant_dateOfBirth
+                regex: dd/mm/yyyy
+              emailFields:
+                fieldNames:
+                  - appellant_email
+                regex: ^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,6}$
+              numericFields:
+                fieldNames:
+                  -
+                regex: ^[0-9]*$
+
