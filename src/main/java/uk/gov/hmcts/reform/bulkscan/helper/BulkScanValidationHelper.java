@@ -10,6 +10,7 @@ import uk.gov.hmcts.reform.bulkscan.model.Warnings;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -51,37 +52,44 @@ public final class BulkScanValidationHelper {
         BulkScanFormValidationConfigManager.RegexFieldsConfig emailFields = regexValidationFields.getEmailFields();
         BulkScanFormValidationConfigManager.RegexFieldsConfig numericFields = regexValidationFields.getNumericFields();
 
-        List<String> mandatoryErrors = validateFields(ocrdatafields, isMandatoryField(mandatoryFields),
-                                                      MANDATORY_MESSAGE_KEY
-        );
+        List<String> ocrDataFieldsList = ocrdatafields.stream().map(OcrDataField::getName).collect(Collectors.toList());
+        Map<String, String> ocrDataFieldsMap = ocrdatafields
+                .stream()
+                .collect(Collectors.toMap(OcrDataField::getName, OcrDataField::getValue));
+
+        List<String> mandatoryErrors = validateFields(mandatoryFields,
+                isMandatoryField(ocrDataFieldsList, ocrDataFieldsMap), MANDATORY_MESSAGE_KEY);
 
         List<String> mandatoryDateFormatErrors = validateFields(
-            ocrdatafields,
-            isValidDate(mandatoryFields, dateFields.getFieldNames(),
+                dateFields.getFieldNames(),
+            isValidDate(ocrDataFieldsList,
+                    ocrDataFieldsMap,
                         dateFields.getRegex(), false
             ),
             DATE_FORMAT_MESSAGE_KEY
         );
 
         List<String> mandatoryEmailFormatErrors = validateFields(
-            ocrdatafields,
-            isValidEmail(mandatoryFields, emailFields.getFieldNames(),
+            emailFields.getFieldNames(),
+            isValidEmail(ocrDataFieldsList,
+                    ocrDataFieldsMap,
                          emailFields.getRegex(), false
             ),
             EMAIL_FORMAT_MESSAGE_KEY
         );
 
         List<String> mandatoryNumericErrors = validateFields(
-            ocrdatafields,
-            isNumericField(mandatoryFields,
-                           numericFields.getFieldNames(),
+            numericFields.getFieldNames(),
+            isNumericField(ocrDataFieldsList,
+                            ocrDataFieldsMap,
                            numericFields.getRegex(), false
             ),
             NUMERIC_MESSAGE_KEY
         );
 
 
-        return Stream.of(mandatoryErrors, mandatoryDateFormatErrors, mandatoryEmailFormatErrors, mandatoryNumericErrors)
+        return Stream.of(mandatoryErrors, mandatoryDateFormatErrors, mandatoryEmailFormatErrors,
+                        mandatoryNumericErrors)
             .flatMap(Collection::stream)
             .collect(Collectors.toList());
     }
@@ -89,35 +97,46 @@ public final class BulkScanValidationHelper {
     private static List<String> validateOptionalFields(List<OcrDataField> ocrdatafields,
                                                        BulkScanFormValidationConfigManager
                                                            .ValidationConfig validationConfg) {
-        List<String> mandatoryFields = validationConfg.getMandatoryFields();
         BulkScanFormValidationConfigManager.RegexValidationConfig regexValidationFields =
             validationConfg.getRegexValidationFields();
         BulkScanFormValidationConfigManager.RegexFieldsConfig dateFields = regexValidationFields.getDateFields();
         BulkScanFormValidationConfigManager.RegexFieldsConfig emailFields = regexValidationFields.getEmailFields();
         BulkScanFormValidationConfigManager.RegexFieldsConfig numericFields = regexValidationFields.getNumericFields();
 
+        List<String> ocrDataFieldsList = ocrdatafields
+                .stream()
+                .map(OcrDataField::getName)
+                .collect(Collectors.toList());
+
+        Map<String, String> ocrDataFieldsMap = ocrdatafields
+                .stream()
+                .collect(Collectors.toMap(OcrDataField::getName, OcrDataField::getValue));
+
         List<String> mandatoryDateFormatErrors = validateFields(
-            ocrdatafields,
-            isValidDate(mandatoryFields, dateFields.getFieldNames(),
+                dateFields.getFieldNames(),
+                isValidDate(ocrDataFieldsList,
+                        ocrDataFieldsMap,
                         dateFields.getRegex(), true
-            ),
-            DATE_FORMAT_MESSAGE_KEY
+                ),
+                DATE_FORMAT_MESSAGE_KEY
         );
 
         List<String> mandatoryEmailFormatErrors = validateFields(
-            ocrdatafields,
-            isValidEmail(mandatoryFields, emailFields.getFieldNames(),
-                         emailFields.getRegex(), true
-            ),
-            EMAIL_FORMAT_MESSAGE_KEY
+                emailFields.getFieldNames(),
+                isValidEmail(ocrDataFieldsList,
+                        ocrDataFieldsMap,
+                        emailFields.getRegex(), true
+                ),
+                EMAIL_FORMAT_MESSAGE_KEY
         );
 
         List<String> mandatoryNumericErrors = validateFields(
-            ocrdatafields,
-            isNumericField(mandatoryFields, numericFields.getFieldNames(),
-                           numericFields.getRegex(), true
-            ),
-            NUMERIC_MESSAGE_KEY
+                numericFields.getFieldNames(),
+                isNumericField(ocrDataFieldsList,
+                        ocrDataFieldsMap,
+                        numericFields.getRegex(), true
+                ),
+                NUMERIC_MESSAGE_KEY
         );
 
 
@@ -126,45 +145,44 @@ public final class BulkScanValidationHelper {
             .collect(Collectors.toList());
     }
 
-    private static List<String> validateFields(List<OcrDataField> ocrdatafields,
-                                               Predicate<OcrDataField> filterCondition,
+    private static List<String> validateFields(List<String> mandatoryFields,
+                                               Predicate<String> filterCondition,
                                                String errorMessageKey) {
-        return ocrdatafields.stream()
+        return mandatoryFields.stream()
             .filter(filterCondition)
-            .map(eachData -> String.format(ERROR_MESSAGE_MAP.get(errorMessageKey), eachData.getName()))
+            .map(mandatoryField -> String.format(ERROR_MESSAGE_MAP.get(errorMessageKey), mandatoryField))
             .collect(Collectors.toList());
     }
 
-    private static Predicate<OcrDataField> isMandatoryField(List<String> fields) {
-        return eachData -> fields.contains(eachData.getName())
-            && ObjectUtils.isEmpty(eachData.getValue());
+    private static Predicate<String> isMandatoryField(List<String> ocrDataFieldsList,
+                                                      Map<String, String> ocrDataFieldsMap) {
+        return mandatoryField -> !ocrDataFieldsList.contains(mandatoryField)
+                || ObjectUtils.isEmpty(ocrDataFieldsMap.get(mandatoryField));
     }
 
-    private static Predicate<OcrDataField> isValidDate(List<String> mandatoryFields, List<String> fields,
+    private static Predicate<String> isValidDate(List<String> ocrDataFieldsList, Map<String, String> ocrDataFieldsMap,
                                                        String regex, boolean isOptional) {
-        return eachData -> (isOptional ? !mandatoryFields.contains(eachData.getName())
-            : mandatoryFields.contains(eachData.getName()))
-                && fields.contains(eachData.getName())
-                && !ObjectUtils.isEmpty(eachData.getValue())
-                && !isDateValid(eachData.getValue(), regex);
+        return dateField -> isOptional != ocrDataFieldsList.contains(dateField)
+                && ocrDataFieldsList.contains(dateField)
+                && !ObjectUtils.isEmpty(ocrDataFieldsMap.get(dateField))
+                && !isDateValid(ocrDataFieldsMap.get(dateField), regex);
     }
 
-    private static Predicate<OcrDataField> isValidEmail(List<String> mandatoryFields, List<String> fields, String regex,
-                                                        boolean isOptional) {
-        return eachData -> (isOptional ? !mandatoryFields.contains(eachData.getName())
-            : mandatoryFields.contains(eachData.getName()))
-                && fields.contains(eachData.getName())
-                && !ObjectUtils.isEmpty(eachData.getValue())
-                && !isValidEmailFormat(eachData.getValue(), regex);
+    private static Predicate<String> isValidEmail(List<String> ocrDataFieldsList, Map<String, String> ocrDataFieldsMap,
+                                                  String regex, boolean isOptional) {
+        return emailField -> isOptional != ocrDataFieldsList.contains(emailField)
+                && ocrDataFieldsList.contains(emailField)
+                && !ObjectUtils.isEmpty(ocrDataFieldsMap.get(emailField))
+                && !isValidEmailFormat(ocrDataFieldsMap.get(emailField), regex);
     }
 
-    private static Predicate<OcrDataField> isNumericField(List<String> mandatoryFields, List<String> fields,
-                                                          String regex, boolean isOptional) {
-        return eachData -> (isOptional ? !mandatoryFields.contains(eachData.getName())
-            : mandatoryFields.contains(eachData.getName()))
-                && fields.contains(eachData.getName())
-                && !ObjectUtils.isEmpty(eachData.getValue())
-                && !isNumeric(eachData.getValue(), regex);
+    private static Predicate<String> isNumericField(List<String> ocrDataFieldsList,
+                                                    Map<String, String> ocrDataFieldsMap,
+                                                    String regex, boolean isOptional) {
+        return numericField -> isOptional != ocrDataFieldsList.contains(numericField)
+                && ocrDataFieldsList.contains(numericField)
+                && !ObjectUtils.isEmpty(ocrDataFieldsMap.get(numericField))
+                && !isNumeric(ocrDataFieldsMap.get(numericField), regex);
     }
 
 
