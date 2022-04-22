@@ -7,10 +7,13 @@ uk:
             mandatoryFields:
                 - appellant_firstName
                 - appellant_lastName
+                - emergency_protection_order
             regexValidationFields:
               dateFields:
                 fieldNames:
                   - appellant_dateOfBirth
+                  - other_court_case_date
+                  - authorised_family_mediator_signed_date
                 regex: dd/mm/yyyy
               emailFields:
                 fieldNames:
