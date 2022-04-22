@@ -71,8 +71,10 @@ public final class BulkScanValidationHelper {
             Pair<List<String>, String> pair = entry.getValue();
             switch (entry.getKey()) {
                 case MANDATORY_KEY:
-                    errorOrWarnings.addAll(validateFields(ocrdatafields, isMandatoryField(pair.getLeft()),
-                                                          MANDATORY_KEY));
+                    if (!isOptional) {
+                        errorOrWarnings.addAll(validateFields(ocrdatafields, isMandatoryField(pair.getLeft()),
+                                                              MANDATORY_KEY));
+                    }
                     break;
                 case DATE_FORMAT_FIELDS_KEY:
                     errorOrWarnings.addAll(validateFormatFields(ocrdatafields, isOptional, mandatoryFields,

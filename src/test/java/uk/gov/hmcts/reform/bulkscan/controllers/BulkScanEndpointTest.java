@@ -25,6 +25,15 @@ class BulkScanEndpointTest {
     private BulkScanEndpoint bulkScanEndpoint;
 
     @Test
+    void testC100ValidationUnknownFormType() throws Exception {
+        BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder()
+            .ocrdatafields(TestDataUtil.getData()).build();
+        ResponseEntity<?> response =
+            bulkScanEndpoint.validateOcrData(S2S_TOKEN, CONTENT_TYPE, null, bulkScanValidationRequest);
+        assertEquals(response.getStatusCode(),HttpStatus.OK);
+    }
+
+    @Test
     void testC100ValidationHappyPath() throws Exception {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder()
             .ocrdatafields(TestDataUtil.getData()).build();

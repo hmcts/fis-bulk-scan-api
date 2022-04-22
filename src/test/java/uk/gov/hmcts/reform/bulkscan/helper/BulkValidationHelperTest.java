@@ -72,14 +72,14 @@ class BulkValidationHelperTest {
     void testSuccessScenario() {
         BulkScanValidationResponse res = BulkScanValidationHelper.validateMandatoryAndOptionalFields(
             TestDataUtil.getData(), validationConfig);
-        assertEquals(res.status, Status.SUCCESS);
+        assertEquals(Status.SUCCESS, res.status);
     }
 
     @Test
     void testErrorScenario() {
         BulkScanValidationResponse res = BulkScanValidationHelper.validateMandatoryAndOptionalFields(
             TestDataUtil.getErrorData(), validationConfig);
-        assertEquals(res.status, Status.ERRORS);
+        assertEquals(Status.ERRORS, res.status);
         assertTrue(res.getErrors().items.contains(String.format(MANDATORY_ERROR_MESSAGE, "appellant_lastName")));
     }
 
@@ -87,7 +87,7 @@ class BulkValidationHelperTest {
     void testC100DateErrorWhileDoingValidation() {
         BulkScanValidationResponse res = BulkScanValidationHelper
             .validateMandatoryAndOptionalFields(TestDataUtil.getDateErrorData(), validationConfig);
-        assertEquals(res.status, Status.ERRORS);
+        assertEquals(Status.ERRORS, res.status);
         assertTrue(res.getWarnings().items.contains(String.format(DATE_FORMAT_ERROR_MESSAGE, "appellant_dateOfBirth")));
     }
 
@@ -95,7 +95,7 @@ class BulkValidationHelperTest {
     void testC100EmailErrorWhileDoingValidation() {
         BulkScanValidationResponse res = BulkScanValidationHelper
             .validateMandatoryAndOptionalFields(TestDataUtil.getEmailErrorData(), validationConfig);
-        assertEquals(res.status, Status.ERRORS);
+        assertEquals(Status.ERRORS, res.status);
         assertTrue(res.getWarnings().items.contains(String.format(EMAIL_FORMAT_ERROR_MESSAGE, "appellant_email")));
     }
 }

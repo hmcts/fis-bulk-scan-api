@@ -57,20 +57,21 @@ public class BulkScanEndpoint {
     public ResponseEntity<?>
         validateOcrData(@RequestHeader(SERVICEAUTHORIZATION) String s2sToken,
                         @RequestHeader(CONTENT_TYPE) String contentType,
-                        @PathVariable("form-type") FormType caseType,
+                        @PathVariable("form-type") FormType formType,
                         @RequestBody final BulkScanValidationRequest bulkScanValidationRequest) {
 
-        if (caseType == null || !EnumUtils.isValidEnum(FormType.class, caseType.name())) {
+        if (formType == null || !EnumUtils.isValidEnum(FormType.class, formType.name())) {
             return ok().body(BulkScanValidationResponse.builder().status(Status.ERRORS)
                                  .warnings(Warnings.builder().items(emptyList()).build())
                                  .errors(Errors.builder()
-                                             .items(singletonList("Form type '" + caseType.name() + "' not found"))
+                                             .items(singletonList("Form type '" + (null != formType
+                                                 ? formType.name() : "No Form Type") + "' not found"))
                                              .build())
                                  .build());
         }
 
         BulkScanValidationResponse bulkScanResponse =
-                Objects.requireNonNull(BulkScanServiceFactory.getService(caseType)).validate(bulkScanValidationRequest);
+                Objects.requireNonNull(BulkScanServiceFactory.getService(formType)).validate(bulkScanValidationRequest);
         return ok(bulkScanResponse);
     }
 

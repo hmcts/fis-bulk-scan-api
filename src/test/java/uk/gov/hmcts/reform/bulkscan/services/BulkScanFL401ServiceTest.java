@@ -36,7 +36,7 @@ class BulkScanFL401ServiceTest {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
             TestDataUtil.getData()).build();
         BulkScanValidationResponse res = bulkScanService.validate(bulkScanValidationRequest);
-        assertEquals(res.status, Status.SUCCESS);
+        assertEquals( Status.SUCCESS, res.status);
     }
 
     @Test
@@ -44,7 +44,7 @@ class BulkScanFL401ServiceTest {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
             TestDataUtil.getErrorData()).build();
         BulkScanValidationResponse res = bulkScanService.validate(bulkScanValidationRequest);
-        assertEquals(res.status, Status.ERRORS);
+        assertEquals(Status.ERRORS, res.status);
         assertTrue(res.getErrors().items.contains(String.format(MANDATORY_ERROR_MESSAGE, "appellant_lastName")));
     }
 
@@ -53,7 +53,7 @@ class BulkScanFL401ServiceTest {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
             TestDataUtil.getDateErrorData()).build();
         BulkScanValidationResponse res = bulkScanService.validate(bulkScanValidationRequest);
-        assertEquals(res.status, Status.ERRORS);
+        assertEquals(Status.ERRORS, res.status);
         assertTrue(res.getWarnings().items.contains(String.format(DATE_FORMAT_ERROR_MESSAGE, "appellant_dateOfBirth")));
     }
 
@@ -62,7 +62,7 @@ class BulkScanFL401ServiceTest {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
             TestDataUtil.getEmailErrorData()).build();
         BulkScanValidationResponse res = bulkScanService.validate(bulkScanValidationRequest);
-        assertEquals(res.status, Status.ERRORS);
+        assertEquals(Status.ERRORS, res.status);
         assertTrue(res.getWarnings().items.contains(String.format(EMAIL_FORMAT_ERROR_MESSAGE, "appellant_email")));
     }
 
