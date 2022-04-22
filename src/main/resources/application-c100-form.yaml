@@ -15,10 +15,14 @@ uk:
               dateFields:
                 fieldNames:
                   - appellant_dateOfBirth
+                  - respondent1_dateOfBirth
+                  - respondent2_dateOfBirth
                 regex: dd/mm/yyyy
               emailFields:
                 fieldNames:
                   - appellant_email
+                  - respondent1_email
+                  - respondent2_email
                 regex: ^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,6}$
               numericFields:
                 fieldNames:
