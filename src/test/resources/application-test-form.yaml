@@ -20,3 +20,7 @@ uk:
                 fieldNames:
                   -
                 regex:
+              formatFields:
+                fieldNames:
+                  -
+                regex:

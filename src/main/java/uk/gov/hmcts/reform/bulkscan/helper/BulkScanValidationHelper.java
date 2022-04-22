@@ -17,6 +17,7 @@ import java.util.stream.Stream;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DATE_FORMAT_MESSAGE_KEY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EMAIL_FORMAT_MESSAGE_KEY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ERROR_MESSAGE_MAP;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FORMAT_MESSAGE_KEY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_MESSAGE_KEY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NUMERIC_MESSAGE_KEY;
 import static uk.gov.hmcts.reform.bulkscan.utils.BulkScanValidationUtil.isDateValid;
@@ -50,6 +51,8 @@ public final class BulkScanValidationHelper {
         BulkScanFormValidationConfigManager.RegexFieldsConfig dateFields = regexValidationFields.getDateFields();
         BulkScanFormValidationConfigManager.RegexFieldsConfig emailFields = regexValidationFields.getEmailFields();
         BulkScanFormValidationConfigManager.RegexFieldsConfig numericFields = regexValidationFields.getNumericFields();
+        BulkScanFormValidationConfigManager.RegexFieldsConfig
+                validFormatFields = regexValidationFields.getFormatFields();
 
         List<String> mandatoryErrors = validateFields(ocrdatafields, isMandatoryField(mandatoryFields),
                                                       MANDATORY_MESSAGE_KEY
@@ -80,8 +83,17 @@ public final class BulkScanValidationHelper {
             NUMERIC_MESSAGE_KEY
         );
 
+        List<String> mandatoryInValidFormatErrors = validateFields(
+                ocrdatafields,
+                isNumericField(mandatoryFields,
+                        validFormatFields.getFieldNames(),
+                        validFormatFields.getRegex(), false
+                ),
+            FORMAT_MESSAGE_KEY
+        );
 
-        return Stream.of(mandatoryErrors, mandatoryDateFormatErrors, mandatoryEmailFormatErrors, mandatoryNumericErrors)
+        return Stream.of(mandatoryErrors, mandatoryDateFormatErrors, mandatoryEmailFormatErrors,
+                        mandatoryNumericErrors, mandatoryInValidFormatErrors)
             .flatMap(Collection::stream)
             .collect(Collectors.toList());
     }
@@ -94,7 +106,10 @@ public final class BulkScanValidationHelper {
             validationConfg.getRegexValidationFields();
         BulkScanFormValidationConfigManager.RegexFieldsConfig dateFields = regexValidationFields.getDateFields();
         BulkScanFormValidationConfigManager.RegexFieldsConfig emailFields = regexValidationFields.getEmailFields();
-        BulkScanFormValidationConfigManager.RegexFieldsConfig numericFields = regexValidationFields.getNumericFields();
+        BulkScanFormValidationConfigManager.RegexFieldsConfig
+                numericFields = regexValidationFields.getNumericFields();
+        BulkScanFormValidationConfigManager.RegexFieldsConfig
+                validFormatFields = regexValidationFields.getFormatFields();
 
         List<String> mandatoryDateFormatErrors = validateFields(
             ocrdatafields,
@@ -120,8 +135,17 @@ public final class BulkScanValidationHelper {
             NUMERIC_MESSAGE_KEY
         );
 
+        List<String> mandatoryInValidFormatErrors = validateFields(
+                ocrdatafields,
+                isNumericField(mandatoryFields,
+                        validFormatFields.getFieldNames(),
+                        validFormatFields.getRegex(), true
+                ),
+            FORMAT_MESSAGE_KEY
+        );
 
-        return Stream.of(mandatoryDateFormatErrors, mandatoryEmailFormatErrors, mandatoryNumericErrors)
+        return Stream.of(mandatoryDateFormatErrors, mandatoryEmailFormatErrors,
+                        mandatoryNumericErrors, mandatoryInValidFormatErrors)
             .flatMap(Collection::stream)
             .collect(Collectors.toList());
     }
@@ -166,6 +190,5 @@ public final class BulkScanValidationHelper {
                 && !ObjectUtils.isEmpty(eachData.getValue())
                 && !isNumeric(eachData.getValue(), regex);
     }
-
 
 }

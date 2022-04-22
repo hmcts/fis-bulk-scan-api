@@ -1,0 +1,15 @@
+{
+  "status":"ERRORS",
+  "warnings":{
+    "items":[
+
+    ]
+  },
+  "errors":{
+    "items":[
+      "solicitor_address should not be null or empty",
+      "solicitor_telephone_number is in the wrong format",
+      "solicitor_dx_number is not a number"
+    ]
+  }
+}

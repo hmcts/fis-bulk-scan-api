@@ -35,4 +35,10 @@ public final class BulkScanValidationUtil {
         Matcher matcher = regexPattern.matcher(value);
         return matcher.find();
     }
+
+    public static boolean isInValidFormat(String value, String regex) {
+        Pattern regexPattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+        Matcher matcher = regexPattern.matcher(value);
+        return matcher.find();
+    }
 }

@@ -29,6 +29,7 @@ public class BulkScanFormValidationConfigManager {
         RegexFieldsConfig dateFields;
         RegexFieldsConfig emailFields;
         RegexFieldsConfig numericFields;
+        RegexFieldsConfig formatFields;
     }
 
     @Data

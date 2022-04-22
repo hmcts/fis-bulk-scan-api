@@ -20,4 +20,9 @@ uk:
                 fieldNames:
                   -
                 regex: ^[0-9]*$
+              formatFields:
+                fieldNames:
+                  -
+                regex:
+
 
