@@ -25,6 +25,7 @@ import static uk.gov.hmcts.reform.bulkscan.model.CaseType.C100;
 import static uk.gov.hmcts.reform.bulkscan.model.CaseType.FL401;
 import static uk.gov.hmcts.reform.bulkscan.model.CaseType.FL403;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.CASE_TYPE_TRANSFORM_ENDPOINT;
+import static uk.gov.hmcts.reform.bulkscan.utils.Constants.EdgeCase_CASE_TYPE_VALIDATE_ENDPOINT;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.FL401_CASE_TYPE_VALIDATE_ENDPOINT;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.FL403_CASE_TYPE_VALIDATE_ENDPOINT;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.SERVICE_AUTHORIZATION;
@@ -83,6 +84,20 @@ class BulkScanEndpointIntegrationTest {
                                         .ocrdatafields(dataFieldList)
                                         .build())))
                 .andExpect(status().isOk()).andReturn();
+    }
+
+
+    @DisplayName("should test validate request case type EdgeCase")
+    @Test
+    void shouldTestCaseTypeEdgeCase() throws Exception {
+        mockMvc.perform(post(EdgeCase_CASE_TYPE_VALIDATE_ENDPOINT)
+                            .contentType(APPLICATION_JSON)
+                            .header(SERVICE_AUTHORIZATION, SERVICE_AUTHORIZATION_VALUE)
+                            .content(OBJECT_MAPPER.writeValueAsString(
+                                BulkScanValidationRequest.builder()
+                                    .ocrdatafields(dataFieldList)
+                                    .build())))
+            .andExpect(status().isOk()).andReturn();
     }
 
     @DisplayName("should test transform request case type C100")
