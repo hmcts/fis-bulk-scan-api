@@ -24,15 +24,9 @@ public final class BulkScanValidationUtil {
         return true;
     }
 
-    public static boolean isValidEmailFormat(String value, String regex) {
+    public static boolean isValidFormat(String value, String regex) {
         Pattern regexPattern = Pattern.compile(regex,Pattern.CASE_INSENSITIVE);
         Matcher matcher = regexPattern.matcher(value);
-        return matcher.find();
-    }
-
-    public static boolean isNumeric(String value, String regex) {
-        Pattern regexPattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
-        Matcher matcher = regexPattern.matcher(value);
-        return matcher.find();
+        return matcher.matches();
     }
 }

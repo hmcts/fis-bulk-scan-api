@@ -1,0 +1,59 @@
+server:
+  port: 8090
+
+management:
+  endpoint:
+    health:
+      show-details: "always"
+  endpoints:
+    web:
+      base-path: /
+      exposure:
+        include: health, info
+
+springdoc:
+  packagesToScan: uk.gov.hmcts.reform.bulkscan.controllers,uk.gov.hmcts.reform.bulkscan.endpoints
+
+#If you use a database then uncomment below lines and update db properties accordingly
+spring:
+  config:
+    import: "optional:configtree:/mnt/secrets/"
+  application:
+    name: Spring Boot Template
+  profiles:
+    include:
+      - test-C100-form
+      - test-FL401-form
+      - test-FL403-form
+#  datasource:
+#    driver-class-name: org.postgresql.Driver
+#    url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}${DB_OPTIONS:}
+#    username: ${DB_USER_NAME}
+#    password: ${DB_PASSWORD}
+#    properties:
+#      charSet: UTF-8
+#    hikari:
+#      minimumIdle: 2
+#      maximumPoolSize: 10
+#      idleTimeout: 10000
+#      poolName: {to-be-defined}HikariCP
+#      maxLifetime: 7200000
+#      connectionTimeout: 30000
+#  jpa:
+#    properties:
+#      hibernate:
+#        jdbc:
+#          lob:
+#            # silence the 'wall-of-text' - unnecessary exception throw about blob types
+#            non_contextual_creation: true
+
+azure:
+  application-insights:
+    instrumentation-key: ${fis.AppInsightsInstrumentationKey:00000000-0000-0000-0000-000000000000}
+
+idam:
+  s2s-auth:
+    url: ${SERVICE_AUTH_PROVIDER_URL:http://localhost:4552}
+    secret: ${S2S_SECRET:AAAAAAAAAAAAAAAA}
+    microservice: fis_bulk_scan_api
+
