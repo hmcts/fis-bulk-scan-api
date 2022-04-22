@@ -28,7 +28,7 @@ uk:
                 fieldNames:
                   -
                 regex: ^(?:0|\+?44)(?:\d\s?){9,10}$
-              formatFields:
+              faxNumberFields:
                 fieldNames:
                   - solicitor_fax_number
                 regex: ^[0-9]{11}$

@@ -25,8 +25,8 @@ public final class TestDataUtil {
         ocrDataSolicitorTelephoneField.setValue("DUMMY");
 
         OcrDataField ocrDataSolicitorDxField = new OcrDataField();
-        ocrDataSolicitorDxField.setName("solicitor_dx_number");
-        ocrDataSolicitorDxField.setValue("12345X");
+        ocrDataSolicitorDxField.setName("solicitor_fax_number");
+        ocrDataSolicitorDxField.setValue("123455");
 
         return Arrays.asList(ocrDataSolicitorAddressField, ocrDataFirstNameField, ocrDataSolicitorTelephoneField,
                 ocrDataSolicitorDxField);

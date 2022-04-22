@@ -54,12 +54,12 @@ class BulkScanEndpointIntegrationTest {
         ocrDataFirstNameField.setValue("firstName");
 
         OcrDataField ocrDataLastNameField = new OcrDataField();
-        ocrDataFirstNameField.setName("appellant_lastName");
-        ocrDataFirstNameField.setValue("LastName");
+        ocrDataLastNameField.setName("appellant_lastName");
+        ocrDataLastNameField.setValue("LastName");
 
         OcrDataField ocrDataAddressField = new OcrDataField();
-        ocrDataFirstNameField.setName("appellant_address");
-        ocrDataFirstNameField.setValue("Address1 London");
+        ocrDataAddressField.setName("appellant_address");
+        ocrDataAddressField.setValue("Address1 London");
 
         dataFieldList = Arrays.asList(ocrDataAddressField, ocrDataFirstNameField, ocrDataLastNameField);
     }

@@ -33,7 +33,7 @@ uk:
                 fieldNames:
                   - appellant_contactNumber
                 regex: ^(?:0|\+?44)(?:\d\s?){9,10}$
-              formatFields:
+              faxNumberFields:
                 fieldNames:
                   -
                 regex:

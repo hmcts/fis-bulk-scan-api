@@ -18,7 +18,7 @@ public final class BulkScanConstants {
     public static final String POST_CODE_ERROR_MESSAGE = "%s is not a valid postcode";
     public static final String PHONE_NUMBER_ERROR_MESSAGE = "%s is not valid phone number";
     public static final String DUPLICATE_FIELDS_ERROR_MESSAGE = "Invalid OCR data. Duplicate fields exist: %s";
-    public static final String FORMAT_ERROR_MESSAGE = "%s is in the wrong format";
+    public static final String FAX_NUMBER_ERROR_MESSAGE = "%s is in the wrong format";
 
 
     public static final String MANDATORY_KEY = "mandatoryFields";
@@ -27,7 +27,7 @@ public final class BulkScanConstants {
     public static final String NUMERIC_FIELDS_KEY = "numericFields";
     public static final String POST_CODE_FIELDS_KEY = "postCodeFields";
     public static final String PHONE_NUMBER_FIELDS_KEY = "phoneNumberFields";
-    public static final String FORMAT_MESSAGE_KEY = "formatMessage";
+    public static final String FAX_NUMBER_FORMAT_MESSAGE_KEY = "faxNumberFields";
 
     public static final Map<String, String> ERROR_MESSAGE_MAP = getErrorMessageMap();
 
@@ -37,7 +37,7 @@ public final class BulkScanConstants {
                       EMAIL_FORMAT_FIELDS_KEY, EMAIL_FORMAT_ERROR_MESSAGE,
                       NUMERIC_FIELDS_KEY, NUMERIC_ERROR_MESSAGE, POST_CODE_FIELDS_KEY, POST_CODE_ERROR_MESSAGE,
                       PHONE_NUMBER_FIELDS_KEY, PHONE_NUMBER_ERROR_MESSAGE,
-                        FORMAT_MESSAGE_KEY, FORMAT_ERROR_MESSAGE
+                      FAX_NUMBER_FORMAT_MESSAGE_KEY, FAX_NUMBER_ERROR_MESSAGE
         );
     }
 
@@ -55,10 +55,13 @@ public final class BulkScanConstants {
             BulkScanFormValidationConfigManager.RegexFieldsConfig emailFields = regexValidationConfig.getEmailFields();
             BulkScanFormValidationConfigManager.RegexFieldsConfig numericFields = regexValidationConfig
                 .getNumericFields();
+            BulkScanFormValidationConfigManager.RegexFieldsConfig faxNumberFieldsFields = regexValidationConfig
+                    .getFaxNumberFields();
 
             map.put(DATE_FORMAT_FIELDS_KEY, getPairObject(dateFields));
             map.put(EMAIL_FORMAT_FIELDS_KEY, getPairObject(emailFields));
             map.put(NUMERIC_FIELDS_KEY, getPairObject(numericFields));
+            map.put(FAX_NUMBER_FORMAT_MESSAGE_KEY, getPairObject(faxNumberFieldsFields));
 
 
             BulkScanFormValidationConfigManager.RegexFieldsConfig postCodeFields = regexValidationConfig
