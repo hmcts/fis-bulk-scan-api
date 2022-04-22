@@ -113,7 +113,7 @@ public final class BulkScanValidationHelper {
 
     private static Predicate<OcrDataField> isMandatoryField(List<String> fields) {
         return eachData -> fields.contains(eachData.getName())
-            && ObjectUtils.isEmpty(eachData.getValue());
+            && ObjectUtils.isEmpty(null != eachData.getValue() ? eachData.getValue().trim() : eachData.getValue());
     }
 
     private static Predicate<OcrDataField> isValidDate(List<String> mandatoryFields, List<String> fields,

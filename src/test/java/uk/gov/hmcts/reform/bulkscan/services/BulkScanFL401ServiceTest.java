@@ -36,7 +36,7 @@ class BulkScanFL401ServiceTest {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
             TestDataUtil.getData()).build();
         BulkScanValidationResponse res = bulkScanService.validate(bulkScanValidationRequest);
-        assertEquals( Status.SUCCESS, res.status);
+        assertEquals(Status.SUCCESS, res.status);
     }
 
     @Test

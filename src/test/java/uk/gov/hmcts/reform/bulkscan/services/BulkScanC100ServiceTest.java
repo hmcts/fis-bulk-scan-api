@@ -36,7 +36,7 @@ class BulkScanC100ServiceTest {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
             TestDataUtil.getData()).build();
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
-        assertEquals( Status.SUCCESS, res.status);
+        assertEquals(Status.SUCCESS, res.status);
     }
 
     @Test
@@ -44,7 +44,7 @@ class BulkScanC100ServiceTest {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
             TestDataUtil.getErrorData()).build();
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
-        assertEquals(Status.ERRORS, res.status );
+        assertEquals(Status.ERRORS, res.status);
         assertTrue(res.getErrors().items.contains(String.format(MANDATORY_ERROR_MESSAGE, "appellant_lastName")));
     }
 
