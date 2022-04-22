@@ -9,7 +9,6 @@ uk:
                 - appellant_lastName
                 - child_firstName
                 - child_lastName
-                - child_gender
                 - appellant_childRelationship
             regexValidationFields:
               dateFields:
