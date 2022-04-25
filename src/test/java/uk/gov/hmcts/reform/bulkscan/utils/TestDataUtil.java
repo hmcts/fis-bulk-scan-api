@@ -145,8 +145,12 @@ public final class TestDataUtil {
         ocrNumericField.setName("appellant_case_number");
         ocrNumericField.setValue("1311231231");
 
+        OcrDataField ocrSolicitorFaxNumberField = new OcrDataField();
+        ocrSolicitorFaxNumberField.setName("solicitor_fax_number");
+        ocrSolicitorFaxNumberField.setValue("131123");
+
         return Arrays.asList(ocrDataAddressField, ocrDataFirstNameField, ocrDataLastNameField, ocrDataEmailField,
-                             ocrNumericField);
+                             ocrNumericField, ocrSolicitorFaxNumberField);
     }
 
     public static List<OcrDataField> getNumericErrorData() {
