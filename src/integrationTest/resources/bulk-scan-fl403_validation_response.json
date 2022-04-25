@@ -1,0 +1,15 @@
+{
+  "status":"ERRORS",
+  "warnings":{
+    "items":[
+
+    ]
+  },
+  "errors":{
+    "items":[
+      "solicitor_address should not be null or empty",
+      "solicitor_telephone_number is not valid phone number",
+      "solicitor_fax_number is in the wrong format"
+    ]
+  }
+}
