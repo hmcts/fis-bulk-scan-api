@@ -188,6 +188,7 @@ repositories {
 def versions = [
   springfoxSwagger  : '3.0.0',
   s2sClient         : '4.0.0',
+  springCloud : '3.1.1'
 ]
 
 ext {
@@ -205,9 +206,7 @@ dependencies {
   implementation group: 'org.springframework.boot', name: 'spring-boot-starter-aop'
   implementation group: 'org.springframework.boot', name: 'spring-boot-starter-json'
 
-  implementation group: 'io.springfox', name: 'springfox-swagger2', version: versions.springfoxSwagger
-
-  implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-bootstrap', version: '3.1.1'
+  implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-bootstrap', version: versions.springCloud
 
   implementation group: 'uk.gov.hmcts.reform', name: 'service-auth-provider-client', version: versions.s2sClient
 
@@ -223,15 +222,32 @@ dependencies {
   implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '3.0.0'
   implementation group: 'io.springfox', name: 'springfox-spring-webflux', version: '3.0.0'
   implementation 'junit:junit:4.13.1'
-
+  implementation(group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign')
+    {
+      exclude group: 'io.reactivex', module: 'io.reactivex'
+      exclude group: 'io.reactivex', module: 'rxnetty'
+      exclude group: 'io.reactivex', module: 'rxnetty-contexts'
+      exclude group: 'io.reactivex', module: 'rxnetty-servo'
+    }
 
 
   testImplementation(platform('org.junit:junit-bom:5.8.2'))
   testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
+  testImplementation group: 'org.springframework.cloud', name: 'spring-cloud-contract-wiremock', version: versions.springCloud
   testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test', {
     exclude group: 'junit', module: 'junit'
     exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
   }
+
+
+  // Integration test
+  integrationTestImplementation(group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign')
+    {
+      exclude group: 'io.reactivex', module: 'io.reactivex'
+      exclude group: 'io.reactivex', module: 'rxnetty'
+      exclude group: 'io.reactivex', module: 'rxnetty-contexts'
+      exclude group: 'io.reactivex', module: 'rxnetty-servo'
+    }
 }
 
 mainClassName = 'uk.gov.hmcts.reform.bulkscan.Application'

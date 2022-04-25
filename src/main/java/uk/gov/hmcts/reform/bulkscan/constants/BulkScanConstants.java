@@ -14,7 +14,7 @@ public final class BulkScanConstants {
     public static final String DATE_FORMAT_ERROR_MESSAGE = "%s is invalid date format";
     public static final String EMAIL_FORMAT_ERROR_MESSAGE = "%s is invalid email";
     public static final String NUMERIC_ERROR_MESSAGE = "%s is not a number";
-    public static final String MISSING_FIELD_ERROR_MESSAGE = "%s is missing";
+    public static final String MISSING_FIELD_MESSAGE = "%s is missing";
     public static final String POST_CODE_ERROR_MESSAGE = "%s is not a valid postcode";
     public static final String PHONE_NUMBER_ERROR_MESSAGE = "%s is not valid phone number";
     public static final String DUPLICATE_FIELDS_ERROR_MESSAGE = "Invalid OCR data. Duplicate fields exist: %s";
