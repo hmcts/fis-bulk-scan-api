@@ -25,9 +25,18 @@ class BulkScanEndpointTest {
     private BulkScanEndpoint bulkScanEndpoint;
 
     @Test
+    void testC100ValidationUnknownFormType() throws Exception {
+        BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder()
+            .ocrdatafields(TestDataUtil.getData()).build();
+        ResponseEntity<?> response =
+            bulkScanEndpoint.validateOcrData(S2S_TOKEN, CONTENT_TYPE, null, bulkScanValidationRequest);
+        assertEquals(response.getStatusCode(),HttpStatus.OK);
+    }
+
+    @Test
     void testC100ValidationHappyPath() throws Exception {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder()
-            .ocrdatafields(TestDataUtil.getC100Data()).build();
+            .ocrdatafields(TestDataUtil.getData()).build();
         ResponseEntity<?> response =
             bulkScanEndpoint.validateOcrData(S2S_TOKEN, CONTENT_TYPE, C100, bulkScanValidationRequest);
         assertEquals(response.getStatusCode(),HttpStatus.OK);
@@ -36,7 +45,7 @@ class BulkScanEndpointTest {
     @Test
     void testFL401ValidationService() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder()
-            .ocrdatafields(TestDataUtil.getC100Data()).build();
+            .ocrdatafields(TestDataUtil.getData()).build();
         ResponseEntity<?> response =
             bulkScanEndpoint.validateOcrData(S2S_TOKEN, CONTENT_TYPE, FL401, bulkScanValidationRequest);
         assertEquals(response.getStatusCode(),HttpStatus.OK);
@@ -45,7 +54,7 @@ class BulkScanEndpointTest {
     @Test
     void testFL403ValidationService() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder()
-            .ocrdatafields(TestDataUtil.getC100Data()).build();
+            .ocrdatafields(TestDataUtil.getData()).build();
         ResponseEntity<?> response =
             bulkScanEndpoint.validateOcrData(S2S_TOKEN, CONTENT_TYPE, FL403, bulkScanValidationRequest);
         assertEquals(response.getStatusCode(),HttpStatus.OK);
@@ -55,7 +64,7 @@ class BulkScanEndpointTest {
     void testC100TransformService() {
         //Given
         BulkScanTransformationRequest bulkScanTransformationRequest = BulkScanTransformationRequest.builder()
-            .ocrdatafields(TestDataUtil.getC100Data()).caseTypeId(
+            .ocrdatafields(TestDataUtil.getData()).caseTypeId(
             C100.name()).build();
 
         //When
@@ -70,7 +79,7 @@ class BulkScanEndpointTest {
     void testFL401TransformService() {
         //Given
         BulkScanTransformationRequest bulkScanTransformationRequest = BulkScanTransformationRequest.builder()
-            .ocrdatafields(TestDataUtil.getC100Data()).caseTypeId(
+            .ocrdatafields(TestDataUtil.getData()).caseTypeId(
                 C100.name()).build();
 
         //When
@@ -84,7 +93,7 @@ class BulkScanEndpointTest {
     void testFL403TransformService() {
         //Given
         BulkScanTransformationRequest bulkScanTransformationRequest = BulkScanTransformationRequest.builder()
-            .ocrdatafields(TestDataUtil.getC100Data()).caseTypeId(
+            .ocrdatafields(TestDataUtil.getData()).caseTypeId(
                 C100.name()).build();
 
         //When

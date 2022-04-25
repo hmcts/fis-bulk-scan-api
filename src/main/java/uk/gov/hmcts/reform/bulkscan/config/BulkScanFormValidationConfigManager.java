@@ -29,6 +29,8 @@ public class BulkScanFormValidationConfigManager {
         RegexFieldsConfig dateFields;
         RegexFieldsConfig emailFields;
         RegexFieldsConfig numericFields;
+        RegexFieldsConfig postCodeFields;
+        RegexFieldsConfig phoneNumberFields;
     }
 
     @Data
@@ -37,7 +39,7 @@ public class BulkScanFormValidationConfigManager {
         String regex;
     }
 
-    public ValidationConfig getValidationConfig(FormType caseType) {
-        return caseTypeofApplication.get(caseType.name());
+    public ValidationConfig getValidationConfig(FormType formType) {
+        return caseTypeofApplication.get(formType.name());
     }
 }

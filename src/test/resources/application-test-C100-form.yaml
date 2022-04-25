@@ -3,7 +3,7 @@ uk:
     hmcts:
       form-validation:
         caseTypeofApplication:
-          FL401:
+          C100:
             mandatoryFields:
                 - appellant_firstName
                 - appellant_lastName
@@ -28,4 +28,3 @@ uk:
                 fieldNames:
                   -
                 regex: ^(?:0|\+?44)(?:\d\s?){9,10}$
-
