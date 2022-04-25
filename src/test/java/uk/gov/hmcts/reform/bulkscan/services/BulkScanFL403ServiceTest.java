@@ -22,7 +22,7 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DATE_FORM
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EMAIL_FORMAT_ERROR_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FAX_NUMBER_ERROR_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_ERROR_MESSAGE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MISSING_FIELD_ERROR_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MISSING_FIELD_MESSAGE;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -74,9 +74,9 @@ class BulkScanFL403ServiceTest {
             TestDataUtil.getFirstNameData()).build();
         BulkScanValidationResponse res = bulkScanService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
-        assertTrue(res.getErrors().items.contains(String.format(MISSING_FIELD_ERROR_MESSAGE, "appellant_lastName")));
+        assertTrue(res.getErrors().items.contains(String.format(MISSING_FIELD_MESSAGE, "appellant_lastName")));
     }
-  
+
     @Test
     void testFL403FaxNumberErrorWhileDoingValidation() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
