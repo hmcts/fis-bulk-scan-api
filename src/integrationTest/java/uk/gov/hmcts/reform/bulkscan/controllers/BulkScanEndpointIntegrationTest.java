@@ -5,11 +5,12 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
-import uk.gov.hmcts.reform.bulkscan.Application;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
@@ -20,6 +21,7 @@ import java.util.List;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static uk.gov.hmcts.reform.bulkscan.model.CaseType.C100;
 import static uk.gov.hmcts.reform.bulkscan.model.CaseType.FL401;
@@ -29,8 +31,11 @@ import static uk.gov.hmcts.reform.bulkscan.utils.Constants.FL401_CASE_TYPE_VALID
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.FL403_CASE_TYPE_VALIDATE_ENDPOINT;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.SERVICE_AUTHORIZATION;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.SERVICE_AUTHORIZATION_VALUE;
+import static uk.gov.hmcts.reform.bulkscan.utils.TestDataUtil.buildFL403ValidationRequest;
+import static uk.gov.hmcts.reform.bulkscan.utils.TestResourceUtil.expectedResponse;
 
-@SpringBootTest(classes = {Application.class})
+@ExtendWith(SpringExtension.class)
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureMockMvc
 class BulkScanEndpointIntegrationTest {
 
@@ -80,9 +85,10 @@ class BulkScanEndpointIntegrationTest {
                         .header(SERVICE_AUTHORIZATION, SERVICE_AUTHORIZATION_VALUE)
                         .content(OBJECT_MAPPER.writeValueAsString(
                                 BulkScanValidationRequest.builder()
-                                        .ocrdatafields(dataFieldList)
+                                        .ocrdatafields(buildFL403ValidationRequest())
                                         .build())))
-                .andExpect(status().isOk()).andReturn();
+                .andExpect(status().isOk())
+                .andExpect(content().json(expectedResponse("classpath:bulk-scan-fl403_validation_response.json")));
     }
 
     @DisplayName("should test transform request case type C100")

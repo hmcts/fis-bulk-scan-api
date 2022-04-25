@@ -20,6 +20,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DATE_FORMAT_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EMAIL_FORMAT_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FAX_NUMBER_ERROR_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_ERROR_MESSAGE;
 
 @ExtendWith(SpringExtension.class)
@@ -64,6 +65,15 @@ class BulkScanFL403ServiceTest {
         BulkScanValidationResponse res = bulkScanService.validate(bulkScanValidationRequest);
         assertEquals(Status.WARNINGS, res.status);
         assertTrue(res.getWarnings().items.contains(String.format(EMAIL_FORMAT_MESSAGE, "appellant_email")));
+    }
+
+    @Test
+    void testFL403FaxNumberErrorWhileDoingValidation() {
+        BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
+                TestDataUtil.getEmailErrorData()).build();
+        BulkScanValidationResponse res = bulkScanService.validate(bulkScanValidationRequest);
+        assertEquals(Status.ERRORS, res.status);
+        assertTrue(res.getWarnings().items.contains(String.format(FAX_NUMBER_ERROR_MESSAGE, "solicitor_fax_number")));
     }
 
     @Test

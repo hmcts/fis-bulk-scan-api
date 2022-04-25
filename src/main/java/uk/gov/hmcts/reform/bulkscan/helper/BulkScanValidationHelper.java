@@ -22,6 +22,7 @@ import static java.util.stream.Collectors.toList;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DATE_FORMAT_FIELDS_KEY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DUPLICATE_FIELDS_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EMAIL_FORMAT_FIELDS_KEY;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FAX_NUMBER_FORMAT_MESSAGE_KEY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_KEY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MESSAGE_MAP;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PHONE_NUMBER_FIELDS_KEY;
@@ -85,6 +86,7 @@ public final class BulkScanValidationHelper {
                 case EMAIL_FORMAT_FIELDS_KEY:
                 case POST_CODE_FIELDS_KEY:
                 case PHONE_NUMBER_FIELDS_KEY:
+                case FAX_NUMBER_FORMAT_MESSAGE_KEY:
                     errorOrWarnings.addAll(validateFormatFields(ocrdatafields, isOptional, mandatoryFields,
                                                                 entry.getKey(), pair, false));
                     break;
@@ -120,8 +122,7 @@ public final class BulkScanValidationHelper {
 
     private static Predicate<OcrDataField> isValidDate(List<String> mandatoryFields, List<String> fields,
                                                        String regex, boolean isOptional) {
-        return eachData -> (isOptional ? !mandatoryFields.contains(eachData.getName())
-            : mandatoryFields.contains(eachData.getName()))
+        return eachData -> isOptional != mandatoryFields.contains(eachData.getName())
                 && fields.contains(eachData.getName())
                 && !ObjectUtils.isEmpty(eachData.getValue())
                 && !isDateValid(eachData.getValue(), regex);
@@ -129,8 +130,7 @@ public final class BulkScanValidationHelper {
 
     private static Predicate<OcrDataField> isMatchedWithRegex(List<String> mandatoryFields, List<String> fields,
                                                               String regex, boolean isOptional) {
-        return eachData -> (isOptional ? !mandatoryFields.contains(eachData.getName())
-            : mandatoryFields.contains(eachData.getName()))
+        return eachData -> isOptional != mandatoryFields.contains(eachData.getName())
                 && fields.contains(eachData.getName())
                 && !ObjectUtils.isEmpty(eachData.getValue())
                 && !isValidFormat(eachData.getValue(), regex);

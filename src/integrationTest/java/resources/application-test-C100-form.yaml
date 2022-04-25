@@ -20,6 +20,10 @@ uk:
                 fieldNames:
                   -
                 regex:
+              formatFields:
+                fieldNames:
+                  -
+                regex:
               postcodeFields:
                 fieldNames:
                   -
