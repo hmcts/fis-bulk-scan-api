@@ -24,6 +24,11 @@ public final class TestDataUtil {
         ocrDataLastNameField.setValue("LastName");
         fieldList.add(ocrDataLastNameField);
 
+        OcrDataField ocrDataEmergencyProtectionOrder = new OcrDataField();
+        ocrDataEmergencyProtectionOrder.setName("emergency_protection_order");
+        ocrDataEmergencyProtectionOrder.setValue("7777777");
+        fieldList.add(ocrDataEmergencyProtectionOrder);
+
         OcrDataField ocrEmailField = new OcrDataField();
         ocrEmailField.setName("appellant_email");
         ocrEmailField.setValue("test@test.com");
@@ -37,12 +42,24 @@ public final class TestDataUtil {
         OcrDataField ocrDateField = new OcrDataField();
         ocrDateField.setName("appellant_dateOfBirth");
         ocrDateField.setValue("2/02/2022");
+        fieldList.add(ocrDateField);
+
+        OcrDataField ocrDateOtherCourtCaseDateField = new OcrDataField();
+        ocrDateOtherCourtCaseDateField.setName("other_court_case_date");
+        ocrDateOtherCourtCaseDateField.setValue("2/02/2022");
+        fieldList.add(ocrDateOtherCourtCaseDateField);
+
+        OcrDataField ocrDateAuthorisedFamilyMediatorSignedDateField = new OcrDataField();
+        ocrDateAuthorisedFamilyMediatorSignedDateField.setName("authorised_family_mediator_signed_date");
+        ocrDateAuthorisedFamilyMediatorSignedDateField.setValue("2/02/2022");
+        fieldList.add(ocrDateAuthorisedFamilyMediatorSignedDateField);
 
         OcrDataField ocrPostCodeField = new OcrDataField();
         ocrPostCodeField.setName("appellant_post_code");
         ocrPostCodeField.setValue("TW31NN");
+        fieldList.add(ocrPostCodeField);
 
-        fieldList.add(ocrDateField);
+
 
         return fieldList;
     }
@@ -56,6 +73,10 @@ public final class TestDataUtil {
         ocrDataLastNameField.setName("appellant_lastName");
         ocrDataLastNameField.setValue("");
 
+        OcrDataField ocrDataEmergencyProtectionOrder = new OcrDataField();
+        ocrDataEmergencyProtectionOrder.setName("emergency_protection_order");
+        ocrDataEmergencyProtectionOrder.setValue("");
+
         OcrDataField ocrDataAddressField = new OcrDataField();
         ocrDataAddressField.setName("appellant_address");
         ocrDataAddressField.setValue("Address1 London");
@@ -64,7 +85,8 @@ public final class TestDataUtil {
         ocrNumericField.setName("appellant_case_number");
         ocrNumericField.setValue("1311231231");
 
-        return Arrays.asList(ocrDataAddressField, ocrDataFirstNameField, ocrDataLastNameField, ocrNumericField);
+        return Arrays.asList(ocrDataAddressField, ocrDataFirstNameField,
+                             ocrDataEmergencyProtectionOrder, ocrDataLastNameField, ocrNumericField);
     }
 
     public static List<OcrDataField> getDateErrorData() {
@@ -80,6 +102,14 @@ public final class TestDataUtil {
         ocrDataDateField.setName("appellant_dateOfBirth");
         ocrDataDateField.setValue("testdate");
 
+        OcrDataField ocrDataOtherCourtCaseDateField = new OcrDataField();
+        ocrDataOtherCourtCaseDateField.setName("other_court_case_date");
+        ocrDataOtherCourtCaseDateField.setValue("testdate");
+
+        OcrDataField ocrDataAuthorisedFamilyMediatorSignedDateField = new OcrDataField();
+        ocrDataAuthorisedFamilyMediatorSignedDateField.setName("authorised_family_mediator_signed_date");
+        ocrDataAuthorisedFamilyMediatorSignedDateField.setValue("testdate");
+
         OcrDataField ocrDataAddressField = new OcrDataField();
         ocrDataAddressField.setName("appellant_address");
         ocrDataAddressField.setValue("Address1 London");
@@ -90,7 +120,8 @@ public final class TestDataUtil {
 
 
         return Arrays.asList(ocrDataAddressField, ocrDataFirstNameField, ocrDataLastNameField,
-                             ocrDataDateField, ocrNumericField);
+                             ocrDataDateField, ocrDataOtherCourtCaseDateField,
+                             ocrDataAuthorisedFamilyMediatorSignedDateField, ocrNumericField);
     }
 
     public static List<OcrDataField> getEmailErrorData() {
@@ -115,6 +146,23 @@ public final class TestDataUtil {
         ocrNumericField.setValue("1311231231");
 
         return Arrays.asList(ocrDataAddressField, ocrDataFirstNameField, ocrDataLastNameField, ocrDataEmailField,
+                             ocrNumericField);
+    }
+
+    public static List<OcrDataField> getNumericErrorData() {
+        OcrDataField ocrDataFirstNameField = new OcrDataField();
+        ocrDataFirstNameField.setName("appellant_firstName");
+        ocrDataFirstNameField.setValue("firstName");
+
+        OcrDataField ocrDataLastNameField = new OcrDataField();
+        ocrDataLastNameField.setName("appellant_lastName");
+        ocrDataLastNameField.setValue("lastName");
+
+        OcrDataField ocrNumericField = new OcrDataField();
+        ocrNumericField.setName("case_no");
+        ocrNumericField.setValue("should_be_numeric");
+
+        return Arrays.asList(ocrDataFirstNameField, ocrDataLastNameField,
                              ocrNumericField);
     }
 }

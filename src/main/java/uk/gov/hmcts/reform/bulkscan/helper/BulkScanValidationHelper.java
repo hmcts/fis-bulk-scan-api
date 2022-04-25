@@ -24,6 +24,7 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DUPLICATE
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EMAIL_FORMAT_FIELDS_KEY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ERROR_MESSAGE_MAP;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_KEY;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NUMERIC_FIELDS_KEY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PHONE_NUMBER_FIELDS_KEY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.POST_CODE_FIELDS_KEY;
 import static uk.gov.hmcts.reform.bulkscan.utils.BulkScanValidationUtil.isDateValid;
@@ -83,6 +84,7 @@ public final class BulkScanValidationHelper {
                 case EMAIL_FORMAT_FIELDS_KEY:
                 case POST_CODE_FIELDS_KEY:
                 case PHONE_NUMBER_FIELDS_KEY:
+                case NUMERIC_FIELDS_KEY:
                     errorOrWarnings.addAll(validateFormatFields(ocrdatafields, isOptional, mandatoryFields,
                                                                 entry.getKey(), pair, false));
                     break;
