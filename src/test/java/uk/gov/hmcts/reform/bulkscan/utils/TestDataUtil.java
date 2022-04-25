@@ -117,4 +117,22 @@ public final class TestDataUtil {
         return Arrays.asList(ocrDataAddressField, ocrDataFirstNameField, ocrDataLastNameField, ocrDataEmailField,
                              ocrNumericField);
     }
+
+    public static List<OcrDataField> getFirstNameData() {
+        OcrDataField ocrDataFirstNameField = new OcrDataField();
+        ocrDataFirstNameField.setName("appellant_firstName");
+        ocrDataFirstNameField.setValue("firstName");
+
+
+        OcrDataField ocrDataAddressField = new OcrDataField();
+        ocrDataAddressField.setName("appellant_address");
+        ocrDataAddressField.setValue("Address1 London");
+
+        OcrDataField ocrNumericField = new OcrDataField();
+        ocrNumericField.setName("appellant_case_number");
+        ocrNumericField.setValue("1311231231");
+
+        return Arrays.asList(ocrDataAddressField, ocrDataFirstNameField,
+                             ocrNumericField);
+    }
 }

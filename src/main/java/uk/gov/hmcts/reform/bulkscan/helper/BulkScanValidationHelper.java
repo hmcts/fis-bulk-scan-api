@@ -24,7 +24,7 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DUPLICATE
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EMAIL_FORMAT_FIELDS_KEY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ERROR_MESSAGE_MAP;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_KEY;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MISSING_FIELD_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MISSING_FIELD_ERROR_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PHONE_NUMBER_FIELDS_KEY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.POST_CODE_FIELDS_KEY;
 import static uk.gov.hmcts.reform.bulkscan.utils.BulkScanValidationUtil.isDateValid;
@@ -110,7 +110,7 @@ public final class BulkScanValidationHelper {
     private static List<String> findMissingFields(List<String> fields, List<OcrDataField> ocrDataFields) {
         return fields.stream().filter(eachField -> !ocrDataFields.stream()
                 .anyMatch(inputField -> inputField.getName().equalsIgnoreCase(eachField)))
-            .map(eachField -> String.format(MISSING_FIELD_MESSAGE, eachField)).collect(toList());
+            .map(eachField -> String.format(MISSING_FIELD_ERROR_MESSAGE, eachField)).collect(toList());
     }
 
     private static List<String> validateFields(List<OcrDataField> ocrdatafields,
