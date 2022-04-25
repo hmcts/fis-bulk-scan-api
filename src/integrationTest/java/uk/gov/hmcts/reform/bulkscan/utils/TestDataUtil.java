@@ -28,6 +28,7 @@ public final class TestDataUtil {
         ocrDataSolicitorDxField.setName("solicitor_fax_number");
         ocrDataSolicitorDxField.setValue("123455");
 
+
         return Arrays.asList(ocrDataSolicitorAddressField, ocrDataFirstNameField, ocrDataSolicitorTelephoneField,
                 ocrDataSolicitorDxField);
     }
