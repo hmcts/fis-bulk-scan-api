@@ -7,6 +7,9 @@ uk:
             mandatoryFields:
                 - appellant_firstName
                 - appellant_lastName
+                - child_firstName
+                - child_lastName
+                - appellant_childRelationship
                 - emergency_protection_order
             regexValidationFields:
               dateFields:
