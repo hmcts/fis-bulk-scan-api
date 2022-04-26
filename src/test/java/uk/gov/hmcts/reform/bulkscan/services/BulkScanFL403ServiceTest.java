@@ -18,10 +18,11 @@ import uk.gov.hmcts.reform.bulkscan.utils.TestDataUtil;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DATE_FORMAT_ERROR_MESSAGE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EMAIL_FORMAT_ERROR_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DATE_FORMAT_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EMAIL_FORMAT_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FAX_NUMBER_ERROR_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_ERROR_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MISSING_FIELD_MESSAGE;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -54,8 +55,8 @@ class BulkScanFL403ServiceTest {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
             TestDataUtil.getDateErrorData()).build();
         BulkScanValidationResponse res = bulkScanService.validate(bulkScanValidationRequest);
-        assertEquals(Status.ERRORS, res.status);
-        assertTrue(res.getWarnings().items.contains(String.format(DATE_FORMAT_ERROR_MESSAGE, "appellant_dateOfBirth")));
+        assertEquals(Status.WARNINGS, res.status);
+        assertTrue(res.getWarnings().items.contains(String.format(DATE_FORMAT_MESSAGE, "appellant_dateOfBirth")));
     }
 
     @Test
@@ -63,8 +64,17 @@ class BulkScanFL403ServiceTest {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
             TestDataUtil.getEmailErrorData()).build();
         BulkScanValidationResponse res = bulkScanService.validate(bulkScanValidationRequest);
+        assertEquals(Status.WARNINGS, res.status);
+        assertTrue(res.getWarnings().items.contains(String.format(EMAIL_FORMAT_MESSAGE, "appellant_email")));
+    }
+
+    @Test
+    void testFieldMissingErrorWhileDoingValidation() {
+        BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
+            TestDataUtil.getFirstNameData()).build();
+        BulkScanValidationResponse res = bulkScanService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
-        assertTrue(res.getWarnings().items.contains(String.format(EMAIL_FORMAT_ERROR_MESSAGE, "appellant_email")));
+        assertTrue(res.getErrors().items.contains(String.format(MISSING_FIELD_MESSAGE, "appellant_lastName")));
     }
 
     @Test
@@ -72,7 +82,7 @@ class BulkScanFL403ServiceTest {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
                 TestDataUtil.getEmailErrorData()).build();
         BulkScanValidationResponse res = bulkScanService.validate(bulkScanValidationRequest);
-        assertEquals(Status.ERRORS, res.status);
+        assertEquals(Status.WARNINGS, res.status);
         assertTrue(res.getWarnings().items.contains(String.format(FAX_NUMBER_ERROR_MESSAGE, "solicitor_fax_number")));
     }
 

@@ -17,10 +17,14 @@ uk:
                   - appellant_dateOfBirth
                   - other_court_case_date
                   - authorised_family_mediator_signed_date
+                  - respondent1_dateOfBirth
+                  - respondent2_dateOfBirth
                 regex: dd/mm/yyyy
               emailFields:
                 fieldNames:
                   - appellant_email
+                  - respondent1_email
+                  - respondent2_email
                 regex: ^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,6}$
               numericFields:
                 fieldNames:
