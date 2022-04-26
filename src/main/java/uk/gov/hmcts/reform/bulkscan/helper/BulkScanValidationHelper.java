@@ -25,6 +25,7 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EMAIL_FOR
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FAX_NUMBER_FORMAT_MESSAGE_KEY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_KEY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MESSAGE_MAP;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MISSING_FIELD_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PHONE_NUMBER_FIELDS_KEY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.POST_CODE_FIELDS_KEY;
 import static uk.gov.hmcts.reform.bulkscan.utils.BulkScanValidationUtil.isDateValid;
@@ -45,7 +46,10 @@ public final class BulkScanValidationHelper {
         List<String> warnings = new ArrayList<>();
 
         if (!ocrDatafields.isEmpty()) {
-            errors = validateMandatoryAndOptionalFields(ocrDatafields, validationConfg, false);
+            errors = findMissingFields(validationConfg.getMandatoryFields(), ocrDatafields);
+
+            errors.addAll(validateMandatoryAndOptionalFields(ocrDatafields, validationConfg, false));
+
             warnings = validateMandatoryAndOptionalFields(ocrDatafields, validationConfg, true);
         } else {
             String duplicateFields = String.join(",", duplicateOcrFields);
@@ -105,6 +109,12 @@ public final class BulkScanValidationHelper {
                 isMatchedWithRegex(mandatoryFields, pair.getLeft(), pair.getRight(), isOptional),
             key
         );
+    }
+
+    private static List<String> findMissingFields(List<String> fields, List<OcrDataField> ocrDataFields) {
+        return fields.stream().filter(eachField -> !ocrDataFields.stream()
+                .anyMatch(inputField -> inputField.getName().equalsIgnoreCase(eachField)))
+            .map(eachField -> String.format(MISSING_FIELD_MESSAGE, eachField)).collect(toList());
     }
 
     private static List<String> validateFields(List<OcrDataField> ocrdatafields,
