@@ -80,7 +80,7 @@ class BulkScanFL403ServiceTest {
     @Test
     void testFL403FaxNumberErrorWhileDoingValidation() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-                TestDataUtil.getEmailErrorData()).build();
+            TestDataUtil.getEmailErrorData()).build();
         BulkScanValidationResponse res = bulkScanService.validate(bulkScanValidationRequest);
         assertEquals(Status.WARNINGS, res.status);
         assertTrue(res.getWarnings().items.contains(String.format(FAX_NUMBER_ERROR_MESSAGE, "solicitor_fax_number")));

@@ -5,6 +5,12 @@ uk:
         caseTypeofApplication:
           FL403:
             mandatoryFields:
+              - applicant_firstName
+              - applicant_lastName
+              - applicant_address
+              - applicant_postcode
+              - applicant_telephone_number
+              - applicant_email
               - solicitor_name
               - solicitor_address
               - solicitor_reference
@@ -14,11 +20,11 @@ uk:
             regexValidationFields:
               dateFields:
                 fieldNames:
-                  - appellant_dateOfBirth
-                regex: dd/MM/yyyy
+                  - applicant_dateOfBirth
+                regex: dd/mm/yyyy
               emailFields:
                 fieldNames:
-                  - appellant_email
+                  - applicant_email
                 regex: ^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,6}$
               numericFields:
                 fieldNames:
@@ -26,10 +32,11 @@ uk:
                 regex: ^[0-9]*$
               postcodeFields:
                 fieldNames:
-                  -
+                - applicant_postcode
                 regex: ^[A-Z]{1,2}[0-9R][0-9A-Z]? [0-9][ABD-HJLNP-UW-Z]{2}$
               phoneNumberFields:
                 fieldNames:
+                  - applicant_telephone_number
                   - solicitor_telephone_number
                 regex: ^(?:0|\+?44)(?:\d\s?){9,10}$
               faxNumberFields:

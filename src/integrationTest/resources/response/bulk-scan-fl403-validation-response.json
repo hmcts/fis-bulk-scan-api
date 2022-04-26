@@ -7,6 +7,12 @@
   },
   "errors":{
     "items":[
+      "applicant_firstName should not be null or empty",
+      "applicant_lastName should not be null or empty",
+      "applicant_address should not be null or empty",
+      "applicant_postcode should not be null or empty",
+      "applicant_telephone_number should not be null or empty",
+      "applicant_email should not be null or empty",
       "solicitor_address should not be null or empty",
       "solicitor_telephone_number is not valid phone number",
       "solicitor_fax_number is in the wrong format",
