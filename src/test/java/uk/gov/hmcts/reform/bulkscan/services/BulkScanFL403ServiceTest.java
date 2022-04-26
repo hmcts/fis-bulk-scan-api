@@ -51,6 +51,15 @@ class BulkScanFL403ServiceTest {
     }
 
     @Test
+    void testFL403ApplicantFirstNameMandatoryErrorWhileDoingValidation() {
+        BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
+            TestDataUtil.getErrorData()).build();
+        BulkScanValidationResponse res = bulkScanService.validate(bulkScanValidationRequest);
+        assertEquals(Status.ERRORS, res.status);
+        assertTrue(res.getErrors().items.contains(String.format(MANDATORY_ERROR_MESSAGE, "applicant_firstName")));
+    }
+
+    @Test
     void testFL403DateErrorWhileDoingValidation() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
             TestDataUtil.getDateErrorData()).build();

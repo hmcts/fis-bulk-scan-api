@@ -21,7 +21,11 @@ uk:
               dateFields:
                 fieldNames:
                   - applicant_dateOfBirth
+<<<<<<< HEAD
                 regex: dd/mm/yyyy
+=======
+                regex: dd mm yy
+>>>>>>> 79378df (Added validation for FL403 Citizen Postal ISDB-51)
               emailFields:
                 fieldNames:
                   - applicant_email
