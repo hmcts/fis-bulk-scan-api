@@ -12,7 +12,7 @@ public final class TestResourceUtil {
 
     }
 
-    public static String expectedResponse(final String resourcePath) throws IOException {
+    public static String readFileFrom(final String resourcePath) throws IOException {
         return resourceAsString(resourcePath);
     }
 
