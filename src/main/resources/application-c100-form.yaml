@@ -9,7 +9,6 @@ uk:
                 - appellant_lastName
                 - child_firstName
                 - child_lastName
-                - child_gender
                 - appellant_childRelationship
             regexValidationFields:
               dateFields:
@@ -33,3 +32,7 @@ uk:
                 fieldNames:
                   - appellant_contactNumber
                 regex: ^(?:0|\+?44)(?:\d\s?){9,10}$
+              faxNumberFields:
+                fieldNames:
+                  -
+                regex:

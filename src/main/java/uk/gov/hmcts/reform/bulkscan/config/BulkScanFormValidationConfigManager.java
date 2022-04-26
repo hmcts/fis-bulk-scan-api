@@ -31,6 +31,7 @@ public class BulkScanFormValidationConfigManager {
         RegexFieldsConfig numericFields;
         RegexFieldsConfig postCodeFields;
         RegexFieldsConfig phoneNumberFields;
+        RegexFieldsConfig faxNumberFields;
     }
 
     @Data
