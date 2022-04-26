@@ -20,11 +20,12 @@ import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DATE_FORMAT_FIELDS_KEY;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DUPLICATE_FIELDS_ERROR_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DUPLICATE_FIELDS_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EMAIL_FORMAT_FIELDS_KEY;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ERROR_MESSAGE_MAP;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FAX_NUMBER_FORMAT_MESSAGE_KEY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_KEY;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MESSAGE_MAP;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MISSING_FIELD_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PHONE_NUMBER_FIELDS_KEY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.POST_CODE_FIELDS_KEY;
 import static uk.gov.hmcts.reform.bulkscan.utils.BulkScanValidationUtil.isDateValid;
@@ -37,26 +38,31 @@ public final class BulkScanValidationHelper {
 
     }
 
-    public static BulkScanValidationResponse validateMandatoryAndOptionalFields(List<OcrDataField> ocrdatafields,
+    public static BulkScanValidationResponse validateMandatoryAndOptionalFields(List<OcrDataField> ocrDatafields,
                                                                                 BulkScanFormValidationConfigManager
                                                                                     .ValidationConfig validationConfg) {
-        List<String> duplicateOcrFields = findDuplicateOcrFields(ocrdatafields);
+        List<String> duplicateOcrFields = findDuplicateOcrFields(ocrDatafields);
         List<String> errors = new ArrayList<>();
         List<String> warnings = new ArrayList<>();
 
-        if (!ocrdatafields.isEmpty()) {
-            errors = validateMandatoryAndOptionalFields(ocrdatafields, validationConfg, false);
-            warnings = validateMandatoryAndOptionalFields(ocrdatafields, validationConfg, true);
+        if (!ocrDatafields.isEmpty()) {
+            errors = findMissingFields(validationConfg.getMandatoryFields(), ocrDatafields);
+
+            errors.addAll(validateMandatoryAndOptionalFields(ocrDatafields, validationConfg, false));
+
+            warnings = validateMandatoryAndOptionalFields(ocrDatafields, validationConfg, true);
         } else {
             String duplicateFields = String.join(",", duplicateOcrFields);
             log.info("Found duplicate fields in OCR data. {}", duplicateFields);
 
-            String errorMessage = String.format(DUPLICATE_FIELDS_ERROR_MESSAGE, duplicateFields);
+            String errorMessage = String.format(DUPLICATE_FIELDS_MESSAGE, duplicateFields);
             errors.add(errorMessage);
         }
 
+        Status status = !errors.isEmpty() ? Status.ERRORS : !warnings.isEmpty() ? Status.WARNINGS : Status.SUCCESS;
+
         return BulkScanValidationResponse.builder()
-            .status(errors.isEmpty() && warnings.isEmpty() ? Status.SUCCESS : Status.ERRORS)
+            .status(status)
             .warnings(Warnings.builder().items(warnings).build())
             .errors(Errors.builder().items(errors).build()).build();
     }
@@ -105,11 +111,17 @@ public final class BulkScanValidationHelper {
         );
     }
 
+    private static List<String> findMissingFields(List<String> fields, List<OcrDataField> ocrDataFields) {
+        return fields.stream().filter(eachField -> !ocrDataFields.stream()
+                .anyMatch(inputField -> inputField.getName().equalsIgnoreCase(eachField)))
+            .map(eachField -> String.format(MISSING_FIELD_MESSAGE, eachField)).collect(toList());
+    }
+
     private static List<String> validateFields(List<OcrDataField> ocrdatafields,
                                                Predicate<OcrDataField> filterCondition, String errorMessageKey) {
         return ocrdatafields.stream()
             .filter(filterCondition)
-            .map(eachData -> String.format(ERROR_MESSAGE_MAP.get(errorMessageKey), eachData.getName()))
+            .map(eachData -> String.format(MESSAGE_MAP.get(errorMessageKey), eachData.getName()))
             .collect(toList());
     }
 
