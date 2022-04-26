@@ -11,13 +11,13 @@ import java.util.Objects;
 public final class BulkScanConstants {
 
     public static final String MANDATORY_ERROR_MESSAGE = "%s should not be null or empty";
-    public static final String DATE_FORMAT_ERROR_MESSAGE = "%s is invalid date format";
-    public static final String EMAIL_FORMAT_ERROR_MESSAGE = "%s is invalid email";
-    public static final String NUMERIC_ERROR_MESSAGE = "%s is not a number";
+    public static final String DATE_FORMAT_MESSAGE = "%s is invalid date format";
+    public static final String EMAIL_FORMAT_MESSAGE = "%s is invalid email";
+    public static final String NUMERIC_MESSAGE = "%s is not a number";
     public static final String MISSING_FIELD_MESSAGE = "%s is missing";
-    public static final String POST_CODE_ERROR_MESSAGE = "%s is not a valid postcode";
-    public static final String PHONE_NUMBER_ERROR_MESSAGE = "%s is not valid phone number";
-    public static final String DUPLICATE_FIELDS_ERROR_MESSAGE = "Invalid OCR data. Duplicate fields exist: %s";
+    public static final String POST_CODE_MESSAGE = "%s is not a valid postcode";
+    public static final String PHONE_NUMBER_MESSAGE = "%s is not valid phone number";
+    public static final String DUPLICATE_FIELDS_MESSAGE = "Invalid OCR data. Duplicate fields exist: %s";
     public static final String FAX_NUMBER_ERROR_MESSAGE = "%s is in the wrong format";
 
 
@@ -29,14 +29,14 @@ public final class BulkScanConstants {
     public static final String PHONE_NUMBER_FIELDS_KEY = "phoneNumberFields";
     public static final String FAX_NUMBER_FORMAT_MESSAGE_KEY = "faxNumberFields";
 
-    public static final Map<String, String> ERROR_MESSAGE_MAP = getErrorMessageMap();
+    public static final Map<String, String> MESSAGE_MAP = getErrorMessageMap();
 
     private static Map<String,String> getErrorMessageMap() {
         return Map.of(MANDATORY_KEY, MANDATORY_ERROR_MESSAGE,
-                      DATE_FORMAT_FIELDS_KEY, DATE_FORMAT_ERROR_MESSAGE,
-                      EMAIL_FORMAT_FIELDS_KEY, EMAIL_FORMAT_ERROR_MESSAGE,
-                      NUMERIC_FIELDS_KEY, NUMERIC_ERROR_MESSAGE, POST_CODE_FIELDS_KEY, POST_CODE_ERROR_MESSAGE,
-                      PHONE_NUMBER_FIELDS_KEY, PHONE_NUMBER_ERROR_MESSAGE,
+                      DATE_FORMAT_FIELDS_KEY, DATE_FORMAT_MESSAGE,
+                      EMAIL_FORMAT_FIELDS_KEY, EMAIL_FORMAT_MESSAGE,
+                      NUMERIC_FIELDS_KEY, NUMERIC_MESSAGE, POST_CODE_FIELDS_KEY, POST_CODE_MESSAGE,
+                      PHONE_NUMBER_FIELDS_KEY, PHONE_NUMBER_MESSAGE,
                       FAX_NUMBER_FORMAT_MESSAGE_KEY, FAX_NUMBER_ERROR_MESSAGE
         );
     }
