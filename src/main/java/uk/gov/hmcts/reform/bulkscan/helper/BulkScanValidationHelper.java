@@ -24,8 +24,8 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DUPLICATE
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EMAIL_FORMAT_FIELDS_KEY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FAX_NUMBER_FORMAT_MESSAGE_KEY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_KEY;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MISSING_FIELD_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MESSAGE_MAP;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MISSING_FIELD_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PHONE_NUMBER_FIELDS_KEY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.POST_CODE_FIELDS_KEY;
 import static uk.gov.hmcts.reform.bulkscan.utils.BulkScanValidationUtil.isDateValid;
@@ -45,12 +45,12 @@ public final class BulkScanValidationHelper {
         List<String> errors = new ArrayList<>();
         List<String> warnings = new ArrayList<>();
 
-        if (!ocrdatafields.isEmpty()) {
-            errors = findMissingFields(validationConfg.getMandatoryFields(), ocrdatafields);
+        if (!ocrDatafields.isEmpty()) {
+            errors = findMissingFields(validationConfg.getMandatoryFields(), ocrDatafields);
 
-            errors.addAll(validateMandatoryAndOptionalFields(ocrdatafields, validationConfg, false));
+            errors.addAll(validateMandatoryAndOptionalFields(ocrDatafields, validationConfg, false));
 
-            warnings = validateMandatoryAndOptionalFields(ocrdatafields, validationConfg, true);
+            warnings = validateMandatoryAndOptionalFields(ocrDatafields, validationConfg, true);
         } else {
             String duplicateFields = String.join(",", duplicateOcrFields);
             log.info("Found duplicate fields in OCR data. {}", duplicateFields);
