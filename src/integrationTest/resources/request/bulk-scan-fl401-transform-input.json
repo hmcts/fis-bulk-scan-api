@@ -1,0 +1,17 @@
+{
+  "ocr_data_fields":[
+    {
+      "name":"appellant_address",
+      "value":"Address1 London"
+    },
+    {
+      "name":"appellant_firstName",
+      "value":"firstName"
+    },
+    {
+      "name":"appellant_lastName",
+      "value":"LastName"
+    }
+  ],
+  "case_type_id": "FL401"
+}

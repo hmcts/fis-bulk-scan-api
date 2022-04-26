@@ -1,0 +1,20 @@
+{
+  "ocr_data_fields":[
+    {
+      "name":"solicitor_address",
+      "value":null
+    },
+    {
+      "name":"solicitor_name",
+      "value":"solicitor_name_value"
+    },
+    {
+      "name":"solicitor_telephone_number",
+      "value":"DUMMY"
+    },
+    {
+      "name":"solicitor_fax_number",
+      "value":"123455"
+    }
+  ]
+}
