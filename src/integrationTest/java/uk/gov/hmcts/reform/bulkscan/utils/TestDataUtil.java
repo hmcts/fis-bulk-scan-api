@@ -15,27 +15,21 @@ public final class TestDataUtil {
 
         OcrDataField ocrDataApplicantFirstName = new OcrDataField();
         ocrDataApplicantFirstName.setName("applicant_firstName");
-        ocrDataApplicantFirstName.setValue("firstName");
 
         OcrDataField ocrDataApplicantLastName = new OcrDataField();
         ocrDataApplicantLastName.setName("applicant_lastName");
-        ocrDataApplicantLastName.setValue("lastName");
 
         OcrDataField ocrDataApplicantAddress = new OcrDataField();
         ocrDataApplicantAddress.setName("applicant_address");
-        ocrDataApplicantAddress.setValue("Address in London");
 
         OcrDataField ocrDataApplicantPostcode = new OcrDataField();
         ocrDataApplicantPostcode.setName("applicant_postcode");
-        ocrDataApplicantPostcode.setValue("SW1 2EX");
 
         OcrDataField ocrDataApplicantTelephoneField = new OcrDataField();
         ocrDataApplicantTelephoneField.setName("applicant_telephone_number");
-        ocrDataApplicantTelephoneField.setValue("02088888888");
 
         OcrDataField ocrDataApplicantEmailField = new OcrDataField();
         ocrDataApplicantEmailField.setName("applicant_email");
-        ocrDataApplicantEmailField.setValue("me@example.com");
 
         OcrDataField ocrDataFirstNameField = new OcrDataField();
         ocrDataFirstNameField.setName("solicitor_name");
