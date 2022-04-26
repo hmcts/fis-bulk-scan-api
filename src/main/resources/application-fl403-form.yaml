@@ -9,6 +9,8 @@ uk:
                 - applicant_lastName
                 - applicant_address
                 - applicant_postcode
+                - applicant_telephone_number
+                - applicant_email
                 - solicitor_name
                 - solicitor_address
                 - solicitor_reference
