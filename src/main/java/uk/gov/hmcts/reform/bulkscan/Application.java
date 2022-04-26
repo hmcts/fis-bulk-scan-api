@@ -6,7 +6,7 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.cloud.openfeign.EnableFeignClients;
 import org.springframework.context.annotation.ComponentScan;
 
-@EnableFeignClients(basePackages = {"uk.gov.hmcts.reform.bulkscan.*", "uk.gov.hmcts.reform.bulkscan.services"})
+@EnableFeignClients(basePackages = {"uk.gov.hmcts.reform.bulkscan.*"})
 @SpringBootConfiguration
 @EnableAutoConfiguration
 @ComponentScan(basePackages = {  "uk.gov.hmcts.reform.bulkscan", "uk.gov.hmcts.reform.bulkscan.services",
