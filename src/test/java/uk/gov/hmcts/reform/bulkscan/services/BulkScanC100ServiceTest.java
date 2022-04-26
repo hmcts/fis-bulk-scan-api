@@ -22,7 +22,7 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DATE_FORM
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EMAIL_FORMAT_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_ERROR_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MISSING_FIELD_MESSAGE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NUMERIC_ERROR_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NUMERIC_MESSAGE;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -74,8 +74,8 @@ class BulkScanC100ServiceTest {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
             TestDataUtil.getDateErrorData()).build();
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
-        assertEquals(Status.ERRORS, res.status);
-        assertTrue(res.getWarnings().items.contains(String.format(DATE_FORMAT_ERROR_MESSAGE, "other_court_case_date")));
+        assertEquals(Status.WARNINGS, res.status);
+        assertTrue(res.getWarnings().items.contains(String.format(DATE_FORMAT_MESSAGE, "other_court_case_date")));
     }
 
     @Test
@@ -83,9 +83,9 @@ class BulkScanC100ServiceTest {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
             TestDataUtil.getDateErrorData()).build();
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
-        assertEquals(Status.ERRORS, res.status);
+        assertEquals(Status.WARNINGS, res.status);
         assertTrue(res.getWarnings().items.contains(
-            String.format(DATE_FORMAT_ERROR_MESSAGE, "authorised_family_mediator_signed_date")));
+            String.format(DATE_FORMAT_MESSAGE, "authorised_family_mediator_signed_date")));
     }
 
     @Test
@@ -112,7 +112,7 @@ class BulkScanC100ServiceTest {
             TestDataUtil.getNumericErrorData()).build();
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
-        assertTrue(res.getWarnings().items.contains(String.format(NUMERIC_ERROR_MESSAGE, "case_no")));
+        assertTrue(res.getWarnings().items.contains(String.format(NUMERIC_MESSAGE, "case_no")));
     }
 
     @Test
