@@ -7,6 +7,7 @@ uk:
             mandatoryFields:
               - applicant_firstName
               - applicant_lastName
+              - applicant_dateOfBirth
               - applicant_address
               - applicant_postcode
               - applicant_telephone_number
@@ -21,14 +22,12 @@ uk:
               dateFields:
                 fieldNames:
                   - applicant_dateOfBirth
-<<<<<<< HEAD
+                  - appellant_dateOfBirth
                 regex: dd/mm/yyyy
-=======
-                regex: dd mm yy
->>>>>>> 79378df (Added validation for FL403 Citizen Postal ISDB-51)
               emailFields:
                 fieldNames:
                   - applicant_email
+                  - appellant_email
                 regex: ^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,6}$
               numericFields:
                 fieldNames:
@@ -36,7 +35,7 @@ uk:
                 regex: ^[0-9]*$
               postcodeFields:
                 fieldNames:
-                - applicant_postcode
+                  - applicant_postcode
                 regex: ^[A-Z]{1,2}[0-9R][0-9A-Z]? [0-9][ABD-HJLNP-UW-Z]{2}$
               phoneNumberFields:
                 fieldNames:
