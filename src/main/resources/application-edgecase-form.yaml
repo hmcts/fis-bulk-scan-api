@@ -19,7 +19,7 @@ uk:
               emailFields:
                 fieldNames:
                   - appellant_email
-                regex: ^([a-zA-Z0-9\\_\\-\\.]+)@([a-zA-Z0-9\\_\\-\\.]+)\\.([a-zA-Z]{2,5})$
+                regex: ^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,6}$
               numericFields:
                 fieldNames:
                   -
