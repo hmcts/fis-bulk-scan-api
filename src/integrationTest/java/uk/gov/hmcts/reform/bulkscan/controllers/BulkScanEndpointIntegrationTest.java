@@ -67,7 +67,6 @@ class BulkScanEndpointIntegrationTest {
                 .andExpect(content().json(readFileFrom(FL403_VALIDATION_RESPONSE_PATH)));
     }
 
-
     @DisplayName("should test validate request case type EdgeCase")
     @Test
     void shouldTestCaseTypeEdgeCase() throws Exception {
