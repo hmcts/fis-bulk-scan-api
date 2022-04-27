@@ -16,7 +16,7 @@ uk:
                   - appellant_dateOfBirth
                   - respondent1_dateOfBirth
                   - respondent2_dateOfBirth
-                regex: dd/mm/yyyy
+                regex: dd/MM/yyyy
               emailFields:
                 fieldNames:
                   - appellant_email
