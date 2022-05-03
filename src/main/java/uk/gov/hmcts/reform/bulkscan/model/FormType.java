@@ -4,5 +4,8 @@ public enum FormType {
     C100,
     FL401,
     FL403,
-    EdgeCase
+    EdgeCase,
+    C51,
+    C63,
+    A60
 }
