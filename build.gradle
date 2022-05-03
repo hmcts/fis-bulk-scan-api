@@ -189,7 +189,8 @@ repositories {
 def versions = [
   springfoxSwagger  : '3.0.0',
   s2sClient         : '4.0.0',
-  springCloud       : '3.1.1'
+  springCloud       : '3.1.1',
+  commonsIo         :  '2.7'
 ]
 
 ext {
@@ -223,13 +224,18 @@ dependencies {
   implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '3.0.0'
   implementation group: 'io.springfox', name: 'springfox-spring-webflux', version: '3.0.0'
   implementation 'junit:junit:4.13.2'
-  implementation(group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign')
+
+  implementation group: 'commons-io', name: 'commons-io', version: '2.11.0'
+
+  implementation(group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign', version: versions.springCloud)
     {
       exclude group: 'io.reactivex', module: 'io.reactivex'
       exclude group: 'io.reactivex', module: 'rxnetty'
       exclude group: 'io.reactivex', module: 'rxnetty-contexts'
       exclude group: 'io.reactivex', module: 'rxnetty-servo'
     }
+
+  functionalTestImplementation group: 'uk.gov.hmcts.reform', name: 'service-auth-provider-client', version: versions.s2sClient
 
 
   testImplementation(platform('org.junit:junit-bom:5.8.2'))
@@ -242,7 +248,7 @@ dependencies {
 
 
   // Integration test
-  integrationTestImplementation(group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign')
+  integrationTestImplementation(group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign', version: versions.springCloud)
     {
       exclude group: 'io.reactivex', module: 'io.reactivex'
       exclude group: 'io.reactivex', module: 'rxnetty'
