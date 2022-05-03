@@ -25,6 +25,7 @@ spring:
       - c100-form
       - fl401-form
       - fl403-form
+      - c100-transform
 #  datasource:
 #    driver-class-name: org.postgresql.Driver
 #    url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}${DB_OPTIONS:}
