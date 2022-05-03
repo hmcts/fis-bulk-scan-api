@@ -5,12 +5,18 @@ uk:
         caseTypeofApplication:
           C100:
             mandatoryFields:
-                - appellant_firstName
-                - appellant_lastName
+              - appellant_firstName
+              - appellant_lastName
+              - child_firstName
+              - child_lastName
+              - appellant_childRelationship
+              - emergency_protection_order
             regexValidationFields:
               dateFields:
                 fieldNames:
                   - appellant_dateOfBirth
+                  - other_court_case_date
+                  - authorised_family_mediator_signed_date
                 regex: dd/mm/yyyy
               emailFields:
                 fieldNames:
@@ -18,7 +24,7 @@ uk:
                 regex: ^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,6}$
               numericFields:
                 fieldNames:
-                  -
+                  - case_no
                 regex: ^[0-9]*$
               postcodeFields:
                 fieldNames:

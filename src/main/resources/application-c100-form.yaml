@@ -10,10 +10,13 @@ uk:
                 - child_firstName
                 - child_lastName
                 - appellant_childRelationship
+                - emergency_protection_order
             regexValidationFields:
               dateFields:
                 fieldNames:
                   - appellant_dateOfBirth
+                  - other_court_case_date
+                  - authorised_family_mediator_signed_date
                   - respondent1_dateOfBirth
                   - respondent2_dateOfBirth
                 regex: dd/MM/yyyy
@@ -25,7 +28,7 @@ uk:
                 regex: ^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,6}$
               numericFields:
                 fieldNames:
-                  -
+                  - case_no
                 regex: ^[0-9]*$
               postcodeFields:
                 fieldNames:
