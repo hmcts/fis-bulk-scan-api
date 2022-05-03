@@ -7,7 +7,6 @@ uk:
             mandatoryFields:
               - applicant_firstName
               - applicant_lastName
-              - applicant_dateOfBirth
               - applicant_address
               - applicant_postcode
               - applicant_telephone_number
@@ -22,12 +21,10 @@ uk:
               dateFields:
                 fieldNames:
                   - applicant_dateOfBirth
-                  - appellant_dateOfBirth
                 regex: dd/mm/yyyy
               emailFields:
                 fieldNames:
                   - applicant_email
-                  - appellant_email
                 regex: ^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,6}$
               numericFields:
                 fieldNames:
