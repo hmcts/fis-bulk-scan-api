@@ -26,6 +26,9 @@ spring:
       - test-FL401-form
       - test-FL403-form
       - test-EdgeCase-form
+      - test-C51-form
+      - test-C63-form
+      - test-A60-form
 #  datasource:
 #    driver-class-name: org.postgresql.Driver
 #    url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}${DB_OPTIONS:}
