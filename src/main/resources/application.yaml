@@ -29,6 +29,8 @@ spring:
       - c51-form
       - c63-form
       - a60-form
+      - c100-transform
+
 #  datasource:
 #    driver-class-name: org.postgresql.Driver
 #    url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}${DB_OPTIONS:}

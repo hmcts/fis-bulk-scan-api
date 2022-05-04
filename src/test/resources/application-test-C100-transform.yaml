@@ -1,0 +1,27 @@
+uk:
+  gov:
+    hmcts:
+      transform:
+        caseTypeofApplication:
+          C100:
+            applicant:
+              - value:
+                  firstName: applicant1_firstName
+                  lastName: applicant1_lastName
+                  gender: applicant1_gender
+              - value:
+                  firstName: applicant2_firstName
+                  lastName: applicant2_lastName
+                  gender: applicant2_gender
+            solictiorEmail: solicitorEmail
+            solicitorAddressLine1: solicitor_addressLine1
+            solicitorAddressLine2: solicitor_addressLine2
+            solicitorAddressLine3: solicitor_addressLine3
+            caseNumber: caseNumber
+            children:
+              - value:
+                  firstName: child1_firstName
+                  lastName: child1_lastName
+              - value:
+                  firstName: child2_firstName
+                  lastName: child2_lastName

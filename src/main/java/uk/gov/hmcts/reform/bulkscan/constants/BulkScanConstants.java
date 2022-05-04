@@ -31,6 +31,8 @@ public final class BulkScanConstants {
 
     public static final Map<String, String> MESSAGE_MAP = getErrorMessageMap();
 
+    public static final String BULK_SCAN_CASE_REFERENCE = "bulkScanCaseReference";
+
     private static Map<String,String> getErrorMessageMap() {
         return Map.of(MANDATORY_KEY, MANDATORY_ERROR_MESSAGE,
                       DATE_FORMAT_FIELDS_KEY, DATE_FORMAT_MESSAGE,
