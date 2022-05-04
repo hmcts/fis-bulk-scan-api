@@ -26,6 +26,7 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FAX_NUMBE
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_KEY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MESSAGE_MAP;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MISSING_FIELD_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NUMERIC_FIELDS_KEY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PHONE_NUMBER_FIELDS_KEY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.POST_CODE_FIELDS_KEY;
 import static uk.gov.hmcts.reform.bulkscan.utils.BulkScanValidationUtil.isDateValid;
@@ -91,6 +92,7 @@ public final class BulkScanValidationHelper {
                 case POST_CODE_FIELDS_KEY:
                 case PHONE_NUMBER_FIELDS_KEY:
                 case FAX_NUMBER_FORMAT_MESSAGE_KEY:
+                case NUMERIC_FIELDS_KEY:
                     errorOrWarnings.addAll(validateFormatFields(ocrdatafields, isOptional, mandatoryFields,
                                                                 entry.getKey(), pair, false));
                     break;

@@ -15,6 +15,24 @@
     {
       "name":"solicitor_fax_number",
       "value":"123455"
+    },
+    {
+      "name":"applicant_firstName"
+    },
+    {
+      "name":"applicant_lastName"
+    },
+    {
+      "name":"applicant_address"
+    },
+    {
+      "name":"applicant_postcode"
+    },
+    {
+      "name":"applicant_telephone_number"
+    },
+    {
+      "name":"applicant_email"
     }
   ]
 }
