@@ -80,7 +80,7 @@ class BulkScanC100ServiceTest {
     void testTransform() {
         BulkScanTransformationResponse bulkScanTransformationResponse =
             bulkScanValidationService.transform(mock(BulkScanTransformationRequest.class));
-        Assertions.assertNull(bulkScanTransformationResponse);
+        Assertions.assertNotNull(bulkScanTransformationResponse);
     }
 
 }

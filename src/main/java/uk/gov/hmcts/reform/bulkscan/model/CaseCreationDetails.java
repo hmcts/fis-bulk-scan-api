@@ -11,13 +11,13 @@ import java.util.Map;
 public class CaseCreationDetails {
 
     @JsonProperty("case_type_id")
-    private final String caseTypeId;
+    public final String caseTypeId;
 
     @JsonProperty("event_id")
-    private final String eventId;
+    public final String eventId;
 
     @JsonProperty("case_data")
-    private final Map<String, Object> caseData;
+    public final Map<String, Object> caseData;
 
     public CaseCreationDetails(
         String caseTypeId,

@@ -8,7 +8,8 @@ import java.util.List;
 import java.util.Map;
 
 @Slf4j
-public class BulkScanTransformHelper {
+@SuppressWarnings("PMD.AvoidReassigningParameters")
+public final class BulkScanTransformHelper {
 
     private BulkScanTransformHelper() {
 
@@ -22,22 +23,19 @@ public class BulkScanTransformHelper {
             innerMap.forEach((k, v) -> {
                 if (k instanceof String && StringUtils.isNumeric(k)) {
                     list.add(innerMap.get(k));
-                } else {
-                    if (v != null) {
-                        innerMap.put(k, getMapObjectAndValue(v, inputFieldsMap));
-                    }
+                } else if (v != null) {
+                    innerMap.put(k, getMapObjectAndValue(v, inputFieldsMap));
                 }
             });
+
             if (!list.isEmpty()) {
                 list.stream().forEach(eachList -> {
                     getMapObjectAndValue(eachList, inputFieldsMap);
                 });
                 object = list;
             }
-        } else if (object instanceof String) {
-            if (inputFieldsMap != null && inputFieldsMap.containsKey(object)) {
-                object = inputFieldsMap.get(object);
-            }
+        } else if (object instanceof String && inputFieldsMap.containsKey(object)) {
+            object = inputFieldsMap.get(object);
         }
         return object;
     }

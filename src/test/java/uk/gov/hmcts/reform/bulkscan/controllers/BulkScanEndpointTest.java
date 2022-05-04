@@ -80,7 +80,7 @@ class BulkScanEndpointTest {
         //Given
         BulkScanTransformationRequest bulkScanTransformationRequest = BulkScanTransformationRequest.builder()
             .ocrdatafields(TestDataUtil.getData()).caseTypeId(
-                C100.name()).build();
+                FL401.name()).build();
 
         //When
         ResponseEntity<BulkScanTransformationResponse> response =
@@ -94,7 +94,7 @@ class BulkScanEndpointTest {
         //Given
         BulkScanTransformationRequest bulkScanTransformationRequest = BulkScanTransformationRequest.builder()
             .ocrdatafields(TestDataUtil.getData()).caseTypeId(
-                C100.name()).build();
+                FL403.name()).build();
 
         //When
         ResponseEntity<BulkScanTransformationResponse> response =
