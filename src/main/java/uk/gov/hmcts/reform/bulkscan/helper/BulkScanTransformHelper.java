@@ -15,8 +15,14 @@ public final class BulkScanTransformHelper {
 
     }
 
+    /*
+    * Returns transformed CCD object.
+    * This method is recursive method to replace the values from OCR_DATA_FIELD values and
+    * as per CCD requirement list of object should be tranformed as list when sending to CCD
+    * it will be transformed into list instead of map while gettting from yaml to java.
+     */
     @SuppressWarnings("unchecked")
-    public static Object getMapObjectAndValue(Object object, Map<String, String> inputFieldsMap) {
+    public static Object transformToCaseData(Object object, Map<String, String> inputFieldsMap) {
         List<Object> list = new ArrayList<>();
         if (object instanceof Map) {
             Map<String, Object> innerMap = (Map<String, Object>) object;
@@ -24,13 +30,13 @@ public final class BulkScanTransformHelper {
                 if (k instanceof String && StringUtils.isNumeric(k)) {
                     list.add(innerMap.get(k));
                 } else if (v != null) {
-                    innerMap.put(k, getMapObjectAndValue(v, inputFieldsMap));
+                    innerMap.put(k, transformToCaseData(v, inputFieldsMap));
                 }
             });
 
             if (!list.isEmpty()) {
                 list.stream().forEach(eachList -> {
-                    getMapObjectAndValue(eachList, inputFieldsMap);
+                    transformToCaseData(eachList, inputFieldsMap);
                 });
                 object = list;
             }

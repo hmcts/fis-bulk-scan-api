@@ -56,7 +56,7 @@ public class BulkScanC100Service implements BulkScanService {
             Collectors.toMap(OcrDataField::getName, OcrDataField::getValue));
 
         Map<String, Object> populatedMap = (Map<String, Object>) BulkScanTransformHelper
-            .getMapObjectAndValue(transformConfigManager.getSourceAndTargetFields(FormType.C100), inputFieldsMap);
+            .transformToCaseData(transformConfigManager.getSourceAndTargetFields(FormType.C100), inputFieldsMap);
 
 
         return BulkScanTransformationResponse.builder().caseCreationDetails(
