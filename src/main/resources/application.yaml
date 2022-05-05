@@ -19,7 +19,7 @@ spring:
   config:
     import: "optional:configtree:/mnt/secrets/"
   application:
-    name: Spring Boot Template
+    name: fis bulk scan api
   profiles:
     include:
       - c100-form
