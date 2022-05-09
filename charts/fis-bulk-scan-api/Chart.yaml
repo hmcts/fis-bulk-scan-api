@@ -8,5 +8,5 @@ maintainers:
   - name: HMCTS fis team
 dependencies:
   - name: java
-    version: 3.7.5
+    version: 3.7.6
     repository: '@hmctspublic'
