@@ -1,0 +1,26 @@
+uk:
+  gov:
+    hmcts:
+      transformation:
+        caseTypeofApplication:
+          C100:
+            others:
+              - id
+              - caseTypeOfApplication
+              - applicantCaseName
+            child:
+              - child1_firstName
+              - child1_lastName
+              - child2_firstName
+              - child2_lastName
+              - child3_firstName
+              - child3_lastName
+              - child3_firstName
+              - child3_lastName
+            appellant:
+              - appellant_firstName
+              - appellant_lastName
+            respondent:
+              - respondent1_firstName
+              - respondent2_lastName
+

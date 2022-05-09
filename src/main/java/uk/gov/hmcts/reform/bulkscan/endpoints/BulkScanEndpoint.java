@@ -25,6 +25,7 @@ import uk.gov.hmcts.reform.bulkscan.model.FormType;
 import uk.gov.hmcts.reform.bulkscan.model.Status;
 import uk.gov.hmcts.reform.bulkscan.model.Warnings;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Objects;
 
 import static java.util.Collections.emptyList;
@@ -96,11 +97,10 @@ public class BulkScanEndpoint {
     public ResponseEntity<BulkScanTransformationResponse>
         transformationOcrData(@RequestHeader(SERVICEAUTHORIZATION)
                               String s2sToken, @RequestHeader(CONTENT_TYPE) String contentType,
-                          @RequestBody final BulkScanTransformationRequest bulkScanTransformationRequest) {
+                          @RequestBody final BulkScanTransformationRequest bulkScanTransformationRequest) throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, IllegalAccessException {
 
         BulkScanTransformationResponse bulkScanTransformationResponse =
-            Objects.requireNonNull(BulkScanServiceFactory.getService(FormType.valueOf(bulkScanTransformationRequest
-                                                                            .getCaseTypeId())))
+            Objects.requireNonNull(BulkScanServiceFactory.getService(FormType.C100))
                 .transform(bulkScanTransformationRequest);
         return new ResponseEntity<>(bulkScanTransformationResponse, HttpStatus.OK);
     }

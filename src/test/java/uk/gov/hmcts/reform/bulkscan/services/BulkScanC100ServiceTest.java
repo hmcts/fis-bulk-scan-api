@@ -15,6 +15,8 @@ import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.Status;
 import uk.gov.hmcts.reform.bulkscan.utils.TestDataUtil;
 
+import java.lang.reflect.InvocationTargetException;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
@@ -116,7 +118,7 @@ class BulkScanC100ServiceTest {
     }
 
     @Test
-    void testTransform() {
+    void testTransform() throws ClassNotFoundException, InvocationTargetException, NoSuchMethodException, IllegalAccessException {
         BulkScanTransformationResponse bulkScanTransformationResponse =
             bulkScanValidationService.transform(mock(BulkScanTransformationRequest.class));
         Assertions.assertNull(bulkScanTransformationResponse);
