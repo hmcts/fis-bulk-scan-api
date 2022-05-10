@@ -36,7 +36,7 @@ class BulkScanC63ServiceTest {
     @Test
     void testC63Success() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-                TestDataUtil.getA60OrC63Data()).build();
+                TestDataUtil.getA60OrC63orA58Data()).build();
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.SUCCESS, res.status);
     }
@@ -44,7 +44,7 @@ class BulkScanC63ServiceTest {
     @Test
     void testC63MandatoryErrorWhileDoingValidation() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-                TestDataUtil.getA60OrC63ErrorData()).build();
+                TestDataUtil.getA60OrC63orA58ErrorData()).build();
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
         assertTrue(res.getErrors().items.contains(String.format(MANDATORY_ERROR_MESSAGE, "applicant1_firstName")));
@@ -53,7 +53,7 @@ class BulkScanC63ServiceTest {
     @Test
     void testC63DateErrorWhileDoingValidation() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-                TestDataUtil.getA60OrC63ErrorData()).build();
+                TestDataUtil.getA60OrC63orA58ErrorData()).build();
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
         assertTrue(res.getErrors().items.contains(String.format(DATE_FORMAT_MESSAGE, "applicant1_dateOfBirth")));
@@ -62,7 +62,7 @@ class BulkScanC63ServiceTest {
     @Test
     void testC63FieldMissingErrorWhileDoingValidation() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-                TestDataUtil.getA60OrC63ErrorData()).build();
+                TestDataUtil.getA60OrC63orA58ErrorData()).build();
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
         assertTrue(res.getErrors().items.contains(String.format(MISSING_FIELD_MESSAGE, "applicant1_lastName")));
@@ -71,7 +71,7 @@ class BulkScanC63ServiceTest {
     @Test
     void testC63OptionalFieldsWarningsWhileDoingValidation() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-                TestDataUtil.getA60OrC63ErrorData()).build();
+                TestDataUtil.getA60OrC63orA58ErrorData()).build();
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertTrue(res.getWarnings().items.contains(String.format(DATE_FORMAT_MESSAGE, "applicant2_dateOfBirth")));
         assertTrue(res.getWarnings().items.contains(String.format(POST_CODE_MESSAGE, "applicant2_postCode")));

@@ -1,0 +1,36 @@
+uk:
+  gov:
+    hmcts:
+      form-validation:
+        caseTypeofApplication:
+          A58:
+            mandatoryFields:
+              - applicant1_firstName
+              - applicant1_lastName
+              - applicant1_address
+              - applicant1_telephoneNumber
+              - applicant1_dateOfBirth
+            regexValidationFields:
+              dateFields:
+                fieldNames:
+                  - applicant1_dateOfBirth
+                  - applicant2_dateOfBirth
+                regex: dd/MM/yyyy
+              emailFields:
+                fieldNames:
+                  -
+                regex: ^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,6}$
+              numericFields:
+                fieldNames:
+                  -
+                regex: ^[0-9]*$
+              postcodeFields:
+                fieldNames:
+                  -
+                regex: ^[A-Z]{1,2}[0-9R][0-9A-Z]? [0-9][ABD-HJLNP-UW-Z]{2}$
+              phoneNumberFields:
+                fieldNames:
+                  - applicant1_telephoneNumber
+                  - applicant2_telephoneNumber
+                regex: ^(?:0|\+?44)(?:\d\s?){9,10}$
+

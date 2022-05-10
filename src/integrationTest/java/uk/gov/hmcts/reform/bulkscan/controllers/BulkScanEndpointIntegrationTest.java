@@ -13,6 +13,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static uk.gov.hmcts.reform.bulkscan.utils.Constants.A58_CASE_TYPE_VALIDATE_ENDPOINT;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.A60_CASE_TYPE_VALIDATE_ENDPOINT;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.C51_CASE_TYPE_VALIDATE_ENDPOINT;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.C63_CASE_TYPE_VALIDATE_ENDPOINT;
@@ -54,6 +55,8 @@ class BulkScanEndpointIntegrationTest {
             "classpath:request/bulk-scan-c63-validation-input.json";
     private static final String A60_VALIDATION_REQUEST_PATH =
             "classpath:request/bulk-scan-a60-validation-input.json";
+    private static final String A58_VALIDATION_REQUEST_PATH =
+            "classpath:request/bulk-scan-a58-validation-input.json";
 
     @DisplayName("should test validate request case type FL401")
     @Test
@@ -93,6 +96,16 @@ class BulkScanEndpointIntegrationTest {
                         .contentType(APPLICATION_JSON)
                         .header(SERVICE_AUTHORIZATION, SERVICE_AUTHORIZATION_VALUE)
                         .content(readFileFrom(C63_VALIDATION_REQUEST_PATH)))
+                .andExpect(status().isOk()).andReturn();
+    }
+
+    @DisplayName("should test validate request case type a58")
+    @Test
+    void shouldTestValidationRequestCaseTypeA58() throws Exception {
+        mockMvc.perform(post(A58_CASE_TYPE_VALIDATE_ENDPOINT)
+                        .contentType(APPLICATION_JSON)
+                        .header(SERVICE_AUTHORIZATION, SERVICE_AUTHORIZATION_VALUE)
+                        .content(readFileFrom(A58_VALIDATION_REQUEST_PATH)))
                 .andExpect(status().isOk()).andReturn();
     }
 
