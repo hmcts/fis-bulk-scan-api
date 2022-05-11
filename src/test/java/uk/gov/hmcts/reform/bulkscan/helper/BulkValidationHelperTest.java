@@ -1,5 +1,6 @@
 package uk.gov.hmcts.reform.bulkscan.helper;
 
+import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -11,10 +12,7 @@ import uk.gov.hmcts.reform.bulkscan.utils.TestDataUtil;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DATE_FORMAT_MESSAGE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EMAIL_FORMAT_MESSAGE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_ERROR_MESSAGE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PHONE_NUMBER_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.*;
 
 @ExtendWith(SpringExtension.class)
 class BulkValidationHelperTest {
@@ -61,11 +59,13 @@ class BulkValidationHelperTest {
     }
 
     @Test
-    void testA1TelephoneNoErrorWhileDoingValidation() {
+    void testA1FieldValidationErrorWhileDoingValidation() {
         ValidationConfig validationConfig = validationConfigFactory.getValidationConfig(FormType.A1.toString());
         BulkScanValidationResponse res = BulkScanValidationHelper.validateMandatoryAndOptionalFields(
             TestDataUtil.getA1ErrorData(), validationConfig.getConfig());
         assertEquals(Status.ERRORS, res.status);
-        assertTrue(res.getErrors().items.contains(String.format(PHONE_NUMBER_MESSAGE, "applicant_telephone_no")));
+        Assert.assertTrue(res.getErrors().items.contains(String.format(ALPHA_NUMERIC_FIELDS_MESSAGE, "applicant_ref")));
+        Assert.assertTrue(res.getErrors().items.contains(String.format(POST_CODE_MESSAGE, "applicant_postcode")));
+        Assert.assertTrue(res.getErrors().items.contains(String.format(PHONE_NUMBER_MESSAGE, "applicant_telephone_no")));
     }
 }
