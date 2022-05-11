@@ -64,7 +64,7 @@ class BulkValidationHelperTest {
     void testA1TelephoneNoErrorWhileDoingValidation() {
         ValidationConfig validationConfig = validationConfigFactory.getValidationConfig(FormType.A1.toString());
         BulkScanValidationResponse res = BulkScanValidationHelper.validateMandatoryAndOptionalFields(
-            TestDataUtil.getA1DataWithInvalidApplicantTelephoneNo(), validationConfig.getConfig());
+            TestDataUtil.getA1ErrorData(), validationConfig.getConfig());
         assertEquals(Status.ERRORS, res.status);
         assertTrue(res.getErrors().items.contains(String.format(PHONE_NUMBER_MESSAGE, "applicant_telephone_no")));
     }

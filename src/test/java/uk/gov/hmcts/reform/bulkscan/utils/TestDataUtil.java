@@ -399,36 +399,6 @@ public final class TestDataUtil {
         return fieldList;
     }
 
-    public static List<OcrDataField> getA1DataWithInvalidApplicantTelephoneNo() {
-        List<OcrDataField> fieldList = new ArrayList<>();
-        OcrDataField ocrDataFirstNameField = new OcrDataField();
-        ocrDataFirstNameField.setName("applicant_name");
-        ocrDataFirstNameField.setValue("firstName");
-        fieldList.add(ocrDataFirstNameField);
-
-        OcrDataField ocrDataLastNameField = new OcrDataField();
-        ocrDataLastNameField.setName("applicant_address");
-        ocrDataLastNameField.setValue("lastname");
-        fieldList.add(ocrDataLastNameField);
-
-        OcrDataField ocrDateField = new OcrDataField();
-        ocrDateField.setName("applicant_ref");
-        ocrDateField.setValue("ABCDEF1234567890");
-        fieldList.add(ocrDateField);
-
-        OcrDataField ocrPostCodeField = new OcrDataField();
-        ocrPostCodeField.setName("applicant_postcode");
-        ocrPostCodeField.setValue("TW3 1NN");
-        fieldList.add(ocrPostCodeField);
-
-        OcrDataField ocrContactNumberField = new OcrDataField();
-        ocrContactNumberField.setName("applicant_telephone_no");
-        ocrContactNumberField.setValue("1234567890");
-        fieldList.add(ocrContactNumberField);
-
-        return fieldList;
-    }
-
     public static List<OcrDataField> getC51Data() {
         List<OcrDataField> fieldList = new ArrayList<>();
         OcrDataField ocrDataFirstNameField = new OcrDataField();
