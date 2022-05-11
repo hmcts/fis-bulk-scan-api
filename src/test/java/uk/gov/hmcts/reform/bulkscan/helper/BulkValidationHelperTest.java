@@ -12,7 +12,12 @@ import uk.gov.hmcts.reform.bulkscan.utils.TestDataUtil;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.*;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ALPHA_NUMERIC_FIELDS_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DATE_FORMAT_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EMAIL_FORMAT_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_ERROR_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PHONE_NUMBER_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.POST_CODE_MESSAGE;
 
 @ExtendWith(SpringExtension.class)
 class BulkValidationHelperTest {
@@ -64,8 +69,11 @@ class BulkValidationHelperTest {
         BulkScanValidationResponse res = BulkScanValidationHelper.validateMandatoryAndOptionalFields(
             TestDataUtil.getA1ErrorData(), validationConfig.getConfig());
         assertEquals(Status.ERRORS, res.status);
-        Assert.assertTrue(res.getErrors().items.contains(String.format(ALPHA_NUMERIC_FIELDS_MESSAGE, "applicant_ref")));
-        Assert.assertTrue(res.getErrors().items.contains(String.format(POST_CODE_MESSAGE, "applicant_postcode")));
-        Assert.assertTrue(res.getErrors().items.contains(String.format(PHONE_NUMBER_MESSAGE, "applicant_telephone_no")));
+        Assert.assertTrue(res.getErrors().items.contains(String.format(ALPHA_NUMERIC_FIELDS_MESSAGE,
+                                                                       "applicant_ref")));
+        Assert.assertTrue(res.getErrors().items.contains(String.format(POST_CODE_MESSAGE,
+                                                                       "applicant_postcode")));
+        Assert.assertTrue(res.getErrors().items.contains(String.format(PHONE_NUMBER_MESSAGE,
+                                                                       "applicant_telephone_no")));
     }
 }
