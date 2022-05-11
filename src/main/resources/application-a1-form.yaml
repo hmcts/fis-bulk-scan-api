@@ -8,9 +8,8 @@ uk:
               - applicant_name
               - applicant_address
               - applicant_ref
-              - respondent_name
-              - respondent_address
-              - respondent_ref
+              - applicant_postcode
+              - applicant_telephone_no
             regexValidationFields:
               dateFields:
                 fieldNames:
@@ -19,7 +18,6 @@ uk:
               emailFields:
                 fieldNames:
                   - applicant_email
-                  - respondent_email
                 regex: ^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,6}$
               numericFields:
                 fieldNames:
@@ -27,11 +25,14 @@ uk:
                 regex: ^[0-9]*$
               postcodeFields:
                 fieldNames:
-                  -
+                  - applicant_postcode
                 regex: ^[A-Z]{1,2}[0-9R][0-9A-Z]? [0-9][ABD-HJLNP-UW-Z]{2}$
               phoneNumberFields:
                 fieldNames:
                   - applicant_telephone_no
-                  - respondent_telephone_no
                 regex: ^(?:0|\+?44)(?:\d\s?){9,10}$
+              alphaNumericFields:
+                fieldNames:
+                  - applicant_ref
+                regex: ^[a-zA-Z0-9]+$
 
