@@ -30,6 +30,7 @@ spring:
       - test-C63-form
       - test-A60-form
       - test-C100-transform
+      - test-A58-form
       - test-A1-form
 
 #  datasource:

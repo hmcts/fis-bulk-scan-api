@@ -8,5 +8,6 @@ public enum FormType {
     C51,
     C63,
     A60,
+    A58,
     A1
 }
