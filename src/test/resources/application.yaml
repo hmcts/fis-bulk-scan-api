@@ -24,6 +24,7 @@ spring:
     include:
       - test-C100-form
       - test-FL401-form
+      - test-FL401A-form
       - test-FL403-form
       - test-EdgeCase-form
       - test-C51-form

@@ -11,8 +11,10 @@ import uk.gov.hmcts.reform.bulkscan.model.FormType;
 
 import java.util.Map;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -31,13 +33,24 @@ class BulkScanFormValidationConfigManagerTest {
         assertTrue(map.containsKey(FormType.C100.name()));
         assertTrue(map.containsKey(FormType.FL401.name()));
         assertTrue(map.containsKey(FormType.FL403.name()));
+        assertTrue(map.containsKey(FormType.FL401A.name()));
 
     }
 
     @Test
     void testConfigShouldNotBeNull() {
-        BulkScanFormValidationConfigManager.ValidationConfig validationConfig =
-            configManager.getValidationConfig(FormType.C100);
-        assertNotNull(validationConfig);
+        assertNotNull(getValidationConfigByFormType(FormType.C100));
+
+        assertNotNull(getValidationConfigByFormType(FormType.FL401A));
+        assertFalse(getValidationConfigByFormType(FormType.FL401A).mandatoryFields.isEmpty());
+        assertEquals("applicant_full_name", getValidationConfigByFormType(FormType.FL401A).mandatoryFields.get(0));
+        assertEquals("applicant_address", getValidationConfigByFormType(FormType.FL401A).mandatoryFields.get(1));
+        assertEquals("applicant_postcode", getValidationConfigByFormType(FormType.FL401A).mandatoryFields.get(2));
     }
+
+    private BulkScanFormValidationConfigManager.ValidationConfig getValidationConfigByFormType(FormType formType) {
+        return configManager.getValidationConfig(formType);
+    }
+
+
 }

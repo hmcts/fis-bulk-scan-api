@@ -135,17 +135,17 @@ public final class BulkScanValidationHelper {
     private static Predicate<OcrDataField> isValidDate(List<String> mandatoryFields, List<String> fields,
                                                        String regex, boolean isOptional) {
         return eachData -> isOptional != mandatoryFields.contains(eachData.getName())
-                && fields.contains(eachData.getName())
-                && !ObjectUtils.isEmpty(eachData.getValue())
-                && !isDateValid(eachData.getValue(), regex);
+            && fields.contains(eachData.getName())
+            && !ObjectUtils.isEmpty(eachData.getValue())
+            && !isDateValid(eachData.getValue(), regex);
     }
 
     private static Predicate<OcrDataField> isMatchedWithRegex(List<String> mandatoryFields, List<String> fields,
                                                               String regex, boolean isOptional) {
         return eachData -> isOptional != mandatoryFields.contains(eachData.getName())
-                && fields.contains(eachData.getName())
-                && !ObjectUtils.isEmpty(eachData.getValue())
-                && !isValidFormat(eachData.getValue(), regex);
+            && fields.contains(eachData.getName())
+            && !ObjectUtils.isEmpty(eachData.getValue())
+            && !isValidFormat(eachData.getValue(), regex);
     }
 
     public static List<String> findDuplicateOcrFields(List<OcrDataField> ocrFields) {

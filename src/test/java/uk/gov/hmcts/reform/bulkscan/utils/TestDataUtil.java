@@ -397,4 +397,72 @@ public final class TestDataUtil {
 
         return fieldList;
     }
+
+    public static List<OcrDataField> getFL401AData() {
+        List<OcrDataField> formFieldLst = new ArrayList<>();
+
+        OcrDataField ocrDataFullNameField = new OcrDataField();
+        ocrDataFullNameField.setName("applicant_full_name");
+        ocrDataFullNameField.setValue("fullName");
+        formFieldLst.add(ocrDataFullNameField);
+
+        OcrDataField ocrDataAddressField = new OcrDataField();
+        ocrDataAddressField.setName("applicant_address");
+        ocrDataAddressField.setValue("Topsfield Parade");
+        formFieldLst.add(ocrDataAddressField);
+
+        OcrDataField ocrDataPostCodeField = new OcrDataField();
+        ocrDataPostCodeField.setName("applicant_postcode");
+        ocrDataPostCodeField.setValue("N8 8PE");
+        formFieldLst.add(ocrDataPostCodeField);
+
+        OcrDataField ocrTelephoneNumberField = new OcrDataField();
+        ocrTelephoneNumberField.setName("applicant_telephone_number");
+        ocrTelephoneNumberField.setValue("+447405878672");
+        formFieldLst.add(ocrTelephoneNumberField);
+
+        return formFieldLst;
+    }
+
+    public static List<OcrDataField> getFL401AErrorData() {
+        List<OcrDataField> formFieldLst = new ArrayList<>();
+
+        OcrDataField ocrDataFullNameField = new OcrDataField();
+        ocrDataFullNameField.setName("applicant_full_name");
+        ocrDataFullNameField.setValue("");
+        formFieldLst.add(ocrDataFullNameField);
+
+        OcrDataField ocrDataAddressField = new OcrDataField();
+        ocrDataAddressField.setName("applicant_address");
+        ocrDataAddressField.setValue("");
+        formFieldLst.add(ocrDataAddressField);
+
+        OcrDataField ocrDataPostCodeField = new OcrDataField();
+        ocrDataPostCodeField.setName("applicant_postcode");
+        ocrDataPostCodeField.setValue("TW3");
+        formFieldLst.add(ocrDataPostCodeField);
+
+        OcrDataField ocrDataDateOfBirthField = new OcrDataField();
+        ocrDataDateOfBirthField.setName("applicant_dateOfBirth");
+        ocrDataDateOfBirthField.setValue("21/12/01");
+        formFieldLst.add(ocrDataDateOfBirthField);
+
+        OcrDataField ocrTelephoneNumberField = new OcrDataField();
+        ocrTelephoneNumberField.setName("applicant_telephone_number");
+        ocrTelephoneNumberField.setValue("");
+        formFieldLst.add(ocrTelephoneNumberField);
+
+        return formFieldLst;
+    }
+
+    public static List<OcrDataField> getFL401AMandatoryWarningData() {
+        List<OcrDataField> formFieldLst = new ArrayList<>();
+
+        OcrDataField ocrDataTelephoneNumberField = new OcrDataField();
+        ocrDataTelephoneNumberField.setName("applicant_telephone_number");
+        ocrDataTelephoneNumberField.setValue("4420888");
+        formFieldLst.add(ocrDataTelephoneNumberField);
+
+        return formFieldLst;
+    }
 }
