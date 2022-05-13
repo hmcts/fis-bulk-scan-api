@@ -64,3 +64,7 @@ idam:
     secret: ${S2S_SECRET:AAAAAAAAAAAAAAAA}
     microservice: fis_bulk_scan_api
 
+postcodelookup:
+  api:
+    url: https://api.os.uk/search/places/v1
+    key: ${POST_CODE_LOOKUP_KEY:REPLACE_ME}

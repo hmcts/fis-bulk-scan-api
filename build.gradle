@@ -278,6 +278,7 @@ bootRun {
   doFirst() {
       println("Loading secrets from vault")
       systemProperty 'APP_INSIGHTS_KEY', getVaultSecret('AppInsightsInstrumentationKey')
+      systemProperty 'POST_CODE_LOOKUP_KEY', getVaultSecret('postcode-lookup-token')
     }
 }
 
