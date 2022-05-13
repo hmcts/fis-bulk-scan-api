@@ -10,8 +10,8 @@ public class FL401AValidationConfig implements ValidationConfig {
     public BulkScanFormValidationConfigManager.ValidationConfig getConfig() {
         BulkScanFormValidationConfigManager.ValidationConfig validationConfig =
             new BulkScanFormValidationConfigManager.ValidationConfig();
-        validationConfig.setMandatoryFields(Arrays.asList("applicant_address",
-                                                          "applicant_postcode", "applicant_telephone_number"));
+        validationConfig.setMandatoryFields(Arrays.asList("applicant_full_name","applicant_address",
+                                                          "applicant_postcode"));
 
         BulkScanFormValidationConfigManager.RegexValidationConfig regexValidationConfig =
             new BulkScanFormValidationConfigManager.RegexValidationConfig();
