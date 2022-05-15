@@ -250,7 +250,7 @@ public final class TestDataUtil {
                              ocrNumericField);
     }
 
-    public static List<OcrDataField> getA60OrC63Data() {
+    public static List<OcrDataField> getA60OrC63orA58Data() {
         List<OcrDataField> fieldList = new ArrayList<>();
         OcrDataField ocrDataFirstNameField = new OcrDataField();
         ocrDataFirstNameField.setName("applicant1_firstName");
@@ -285,7 +285,7 @@ public final class TestDataUtil {
         return fieldList;
     }
 
-    public static List<OcrDataField> getA60OrC63ErrorData() {
+    public static List<OcrDataField> getA60OrC63orA58ErrorData() {
         List<OcrDataField> fieldList = new ArrayList<>();
         OcrDataField ocrDataFirstNameField = new OcrDataField();
         ocrDataFirstNameField.setName("applicant1_firstName");

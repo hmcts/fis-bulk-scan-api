@@ -7,5 +7,6 @@ public enum FormType {
     EdgeCase,
     C51,
     C63,
-    A60
+    A60,
+    A58
 }

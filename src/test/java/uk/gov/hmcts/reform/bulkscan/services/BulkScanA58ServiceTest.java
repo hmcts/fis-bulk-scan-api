@@ -22,66 +22,64 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DATE_FORM
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_ERROR_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MISSING_FIELD_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PHONE_NUMBER_MESSAGE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.POST_CODE_MESSAGE;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @ActiveProfiles("test")
-class BulkScanA60ServiceTest {
+class BulkScanA58ServiceTest {
 
     @Spy
     @Autowired
-    BulkScanA60Service bulkScanValidationService;
+    BulkScanA58Service bulkScanValidationService;
 
     @Test
-    void testA60Success() {
+    void testA58Success() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-            TestDataUtil.getA60OrC63orA58Data()).build();
+                TestDataUtil.getA60OrC63orA58Data()).build();
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.SUCCESS, res.status);
     }
 
     @Test
-    void testA60MandatoryErrorWhileDoingValidation() {
+    void testA58MandatoryErrorWhileDoingValidation() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-            TestDataUtil.getA60OrC63orA58ErrorData()).build();
+                TestDataUtil.getA60OrC63orA58ErrorData()).build();
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
         assertTrue(res.getErrors().items.contains(String.format(MANDATORY_ERROR_MESSAGE, "applicant1_firstName")));
     }
 
     @Test
-    void testA60DateErrorWhileDoingValidation() {
+    void testA58DateErrorWhileDoingValidation() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-            TestDataUtil.getA60OrC63orA58ErrorData()).build();
+                TestDataUtil.getA60OrC63orA58ErrorData()).build();
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
         assertTrue(res.getErrors().items.contains(String.format(DATE_FORMAT_MESSAGE, "applicant1_dateOfBirth")));
     }
 
     @Test
-    void testA60FieldMissingErrorWhileDoingValidation() {
+    void testA58FieldMissingErrorWhileDoingValidation() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-            TestDataUtil.getA60OrC63orA58ErrorData()).build();
+                TestDataUtil.getA60OrC63orA58ErrorData()).build();
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
         assertTrue(res.getErrors().items.contains(String.format(MISSING_FIELD_MESSAGE, "applicant1_lastName")));
     }
 
     @Test
-    void testA60OptionalFieldsWarningsWhileDoingValidation() {
+    void testA58OptionalFieldsWarningsWhileDoingValidation() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
                 TestDataUtil.getA60OrC63orA58ErrorData()).build();
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertTrue(res.getWarnings().items.contains(String.format(DATE_FORMAT_MESSAGE, "applicant2_dateOfBirth")));
-        assertTrue(res.getWarnings().items.contains(String.format(POST_CODE_MESSAGE, "applicant2_postCode")));
         assertTrue(res.getWarnings().items.contains(String.format(PHONE_NUMBER_MESSAGE, "applicant2_telephoneNumber")));
     }
 
     @Test
     void testTransform() {
         BulkScanTransformationResponse bulkScanTransformationResponse =
-            bulkScanValidationService.transform(mock(BulkScanTransformationRequest.class));
+                bulkScanValidationService.transform(mock(BulkScanTransformationRequest.class));
         Assertions.assertNull(bulkScanTransformationResponse);
     }
 

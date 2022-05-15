@@ -30,6 +30,7 @@ spring:
       - test-C63-form
       - test-A60-form
       - test-C100-transform
+      - test-A58-form
 
 #  datasource:
 #    driver-class-name: org.postgresql.Driver
@@ -62,4 +63,9 @@ idam:
     url: ${SERVICE_AUTH_PROVIDER_URL:http://localhost:4552}
     secret: ${S2S_SECRET:AAAAAAAAAAAAAAAA}
     microservice: fis_bulk_scan_api
+
+postcodelookup:
+  api:
+    url: https://api.os.uk/search/places/v1
+    key: ${POST_CODE_LOOKUP_KEY:REPLACE_ME}
 
