@@ -11,7 +11,7 @@ import java.util.Objects;
 public final class BulkScanConstants {
 
     public static final String MANDATORY_ERROR_MESSAGE = "%s should not be null or empty";
-    public static final String DATE_FORMAT_MESSAGE = "%s is invalid date format";
+    public static final String DATE_FORMAT_MESSAGE = "%s is invalid date or format";
     public static final String EMAIL_FORMAT_MESSAGE = "%s is invalid email";
     public static final String NUMERIC_MESSAGE = "%s is not a number";
     public static final String MISSING_FIELD_MESSAGE = "%s is missing";

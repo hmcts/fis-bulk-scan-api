@@ -31,6 +31,7 @@ spring:
       - test-A60-form
       - test-C100-transform
       - test-A58-form
+      - test-fgm001-form
 
 #  datasource:
 #    driver-class-name: org.postgresql.Driver
@@ -67,5 +68,5 @@ idam:
 postcodelookup:
   api:
     url: https://api.os.uk/search/places/v1
-    key: ${POST_CODE_LOOKUP_KEY:REPLACE_ME}
+    key: ${POST_CODE_LOOKUP_KEY:8E7fDD6muhBozXU3dB2qOZA3hdNx8b5y}
 

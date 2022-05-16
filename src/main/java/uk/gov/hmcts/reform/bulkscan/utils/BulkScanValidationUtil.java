@@ -3,6 +3,7 @@ package uk.gov.hmcts.reform.bulkscan.utils;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -13,14 +14,19 @@ public final class BulkScanValidationUtil {
 
     }
 
-    public static boolean isDateValid(String dateStr, String format) {
+    public static boolean isDateValid(String fieldName, String dateStr, String format) {
         DateFormat sdf = new SimpleDateFormat(format, Locale.UK);
         sdf.setLenient(false);
         try {
-            sdf.parse(dateStr);
+           Date parse = sdf.parse(dateStr);
+           Date current = new Date();
+           if((fieldName.contains("dateOfBirth") || fieldName.contains("dob")) && parse.after(current)) {
+               return false;
+           }
         } catch (ParseException e) {
             return false;
         }
+
         return true;
     }
 
