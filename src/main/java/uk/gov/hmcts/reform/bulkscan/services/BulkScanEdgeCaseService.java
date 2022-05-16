@@ -19,10 +19,13 @@ public class BulkScanEdgeCaseService implements BulkScanService {
     @Autowired
     BulkScanFormValidationConfigManager configManager;
 
+    @Autowired
+    BulkScanValidationHelper bulkScanValidationHelper;
+
     @Override
     public BulkScanValidationResponse validate(BulkScanValidationRequest bulkScanValidationRequest) {
         // Validating the Fields..
-        return BulkScanValidationHelper.validateMandatoryAndOptionalFields(bulkScanValidationRequest.getOcrdatafields(),
+        return bulkScanValidationHelper.validateMandatoryAndOptionalFields(bulkScanValidationRequest.getOcrdatafields(),
                                                                            configManager
                                                                                .getValidationConfig(FormType.EdgeCase));
     }

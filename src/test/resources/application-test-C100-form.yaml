@@ -38,3 +38,7 @@ uk:
                 fieldNames:
                   -
                 regex:
+              xorConditionalFields:
+                fieldNames:
+                  - appellant_postCode,appellant_lastName
+                regex:

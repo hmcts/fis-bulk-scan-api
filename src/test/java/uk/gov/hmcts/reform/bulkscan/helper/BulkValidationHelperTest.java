@@ -3,6 +3,7 @@ package uk.gov.hmcts.reform.bulkscan.helper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanFormValidationConfigManager;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
@@ -21,6 +22,9 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY
 class BulkValidationHelperTest {
 
     BulkScanFormValidationConfigManager.ValidationConfig validationConfig;
+
+    @InjectMocks
+    BulkScanValidationHelper bulkScanValidationHelper;
 
     @BeforeEach
     void setup() {
@@ -70,14 +74,14 @@ class BulkValidationHelperTest {
 
     @Test
     void testSuccessScenario() {
-        BulkScanValidationResponse res = BulkScanValidationHelper.validateMandatoryAndOptionalFields(
+        BulkScanValidationResponse res = bulkScanValidationHelper.validateMandatoryAndOptionalFields(
             TestDataUtil.getData(), validationConfig);
         assertEquals(Status.SUCCESS, res.status);
     }
 
     @Test
     void testErrorScenario() {
-        BulkScanValidationResponse res = BulkScanValidationHelper.validateMandatoryAndOptionalFields(
+        BulkScanValidationResponse res = bulkScanValidationHelper.validateMandatoryAndOptionalFields(
             TestDataUtil.getErrorData(), validationConfig);
         assertEquals(Status.ERRORS, res.status);
         assertTrue(res.getErrors().items.contains(String.format(MANDATORY_ERROR_MESSAGE, "appellant_lastName")));
@@ -85,7 +89,7 @@ class BulkValidationHelperTest {
 
     @Test
     void testC100DateErrorWhileDoingValidation() {
-        BulkScanValidationResponse res = BulkScanValidationHelper
+        BulkScanValidationResponse res = bulkScanValidationHelper
             .validateMandatoryAndOptionalFields(TestDataUtil.getDateErrorData(), validationConfig);
         assertEquals(Status.WARNINGS, res.status);
         assertTrue(res.getWarnings().items.contains(String.format(DATE_FORMAT_MESSAGE, "appellant_dateOfBirth")));
@@ -93,7 +97,7 @@ class BulkValidationHelperTest {
 
     @Test
     void testC100EmailErrorWhileDoingValidation() {
-        BulkScanValidationResponse res = BulkScanValidationHelper
+        BulkScanValidationResponse res = bulkScanValidationHelper
             .validateMandatoryAndOptionalFields(TestDataUtil.getEmailErrorData(), validationConfig);
         assertEquals(Status.WARNINGS, res.status);
         assertTrue(res.getWarnings().items.contains(String.format(EMAIL_FORMAT_MESSAGE, "appellant_email")));

@@ -43,3 +43,7 @@ uk:
                 fieldNames:
                   -
                 regex:
+              xorConditionalFields:
+                fieldNames:
+                  -
+                regex:
