@@ -3,15 +3,18 @@ package uk.gov.hmcts.reform.bulkscan.controllers;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import uk.gov.hmcts.reform.bulkscan.endpoints.BulkScanEndpoint;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
+import uk.gov.hmcts.reform.bulkscan.services.postcode.PostcodeLookupService;
 import uk.gov.hmcts.reform.bulkscan.utils.TestDataUtil;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.when;
 import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
 import static uk.gov.hmcts.reform.bulkscan.model.FormType.C100;
 import static uk.gov.hmcts.reform.bulkscan.model.FormType.FL401;
@@ -23,6 +26,9 @@ class BulkScanEndpointTest {
 
     @InjectMocks
     private BulkScanEndpoint bulkScanEndpoint;
+
+    @MockBean
+    PostcodeLookupService postcodeLookupService;
 
     @Test
     void testC100ValidationUnknownFormType() throws Exception {
@@ -37,6 +43,7 @@ class BulkScanEndpointTest {
     void testC100ValidationHappyPath() throws Exception {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder()
             .ocrdatafields(TestDataUtil.getData()).build();
+        when(postcodeLookupService.isValidPostCode("TW3 1NN", null)).thenReturn(true);
         ResponseEntity<?> response =
             bulkScanEndpoint.validateOcrData(S2S_TOKEN, CONTENT_TYPE, C100, bulkScanValidationRequest);
         assertEquals(response.getStatusCode(),HttpStatus.OK);

@@ -19,7 +19,7 @@ public final class BulkScanConstants {
     public static final String PHONE_NUMBER_MESSAGE = "%s is not valid phone number";
     public static final String DUPLICATE_FIELDS_MESSAGE = "Invalid OCR data. Duplicate fields exist: %s";
     public static final String FAX_NUMBER_ERROR_MESSAGE = "%s is in the wrong format";
-
+    public static final String XOR_CONDITIONAL_FIELDS_MESSAGE = "one field must be present out of %s";
 
     public static final String MANDATORY_KEY = "mandatoryFields";
     public static final String DATE_FORMAT_FIELDS_KEY = "dateFields";
@@ -28,6 +28,7 @@ public final class BulkScanConstants {
     public static final String POST_CODE_FIELDS_KEY = "postCodeFields";
     public static final String PHONE_NUMBER_FIELDS_KEY = "phoneNumberFields";
     public static final String FAX_NUMBER_FORMAT_MESSAGE_KEY = "faxNumberFields";
+    public static final String XOR_CONDITIONAL_FIELDS_MESSAGE_KEY = "xorConditionalFields";
 
     public static final Map<String, String> MESSAGE_MAP = getErrorMessageMap();
 
@@ -39,7 +40,8 @@ public final class BulkScanConstants {
                       EMAIL_FORMAT_FIELDS_KEY, EMAIL_FORMAT_MESSAGE,
                       NUMERIC_FIELDS_KEY, NUMERIC_MESSAGE, POST_CODE_FIELDS_KEY, POST_CODE_MESSAGE,
                       PHONE_NUMBER_FIELDS_KEY, PHONE_NUMBER_MESSAGE,
-                      FAX_NUMBER_FORMAT_MESSAGE_KEY, FAX_NUMBER_ERROR_MESSAGE
+                      FAX_NUMBER_FORMAT_MESSAGE_KEY, FAX_NUMBER_ERROR_MESSAGE,
+                XOR_CONDITIONAL_FIELDS_MESSAGE_KEY, XOR_CONDITIONAL_FIELDS_MESSAGE
         );
     }
 
@@ -73,6 +75,10 @@ public final class BulkScanConstants {
             BulkScanFormValidationConfigManager.RegexFieldsConfig phoneNumberFields = regexValidationConfig
                 .getPhoneNumberFields();
             map.put(PHONE_NUMBER_FIELDS_KEY, getPairObject(phoneNumberFields));
+
+            BulkScanFormValidationConfigManager.RegexFieldsConfig xorConditionalFields = regexValidationConfig
+                    .getXorConditionalFields();
+            map.put(XOR_CONDITIONAL_FIELDS_MESSAGE_KEY, getPairObject(xorConditionalFields));
         }
 
         // Remove null value from map
