@@ -25,11 +25,11 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PHONE_NUM
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @ActiveProfiles("test")
-class BulkScanFGM001ServiceTest {
+class BulkScanFgm001ServiceTest {
 
     @Spy
     @Autowired
-    BulkScanFGM001Service bulkScanValidationService;
+    BulkScanFgm001Service bulkScanValidationService;
 
     @Test
     void testA58Success() {

@@ -18,11 +18,11 @@ public final class BulkScanValidationUtil {
         DateFormat sdf = new SimpleDateFormat(format, Locale.UK);
         sdf.setLenient(false);
         try {
-           Date parse = sdf.parse(dateStr);
-           Date current = new Date();
-           if((fieldName.contains("dateOfBirth") || fieldName.contains("dob")) && parse.after(current)) {
-               return false;
-           }
+            Date parse = sdf.parse(dateStr);
+            Date current = new Date();
+            if ((fieldName.contains("dateOfBirth") || fieldName.contains("dob")) && parse.after(current)) {
+                return false;
+            }
         } catch (ParseException e) {
             return false;
         }

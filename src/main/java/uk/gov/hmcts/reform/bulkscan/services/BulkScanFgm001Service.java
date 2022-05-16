@@ -4,10 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanFormValidationConfigManager;
 import uk.gov.hmcts.reform.bulkscan.helper.BulkScanValidationHelper;
-import uk.gov.hmcts.reform.bulkscan.model.*;
+import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
+import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
+import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
+import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
+import uk.gov.hmcts.reform.bulkscan.model.FormType;
 
 @Service
-public class BulkScanFGM001Service implements BulkScanService {
+public class BulkScanFgm001Service implements BulkScanService {
 
     @Autowired
     BulkScanFormValidationConfigManager configManager;
