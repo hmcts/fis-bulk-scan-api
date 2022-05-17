@@ -1,15 +1,22 @@
 package uk.gov.hmcts.reform.bulkscan.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
 import lombok.Data;
-import lombok.ToString;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
-@ToString
+@Builder
 public class BulkScanTransformationResponse {
 
-    public CaseCreationDetails caseCreationDetails;
-    public Warnings warnings;
-    public Errors errors;
+    @JsonProperty("case_creation_details")
+    public final CaseCreationDetails caseCreationDetails;
+
+    @JsonProperty("warnings")
+    @Builder.Default
+    public final List<String> warnings = new ArrayList<>();
 
 
 }

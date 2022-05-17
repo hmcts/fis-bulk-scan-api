@@ -19,12 +19,19 @@ spring:
   config:
     import: "optional:configtree:/mnt/secrets/"
   application:
-    name: Spring Boot Template
+    name: fis bulk scan api
   profiles:
     include:
       - c100-form
       - fl401-form
       - fl403-form
+      - edgecase-form
+      - c51-form
+      - c63-form
+      - a60-form
+      - c100-transform
+      - a58-form
+
 #  datasource:
 #    driver-class-name: org.postgresql.Driver
 #    url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}${DB_OPTIONS:}
@@ -49,7 +56,7 @@ spring:
 
 azure:
   application-insights:
-    instrumentation-key: ${fis.AppInsightsInstrumentationKey:00000000-0000-0000-0000-000000000000}
+    instrumentation-key: ${APP_INSIGHTS_KEY:00000000-0000-0000-0000-000000000000}
 
 idam:
   s2s-auth:
@@ -57,3 +64,7 @@ idam:
     secret: ${S2S_SECRET:AAAAAAAAAAAAAAAA}
     microservice: fis_bulk_scan_api
 
+postcodelookup:
+  api:
+    url: https://api.os.uk/search/places/v1
+    key: ${POST_CODE_LOOKUP_KEY:REPLACE_ME}
