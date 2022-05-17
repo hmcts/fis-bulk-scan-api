@@ -96,6 +96,7 @@ withPipeline(type, product, component) {
         reportName           : "Unit Tests Report"
       ]
     }
+}
 
   after('functionalTest:preview') {
       publishHTML target: [
@@ -200,4 +201,3 @@ withPipeline(type, product, component) {
     env.IDAM_API_BASEURL = "https://idam-api.aat.platform.hmcts.net"
     env.S2S_URL_BASE = "http://rpe-service-auth-provider-aat.service.core-compute-aat.internal"
     }
-}
