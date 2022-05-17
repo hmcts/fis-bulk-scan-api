@@ -1,5 +1,7 @@
 package uk.gov.hmcts.reform.bulkscan.utils;
 
+import uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants;
+
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -20,7 +22,8 @@ public final class BulkScanValidationUtil {
         try {
             Date parse = sdf.parse(dateStr);
             Date current = new Date();
-            if ((fieldName.contains("dateOfBirth") || fieldName.contains("dob")) && parse.after(current)) {
+            if ((fieldName.contains(BulkScanConstants.DOB_HINT)
+                || fieldName.contains(BulkScanConstants.DATE_OF_BIRTH_HINT)) && parse.after(current)) {
                 return false;
             }
         } catch (ParseException e) {

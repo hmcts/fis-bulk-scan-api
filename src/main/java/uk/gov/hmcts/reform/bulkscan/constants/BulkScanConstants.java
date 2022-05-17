@@ -34,6 +34,9 @@ public final class BulkScanConstants {
 
     public static final String BULK_SCAN_CASE_REFERENCE = "bulkScanCaseReference";
 
+    public static final String DOB_HINT = "dob";
+    public static final String DATE_OF_BIRTH_HINT = "dateOfBirth";
+
     private static Map<String,String> getErrorMessageMap() {
         return Map.of(MANDATORY_KEY, MANDATORY_ERROR_MESSAGE,
                       DATE_FORMAT_FIELDS_KEY, DATE_FORMAT_MESSAGE,
