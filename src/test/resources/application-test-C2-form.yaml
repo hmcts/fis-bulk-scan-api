@@ -9,6 +9,7 @@ uk:
               - applicant1_dateOfBirth
               - applicant1_address
               - applicant1_placeOfBirth
+
             regexValidationFields:
               dateFields:
                 fieldNames:
@@ -37,4 +38,3 @@ uk:
                   - applicant1_homePhoneNumber,applicant1_mobilePhoneNumber
 
                 regex:
-
