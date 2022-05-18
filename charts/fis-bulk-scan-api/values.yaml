@@ -13,6 +13,7 @@ java:
     IDAM_WEB_URL: 'https://idam-web-public.{{ .Values.global.environment }}.platform.hmcts.net/login'
     IDAM_API_URL: 'https://idam-api.{{ .Values.global.environment }}.platform.hmcts.net/o/token'
 
+
   keyVaults:
     fis:
       secrets:
@@ -20,5 +21,7 @@ java:
         - idam-system-user-name
         - idam-system-user-password
         - s2s-secret
-        - AppInsightsInstrumentationKey
+        - name: AppInsightsInstrumentationKey
+          alias: APP_INSIGHTS_KEY
+        - postcode-lookup-token
 

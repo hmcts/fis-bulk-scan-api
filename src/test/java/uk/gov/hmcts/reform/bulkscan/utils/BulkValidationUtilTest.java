@@ -16,13 +16,13 @@ class BulkValidationUtilTest {
 
     @Test
     void testValidDateFormat() {
-        boolean dateValid = BulkScanValidationUtil.isDateValid("2/02/2022", dateFormat);
+        boolean dateValid = BulkScanValidationUtil.isDateValid("","2/02/2022", dateFormat);
         assertTrue(dateValid);
     }
 
     @Test
     void testInvalidDateFormat() {
-        boolean dateValid = BulkScanValidationUtil.isDateValid("invalidformat", dateFormat);
+        boolean dateValid = BulkScanValidationUtil.isDateValid("","invalidformat", dateFormat);
         assertFalse(dateValid);
     }
 

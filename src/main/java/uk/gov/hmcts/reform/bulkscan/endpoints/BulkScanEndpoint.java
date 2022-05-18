@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import org.apache.commons.lang3.EnumUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +25,7 @@ import uk.gov.hmcts.reform.bulkscan.model.Errors;
 import uk.gov.hmcts.reform.bulkscan.model.FormType;
 import uk.gov.hmcts.reform.bulkscan.model.Status;
 import uk.gov.hmcts.reform.bulkscan.model.Warnings;
+import uk.gov.hmcts.reform.bulkscan.services.postcode.PostcodeLookupService;
 
 import java.util.Objects;
 
@@ -40,6 +42,9 @@ public class BulkScanEndpoint {
 
     public static final String SERVICEAUTHORIZATION = "serviceauthorization";
     public static final String CONTENT_TYPE = "content-type";
+
+    @Autowired
+    PostcodeLookupService postcodeLookupService;
 
     @PostMapping(value = "forms/{form-type}/validate-ocr")
     @ResponseStatus(HttpStatus.OK)
