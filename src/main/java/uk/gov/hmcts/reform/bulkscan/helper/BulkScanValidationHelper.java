@@ -3,6 +3,8 @@ package uk.gov.hmcts.reform.bulkscan.helper;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.tuple.Pair;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanFormValidationConfigManager;
 import uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
@@ -10,15 +12,19 @@ import uk.gov.hmcts.reform.bulkscan.model.Errors;
 import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
 import uk.gov.hmcts.reform.bulkscan.model.Status;
 import uk.gov.hmcts.reform.bulkscan.model.Warnings;
+import uk.gov.hmcts.reform.bulkscan.services.postcode.PostcodeLookupService;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
+import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;
+import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ALPHA_NUMERIC_FIELDS_KEY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DATE_FORMAT_FIELDS_KEY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DUPLICATE_FIELDS_MESSAGE;
@@ -30,17 +36,20 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MISSING_F
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NUMERIC_FIELDS_KEY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PHONE_NUMBER_FIELDS_KEY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.POST_CODE_FIELDS_KEY;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.POST_CODE_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.XOR_CONDITIONAL_FIELDS_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.XOR_CONDITIONAL_FIELDS_MESSAGE_KEY;
 import static uk.gov.hmcts.reform.bulkscan.utils.BulkScanValidationUtil.isDateValid;
 import static uk.gov.hmcts.reform.bulkscan.utils.BulkScanValidationUtil.isValidFormat;
 
 @Slf4j
-public final class BulkScanValidationHelper {
+@Service
+public class BulkScanValidationHelper {
 
-    private BulkScanValidationHelper() {
+    @Autowired
+    PostcodeLookupService postcodeLookupService;
 
-    }
-
-    public static BulkScanValidationResponse validateMandatoryAndOptionalFields(List<OcrDataField> ocrDatafields,
+    public BulkScanValidationResponse validateMandatoryAndOptionalFields(List<OcrDataField> ocrDatafields,
                                                                                 BulkScanFormValidationConfigManager
                                                                                     .ValidationConfig validationConfg) {
         List<String> duplicateOcrFields = findDuplicateOcrFields(ocrDatafields);
@@ -69,7 +78,7 @@ public final class BulkScanValidationHelper {
             .errors(Errors.builder().items(errors).build()).build();
     }
 
-    private static List<String> validateMandatoryAndOptionalFields(List<OcrDataField> ocrdatafields,
+    private List<String> validateMandatoryAndOptionalFields(List<OcrDataField> ocrdatafields,
                                                                    BulkScanFormValidationConfigManager.ValidationConfig
                                                                        validationConfg, boolean isOptional) {
         Map<String, Pair<List<String>, String>> validationKeysMap = BulkScanConstants
@@ -98,6 +107,9 @@ public final class BulkScanValidationHelper {
                     errorOrWarnings.addAll(validateFormatFields(ocrdatafields, isOptional, mandatoryFields,
                                                                 entry.getKey(), pair, false));
                     break;
+                case XOR_CONDITIONAL_FIELDS_MESSAGE_KEY:
+                    errorOrWarnings.addAll(validateXorFields(ocrdatafields, isOptional, pair));
+                    break;
                 default:
                     break;
             }
@@ -105,7 +117,7 @@ public final class BulkScanValidationHelper {
         return errorOrWarnings;
     }
 
-    private static List<String> validateFormatFields(List<OcrDataField> ocrdatafields, boolean isOptional, List<String>
+    private List<String> validateFormatFields(List<OcrDataField> ocrdatafields, boolean isOptional, List<String>
         mandatoryFields, String key, Pair<List<String>, String> pair, boolean isDateFormat) {
         return validateFields(
             ocrdatafields,
@@ -115,13 +127,52 @@ public final class BulkScanValidationHelper {
         );
     }
 
-    private static List<String> findMissingFields(List<String> fields, List<OcrDataField> ocrDataFields) {
+    private List<String> validateXorFields(List<OcrDataField> ocrDataFields,  boolean isOptional,
+                                           Pair<List<String>, String> pair) {
+        List<String> postCodeErrorMessages = new ArrayList<>(Collections.emptyList());
+        Map<String, String> ocrDataFieldsMap = ocrDataFields
+                .stream()
+                .collect(Collectors.toMap(OcrDataField::getName, OcrDataField::getValue));
+        List<String> pairs = pair.getKey();
+        pairs.forEach(eachPair -> {
+            postCodeErrorMessages.addAll(validateXorField(eachPair, ocrDataFieldsMap, isOptional));
+        });
+        return postCodeErrorMessages;
+    }
+
+    private List<String> validateXorField(String eachPair, Map<String, String> ocrDataFieldsMap, boolean isOptional) {
+        List<String> validationMessages = new ArrayList<>();
+        if (isOptional) {
+            return validationMessages;
+        }
+        List<String> fieldsToCheck = List.of(eachPair.split(","));
+        boolean singleFieldPresent = false;
+        for (String eachField : fieldsToCheck) {
+            if (eachField.contains("postCode") && ocrDataFieldsMap.containsKey(eachField)) {
+                boolean isValidPostcode = postcodeLookupService.isValidPostCode(ocrDataFieldsMap.get(eachField), null);
+                if (!isValidPostcode) {
+                    validationMessages.add(String.format(POST_CODE_MESSAGE, eachField));
+                }
+                singleFieldPresent = true;
+                break;
+            } else if (ocrDataFieldsMap.containsKey(eachField) && isNotEmpty(ocrDataFieldsMap.get(eachField))) {
+                singleFieldPresent = true;
+                break;
+            }
+        }
+        if (!singleFieldPresent) {
+            validationMessages.add(String.format(XOR_CONDITIONAL_FIELDS_MESSAGE, eachPair));
+        }
+        return validationMessages;
+    }
+
+    private List<String> findMissingFields(List<String> fields, List<OcrDataField> ocrDataFields) {
         return fields.stream().filter(eachField -> !ocrDataFields.stream()
                 .anyMatch(inputField -> inputField.getName().equalsIgnoreCase(eachField)))
             .map(eachField -> String.format(MISSING_FIELD_MESSAGE, eachField)).collect(toList());
     }
 
-    private static List<String> validateFields(List<OcrDataField> ocrdatafields,
+    private List<String> validateFields(List<OcrDataField> ocrdatafields,
                                                Predicate<OcrDataField> filterCondition, String errorMessageKey) {
         return ocrdatafields.stream()
             .filter(filterCondition)
@@ -129,20 +180,20 @@ public final class BulkScanValidationHelper {
             .collect(toList());
     }
 
-    private static Predicate<OcrDataField> isMandatoryField(List<String> fields) {
+    private Predicate<OcrDataField> isMandatoryField(List<String> fields) {
         return eachData -> fields.contains(eachData.getName())
             && ObjectUtils.isEmpty(null != eachData.getValue() ? eachData.getValue().trim() : eachData.getValue());
     }
 
-    private static Predicate<OcrDataField> isValidDate(List<String> mandatoryFields, List<String> fields,
+    private Predicate<OcrDataField> isValidDate(List<String> mandatoryFields, List<String> fields,
                                                        String regex, boolean isOptional) {
         return eachData -> isOptional != mandatoryFields.contains(eachData.getName())
                 && fields.contains(eachData.getName())
                 && !ObjectUtils.isEmpty(eachData.getValue())
-                && !isDateValid(eachData.getValue(), regex);
+                && !isDateValid(eachData.getName(), eachData.getValue(), regex);
     }
 
-    private static Predicate<OcrDataField> isMatchedWithRegex(List<String> mandatoryFields, List<String> fields,
+    private Predicate<OcrDataField> isMatchedWithRegex(List<String> mandatoryFields, List<String> fields,
                                                               String regex, boolean isOptional) {
         return eachData -> isOptional != mandatoryFields.contains(eachData.getName())
                 && fields.contains(eachData.getName())
@@ -150,7 +201,7 @@ public final class BulkScanValidationHelper {
                 && !isValidFormat(eachData.getValue(), regex);
     }
 
-    public static List<String> findDuplicateOcrFields(List<OcrDataField> ocrFields) {
+    public List<String> findDuplicateOcrFields(List<OcrDataField> ocrFields) {
         return ocrFields
             .stream()
             .collect(groupingBy(it -> it.name, counting()))

@@ -31,6 +31,8 @@ spring:
       - test-A60-form
       - test-C100-transform
       - test-A58-form
+      - test-fgm001-form
+      - test-C2-form
       - test-A1-form
 
 #  datasource:
@@ -64,4 +66,9 @@ idam:
     url: ${SERVICE_AUTH_PROVIDER_URL:http://localhost:4552}
     secret: ${S2S_SECRET:AAAAAAAAAAAAAAAA}
     microservice: fis_bulk_scan_api
+
+postcodelookup:
+  api:
+    url: https://api.os.uk/search/places/v1
+    key: ${POST_CODE_LOOKUP_KEY:8E7fDD6muhBozXU3dB2qOZA3hdNx8b5y}
 
