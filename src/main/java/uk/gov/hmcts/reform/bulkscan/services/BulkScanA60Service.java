@@ -16,6 +16,9 @@ public class BulkScanA60Service implements BulkScanService {
     @Autowired
     BulkScanFormValidationConfigManager configManager;
 
+    @Autowired
+    BulkScanValidationHelper bulkScanValidationHelper;
+
     @Override
     public FormType getCaseType() {
         return FormType.A60;
@@ -24,7 +27,7 @@ public class BulkScanA60Service implements BulkScanService {
     @Override
     public BulkScanValidationResponse validate(BulkScanValidationRequest bulkRequest) {
         // Validating the Fields..
-        return BulkScanValidationHelper.validateMandatoryAndOptionalFields(bulkRequest.getOcrdatafields(),
+        return bulkScanValidationHelper.validateMandatoryAndOptionalFields(bulkRequest.getOcrdatafields(),
                                                                           configManager.getValidationConfig(
                                                                               FormType.A60));
     }
