@@ -520,4 +520,63 @@ public final class TestDataUtil {
 
         return fieldList;
     }
+
+    public static List<OcrDataField> getC2Data() {
+        List<OcrDataField> fieldList = new ArrayList<>();
+        OcrDataField ocrDataFirstNameField = new OcrDataField();
+        ocrDataFirstNameField.setName("applicant1_fullName");
+        ocrDataFirstNameField.setValue("firstName");
+        fieldList.add(ocrDataFirstNameField);
+
+        OcrDataField ocrDataLastNameField = new OcrDataField();
+        ocrDataLastNameField.setName("applicant1_address");
+        ocrDataLastNameField.setValue("LastName");
+        fieldList.add(ocrDataLastNameField);
+
+        OcrDataField ocrDateField = new OcrDataField();
+        ocrDateField.setName("applicant1_dateOfBirth");
+        ocrDateField.setValue("2/02/2022");
+        fieldList.add(ocrDateField);
+
+        OcrDataField ocrPostCodeField = new OcrDataField();
+        ocrPostCodeField.setName("applicant1_placeOfBirth");
+        ocrPostCodeField.setValue("Place of Birth");
+        fieldList.add(ocrPostCodeField);
+
+        OcrDataField ocrHomeNumberField = new OcrDataField();
+        ocrHomeNumberField.setName("applicant1_homePhoneNumber");
+        ocrHomeNumberField.setValue("+447405878672");
+        fieldList.add(ocrHomeNumberField);
+
+        OcrDataField ocrMobileNumberField = new OcrDataField();
+        ocrMobileNumberField.setName("applicant1_mobilePhoneNumber");
+        ocrMobileNumberField.setValue("+447405878672");
+        fieldList.add(ocrMobileNumberField);
+
+
+        return fieldList;
+    }
+
+    public static List<OcrDataField> getC2ErrorData() {
+        List<OcrDataField> fieldList = new ArrayList<>();
+
+        OcrDataField ocrDataLastNameField = new OcrDataField();
+        ocrDataLastNameField.setName("applicant1_address");
+        ocrDataLastNameField.setValue("LastName");
+        fieldList.add(ocrDataLastNameField);
+
+        OcrDataField ocrDateField = new OcrDataField();
+        ocrDateField.setName("applicant1_dateOfBirth");
+        ocrDateField.setValue("2/13/2022");
+        fieldList.add(ocrDateField);
+
+        OcrDataField ocrPostCodeField = new OcrDataField();
+        ocrPostCodeField.setName("applicant1_placeOfBirth");
+        ocrPostCodeField.setValue("Place of Birth");
+        fieldList.add(ocrPostCodeField);
+
+
+
+        return fieldList;
+    }
 }
