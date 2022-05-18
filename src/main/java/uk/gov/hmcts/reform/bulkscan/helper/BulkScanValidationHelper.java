@@ -188,7 +188,7 @@ public class BulkScanValidationHelper {
         return eachData -> isOptional != mandatoryFields.contains(eachData.getName())
                 && fields.contains(eachData.getName())
                 && !ObjectUtils.isEmpty(eachData.getValue())
-                && !isDateValid(eachData.getValue(), regex);
+                && !isDateValid(eachData.getName(), eachData.getValue(), regex);
     }
 
     private Predicate<OcrDataField> isMatchedWithRegex(List<String> mandatoryFields, List<String> fields,
