@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.FormType;
@@ -23,6 +24,9 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.POST_CODE
 class BulkValidationHelperTest {
     ValidationConfigFactory validationConfigFactory;
 
+    @InjectMocks
+    BulkScanValidationHelper bulkScanValidationHelper;
+
     @BeforeEach
     void setup() {
         validationConfigFactory = new ValidationConfigFactory();
@@ -31,7 +35,7 @@ class BulkValidationHelperTest {
     @Test
     void testSuccessScenario() {
         ValidationConfig validationConfig = validationConfigFactory.getValidationConfig(FormType.C100.toString());
-        BulkScanValidationResponse res = BulkScanValidationHelper.validateMandatoryAndOptionalFields(
+        BulkScanValidationResponse res = bulkScanValidationHelper.validateMandatoryAndOptionalFields(
             TestDataUtil.getData(), validationConfig.getConfig());
         assertEquals(Status.SUCCESS, res.status);
     }
@@ -39,7 +43,7 @@ class BulkValidationHelperTest {
     @Test
     void testErrorScenario() {
         ValidationConfig validationConfig = validationConfigFactory.getValidationConfig(FormType.C100.toString());
-        BulkScanValidationResponse res = BulkScanValidationHelper.validateMandatoryAndOptionalFields(
+        BulkScanValidationResponse res = bulkScanValidationHelper.validateMandatoryAndOptionalFields(
             TestDataUtil.getErrorData(), validationConfig.getConfig());
         assertEquals(Status.ERRORS, res.status);
         assertTrue(res.getErrors().items.contains(String.format(MANDATORY_ERROR_MESSAGE, "appellant_lastName")));
@@ -48,7 +52,7 @@ class BulkValidationHelperTest {
     @Test
     void testC100DateErrorWhileDoingValidation() {
         ValidationConfig validationConfig = validationConfigFactory.getValidationConfig(FormType.C100.toString());
-        BulkScanValidationResponse res = BulkScanValidationHelper
+        BulkScanValidationResponse res = bulkScanValidationHelper
             .validateMandatoryAndOptionalFields(TestDataUtil.getDateErrorData(), validationConfig.getConfig());
         assertEquals(Status.WARNINGS, res.status);
         assertTrue(res.getWarnings().items.contains(String.format(DATE_FORMAT_MESSAGE, "appellant_dateOfBirth")));
@@ -57,7 +61,7 @@ class BulkValidationHelperTest {
     @Test
     void testC100EmailErrorWhileDoingValidation() {
         ValidationConfig validationConfig = validationConfigFactory.getValidationConfig(FormType.C100.toString());
-        BulkScanValidationResponse res = BulkScanValidationHelper
+        BulkScanValidationResponse res = bulkScanValidationHelper
             .validateMandatoryAndOptionalFields(TestDataUtil.getEmailErrorData(), validationConfig.getConfig());
         assertEquals(Status.WARNINGS, res.status);
         assertTrue(res.getWarnings().items.contains(String.format(EMAIL_FORMAT_MESSAGE, "appellant_email")));
@@ -66,7 +70,7 @@ class BulkValidationHelperTest {
     @Test
     void testA1FieldValidationErrorWhileDoingValidation() {
         ValidationConfig validationConfig = validationConfigFactory.getValidationConfig(FormType.A1.toString());
-        BulkScanValidationResponse res = BulkScanValidationHelper.validateMandatoryAndOptionalFields(
+        BulkScanValidationResponse res = bulkScanValidationHelper.validateMandatoryAndOptionalFields(
             TestDataUtil.getA1ErrorData(), validationConfig.getConfig());
         assertEquals(Status.ERRORS, res.status);
         Assert.assertTrue(res.getErrors().items.contains(String.format(ALPHA_NUMERIC_FIELDS_MESSAGE,
