@@ -80,4 +80,13 @@ class BulkValidationHelperTest {
         Assert.assertTrue(res.getErrors().items.contains(String.format(PHONE_NUMBER_MESSAGE,
                                                                        "applicant_telephone_no")));
     }
+
+    @Test
+    void testFL401AFieldValidationErrorWhileDoingValidation() {
+        ValidationConfig validationConfig = validationConfigFactory.getValidationConfig(FormType.FL401A.toString());
+        BulkScanValidationResponse res = bulkScanValidationHelper.validateMandatoryAndOptionalFields(
+            TestDataUtil.getFL401AErrorData(), validationConfig.getConfig());
+        assertEquals(Status.ERRORS, res.status);
+        assertTrue(res.getErrors().items.contains(String.format(POST_CODE_MESSAGE, "applicant_postcode")));
+    }
 }

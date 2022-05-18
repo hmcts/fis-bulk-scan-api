@@ -24,6 +24,7 @@ spring:
     include:
       - c100-form
       - fl401-form
+      - fl401a-form
       - fl403-form
       - edgecase-form
       - c51-form
