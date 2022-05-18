@@ -10,5 +10,6 @@ public enum FormType {
     A60,
     A58,
     C2,
-    FGM001
+    FGM001,
+    A1
 }

@@ -25,6 +25,7 @@ import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
 import static java.util.stream.Collectors.toList;
 import static org.apache.commons.lang3.StringUtils.isNotEmpty;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ALPHA_NUMERIC_FIELDS_KEY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DATE_FORMAT_FIELDS_KEY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DUPLICATE_FIELDS_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EMAIL_FORMAT_FIELDS_KEY;
@@ -102,6 +103,7 @@ public class BulkScanValidationHelper {
                 case PHONE_NUMBER_FIELDS_KEY:
                 case FAX_NUMBER_FORMAT_MESSAGE_KEY:
                 case NUMERIC_FIELDS_KEY:
+                case ALPHA_NUMERIC_FIELDS_KEY:
                     errorOrWarnings.addAll(validateFormatFields(ocrdatafields, isOptional, mandatoryFields,
                                                                 entry.getKey(), pair, false));
                     break;
