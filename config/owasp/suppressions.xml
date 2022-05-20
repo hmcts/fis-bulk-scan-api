@@ -4,4 +4,8 @@
    <notes>commons-io-2.6</notes>
    <cve>CVE-2021-29425</cve>
  </suppress>
+  <suppress>
+    <notes>spring-*</notes>
+    <cve>CVE-2016-1000027</cve>
+  </suppress>
 </suppressions>
