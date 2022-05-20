@@ -23,6 +23,6 @@ public class RootController {
      */
     @GetMapping("/")
     public ResponseEntity<String> welcome() {
-        return ok("Welcome to fis-bulk-scan-api - Test for deployment issue. **Need to Revert**");
+        return ok("Welcome to fis-bulk-scan-api- Testing deployment issue");
     }
 }
