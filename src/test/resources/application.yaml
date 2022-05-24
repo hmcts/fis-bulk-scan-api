@@ -71,5 +71,5 @@ idam:
 postcodelookup:
   api:
     url: https://api.os.uk/search/places/v1
-    key: ${POST_CODE_LOOKUP_KEY:8E7fDD6muhBozXU3dB2qOZA3hdNx8b5y}
+    key: ${POST_CODE_LOOKUP_KEY:replace_me}
 
