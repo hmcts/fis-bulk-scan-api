@@ -23,6 +23,6 @@ public class RootController {
      */
     @GetMapping("/")
     public ResponseEntity<String> welcome() {
-        return ok("Welcome to fis-bulk-scan-api-latest");
+        return ok("Welcome to fis-bulk-scan-api-latest-24-May");
     }
 }
