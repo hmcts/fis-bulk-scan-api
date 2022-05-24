@@ -20,7 +20,7 @@ public final class Constants {
 
     public static final String CASE_TYPE_TRANSFORM_ENDPOINT = "/transform-exception-record";
 
-    public static final String WELCOME_BULK_SCAN_API_MESSAGE = "Welcome to fis-bulk-scan-api-latest";
+    public static final String WELCOME_BULK_SCAN_API_MESSAGE = "Welcome to fis-bulk-scan-api-latest-24-May";
 
     private Constants() {
     }
