@@ -1,9 +1,12 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.JSONException;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Spy;
+import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
@@ -15,18 +18,29 @@ import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.Status;
 import uk.gov.hmcts.reform.bulkscan.utils.TestDataUtil;
 
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DATE_FORMAT_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_ERROR_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MISSING_FIELD_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PHONE_NUMBER_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.STEP_PARENT_ADOPTION;
+import static uk.gov.hmcts.reform.bulkscan.utils.TestResourceUtil.readFileFrom;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @ActiveProfiles("test")
 class BulkScanA58ServiceTest {
+
+    private static final String A58_STEP_PARENT_TRANSFORM_RESPONSE_PATH =
+            "classpath:response/bulk-scan-a58-step-parent-transform-output.json";
 
     @Spy
     @Autowired
@@ -77,10 +91,15 @@ class BulkScanA58ServiceTest {
     }
 
     @Test
-    void testTransform() {
+    void testA58StepParentAdoptionTransformRequest() throws IOException, JSONException {
+        ObjectMapper mapper = new ObjectMapper();
         BulkScanTransformationResponse bulkScanTransformationResponse =
-                bulkScanValidationService.transform(mock(BulkScanTransformationRequest.class));
-        Assertions.assertNull(bulkScanTransformationResponse);
+                bulkScanValidationService.transform(BulkScanTransformationRequest.builder()
+                        .ocrdatafields(TestDataUtil.getA60OrC63orA58Data()).build());
+
+        JSONAssert.assertEquals(readFileFrom(A58_STEP_PARENT_TRANSFORM_RESPONSE_PATH),
+                mapper.writeValueAsString(bulkScanTransformationResponse), true);
+
     }
 
 }

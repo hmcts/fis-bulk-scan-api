@@ -1,0 +1,32 @@
+{
+  "case_creation_details":{
+    "case_type_id":"A58_STEP_PARENT",
+    "event_id":null,
+    "case_data":{
+      "applicant":[
+        {
+          "value":{
+            "firstName":"applicant1_firstName",
+            "lastName":"applicant1_lastName",
+            "address":"123 test street, London",
+            "telephoneNumber":"09999999990",
+            "relationToChild":"Step Parent"
+          }
+        },
+        {
+          "value": {
+            "firstName":"applicant2_firstName",
+            "lastName":"applicant2_lastName",
+            "address":"123 test street, London",
+            "telephoneNumber":"09999999990",
+            "relationToChild":"Step Parent"
+          }
+        }
+      ],
+      "applicantRelationToChildFatherPartner":"true"
+    }
+  },
+  "warnings":[
+
+  ]
+}
