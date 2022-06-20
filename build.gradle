@@ -25,9 +25,8 @@ sourceSets {
     java {
       compileClasspath += main.output
       runtimeClasspath += main.output
-      srcDir file('src/smokeTest/java')
+      srcDir file('src/functionalTest/java')
     }
-    resources.srcDir file('src/smokeTest/resources')
   }
 
   integrationTest {
@@ -83,8 +82,8 @@ test {
 task functional(type: Test) {
   description = "Runs functional tests"
   group = "Verification"
-  testClassesDirs = sourceSets.smokeTest.output.classesDirs
-  classpath = sourceSets.smokeTest.runtimeClasspath
+  testClassesDirs = sourceSets.functionalTest.output.classesDirs
+  classpath = sourceSets.functionalTest.runtimeClasspath
   failFast = true
 }
 
@@ -252,6 +251,8 @@ dependencies {
     exclude group: 'junit', module: 'junit'
     exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
   }
+
+  testImplementation group: 'io.rest-assured', name: 'rest-assured'
 
 
   // Integration test

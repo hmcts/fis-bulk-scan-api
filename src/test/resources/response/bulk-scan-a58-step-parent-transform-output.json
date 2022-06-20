@@ -6,20 +6,20 @@
       "applicant":[
         {
           "value":{
-            "firstName":"firstName",
-            "lastName":"LastName",
-            "address":"123 test street, London",
-            "telephoneNumber":"+447405878672",
-            "relationToChild":"Step Parent"
+            "applicant1FirstName":"firstName",
+            "applicant1LastName":"LastName",
+            "applicant1Address":"123 test street, London",
+            "applicant1TelephoneNumber":"+447405878672",
+            "applicant1RelationToChild":"Step Parent"
           }
         },
         {
           "value":{
-            "firstName":null,
-            "lastName":null,
-            "address":null,
-            "telephoneNumber":null,
-            "relationToChild":null
+            "applicant2FirstName":null,
+            "applicant2LastName":null,
+            "applicant2Address":null,
+            "applicant2TelephoneNumber":null,
+            "applicant2RelationToChild":null
           }
         }
       ],

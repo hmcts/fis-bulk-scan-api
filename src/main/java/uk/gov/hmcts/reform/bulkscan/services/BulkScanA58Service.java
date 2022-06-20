@@ -19,11 +19,12 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static java.util.Objects.nonNull;
 import static org.apache.commons.lang3.BooleanUtils.FALSE;
 import static org.apache.commons.lang3.BooleanUtils.TRUE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT1_RELATION_TO_CHILD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT2_RELATION_TO_CHILD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_RELATION_TO_CHILD_FATHER_PARTNER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.BULK_SCAN_CASE_REFERENCE;
-import static uk.gov.hmcts.reform.bulkscan.model.FormType.A58;
 import static uk.gov.hmcts.reform.bulkscan.model.FormType.A58_STEP_PARENT;
 
 @Service
@@ -67,10 +68,10 @@ public class BulkScanA58Service implements BulkScanService {
         Map<String, String> inputFieldsMap = inputFieldsList.stream().collect(
                 Collectors.toMap(OcrDataField::getName, OcrDataField::getValue));
 
-        if (STEP_PARENT_ADOPTION.equalsIgnoreCase(inputFieldsMap.get("applicant1_relationToChild")) ||
-                STEP_PARENT_ADOPTION.equalsIgnoreCase(inputFieldsMap.get("applicant2_relationToChild")) ||
-                TRUE.equalsIgnoreCase(inputFieldsMap.get("applicant_relationToChild_father_partner")) ||
-                FALSE.equalsIgnoreCase(inputFieldsMap.get("applicant_relationToChild_father_partner"))) {
+        if (STEP_PARENT_ADOPTION.equalsIgnoreCase(inputFieldsMap.get(APPLICANT1_RELATION_TO_CHILD))
+                || STEP_PARENT_ADOPTION.equalsIgnoreCase(inputFieldsMap.get(APPLICANT2_RELATION_TO_CHILD))
+                || TRUE.equalsIgnoreCase(inputFieldsMap.get(APPLICANT_RELATION_TO_CHILD_FATHER_PARTNER))
+                || FALSE.equalsIgnoreCase(inputFieldsMap.get(APPLICANT_RELATION_TO_CHILD_FATHER_PARTNER))) {
             caseTypeId = A58_STEP_PARENT.name();
         }
 

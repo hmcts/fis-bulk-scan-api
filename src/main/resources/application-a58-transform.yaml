@@ -6,15 +6,15 @@ uk:
           A58_STEP_PARENT:
             applicant:
               - value:
-                  firstName: applicant1_firstName
-                  lastName: applicant1_lastName
-                  address: applicant1_address
-                  telephoneNumber: applicant1_telephoneNumber
-                  relationToChild: applicant1_relationToChild
+                  applicant1FirstName: applicant1_firstName
+                  applicant1LastName: applicant1_lastName
+                  applicant1Address: applicant1_address
+                  applicant1TelephoneNumber: applicant1_telephoneNumber
+                  applicant1RelationToChild: applicant1_relationToChild
               - value:
-                  firstName: applicant2_firstName
-                  lastName: applicant2_lastName
-                  address: applicant2_address
-                  telephoneNumber: applicant2_telephoneNumber
-                  relationToChild: applicant2_relationToChild
+                  applicant2FirstName: applicant2_firstName
+                  applicant2LastName: applicant2_lastName
+                  applicant2Address: applicant2_address
+                  applicant2TelephoneNumber: applicant2_telephoneNumber
+                  applicant2RelationToChild: applicant2_relationToChild
             applicantRelationToChildFatherPartner: applicant_relationToChild_father_partner
