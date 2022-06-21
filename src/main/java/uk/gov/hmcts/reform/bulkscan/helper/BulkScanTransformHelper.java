@@ -8,7 +8,7 @@ import java.util.List;
 import java.util.Map;
 
 @Slf4j
-@SuppressWarnings("PMD.AvoidReassigningParameters")
+@SuppressWarnings({"PMD.AvoidReassigningParameters", "PMD.NullAssignment"})
 public final class BulkScanTransformHelper {
 
     private BulkScanTransformHelper() {
@@ -35,13 +35,15 @@ public final class BulkScanTransformHelper {
             });
 
             if (!list.isEmpty()) {
-                list.stream().forEach(eachList -> {
+                list.forEach(eachList -> {
                     transformToCaseData(eachList, inputFieldsMap);
                 });
                 object = list;
             }
         } else if (object instanceof String && inputFieldsMap.containsKey(object)) {
             object = inputFieldsMap.get(object);
+        } else if (object instanceof String && !inputFieldsMap.containsKey(object)) {
+            object = null;
         }
         return object;
     }

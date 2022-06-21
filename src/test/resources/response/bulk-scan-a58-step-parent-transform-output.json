@@ -1,0 +1,32 @@
+{
+  "case_creation_details":{
+    "case_type_id":"A58_STEP_PARENT",
+    "event_id":null,
+    "case_data":{
+      "applicant":[
+        {
+          "value":{
+            "applicant1FirstName":"firstName",
+            "applicant1LastName":"LastName",
+            "applicant1Address":"123 test street, London",
+            "applicant1TelephoneNumber":"+447405878672",
+            "applicant1RelationToChild":null
+          }
+        },
+        {
+          "value":{
+            "applicant2FirstName":null,
+            "applicant2LastName":null,
+            "applicant2Address":null,
+            "applicant2TelephoneNumber":null,
+            "applicant2RelationToChild":null
+          }
+        }
+      ],
+      "applicantRelationToChildFatherPartner": "false"
+    }
+  },
+  "warnings":[
+
+  ]
+}
