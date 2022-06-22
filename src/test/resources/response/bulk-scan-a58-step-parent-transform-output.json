@@ -1,7 +1,7 @@
 {
   "case_creation_details":{
-    "case_type_id":"A58_STEP_PARENT",
-    "event_id":null,
+    "case_type_id": "A58",
+    "event_id": "create-case-adop-bs",
     "case_data":{
       "applicant":[
         {

@@ -40,6 +40,8 @@ public final class BulkScanConstants {
     public static final String APPLICANT1_RELATION_TO_CHILD = "applicant1_relationToChild";
     public static final String APPLICANT2_RELATION_TO_CHILD = "applicant2_relationToChild";
     public static final String APPLICANT_RELATION_TO_CHILD_FATHER_PARTNER = "applicant_relationToChild_father_partner";
+    public static final String CASE_TYPE_ID = "CASE_TYPE_ID";
+    public static final String EVENT_ID = "EVENT_ID";
 
     public static final String DOB_HINT = "dob";
     public static final String DATE_OF_BIRTH_HINT = "dateOfBirth";

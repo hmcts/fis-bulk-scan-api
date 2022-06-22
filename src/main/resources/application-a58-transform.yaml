@@ -4,17 +4,21 @@ uk:
       transform:
         caseTypeofApplication:
           A58_STEP_PARENT:
-            applicant:
-              - value:
-                  applicant1FirstName: applicant1_firstName
-                  applicant1LastName: applicant1_lastName
-                  applicant1Address: applicant1_address
-                  applicant1TelephoneNumber: applicant1_telephoneNumber
-                  applicant1RelationToChild: applicant1_relationToChild
-              - value:
-                  applicant2FirstName: applicant2_firstName
-                  applicant2LastName: applicant2_lastName
-                  applicant2Address: applicant2_address
-                  applicant2TelephoneNumber: applicant2_telephoneNumber
-                  applicant2RelationToChild: applicant2_relationToChild
-            applicantRelationToChildFatherPartner: applicant_relationToChild_father_partner
+            caseFields:
+              CASE_TYPE_ID: A58
+              EVENT_ID: create-case-adop-bs
+            caseDataFields:
+              applicant:
+                - value:
+                    applicant1FirstName: applicant1_firstName
+                    applicant1LastName: applicant1_lastName
+                    applicant1Address: applicant1_address
+                    applicant1TelephoneNumber: applicant1_telephoneNumber
+                    applicant1RelationToChild: applicant1_relationToChild
+                - value:
+                    applicant2FirstName: applicant2_firstName
+                    applicant2LastName: applicant2_lastName
+                    applicant2Address: applicant2_address
+                    applicant2TelephoneNumber: applicant2_telephoneNumber
+                    applicant2RelationToChild: applicant2_relationToChild
+              applicantRelationToChildFatherPartner: applicant_relationToChild_father_partner

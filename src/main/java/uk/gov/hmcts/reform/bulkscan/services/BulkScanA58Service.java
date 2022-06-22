@@ -25,6 +25,8 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT2_RELATION_TO_CHILD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_RELATION_TO_CHILD_FATHER_PARTNER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.BULK_SCAN_CASE_REFERENCE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CASE_TYPE_ID;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EVENT_ID;
 import static uk.gov.hmcts.reform.bulkscan.model.FormType.A58_STEP_PARENT;
 
 @Service
@@ -61,7 +63,7 @@ public class BulkScanA58Service implements BulkScanService {
         Map<String, Object> caseData = new HashMap<>();
         List<OcrDataField> inputFieldsList = bulkScanTransformationRequest.getOcrdatafields();
 
-        String caseTypeId = null;
+        String formType = null;
 
         caseData.put(BULK_SCAN_CASE_REFERENCE, bulkScanTransformationRequest.getId());
 
@@ -72,18 +74,22 @@ public class BulkScanA58Service implements BulkScanService {
                 || STEP_PARENT_ADOPTION.equalsIgnoreCase(inputFieldsMap.get(APPLICANT2_RELATION_TO_CHILD))
                 || TRUE.equalsIgnoreCase(inputFieldsMap.get(APPLICANT_RELATION_TO_CHILD_FATHER_PARTNER))
                 || FALSE.equalsIgnoreCase(inputFieldsMap.get(APPLICANT_RELATION_TO_CHILD_FATHER_PARTNER))) {
-            caseTypeId = A58_STEP_PARENT.name();
+            formType = A58_STEP_PARENT.name();
         }
 
         //TODO RELINQUISHED_ADOPTION condition to be added as part of ISDB-269
 
         Map<String, Object> populatedMap = (Map<String, Object>) BulkScanTransformHelper
                 .transformToCaseData(transformConfigManager
-                        .getSourceAndTargetFields(FormType.valueOf(caseTypeId)), inputFieldsMap);
+                        .getTransformationConfig(FormType.valueOf(formType)).getCaseDataFields(), inputFieldsMap);
+
+        Map<String, String> caseTypeAndEventId =
+                transformConfigManager.getTransformationConfig(FormType.valueOf(formType)).getCaseFields();
 
         return BulkScanTransformationResponse.builder().caseCreationDetails(
                 CaseCreationDetails.builder()
-                        .caseTypeId(caseTypeId)
+                        .caseTypeId(caseTypeAndEventId.get(CASE_TYPE_ID))
+                        .eventId(caseTypeAndEventId.get(EVENT_ID))
                         .caseData(populatedMap).build()).build();
     }
 }
