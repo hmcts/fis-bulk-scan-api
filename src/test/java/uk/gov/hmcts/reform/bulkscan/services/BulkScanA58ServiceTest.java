@@ -92,7 +92,8 @@ class BulkScanA58ServiceTest {
         ObjectMapper mapper = new ObjectMapper();
         BulkScanTransformationResponse bulkScanTransformationResponse =
             bulkScanValidationService.transform(BulkScanTransformationRequest.builder()
-                                                    .ocrdatafields(TestDataUtil.getA58RelinquishedAdoptionData()).build());
+                                                    .ocrdatafields(TestDataUtil.getA58RelinquishedAdoptionData())
+                                                    .build());
 
         JSONAssert.assertEquals(readFileFrom(A58_RELINQUISHED_ADOPTION_TRANSFORM_RESPONSE_PATH),
                                 mapper.writeValueAsString(bulkScanTransformationResponse), true);
