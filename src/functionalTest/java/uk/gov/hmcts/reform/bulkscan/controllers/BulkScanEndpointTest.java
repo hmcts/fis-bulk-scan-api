@@ -62,4 +62,30 @@ public class BulkScanEndpointTest {
                 .post("/transform-exception-record")
                 .then().assertThat().statusCode(200);
     }
+
+    @Test
+    public void shouldValidate58RelinquishedAdoptionBulkScanRequest() throws Exception {
+        String bulkScanValidationRequest =
+            readFileFrom("classpath:requests/bulk-scan-a58-relinquished-adoption-validation-input.json");
+
+        request.header("serviceauthorization", "serviceauthorization")
+            .body(bulkScanValidationRequest)
+            .when()
+            .contentType("application/json")
+            .post("forms/A58/validate-ocr")
+            .then().assertThat().statusCode(200);
+    }
+
+    @Test
+    public void shouldTransformA58RelinquishedAdoptionBulkScanRequest() throws Exception {
+        String bulkScanTransformRequest =
+            readFileFrom("classpath:requests/bulk-scan-a58-relinquished-adoption-transform-input.json");
+
+        request.header("serviceauthorization", "serviceauthorization")
+            .body(bulkScanTransformRequest)
+            .when()
+            .contentType("application/json")
+            .post("/transform-exception-record")
+            .then().assertThat().statusCode(200);
+    }
 }

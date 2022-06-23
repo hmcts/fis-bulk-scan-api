@@ -6,26 +6,18 @@ import uk.gov.hmcts.reform.bulkscan.config.BulkScanFormValidationConfigManager;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanTransformConfigManager;
 import uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper;
 import uk.gov.hmcts.reform.bulkscan.helper.BulkScanValidationHelper;
-import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
-import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
-import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
-import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
-import uk.gov.hmcts.reform.bulkscan.model.CaseCreationDetails;
-import uk.gov.hmcts.reform.bulkscan.model.FormType;
-import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
+import uk.gov.hmcts.reform.bulkscan.model.*;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import static java.util.Objects.nonNull;
 import static org.apache.commons.lang3.BooleanUtils.FALSE;
 import static org.apache.commons.lang3.BooleanUtils.TRUE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT1_RELATION_TO_CHILD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT2_RELATION_TO_CHILD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_RELATION_TO_CHILD_FATHER_PARTNER;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.BULK_SCAN_CASE_REFERENCE;
-import static uk.gov.hmcts.reform.bulkscan.model.FormType.A58_STEP_PARENT;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.*;
+import static uk.gov.hmcts.reform.bulkscan.model.FormType.*;
 
 @Service
 public class BulkScanA58Service implements BulkScanService {
@@ -50,9 +42,11 @@ public class BulkScanA58Service implements BulkScanService {
     @Override
     public BulkScanValidationResponse validate(BulkScanValidationRequest bulkRequest) {
         // Validating the Fields..
-        return bulkScanValidationHelper.validateMandatoryAndOptionalFields(bulkRequest.getOcrdatafields(),
-                                                                          configManager.getValidationConfig(
-                                                                              FormType.A58));
+        return bulkScanValidationHelper.validateMandatoryAndOptionalFields(
+            bulkRequest.getOcrdatafields(),
+            configManager.getValidationConfig(
+                FormType.A58)
+        );
     }
 
     @Override
@@ -66,24 +60,25 @@ public class BulkScanA58Service implements BulkScanService {
         caseData.put(BULK_SCAN_CASE_REFERENCE, bulkScanTransformationRequest.getId());
 
         Map<String, String> inputFieldsMap = inputFieldsList.stream().collect(
-                Collectors.toMap(OcrDataField::getName, OcrDataField::getValue));
+            Collectors.toMap(OcrDataField::getName, OcrDataField::getValue));
 
         if (STEP_PARENT_ADOPTION.equalsIgnoreCase(inputFieldsMap.get(APPLICANT1_RELATION_TO_CHILD))
-                || STEP_PARENT_ADOPTION.equalsIgnoreCase(inputFieldsMap.get(APPLICANT2_RELATION_TO_CHILD))
-                || TRUE.equalsIgnoreCase(inputFieldsMap.get(APPLICANT_RELATION_TO_CHILD_FATHER_PARTNER))
-                || FALSE.equalsIgnoreCase(inputFieldsMap.get(APPLICANT_RELATION_TO_CHILD_FATHER_PARTNER))) {
+            || STEP_PARENT_ADOPTION.equalsIgnoreCase(inputFieldsMap.get(APPLICANT2_RELATION_TO_CHILD))
+            || TRUE.equalsIgnoreCase(inputFieldsMap.get(APPLICANT_RELATION_TO_CHILD_FATHER_PARTNER))
+            || FALSE.equalsIgnoreCase(inputFieldsMap.get(APPLICANT_RELATION_TO_CHILD_FATHER_PARTNER))) {
             caseTypeId = A58_STEP_PARENT.name();
+        } else if (nonNull(ADOPTION_ORDER_CONSENT) || nonNull(ADOPTION_ORDER_CONSENT_ADVANCE) || nonNull(ADOPTION_ORDER_CONSENT_AGENCY)
+            || nonNull(ADOPTION_ORDER_NO_CONSENT) || nonNull(COURT_CONSENT_PARENT_NOT_FOUND) || nonNull(COURT_CONSENT_PARENT_LACK_CAPACITY) || nonNull(COURT_CONSENT_CHILD_WELFARE)) {
+            caseTypeId = A58_RELINQUISHED_ADOPTION.name();
         }
 
-        //TODO RELINQUISHED_ADOPTION condition to be added as part of ISDB-269
-
         Map<String, Object> populatedMap = (Map<String, Object>) BulkScanTransformHelper
-                .transformToCaseData(transformConfigManager
-                        .getSourceAndTargetFields(FormType.valueOf(caseTypeId)), inputFieldsMap);
+            .transformToCaseData(transformConfigManager
+                                     .getSourceAndTargetFields(FormType.valueOf(caseTypeId)), inputFieldsMap);
 
         return BulkScanTransformationResponse.builder().caseCreationDetails(
-                CaseCreationDetails.builder()
-                        .caseTypeId(caseTypeId)
-                        .caseData(populatedMap).build()).build();
+            CaseCreationDetails.builder()
+                .caseTypeId(caseTypeId)
+                .caseData(populatedMap).build()).build();
     }
 }

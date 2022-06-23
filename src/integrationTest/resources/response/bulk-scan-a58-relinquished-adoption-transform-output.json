@@ -1,0 +1,36 @@
+{
+  "case_creation_details":{
+    "case_type_id":"A58_RELINQUISHED_ADOPTION",
+    "event_id":null,
+    "case_data":{
+      "applicant":[
+        {
+          "value":{
+            "applicant1FirstName":"applicant1_firstName",
+            "applicant1LastName":"applicant1_lastName",
+            "applicant1Address":"123 test street, London",
+            "applicant1TelephoneNumber":"09999999990"
+          }
+        },
+        {
+          "value": {
+            "applicant2FirstName":"applicant2_firstName",
+            "applicant2LastName":"applicant2_lastName",
+            "applicant2Address":"123 test street, London",
+            "applicant2TelephoneNumber":"09999999990"
+          }
+        }
+      ],
+      "adoptionOrderConsent":"true",
+      "adoptionOrderConsentAdvance":"true",
+      "adoptionOrderConsentAgency":"true",
+      "adoptionOrderNoConsent":"true",
+      "courtConsentParentNotFound":"true",
+      "courtConsentParentLackCapacity":"true",
+      "courtConsentChildWelfare":"true"
+    }
+  },
+  "warnings":[
+
+  ]
+}
