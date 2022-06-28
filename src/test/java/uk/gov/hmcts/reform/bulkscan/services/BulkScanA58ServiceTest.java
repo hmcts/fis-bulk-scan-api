@@ -1,9 +1,11 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
-import org.junit.jupiter.api.Assertions;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.JSONException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Spy;
+import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
@@ -15,18 +17,22 @@ import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.Status;
 import uk.gov.hmcts.reform.bulkscan.utils.TestDataUtil;
 
+import java.io.IOException;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.mock;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DATE_FORMAT_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_ERROR_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MISSING_FIELD_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PHONE_NUMBER_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.utils.TestResourceUtil.readFileFrom;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @ActiveProfiles("test")
 class BulkScanA58ServiceTest {
+
+    private static final String A58_STEP_PARENT_TRANSFORM_RESPONSE_PATH =
+            "classpath:response/bulk-scan-a58-step-parent-transform-output.json";
 
     @Spy
     @Autowired
@@ -50,15 +56,6 @@ class BulkScanA58ServiceTest {
     }
 
     @Test
-    void testA58DateErrorWhileDoingValidation() {
-        BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-                TestDataUtil.getA60OrC63orA58ErrorData()).build();
-        BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
-        assertEquals(Status.ERRORS, res.status);
-        assertTrue(res.getErrors().items.contains(String.format(DATE_FORMAT_MESSAGE, "applicant1_dateOfBirth")));
-    }
-
-    @Test
     void testA58FieldMissingErrorWhileDoingValidation() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
                 TestDataUtil.getA60OrC63orA58ErrorData()).build();
@@ -72,15 +69,19 @@ class BulkScanA58ServiceTest {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
                 TestDataUtil.getA60OrC63orA58ErrorData()).build();
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
-        assertTrue(res.getWarnings().items.contains(String.format(DATE_FORMAT_MESSAGE, "applicant2_dateOfBirth")));
         assertTrue(res.getWarnings().items.contains(String.format(PHONE_NUMBER_MESSAGE, "applicant2_telephoneNumber")));
     }
 
     @Test
-    void testTransform() {
+    void testA58StepParentAdoptionTransformRequest() throws IOException, JSONException {
+        ObjectMapper mapper = new ObjectMapper();
         BulkScanTransformationResponse bulkScanTransformationResponse =
-                bulkScanValidationService.transform(mock(BulkScanTransformationRequest.class));
-        Assertions.assertNull(bulkScanTransformationResponse);
+                bulkScanValidationService.transform(BulkScanTransformationRequest.builder()
+                        .ocrdatafields(TestDataUtil.getA60OrC63orA58Data()).build());
+
+        JSONAssert.assertEquals(readFileFrom(A58_STEP_PARENT_TRANSFORM_RESPONSE_PATH),
+                mapper.writeValueAsString(bulkScanTransformationResponse), true);
+
     }
 
 }

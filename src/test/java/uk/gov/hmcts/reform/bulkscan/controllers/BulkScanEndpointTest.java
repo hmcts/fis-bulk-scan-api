@@ -71,7 +71,7 @@ class BulkScanEndpointTest {
     void testC100TransformService() {
         //Given
         BulkScanTransformationRequest bulkScanTransformationRequest = BulkScanTransformationRequest.builder()
-            .ocrdatafields(TestDataUtil.getData()).caseTypeId(
+            .ocrdatafields(TestDataUtil.getData()).formType(
             C100.name()).build();
 
         //When
@@ -86,7 +86,7 @@ class BulkScanEndpointTest {
     void testFL401TransformService() {
         //Given
         BulkScanTransformationRequest bulkScanTransformationRequest = BulkScanTransformationRequest.builder()
-            .ocrdatafields(TestDataUtil.getData()).caseTypeId(
+            .ocrdatafields(TestDataUtil.getData()).formType(
                 FL401.name()).build();
 
         //When
@@ -100,7 +100,7 @@ class BulkScanEndpointTest {
     void testFL403TransformService() {
         //Given
         BulkScanTransformationRequest bulkScanTransformationRequest = BulkScanTransformationRequest.builder()
-            .ocrdatafields(TestDataUtil.getData()).caseTypeId(
+            .ocrdatafields(TestDataUtil.getData()).formType(
                 FL403.name()).build();
 
         //When

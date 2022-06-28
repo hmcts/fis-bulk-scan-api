@@ -288,6 +288,11 @@ public final class TestDataUtil {
         ocrAddressField.setValue("123 test street, London");
         fieldList.add(ocrAddressField);
 
+        OcrDataField ocrApplicantRelationToChildField = new OcrDataField();
+        ocrApplicantRelationToChildField.setName("applicant_relationToChild_father_partner");
+        ocrApplicantRelationToChildField.setValue("false");
+        fieldList.add(ocrApplicantRelationToChildField);
+
         return fieldList;
     }
 

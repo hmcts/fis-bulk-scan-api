@@ -1,0 +1,20 @@
+{
+  "ocr_data_fields":[
+    {
+      "name":"applicant1_address",
+      "value":"Address1 London"
+    },
+    {
+      "name":"applicant1_firstName",
+      "value":"firstName"
+    },
+    {
+      "name":"applicant1_lastName",
+      "value":"LastName"
+    },
+    {
+      "name":"applicant1_telephoneNumber",
+      "value":"test"
+    }
+  ]
+}

@@ -9,12 +9,10 @@ uk:
               - applicant1_lastName
               - applicant1_address
               - applicant1_telephoneNumber
-              - applicant1_dateOfBirth
             regexValidationFields:
               dateFields:
                 fieldNames:
-                  - applicant1_dateOfBirth
-                  - applicant2_dateOfBirth
+                  -
                 regex: dd/MM/yyyy
               emailFields:
                 fieldNames:
