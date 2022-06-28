@@ -12,19 +12,6 @@ case:
       base:
         uri: '#{environment["TEST_URL"].replaceFirst("https://", "http://")}'
 
-management:
-  endpoint:
-    health:
-      show-details: "always"
-  endpoints:
-    web:
-      base-path: /
-      exposure:
-        include: health, info
-
-springdoc:
-  packagesToScan: uk.gov.hmcts.reform.bulkscan.controllers
-
 spring:
   main:
     allow-bean-definition-overriding: true

@@ -13,12 +13,8 @@
       "value":"LastName"
     },
     {
-      "name":"applicant1_dateOfBirth",
-      "value":"01/01/1990"
-    },
-    {
       "name":"applicant1_telephoneNumber",
-      "value":"07456575789"
+      "value":"test"
     }
   ]
 }
