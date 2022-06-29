@@ -34,6 +34,9 @@ class BulkScanA58ServiceTest {
     private static final String A58_STEP_PARENT_TRANSFORM_RESPONSE_PATH =
             "classpath:response/bulk-scan-a58-step-parent-transform-output.json";
 
+    private static final String A58_RELINQUISHED_ADOPTION_TRANSFORM_RESPONSE_PATH =
+        "classpath:response/bulk-scan-a58-relinquished_adoption-transform-output.json";
+
     @Spy
     @Autowired
     BulkScanA58Service bulkScanValidationService;
@@ -81,6 +84,19 @@ class BulkScanA58ServiceTest {
 
         JSONAssert.assertEquals(readFileFrom(A58_STEP_PARENT_TRANSFORM_RESPONSE_PATH),
                 mapper.writeValueAsString(bulkScanTransformationResponse), true);
+
+    }
+
+    @Test
+    void testA58RelinquishedAdoptionTransformRequest() throws IOException, JSONException {
+        ObjectMapper mapper = new ObjectMapper();
+        BulkScanTransformationResponse bulkScanTransformationResponse =
+            bulkScanValidationService.transform(BulkScanTransformationRequest.builder()
+                                                    .ocrdatafields(TestDataUtil.getA58RelinquishedAdoptionData())
+                                                    .build());
+
+        JSONAssert.assertEquals(readFileFrom(A58_RELINQUISHED_ADOPTION_TRANSFORM_RESPONSE_PATH),
+                                mapper.writeValueAsString(bulkScanTransformationResponse), true);
 
     }
 

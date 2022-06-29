@@ -22,3 +22,26 @@ uk:
                     applicant2TelephoneNumber: applicant2_telephoneNumber
                     applicant2RelationToChild: applicant2_relationToChild
               applicantRelationToChildFatherPartner: applicant_relationToChild_father_partner
+          A58_RELINQUISHED_ADOPTION:
+            caseFields:
+              CASE_TYPE_ID: A58
+              EVENT_ID: create-case-adop-bs
+            caseDataFields:
+              applicant:
+                - value:
+                    applicant1FirstName: applicant1_firstName
+                    applicant1LastName: applicant1_lastName
+                    applicant1Address: applicant1_address
+                    applicant1TelephoneNumber: applicant1_telephoneNumber
+                - value:
+                    applicant2FirstName: applicant2_firstName
+                    applicant2LastName: applicant2_lastName
+                    applicant2Address: applicant2_address
+                    applicant2TelephoneNumber: applicant2_telephoneNumber
+              adoptionOrderConsent: adoption_order_consent
+              adoptionOrderConsentAdvance: adoption_order_consent_advance
+              adoptionOrderConsentAgency: adoption_order_consent_agency
+              adoptionOrderNoConsent: adoption_order_no_consent
+              courtConsentParentNotFound: court_consent_parent_not_found
+              courtConsentParentLackCapacity: court_consent_parent_lack_capacity
+              courtConsentChildWelfare: court_consent_child_welfare
