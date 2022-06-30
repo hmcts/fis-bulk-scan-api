@@ -10,6 +10,7 @@ public enum FormType {
     C63,
     A60,
     A58,
+    A59,
     C2,
     FGM001,
     A1,
