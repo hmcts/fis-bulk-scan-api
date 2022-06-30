@@ -40,15 +40,6 @@ class BulkScanFgm001ServiceTest {
     }
 
     @Test
-    void testA58DateErrorWhileDoingValidation() {
-        BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-                TestDataUtil.getFgm001ErrorDobData()).build();
-        BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
-        assertEquals(Status.ERRORS, res.status);
-        assertTrue(res.getErrors().items.contains(String.format(DATE_FORMAT_MESSAGE, "applicant_dateOfBirth")));
-    }
-
-    @Test
     void testA58FieldMissingErrorWhileDoingValidation() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
                 TestDataUtil.getFgm001ErrorData()).build();
