@@ -12,5 +12,6 @@ public enum FormType {
     A58,
     C2,
     FGM001,
-    A1
+    A1,
+    A58_STEP_PARENT
 }

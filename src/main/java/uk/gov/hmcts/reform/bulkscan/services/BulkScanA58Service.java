@@ -3,21 +3,46 @@ package uk.gov.hmcts.reform.bulkscan.services;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanFormValidationConfigManager;
+import uk.gov.hmcts.reform.bulkscan.config.BulkScanTransformConfigManager;
+import uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper;
 import uk.gov.hmcts.reform.bulkscan.helper.BulkScanValidationHelper;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
+import uk.gov.hmcts.reform.bulkscan.model.CaseCreationDetails;
 import uk.gov.hmcts.reform.bulkscan.model.FormType;
+import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
+
+import static org.apache.commons.lang3.BooleanUtils.FALSE;
+import static org.apache.commons.lang3.BooleanUtils.TRUE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT1_RELATION_TO_CHILD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT2_RELATION_TO_CHILD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_RELATION_TO_CHILD_FATHER_PARTNER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.BULK_SCAN_CASE_REFERENCE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CASE_TYPE_ID;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EVENT_ID;
+import static uk.gov.hmcts.reform.bulkscan.model.FormType.A58_STEP_PARENT;
 
 @Service
 public class BulkScanA58Service implements BulkScanService {
+
+    public static final String STEP_PARENT_ADOPTION = "Step Parent";
+    public static final String RELINQUISHED_ADOPTION = "Relinquished Adoption";
 
     @Autowired
     BulkScanFormValidationConfigManager configManager;
 
     @Autowired
     BulkScanValidationHelper bulkScanValidationHelper;
+
+    @Autowired
+    BulkScanTransformConfigManager transformConfigManager;
 
     @Override
     public FormType getCaseType() {
@@ -33,8 +58,38 @@ public class BulkScanA58Service implements BulkScanService {
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public BulkScanTransformationResponse transform(BulkScanTransformationRequest bulkScanTransformationRequest) {
-        //TODO transformation logic
-        return null;
+        Map<String, Object> caseData = new HashMap<>();
+        List<OcrDataField> inputFieldsList = bulkScanTransformationRequest.getOcrdatafields();
+
+        String formType = null;
+
+        caseData.put(BULK_SCAN_CASE_REFERENCE, bulkScanTransformationRequest.getId());
+
+        Map<String, String> inputFieldsMap = inputFieldsList.stream().collect(
+                Collectors.toMap(OcrDataField::getName, OcrDataField::getValue));
+
+        if (STEP_PARENT_ADOPTION.equalsIgnoreCase(inputFieldsMap.get(APPLICANT1_RELATION_TO_CHILD))
+                || STEP_PARENT_ADOPTION.equalsIgnoreCase(inputFieldsMap.get(APPLICANT2_RELATION_TO_CHILD))
+                || TRUE.equalsIgnoreCase(inputFieldsMap.get(APPLICANT_RELATION_TO_CHILD_FATHER_PARTNER))
+                || FALSE.equalsIgnoreCase(inputFieldsMap.get(APPLICANT_RELATION_TO_CHILD_FATHER_PARTNER))) {
+            formType = A58_STEP_PARENT.name();
+        }
+
+        //TODO RELINQUISHED_ADOPTION condition to be added as part of ISDB-269
+
+        Map<String, Object> populatedMap = (Map<String, Object>) BulkScanTransformHelper
+                .transformToCaseData(transformConfigManager
+                        .getTransformationConfig(FormType.valueOf(formType)).getCaseDataFields(), inputFieldsMap);
+
+        Map<String, String> caseTypeAndEventId =
+                transformConfigManager.getTransformationConfig(FormType.valueOf(formType)).getCaseFields();
+
+        return BulkScanTransformationResponse.builder().caseCreationDetails(
+                CaseCreationDetails.builder()
+                        .caseTypeId(caseTypeAndEventId.get(CASE_TYPE_ID))
+                        .eventId(caseTypeAndEventId.get(EVENT_ID))
+                        .caseData(populatedMap).build()).build();
     }
 }
