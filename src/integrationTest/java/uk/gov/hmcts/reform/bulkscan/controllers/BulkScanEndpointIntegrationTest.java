@@ -15,6 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.A58_CASE_TYPE_VALIDATE_ENDPOINT;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.A60_CASE_TYPE_VALIDATE_ENDPOINT;
+import static uk.gov.hmcts.reform.bulkscan.utils.Constants.C2_CASE_TYPE_VALIDATE_ENDPOINT;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.C51_CASE_TYPE_VALIDATE_ENDPOINT;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.C63_CASE_TYPE_VALIDATE_ENDPOINT;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.CASE_TYPE_TRANSFORM_ENDPOINT;
@@ -39,14 +40,22 @@ class BulkScanEndpointIntegrationTest {
             "classpath:request/bulk-scan-fl403-validation-input.json";
     private static final String EdgeCase_VALIDATION_REQUEST_PATH =
         "classpath:request/bulk-scan-fl403-validation-input.json";
+    private static final String C2_VALIDATION_REQUEST_PATH =
+        "classpath:request/bulk-scan-c2-validation-input.json";
+    private static final String C2_TRANSFORM_REQUEST_PATH =
+        "classpath:request/bulk-scan-c2-transform-input.json";
     private static final String C100_TRANSFORM_REQUEST_PATH =
         "classpath:request/bulk-scan-c100-transform-input.json";
     private static final String EdgeCase_TRANSFORM_REQUEST_PATH =
-            "classpath:request/bulk-scan-c100-transform-input.json";
+            "classpath:request/bulk-scan-edgecase-transform-input.json";
     private static final String FL401_TRANSFORM_REQUEST_PATH =
             "classpath:request/bulk-scan-fl401-transform-input.json";
     private static final String FL403_TRANSFORM_REQUEST_PATH =
             "classpath:request/bulk-scan-fl403-transform-input.json";
+    private static final String A58_STEP_PARENT_TRANSFORM_REQUEST_PATH =
+            "classpath:request/bulk-scan-a58-step-parent-transform-input.json";
+    private static final String A58_STEP_PARENT_TRANSFORM_RESPONSE_PATH =
+            "classpath:response/bulk-scan-a58-step-parent-transform-output.json";
     private static final String FL403_VALIDATION_RESPONSE_PATH =
             "classpath:response/bulk-scan-fl403-validation-response.json";
     private static final String C51_VALIDATION_REQUEST_PATH =
@@ -130,6 +139,17 @@ class BulkScanEndpointIntegrationTest {
             .andReturn();
     }
 
+    @DisplayName("should test validate request case type C2")
+    @Test
+    void shouldTestValidationCaseTypeC2() throws Exception {
+        mockMvc.perform(post(C2_CASE_TYPE_VALIDATE_ENDPOINT)
+                            .contentType(APPLICATION_JSON)
+                            .header(SERVICE_AUTHORIZATION, SERVICE_AUTHORIZATION_VALUE)
+                            .content(readFileFrom(C2_VALIDATION_REQUEST_PATH)))
+            .andExpect(status().isOk())
+            .andReturn();
+    }
+
     @DisplayName("should test transform request case type C100")
     @Test
     void shouldTestTransformRequestCaseTypeC100() throws Exception {
@@ -138,6 +158,27 @@ class BulkScanEndpointIntegrationTest {
                         .header(SERVICE_AUTHORIZATION, SERVICE_AUTHORIZATION_VALUE)
                         .content(readFileFrom(C100_TRANSFORM_REQUEST_PATH)))
                 .andExpect(status().isOk()).andReturn();
+    }
+
+    @DisplayName("should test transform request case type A58 step parent adoption")
+    @Test
+    void shouldTestTransformRequestCaseTypeA58StepParentAdoption() throws Exception {
+        mockMvc.perform(post(CASE_TYPE_TRANSFORM_ENDPOINT)
+                        .contentType(APPLICATION_JSON)
+                        .header(SERVICE_AUTHORIZATION, SERVICE_AUTHORIZATION_VALUE)
+                        .content(readFileFrom(A58_STEP_PARENT_TRANSFORM_REQUEST_PATH)))
+                .andExpect(status().isOk())
+                .andExpect(content().json(readFileFrom(A58_STEP_PARENT_TRANSFORM_RESPONSE_PATH)));
+    }
+
+    @DisplayName("should test transform request case type C2")
+    @Test
+    void shouldTestTransformRequestCaseTypeC2() throws Exception {
+        mockMvc.perform(post(CASE_TYPE_TRANSFORM_ENDPOINT)
+                            .contentType(APPLICATION_JSON)
+                            .header(SERVICE_AUTHORIZATION, SERVICE_AUTHORIZATION_VALUE)
+                            .content(readFileFrom(C2_TRANSFORM_REQUEST_PATH)))
+            .andExpect(status().isOk()).andReturn();
     }
 
     @DisplayName("should test transform request case type FL401")

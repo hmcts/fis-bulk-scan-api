@@ -24,6 +24,7 @@ spring:
     include:
       - c100-form
       - fl401-form
+      - fl401a-form
       - fl403-form
       - edgecase-form
       - c51-form
@@ -31,6 +32,10 @@ spring:
       - a60-form
       - c100-transform
       - a58-form
+      - fgm001-form
+      - c2-form
+      - a1-form
+      - a58-transform
 
 #  datasource:
 #    driver-class-name: org.postgresql.Driver

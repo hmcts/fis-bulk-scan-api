@@ -105,7 +105,7 @@ public class BulkScanEndpoint {
 
         BulkScanTransformationResponse bulkScanTransformationResponse =
             Objects.requireNonNull(BulkScanServiceFactory.getService(FormType.valueOf(bulkScanTransformationRequest
-                                                                            .getCaseTypeId())))
+                                                                            .getFormType())))
                 .transform(bulkScanTransformationRequest);
         return new ResponseEntity<>(bulkScanTransformationResponse, HttpStatus.OK);
     }
