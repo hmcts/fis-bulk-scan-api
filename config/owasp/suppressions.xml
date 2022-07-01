@@ -18,4 +18,9 @@
    <cve>CVE-2022-29885</cve>
    <cve>CVE-2022-34305</cve>
  </suppress>
+ <suppress>
+    <notes>log4j-*</notes>
+    <cve>CVE-2022-33915</cve>
+    <cve>CVE-2022-33915</cve>
+ </suppress>
 </suppressions>
