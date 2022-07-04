@@ -21,7 +21,7 @@
           }
         }
       ],
-      "adoptionOrderConsent": null,
+      "adoptionOrderConsent": "Relinquished Adoption",
       "adoptionOrderConsentAdvance": null,
       "adoptionOrderConsentAgency": null,
       "adoptionOrderNoConsent": null,

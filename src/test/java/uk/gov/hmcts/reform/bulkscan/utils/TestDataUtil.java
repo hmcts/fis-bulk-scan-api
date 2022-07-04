@@ -745,6 +745,11 @@ public final class TestDataUtil {
         ocrAddressField.setValue("123 test street, London");
         fieldList.add(ocrAddressField);
 
+        OcrDataField ocrOrderConsentField = new OcrDataField();
+        ocrOrderConsentField.setName("adoption_order_consent");
+        ocrOrderConsentField.setValue("Relinquished Adoption");
+        fieldList.add(ocrOrderConsentField);
+
         return fieldList;
     }
 }
