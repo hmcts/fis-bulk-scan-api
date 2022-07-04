@@ -30,6 +30,7 @@ import static uk.gov.hmcts.reform.bulkscan.utils.TestResourceUtil.readFileFrom;
 @SpringBootTest
 @ActiveProfiles("test")
 class BulkScanA59ServiceTest {
+
     private static final String A59_TRANSFORM_RESPONSE_PATH =
         "classpath:response/bulk-scan-a59-transform-output.json";
 
