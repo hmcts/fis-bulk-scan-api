@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Spy;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -34,7 +33,6 @@ class BulkScanA59ServiceTest {
     private static final String A59_TRANSFORM_RESPONSE_PATH =
         "classpath:response/bulk-scan-a59-transform-output.json";
 
-    @Spy
     @Autowired
     BulkScanA59Service bulkScanValidationService;
 
@@ -55,22 +53,22 @@ class BulkScanA59ServiceTest {
         assertTrue(res.getErrors().items.contains(String.format(MANDATORY_ERROR_MESSAGE, "applicant1_firstName")));
     }
 
-    /*@Test
+    @Test
     void testApplicant1LastnameMandatoryFieldErrorWhileDoingValidation() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
             TestDataUtil.getA60OrC63orA58orA59ErrorData()).build();
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
         assertTrue(res.getErrors().items.contains(String.format(MISSING_FIELD_MESSAGE, "applicant1_lastName")));
-    }*/
+    }
 
-    /*@Test
+    @Test
     void testApplicant1TelephoneNumberMandatoryFieldErrorWhileDoingValidation() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
             TestDataUtil.getA60OrC63orA58orA59ErrorData()).build();
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertTrue(res.getErrors().items.contains(String.format(PHONE_NUMBER_MESSAGE, "applicant1_telephoneNumber")));
-    }*/
+    }
 
     @Test
     void testApplicant2FirstnameMandatoryFieldErrorWhileDoingValidation() {
@@ -80,13 +78,13 @@ class BulkScanA59ServiceTest {
         assertTrue(res.getErrors().items.contains(String.format(MISSING_FIELD_MESSAGE, "applicant2_firstName")));
     }
 
-    /*@Test
+    @Test
     void testApplicant2LastnameMandatoryFieldErrorWhileDoingValidation() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
             TestDataUtil.getA60OrC63orA58orA59ErrorData()).build();
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertTrue(res.getErrors().items.contains(String.format(MISSING_FIELD_MESSAGE, "applicant2_lastName")));
-    }*/
+    }
 
     @Test
     void testApplicant2AddressMandatoryFieldErrorWhileDoingValidation() {
