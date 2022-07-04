@@ -86,11 +86,12 @@ public class BulkScanA58Service implements BulkScanService {
             || TRUE.equalsIgnoreCase(inputFieldsMap.get(APPLICANT_RELATION_TO_CHILD_FATHER_PARTNER))
             || FALSE.equalsIgnoreCase(inputFieldsMap.get(APPLICANT_RELATION_TO_CHILD_FATHER_PARTNER))) {
             formType = A58_STEP_PARENT.name();
-        } else if (nonNull(inputFieldsMap.get(ADOPTION_ORDER_CONSENT)) || nonNull(inputFieldsMap.get(ADOPTION_ORDER_CONSENT_ADVANCE))
-            || nonNull(inputFieldsMap.get(ADOPTION_ORDER_CONSENT_AGENCY)) || nonNull(inputFieldsMap.get(ADOPTION_ORDER_NO_CONSENT))
-            || nonNull(inputFieldsMap.get(COURT_CONSENT_PARENT_NOT_FOUND)) || nonNull(inputFieldsMap.get(COURT_CONSENT_PARENT_LACK_CAPACITY))
-            || nonNull(inputFieldsMap.get(COURT_CONSENT_CHILD_WELFARE))) {
+        } else if (nonNull(ADOPTION_ORDER_CONSENT) || nonNull(ADOPTION_ORDER_CONSENT_ADVANCE)
+            || nonNull(ADOPTION_ORDER_CONSENT_AGENCY) || nonNull(ADOPTION_ORDER_NO_CONSENT)
+            || nonNull(COURT_CONSENT_PARENT_NOT_FOUND) || nonNull(COURT_CONSENT_PARENT_LACK_CAPACITY)
+            || nonNull(COURT_CONSENT_CHILD_WELFARE)) {
             formType = A58_RELINQUISHED_ADOPTION.name();
+
         }
 
         Map<String, Object> populatedMap = (Map<String, Object>) BulkScanTransformHelper
