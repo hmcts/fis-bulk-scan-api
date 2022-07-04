@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Spy;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -33,6 +34,7 @@ class BulkScanA59ServiceTest {
     private static final String A59_TRANSFORM_RESPONSE_PATH =
         "classpath:response/bulk-scan-a59-transform-output.json";
 
+    @Spy
     @Autowired
     BulkScanA59Service bulkScanValidationService;
 
