@@ -61,11 +61,9 @@ public class BulkScanA58Service implements BulkScanService {
     @Override
     public BulkScanValidationResponse validate(BulkScanValidationRequest bulkRequest) {
         // Validating the Fields..
-        return bulkScanValidationHelper.validateMandatoryAndOptionalFields(
-            bulkRequest.getOcrdatafields(),
-            configManager.getValidationConfig(
-                FormType.A58)
-        );
+        return bulkScanValidationHelper.validateMandatoryAndOptionalFields(bulkRequest.getOcrdatafields(),
+                                                                          configManager.getValidationConfig(
+                                                                              FormType.A58));
     }
 
     @Override
@@ -79,33 +77,32 @@ public class BulkScanA58Service implements BulkScanService {
         caseData.put(BULK_SCAN_CASE_REFERENCE, bulkScanTransformationRequest.getId());
 
         Map<String, String> inputFieldsMap = inputFieldsList.stream().collect(
-            Collectors.toMap(OcrDataField::getName, OcrDataField::getValue));
+                Collectors.toMap(OcrDataField::getName, OcrDataField::getValue));
 
         if (STEP_PARENT_ADOPTION.equalsIgnoreCase(inputFieldsMap.get(APPLICANT1_RELATION_TO_CHILD))
             || STEP_PARENT_ADOPTION.equalsIgnoreCase(inputFieldsMap.get(APPLICANT2_RELATION_TO_CHILD))
             || TRUE.equalsIgnoreCase(inputFieldsMap.get(APPLICANT_RELATION_TO_CHILD_FATHER_PARTNER))
             || FALSE.equalsIgnoreCase(inputFieldsMap.get(APPLICANT_RELATION_TO_CHILD_FATHER_PARTNER))) {
             formType = A58_STEP_PARENT.name();
-        } else if (nonNull(ADOPTION_ORDER_CONSENT) || nonNull(ADOPTION_ORDER_CONSENT_ADVANCE)
-            || nonNull(ADOPTION_ORDER_CONSENT_AGENCY) || nonNull(ADOPTION_ORDER_NO_CONSENT)
-            || nonNull(COURT_CONSENT_PARENT_NOT_FOUND) || nonNull(COURT_CONSENT_PARENT_LACK_CAPACITY)
-            || nonNull(COURT_CONSENT_CHILD_WELFARE)) {
+        } else if (nonNull(inputFieldsMap.get(ADOPTION_ORDER_CONSENT)) || nonNull(inputFieldsMap.get(ADOPTION_ORDER_CONSENT_ADVANCE))
+            || nonNull(inputFieldsMap.get(ADOPTION_ORDER_CONSENT_AGENCY)) || nonNull(inputFieldsMap.get(ADOPTION_ORDER_NO_CONSENT))
+            || nonNull(inputFieldsMap.get(COURT_CONSENT_PARENT_NOT_FOUND)) || nonNull(inputFieldsMap.get(COURT_CONSENT_PARENT_LACK_CAPACITY))
+            || nonNull(inputFieldsMap.get(COURT_CONSENT_CHILD_WELFARE)) ) {
             formType = A58_RELINQUISHED_ADOPTION.name();
 
         }
 
         Map<String, Object> populatedMap = (Map<String, Object>) BulkScanTransformHelper
-            .transformToCaseData(transformConfigManager
-                                     .getTransformationConfig(FormType.valueOf(formType)).getCaseDataFields(),
-                                 inputFieldsMap);
+                .transformToCaseData(transformConfigManager
+                        .getTransformationConfig(FormType.valueOf(formType)).getCaseDataFields(), inputFieldsMap);
 
         Map<String, String> caseTypeAndEventId =
-            transformConfigManager.getTransformationConfig(FormType.valueOf(formType)).getCaseFields();
+                transformConfigManager.getTransformationConfig(FormType.valueOf(formType)).getCaseFields();
 
         return BulkScanTransformationResponse.builder().caseCreationDetails(
-            CaseCreationDetails.builder()
-                .caseTypeId(caseTypeAndEventId.get(CASE_TYPE_ID))
-                .eventId(caseTypeAndEventId.get(EVENT_ID))
-                .caseData(populatedMap).build()).build();
+                CaseCreationDetails.builder()
+                        .caseTypeId(caseTypeAndEventId.get(CASE_TYPE_ID))
+                        .eventId(caseTypeAndEventId.get(EVENT_ID))
+                        .caseData(populatedMap).build()).build();
     }
 }
