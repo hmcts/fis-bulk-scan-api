@@ -1,0 +1,37 @@
+{
+  "ocr_data_fields":[
+    {
+      "name":"applicant1_firstName",
+      "value":"applicant1_firstName"
+    },
+    {
+      "name":"applicant1_lastName",
+      "value":"applicant1_lastName"
+    },
+    {
+      "name":"applicant1_telephoneNumber",
+      "value":"09999999990"
+    },
+    {
+      "name":"applicant1_address",
+      "value":"123 test street, London"
+    },
+    {
+      "name":"applicant2_firstName",
+      "value":"applicant2_firstName"
+    },
+    {
+      "name":"applicant2_lastName",
+      "value":"applicant2_lastName"
+    },
+    {
+      "name":"applicant2_telephoneNumber",
+      "value":"09999999990"
+    },
+    {
+      "name":"applicant2_address",
+      "value":"123 test street, London"
+    }
+  ],
+  "form_type": "A59"
+}
