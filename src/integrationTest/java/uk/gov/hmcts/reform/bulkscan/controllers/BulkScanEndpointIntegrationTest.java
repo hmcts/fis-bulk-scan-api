@@ -13,17 +13,7 @@ import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static uk.gov.hmcts.reform.bulkscan.utils.Constants.A58_CASE_TYPE_VALIDATE_ENDPOINT;
-import static uk.gov.hmcts.reform.bulkscan.utils.Constants.A60_CASE_TYPE_VALIDATE_ENDPOINT;
-import static uk.gov.hmcts.reform.bulkscan.utils.Constants.C2_CASE_TYPE_VALIDATE_ENDPOINT;
-import static uk.gov.hmcts.reform.bulkscan.utils.Constants.C51_CASE_TYPE_VALIDATE_ENDPOINT;
-import static uk.gov.hmcts.reform.bulkscan.utils.Constants.C63_CASE_TYPE_VALIDATE_ENDPOINT;
-import static uk.gov.hmcts.reform.bulkscan.utils.Constants.CASE_TYPE_TRANSFORM_ENDPOINT;
-import static uk.gov.hmcts.reform.bulkscan.utils.Constants.EdgeCase_CASE_TYPE_VALIDATE_ENDPOINT;
-import static uk.gov.hmcts.reform.bulkscan.utils.Constants.FL401_CASE_TYPE_VALIDATE_ENDPOINT;
-import static uk.gov.hmcts.reform.bulkscan.utils.Constants.FL403_CASE_TYPE_VALIDATE_ENDPOINT;
-import static uk.gov.hmcts.reform.bulkscan.utils.Constants.SERVICE_AUTHORIZATION;
-import static uk.gov.hmcts.reform.bulkscan.utils.Constants.SERVICE_AUTHORIZATION_VALUE;
+import static uk.gov.hmcts.reform.bulkscan.utils.Constants.*;
 import static uk.gov.hmcts.reform.bulkscan.utils.TestResourceUtil.readFileFrom;
 
 @ExtendWith(SpringExtension.class)
@@ -66,6 +56,8 @@ class BulkScanEndpointIntegrationTest {
             "classpath:request/bulk-scan-a60-validation-input.json";
     private static final String A58_VALIDATION_REQUEST_PATH =
             "classpath:request/bulk-scan-a58-validation-input.json";
+    private static final String A59_VALIDATION_REQUEST_PATH =
+        "classpath:request/bulk-scan-a59-validation-input.json";
 
     @DisplayName("should test validate request case type FL401")
     @Test
@@ -116,6 +108,16 @@ class BulkScanEndpointIntegrationTest {
                         .header(SERVICE_AUTHORIZATION, SERVICE_AUTHORIZATION_VALUE)
                         .content(readFileFrom(A58_VALIDATION_REQUEST_PATH)))
                 .andExpect(status().isOk()).andReturn();
+    }
+
+    @DisplayName("should test validate request case type a59")
+    @Test
+    void shouldTestValidationRequestCaseTypeA59() throws Exception {
+        mockMvc.perform(post(A59_CASE_TYPE_VALIDATE_ENDPOINT)
+                            .contentType(APPLICATION_JSON)
+                            .header(SERVICE_AUTHORIZATION, SERVICE_AUTHORIZATION_VALUE)
+                            .content(readFileFrom(A59_VALIDATION_REQUEST_PATH)))
+            .andExpect(status().isOk()).andReturn();
     }
 
     @DisplayName("should test validate request case type A60")
