@@ -457,7 +457,6 @@ public final class TestDataUtil {
         return fieldList;
     }
 
-
     public static List<OcrDataField> getA60OrC63orA58orA59ErrorData() {
         List<OcrDataField> fieldList = new ArrayList<>();
         OcrDataField ocrDataFirstNameField = new OcrDataField();
@@ -498,8 +497,6 @@ public final class TestDataUtil {
         ocrContactNumberField1.setName("applicant2_telephoneNumber");
         ocrContactNumberField1.setValue("+447405672");
         fieldList.add(ocrContactNumberField1);
-
-
 
         return fieldList;
     }
