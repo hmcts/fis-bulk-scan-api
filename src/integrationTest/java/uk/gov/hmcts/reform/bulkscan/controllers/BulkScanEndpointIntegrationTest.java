@@ -68,7 +68,7 @@ class BulkScanEndpointIntegrationTest {
     private static final String A58_VALIDATION_REQUEST_PATH =
             "classpath:request/bulk-scan-a58-validation-input.json";
     private static final String A59_VALIDATION_REQUEST_PATH =
-        "classpath:request/bulk-scan-a59-validation-input.json";
+            "classpath:request/bulk-scan-a59-validation-input.json";
 
     @DisplayName("should test validate request case type FL401")
     @Test
