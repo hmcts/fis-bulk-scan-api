@@ -458,7 +458,7 @@ public final class TestDataUtil {
     }
 
 
-    public static List<OcrDataField> getA60OrC63orA58ErrorData() {
+    public static List<OcrDataField> getA60OrC63orA58orA59ErrorData() {
         List<OcrDataField> fieldList = new ArrayList<>();
         OcrDataField ocrDataFirstNameField = new OcrDataField();
         ocrDataFirstNameField.setName("applicant1_firstName");
@@ -468,6 +468,11 @@ public final class TestDataUtil {
         ocrDateField.setName("applicant1_dateOfBirth");
         ocrDateField.setValue("2-02-2022");
         fieldList.add(ocrDateField);
+
+        OcrDataField ocrAddressField = new OcrDataField();
+        ocrAddressField.setName("applicant1_address");
+        ocrAddressField.setValue("123 test street, London");
+        fieldList.add(ocrAddressField);
 
         OcrDataField ocrPostCodeField = new OcrDataField();
         ocrPostCodeField.setName("applicant1_postCode");
@@ -494,10 +499,7 @@ public final class TestDataUtil {
         ocrContactNumberField1.setValue("+447405672");
         fieldList.add(ocrContactNumberField1);
 
-        OcrDataField ocrAddressField = new OcrDataField();
-        ocrAddressField.setName("applicant1_address");
-        ocrAddressField.setValue("123 test street, London");
-        fieldList.add(ocrAddressField);
+
 
         return fieldList;
     }
