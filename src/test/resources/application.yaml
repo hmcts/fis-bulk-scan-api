@@ -32,7 +32,7 @@ spring:
       - test-A60-form
       - test-C100-transform
       - test-A58-form
-      - test-A59-form
+      - test-a59-form
       - test-fgm001-form
       - test-C2-form
       - test-A1-form
