@@ -11,6 +11,8 @@ uk:
               - applicants_address
               - applicants_postCode
               - applicants_telephoneNumber
+            optionalFields:
+              -
             regexValidationFields:
               dateFields:
                 fieldNames:

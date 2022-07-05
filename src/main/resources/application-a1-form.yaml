@@ -10,6 +10,8 @@ uk:
               - applicant_ref
               - applicant_postcode
               - applicant_telephone_no
+            optionalFields:
+              -
             regexValidationFields:
               dateFields:
                 fieldNames:

@@ -11,6 +11,8 @@ uk:
                 - child_lastName
                 - appellant_childRelationship
                 - emergency_protection_order
+            optionalFields:
+              -
             regexValidationFields:
               dateFields:
                 fieldNames:

@@ -2,11 +2,11 @@
   "ocr_data_fields":[
     {
       "name":"applicant1_firstName",
-      "value":"applicant1_firstName"
+      "value":"Test1 First Name"
     },
     {
       "name":"applicant1_lastName",
-      "value":"applicant1_lastName"
+      "value":"Test1 Last Name"
     },
     {
       "name":"applicant1_telephoneNumber",
@@ -22,11 +22,11 @@
     },
     {
       "name":"applicant2_firstName",
-      "value":"applicant2_firstName"
+      "value":"Test2 First Name"
     },
     {
       "name":"applicant2_lastName",
-      "value":"applicant2_lastName"
+      "value":"Test2 Last Name"
     },
     {
       "name":"applicant2_telephoneNumber",
@@ -45,5 +45,5 @@
       "value": "true"
     }
   ],
-  "form_type": "A58"
+  "form_type": "A58_STEP_PARENT"
 }

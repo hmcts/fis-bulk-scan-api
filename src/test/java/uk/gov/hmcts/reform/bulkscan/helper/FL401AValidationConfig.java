@@ -3,6 +3,7 @@ package uk.gov.hmcts.reform.bulkscan.helper;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanFormValidationConfigManager;
 
 import java.util.Arrays;
+import java.util.Collections;
 
 public class FL401AValidationConfig implements ValidationConfig {
 
@@ -31,6 +32,9 @@ public class FL401AValidationConfig implements ValidationConfig {
         regexValidationConfig.setPhoneNumberFields(regexPhoneNumberFieldConfig);
 
         validationConfig.setRegexValidationFields(regexValidationConfig);
+
+        validationConfig.setOptionalFields(Collections.emptyList());
+
 
         return validationConfig;
     }
