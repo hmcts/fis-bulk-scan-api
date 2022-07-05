@@ -13,6 +13,8 @@ uk:
               - applicant2_lastName
               - applicant2_address
               - applicant2_telephoneNumber
+            optionalFields:
+              -
             regexValidationFields:
               dateFields:
                 fieldNames:
@@ -35,4 +37,3 @@ uk:
                   - applicant1_telephoneNumber
                   - applicant2_telephoneNumber
                 regex: ^(?:0|\+?44)(?:\d\s?){9,10}$
-
