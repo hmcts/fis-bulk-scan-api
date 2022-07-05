@@ -10,12 +10,12 @@ uk:
             caseDataFields:
               applicant:
                 - value:
-                    applicant1FirstName: applicant1_firstName
-                    applicant1LastName: applicant1_lastName
-                    applicant1Address: applicant1_address
-                    applicant1TelephoneNumber: applicant1_telephoneNumber
+                    applicantFirstName: applicant1_firstName
+                    applicantLastName: applicant1_lastName
+                    applicantAddress: applicant1_address
+                    applicantTelephoneNumber: applicant1_telephoneNumber
                 - value:
-                    applicant2FirstName: applicant2_firstName
-                    applicant2LastName: applicant2_lastName
-                    applicant2Address: applicant2_address
-                    applicant2TelephoneNumber: applicant2_telephoneNumber
+                    applicantFirstName: applicant2_firstName
+                    applicantLastName: applicant2_lastName
+                    applicantAddress: applicant2_address
+                    applicantTelephoneNumber: applicant2_telephoneNumber

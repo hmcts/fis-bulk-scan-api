@@ -6,18 +6,18 @@
       "applicant":[
         {
           "value":{
-            "applicant1FirstName":"applicant1_firstName",
-            "applicant1LastName":"applicant1_lastName",
-            "applicant1Address":"123 test street, London",
-            "applicant1TelephoneNumber":"09999999990"
+            "applicantFirstName":"applicant1_firstName",
+            "applicantLastName":"applicant1_lastName",
+            "applicantAddress":"123 test street, London",
+            "applicantTelephoneNumber":"09999999990"
           }
         },
         {
           "value": {
-            "applicant2FirstName":"applicant2_firstName",
-            "applicant2LastName":"applicant2_lastName",
-            "applicant2Address":"123 test street, London",
-            "applicant2TelephoneNumber":"09999999990"
+            "applicantFirstName":"applicant2_firstName",
+            "applicantLastName":"applicant2_lastName",
+            "applicantAddress":"123 test street, London",
+            "applicantTelephoneNumber":"09999999990"
           }
         }
       ]
