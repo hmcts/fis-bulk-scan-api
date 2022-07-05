@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static java.util.stream.Collectors.counting;
 import static java.util.stream.Collectors.groupingBy;
@@ -37,6 +38,7 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NUMERIC_F
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PHONE_NUMBER_FIELDS_KEY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.POST_CODE_FIELDS_KEY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.POST_CODE_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.UNKNOWN_FIELDS_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.XOR_CONDITIONAL_FIELDS_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.XOR_CONDITIONAL_FIELDS_MESSAGE_KEY;
 import static uk.gov.hmcts.reform.bulkscan.utils.BulkScanValidationUtil.isDateValid;
@@ -56,12 +58,19 @@ public class BulkScanValidationHelper {
         List<String> errors = new ArrayList<>();
         List<String> warnings = new ArrayList<>();
 
-        if (!ocrDatafields.isEmpty()) {
-            errors = findMissingFields(validationConfg.getMandatoryFields(), ocrDatafields);
+        List<String> differences = findUnknownFields(ocrDatafields, validationConfg.getMandatoryFields(),
+                                                     validationConfg.getOptionalFields());
+
+        if (!differences.isEmpty()) {
+            warnings.add(String.format(UNKNOWN_FIELDS_MESSAGE, String.join(",", differences)));
+        }
+
+        if (duplicateOcrFields.isEmpty() && !ocrDatafields.isEmpty()) {
+            errors.addAll(findMissingFields(validationConfg.getMandatoryFields(), ocrDatafields));
 
             errors.addAll(validateMandatoryAndOptionalFields(ocrDatafields, validationConfg, false));
 
-            warnings = validateMandatoryAndOptionalFields(ocrDatafields, validationConfg, true);
+            warnings.addAll(validateMandatoryAndOptionalFields(ocrDatafields, validationConfg, true));
         } else {
             String duplicateFields = String.join(",", duplicateOcrFields);
             log.info("Found duplicate fields in OCR data. {}", duplicateFields);
@@ -209,6 +218,21 @@ public class BulkScanValidationHelper {
             .stream()
             .filter(entry -> entry.getValue() > 1)
             .map(Map.Entry::getKey)
+            .collect(toList());
+    }
+
+    public List<String> findUnknownFields(List<OcrDataField> ocrDatafields, List<String> mandatoryFields,
+                                          List<String> optionalFields) {
+        optionalFields.removeIf(String::isEmpty);
+        if (optionalFields.isEmpty()) {
+            //TODO: Optional fields not yet configured for all forms. For now will allow perform operation.
+            return Collections.emptyList();
+        }
+        List<String> configuredFieldsList = Stream.concat(mandatoryFields.stream(), optionalFields.stream())
+            .collect(Collectors.toUnmodifiableList());
+        List<String> ocrList = ocrDatafields.stream().map(eachKey -> eachKey.getName()).collect(toList());
+        return ocrList.stream()
+            .filter(element -> !configuredFieldsList.contains(element))
             .collect(toList());
     }
 }

@@ -7,6 +7,8 @@ uk:
             mandatoryFields:
                 - appellant_firstName
                 - appellant_lastName
+            optionalFields:
+              -
             regexValidationFields:
               dateFields:
                 fieldNames:

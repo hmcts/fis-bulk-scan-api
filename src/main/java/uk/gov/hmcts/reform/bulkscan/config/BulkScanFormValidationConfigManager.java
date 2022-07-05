@@ -21,6 +21,7 @@ public class BulkScanFormValidationConfigManager {
     @Data
     public static class ValidationConfig {
         List<String> mandatoryFields;
+        List<String> optionalFields;
         RegexValidationConfig regexValidationFields;
     }
 

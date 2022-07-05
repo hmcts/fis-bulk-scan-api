@@ -8,6 +8,8 @@ uk:
               - applicant_full_name
               - applicant_address
               - applicant_postcode
+            optionalFields:
+              -
             regexValidationFields:
               dateFields:
                 fieldNames:

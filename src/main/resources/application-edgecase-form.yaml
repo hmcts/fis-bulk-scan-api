@@ -11,6 +11,8 @@ uk:
               - appellant_contactNumber
               - appellant_postCode
               - appellant_email
+            optionalFields:
+              -
             regexValidationFields:
               dateFields:
                 fieldNames:
