@@ -21,13 +21,13 @@
           }
         }
       ],
-      "adoptionOrderConsent": "Relinquished Adoption",
-      "adoptionOrderConsentAdvance": null,
-      "adoptionOrderConsentAgency": null,
-      "adoptionOrderNoConsent": null,
-      "courtConsentParentNotFound": null,
-      "courtConsentParentLackCapacity": null,
-      "courtConsentChildWelfare": null
+      "adoptionOrderConsent": "Adoption Order Consent",
+      "adoptionOrderConsentAdvance": "Adoption Order Consent Advance",
+      "adoptionOrderConsentAgency": "Adoption Order Consent Agency",
+      "adoptionOrderNoConsent": "Adoption Order No Consent",
+      "courtConsentParentNotFound": "Court Consent Parent Not Found",
+      "courtConsentParentLackCapacity": "Court Consent Parent Not Found",
+      "courtConsentChildWelfare": "Court Consent Child welfare"
     }
   },
   "warnings":[

@@ -747,8 +747,38 @@ public final class TestDataUtil {
 
         OcrDataField ocrOrderConsentField = new OcrDataField();
         ocrOrderConsentField.setName("adoption_order_consent");
-        ocrOrderConsentField.setValue("Relinquished Adoption");
+        ocrOrderConsentField.setValue("Adoption Order Consent");
         fieldList.add(ocrOrderConsentField);
+
+        OcrDataField ocrOrderConsentAdvanceField = new OcrDataField();
+        ocrOrderConsentAdvanceField.setName("adoption_order_consent_advance");
+        ocrOrderConsentAdvanceField.setValue("Adoption Order Consent Advance");
+        fieldList.add(ocrOrderConsentAdvanceField);
+
+        OcrDataField ocrOrderConsentAgencyField = new OcrDataField();
+        ocrOrderConsentAgencyField.setName("adoption_order_consent_agency");
+        ocrOrderConsentAgencyField.setValue("Adoption Order Consent Agency");
+        fieldList.add(ocrOrderConsentAgencyField);
+
+        OcrDataField ocrOrderNoConsentField = new OcrDataField();
+        ocrOrderNoConsentField.setName("adoption_order_no_consent");
+        ocrOrderNoConsentField.setValue("Adoption Order No Consent");
+        fieldList.add(ocrOrderNoConsentField);
+
+        OcrDataField ocrCourtConsentParentNotFoundField = new OcrDataField();
+        ocrCourtConsentParentNotFoundField.setName("court_consent_parent_not_found");
+        ocrCourtConsentParentNotFoundField.setValue("Court Consent Parent Not Found");
+        fieldList.add(ocrCourtConsentParentNotFoundField);
+
+        OcrDataField ocrCourtConsentParentLackCapacityField = new OcrDataField();
+        ocrCourtConsentParentLackCapacityField.setName("court_consent_parent_lack_capacity");
+        ocrCourtConsentParentLackCapacityField.setValue("Court Consent Parent Not Found");
+        fieldList.add(ocrCourtConsentParentLackCapacityField);
+
+        OcrDataField ocrCourtConsentChildWelfareField = new OcrDataField();
+        ocrCourtConsentChildWelfareField.setName("court_consent_child_welfare");
+        ocrCourtConsentChildWelfareField.setValue("Court Consent Child welfare");
+        fieldList.add(ocrCourtConsentChildWelfareField);
 
         return fieldList;
     }
