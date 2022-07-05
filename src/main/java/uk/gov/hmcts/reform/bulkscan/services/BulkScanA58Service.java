@@ -28,6 +28,7 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.BULK_SCAN
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CASE_TYPE_ID;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EVENT_ID;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.UNKNOWN_FIELDS_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper.transformScanDocuments;
 import static uk.gov.hmcts.reform.bulkscan.model.FormType.A58;
 import static uk.gov.hmcts.reform.bulkscan.model.FormType.A58_STEP_PARENT;
 
@@ -36,6 +37,7 @@ public class BulkScanA58Service implements BulkScanService {
 
     public static final String STEP_PARENT_ADOPTION = "Step Parent";
     public static final String RELINQUISHED_ADOPTION = "Relinquished Adoption";
+    public static final String SCAN_DOCUMENTS = "scannedDocuments";
 
     @Autowired
     BulkScanFormValidationConfigManager configManager;
@@ -59,8 +61,8 @@ public class BulkScanA58Service implements BulkScanService {
         }
         // Validating the Fields..
         return bulkScanValidationHelper.validateMandatoryAndOptionalFields(bulkRequest.getOcrdatafields(),
-                                                                          configManager.getValidationConfig(
-                                                                              formType));
+                configManager.getValidationConfig(
+                        formType));
     }
 
     @Override
@@ -81,9 +83,9 @@ public class BulkScanA58Service implements BulkScanService {
 
         // Validating if any unknown fields present or not. if exist then it should go as warnings.
         BulkScanFormValidationConfigManager
-            .ValidationConfig validationConfig = configManager.getValidationConfig(formType);
+                .ValidationConfig validationConfig = configManager.getValidationConfig(formType);
         List<String> unknownFieldsList = bulkScanValidationHelper.findUnknownFields(inputFieldsList,
-                                        validationConfig.getMandatoryFields(), validationConfig.getOptionalFields());
+                validationConfig.getMandatoryFields(), validationConfig.getOptionalFields());
 
         //TODO RELINQUISHED_ADOPTION condition to be added as part of ISDB-269
 
@@ -91,18 +93,20 @@ public class BulkScanA58Service implements BulkScanService {
                 .transformToCaseData(transformConfigManager
                         .getTransformationConfig(formType).getCaseDataFields(), inputFieldsMap);
 
+        populatedMap.put(SCAN_DOCUMENTS, transformScanDocuments(bulkScanTransformationRequest));
+
         Map<String, String> caseTypeAndEventId =
                 transformConfigManager.getTransformationConfig(formType).getCaseFields();
 
         BulkScanTransformationResponse.BulkScanTransformationResponseBuilder builder = BulkScanTransformationResponse
-            .builder().caseCreationDetails(
-                CaseCreationDetails.builder()
-                        .caseTypeId(caseTypeAndEventId.get(CASE_TYPE_ID))
-                        .eventId(caseTypeAndEventId.get(EVENT_ID))
-                        .caseData(populatedMap).build());
+                .builder().caseCreationDetails(
+                        CaseCreationDetails.builder()
+                                .caseTypeId(caseTypeAndEventId.get(CASE_TYPE_ID))
+                                .eventId(caseTypeAndEventId.get(EVENT_ID))
+                                .caseData(populatedMap).build());
         if (null != unknownFieldsList && !unknownFieldsList.isEmpty()) {
             builder.warnings(Arrays.asList(String.format(UNKNOWN_FIELDS_MESSAGE,
-                                                         String.join(",", unknownFieldsList))));
+                    String.join(",", unknownFieldsList))));
         }
         return builder.build();
     }
