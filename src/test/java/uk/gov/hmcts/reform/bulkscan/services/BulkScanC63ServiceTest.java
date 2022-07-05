@@ -36,7 +36,7 @@ class BulkScanC63ServiceTest {
     @Test
     void testC63Success() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-                TestDataUtil.getA60OrC63orA58Data()).build();
+                TestDataUtil.getC63Data()).build();
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.SUCCESS, res.status);
     }

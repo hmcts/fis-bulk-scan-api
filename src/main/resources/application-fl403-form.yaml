@@ -17,6 +17,8 @@ uk:
               - solicitor_telephone_number
               - solicitor_fax_number
               - solicitor_dx_number
+            optionalFields:
+              -
             regexValidationFields:
               dateFields:
                 fieldNames:

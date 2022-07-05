@@ -9,6 +9,8 @@ uk:
                 - appellant_lastName
                 - appellant_address
                 - telephone_number
+            optionalFields:
+              -
             regexValidationFields:
               dateFields:
                 fieldNames:

@@ -9,6 +9,8 @@ uk:
               - applicant1_dateOfBirth
               - applicant1_address
               - applicant1_placeOfBirth
+            optionalFields:
+              -
             regexValidationFields:
               dateFields:
                 fieldNames:

@@ -41,9 +41,17 @@ class BulkScanA58ServiceTest {
     @Test
     void testA58Success() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-                TestDataUtil.getA60OrC63orA58Data()).build();
+                TestDataUtil.getA58Data()).build();
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.SUCCESS, res.status);
+    }
+
+    @Test
+    void testA58SuccessWithUnknowFieldError() {
+        BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
+            TestDataUtil.getA58DataWithAdditonalOptionalFields()).build();
+        BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
+        assertEquals(Status.WARNINGS, res.status);
     }
 
     @Test
