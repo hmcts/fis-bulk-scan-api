@@ -100,7 +100,6 @@ public class BulkScanA58Service implements BulkScanService {
             || nonNull(inputFieldsMap.get(COURT_CONSENT_PARENT_LACK_CAPACITY))
             || nonNull(inputFieldsMap.get(COURT_CONSENT_CHILD_WELFARE))) {
             formType = A58_RELINQUISHED_ADOPTION.name();
-
         }
 
         Map<String, Object> populatedMap = (Map<String, Object>) BulkScanTransformHelper.transformToCaseData(
