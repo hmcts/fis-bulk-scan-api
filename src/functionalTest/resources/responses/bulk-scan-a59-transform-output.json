@@ -20,6 +20,15 @@
             "applicantTelephoneNumber":"09999999990"
           }
         }
+      ],
+      "scannedDocuments":[
+        {
+          "value":{
+            "document_url":"http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c",
+            "document_filename":"test.pdf",
+            "document_binary_url":"http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
+          }
+        }
       ]
     }
   },

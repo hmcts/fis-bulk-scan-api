@@ -109,6 +109,7 @@ class BulkScanA59ServiceTest {
         ObjectMapper mapper = new ObjectMapper();
         BulkScanTransformationResponse bulkScanTransformationResponse =
             bulkScanValidationService.transform(BulkScanTransformationRequest.builder()
+                                                    .scannedDocuments(TestDataUtil.getScannedDocumentsList())
                                                     .ocrdatafields(TestDataUtil.getA59Data()).build());
 
         JSONAssert.assertEquals(readFileFrom(A59_TRANSFORM_RESPONSE_PATH),

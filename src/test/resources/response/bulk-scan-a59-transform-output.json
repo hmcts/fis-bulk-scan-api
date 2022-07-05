@@ -20,6 +20,22 @@
             "applicantTelephoneNumber":"+447405878672"
           }
         }
+      ],
+      "scannedDocuments":[
+        {
+          "value":{
+            "document_url":"url",
+            "document_filename":"filename",
+            "document_binary_url":"binary_url"
+          }
+        },
+        {
+          "value":{
+            "document_url":"url1",
+            "document_filename":"filename1",
+            "document_binary_url":"binary_url1"
+          }
+        }
       ]
     }
   },

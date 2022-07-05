@@ -14,14 +14,11 @@ import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
-import uk.gov.hmcts.reform.bulkscan.model.ScanDocument;
-import uk.gov.hmcts.reform.bulkscan.model.ScannedDocuments;
 import uk.gov.hmcts.reform.bulkscan.model.Status;
 import uk.gov.hmcts.reform.bulkscan.utils.TestDataUtil;
 
 import java.io.IOException;
 import java.util.Collections;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -87,29 +84,16 @@ class BulkScanA58ServiceTest {
     @Test
     void testA58StepParentAdoptionTransformRequest() throws IOException, JSONException {
         ObjectMapper mapper = new ObjectMapper();
+
         BulkScanTransformationResponse bulkScanTransformationResponse =
                 bulkScanValidationService.transform(BulkScanTransformationRequest
                         .builder()
                                         .scannedDocuments(Collections.emptyList())
-                        .scannedDocuments(List.of(ScannedDocuments.builder()
-                                .scanDocument(ScanDocument.builder()
-                                        .url("url")
-                                        .binaryUrl("binary_url")
-                                        .filename("filename")
-                                        .build())
-                                .build(),
-                                ScannedDocuments.builder()
-                                        .scanDocument(ScanDocument.builder()
-                                                .url("url1")
-                                                .binaryUrl("binary_url1")
-                                                .filename("filename1")
-                                                .build())
-                                        .build()))
+                        .scannedDocuments(TestDataUtil.getScannedDocumentsList())
                         .ocrdatafields(TestDataUtil.getA60OrC63orA58Data()).build());
 
         JSONAssert.assertEquals(readFileFrom(A58_STEP_PARENT_TRANSFORM_RESPONSE_PATH),
                 mapper.writeValueAsString(bulkScanTransformationResponse), true);
 
     }
-
 }

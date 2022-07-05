@@ -1,6 +1,8 @@
 package uk.gov.hmcts.reform.bulkscan.utils;
 
 import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
+import uk.gov.hmcts.reform.bulkscan.model.ScanDocument;
+import uk.gov.hmcts.reform.bulkscan.model.ScannedDocuments;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -901,5 +903,24 @@ public final class TestDataUtil {
         fieldList.add(ocrApplicantRelationToChildField);
 
         return fieldList;
+    }
+
+    public static List<ScannedDocuments> getScannedDocumentsList() {
+        return List.of(
+            ScannedDocuments.builder()
+                .scanDocument(ScanDocument.builder()
+                                  .url("url")
+                                  .binaryUrl("binary_url")
+                                  .filename("filename")
+                                  .build())
+                .build(),
+            ScannedDocuments.builder()
+                .scanDocument(ScanDocument.builder()
+                                  .url("url1")
+                                  .binaryUrl("binary_url1")
+                                  .filename("filename1")
+                                  .build())
+                .build()
+        );
     }
 }
