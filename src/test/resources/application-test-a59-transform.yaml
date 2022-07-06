@@ -8,14 +8,11 @@ uk:
               CASE_TYPE_ID: A59
               EVENT_ID: create-case-adop-bs
             caseDataFields:
-              applicant:
-                - value:
-                    applicantFirstName: applicant1_firstName
-                    applicantLastName: applicant1_lastName
-                    applicantAddress: applicant1_address
-                    applicantTelephoneNumber: applicant1_telephoneNumber
-                - value:
-                    applicantFirstName: applicant2_firstName
-                    applicantLastName: applicant2_lastName
-                    applicantAddress: applicant2_address
-                    applicantTelephoneNumber: applicant2_telephoneNumber
+              applicant1FirstName: applicant1_firstName
+              applicant1LastName: applicant1_lastName
+              applicant1Address: applicant1_address
+              applicant1TelephoneNumber: applicant1_telephoneNumber
+              applicant2FirstName: applicant2_firstName
+              applicant2LastName: applicant2_lastName
+              applicant2Address: applicant2_address
+              applicant2TelephoneNumber: applicant2_telephoneNumber

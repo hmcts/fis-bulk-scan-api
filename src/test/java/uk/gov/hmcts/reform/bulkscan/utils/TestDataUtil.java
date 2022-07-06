@@ -372,12 +372,12 @@ public final class TestDataUtil {
         List<OcrDataField> fieldList = new ArrayList<>();
         OcrDataField ocrDataApplicant1FirstNameField = new OcrDataField();
         ocrDataApplicant1FirstNameField.setName("applicant1_firstName");
-        ocrDataApplicant1FirstNameField.setValue("firstName");
+        ocrDataApplicant1FirstNameField.setValue("murshad");
         fieldList.add(ocrDataApplicant1FirstNameField);
 
         OcrDataField ocrDataApplicant1LastNameField = new OcrDataField();
         ocrDataApplicant1LastNameField.setName("applicant1_lastName");
-        ocrDataApplicant1LastNameField.setValue("LastName");
+        ocrDataApplicant1LastNameField.setValue("haque");
         fieldList.add(ocrDataApplicant1LastNameField);
 
         OcrDataField ocrApplicant1AddressField = new OcrDataField();
@@ -392,12 +392,12 @@ public final class TestDataUtil {
 
         OcrDataField ocrDataApplicant2FirstNameField = new OcrDataField();
         ocrDataApplicant2FirstNameField.setName("applicant2_firstName");
-        ocrDataApplicant2FirstNameField.setValue("firstName");
+        ocrDataApplicant2FirstNameField.setValue("mohammed");
         fieldList.add(ocrDataApplicant2FirstNameField);
 
         OcrDataField ocrDataApplicant2LastNameField = new OcrDataField();
         ocrDataApplicant2LastNameField.setName("applicant2_lastName");
-        ocrDataApplicant2LastNameField.setValue("LastName");
+        ocrDataApplicant2LastNameField.setValue("haque");
         fieldList.add(ocrDataApplicant2LastNameField);
 
         OcrDataField ocrApplicant2AddressField = new OcrDataField();
@@ -408,6 +408,45 @@ public final class TestDataUtil {
         OcrDataField ocrApplicant2TelephoneNumberField = new OcrDataField();
         ocrApplicant2TelephoneNumberField.setName("applicant2_telephoneNumber");
         ocrApplicant2TelephoneNumberField.setValue("+447405878672");
+        fieldList.add(ocrApplicant2TelephoneNumberField);
+
+        return fieldList;
+    }
+
+    public static List<OcrDataField> getA59ErrorData() {
+        List<OcrDataField> fieldList = new ArrayList<>();
+        OcrDataField ocrDataApplicant1FirstNameField = new OcrDataField();
+        ocrDataApplicant1FirstNameField.setName("applicant1_firstName");
+        fieldList.add(ocrDataApplicant1FirstNameField);
+
+        OcrDataField ocrApplicant1AddressField = new OcrDataField();
+        ocrApplicant1AddressField.setName("applicant1_address");
+        ocrApplicant1AddressField.setValue("123 test street, London");
+        fieldList.add(ocrApplicant1AddressField);
+
+        OcrDataField ocrApplicant1TelephoneNumberField = new OcrDataField();
+        ocrApplicant1TelephoneNumberField.setName("applicant1_telephoneNumber");
+        ocrApplicant1TelephoneNumberField.setValue("+447405");
+        fieldList.add(ocrApplicant1TelephoneNumberField);
+
+        OcrDataField ocrDataApplicant2FirstNameField = new OcrDataField();
+        ocrDataApplicant2FirstNameField.setName("applicant2_firstName");
+        ocrDataApplicant2FirstNameField.setValue("murshad");
+        fieldList.add(ocrDataApplicant2FirstNameField);
+
+        OcrDataField ocrDataApplicant2LastNameField = new OcrDataField();
+        ocrDataApplicant2LastNameField.setName("applicant2_lastName");
+        ocrDataApplicant2LastNameField.setValue("haque");
+        fieldList.add(ocrDataApplicant2LastNameField);
+
+        OcrDataField ocrApplicant2AddressField = new OcrDataField();
+        ocrApplicant2AddressField.setName("applicant2_address");
+        ocrApplicant2AddressField.setValue("123 test street, London");
+        fieldList.add(ocrApplicant2AddressField);
+
+        OcrDataField ocrApplicant2TelephoneNumberField = new OcrDataField();
+        ocrApplicant2TelephoneNumberField.setName("applicant2_telephoneNumber");
+        ocrApplicant2TelephoneNumberField.setValue("9898");
         fieldList.add(ocrApplicant2TelephoneNumberField);
 
         return fieldList;
@@ -529,7 +568,7 @@ public final class TestDataUtil {
         return fieldList;
     }
 
-    public static List<OcrDataField> getA60OrC63orA58orA59ErrorData() {
+    public static List<OcrDataField> getA60OrC63orA58ErrorData() {
         List<OcrDataField> fieldList = new ArrayList<>();
         OcrDataField ocrDataFirstNameField = new OcrDataField();
         ocrDataFirstNameField.setName("applicant1_firstName");

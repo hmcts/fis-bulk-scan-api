@@ -1,38 +1,26 @@
 {
-  "case_creation_details":{
+  "case_creation_details": {
     "case_type_id": "A59",
     "event_id": "create-case-adop-bs",
-    "case_data":{
-      "applicant":[
-        {
-          "value":{
-            "applicantFirstName":"applicant1_firstName",
-            "applicantLastName":"applicant1_lastName",
-            "applicantAddress":"123 test street, London",
-            "applicantTelephoneNumber":"09999999990"
-          }
-        },
+    "case_data": {
+      "applicant1FirstName": "murshad",
+      "applicant1LastName": "haque",
+      "applicant1Address": "East London",
+      "applicant1TelephoneNumber": "07456575789",
+      "applicant2FirstName": "mohammed",
+      "applicant2LastName": "haque",
+      "applicant2Address": "West London",
+      "applicant2TelephoneNumber": "07456575789",
+      "scannedDocuments": [
         {
           "value": {
-            "applicantFirstName":"applicant2_firstName",
-            "applicantLastName":"applicant2_lastName",
-            "applicantAddress":"123 test street, London",
-            "applicantTelephoneNumber":"09999999990"
-          }
-        }
-      ],
-      "scannedDocuments":[
-        {
-          "value":{
-            "document_url":"http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c",
-            "document_filename":"test.pdf",
-            "document_binary_url":"http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
+            "document_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c",
+            "document_filename": "test.pdf",
+            "document_binary_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
           }
         }
       ]
     }
   },
-  "warnings":[
-
-  ]
+  "warnings": []
 }

@@ -2,35 +2,35 @@
   "ocr_data_fields":[
     {
       "name":"applicant1_firstName",
-      "value":"applicant1_firstName"
+      "value":"murshad"
     },
     {
       "name":"applicant1_lastName",
-      "value":"applicant1_lastName"
-    },
-    {
-      "name":"applicant1_telephoneNumber",
-      "value":"09999999990"
+      "value":"haque"
     },
     {
       "name":"applicant1_address",
-      "value":"123 test street, London"
+      "value":"East London"
+    },
+    {
+      "name":"applicant1_telephoneNumber",
+      "value":"07456575789"
     },
     {
       "name":"applicant2_firstName",
-      "value":"applicant2_firstName"
+      "value":"mohammed"
     },
     {
       "name":"applicant2_lastName",
-      "value":"applicant2_lastName"
-    },
-    {
-      "name":"applicant2_telephoneNumber",
-      "value":"09999999990"
+      "value":"haque"
     },
     {
       "name":"applicant2_address",
-      "value":"123 test street, London"
+      "value":"West London"
+    },
+    {
+      "name":"applicant2_telephoneNumber",
+      "value":"07456575789"
     }
   ],
   "scanned_documents": [

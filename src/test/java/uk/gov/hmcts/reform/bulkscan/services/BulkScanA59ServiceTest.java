@@ -49,7 +49,7 @@ class BulkScanA59ServiceTest {
     @Test
     void testApplicant1FirstnameMandatoryFieldErrorWhileDoingValidation() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-            TestDataUtil.getA60OrC63orA58orA59ErrorData()).build();
+            TestDataUtil.getA59ErrorData()).build();
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
         assertTrue(res.getErrors().items.contains(String.format(MANDATORY_ERROR_MESSAGE, "applicant1_firstName")));
@@ -58,7 +58,7 @@ class BulkScanA59ServiceTest {
     @Test
     void testApplicant1LastnameMandatoryFieldErrorWhileDoingValidation() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-            TestDataUtil.getA60OrC63orA58orA59ErrorData()).build();
+            TestDataUtil.getA59ErrorData()).build();
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
         assertTrue(res.getErrors().items.contains(String.format(MISSING_FIELD_MESSAGE, "applicant1_lastName")));
@@ -67,41 +67,17 @@ class BulkScanA59ServiceTest {
     @Test
     void testApplicant1TelephoneNumberMandatoryFieldErrorWhileDoingValidation() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-            TestDataUtil.getA60OrC63orA58orA59ErrorData()).build();
+            TestDataUtil.getA59ErrorData()).build();
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertTrue(res.getErrors().items.contains(String.format(PHONE_NUMBER_MESSAGE, "applicant1_telephoneNumber")));
     }
 
     @Test
-    void testApplicant2FirstnameMandatoryFieldErrorWhileDoingValidation() {
-        BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-            TestDataUtil.getA60OrC63orA58orA59ErrorData()).build();
-        BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
-        assertTrue(res.getErrors().items.contains(String.format(MISSING_FIELD_MESSAGE, "applicant2_firstName")));
-    }
-
-    @Test
-    void testApplicant2LastnameMandatoryFieldErrorWhileDoingValidation() {
-        BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-            TestDataUtil.getA60OrC63orA58orA59ErrorData()).build();
-        BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
-        assertTrue(res.getErrors().items.contains(String.format(MISSING_FIELD_MESSAGE, "applicant2_lastName")));
-    }
-
-    @Test
-    void testApplicant2AddressMandatoryFieldErrorWhileDoingValidation() {
-        BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-            TestDataUtil.getA60OrC63orA58orA59ErrorData()).build();
-        BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
-        assertTrue(res.getErrors().items.contains(String.format(MISSING_FIELD_MESSAGE, "applicant2_address")));
-    }
-
-    @Test
     void testApplicant2TelephoneNumberMandatoryFieldErrorWhileDoingValidation() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-            TestDataUtil.getA60OrC63orA58orA59ErrorData()).build();
+            TestDataUtil.getA59ErrorData()).build();
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
-        assertTrue(res.getErrors().items.contains(String.format(PHONE_NUMBER_MESSAGE, "applicant2_telephoneNumber")));
+        assertTrue(res.getWarnings().items.contains(String.format(PHONE_NUMBER_MESSAGE, "applicant2_telephoneNumber")));
     }
 
     @Test

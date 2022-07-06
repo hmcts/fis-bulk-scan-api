@@ -2,7 +2,7 @@
   "ocr_data_fields":[
     {
       "name":"applicant1_lastName",
-      "value":"LastName"
+      "value":"murshad"
     },
     {
       "name":"applicant1_telephoneNumber",
@@ -14,11 +14,11 @@
     },
     {
       "name":"applicant2_firstName",
-      "value":"firstName"
+      "value":"mohammed"
     },
     {
       "name":"applicant2_lastName",
-      "value":"LastName"
+      "value":"haque"
     },
     {
       "name":"applicant2_telephoneNumber",
