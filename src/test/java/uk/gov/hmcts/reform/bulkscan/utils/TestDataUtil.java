@@ -268,6 +268,76 @@ public final class TestDataUtil {
         ocrDataLastNameField.setValue("LastName");
         fieldList.add(ocrDataLastNameField);
 
+        OcrDataField ocrContactNumberField = new OcrDataField();
+        ocrContactNumberField.setName("applicant1_telephoneNumber");
+        ocrContactNumberField.setValue("+447405878672");
+        fieldList.add(ocrContactNumberField);
+
+        OcrDataField ocrAddressField = new OcrDataField();
+        ocrAddressField.setName("applicant1_address");
+        ocrAddressField.setValue("123 test street, London");
+        fieldList.add(ocrAddressField);
+
+        OcrDataField ocrApplicantRelationToChildField = new OcrDataField();
+        ocrApplicantRelationToChildField.setName("applicant_relationToChild_father_partner");
+        ocrApplicantRelationToChildField.setValue("false");
+        fieldList.add(ocrApplicantRelationToChildField);
+
+        return fieldList;
+    }
+
+    public static List<OcrDataField> getC63Data() {
+        List<OcrDataField> fieldList = new ArrayList<>();
+        OcrDataField ocrDataFirstNameField = new OcrDataField();
+        ocrDataFirstNameField.setName("applicant1_firstName");
+        ocrDataFirstNameField.setValue("firstName");
+        fieldList.add(ocrDataFirstNameField);
+
+        OcrDataField ocrDataLastNameField = new OcrDataField();
+        ocrDataLastNameField.setName("applicant1_lastName");
+        ocrDataLastNameField.setValue("LastName");
+        fieldList.add(ocrDataLastNameField);
+
+        OcrDataField ocrDateField = new OcrDataField();
+        ocrDateField.setName("applicant1_dateOfBirth");
+        ocrDateField.setValue("2/02/2022");
+        fieldList.add(ocrDateField);
+
+        OcrDataField ocrPostCodeField = new OcrDataField();
+        ocrPostCodeField.setName("applicant1_postCode");
+        ocrPostCodeField.setValue("TW3 1NN");
+        fieldList.add(ocrPostCodeField);
+
+        OcrDataField ocrContactNumberField = new OcrDataField();
+        ocrContactNumberField.setName("applicant1_telephoneNumber");
+        ocrContactNumberField.setValue("+447405878672");
+        fieldList.add(ocrContactNumberField);
+
+        OcrDataField ocrAddressField = new OcrDataField();
+        ocrAddressField.setName("applicant1_address");
+        ocrAddressField.setValue("123 test street, London");
+        fieldList.add(ocrAddressField);
+
+        OcrDataField ocrApplicantRelationToChildField = new OcrDataField();
+        ocrApplicantRelationToChildField.setName("applicant_relationToChild_father_partner");
+        ocrApplicantRelationToChildField.setValue("false");
+        fieldList.add(ocrApplicantRelationToChildField);
+
+        return fieldList;
+    }
+
+    public static List<OcrDataField> getA60Data() {
+        List<OcrDataField> fieldList = new ArrayList<>();
+        OcrDataField ocrDataFirstNameField = new OcrDataField();
+        ocrDataFirstNameField.setName("applicant1_firstName");
+        ocrDataFirstNameField.setValue("firstName");
+        fieldList.add(ocrDataFirstNameField);
+
+        OcrDataField ocrDataLastNameField = new OcrDataField();
+        ocrDataLastNameField.setName("applicant1_lastName");
+        ocrDataLastNameField.setValue("LastName");
+        fieldList.add(ocrDataLastNameField);
+
         OcrDataField ocrDateField = new OcrDataField();
         ocrDateField.setName("applicant1_dateOfBirth");
         ocrDateField.setValue("2/02/2022");
@@ -723,7 +793,7 @@ public final class TestDataUtil {
         return formFieldLst;
     }
 
-    public static List<OcrDataField> getA58RelinquishedAdoptionData() {
+    public static List<OcrDataField> getA58DataWithAdditonalOptionalFields() {
         List<OcrDataField> fieldList = new ArrayList<>();
         OcrDataField ocrDataFirstNameField = new OcrDataField();
         ocrDataFirstNameField.setName("applicant1_firstName");
@@ -735,6 +805,7 @@ public final class TestDataUtil {
         ocrDataLastNameField.setValue("LastName");
         fieldList.add(ocrDataLastNameField);
 
+
         OcrDataField ocrContactNumberField = new OcrDataField();
         ocrContactNumberField.setName("applicant1_telephoneNumber");
         ocrContactNumberField.setValue("+447405878672");
@@ -745,45 +816,20 @@ public final class TestDataUtil {
         ocrAddressField.setValue("123 test street, London");
         fieldList.add(ocrAddressField);
 
-        OcrDataField ocrOrderConsentField = new OcrDataField();
-        ocrOrderConsentField.setName("adoption_order_consent");
-        ocrOrderConsentField.setValue("Adoption Order Consent");
-        fieldList.add(ocrOrderConsentField);
+        OcrDataField ocrApplicantRelationToChildField = new OcrDataField();
+        ocrApplicantRelationToChildField.setName("applicant_relationToChild_father_partner");
+        ocrApplicantRelationToChildField.setValue("false");
+        fieldList.add(ocrApplicantRelationToChildField);
 
-        OcrDataField ocrOrderConsentAdvanceField = new OcrDataField();
-        ocrOrderConsentAdvanceField.setName("adoption_order_consent_advance");
-        ocrOrderConsentAdvanceField.setValue("Adoption Order Consent Advance");
-        fieldList.add(ocrOrderConsentAdvanceField);
-
-        OcrDataField ocrOrderConsentAgencyField = new OcrDataField();
-        ocrOrderConsentAgencyField.setName("adoption_order_consent_agency");
-        ocrOrderConsentAgencyField.setValue("Adoption Order Consent Agency");
-        fieldList.add(ocrOrderConsentAgencyField);
-
-        OcrDataField ocrOrderNoConsentField = new OcrDataField();
-        ocrOrderNoConsentField.setName("adoption_order_no_consent");
-        ocrOrderNoConsentField.setValue("Adoption Order No Consent");
-        fieldList.add(ocrOrderNoConsentField);
-
-        OcrDataField ocrCourtConsentParentNotFoundField = new OcrDataField();
-        ocrCourtConsentParentNotFoundField.setName("court_consent_parent_not_found");
-        ocrCourtConsentParentNotFoundField.setValue("Court Consent Parent Not Found");
-        fieldList.add(ocrCourtConsentParentNotFoundField);
-
-        OcrDataField ocrCourtConsentParentLackCapacityField = new OcrDataField();
-        ocrCourtConsentParentLackCapacityField.setName("court_consent_parent_lack_capacity");
-        ocrCourtConsentParentLackCapacityField.setValue("Court Consent Parent Not Found");
-        fieldList.add(ocrCourtConsentParentLackCapacityField);
-
-        OcrDataField ocrCourtConsentChildWelfareField = new OcrDataField();
-        ocrCourtConsentChildWelfareField.setName("court_consent_child_welfare");
-        ocrCourtConsentChildWelfareField.setValue("Court Consent Child welfare");
-        fieldList.add(ocrCourtConsentChildWelfareField);
+        OcrDataField applicant = new OcrDataField();
+        applicant.setName("applicant_test_field");
+        applicant.setValue("false");
+        fieldList.add(applicant);
 
         return fieldList;
     }
 
-    public static List<OcrDataField> getA58RelinquishedAdoptionConsentData() {
+    public static List<OcrDataField> getA58Data() {
         List<OcrDataField> fieldList = new ArrayList<>();
         OcrDataField ocrDataFirstNameField = new OcrDataField();
         ocrDataFirstNameField.setName("applicant1_firstName");
@@ -805,191 +851,10 @@ public final class TestDataUtil {
         ocrAddressField.setValue("123 test street, London");
         fieldList.add(ocrAddressField);
 
-        OcrDataField ocrOrderConsentField = new OcrDataField();
-        ocrOrderConsentField.setName("adoption_order_consent");
-        ocrOrderConsentField.setValue("Adoption Order Consent");
-        fieldList.add(ocrOrderConsentField);
-
-        return fieldList;
-    }
-
-    public static List<OcrDataField> getA58RelinquishedAdoptionConsentAdvanceData() {
-        List<OcrDataField> fieldList = new ArrayList<>();
-        OcrDataField ocrDataFirstNameField = new OcrDataField();
-        ocrDataFirstNameField.setName("applicant1_firstName");
-        ocrDataFirstNameField.setValue("firstName");
-        fieldList.add(ocrDataFirstNameField);
-
-        OcrDataField ocrDataLastNameField = new OcrDataField();
-        ocrDataLastNameField.setName("applicant1_lastName");
-        ocrDataLastNameField.setValue("LastName");
-        fieldList.add(ocrDataLastNameField);
-
-        OcrDataField ocrContactNumberField = new OcrDataField();
-        ocrContactNumberField.setName("applicant1_telephoneNumber");
-        ocrContactNumberField.setValue("+447405878672");
-        fieldList.add(ocrContactNumberField);
-
-        OcrDataField ocrAddressField = new OcrDataField();
-        ocrAddressField.setName("applicant1_address");
-        ocrAddressField.setValue("123 test street, London");
-        fieldList.add(ocrAddressField);
-
-        OcrDataField ocrOrderConsentAdvanceField = new OcrDataField();
-        ocrOrderConsentAdvanceField.setName("adoption_order_consent_advance");
-        ocrOrderConsentAdvanceField.setValue("Adoption Order Consent Advance");
-        fieldList.add(ocrOrderConsentAdvanceField);
-
-        return fieldList;
-    }
-
-    public static List<OcrDataField> getA58RelinquishedAdoptionOrderConsentAgencyData() {
-        List<OcrDataField> fieldList = new ArrayList<>();
-        OcrDataField ocrDataFirstNameField = new OcrDataField();
-        ocrDataFirstNameField.setName("applicant1_firstName");
-        ocrDataFirstNameField.setValue("firstName");
-        fieldList.add(ocrDataFirstNameField);
-
-        OcrDataField ocrDataLastNameField = new OcrDataField();
-        ocrDataLastNameField.setName("applicant1_lastName");
-        ocrDataLastNameField.setValue("LastName");
-        fieldList.add(ocrDataLastNameField);
-
-        OcrDataField ocrContactNumberField = new OcrDataField();
-        ocrContactNumberField.setName("applicant1_telephoneNumber");
-        ocrContactNumberField.setValue("+447405878672");
-        fieldList.add(ocrContactNumberField);
-
-        OcrDataField ocrAddressField = new OcrDataField();
-        ocrAddressField.setName("applicant1_address");
-        ocrAddressField.setValue("123 test street, London");
-        fieldList.add(ocrAddressField);
-
-        OcrDataField ocrOrderConsentAgencyField = new OcrDataField();
-        ocrOrderConsentAgencyField.setName("adoption_order_consent_agency");
-        ocrOrderConsentAgencyField.setValue("Adoption Order Consent Agency");
-        fieldList.add(ocrOrderConsentAgencyField);
-
-        return fieldList;
-    }
-
-    public static List<OcrDataField> getA58RelinquishedAdoptionOrderNoConsentData() {
-        List<OcrDataField> fieldList = new ArrayList<>();
-        OcrDataField ocrDataFirstNameField = new OcrDataField();
-        ocrDataFirstNameField.setName("applicant1_firstName");
-        ocrDataFirstNameField.setValue("firstName");
-        fieldList.add(ocrDataFirstNameField);
-
-        OcrDataField ocrDataLastNameField = new OcrDataField();
-        ocrDataLastNameField.setName("applicant1_lastName");
-        ocrDataLastNameField.setValue("LastName");
-        fieldList.add(ocrDataLastNameField);
-
-        OcrDataField ocrContactNumberField = new OcrDataField();
-        ocrContactNumberField.setName("applicant1_telephoneNumber");
-        ocrContactNumberField.setValue("+447405878672");
-        fieldList.add(ocrContactNumberField);
-
-        OcrDataField ocrAddressField = new OcrDataField();
-        ocrAddressField.setName("applicant1_address");
-        ocrAddressField.setValue("123 test street, London");
-        fieldList.add(ocrAddressField);
-
-        OcrDataField ocrOrderNoConsentField = new OcrDataField();
-        ocrOrderNoConsentField.setName("adoption_order_no_consent");
-        ocrOrderNoConsentField.setValue("Adoption Order No Consent");
-        fieldList.add(ocrOrderNoConsentField);
-
-        return fieldList;
-    }
-
-    //ConsentParentNotFound
-    public static List<OcrDataField> getA58RelinquishedAdoptionParentNotFoundData() {
-        List<OcrDataField> fieldList = new ArrayList<>();
-        OcrDataField ocrDataFirstNameField = new OcrDataField();
-        ocrDataFirstNameField.setName("applicant1_firstName");
-        ocrDataFirstNameField.setValue("firstName");
-        fieldList.add(ocrDataFirstNameField);
-
-        OcrDataField ocrDataLastNameField = new OcrDataField();
-        ocrDataLastNameField.setName("applicant1_lastName");
-        ocrDataLastNameField.setValue("LastName");
-        fieldList.add(ocrDataLastNameField);
-
-        OcrDataField ocrContactNumberField = new OcrDataField();
-        ocrContactNumberField.setName("applicant1_telephoneNumber");
-        ocrContactNumberField.setValue("+447405878672");
-        fieldList.add(ocrContactNumberField);
-
-        OcrDataField ocrAddressField = new OcrDataField();
-        ocrAddressField.setName("applicant1_address");
-        ocrAddressField.setValue("123 test street, London");
-        fieldList.add(ocrAddressField);
-
-        OcrDataField ocrCourtConsentParentNotFoundField = new OcrDataField();
-        ocrCourtConsentParentNotFoundField.setName("court_consent_parent_not_found");
-        ocrCourtConsentParentNotFoundField.setValue("Court Consent Parent Not Found");
-        fieldList.add(ocrCourtConsentParentNotFoundField);
-
-        return fieldList;
-    }
-
-    public static List<OcrDataField> getA58RelinquishedAdoptionConsentParentLackCapacityData() {
-        List<OcrDataField> fieldList = new ArrayList<>();
-        OcrDataField ocrDataFirstNameField = new OcrDataField();
-        ocrDataFirstNameField.setName("applicant1_firstName");
-        ocrDataFirstNameField.setValue("firstName");
-        fieldList.add(ocrDataFirstNameField);
-
-        OcrDataField ocrDataLastNameField = new OcrDataField();
-        ocrDataLastNameField.setName("applicant1_lastName");
-        ocrDataLastNameField.setValue("LastName");
-        fieldList.add(ocrDataLastNameField);
-
-        OcrDataField ocrContactNumberField = new OcrDataField();
-        ocrContactNumberField.setName("applicant1_telephoneNumber");
-        ocrContactNumberField.setValue("+447405878672");
-        fieldList.add(ocrContactNumberField);
-
-        OcrDataField ocrAddressField = new OcrDataField();
-        ocrAddressField.setName("applicant1_address");
-        ocrAddressField.setValue("123 test street, London");
-        fieldList.add(ocrAddressField);
-
-        OcrDataField ocrCourtConsentParentLackCapacityField = new OcrDataField();
-        ocrCourtConsentParentLackCapacityField.setName("court_consent_parent_lack_capacity");
-        ocrCourtConsentParentLackCapacityField.setValue("Court Consent Parent Lack Capacity");
-        fieldList.add(ocrCourtConsentParentLackCapacityField);
-
-        return fieldList;
-    }
-
-    public static List<OcrDataField> getA58RelinquishedAdoptionChildWelfareData() {
-        List<OcrDataField> fieldList = new ArrayList<>();
-        OcrDataField ocrDataFirstNameField = new OcrDataField();
-        ocrDataFirstNameField.setName("applicant1_firstName");
-        ocrDataFirstNameField.setValue("firstName");
-        fieldList.add(ocrDataFirstNameField);
-
-        OcrDataField ocrDataLastNameField = new OcrDataField();
-        ocrDataLastNameField.setName("applicant1_lastName");
-        ocrDataLastNameField.setValue("LastName");
-        fieldList.add(ocrDataLastNameField);
-
-        OcrDataField ocrContactNumberField = new OcrDataField();
-        ocrContactNumberField.setName("applicant1_telephoneNumber");
-        ocrContactNumberField.setValue("+447405878672");
-        fieldList.add(ocrContactNumberField);
-
-        OcrDataField ocrAddressField = new OcrDataField();
-        ocrAddressField.setName("applicant1_address");
-        ocrAddressField.setValue("123 test street, London");
-        fieldList.add(ocrAddressField);
-
-        OcrDataField ocrCourtConsentChildWelfareField = new OcrDataField();
-        ocrCourtConsentChildWelfareField.setName("court_consent_child_welfare");
-        ocrCourtConsentChildWelfareField.setValue("Court Consent Child welfare");
-        fieldList.add(ocrCourtConsentChildWelfareField);
+        OcrDataField ocrApplicantRelationToChildField = new OcrDataField();
+        ocrApplicantRelationToChildField.setName("applicant_relationToChild_father_partner");
+        ocrApplicantRelationToChildField.setValue("false");
+        fieldList.add(ocrApplicantRelationToChildField);
 
         return fieldList;
     }
