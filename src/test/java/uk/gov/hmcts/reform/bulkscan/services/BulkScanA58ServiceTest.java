@@ -14,10 +14,14 @@ import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
+import uk.gov.hmcts.reform.bulkscan.model.ScanDocument;
+import uk.gov.hmcts.reform.bulkscan.model.ScannedDocuments;
 import uk.gov.hmcts.reform.bulkscan.model.Status;
 import uk.gov.hmcts.reform.bulkscan.utils.TestDataUtil;
 
 import java.io.IOException;
+import java.util.Collections;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -32,10 +36,7 @@ import static uk.gov.hmcts.reform.bulkscan.utils.TestResourceUtil.readFileFrom;
 class BulkScanA58ServiceTest {
 
     private static final String A58_STEP_PARENT_TRANSFORM_RESPONSE_PATH =
-        "classpath:response/bulk-scan-a58-step-parent-transform-output.json";
-
-    private static final String A58_RELINQUISHED_ADOPTION_TRANSFORM_RESPONSE_PATH =
-        "classpath:response/bulk-scan-a58-relinquished_adoption-transform-output.json";
+            "classpath:response/bulk-scan-a58-step-parent-transform-output.json";
 
     @Spy
     @Autowired
@@ -109,113 +110,6 @@ class BulkScanA58ServiceTest {
         JSONAssert.assertEquals(readFileFrom(A58_STEP_PARENT_TRANSFORM_RESPONSE_PATH),
                 mapper.writeValueAsString(bulkScanTransformationResponse), true);
 
-    }
-
-    @Test
-    void testA58RelinquishedAdoptionConsentTransformRequest() throws IOException, JSONException {
-        List<OcrDataField> ocrDataFieldList = TestDataUtil.getA58RelinquishedAdoptionConsentData();
-        BulkScanTransformationResponse bulkScanTransformationResponse =
-            bulkScanValidationService.transform(BulkScanTransformationRequest.builder()
-                                                    .ocrdatafields(ocrDataFieldList)
-                                                    .build());
-        assertEquals(
-            bulkScanTransformationResponse
-                .getCaseCreationDetails().getCaseData().get("adoptionOrderConsent"),
-            "Adoption Order Consent");
-
-    }
-
-    @Test
-    void testA58RelinquishedAdoptionConsentAdvanceTransformRequest() throws IOException, JSONException {
-        BulkScanTransformationResponse bulkScanTransformationResponse =
-            bulkScanValidationService.transform(BulkScanTransformationRequest.builder()
-                                                    .ocrdatafields(
-                                                        TestDataUtil.getA58RelinquishedAdoptionConsentAdvanceData())
-                                                    .build());
-
-        System.out.println(TestDataUtil.getA58RelinquishedAdoptionConsentAdvanceData());
-        System.out.println(bulkScanTransformationResponse.getCaseCreationDetails().getCaseData());
-
-        assertEquals(
-            bulkScanTransformationResponse.getCaseCreationDetails()
-                .getCaseData().get("adoptionOrderConsentAdvance"),
-            "Adoption Order Consent Advance"
-        );
-    }
-
-    @Test
-    void testA58RelinquishedAdoptionConsentAgencyTransformRequest() throws IOException, JSONException {
-        BulkScanTransformationResponse bulkScanTransformationResponse =
-            bulkScanValidationService.transform(BulkScanTransformationRequest.builder()
-                                                    .ocrdatafields(
-                                                        TestDataUtil.getA58RelinquishedAdoptionOrderConsentAgencyData())
-                                                    .build());
-
-        assertEquals(bulkScanTransformationResponse.getCaseCreationDetails()
-                         .getCaseData().get("adoptionOrderConsentAgency"), "Adoption Order Consent Agency");
-    }
-
-    @Test
-    void testA58RelinquishedAdoptionNoConsentTransformRequest() throws IOException, JSONException {
-        BulkScanTransformationResponse bulkScanTransformationResponse =
-            bulkScanValidationService.transform(BulkScanTransformationRequest.builder()
-                                                    .ocrdatafields(
-                                                        TestDataUtil.getA58RelinquishedAdoptionOrderNoConsentData())
-                                                    .build());
-
-        assertEquals(
-            bulkScanTransformationResponse.getCaseCreationDetails()
-                .getCaseData().get("adoptionOrderNoConsent"),
-            "Adoption Order No Consent"
-        );
-    }
-
-
-    @Test
-    void testA58RelinquishedAdoptionConsentParentNotFoundTransformRequest() throws IOException, JSONException {
-        BulkScanTransformationResponse bulkScanTransformationResponse =
-            bulkScanValidationService.transform(BulkScanTransformationRequest.builder()
-                                                    .ocrdatafields(
-                                                        TestDataUtil.getA58RelinquishedAdoptionParentNotFoundData())
-                                                    .build());
-
-        assertEquals(
-            bulkScanTransformationResponse.getCaseCreationDetails()
-                .getCaseData().get("courtConsentParentNotFound"),
-            "Court Consent Parent Not Found"
-        );
-    }
-
-    @Test
-    void testA58RelinquishedAdoptionConsentParentLackCapacityTransformRequest() throws IOException, JSONException {
-        BulkScanTransformationResponse bulkScanTransformationResponse =
-            bulkScanValidationService.transform(BulkScanTransformationRequest.builder()
-                                                    .ocrdatafields(
-                                                        TestDataUtil
-                                                            .getA58RelinquishedAdoptionConsentParentLackCapacityData())
-                                                    .build());
-
-        assertEquals(
-            bulkScanTransformationResponse.getCaseCreationDetails()
-                .getCaseData().get("courtConsentParentLackCapacity"),
-            "Court Consent Parent Lack Capacity"
-        );
-    }
-
-    @Test
-    void testA58RelinquishedAdoptionConsentChildWelfareTransformRequest() throws IOException, JSONException {
-        BulkScanTransformationResponse bulkScanTransformationResponse =
-            bulkScanValidationService
-                .transform(BulkScanTransformationRequest.builder()
-                               .ocrdatafields(
-                                   TestDataUtil.getA58RelinquishedAdoptionChildWelfareData())
-                               .build());
-
-        assertEquals(
-            bulkScanTransformationResponse.getCaseCreationDetails()
-                .getCaseData().get("courtConsentChildWelfare"),
-            "Court Consent Child welfare"
-        );
     }
 
 }
