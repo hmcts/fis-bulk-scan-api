@@ -91,19 +91,14 @@ public class BulkScanA58Service implements BulkScanService {
             APPLICANT_RELATION_TO_CHILD_FATHER_PARTNER))) {
             formType = A58_STEP_PARENT.name();
         } else if (nonNull(inputFieldsMap.get(ADOPTION_ORDER_CONSENT))
-            || inputFieldsMap.get(ADOPTION_ORDER_CONSENT) == null
-            || nonNull(inputFieldsMap.get(ADOPTION_ORDER_CONSENT_ADVANCE))
-            || inputFieldsMap.get(ADOPTION_ORDER_CONSENT_ADVANCE) == null
+            || nonNull(inputFieldsMap.get(
+            ADOPTION_ORDER_CONSENT_ADVANCE))
             || nonNull(inputFieldsMap.get(ADOPTION_ORDER_CONSENT_AGENCY))
-            || inputFieldsMap.get(ADOPTION_ORDER_CONSENT_AGENCY) == null
-            || nonNull(inputFieldsMap.get(ADOPTION_ORDER_NO_CONSENT))
-            || inputFieldsMap.get(ADOPTION_ORDER_NO_CONSENT) == null
+            || nonNull(
+            inputFieldsMap.get(ADOPTION_ORDER_NO_CONSENT))
             || nonNull(inputFieldsMap.get(COURT_CONSENT_PARENT_NOT_FOUND))
-            || inputFieldsMap.get(COURT_CONSENT_PARENT_NOT_FOUND) == null
             || nonNull(inputFieldsMap.get(COURT_CONSENT_PARENT_LACK_CAPACITY))
-            || inputFieldsMap.get(COURT_CONSENT_PARENT_LACK_CAPACITY) == null
-            || nonNull(inputFieldsMap.get(COURT_CONSENT_CHILD_WELFARE))
-            || inputFieldsMap.get(COURT_CONSENT_CHILD_WELFARE) == null) {
+            || nonNull(inputFieldsMap.get(COURT_CONSENT_CHILD_WELFARE))) {
             formType = A58_RELINQUISHED_ADOPTION.name();
         }
 
@@ -116,9 +111,9 @@ public class BulkScanA58Service implements BulkScanService {
             formType)).getCaseFields();
 
         return BulkScanTransformationResponse.builder()
-            .caseCreationDetails(CaseCreationDetails.builder()
-                                     .caseTypeId(caseTypeAndEventId.get(CASE_TYPE_ID))
-                                     .eventId(caseTypeAndEventId.get(EVENT_ID))
-                                     .caseData(populatedMap).build()).build();
+                                        .caseCreationDetails(CaseCreationDetails.builder()
+                                         .caseTypeId(caseTypeAndEventId.get(CASE_TYPE_ID))
+                                         .eventId(caseTypeAndEventId.get(EVENT_ID))
+                                         .caseData(populatedMap).build()).build();
     }
 }
