@@ -10,11 +10,11 @@
     },
     {
       "name":"applicant1_telephoneNumber",
-      "value":"09999999990"
+      "value":null
     },
     {
       "name":"applicant1_address",
-      "value":"123 test street, London"
+      "value":null
     },
     {
       "name":"applicant2_firstName",

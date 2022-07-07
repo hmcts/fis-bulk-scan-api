@@ -1,1 +1,23 @@
-{"case_creation_details":{"case_type_id":"A58","event_id":"create-case-adop-bs","case_data":{"adoptionOrderConsentAdvance":"true","courtConsentParentNotFound":"true","courtConsentChildWelfare":"true","adoptionOrderConsent":"true","adoptionOrderNoConsent":"true","courtConsentParentLackCapacity":"true","adoptionOrderConsentAgency":"true","applicant":[{"value":{"applicant1FirstName":"applicant1_firstName","applicant1LastName":"applicant1_lastName","applicant1Address":null,"applicant1TelephoneNumber":null}},{"value":{"applicant2FirstName":"applicant2_firstName","applicant2LastName":"applicant2_lastName","applicant2Address":null,"applicant2TelephoneNumber":null}}]}},"warnings":[]}
+{"case_creation_details":{
+  "case_type_id":"A58",
+  "event_id":"create-case-adop-bs",
+  "case_data":{
+    "adoptionOrderConsentAdvance":"true",
+    "courtConsentParentNotFound":"true",
+    "courtConsentChildWelfare":"true",
+    "adoptionOrderConsent":"true",
+    "adoptionOrderNoConsent":"true",
+    "courtConsentParentLackCapacity":"true",
+    "adoptionOrderConsentAgency":"true",
+    "scannedDocuments":[],
+    "applicant":[{
+      "value":{
+        "applicant1FirstName":"applicant1_firstName",
+        "applicant1LastName":"applicant1_lastName",
+        "applicant1Address":null,
+        "applicant1TelephoneNumber":null}},
+      {"value":{"applicant2FirstName":"applicant2_firstName",
+        "applicant2LastName":"applicant2_lastName",
+        "applicant2Address":null,
+        "applicant2TelephoneNumber":null}}]}},
+  "warnings":[]}

@@ -31,7 +31,7 @@ public class BulkScanEndPointRelinquishedAdoptionTest {
     private static final String AUTH_HEADER = "serviceauthorization";
 
     private static final String A58_RELINQUISHED_ADOPTION_VALIDATION_INPUT_PATH =
-        "classpath:requests/bulk-scan-a58-relinquished-adoption-validation-input.json";//done
+        "classpath:requests/bulk-scan-a58-relinquished-adoption-validation-input.json";
 
     private static final String A58_RELINQUISHED_ADOPTION_VALIDATION_OUTPUT_PATH =
         "classpath:responses/bulk-scan-a58-relinquished-adoption-validation-output.json";
