@@ -103,7 +103,8 @@ public class BulkScanA58Service implements BulkScanService {
         }
 
         Map<String, Object> populatedMap = (Map<String, Object>) BulkScanTransformHelper.transformToCaseData(
-            transformConfigManager.getTransformationConfig(FormType.valueOf(formType)).getCaseDataFields(),
+            new HashMap<>(transformConfigManager.getTransformationConfig(FormType.valueOf(formType))
+                              .getCaseDataFields()),
             inputFieldsMap
         );
 

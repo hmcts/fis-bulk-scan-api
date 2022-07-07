@@ -1,9 +1,11 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
 import org.json.JSONException;
+import org.junit.FixMethodOrder;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
@@ -20,17 +22,16 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @ActiveProfiles("test")
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 class BulkScanA58ServiceRelinquishedAdoptionTest {
 
     @Autowired
     BulkScanA58Service bulkScanValidationService;
 
-    BulkScanTransformationResponse bulkScanTransformationResponse;
     List<OcrDataField> ocrDataFieldList ;
 
     @BeforeEach
     void initEach(){
-        bulkScanTransformationResponse =null;
         ocrDataFieldList = null;
         ocrDataFieldList = getRequestData();
     }
@@ -46,7 +47,7 @@ class BulkScanA58ServiceRelinquishedAdoptionTest {
         ocrOrderConsentAdvanceField.setName("adoption_order_consent");
         ocrOrderConsentAdvanceField.setValue("Adoption Order Consent");
         ocrDataFieldList.add(ocrOrderConsentAdvanceField);
-         bulkScanTransformationResponse =
+         BulkScanTransformationResponse bulkScanTransformationResponse =
             bulkScanValidationService.transform(BulkScanTransformationRequest.builder()
                                                     .ocrdatafields(
                                                         ocrDataFieldList)
@@ -59,7 +60,7 @@ class BulkScanA58ServiceRelinquishedAdoptionTest {
 
     }
 
-  @Test
+    @Test
     void testA58RelinquishedAdoptionConsentAdvanceTransformRequest() throws IOException, JSONException, InterruptedException {
       System.out.println("case2");
 
@@ -67,7 +68,7 @@ class BulkScanA58ServiceRelinquishedAdoptionTest {
       ocrOrderConsentAdvanceField.setName("adoption_order_consent_advance");
       ocrOrderConsentAdvanceField.setValue("Adoption Order Consent Advance");
       ocrDataFieldList.add(ocrOrderConsentAdvanceField);
-         bulkScanTransformationResponse =
+      BulkScanTransformationResponse bulkScanTransformationResponse =
             bulkScanValidationService.transform(BulkScanTransformationRequest.builder()
                                                     .ocrdatafields(
                                                         ocrDataFieldList)
@@ -82,7 +83,7 @@ class BulkScanA58ServiceRelinquishedAdoptionTest {
         );
     }
 
-     @Test
+    @Test
     void testA58RelinquishedAdoptionConsentAgencyTransformRequest() throws IOException, JSONException, InterruptedException {
          System.out.println("case3");
          OcrDataField ocrOrderConsentAdvanceField = new OcrDataField();
