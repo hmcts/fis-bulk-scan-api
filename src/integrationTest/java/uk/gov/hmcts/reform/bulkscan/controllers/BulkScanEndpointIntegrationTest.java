@@ -14,7 +14,6 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.A58_CASE_TYPE_VALIDATE_ENDPOINT;
-import static uk.gov.hmcts.reform.bulkscan.utils.Constants.A59_CASE_TYPE_VALIDATE_ENDPOINT;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.A60_CASE_TYPE_VALIDATE_ENDPOINT;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.C2_CASE_TYPE_VALIDATE_ENDPOINT;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.C51_CASE_TYPE_VALIDATE_ENDPOINT;
@@ -57,10 +56,6 @@ class BulkScanEndpointIntegrationTest {
             "classpath:request/bulk-scan-a58-step-parent-transform-input.json";
     private static final String A58_STEP_PARENT_TRANSFORM_RESPONSE_PATH =
             "classpath:response/bulk-scan-a58-step-parent-transform-output.json";
-    private static final String A59_TRANSFORM_REQUEST_PATH =
-            "classpath:request/bulk-scan-a59-transform-input.json";
-    private static final String A59_TRANSFORM_RESPONSE_PATH =
-            "classpath:response/bulk-scan-a59-transform-output.json";
     private static final String FL403_VALIDATION_RESPONSE_PATH =
             "classpath:response/bulk-scan-fl403-validation-response.json";
     private static final String C51_VALIDATION_REQUEST_PATH =
@@ -71,8 +66,6 @@ class BulkScanEndpointIntegrationTest {
             "classpath:request/bulk-scan-a60-validation-input.json";
     private static final String A58_VALIDATION_REQUEST_PATH =
             "classpath:request/bulk-scan-a58-validation-input.json";
-    private static final String A59_VALIDATION_REQUEST_PATH =
-            "classpath:request/bulk-scan-a59-validation-input.json";
 
     @DisplayName("should test validate request case type FL401")
     @Test
@@ -123,16 +116,6 @@ class BulkScanEndpointIntegrationTest {
                         .header(SERVICE_AUTHORIZATION, SERVICE_AUTHORIZATION_VALUE)
                         .content(readFileFrom(A58_VALIDATION_REQUEST_PATH)))
                 .andExpect(status().isOk()).andReturn();
-    }
-
-    @DisplayName("should test validate request case type a59")
-    @Test
-    void shouldTestValidationRequestCaseTypeA59() throws Exception {
-        mockMvc.perform(post(A59_CASE_TYPE_VALIDATE_ENDPOINT)
-                            .contentType(APPLICATION_JSON)
-                            .header(SERVICE_AUTHORIZATION, SERVICE_AUTHORIZATION_VALUE)
-                            .content(readFileFrom(A59_VALIDATION_REQUEST_PATH)))
-            .andExpect(status().isOk()).andReturn();
     }
 
     @DisplayName("should test validate request case type A60")
@@ -186,17 +169,6 @@ class BulkScanEndpointIntegrationTest {
                         .content(readFileFrom(A58_STEP_PARENT_TRANSFORM_REQUEST_PATH)))
                 .andExpect(status().isOk())
                 .andExpect(content().json(readFileFrom(A58_STEP_PARENT_TRANSFORM_RESPONSE_PATH)));
-    }
-
-    @DisplayName("should test transform request case type A59")
-    @Test
-    void shouldTestTransformRequestCaseTypeA59() throws Exception {
-        mockMvc.perform(post(CASE_TYPE_TRANSFORM_ENDPOINT)
-                            .contentType(APPLICATION_JSON)
-                            .header(SERVICE_AUTHORIZATION, SERVICE_AUTHORIZATION_VALUE)
-                            .content(readFileFrom(A59_TRANSFORM_REQUEST_PATH)))
-            .andExpect(status().isOk())
-            .andExpect(content().json(readFileFrom(A59_TRANSFORM_RESPONSE_PATH)));
     }
 
     @DisplayName("should test transform request case type C2")

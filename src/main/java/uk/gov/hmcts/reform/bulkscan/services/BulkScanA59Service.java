@@ -74,8 +74,8 @@ public class BulkScanA59Service implements BulkScanService {
                                validationConfig.getOptionalFields());
 
         Map<String, Object> populatedMap = (Map<String, Object>) BulkScanTransformHelper
-            .transformToCaseData(transformConfigManager.getTransformationConfig(FormType.A59)
-                                     .getCaseDataFields(), inputFieldsMap);
+            .transformToCaseData(new HashMap<>(transformConfigManager.getTransformationConfig(FormType.A59)
+                                     .getCaseDataFields()), inputFieldsMap);
 
         populatedMap.put(SCAN_DOCUMENTS, transformScanDocuments(bulkScanTransformationRequest));
 
