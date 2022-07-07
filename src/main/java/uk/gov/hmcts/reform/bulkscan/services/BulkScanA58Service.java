@@ -87,7 +87,7 @@ public class BulkScanA58Service implements BulkScanService {
 
         if (isA58ParentFormType(inputFieldsMap)) {
             formType = A58_STEP_PARENT;
-        }else if (isA58RelinquishedAdoptionFormType(inputFieldsMap)){
+        } else if (isA58RelinquishedAdoptionFormType(inputFieldsMap)) {
             formType = A58_RELINQUISHED_ADOPTION;
         }
         List<String> unknownFieldsList = null;
@@ -95,9 +95,10 @@ public class BulkScanA58Service implements BulkScanService {
         BulkScanFormValidationConfigManager
                 .ValidationConfig validationConfig = configManager.getValidationConfig(formType);
        if (nonNull(validationConfig)) {
-           unknownFieldsList = bulkScanValidationHelper.findUnknownFields(inputFieldsList,
-                                                                          validationConfig.getMandatoryFields(),
-                                                                          validationConfig.getOptionalFields()
+           unknownFieldsList = bulkScanValidationHelper
+               .findUnknownFields(inputFieldsList,
+                                  validationConfig.getMandatoryFields(),
+                                  validationConfig.getOptionalFields()
            );
        }
         Map<String, Object> populatedMap = (Map<String, Object>) BulkScanTransformHelper
