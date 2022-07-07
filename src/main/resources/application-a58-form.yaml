@@ -9,6 +9,16 @@ uk:
               - applicant1_lastName
               - applicant1_address
               - applicant1_telephoneNumber
+            mandatoryGroupFiled:
+              group:
+                - child_noLaOrParentalResponsibility
+                - child_LaOrParentalResponsibilityDetails
+                - child_localAuthorityOrVoluntaryOrganisationName
+                - child_localAuthorityOrVoluntaryOrganisationAddress
+                - child_localAuthorityOrVoluntaryOrganisationNotifiedDate
+                - child_localAuthorityOrVoluntaryOrganisationContactName
+                - child_localAuthorityOrVoluntaryOrganisationTelephoneNo
+                - child_localAuthorityOrVoluntaryOrganisationEmail
             optionalFields:
               - applicant1_relationToChild
               - applicant2_firstName
@@ -111,103 +121,3 @@ uk:
                   - applicant1_telephoneNumber
                   - applicant2_telephoneNumber
                 regex: ^(?:0|\+?44)(?:\d\s?){9,10}$
-          A58_ABOUT_CHILD:
-            mandatoryFields:
-              - child_gender
-              - child_dateOfBirth
-              - child_approximateDateOfBirth
-              - child_placeAndCountryOfBirth
-              - child_nationality
-              - child_isAdoptedByAgency
-              - child_adoptionDate
-              - child_adoptionAgencyName
-              - child_adoptionAgencyAddress
-              - child_adoptionAgencyContactName
-              - child_adoptionAgencyTelephoneNo
-              - child_isAdoptionAgencyInvolved
-              - child_isAdoptionAgencyDetailsAvailable
-              - child_adoptionDate
-              - child_adoptionAgencyName
-              - child_adoptionAgencyAddress
-              - child_adoptionAgencyContactName
-              - child_adoptionAgencyTelephoneNo
-              - child_laName
-              - child_laAddress
-              - child_laNotifiedDate
-              - child_laContactName
-              - child_laTelephoneNo
-              - child_laEmail
-              - child_placementOrderByEnglandAndWalesCourt
-              - child_placmentOrderByEnglandAndWalesCourtName
-              - child_placmentOrderByEnglandAndWalesCaseNumber
-              - child_placmentOrderByEnglandAndWalesTypeOfOrder
-              - child_placmentOrderByEnglandAndWalesDateOfOrder
-              - child_freeingOrderByEnglandAndWalesCourt
-              - child_freeingOrderByEnglandAndWalesCourtName
-              - child_freeingOrderByEnglandAndWalesCaseNumber
-              - child_freeingOrderByEnglandAndWalesTypeOfOrder
-              - child_freeingOrderByEnglandAndWalesDateOfOrder
-              - child_freeingOrderByNorthernIrelandCourt
-              - child_freeingOrderByNorthernIrelandCourtName
-              - child_freeingOrderByNorthernIrelandCaseNumber
-              - child_freeingOrderByNorthernIrelandTypeOfOrder
-              - child_freeingOrderByNorthernIrelandDateOfOrder
-              - child_permanenceOrderByScotlandCourt
-              - child_permanenceOrderByScotlandCourtName
-              - child_permanenceOrderByScotlandCaseNumber
-              - child_permanenceOrderByScotlandTypeOfOrder
-              - child_permanenceOrderByScotlandDateOfOrder
-              - child_noOrderAvaialble
-              - child_noLaOrParentalResponsibility
-              - child_LaOrParentalResponsibilityDetails
-              - child_laName
-              - child_laAddress
-              - child_laNotifiedDate
-              - child_laContactName
-              - child_laTelephoneNo
-              - child_laEmail
-              - child_noMaintanenceOrder
-              - child_maintanenceOrder
-              - child_personName
-              - child_personAddress
-              - child_courtAndDateOfOrder
-              - child_maintanenceAgreementDate
-              - child_noProceedingDetails
-              - child_proceedingDetails
-              - child_typeOfOrder
-              - child_dateOfOrder
-              - child_nameOfCourt
-              - child_caseNumber
-              - child_noProccedingDetailsWithRelation
-              - child_proceedingDetailsWithRelation
-              - child_typeOfOrder
-              - child_dateOfOrder
-              - child_nameOfCourt
-              - child_caseNumber
-              - child_dontKnowProceedingDetailsWithRelation
-            optionalFields:
-              - child_isMarried
-              - child_liveAtHomeFrom
-            regexValidationFields:
-              dateFields:
-                fieldNames:
-                  -
-                regex: dd/MM/yyyy
-              emailFields:
-                fieldNames:
-                  -
-                regex: ^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,6}$
-              numericFields:
-                fieldNames:
-                  -
-                regex: ^[0-9]*$
-              postcodeFields:
-                fieldNames:
-                  -
-                regex: ^[A-Z]{1,2}[0-9R][0-9A-Z]? [0-9][ABD-HJLNP-UW-Z]{2}$
-              phoneNumberFields:
-                fieldNames:
-                  - applicant1_telephoneNumber
-                  - applicant2_telephoneNumber
-                regex: ^(?:0|\+?44)(?:\d\s?){9,10}$
-

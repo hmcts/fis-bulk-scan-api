@@ -23,6 +23,17 @@ public class BulkScanFormValidationConfigManager {
         List<String> mandatoryFields;
         List<String> optionalFields;
         RegexValidationConfig regexValidationFields;
+        MandatoryGroupField mandatoryGroupField;
+    }
+
+    @Data
+    public static class MandatoryGroupField {
+        Group dateFields;
+    }
+
+    @Data
+    public static class Group {
+        List<String> fieldNames;
     }
 
     @Data
