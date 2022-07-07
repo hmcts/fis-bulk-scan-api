@@ -24,19 +24,23 @@ import static uk.gov.hmcts.reform.bulkscan.util.TestResourceUtil.readFileFrom;
 @RunWith(SpringRunner.class)
 @ContextConfiguration
 @TestPropertySource("classpath:application.yaml")
-public class BulkScanEndpointTest {
+public class BulkScanEndPointRelinquishedAdoptionTest {
+
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
     private static final String AUTH_HEADER = "serviceauthorization";
-    private static final String A58_STEP_PARENT_VALIDATION_INPUT_PATH =
-            "classpath:requests/bulk-scan-a58-step-parent-validation-input.json";
-    private static final String A58_STEP_PARENT_TRANSFORM_INPUT_PATH =
-            "classpath:requests/bulk-scan-a58-step-parent-transform-input.json";
 
-    private static final String A58_STEP_PARENT_VALIDATION_OUTPUT_PATH =
-            "classpath:responses/bulk-scan-a58-step-parent-validation-output.json";
-    private static final String A58_STEP_PARENT_TRANSFORM_OUTPUT_PATH =
-            "classpath:responses/bulk-scan-a58-step-parent-transform-output.json";
+    private static final String A58_RELINQUISHED_ADOPTION_VALIDATION_INPUT_PATH =
+        "classpath:requests/bulk-scan-a58-relinquished-adoption-validation-input.json";//done
+
+    private static final String A58_RELINQUISHED_ADOPTION_VALIDATION_OUTPUT_PATH =
+        "classpath:responses/bulk-scan-a58-relinquished-adoption-validation-output.json";
+
+    private static final String A58_RELINQUISHED_ADOPTION_TRANSFORM_INPUT_PATH =
+        "classpath:requests/bulk-scan-a58-relinquished-adoption-transform-input.json";
+
+    private static final String A58_RELINQUISHED_ADOPTION_TRANSFORM_OUTPUT_PATH =
+        "classpath:responses/bulk-scan-a58-relinquished-adoption-transform-output.json";
 
     private final String targetInstance =
         StringUtils.defaultIfBlank(
@@ -51,19 +55,21 @@ public class BulkScanEndpointTest {
         OBJECT_MAPPER.registerModule(new JavaTimeModule());
     }
 
+
     @Test
-    public void shouldValidate58StepParentBulkScanRequest() throws Exception {
+    public void shouldValidate58RelinquishedAdoptionBulkScanRequest() throws Exception {
         String bulkScanValidationRequest =
-                readFileFrom(A58_STEP_PARENT_VALIDATION_INPUT_PATH);
+            readFileFrom(A58_RELINQUISHED_ADOPTION_VALIDATION_INPUT_PATH);
+
 
         String bulkScanValidationResponse =
-                readFileFrom(A58_STEP_PARENT_VALIDATION_OUTPUT_PATH);
+            readFileFrom(A58_RELINQUISHED_ADOPTION_VALIDATION_OUTPUT_PATH);
 
         Response response = request.header(AUTH_HEADER, AUTH_HEADER)
-                .body(bulkScanValidationRequest)
-                .when()
-                .contentType("application/json")
-                .post("forms/A58/validate-ocr");
+            .body(bulkScanValidationRequest)
+            .when()
+            .contentType("application/json")
+            .post("forms/A58/validate-ocr");
 
         response.then().assertThat().statusCode(HttpStatus.OK.value());
 
@@ -71,22 +77,22 @@ public class BulkScanEndpointTest {
     }
 
     @Test
-    public void shouldTransformA58StepParentBulkScanRequest() throws Exception {
+    public void shouldTransformA58RelinquishedAdoptionBulkScanRequest() throws Exception {
         String bulkScanTransformRequest =
-                readFileFrom(A58_STEP_PARENT_TRANSFORM_INPUT_PATH);
+            readFileFrom(A58_RELINQUISHED_ADOPTION_TRANSFORM_INPUT_PATH);
 
         String bulkScanTransformResponse =
-                readFileFrom(A58_STEP_PARENT_TRANSFORM_OUTPUT_PATH);
+            readFileFrom(A58_RELINQUISHED_ADOPTION_TRANSFORM_OUTPUT_PATH);
 
         Response response = request.header(AUTH_HEADER, AUTH_HEADER)
-                .body(bulkScanTransformRequest)
-                .when()
-                .contentType("application/json")
-                .post("/transform-exception-record");
+            .body(bulkScanTransformRequest)
+            .when()
+            .contentType("application/json")
+            .post("/transform-exception-record");
 
         response.then().assertThat().statusCode(HttpStatus.OK.value());
 
         JSONAssert.assertEquals(bulkScanTransformResponse, response.getBody().asString(), true);
     }
-
 }
+
