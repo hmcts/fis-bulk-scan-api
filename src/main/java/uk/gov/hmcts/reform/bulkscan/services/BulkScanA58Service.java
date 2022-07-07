@@ -14,12 +14,13 @@ import uk.gov.hmcts.reform.bulkscan.model.CaseCreationDetails;
 import uk.gov.hmcts.reform.bulkscan.model.FormType;
 import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
 
 import static java.util.Objects.nonNull;
+
 import static org.apache.commons.lang3.BooleanUtils.FALSE;
 import static org.apache.commons.lang3.BooleanUtils.TRUE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ADOPTION_ORDER_CONSENT;
@@ -33,16 +34,18 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.BULK_SCAN
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CASE_TYPE_ID;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.COURT_CONSENT_CHILD_WELFARE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.COURT_CONSENT_PARENT_LACK_CAPACITY;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.COURT_CONSENT_PARENT_NOT_FOUND;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EVENT_ID;
-import static uk.gov.hmcts.reform.bulkscan.model.FormType.A58_RELINQUISHED_ADOPTION;
-import static uk.gov.hmcts.reform.bulkscan.model.FormType.A58_STEP_PARENT;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.UNKNOWN_FIELDS_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.COURT_CONSENT_PARENT_NOT_FOUND;
+import static uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper.transformScanDocuments;
+import static uk.gov.hmcts.reform.bulkscan.model.FormType.*;
 
 @Service
 public class BulkScanA58Service implements BulkScanService {
 
     public static final String STEP_PARENT_ADOPTION = "Step Parent";
-    public static final String RELINQUISHED_ADOPTION = "Relinquished Adoption";
+
+    public static final String SCAN_DOCUMENTS = "scannedDocuments";
 
     @Autowired
     BulkScanFormValidationConfigManager configManager;
@@ -55,16 +58,19 @@ public class BulkScanA58Service implements BulkScanService {
 
     @Override
     public FormType getCaseType() {
-        return FormType.A58;
+        return A58;
     }
 
     @Override
     public BulkScanValidationResponse validate(BulkScanValidationRequest bulkRequest) {
+        FormType formType = A58;
+        if (isA58ParentFormType(getOcrDataFieldAsMap(bulkRequest.getOcrdatafields()))) {
+            formType = A58_STEP_PARENT;
+        }
         // Validating the Fields..
-        return bulkScanValidationHelper.validateMandatoryAndOptionalFields(
-            bulkRequest.getOcrdatafields(),
-            configManager.getValidationConfig(FormType.A58)
-        );
+        return bulkScanValidationHelper.validateMandatoryAndOptionalFields(bulkRequest.getOcrdatafields(),
+                configManager.getValidationConfig(
+                        formType));
     }
 
     @Override
@@ -73,48 +79,63 @@ public class BulkScanA58Service implements BulkScanService {
         Map<String, Object> caseData = new HashMap<>();
         List<OcrDataField> inputFieldsList = bulkScanTransformationRequest.getOcrdatafields();
 
-        String formType = null;
+        FormType formType = A58;
 
         caseData.put(BULK_SCAN_CASE_REFERENCE, bulkScanTransformationRequest.getId());
 
-        Map<String, String> inputFieldsMap = inputFieldsList.stream().collect(Collectors.toMap(
-            OcrDataField::getName,
-            OcrDataField::getValue
-        ));
+        Map<String, String> inputFieldsMap = getOcrDataFieldAsMap(inputFieldsList);
 
-        if (STEP_PARENT_ADOPTION.equalsIgnoreCase(inputFieldsMap.get(APPLICANT1_RELATION_TO_CHILD))
-            || STEP_PARENT_ADOPTION.equalsIgnoreCase(
-            inputFieldsMap.get(APPLICANT2_RELATION_TO_CHILD))
-            || TRUE.equalsIgnoreCase(inputFieldsMap.get(
-            APPLICANT_RELATION_TO_CHILD_FATHER_PARTNER))
-            || FALSE.equalsIgnoreCase(inputFieldsMap.get(
-            APPLICANT_RELATION_TO_CHILD_FATHER_PARTNER))) {
-            formType = A58_STEP_PARENT.name();
-        } else if (nonNull(inputFieldsMap.get(ADOPTION_ORDER_CONSENT))
-            || nonNull(inputFieldsMap.get(
-            ADOPTION_ORDER_CONSENT_ADVANCE))
+        if (isA58ParentFormType(inputFieldsMap)) {
+            formType = A58_STEP_PARENT;
+        }else if (isA58RelinquishedAdoptionFormType(inputFieldsMap)){
+            formType = A58_RELINQUISHED_ADOPTION;
+        }
+        List<String> unknownFieldsList = null;
+        // Validating if any unknown fields present or not. if exist then it should go as warnings.
+        BulkScanFormValidationConfigManager
+                .ValidationConfig validationConfig = configManager.getValidationConfig(formType);
+       if (nonNull(validationConfig)) {
+           unknownFieldsList = bulkScanValidationHelper.findUnknownFields(inputFieldsList,
+                                                                          validationConfig.getMandatoryFields(),
+                                                                          validationConfig.getOptionalFields()
+           );
+       }
+        Map<String, Object> populatedMap = (Map<String, Object>) BulkScanTransformHelper
+                .transformToCaseData( new HashMap<>(transformConfigManager
+                        .getTransformationConfig(formType).getCaseDataFields()), inputFieldsMap);
+
+        populatedMap.put(SCAN_DOCUMENTS, transformScanDocuments(bulkScanTransformationRequest));
+
+        Map<String, String> caseTypeAndEventId =
+                transformConfigManager.getTransformationConfig(formType).getCaseFields();
+
+        BulkScanTransformationResponse.BulkScanTransformationResponseBuilder builder = BulkScanTransformationResponse
+                .builder().caseCreationDetails(
+                        CaseCreationDetails.builder()
+                                .caseTypeId(caseTypeAndEventId.get(CASE_TYPE_ID))
+                                .eventId(caseTypeAndEventId.get(EVENT_ID))
+                                .caseData(populatedMap).build());
+        if (null != unknownFieldsList && !unknownFieldsList.isEmpty()) {
+            builder.warnings(Arrays.asList(String.format(UNKNOWN_FIELDS_MESSAGE,
+                    String.join(",", unknownFieldsList))));
+        }
+        return builder.build();
+    }
+
+    private boolean isA58RelinquishedAdoptionFormType(Map<String, String> inputFieldsMap) {
+        return (nonNull(inputFieldsMap.get(ADOPTION_ORDER_CONSENT))
+            || nonNull(inputFieldsMap.get(ADOPTION_ORDER_CONSENT_ADVANCE))
             || nonNull(inputFieldsMap.get(ADOPTION_ORDER_CONSENT_AGENCY))
-            || nonNull(
-            inputFieldsMap.get(ADOPTION_ORDER_NO_CONSENT))
+            || nonNull(inputFieldsMap.get(ADOPTION_ORDER_NO_CONSENT))
             || nonNull(inputFieldsMap.get(COURT_CONSENT_PARENT_NOT_FOUND))
             || nonNull(inputFieldsMap.get(COURT_CONSENT_PARENT_LACK_CAPACITY))
-            || nonNull(inputFieldsMap.get(COURT_CONSENT_CHILD_WELFARE))) {
-            formType = A58_RELINQUISHED_ADOPTION.name();
-        }
+            || nonNull(inputFieldsMap.get(COURT_CONSENT_CHILD_WELFARE)));
+    }
 
-        Map<String, Object> populatedMap = (Map<String, Object>) BulkScanTransformHelper.transformToCaseData(
-            new HashMap<>(transformConfigManager.getTransformationConfig(FormType.valueOf(formType))
-                              .getCaseDataFields()),
-            inputFieldsMap
-        );
-
-        Map<String, String> caseTypeAndEventId = transformConfigManager.getTransformationConfig(FormType.valueOf(
-            formType)).getCaseFields();
-
-        return BulkScanTransformationResponse.builder()
-                                        .caseCreationDetails(CaseCreationDetails.builder()
-                                         .caseTypeId(caseTypeAndEventId.get(CASE_TYPE_ID))
-                                         .eventId(caseTypeAndEventId.get(EVENT_ID))
-                                         .caseData(populatedMap).build()).build();
+    private boolean isA58ParentFormType(Map<String, String> inputFieldsMap) {
+        return STEP_PARENT_ADOPTION.equalsIgnoreCase(inputFieldsMap.get(APPLICANT1_RELATION_TO_CHILD))
+            || STEP_PARENT_ADOPTION.equalsIgnoreCase(inputFieldsMap.get(APPLICANT2_RELATION_TO_CHILD))
+            || TRUE.equalsIgnoreCase(inputFieldsMap.get(APPLICANT_RELATION_TO_CHILD_FATHER_PARTNER))
+            || FALSE.equalsIgnoreCase(inputFieldsMap.get(APPLICANT_RELATION_TO_CHILD_FATHER_PARTNER));
     }
 }

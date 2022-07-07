@@ -11,7 +11,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import uk.gov.hmcts.reform.bulkscan.model.*;
-import uk.gov.hmcts.reform.bulkscan.utils.TestDataUtil;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -40,9 +39,6 @@ class BulkScanA58ServiceRelinquishedAdoptionTest {
 
     @Test
     void testA58RelinquishedAdoptionConsentTransformRequest() throws InterruptedException {
-        System.out.println("case1");
-
-
         OcrDataField ocrOrderConsentAdvanceField = new OcrDataField();
         ocrOrderConsentAdvanceField.setName("adoption_order_consent");
         ocrOrderConsentAdvanceField.setValue("Adoption Order Consent");
@@ -62,7 +58,6 @@ class BulkScanA58ServiceRelinquishedAdoptionTest {
 
     @Test
     void testA58RelinquishedAdoptionConsentAdvanceTransformRequest() throws IOException, JSONException, InterruptedException {
-      System.out.println("case2");
 
       OcrDataField ocrOrderConsentAdvanceField = new OcrDataField();
       ocrOrderConsentAdvanceField.setName("adoption_order_consent_advance");
@@ -84,8 +79,7 @@ class BulkScanA58ServiceRelinquishedAdoptionTest {
     }
 
     @Test
-    void testA58RelinquishedAdoptionConsentAgencyTransformRequest() throws IOException, JSONException, InterruptedException {
-         System.out.println("case3");
+    void testA58RelinquishedAdoptionConsentAgencyTransformRequest()  {
          OcrDataField ocrOrderConsentAdvanceField = new OcrDataField();
          ocrOrderConsentAdvanceField.setName("adoption_order_consent_agency");
          ocrOrderConsentAdvanceField.setValue("Adoption Order Consent Agency");
@@ -105,65 +99,67 @@ class BulkScanA58ServiceRelinquishedAdoptionTest {
 
     @Test
     void testA58RelinquishedAdoptionNoConsentTransformRequest() throws IOException, JSONException {
+        OcrDataField ocrOrderConsentAdvanceField = new OcrDataField();
+        ocrOrderConsentAdvanceField.setName("adoption_order_no_consent");
+        ocrOrderConsentAdvanceField.setValue("adoption order no consent");
+        ocrDataFieldList.add(ocrOrderConsentAdvanceField);
         BulkScanTransformationResponse bulkScanTransformationResponse =
             bulkScanValidationService.transform(BulkScanTransformationRequest.builder()
-                                                    .ocrdatafields(
-                                                        TestDataUtil.getA58RelinquishedAdoptionOrderNoConsentData())
+                                                    .ocrdatafields(ocrDataFieldList
+                                                    )
                                                     .build());
 
-        assertEquals(
-            bulkScanTransformationResponse.getCaseCreationDetails()
-                .getCaseData().get("adoptionOrderNoConsent"),
-            "Adoption Order No Consent"
-        );
+        assertEquals(bulkScanTransformationResponse.getCaseCreationDetails()
+                         .getCaseData().get("adoptionOrderNoConsent"), "adoption order no consent");
     }
 
 
     @Test
     void testA58RelinquishedAdoptionConsentParentNotFoundTransformRequest() throws IOException, JSONException {
+        OcrDataField ocrOrderConsentAdvanceField = new OcrDataField();
+        ocrOrderConsentAdvanceField.setName("court_consent_parent_not_found");
+        ocrOrderConsentAdvanceField.setValue("court consent parent not found");
+        ocrDataFieldList.add(ocrOrderConsentAdvanceField);
         BulkScanTransformationResponse bulkScanTransformationResponse =
             bulkScanValidationService.transform(BulkScanTransformationRequest.builder()
-                                                    .ocrdatafields(
-                                                        TestDataUtil.getA58RelinquishedAdoptionParentNotFoundData())
+                                                    .ocrdatafields(ocrDataFieldList
+                                                    )
                                                     .build());
 
-        assertEquals(
-            bulkScanTransformationResponse.getCaseCreationDetails()
-                .getCaseData().get("courtConsentParentNotFound"),
-            "Court Consent Parent Not Found"
-        );
+        assertEquals(bulkScanTransformationResponse.getCaseCreationDetails()
+                         .getCaseData().get("courtConsentParentNotFound"), "court consent parent not found");
     }
 
     @Test
     void testA58RelinquishedAdoptionConsentParentLackCapacityTransformRequest() throws IOException, JSONException {
+        OcrDataField ocrOrderConsentAdvanceField = new OcrDataField();
+        ocrOrderConsentAdvanceField.setName("court_consent_parent_lack_capacity");
+        ocrOrderConsentAdvanceField.setValue("court consent parent lack capacity");
+        ocrDataFieldList.add(ocrOrderConsentAdvanceField);
         BulkScanTransformationResponse bulkScanTransformationResponse =
             bulkScanValidationService.transform(BulkScanTransformationRequest.builder()
-                                                    .ocrdatafields(
-                                                        TestDataUtil
-                                                            .getA58RelinquishedAdoptionConsentParentLackCapacityData())
+                                                    .ocrdatafields(ocrDataFieldList
+                                                    )
                                                     .build());
 
-        assertEquals(
-            bulkScanTransformationResponse.getCaseCreationDetails()
-                .getCaseData().get("courtConsentParentLackCapacity"),
-            "Court Consent Parent Lack Capacity"
-        );
+        assertEquals(bulkScanTransformationResponse.getCaseCreationDetails()
+                         .getCaseData().get("courtConsentParentLackCapacity"), "court consent parent lack capacity");
     }
 
     @Test
     void testA58RelinquishedAdoptionConsentChildWelfareTransformRequest() throws IOException, JSONException {
+        OcrDataField ocrOrderConsentAdvanceField = new OcrDataField();
+        ocrOrderConsentAdvanceField.setName("court_consent_child_welfare");
+        ocrOrderConsentAdvanceField.setValue("court consent child welfare");
+        ocrDataFieldList.add(ocrOrderConsentAdvanceField);
         BulkScanTransformationResponse bulkScanTransformationResponse =
-            bulkScanValidationService
-                .transform(BulkScanTransformationRequest.builder()
-                               .ocrdatafields(
-                                   TestDataUtil.getA58RelinquishedAdoptionChildWelfareData())
-                               .build());
+            bulkScanValidationService.transform(BulkScanTransformationRequest.builder()
+                                                    .ocrdatafields(ocrDataFieldList
+                                                    )
+                                                    .build());
 
-        assertEquals(
-            bulkScanTransformationResponse.getCaseCreationDetails()
-                .getCaseData().get("courtConsentChildWelfare"),
-            "Court Consent Child welfare"
-        );
+        assertEquals(bulkScanTransformationResponse.getCaseCreationDetails()
+                         .getCaseData().get("courtConsentChildWelfare"), "court consent child welfare");
     }
 
     public  List<OcrDataField> getRequestData() {

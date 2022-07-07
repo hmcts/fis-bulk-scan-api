@@ -4,6 +4,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONException;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.Spy;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -13,11 +14,13 @@ import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
-import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
+import uk.gov.hmcts.reform.bulkscan.model.ScanDocument;
+import uk.gov.hmcts.reform.bulkscan.model.ScannedDocuments;
 import uk.gov.hmcts.reform.bulkscan.model.Status;
 import uk.gov.hmcts.reform.bulkscan.utils.TestDataUtil;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -33,23 +36,32 @@ import static uk.gov.hmcts.reform.bulkscan.utils.TestResourceUtil.readFileFrom;
 class BulkScanA58ServiceTest {
 
     private static final String A58_STEP_PARENT_TRANSFORM_RESPONSE_PATH =
-        "classpath:response/bulk-scan-a58-step-parent-transform-output.json";
+            "classpath:response/bulk-scan-a58-step-parent-transform-output.json";
 
+    @Spy
     @Autowired
     BulkScanA58Service bulkScanValidationService;
 
     @Test
     void testA58Success() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-            TestDataUtil.getA60OrC63orA58Data()).build();
+                TestDataUtil.getA58Data()).build();
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.SUCCESS, res.status);
     }
 
     @Test
+    void testA58SuccessWithUnknowFieldError() {
+        BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
+            TestDataUtil.getA58DataWithAdditonalOptionalFields()).build();
+        BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
+        assertEquals(Status.WARNINGS, res.status);
+    }
+
+    @Test
     void testA58MandatoryErrorWhileDoingValidation() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-            TestDataUtil.getA60OrC63orA58ErrorData()).build();
+                TestDataUtil.getA60OrC63orA58ErrorData()).build();
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
         assertTrue(res.getErrors().items.contains(String.format(MANDATORY_ERROR_MESSAGE, "applicant1_firstName")));
@@ -58,7 +70,7 @@ class BulkScanA58ServiceTest {
     @Test
     void testA58FieldMissingErrorWhileDoingValidation() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-            TestDataUtil.getA60OrC63orA58ErrorData()).build();
+                TestDataUtil.getA60OrC63orA58ErrorData()).build();
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
         assertTrue(res.getErrors().items.contains(String.format(MISSING_FIELD_MESSAGE, "applicant1_lastName")));
@@ -67,7 +79,7 @@ class BulkScanA58ServiceTest {
     @Test
     void testA58OptionalFieldsWarningsWhileDoingValidation() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-            TestDataUtil.getA60OrC63orA58ErrorData()).build();
+                TestDataUtil.getA60OrC63orA58ErrorData()).build();
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertTrue(res.getWarnings().items.contains(String.format(PHONE_NUMBER_MESSAGE, "applicant2_telephoneNumber")));
     }
@@ -76,120 +88,28 @@ class BulkScanA58ServiceTest {
     void testA58StepParentAdoptionTransformRequest() throws IOException, JSONException {
         ObjectMapper mapper = new ObjectMapper();
         BulkScanTransformationResponse bulkScanTransformationResponse =
-            bulkScanValidationService.transform(BulkScanTransformationRequest.builder()
-                                                    .ocrdatafields(TestDataUtil.getA60OrC63orA58Data()).build());
+                bulkScanValidationService.transform(BulkScanTransformationRequest
+                        .builder()
+                                        .scannedDocuments(Collections.emptyList())
+                        .scannedDocuments(List.of(ScannedDocuments.builder()
+                                .scanDocument(ScanDocument.builder()
+                                        .url("url")
+                                        .binaryUrl("binary_url")
+                                        .filename("filename")
+                                        .build())
+                                .build(),
+                                ScannedDocuments.builder()
+                                        .scanDocument(ScanDocument.builder()
+                                                .url("url1")
+                                                .binaryUrl("binary_url1")
+                                                .filename("filename1")
+                                                .build())
+                                        .build()))
+                        .ocrdatafields(TestDataUtil.getA60OrC63orA58Data()).build());
 
         JSONAssert.assertEquals(readFileFrom(A58_STEP_PARENT_TRANSFORM_RESPONSE_PATH),
-                                mapper.writeValueAsString(bulkScanTransformationResponse), true
-        );
+                mapper.writeValueAsString(bulkScanTransformationResponse), true);
 
-    }
-
-    @Test
-    void testA58RelinquishedAdoptionConsentTransformRequest() throws IOException, JSONException {
-        List<OcrDataField> ocrDataFieldList = TestDataUtil.getA58RelinquishedAdoptionConsentData();
-        BulkScanTransformationResponse bulkScanTransformationResponse =
-            bulkScanValidationService.transform(BulkScanTransformationRequest.builder()
-                                                    .ocrdatafields(ocrDataFieldList)
-                                                    .build());
-        assertEquals(
-            bulkScanTransformationResponse
-                .getCaseCreationDetails().getCaseData().get("adoptionOrderConsent"),
-            "Adoption Order Consent");
-
-    }
-
-    @Test
-    void testA58RelinquishedAdoptionConsentAdvanceTransformRequest() throws IOException, JSONException {
-        BulkScanTransformationResponse bulkScanTransformationResponse =
-            bulkScanValidationService.transform(BulkScanTransformationRequest.builder()
-                                                    .ocrdatafields(
-                                                        TestDataUtil.getA58RelinquishedAdoptionConsentAdvanceData())
-                                                    .build());
-
-        System.out.println(TestDataUtil.getA58RelinquishedAdoptionConsentAdvanceData());
-        System.out.println(bulkScanTransformationResponse.getCaseCreationDetails().getCaseData());
-
-        assertEquals(
-            bulkScanTransformationResponse.getCaseCreationDetails()
-                .getCaseData().get("adoptionOrderConsentAdvance"),
-            "Adoption Order Consent Advance"
-        );
-    }
-
-    @Test
-    void testA58RelinquishedAdoptionConsentAgencyTransformRequest() throws IOException, JSONException {
-        BulkScanTransformationResponse bulkScanTransformationResponse =
-            bulkScanValidationService.transform(BulkScanTransformationRequest.builder()
-                                                    .ocrdatafields(
-                                                        TestDataUtil.getA58RelinquishedAdoptionOrderConsentAgencyData())
-                                                    .build());
-
-        assertEquals(bulkScanTransformationResponse.getCaseCreationDetails()
-                         .getCaseData().get("adoptionOrderConsentAgency"), "Adoption Order Consent Agency");
-    }
-
-    @Test
-    void testA58RelinquishedAdoptionNoConsentTransformRequest() throws IOException, JSONException {
-        BulkScanTransformationResponse bulkScanTransformationResponse =
-            bulkScanValidationService.transform(BulkScanTransformationRequest.builder()
-                                                    .ocrdatafields(
-                                                        TestDataUtil.getA58RelinquishedAdoptionOrderNoConsentData())
-                                                    .build());
-
-        assertEquals(
-            bulkScanTransformationResponse.getCaseCreationDetails()
-                .getCaseData().get("adoptionOrderNoConsent"),
-            "Adoption Order No Consent"
-        );
-    }
-
-
-    @Test
-    void testA58RelinquishedAdoptionConsentParentNotFoundTransformRequest() throws IOException, JSONException {
-        BulkScanTransformationResponse bulkScanTransformationResponse =
-            bulkScanValidationService.transform(BulkScanTransformationRequest.builder()
-                                                    .ocrdatafields(
-                                                        TestDataUtil.getA58RelinquishedAdoptionParentNotFoundData())
-                                                    .build());
-
-        assertEquals(
-            bulkScanTransformationResponse.getCaseCreationDetails()
-                .getCaseData().get("courtConsentParentNotFound"),
-            "Court Consent Parent Not Found"
-        );
-    }
-
-    @Test
-    void testA58RelinquishedAdoptionConsentParentLackCapacityTransformRequest() throws IOException, JSONException {
-        BulkScanTransformationResponse bulkScanTransformationResponse =
-            bulkScanValidationService.transform(BulkScanTransformationRequest.builder()
-                                                    .ocrdatafields(
-                                                        TestDataUtil
-                                                            .getA58RelinquishedAdoptionConsentParentLackCapacityData())
-                                                    .build());
-
-        assertEquals(
-            bulkScanTransformationResponse.getCaseCreationDetails()
-                .getCaseData().get("courtConsentParentLackCapacity"),
-            "Court Consent Parent Lack Capacity"
-        );
-    }
-
-    @Test
-    void testA58RelinquishedAdoptionConsentChildWelfareTransformRequest() throws IOException, JSONException {
-        BulkScanTransformationResponse bulkScanTransformationResponse =
-            bulkScanValidationService
-                .transform(BulkScanTransformationRequest.builder()
-                               .ocrdatafields(
-                                   TestDataUtil.getA58RelinquishedAdoptionChildWelfareData())
-                               .build());
-
-        assertEquals(
-            bulkScanTransformationResponse.getCaseCreationDetails()
-                .getCaseData().get("courtConsentChildWelfare"),
-            "Court Consent Child welfare"
-        );
     }
 
 }
