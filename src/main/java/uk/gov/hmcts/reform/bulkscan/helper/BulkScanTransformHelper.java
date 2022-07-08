@@ -33,7 +33,7 @@ public final class BulkScanTransformHelper {
     public static Object transformToCaseData(Object object, Map<String, String> inputFieldsMap) {
         List<Object> list = new ArrayList<>();
         if (object instanceof Map) {
-            Map<String, Object> innerMap = (Map<String, Object>) object;
+            Map<String, Object> innerMap = (Map) object;
             innerMap.forEach((k, v) -> {
                 if (k instanceof String && StringUtils.isNumeric(k)) {
                     list.add(innerMap.get(k));

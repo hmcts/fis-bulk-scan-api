@@ -74,12 +74,12 @@ public class BulkScanA60Service implements BulkScanService {
                 validationConfig.getOptionalFields()
             );
 
-        Map<String, Object> populatedMap = (Map<String, Object>) BulkScanTransformHelper
+        Map<String, Object> populatedMap = (Map) BulkScanTransformHelper
             .transformToCaseData(transformConfigManager
                                      .getTransformationConfig(formType).getCaseDataFields(), inputFieldsMap);
 
         Map<String, String> caseTypeAndEventId =
-            transformConfigManager.getTransformationConfig(FormType.valueOf(formType.name())).getCaseFields();
+            transformConfigManager.getTransformationConfig(formType).getCaseFields();
 
         BulkScanTransformationResponse.BulkScanTransformationResponseBuilder builder = BulkScanTransformationResponse
             .builder().caseCreationDetails(
