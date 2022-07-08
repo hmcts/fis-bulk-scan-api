@@ -38,7 +38,7 @@ import static uk.gov.hmcts.reform.bulkscan.utils.TestResourceUtil.readFileFrom;
 class BulkScanA60ServiceTest {
     private final ObjectMapper mapper = new ObjectMapper();
     private static final String A60_TRANSFORM_RESPONSE_PATH
-        = "classpath:response/bulk-scan-a60-transform-output.json";
+        = "classpath:response/bulk-scan-A60-transform-output.json";
 
     @Spy
     @Autowired

@@ -36,7 +36,7 @@ import static uk.gov.hmcts.reform.bulkscan.utils.TestResourceUtil.readFileFrom;
 class BulkScanA58ServiceTest {
 
     private static final String A58_STEP_PARENT_TRANSFORM_RESPONSE_PATH =
-            "classpath:response/bulk-scan-a58-step-parent-transform-output.json";
+            "classpath:response/bulk-scan-A58-step-parent-transform-output.json";
 
     @Spy
     @Autowired
