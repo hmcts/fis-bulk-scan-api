@@ -37,6 +37,10 @@ import static uk.gov.hmcts.reform.bulkscan.utils.TestResourceUtil.readFileFrom;
 @ActiveProfiles("test")
 class BulkScanA60ServiceTest {
     private final ObjectMapper mapper = new ObjectMapper();
+    private static final String APPLICANT1_TEST_ADDRESS = "123 test street, London";
+    private static final String BULK_SCAN_APPLICANT_DETAILS_FIELD = "applicant";
+    private static final String APPLICANT1_TEST_FIRSTNAME = "applicant1_firstName";
+    private static final String APPLICANT1_TEST_LASTNAME = "applicant1_lastName";
     private static final String A60_TRANSFORM_RESPONSE_PATH
         = "classpath:response/bulk-scan-A60-transform-output.json";
 
@@ -58,7 +62,7 @@ class BulkScanA60ServiceTest {
             TestDataUtil.getA60OrC63orA58ErrorData()).build();
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
-        assertTrue(res.getErrors().items.contains(String.format(MANDATORY_ERROR_MESSAGE, "applicant1_firstName")));
+        assertTrue(res.getErrors().items.contains(String.format(MANDATORY_ERROR_MESSAGE, APPLICANT1_TEST_FIRSTNAME)));
     }
 
     @Test
@@ -67,7 +71,7 @@ class BulkScanA60ServiceTest {
             TestDataUtil.getA60OrC63orA58ErrorData()).build();
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
-        assertTrue(res.getErrors().items.contains(String.format(MISSING_FIELD_MESSAGE, "applicant1_lastName")));
+        assertTrue(res.getErrors().items.contains(String.format(MISSING_FIELD_MESSAGE, APPLICANT1_TEST_LASTNAME)));
     }
 
     @Test
@@ -111,10 +115,10 @@ class BulkScanA60ServiceTest {
                                                                .getCaseData());
 
         assertNotNull(bulkScanTransformationResponse.getCaseCreationDetails()
-                                     .getCaseData().get("applicant"));
-        assertTrue(caseData.get("applicant").toString().contains("applicant1_firstName"));
-        assertTrue(caseData.get("applicant").toString().contains("applicant1_lastName"));
-        assertTrue(caseData.get("applicant").toString().contains("123 test street, London"));
+                                     .getCaseData().get(BULK_SCAN_APPLICANT_DETAILS_FIELD));
+        assertTrue(caseData.get(BULK_SCAN_APPLICANT_DETAILS_FIELD).toString().contains(APPLICANT1_TEST_FIRSTNAME));
+        assertTrue(caseData.get(BULK_SCAN_APPLICANT_DETAILS_FIELD).toString().contains(APPLICANT1_TEST_LASTNAME));
+        assertTrue(caseData.get(BULK_SCAN_APPLICANT_DETAILS_FIELD).toString().contains(APPLICANT1_TEST_ADDRESS));
     }
 
     @Test

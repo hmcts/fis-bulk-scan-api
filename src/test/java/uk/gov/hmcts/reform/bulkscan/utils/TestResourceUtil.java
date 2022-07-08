@@ -13,6 +13,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.TEST_RESOURCE_NOT_FOUND;
+import static uk.gov.hmcts.reform.bulkscan.utils.Constants.RESOURCE_CHARSET_UTF8;
 
 public final class TestResourceUtil {
 
@@ -30,7 +31,7 @@ public final class TestResourceUtil {
     }
 
     public static String loadJson(final String filePath) throws FileNotFoundException {
-        return new String(loadResource(filePath), Charset.forName("utf-8"));
+        return new String(loadResource(filePath), Charset.forName(RESOURCE_CHARSET_UTF8));
     }
 
     public static byte[] loadResource(final String filePath) throws FileNotFoundException {

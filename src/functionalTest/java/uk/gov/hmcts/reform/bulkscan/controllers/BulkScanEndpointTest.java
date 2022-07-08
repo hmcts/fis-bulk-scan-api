@@ -27,6 +27,9 @@ import static uk.gov.hmcts.reform.bulkscan.util.IntegrationTestConstant.A60_TRAN
 import static uk.gov.hmcts.reform.bulkscan.util.IntegrationTestConstant.A60_VALIDATION_INPUT_PATH;
 import static uk.gov.hmcts.reform.bulkscan.util.IntegrationTestConstant.A60_VALIDATION_OUTPUT_PATH;
 import static uk.gov.hmcts.reform.bulkscan.util.IntegrationTestConstant.AUTH_HEADER;
+import static uk.gov.hmcts.reform.bulkscan.util.IntegrationTestConstant.BULK_SCAN_TEST_URL;
+import static uk.gov.hmcts.reform.bulkscan.util.IntegrationTestConstant.JSON_CONTENT_TYPE;
+import static uk.gov.hmcts.reform.bulkscan.util.IntegrationTestConstant.TRANSFORM_EXCEPTION_URL;
 import static uk.gov.hmcts.reform.bulkscan.util.TestResourceUtil.readFileFrom;
 
 @Slf4j
@@ -42,7 +45,7 @@ public class BulkScanEndpointTest {
 
     private final String targetInstance =
         StringUtils.defaultIfBlank(
-            System.getenv("TEST_URL"),
+            System.getenv(BULK_SCAN_TEST_URL),
             "http://localhost:8090"
         );
 
@@ -64,7 +67,7 @@ public class BulkScanEndpointTest {
         Response response = request.header(AUTH_HEADER, AUTH_HEADER)
             .body(bulkScanValidationRequest)
             .when()
-            .contentType("application/json")
+            .contentType(JSON_CONTENT_TYPE)
             .post("forms/A58/validate-ocr");
 
         response.then().assertThat().statusCode(HttpStatus.OK.value());
@@ -83,7 +86,7 @@ public class BulkScanEndpointTest {
         Response response = request.header(AUTH_HEADER, AUTH_HEADER)
             .body(bulkScanValidationRequest)
             .when()
-            .contentType("application/json")
+            .contentType(JSON_CONTENT_TYPE)
             .post("forms/A60/validate-ocr");
 
         response.then().assertThat().statusCode(HttpStatus.OK.value());
@@ -102,8 +105,8 @@ public class BulkScanEndpointTest {
         Response response = request.header(AUTH_HEADER, AUTH_HEADER)
             .body(bulkScanTransformRequest)
             .when()
-            .contentType("application/json")
-            .post("/transform-exception-record");
+            .contentType(JSON_CONTENT_TYPE)
+            .post(TRANSFORM_EXCEPTION_URL);
 
         response.then().assertThat().statusCode(HttpStatus.OK.value());
 
@@ -121,8 +124,8 @@ public class BulkScanEndpointTest {
         Response response = request.header(AUTH_HEADER, AUTH_HEADER)
             .body(bulkScanTransformRequest)
             .when()
-            .contentType("application/json")
-            .post("/transform-exception-record");
+            .contentType(JSON_CONTENT_TYPE)
+            .post(TRANSFORM_EXCEPTION_URL);
 
         response.then().assertThat().statusCode(HttpStatus.OK.value());
 
