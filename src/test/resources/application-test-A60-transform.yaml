@@ -5,7 +5,7 @@ uk:
         caseTypeofApplication:
           A60:
             caseFields:
-              CASE_TYPE_ID: A60
+              CASE_TYPE_ID: ADOPTION
               EVENT_ID: create-case-adop-bs
             caseDataFields:
               applicant:
