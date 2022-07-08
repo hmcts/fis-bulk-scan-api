@@ -12,8 +12,8 @@ import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
-import static uk.gov.hmcts.reform.bulkscan.utils.Constants.TEST_RESOURCE_NOT_FOUND;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.RESOURCE_CHARSET_UTF8;
+import static uk.gov.hmcts.reform.bulkscan.utils.Constants.TEST_RESOURCE_NOT_FOUND;
 
 public final class TestResourceUtil {
 

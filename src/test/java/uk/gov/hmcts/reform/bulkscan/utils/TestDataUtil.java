@@ -8,11 +8,11 @@ import java.util.List;
 
 public final class TestDataUtil {
 
-    public static final String FIRST_NAME = "firstName";
-    public static final String DATE_OF_BIRTH = "2/02/2022";
-    public static final String POST_CODE = "TW3 1NN";
     public static final String ADDRESS = "123 test street, London";
+    public static final String DATE_OF_BIRTH = "2/02/2022";
+    public static final String FIRST_NAME = "firstName";
     public static final String PHONE_NUMBER = "+447405878672";
+    public static final String POST_CODE = "TW3 1NN";
 
     private TestDataUtil() {
 
@@ -116,7 +116,8 @@ public final class TestDataUtil {
         ocrNumericField.setValue("1311231231");
 
         return Arrays.asList(ocrDataAddressField, ocrDataFirstNameField,
-                             ocrDataEmergencyProtectionOrder, ocrDataLastNameField, ocrNumericField);
+                             ocrDataEmergencyProtectionOrder, ocrDataLastNameField, ocrNumericField
+        );
     }
 
     public static List<OcrDataField> getDateErrorData() {
@@ -170,7 +171,8 @@ public final class TestDataUtil {
                              ocrDataAppellantChildRelationshipField,
                              ocrDataEmergencyProtectionOrderField,
                              ocrDataDateField, ocrDataOtherCourtCaseDateField,
-                             ocrDataAuthorisedFamilyMediatorSignedDateField, ocrNumericField);
+                             ocrDataAuthorisedFamilyMediatorSignedDateField, ocrNumericField
+        );
     }
 
     public static List<OcrDataField> getEmailErrorData() {
@@ -218,7 +220,8 @@ public final class TestDataUtil {
                              ocrDataChildFirstNameField, ocrDataChildLastNameField,
                              ocrDataAppellantChildRelationshipField, ocrDataEmergencyProtectionOrderField,
                              ocrDataEmailField,
-                             ocrNumericField, ocrSolicitorFaxNumberField);
+                             ocrNumericField, ocrSolicitorFaxNumberField
+        );
     }
 
     public static List<OcrDataField> getNumericErrorData() {
@@ -235,7 +238,8 @@ public final class TestDataUtil {
         ocrNumericField.setValue("should_be_numeric");
 
         return Arrays.asList(ocrDataFirstNameField, ocrDataLastNameField,
-                             ocrNumericField);
+                             ocrNumericField
+        );
     }
 
     public static List<OcrDataField> getFirstNameData() {
@@ -253,7 +257,8 @@ public final class TestDataUtil {
         ocrNumericField.setValue("1311231231");
 
         return Arrays.asList(ocrDataAddressField, ocrDataFirstNameField,
-                             ocrNumericField);
+                             ocrNumericField
+        );
     }
 
     public static List<OcrDataField> getA60OrC63orA58Data() {
@@ -746,7 +751,6 @@ public final class TestDataUtil {
         ocrPostCodeField.setName("applicant1_placeOfBirth");
         ocrPostCodeField.setValue("Place of Birth");
         fieldList.add(ocrPostCodeField);
-
 
 
         return fieldList;
