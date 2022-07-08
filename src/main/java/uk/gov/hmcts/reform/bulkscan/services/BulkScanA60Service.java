@@ -64,7 +64,9 @@ public class BulkScanA60Service implements BulkScanService {
         Map<String, String> inputFieldsMap = getOcrDataFieldAsMap(inputFieldsList);
 
         BulkScanFormValidationConfigManager
-            .ValidationConfig validationConfig = configManager.getValidationConfig(formType);
+            .ValidationConfig validationConfig = configManager
+            .getValidationConfig(FormType.valueOf(getCaseType().name()));
+
         List<String> unknownFieldsList = bulkScanValidationHelper
             .findUnknownFields(
                 inputFieldsList,
@@ -77,7 +79,7 @@ public class BulkScanA60Service implements BulkScanService {
                                      .getTransformationConfig(formType).getCaseDataFields(), inputFieldsMap);
 
         Map<String, String> caseTypeAndEventId =
-            transformConfigManager.getTransformationConfig(formType).getCaseFields();
+            transformConfigManager.getTransformationConfig(FormType.valueOf(formType.name())).getCaseFields();
 
         BulkScanTransformationResponse.BulkScanTransformationResponseBuilder builder = BulkScanTransformationResponse
             .builder().caseCreationDetails(
