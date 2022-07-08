@@ -1,0 +1,30 @@
+{
+  "case_creation_details": {
+    "case_type_id": "C51",
+    "event_id": "create-case-adop-bs",
+    "case_data": {
+      "applicant2LastName": "applicant 2 LastName",
+      "applicant2Address1": "123 test street, London",
+      "applicant1Address1": "123 test street, London",
+      "applicant1FirstName": "firstName",
+      "applicant1AddressPostCode": "TW3 1NN",
+      "scannedDocuments": [
+        {
+          "value": {
+            "document_url": "url1",
+            "document_filename": "filename1",
+            "document_binary_url": "binary_url1"
+          }
+        }
+      ],
+      "applicant2MobileNumber": "0123466465",
+      "applicant1PoneNumber": "07456575789",
+      "applicant2AddressPostCode": "TW3 1NN",
+      "applicant2PhoneNumber": "07456575789",
+      "applicant2FirstName": "applicant 2 firstName",
+      "applicant1LastName": "LastName",
+      "applicant1MobileNumber": "0123466465"
+    }
+  },
+  "warnings": []
+}

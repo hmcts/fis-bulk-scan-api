@@ -7,17 +7,16 @@ uk:
             mandatoryFields:
               - applicant1_firstName
               - applicant1_lastName
-              - applicant1_dateOfBirth
-              - applicants_address
-              - applicants_postCode
-              - applicants_telephoneNumber
+              - applicant2_firstName
+              - applicant2_lastName
+              - applicant_address
+              - applicant_postCode
             optionalFields:
               -
             regexValidationFields:
               dateFields:
                 fieldNames:
-                  - applicant1_dateOfBirth
-                  - applicant2_dateOfBirth
+                  -
                 regex: dd/MM/yyyy
               emailFields:
                 fieldNames:
@@ -29,9 +28,11 @@ uk:
                 regex: ^[0-9]*$
               postcodeFields:
                 fieldNames:
-                  - applicants_postCode
+                  - applicant_postCode
                 regex: ^[A-Z]{1,2}[0-9R][0-9A-Z]? [0-9][ABD-HJLNP-UW-Z]{2}$
               phoneNumberFields:
                 fieldNames:
-                  - applicants_telephoneNumber
+                  - applicant_homeTelephoneNumber
+                  - applicant_mobileTelephoneNumber
                 regex: ^(?:0|\+?44)(?:\d\s?){9,10}$
+

@@ -32,13 +32,33 @@ spring:
       - test-A60-form
       - test-C100-transform
       - test-A58-form
-      - test-a59-form
       - test-fgm001-form
       - test-C2-form
       - test-A1-form
       - test-a58-transform
-      - test-a59-transform
-      - test-a60-transform
+      - test-c51-transform
+
+#  datasource:
+#    driver-class-name: org.postgresql.Driver
+#    url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}${DB_OPTIONS:}
+#    username: ${DB_USER_NAME}
+#    password: ${DB_PASSWORD}
+#    properties:
+#      charSet: UTF-8
+#    hikari:
+#      minimumIdle: 2
+#      maximumPoolSize: 10
+#      idleTimeout: 10000
+#      poolName: {to-be-defined}HikariCP
+#      maxLifetime: 7200000
+#      connectionTimeout: 30000
+#  jpa:
+#    properties:
+#      hibernate:
+#        jdbc:
+#          lob:
+#            # silence the 'wall-of-text' - unnecessary exception throw about blob types
+#            non_contextual_creation: true
 
 azure:
   application-insights:
