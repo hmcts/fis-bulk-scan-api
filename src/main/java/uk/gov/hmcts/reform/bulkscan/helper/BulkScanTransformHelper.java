@@ -24,10 +24,10 @@ public final class BulkScanTransformHelper {
     }
 
     /*
-    * Returns transformed CCD object.
-    * This method is recursive method to replace the values from OCR_DATA_FIELD values and
-    * as per CCD requirement list of object should be tranformed as list when sending to CCD
-    * it will be transformed into list instead of map while gettting from yaml to java.
+     * Returns transformed CCD object.
+     * This method is recursive method to replace the values from OCR_DATA_FIELD values and
+     * as per CCD requirement list of object should be tranformed as list when sending to CCD
+     * it will be transformed into list instead of map while gettting from yaml to java.
      */
     @SuppressWarnings("unchecked")
     public static Object transformToCaseData(Object object, Map<String, String> inputFieldsMap) {
@@ -57,16 +57,18 @@ public final class BulkScanTransformHelper {
     }
 
     public static List<ResponseScanDocumentValue> transformScanDocuments(BulkScanTransformationRequest
-                                                                                 bulkScanTransformationRequest) {
+                                                                             bulkScanTransformationRequest) {
         List<ScannedDocuments> scannedDocumentsList = bulkScanTransformationRequest.getScannedDocuments();
         return nonNull(scannedDocumentsList) ? bulkScanTransformationRequest
-                .getScannedDocuments().stream().map(scanDocument ->
-                        ResponseScanDocumentValue.builder().scanDocument(ResponseScanDocument
-                                        .builder()
-                                        .url(scanDocument.getScanDocument().getUrl())
-                                        .binaryUrl(scanDocument.getScanDocument().getBinaryUrl())
-                                        .filename(scanDocument.getScanDocument().getFilename())
-                                        .build())
-                                .build()).collect(Collectors.toList()) : Collections.emptyList();
+            .getScannedDocuments()
+            .stream().map(scanDocument ->
+                              ResponseScanDocumentValue.builder().scanDocument(
+                                      ResponseScanDocument
+                                          .builder()
+                                          .url(scanDocument.getScanDocument().getUrl())
+                                          .binaryUrl(scanDocument.getScanDocument().getBinaryUrl())
+                                          .filename(scanDocument.getScanDocument().getFilename())
+                                          .build())
+                                  .build()).collect(Collectors.toList()) : Collections.emptyList();
     }
 }

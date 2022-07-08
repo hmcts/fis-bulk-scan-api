@@ -1,0 +1,30 @@
+{
+  "case_creation_details":{
+    "case_type_id":"A60",
+    "event_id":"create-case-adop-bs",
+    "case_data":{
+      "applicant":[
+        {
+          "value":{
+            "applicant1FirstName":"applicant1_firstName",
+            "applicant1LastName":"applicant1_lastName",
+            "applicant1Address":"123 test street, London",
+            "applicant1TelephoneNumber":"09999999990",
+            "applicant1RelationToChild":"Step Parent"
+          }
+        },
+        {
+          "value":{
+            "applicant2FirstName":"applicant2_firstName",
+            "applicant2LastName":"applicant2_lastName",
+            "applicant2Address":"123 test street, London",
+            "applicant2TelephoneNumber":"09999999990",
+            "applicant2RelationToChild":"Step Parent"
+          }
+        }
+      ]
+    }
+  },
+  "warnings":[
+  ]
+}

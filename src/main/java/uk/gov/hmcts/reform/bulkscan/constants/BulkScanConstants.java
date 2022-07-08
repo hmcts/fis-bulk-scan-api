@@ -75,7 +75,7 @@ public final class BulkScanConstants {
             BulkScanFormValidationConfigManager.RegexFieldsConfig numericFields = regexValidationConfig
                 .getNumericFields();
             BulkScanFormValidationConfigManager.RegexFieldsConfig faxNumberFieldsFields = regexValidationConfig
-                    .getFaxNumberFields();
+                .getFaxNumberFields();
 
             map.put(DATE_FORMAT_FIELDS_KEY, getPairObject(dateFields));
             map.put(EMAIL_FORMAT_FIELDS_KEY, getPairObject(emailFields));
@@ -92,7 +92,7 @@ public final class BulkScanConstants {
             map.put(PHONE_NUMBER_FIELDS_KEY, getPairObject(phoneNumberFields));
 
             BulkScanFormValidationConfigManager.RegexFieldsConfig xorConditionalFields = regexValidationConfig
-                    .getXorConditionalFields();
+                .getXorConditionalFields();
             map.put(XOR_CONDITIONAL_FIELDS_MESSAGE_KEY, getPairObject(xorConditionalFields));
 
             BulkScanFormValidationConfigManager.RegexFieldsConfig alphaNumericFields = regexValidationConfig

@@ -46,16 +46,17 @@ public final class TestDataUtil {
         ocrDataSolicitorDxField.setName("solicitor_fax_number");
         ocrDataSolicitorDxField.setValue("123455");
 
-        return Arrays.asList(ocrDataApplicantFirstName,
-                             ocrDataApplicantLastName,
-                             ocrDataApplicantAddress,
-                             ocrDataApplicantPostcode,
-                             ocrDataApplicantTelephoneField,
-                             ocrDataApplicantEmailField,
-                             ocrDataSolicitorAddressField,
-                             ocrDataFirstNameField,
-                             ocrDataSolicitorTelephoneField,
-                             ocrDataSolicitorDxField
+        return Arrays.asList(
+            ocrDataApplicantFirstName,
+            ocrDataApplicantLastName,
+            ocrDataApplicantAddress,
+            ocrDataApplicantPostcode,
+            ocrDataApplicantTelephoneField,
+            ocrDataApplicantEmailField,
+            ocrDataSolicitorAddressField,
+            ocrDataFirstNameField,
+            ocrDataSolicitorTelephoneField,
+            ocrDataSolicitorDxField
         );
     }
 }

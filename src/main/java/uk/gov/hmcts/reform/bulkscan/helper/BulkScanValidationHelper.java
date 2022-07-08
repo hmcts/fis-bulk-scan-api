@@ -52,14 +52,15 @@ public class BulkScanValidationHelper {
     PostcodeLookupService postcodeLookupService;
 
     public BulkScanValidationResponse validateMandatoryAndOptionalFields(List<OcrDataField> ocrDatafields,
-                                                                                BulkScanFormValidationConfigManager
-                                                                                    .ValidationConfig validationConfg) {
+                                                                         BulkScanFormValidationConfigManager
+                                                                             .ValidationConfig validationConfg) {
         List<String> duplicateOcrFields = findDuplicateOcrFields(ocrDatafields);
         List<String> errors = new ArrayList<>();
         List<String> warnings = new ArrayList<>();
 
         List<String> differences = findUnknownFields(ocrDatafields, validationConfg.getMandatoryFields(),
-                                                     validationConfg.getOptionalFields());
+                                                     validationConfg.getOptionalFields()
+        );
 
         if (!differences.isEmpty()) {
             warnings.add(String.format(UNKNOWN_FIELDS_MESSAGE, String.join(",", differences)));
@@ -88,8 +89,8 @@ public class BulkScanValidationHelper {
     }
 
     private List<String> validateMandatoryAndOptionalFields(List<OcrDataField> ocrdatafields,
-                                                                   BulkScanFormValidationConfigManager.ValidationConfig
-                                                                       validationConfg, boolean isOptional) {
+                                                            BulkScanFormValidationConfigManager.ValidationConfig
+                                                                validationConfg, boolean isOptional) {
         Map<String, Pair<List<String>, String>> validationKeysMap = BulkScanConstants
             .getValidationFieldsMap(validationConfg);
         List<String> errorOrWarnings = new ArrayList<>();
@@ -100,12 +101,14 @@ public class BulkScanValidationHelper {
                 case MANDATORY_KEY:
                     if (!isOptional) {
                         errorOrWarnings.addAll(validateFields(ocrdatafields, isMandatoryField(pair.getLeft()),
-                                                              MANDATORY_KEY));
+                                                              MANDATORY_KEY
+                        ));
                     }
                     break;
                 case DATE_FORMAT_FIELDS_KEY:
                     errorOrWarnings.addAll(validateFormatFields(ocrdatafields, isOptional, mandatoryFields,
-                                                                entry.getKey(), pair, true));
+                                                                entry.getKey(), pair, true
+                    ));
                     break;
                 case EMAIL_FORMAT_FIELDS_KEY:
                 case POST_CODE_FIELDS_KEY:
@@ -114,7 +117,8 @@ public class BulkScanValidationHelper {
                 case NUMERIC_FIELDS_KEY:
                 case ALPHA_NUMERIC_FIELDS_KEY:
                     errorOrWarnings.addAll(validateFormatFields(ocrdatafields, isOptional, mandatoryFields,
-                                                                entry.getKey(), pair, false));
+                                                                entry.getKey(), pair, false
+                    ));
                     break;
                 case XOR_CONDITIONAL_FIELDS_MESSAGE_KEY:
                     errorOrWarnings.addAll(validateXorFields(ocrdatafields, isOptional, pair));
@@ -136,12 +140,12 @@ public class BulkScanValidationHelper {
         );
     }
 
-    private List<String> validateXorFields(List<OcrDataField> ocrDataFields,  boolean isOptional,
+    private List<String> validateXorFields(List<OcrDataField> ocrDataFields, boolean isOptional,
                                            Pair<List<String>, String> pair) {
         List<String> postCodeErrorMessages = new ArrayList<>(Collections.emptyList());
         Map<String, String> ocrDataFieldsMap = ocrDataFields
-                .stream()
-                .collect(Collectors.toMap(OcrDataField::getName, OcrDataField::getValue));
+            .stream()
+            .collect(Collectors.toMap(OcrDataField::getName, OcrDataField::getValue));
         List<String> pairs = pair.getKey();
         pairs.forEach(eachPair -> {
             postCodeErrorMessages.addAll(validateXorField(eachPair, ocrDataFieldsMap, isOptional));
@@ -182,7 +186,7 @@ public class BulkScanValidationHelper {
     }
 
     private List<String> validateFields(List<OcrDataField> ocrdatafields,
-                                               Predicate<OcrDataField> filterCondition, String errorMessageKey) {
+                                        Predicate<OcrDataField> filterCondition, String errorMessageKey) {
         return ocrdatafields.stream()
             .filter(filterCondition)
             .map(eachData -> String.format(MESSAGE_MAP.get(errorMessageKey), eachData.getName()))
@@ -195,15 +199,15 @@ public class BulkScanValidationHelper {
     }
 
     private Predicate<OcrDataField> isValidDate(List<String> mandatoryFields, List<String> fields,
-                                                       String regex, boolean isOptional) {
+                                                String regex, boolean isOptional) {
         return eachData -> isOptional != mandatoryFields.contains(eachData.getName())
-                && fields.contains(eachData.getName())
-                && !ObjectUtils.isEmpty(eachData.getValue())
-                && !isDateValid(eachData.getName(), eachData.getValue(), regex);
+            && fields.contains(eachData.getName())
+            && !ObjectUtils.isEmpty(eachData.getValue())
+            && !isDateValid(eachData.getName(), eachData.getValue(), regex);
     }
 
     private Predicate<OcrDataField> isMatchedWithRegex(List<String> mandatoryFields, List<String> fields,
-                                                              String regex, boolean isOptional) {
+                                                       String regex, boolean isOptional) {
         return eachData -> isOptional != mandatoryFields.contains(eachData.getName())
             && fields.contains(eachData.getName())
             && !ObjectUtils.isEmpty(eachData.getValue())

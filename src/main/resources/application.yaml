@@ -36,6 +36,7 @@ spring:
       - c2-form
       - a1-form
       - a58-transform
+      - a60-transform
 
 #  datasource:
 #    driver-class-name: org.postgresql.Driver
