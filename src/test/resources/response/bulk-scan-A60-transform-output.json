@@ -1,6 +1,6 @@
 {
   "case_creation_details": {
-    "case_type_id": "ADOPTION",
+    "case_type_id": "A58",
     "event_id": "create-case-adop-bs",
    "case_data": {
       "applicant": [

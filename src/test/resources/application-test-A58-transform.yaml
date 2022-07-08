@@ -5,7 +5,7 @@ uk:
         caseTypeofApplication:
           A58_STEP_PARENT:
             caseFields:
-              CASE_TYPE_ID: ADOPTION
+              CASE_TYPE_ID: A58
               EVENT_ID: create-case-adop-bs
             caseDataFields:
               applicant:
