@@ -25,6 +25,10 @@ public final class BulkScanServiceFactory {
         if (caseType.equals(FormType.A58_STEP_PARENT) || caseType.equals(FormType.A58_RELINQUISHED)) {
             return bulkScanServiceCache.get(FormType.A58);
         }
+
+        if (caseType.equals(FormType.A60)) {
+            return bulkScanServiceCache.get(FormType.A60);
+        }
         return bulkScanServiceCache.get(caseType);
     }
 }

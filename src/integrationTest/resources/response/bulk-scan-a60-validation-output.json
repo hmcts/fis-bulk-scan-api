@@ -1,0 +1,20 @@
+{
+  "case_creation_details":{
+    "case_type_id": "A60",
+    "event_id": "create-case-adop-bs",
+    "case_data":{
+      "applicant":[
+        {
+          "value":{
+            "applicantFirstName":"firstName",
+            "applicantLastName":"lsstName",
+            "applicantAddress":"123 test street, London",
+            "applicantTelephoneNumber":"+447965999000",
+            "applicantRelationToChild":"Step Father"
+          }
+        }      ]
+    }
+  },
+  "warnings":[
+  ]
+}

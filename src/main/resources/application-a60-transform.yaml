@@ -1,0 +1,23 @@
+uk:
+  gov:
+    hmcts:
+      transform:
+        caseTypeofApplication:
+          A60:
+            caseFields:
+              CASE_TYPE_ID: A60
+              EVENT_ID: create-case-adop-bs
+            caseDataFields:
+              applicant:
+                - value:
+                    applicantFirstName: applicant1_firstName
+                    applicantLastName: applicant1_lastName
+                    applicantAddress: applicant1_address
+                    applicantTelephoneNumber: applicant1_telephoneNumber
+                    applicantRelationToChild: applicant1_relationToChild
+                - value:
+                    applicantFirstName: applicant2_firstName
+                    applicantLastName: applicant2_lastName
+                    applicantAddress: applicant2_address
+                    applicantTelephoneNumber: applicant2_telephoneNumber
+                    applicantRelationToChild: applicant2_relationToChild

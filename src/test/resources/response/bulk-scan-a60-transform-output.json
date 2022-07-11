@@ -1,0 +1,30 @@
+{
+  "case_creation_details": {
+    "case_type_id": "ADOPTION",
+    "event_id": "create-case-adop-bs",
+    "case_data": {
+      "applicant": [
+        {
+          "value": {
+            "applicant1FirstName": "applicant1_firstName",
+            "applicant1LastName": "applicant1_lastName",
+            "applicant1Address": "123 test street, London",
+            "applicant1TelephoneNumber": "+447405678972",
+            "applicant1RelationToChild": "Step Father"
+          }
+        },
+        {
+          "value": {
+            "applicant2FirstName": null,
+            "applicant2LastName": null,
+            "applicant2Address": null,
+            "applicant2TelephoneNumber": null,
+            "applicant2RelationToChild": null
+
+          }
+        }
+      ]
+    }
+  },
+  "warnings": []
+}
