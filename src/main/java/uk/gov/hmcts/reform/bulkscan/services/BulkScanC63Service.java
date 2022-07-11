@@ -14,9 +14,6 @@ import uk.gov.hmcts.reform.bulkscan.model.FormType;
 public class BulkScanC63Service implements BulkScanService {
 
     @Autowired
-    BulkScanFormValidationConfigManager configManager;
-
-    @Autowired
     BulkScanValidationHelper bulkScanValidationHelper;
 
     @Override
@@ -28,8 +25,7 @@ public class BulkScanC63Service implements BulkScanService {
     public BulkScanValidationResponse validate(BulkScanValidationRequest bulkRequest) {
         // Validating the Fields..
         return bulkScanValidationHelper.validateMandatoryAndOptionalFields(bulkRequest.getOcrdatafields(),
-                                                                          configManager.getValidationConfig(
-                                                                              FormType.C63));
+                                                                           getCaseType());
     }
 
     @Override

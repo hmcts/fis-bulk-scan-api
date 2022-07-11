@@ -6,12 +6,9 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanFormValidationConfigManager;
+import uk.gov.hmcts.reform.bulkscan.config.BulkScanGroupValidationConfigManager;
 import uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants;
-import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
-import uk.gov.hmcts.reform.bulkscan.model.Errors;
-import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
-import uk.gov.hmcts.reform.bulkscan.model.Status;
-import uk.gov.hmcts.reform.bulkscan.model.Warnings;
+import uk.gov.hmcts.reform.bulkscan.model.*;
 import uk.gov.hmcts.reform.bulkscan.services.postcode.PostcodeLookupService;
 
 import java.util.ArrayList;
@@ -51,26 +48,38 @@ public class BulkScanValidationHelper {
     @Autowired
     PostcodeLookupService postcodeLookupService;
 
+    @Autowired
+    BulkScanFormValidationConfigManager configManager;
+
+    @Autowired
+    BulkScanGroupValidatorHelper bulkScanGroupValidatorHelper;
+
+    @Autowired
+    BulkScanGroupValidationConfigManager bulkScanGroupValidationConfigManager;
+
     public BulkScanValidationResponse validateMandatoryAndOptionalFields(List<OcrDataField> ocrDatafields,
-                                                                                BulkScanFormValidationConfigManager
-                                                                                    .ValidationConfig validationConfg) {
+                                                                         FormType formType) {
+        BulkScanFormValidationConfigManager.ValidationConfig validationConfg = configManager.getValidationConfig(
+            formType);
         List<String> duplicateOcrFields = findDuplicateOcrFields(ocrDatafields);
         List<String> errors = new ArrayList<>();
         List<String> warnings = new ArrayList<>();
 
-        List<String> differences = findUnknownFields(ocrDatafields, validationConfg.getMandatoryFields(),
-                                                     validationConfg.getOptionalFields());
+        List<String> differences = findUnknownFields(ocrDatafields, formType);
 
         if (!differences.isEmpty()) {
             warnings.add(String.format(UNKNOWN_FIELDS_MESSAGE, String.join(",", differences)));
         }
 
         if (duplicateOcrFields.isEmpty() && !ocrDatafields.isEmpty()) {
-            errors.addAll(findMissingFields(validationConfg.getMandatoryFields(), ocrDatafields));
+            List<String> mandatoryFields = new ArrayList<>();
+            mandatoryFields.addAll(validationConfg.getMandatoryFields());
+            mandatoryFields.addAll(bulkScanGroupValidatorHelper.validate(ocrDatafields, formType));
+            errors.addAll(findMissingFields(mandatoryFields, ocrDatafields));
 
-            errors.addAll(validateMandatoryAndOptionalFields(ocrDatafields, validationConfg, false));
+            errors.addAll(validateMandatoryAndOptionalFields(ocrDatafields, validationConfg, formType, false));
 
-            warnings.addAll(validateMandatoryAndOptionalFields(ocrDatafields, validationConfg, true));
+            warnings.addAll(validateMandatoryAndOptionalFields(ocrDatafields, validationConfg, formType, true));
         } else {
             String duplicateFields = String.join(",", duplicateOcrFields);
             log.info("Found duplicate fields in OCR data. {}", duplicateFields);
@@ -89,7 +98,8 @@ public class BulkScanValidationHelper {
 
     private List<String> validateMandatoryAndOptionalFields(List<OcrDataField> ocrdatafields,
                                                                    BulkScanFormValidationConfigManager.ValidationConfig
-                                                                       validationConfg, boolean isOptional) {
+                                                                       validationConfg, FormType formType,
+                                                            boolean isOptional) {
         Map<String, Pair<List<String>, String>> validationKeysMap = BulkScanConstants
             .getValidationFieldsMap(validationConfg);
         List<String> errorOrWarnings = new ArrayList<>();
@@ -99,7 +109,10 @@ public class BulkScanValidationHelper {
             switch (entry.getKey()) {
                 case MANDATORY_KEY:
                     if (!isOptional) {
-                        errorOrWarnings.addAll(validateFields(ocrdatafields, isMandatoryField(pair.getLeft()),
+                        List<String> fields = new ArrayList<>();
+                        fields.addAll(pair.getLeft());
+                        fields.addAll(bulkScanGroupValidatorHelper.validate(ocrdatafields, formType));
+                        errorOrWarnings.addAll(validateFields(ocrdatafields, isMandatoryField(fields),
                                                               MANDATORY_KEY));
                     }
                     break;
@@ -221,8 +234,11 @@ public class BulkScanValidationHelper {
             .collect(toList());
     }
 
-    public List<String> findUnknownFields(List<OcrDataField> ocrDatafields, List<String> mandatoryFields,
-                                          List<String> optionalFields) {
+    public List<String> findUnknownFields(List<OcrDataField> ocrDatafields, FormType formType) {
+        BulkScanFormValidationConfigManager
+            .ValidationConfig validationConfig = configManager.getValidationConfig(formType);
+        List<String> mandatoryFields = validationConfig.getMandatoryFields();
+        List<String> optionalFields = validationConfig.getOptionalFields();
         optionalFields.removeIf(String::isEmpty);
         if (optionalFields.isEmpty()) {
             //TODO: Optional fields not yet configured for all forms. For now will allow perform operation.

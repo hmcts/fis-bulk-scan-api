@@ -40,9 +40,6 @@ public class BulkScanA58Service implements BulkScanService {
     public static final String SCAN_DOCUMENTS = "scannedDocuments";
 
     @Autowired
-    BulkScanFormValidationConfigManager configManager;
-
-    @Autowired
     BulkScanValidationHelper bulkScanValidationHelper;
 
     @Autowired
@@ -61,8 +58,7 @@ public class BulkScanA58Service implements BulkScanService {
         }
         // Validating the Fields..
         return bulkScanValidationHelper.validateMandatoryAndOptionalFields(bulkRequest.getOcrdatafields(),
-                configManager.getValidationConfig(
-                        formType));
+                        formType);
     }
 
     @Override
@@ -82,10 +78,8 @@ public class BulkScanA58Service implements BulkScanService {
         }
 
         // Validating if any unknown fields present or not. if exist then it should go as warnings.
-        BulkScanFormValidationConfigManager
-                .ValidationConfig validationConfig = configManager.getValidationConfig(formType);
         List<String> unknownFieldsList = bulkScanValidationHelper.findUnknownFields(inputFieldsList,
-                validationConfig.getMandatoryFields(), validationConfig.getOptionalFields());
+                formType);
 
         //TODO RELINQUISHED_ADOPTION condition to be added as part of ISDB-269
 

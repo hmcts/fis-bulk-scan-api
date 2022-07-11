@@ -25,9 +25,6 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.BULK_SCAN
 public class BulkScanC100Service implements BulkScanService {
 
     @Autowired
-    BulkScanFormValidationConfigManager configManager;
-
-    @Autowired
     BulkScanTransformConfigManager transformConfigManager;
 
     @Autowired
@@ -42,8 +39,7 @@ public class BulkScanC100Service implements BulkScanService {
     public BulkScanValidationResponse validate(BulkScanValidationRequest bulkRequest) {
         // Validating the Fields..
         return bulkScanValidationHelper.validateMandatoryAndOptionalFields(bulkRequest.getOcrdatafields(),
-                                                                          configManager.getValidationConfig(
-                                                                              FormType.C100));
+                                                                           getCaseType());
     }
 
 

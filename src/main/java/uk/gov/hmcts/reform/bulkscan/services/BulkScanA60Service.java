@@ -28,8 +28,7 @@ public class BulkScanA60Service implements BulkScanService {
     public BulkScanValidationResponse validate(BulkScanValidationRequest bulkRequest) {
         // Validating the Fields..
         return bulkScanValidationHelper.validateMandatoryAndOptionalFields(bulkRequest.getOcrdatafields(),
-                                                                          configManager.getValidationConfig(
-                                                                              FormType.A60));
+                                                                           getCaseType());
     }
 
     @Override

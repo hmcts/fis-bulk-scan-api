@@ -17,17 +17,13 @@ import uk.gov.hmcts.reform.bulkscan.model.FormType;
 public class BulkScanEdgeCaseService implements BulkScanService {
 
     @Autowired
-    BulkScanFormValidationConfigManager configManager;
-
-    @Autowired
     BulkScanValidationHelper bulkScanValidationHelper;
 
     @Override
     public BulkScanValidationResponse validate(BulkScanValidationRequest bulkScanValidationRequest) {
         // Validating the Fields..
         return bulkScanValidationHelper.validateMandatoryAndOptionalFields(bulkScanValidationRequest.getOcrdatafields(),
-                                                                           configManager
-                                                                               .getValidationConfig(FormType.EdgeCase));
+                                                                           getCaseType());
     }
 
     @Override
