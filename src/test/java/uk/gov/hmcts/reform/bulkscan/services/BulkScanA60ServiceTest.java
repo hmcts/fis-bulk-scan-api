@@ -2,9 +2,9 @@ package uk.gov.hmcts.reform.bulkscan.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONException;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Spy;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,10 +15,13 @@ import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
+import uk.gov.hmcts.reform.bulkscan.model.ScanDocument;
+import uk.gov.hmcts.reform.bulkscan.model.ScannedDocuments;
 import uk.gov.hmcts.reform.bulkscan.model.Status;
 import uk.gov.hmcts.reform.bulkscan.utils.TestDataUtil;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,14 +40,12 @@ import static uk.gov.hmcts.reform.bulkscan.utils.TestResourceUtil.readFileFrom;
 @ActiveProfiles("test")
 class BulkScanA60ServiceTest {
     private final ObjectMapper mapper = new ObjectMapper();
-    private static final String APPLICANT1_TEST_ADDRESS = "123 test street, London";
     private static final String BULK_SCAN_APPLICANT_DETAILS_FIELD = "applicant";
     private static final String APPLICANT1_TEST_FIRSTNAME = "applicant1_firstName";
     private static final String APPLICANT1_TEST_LASTNAME = "applicant1_lastName";
     private static final String A60_TRANSFORM_RESPONSE_PATH
         = "classpath:response/bulk-scan-a60-transform-output.json";
 
-    @Spy
     @Autowired
     BulkScanA60Service bulkScanValidationService;
 
@@ -59,7 +60,7 @@ class BulkScanA60ServiceTest {
     @Test
     void testA60MandatoryErrorWhileDoingValidation() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-            TestDataUtil.getA60OrC63orA58ErrorData()).build();
+            TestDataUtil.getA60ErrorData()).build();
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
         assertTrue(res.getErrors().items.contains(String.format(MANDATORY_ERROR_MESSAGE, APPLICANT1_TEST_FIRSTNAME)));
@@ -68,7 +69,7 @@ class BulkScanA60ServiceTest {
     @Test
     void testA60FieldMissingErrorWhileDoingValidation() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-            TestDataUtil.getA60OrC63orA58ErrorData()).build();
+            TestDataUtil.getA60ErrorData()).build();
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
         assertTrue(res.getErrors().items.contains(String.format(MISSING_FIELD_MESSAGE, APPLICANT1_TEST_LASTNAME)));
@@ -77,7 +78,7 @@ class BulkScanA60ServiceTest {
     @Test
     void testA60OptionalFieldsWarningsWhileDoingValidation() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-            TestDataUtil.getA60OrC63orA58ErrorData()).build();
+            TestDataUtil.getA60ErrorData()).build();
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertTrue(res.getWarnings().items
                        .contains(String.format(PHONE_NUMBER_MESSAGE, "applicant2_telephoneNumber")));
@@ -99,7 +100,6 @@ class BulkScanA60ServiceTest {
     }
 
 
-
     @Test
     void testA60Transform() throws IOException, JSONException {
         List<OcrDataField> ocrDataFieldLst = TestDataUtil.getA60Data();
@@ -118,20 +118,68 @@ class BulkScanA60ServiceTest {
                           .getCaseData().get(BULK_SCAN_APPLICANT_DETAILS_FIELD));
         assertTrue(caseData.get(BULK_SCAN_APPLICANT_DETAILS_FIELD).toString().contains(APPLICANT1_TEST_FIRSTNAME));
         assertTrue(caseData.get(BULK_SCAN_APPLICANT_DETAILS_FIELD).toString().contains(APPLICANT1_TEST_LASTNAME));
-        assertTrue(caseData.get(BULK_SCAN_APPLICANT_DETAILS_FIELD).toString().contains(APPLICANT1_TEST_ADDRESS));
     }
 
+    @DisplayName("Transformed data processed should be the same as the prepared json output file")
     @Test
     void testA60TransformRequest() throws IOException, JSONException {
         BulkScanTransformationResponse bulkScanTransformationResponse =
             bulkScanValidationService
                 .transform(BulkScanTransformationRequest
                                .builder()
+                               .scannedDocuments(Collections.emptyList())
+                               .scannedDocuments(List.of(
+                                   ScannedDocuments.builder()
+                                       .scanDocument(ScanDocument.builder()
+                                                         .url("url")
+                                                         .binaryUrl("binary_url")
+                                                         .filename("filename")
+                                                         .build())
+                                       .build(),
+                                   ScannedDocuments.builder()
+                                       .scanDocument(ScanDocument.builder()
+                                                         .url("url1")
+                                                         .binaryUrl("binary_url1")
+                                                         .filename("filename1")
+                                                         .build())
+                                       .build()))
                                .ocrdatafields(TestDataUtil.getA60Data()).build());
 
         JSONAssert.assertEquals(
             readFileFrom(A60_TRANSFORM_RESPONSE_PATH),
             mapper.writeValueAsString(bulkScanTransformationResponse), true
         );
+    }
+
+    @DisplayName("Transformed data processed should produce different result from prepared output file")
+    @Test
+    void testA60TransformRequestErrorResponse() throws IOException, JSONException {
+        BulkScanTransformationResponse bulkScanTransformationResponse =
+            bulkScanValidationService
+                .transform(BulkScanTransformationRequest
+                               .builder()
+                               .scannedDocuments(Collections.emptyList())
+                               .scannedDocuments(List.of(
+                                   ScannedDocuments.builder()
+                                       .scanDocument(ScanDocument.builder()
+                                                         .url("url")
+                                                         .binaryUrl("binary_url")
+                                                         .filename("filename")
+                                                         .build())
+                                       .build(),
+                                   ScannedDocuments.builder()
+                                       .scanDocument(ScanDocument.builder()
+                                                         .url("url1")
+                                                         .binaryUrl("binary_url1")
+                                                         .filename("filename2")
+                                                         .build())
+                                       .build()))
+                               .ocrdatafields(TestDataUtil.getA60Data()).build());
+
+        JSONAssert.assertNotEquals(
+            readFileFrom(A60_TRANSFORM_RESPONSE_PATH),
+            mapper.writeValueAsString(bulkScanTransformationResponse), true
+        );
+        assertTrue(mapper.writeValueAsString(bulkScanTransformationResponse).contains("filename2"));
     }
 }

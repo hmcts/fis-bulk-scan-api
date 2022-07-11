@@ -34,6 +34,7 @@ public final class BulkScanConstants {
     public static final String FAX_NUMBER_FORMAT_MESSAGE_KEY = "faxNumberFields";
     public static final String XOR_CONDITIONAL_FIELDS_MESSAGE_KEY = "xorConditionalFields";
     public static final String ALPHA_NUMERIC_FIELDS_KEY = "alphaNumericFields";
+    public static final String SCAN_DOCUMENTS = "scannedDocuments";
 
     public static final Map<String, String> MESSAGE_MAP = getErrorMessageMap();
 

@@ -9,8 +9,7 @@
             "applicantFirstName":"firstName",
             "applicantLastName":"lastName",
             "applicantAddress":"123 test street, London",
-            "applicantTelephoneNumber":"+447965999000",
-            "applicantRelationToChild":"Step Father"
+            "applicantTelephoneNumber":"+447965999000"
           }
         }
       ]

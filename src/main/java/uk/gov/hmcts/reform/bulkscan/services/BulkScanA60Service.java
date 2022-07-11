@@ -22,7 +22,9 @@ import java.util.Map;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.BULK_SCAN_CASE_REFERENCE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CASE_TYPE_ID;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EVENT_ID;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.SCAN_DOCUMENTS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.UNKNOWN_FIELDS_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper.transformScanDocuments;
 import static uk.gov.hmcts.reform.bulkscan.model.FormType.A60;
 
 @Service
@@ -74,9 +76,13 @@ public class BulkScanA60Service implements BulkScanService {
                 validationConfig.getOptionalFields()
             );
 
+
         Map<String, Object> populatedMap = (Map) BulkScanTransformHelper
-            .transformToCaseData(transformConfigManager
-                                     .getTransformationConfig(formType).getCaseDataFields(), inputFieldsMap);
+            .transformToCaseData(new HashMap<>(transformConfigManager
+                                                   .getTransformationConfig(formType)
+                                                   .getCaseDataFields()), inputFieldsMap);
+
+        populatedMap.put(SCAN_DOCUMENTS, transformScanDocuments(bulkScanTransformationRequest));
 
         Map<String, String> caseTypeAndEventId =
             transformConfigManager.getTransformationConfig(formType).getCaseFields();

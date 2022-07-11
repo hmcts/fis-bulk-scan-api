@@ -14,10 +14,8 @@ uk:
                     applicant1LastName: applicant1_lastName
                     applicant1Address: applicant1_address
                     applicant1TelephoneNumber: applicant1_telephoneNumber
-                    applicant1RelationToChild: applicant1_relationToChild
                 - value:
                     applicant2FirstName: applicant2_firstName
                     applicant2LastName: applicant2_lastName
                     applicant2Address: applicant2_address
                     applicant2TelephoneNumber: applicant2_telephoneNumber
-                    applicant2RelationToChild: applicant2_relationToChild

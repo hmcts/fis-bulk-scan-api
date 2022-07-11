@@ -344,20 +344,15 @@ public final class TestDataUtil {
         ocrDataLastNameField.setValue("applicant1_lastName");
         fieldList.add(ocrDataLastNameField);
 
-        OcrDataField ocrContactNumberField = new OcrDataField();
-        ocrContactNumberField.setName("applicant1_telephoneNumber");
-        ocrContactNumberField.setValue("+447405678972");
-        fieldList.add(ocrContactNumberField);
-
-        OcrDataField ocrRelationToChildField = new OcrDataField();
-        ocrRelationToChildField.setName("applicant1_relationToChild");
-        ocrRelationToChildField.setValue("Step Father");
-        fieldList.add(ocrRelationToChildField);
-
         OcrDataField ocrAddressField = new OcrDataField();
         ocrAddressField.setName("applicant1_address");
         ocrAddressField.setValue(ADDRESS);
         fieldList.add(ocrAddressField);
+
+        OcrDataField ocrContactNumberField = new OcrDataField();
+        ocrContactNumberField.setName("applicant1_telephoneNumber");
+        ocrContactNumberField.setValue("+447405678972");
+        fieldList.add(ocrContactNumberField);
 
         return fieldList;
     }
@@ -379,11 +374,6 @@ public final class TestDataUtil {
         ocrContactNumberField.setName("applicant1_telephoneNumber");
         ocrContactNumberField.setValue("+447405678972");
         fieldList.add(ocrContactNumberField);
-
-        OcrDataField ocrRelationToChildField = new OcrDataField();
-        ocrRelationToChildField.setName("applicant1_relationToChild");
-        ocrRelationToChildField.setValue("Step Father");
-        fieldList.add(ocrRelationToChildField);
 
         OcrDataField ocrUnknownField = new OcrDataField();
         ocrUnknownField.setName("applicant1_unknownField");
@@ -545,6 +535,40 @@ public final class TestDataUtil {
         ocrPostCodeField1.setName("applicant2_postCode");
         ocrPostCodeField1.setValue("testCode");
         fieldList.add(ocrPostCodeField1);
+
+        OcrDataField ocrContactNumberField1 = new OcrDataField();
+        ocrContactNumberField1.setName("applicant2_telephoneNumber");
+        ocrContactNumberField1.setValue("+447405672");
+        fieldList.add(ocrContactNumberField1);
+
+        OcrDataField ocrAddressField = new OcrDataField();
+        ocrAddressField.setName("applicant1_address");
+        ocrAddressField.setValue(ADDRESS);
+        fieldList.add(ocrAddressField);
+
+        return fieldList;
+    }
+
+    public static List<OcrDataField> getA60ErrorData() {
+        List<OcrDataField> fieldList = new ArrayList<>();
+        OcrDataField ocrDataFirstNameField = new OcrDataField();
+        ocrDataFirstNameField.setName("applicant1_firstName");
+        fieldList.add(ocrDataFirstNameField);
+
+        OcrDataField ocrDateField = new OcrDataField();
+        ocrDateField.setName("applicant1_dateOfBirth");
+        ocrDateField.setValue("2-02-2022");
+        fieldList.add(ocrDateField);
+
+        OcrDataField ocrPostCodeField = new OcrDataField();
+        ocrPostCodeField.setName("applicant1_postCode");
+        ocrPostCodeField.setValue("testCode");
+        fieldList.add(ocrPostCodeField);
+
+        OcrDataField ocrContactNumberField = new OcrDataField();
+        ocrContactNumberField.setName("applicant1_telephoneNumber");
+        ocrContactNumberField.setValue("+447405672");
+        fieldList.add(ocrContactNumberField);
 
         OcrDataField ocrContactNumberField1 = new OcrDataField();
         ocrContactNumberField1.setName("applicant2_telephoneNumber");

@@ -17,10 +17,6 @@
       "value":"123 test street, London"
     },
     {
-      "name": "applicant1_relationToChild",
-      "value": "Step Father"
-    },
-    {
       "name":"applicant2_firstName",
       "value":"applicant2_firstName"
     },
@@ -35,10 +31,15 @@
     {
       "name":"applicant2_address",
       "value":"123 test street, London"
-    },
+    }
+  ],
+  "scanned_documents": [
     {
-      "name": "applicant2_relationToChild",
-      "value": "Step Mother"
+      "url": {
+        "document_url":"http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c",
+        "document_filename":"test.pdf",
+        "document_binary_url":"http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
+      }
     }
   ],
   "form_type": "A60"

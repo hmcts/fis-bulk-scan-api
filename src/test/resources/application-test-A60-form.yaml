@@ -10,12 +10,10 @@ uk:
               - applicant1_address
               - applicant1_telephoneNumber
             optionalFields:
-              - applicant1_relationToChild
               - applicant2_firstName
               - applicant2_lastName
               - applicant2_address
               - applicant2_telephoneNumber
-              - applicant2_relationToChild
             regexValidationFields:
               dateFields:
                 fieldNames:
