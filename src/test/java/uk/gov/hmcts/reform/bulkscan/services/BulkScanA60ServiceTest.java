@@ -39,7 +39,7 @@ import static uk.gov.hmcts.reform.bulkscan.utils.TestResourceUtil.readFileFrom;
 @SpringBootTest
 @ActiveProfiles("test")
 class BulkScanA60ServiceTest {
-    private final ObjectMapper mapper = new ObjectMapper();
+    private static final ObjectMapper mapper = new ObjectMapper();
     private static final String BULK_SCAN_APPLICANT_DETAILS_FIELD = "applicant";
     private static final String APPLICANT1_TEST_FIRSTNAME = "applicant1_firstName";
     private static final String APPLICANT1_TEST_LASTNAME = "applicant1_lastName";
@@ -60,9 +60,9 @@ class BulkScanA60ServiceTest {
     @Test
     void testA60Error() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-            TestDataUtil.getA60Data()).build();
+            TestDataUtil.getA60ErrorData()).build();
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
-        assertEquals(Status.SUCCESS, res.status);
+        assertEquals(Status.ERRORS, res.status);
     }
 
     @Test
@@ -92,6 +92,7 @@ class BulkScanA60ServiceTest {
                        .contains(String.format(PHONE_NUMBER_MESSAGE, "applicant2_telephoneNumber")));
     }
 
+    @DisplayName("Should record and report unknown field in the test data")
     @Test
     void testA60UnknownFieldsWarningsWhileDoingValidation() {
         List<OcrDataField> ocrDataFieldLst = TestDataUtil.getA60DataWithUnknownField();
@@ -108,6 +109,7 @@ class BulkScanA60ServiceTest {
     }
 
 
+    @DisplayName("Should process transformation request and compare the reponse ")
     @Test
     void testA60Transform() throws IOException, JSONException {
         List<OcrDataField> ocrDataFieldLst = TestDataUtil.getA60Data();
@@ -150,44 +152,13 @@ class BulkScanA60ServiceTest {
                                                          .binaryUrl("binary_url1")
                                                          .filename("filename1")
                                                          .build())
-                                       .build()))
+                                       .build()
+                               ))
                                .ocrdatafields(TestDataUtil.getA60Data()).build());
 
         JSONAssert.assertEquals(
             readFileFrom(A60_TRANSFORM_RESPONSE_PATH),
             mapper.writeValueAsString(bulkScanTransformationResponse), true
         );
-    }
-
-    @DisplayName("Transformed data processed should produce different result from prepared output file")
-    @Test
-    void testA60TransformErrorRequest() throws IOException, JSONException {
-        BulkScanTransformationResponse bulkScanTransformationResponse =
-            bulkScanValidationService
-                .transform(BulkScanTransformationRequest
-                               .builder()
-                               .scannedDocuments(Collections.emptyList())
-                               .scannedDocuments(List.of(
-                                   ScannedDocuments.builder()
-                                       .scanDocument(ScanDocument.builder()
-                                                         .url("url")
-                                                         .binaryUrl("binary_url")
-                                                         .filename("filename")
-                                                         .build())
-                                       .build(),
-                                   ScannedDocuments.builder()
-                                       .scanDocument(ScanDocument.builder()
-                                                         .url("url1")
-                                                         .binaryUrl("binary_url1")
-                                                         .filename("filename2")
-                                                         .build())
-                                       .build()))
-                               .ocrdatafields(TestDataUtil.getA60Data()).build());
-
-        JSONAssert.assertNotEquals(
-            readFileFrom(A60_TRANSFORM_RESPONSE_PATH),
-            mapper.writeValueAsString(bulkScanTransformationResponse), true
-        );
-        assertTrue(mapper.writeValueAsString(bulkScanTransformationResponse).contains("filename2"));
     }
 }

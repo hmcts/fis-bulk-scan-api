@@ -15,22 +15,6 @@
     {
       "name":"applicant1_address",
       "value":"123 test street, London"
-    },
-    {
-      "name":"applicant2_firstName",
-      "value":"applicant2_firstName"
-    },
-    {
-      "name":"applicant2_lastName",
-      "value":"applicant2_lastName"
-    },
-    {
-      "name":"applicant2_telephoneNumber",
-      "value":"09999999990"
-    },
-    {
-      "name":"applicant2_address",
-      "value":"123 test street, London"
     }
   ],
   "scanned_documents": [
