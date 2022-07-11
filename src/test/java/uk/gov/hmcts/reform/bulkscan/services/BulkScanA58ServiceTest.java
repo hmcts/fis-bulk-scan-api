@@ -2,6 +2,7 @@ package uk.gov.hmcts.reform.bulkscan.services;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONException;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Spy;
@@ -14,6 +15,7 @@ import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
+import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
 import uk.gov.hmcts.reform.bulkscan.model.ScanDocument;
 import uk.gov.hmcts.reform.bulkscan.model.ScannedDocuments;
 import uk.gov.hmcts.reform.bulkscan.model.Status;
@@ -28,6 +30,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_ERROR_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MISSING_FIELD_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PHONE_NUMBER_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.utils.TestDataUtil.getUnknownField;
 import static uk.gov.hmcts.reform.bulkscan.utils.TestResourceUtil.readFileFrom;
 
 @ExtendWith(SpringExtension.class)
@@ -37,6 +40,9 @@ class BulkScanA58ServiceTest {
 
     private static final String A58_STEP_PARENT_TRANSFORM_RESPONSE_PATH =
             "classpath:response/bulk-scan-a58-step-parent-transform-output.json";
+
+    private static final String A58_POST_PLACEMENT_TRANSFORM_RESPONSE_PATH =
+            "classpath:response/bulk-scan-a58-post-placement-transform-output.json";
 
     @Spy
     @Autowired
@@ -110,6 +116,47 @@ class BulkScanA58ServiceTest {
         JSONAssert.assertEquals(readFileFrom(A58_STEP_PARENT_TRANSFORM_RESPONSE_PATH),
                 mapper.writeValueAsString(bulkScanTransformationResponse), true);
 
+    }
+
+    @Test
+    @DisplayName("A58 post placement form validation success scenario")
+    void testA58PostPlacementApplicationValidationSuccess() {
+        BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
+                TestDataUtil.getA58PostPlacementData()).build();
+        BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
+        assertEquals(Status.SUCCESS, res.status);
+    }
+
+    @Test
+    @DisplayName("A58 post placement form validation unknown field warning scenario")
+    void testA58PostPlacementApplicationValidationUnknownFieldWarning() {
+        List<OcrDataField> ocrDataFieldList = TestDataUtil.getA58PostPlacementData();
+        ocrDataFieldList.add(getUnknownField());
+        BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder()
+                .ocrdatafields(ocrDataFieldList).build();
+        BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
+        assertEquals(Status.WARNINGS, res.status);
+    }
+
+    @Test
+    @DisplayName("A58 post placement form validation error scenario")
+    void testA58PostPlacementApplicationMandatoryErrorWhileDoingValidation() {
+        BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder()
+                .ocrdatafields(TestDataUtil.getA60OrC63orA58ErrorData()).build();
+        BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
+        assertTrue(res.getErrors().items.contains(String.format(MANDATORY_ERROR_MESSAGE, "applicant1_firstName")));
+    }
+
+    @Test
+    @DisplayName("A58 post placement form transform scenario")
+    void testA58PostPlacementApplicationTransformSuccess() throws IOException, JSONException {
+        ObjectMapper mapper = new ObjectMapper();
+        BulkScanTransformationRequest bulkScanTransformationRequest =
+                BulkScanTransformationRequest.builder().ocrdatafields(TestDataUtil.getA58PostPlacementData())
+                        .build();
+        BulkScanTransformationResponse res = bulkScanValidationService.transform(bulkScanTransformationRequest);
+        JSONAssert.assertEquals(readFileFrom(A58_POST_PLACEMENT_TRANSFORM_RESPONSE_PATH),
+                mapper.writeValueAsString(res), true);
     }
 
 }

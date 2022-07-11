@@ -1,0 +1,74 @@
+{
+  "ocr_data_fields":[
+    {
+      "name":"mother_firstName",
+      "value":"Address1 London"
+    },
+    {
+      "name":"mother_lastName",
+      "value":"motherFirstName"
+    },
+    {
+      "name":"mother_address",
+      "value":"motherLastName"
+    },
+    {
+      "name":"mother_nationality",
+      "value":"motherNationality"
+    },
+    {
+      "name":"mother_occupation",
+      "value":"motherOccupation"
+    },
+    {
+      "name":"father_firstName",
+      "value":"Address1 London"
+    },
+    {
+      "name":"father_lastName",
+      "value":"fatherFirstName"
+    },
+    {
+      "name":"father_address",
+      "value":"fatherLastName"
+    },
+    {
+      "name":"father_nationality",
+      "value":"fatherNationality"
+    },
+    {
+      "name":"father_occupation",
+      "value":"fatherOccupation"
+    },
+    {
+      "name": "parental_responsibility",
+      "value": "No"
+    },
+    {
+      "name": "parental_responsibility_order",
+      "value": "Yes"
+    },
+    {
+      "name":"guardian_firstName",
+      "value":"guardianFirstName"
+    },
+    {
+      "name":"guardian_lastName",
+      "value":"guardianLastName"
+    },
+    {
+      "name":"guardian_address",
+      "value":"Address1 London"
+    }
+  ],
+  "scanned_documents": [
+    {
+      "url": {
+        "document_url":"http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c",
+        "document_filename":"test.pdf",
+        "document_binary_url":"http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
+      }
+    }
+  ],
+  "form_type": "A58"
+}

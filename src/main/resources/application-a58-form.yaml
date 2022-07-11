@@ -9,6 +9,11 @@ uk:
               - applicant1_lastName
               - applicant1_address
               - applicant1_telephoneNumber
+              - mother_firstName
+              - mother_lastName
+              - mother_address
+              - mother_nationality
+              - mother_occupation
             optionalFields:
               - applicant1_relationToChild
               - applicant2_firstName
@@ -17,6 +22,18 @@ uk:
               - applicant2_telephoneNumber
               - applicant2_relationToChild
               - applicant_relationToChild_father_partner
+              - child_relationship_father
+              - child_relationship_other
+              - father_firstName
+              - father_lastName
+              - father_address
+              - father_nationality
+              - father_occupation
+              - parental_responsibility
+              - parental_responsibility_order
+              - guardian_firstName
+              - guardian_LastName
+              - guardian_address
             regexValidationFields:
               dateFields:
                 fieldNames:

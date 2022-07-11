@@ -1,0 +1,40 @@
+{
+  "ocr_data_fields":[
+    {
+      "name":"applicant1_address",
+      "value":"Address1 London"
+    },
+    {
+      "name":"applicant1_firstName",
+      "value":"firstName"
+    },
+    {
+      "name":"applicant1_lastName",
+      "value":"LastName"
+    },
+    {
+      "name":"applicant1_telephoneNumber",
+      "value":"0999999999"
+    },
+    {
+      "name":"mother_firstName",
+      "value":"motherFirstName"
+    },
+    {
+      "name":"mother_lastName",
+      "value":"motherLastName"
+    },
+    {
+      "name":"mother_address",
+      "value":"Address1 London"
+    },
+    {
+      "name":"mother_nationality",
+      "value":"motherNationality"
+    },
+    {
+      "name":"mother_occupation",
+      "value":"motherOccupation"
+    }
+  ]
+}

@@ -47,6 +47,11 @@ public class BulkScanA58Service implements BulkScanService {
     public static final String STEP_PARENT_ADOPTION = "Step Parent";
 
     public static final String SCAN_DOCUMENTS = "scannedDocuments";
+    public static final String OTHER_PARENT_RELATIONSHIP_TO_CHILD = "otherParentRelationshipToChild";
+    public static final String RELATIONSHIP_FATHER = "child_relationship_father";
+    public static final String RELATIONSHIP_OTHER = "child_relationship_other";
+    public static final String FATHER = "Father";
+    public static final String OTHER_PARENT = "Other parent";
 
     @Autowired
     BulkScanFormValidationConfigManager configManager;
@@ -108,6 +113,8 @@ public class BulkScanA58Service implements BulkScanService {
 
         populatedMap.put(SCAN_DOCUMENTS, transformScanDocuments(bulkScanTransformationRequest));
 
+        buildRelationshipToChild(inputFieldsMap, populatedMap);
+
         Map<String, String> caseTypeAndEventId =
                 transformConfigManager.getTransformationConfig(formType).getCaseFields();
 
@@ -124,6 +131,14 @@ public class BulkScanA58Service implements BulkScanService {
         return builder.build();
     }
 
+    private void buildRelationshipToChild(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(RELATIONSHIP_FATHER))) {
+            populatedMap.put(OTHER_PARENT_RELATIONSHIP_TO_CHILD, FATHER);
+        } else if (TRUE.equalsIgnoreCase(inputFieldsMap.get(RELATIONSHIP_OTHER))) {
+            populatedMap.put(OTHER_PARENT_RELATIONSHIP_TO_CHILD, OTHER_PARENT);
+        }
+    }
+
     private boolean isA58RelinquishedAdoptionFormType(Map<String, String> inputFieldsMap) {
         return nonNull(inputFieldsMap.get(ADOPTION_ORDER_CONSENT))
             || nonNull(inputFieldsMap.get(ADOPTION_ORDER_CONSENT_ADVANCE))
@@ -136,8 +151,8 @@ public class BulkScanA58Service implements BulkScanService {
 
     private boolean isA58ParentFormType(Map<String, String> inputFieldsMap) {
         return STEP_PARENT_ADOPTION.equalsIgnoreCase(inputFieldsMap.get(APPLICANT1_RELATION_TO_CHILD))
-            || STEP_PARENT_ADOPTION.equalsIgnoreCase(inputFieldsMap.get(APPLICANT2_RELATION_TO_CHILD))
-            || TRUE.equalsIgnoreCase(inputFieldsMap.get(APPLICANT_RELATION_TO_CHILD_FATHER_PARTNER))
-            || FALSE.equalsIgnoreCase(inputFieldsMap.get(APPLICANT_RELATION_TO_CHILD_FATHER_PARTNER));
+                || STEP_PARENT_ADOPTION.equalsIgnoreCase(inputFieldsMap.get(APPLICANT2_RELATION_TO_CHILD))
+                || TRUE.equalsIgnoreCase(inputFieldsMap.get(APPLICANT_RELATION_TO_CHILD_FATHER_PARTNER))
+                || FALSE.equalsIgnoreCase(inputFieldsMap.get(APPLICANT_RELATION_TO_CHILD_FATHER_PARTNER));
     }
 }

@@ -3,6 +3,26 @@ uk:
     hmcts:
       transform:
         caseTypeofApplication:
+          A58:
+            caseFields:
+              CASE_TYPE_ID: A58
+              EVENT_ID: create-case-adop-bs
+            caseDataFields:
+              birthMotherFirstName: mother_firstName
+              birthMotherLastName: mother_lastName
+              birthMotherAddress: mother_address
+              birthMotherNationality: mother_nationality
+              birthMotherOccupation: mother_occupation
+              birthFatherFirstName: father_firstName
+              birthFatherLastName: father_lastName
+              birthFatherAddress: father_address
+              birthFatherNationality: father_nationality
+              birthFatherOccupation: father_occupation
+              parentalResponsibility: parental_responsibility
+              parentalResponsibilityOrder: parental_responsibility_order
+              otherParentFirstName: guardian_firstName
+              otherParentLastName: guardian_LastName
+              otherParentAddress: guardian_address
           A58_STEP_PARENT:
             caseFields:
               CASE_TYPE_ID: A58

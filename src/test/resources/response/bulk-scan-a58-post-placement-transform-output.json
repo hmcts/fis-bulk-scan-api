@@ -1,0 +1,30 @@
+{
+  "case_creation_details":{
+    "case_type_id":"A58",
+    "event_id":"create-case-adop-bs",
+    "case_data":{
+      "otherParentRelationshipToChild":"Father",
+      "parentalResponsibility":null,
+      "birthFatherFirstName":null,
+      "birthMotherLastName":"testBirthMotherLastName",
+      "birthMotherOccupation":"testBirthMotherOccupation",
+      "birthMotherFirstName":"testBirthMotherFirstName",
+      "birthMotherAddress":"testBirthMotherAddress",
+      "birthMotherNationality":"testBirthMotherNationality",
+      "otherParentLastName":null,
+      "scannedDocuments":[
+
+      ],
+      "otherParentFirstName":null,
+      "birthFatherLastName":null,
+      "birthFatherNationality":null,
+      "parentalResponsibilityOrder":null,
+      "birthFatherOccupation":null,
+      "birthFatherAddress":null,
+      "otherParentAddress":null
+    }
+  },
+  "warnings":[
+
+  ]
+}

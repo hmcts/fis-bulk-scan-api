@@ -1,0 +1,35 @@
+{
+  "case_creation_details":{
+    "case_type_id":"A58",
+    "event_id":"create-case-adop-bs",
+    "case_data":{
+      "birthMotherFirstName":"Address1 London",
+      "birthMotherLastName":"motherFirstName",
+      "birthMotherAddress":"motherLastName",
+      "birthMotherNationality":"motherNationality",
+      "birthMotherOccupation":"motherOccupation",
+      "birthFatherFirstName":"Address1 London",
+      "birthFatherLastName":"fatherFirstName",
+      "birthFatherAddress":"Address1 London",
+      "birthFatherNationality":"fatherNationality",
+      "birthFatherOccupation":"fatherOccupation",
+      "parentalResponsibility":"No",
+      "parentalResponsibilityOrder":"Yes",
+      "otherParentFirstName":"guardianFirstName",
+      "otherParentLastName":"guardianLastName",
+      "otherParentAddress":"Address1 London",
+      "scannedDocuments":[
+        {
+          "value":{
+            "document_url":"http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c",
+            "document_filename":"test.pdf",
+            "document_binary_url":"http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
+          }
+        }
+      ]
+    }
+  },
+  "warnings":[
+
+  ]
+}
