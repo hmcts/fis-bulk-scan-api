@@ -19,24 +19,33 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import static java.util.Objects.nonNull;
 import static org.apache.commons.lang3.BooleanUtils.FALSE;
 import static org.apache.commons.lang3.BooleanUtils.TRUE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ADOPTION_ORDER_CONSENT;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ADOPTION_ORDER_CONSENT_ADVANCE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ADOPTION_ORDER_CONSENT_AGENCY;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ADOPTION_ORDER_NO_CONSENT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT1_RELATION_TO_CHILD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT2_RELATION_TO_CHILD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_RELATION_TO_CHILD_FATHER_PARTNER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.BULK_SCAN_CASE_REFERENCE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CASE_TYPE_ID;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.COURT_CONSENT_CHILD_WELFARE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.COURT_CONSENT_PARENT_LACK_CAPACITY;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.COURT_CONSENT_PARENT_NOT_FOUND;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EVENT_ID;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.UNKNOWN_FIELDS_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper.transformScanDocuments;
 import static uk.gov.hmcts.reform.bulkscan.model.FormType.A58;
+import static uk.gov.hmcts.reform.bulkscan.model.FormType.A58_RELINQUISHED_ADOPTION;
 import static uk.gov.hmcts.reform.bulkscan.model.FormType.A58_STEP_PARENT;
 
 @Service
 public class BulkScanA58Service implements BulkScanService {
 
     public static final String STEP_PARENT_ADOPTION = "Step Parent";
-    public static final String RELINQUISHED_ADOPTION = "Relinquished Adoption";
+
     public static final String SCAN_DOCUMENTS = "scannedDocuments";
 
     @Autowired
@@ -79,19 +88,23 @@ public class BulkScanA58Service implements BulkScanService {
 
         if (isA58ParentFormType(inputFieldsMap)) {
             formType = A58_STEP_PARENT;
+        } else if (isA58RelinquishedAdoptionFormType(inputFieldsMap)) {
+            formType = A58_RELINQUISHED_ADOPTION;
         }
+        List<String> unknownFieldsList = null;
 
-        // Validating if any unknown fields present or not. if exist then it should go as warnings.
         BulkScanFormValidationConfigManager
                 .ValidationConfig validationConfig = configManager.getValidationConfig(formType);
-        List<String> unknownFieldsList = bulkScanValidationHelper.findUnknownFields(inputFieldsList,
-                validationConfig.getMandatoryFields(), validationConfig.getOptionalFields());
-
-        //TODO RELINQUISHED_ADOPTION condition to be added as part of ISDB-269
-
+        if (nonNull(validationConfig)) {
+            unknownFieldsList = bulkScanValidationHelper
+               .findUnknownFields(inputFieldsList,
+                                  validationConfig.getMandatoryFields(),
+                                  validationConfig.getOptionalFields()
+           );
+        }
         Map<String, Object> populatedMap = (Map<String, Object>) BulkScanTransformHelper
-                .transformToCaseData(transformConfigManager
-                        .getTransformationConfig(formType).getCaseDataFields(), inputFieldsMap);
+                .transformToCaseData(new HashMap<>(transformConfigManager
+                        .getTransformationConfig(formType).getCaseDataFields()), inputFieldsMap);
 
         populatedMap.put(SCAN_DOCUMENTS, transformScanDocuments(bulkScanTransformationRequest));
 
@@ -111,10 +124,20 @@ public class BulkScanA58Service implements BulkScanService {
         return builder.build();
     }
 
+    private boolean isA58RelinquishedAdoptionFormType(Map<String, String> inputFieldsMap) {
+        return nonNull(inputFieldsMap.get(ADOPTION_ORDER_CONSENT))
+            || nonNull(inputFieldsMap.get(ADOPTION_ORDER_CONSENT_ADVANCE))
+            || nonNull(inputFieldsMap.get(ADOPTION_ORDER_CONSENT_AGENCY))
+            || nonNull(inputFieldsMap.get(ADOPTION_ORDER_NO_CONSENT))
+            || nonNull(inputFieldsMap.get(COURT_CONSENT_PARENT_NOT_FOUND))
+            || nonNull(inputFieldsMap.get(COURT_CONSENT_PARENT_LACK_CAPACITY))
+            || nonNull(inputFieldsMap.get(COURT_CONSENT_CHILD_WELFARE));
+    }
+
     private boolean isA58ParentFormType(Map<String, String> inputFieldsMap) {
         return STEP_PARENT_ADOPTION.equalsIgnoreCase(inputFieldsMap.get(APPLICANT1_RELATION_TO_CHILD))
-                || STEP_PARENT_ADOPTION.equalsIgnoreCase(inputFieldsMap.get(APPLICANT2_RELATION_TO_CHILD))
-                || TRUE.equalsIgnoreCase(inputFieldsMap.get(APPLICANT_RELATION_TO_CHILD_FATHER_PARTNER))
-                || FALSE.equalsIgnoreCase(inputFieldsMap.get(APPLICANT_RELATION_TO_CHILD_FATHER_PARTNER));
+            || STEP_PARENT_ADOPTION.equalsIgnoreCase(inputFieldsMap.get(APPLICANT2_RELATION_TO_CHILD))
+            || TRUE.equalsIgnoreCase(inputFieldsMap.get(APPLICANT_RELATION_TO_CHILD_FATHER_PARTNER))
+            || FALSE.equalsIgnoreCase(inputFieldsMap.get(APPLICANT_RELATION_TO_CHILD_FATHER_PARTNER));
     }
 }

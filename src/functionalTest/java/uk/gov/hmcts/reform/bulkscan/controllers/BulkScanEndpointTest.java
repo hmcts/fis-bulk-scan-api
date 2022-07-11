@@ -32,6 +32,7 @@ public class BulkScanEndpointTest {
             "classpath:requests/bulk-scan-a58-step-parent-validation-input.json";
     private static final String A58_STEP_PARENT_TRANSFORM_INPUT_PATH =
             "classpath:requests/bulk-scan-a58-step-parent-transform-input.json";
+
     private static final String A58_STEP_PARENT_VALIDATION_OUTPUT_PATH =
             "classpath:responses/bulk-scan-a58-step-parent-validation-output.json";
     private static final String A58_STEP_PARENT_TRANSFORM_OUTPUT_PATH =
@@ -87,4 +88,5 @@ public class BulkScanEndpointTest {
 
         JSONAssert.assertEquals(bulkScanTransformResponse, response.getBody().asString(), true);
     }
+
 }
