@@ -58,6 +58,14 @@ class BulkScanA60ServiceTest {
     }
 
     @Test
+    void testA60Error() {
+        BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
+            TestDataUtil.getA60Data()).build();
+        BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
+        assertEquals(Status.SUCCESS, res.status);
+    }
+
+    @Test
     void testA60MandatoryErrorWhileDoingValidation() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
             TestDataUtil.getA60ErrorData()).build();
@@ -153,7 +161,7 @@ class BulkScanA60ServiceTest {
 
     @DisplayName("Transformed data processed should produce different result from prepared output file")
     @Test
-    void testA60TransformRequestErrorResponse() throws IOException, JSONException {
+    void testA60TransformErrorRequest() throws IOException, JSONException {
         BulkScanTransformationResponse bulkScanTransformationResponse =
             bulkScanValidationService
                 .transform(BulkScanTransformationRequest
