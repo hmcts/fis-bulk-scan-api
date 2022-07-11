@@ -1,0 +1,36 @@
+{
+  "case_creation_details":{
+    "case_type_id":"A58",
+    "event_id": "create-case-adop-bs",
+    "case_data":{
+      "applicant":[
+        {
+          "value":{
+            "applicant1FirstName":"firstName",
+            "applicant1LastName":"LastName",
+            "applicant1Address":"123 test street, London",
+            "applicant1TelephoneNumber":"+447405878672"
+          }
+        },
+        {
+          "value":{
+            "applicant2FirstName":null,
+            "applicant2LastName":null,
+            "applicant2Address":null,
+            "applicant2TelephoneNumber":null
+          }
+        }
+      ],
+      "adoptionOrderConsent": "Adoption Order Consent",
+      "adoptionOrderConsentAdvance": "Adoption Order Consent Advance",
+      "adoptionOrderConsentAgency": "Adoption Order Consent Agency",
+      "adoptionOrderNoConsent": "Adoption Order No Consent",
+      "courtConsentParentNotFound": "Court Consent Parent Not Found",
+      "courtConsentParentLackCapacity": "Court Consent Parent Not Found",
+      "courtConsentChildWelfare": "Court Consent Child welfare"
+    }
+  },
+  "warnings":[
+
+  ]
+}

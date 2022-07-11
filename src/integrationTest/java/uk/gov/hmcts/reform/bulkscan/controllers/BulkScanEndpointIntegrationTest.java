@@ -56,6 +56,11 @@ class BulkScanEndpointIntegrationTest {
             "classpath:request/bulk-scan-a58-step-parent-transform-input.json";
     private static final String A58_STEP_PARENT_TRANSFORM_RESPONSE_PATH =
             "classpath:response/bulk-scan-a58-step-parent-transform-output.json";
+
+    private static final String A58_RELINQUISHED_ADOPTION_TRANSFORM_REQUEST_PATH =
+        "classpath:request/bulk-scan-a58-relinquished-adoption-transform-input.json";
+    private static final String A58_RELINQUISHED_ADOPTION_TRANSFORM_RESPONSE_PATH =
+        "classpath:response/bulk-scan-a58-relinquished-adoption-transform-output.json";
     private static final String FL403_VALIDATION_RESPONSE_PATH =
             "classpath:response/bulk-scan-fl403-validation-response.json";
     private static final String C51_VALIDATION_REQUEST_PATH =
@@ -121,6 +126,17 @@ class BulkScanEndpointIntegrationTest {
                         .header(SERVICE_AUTHORIZATION, SERVICE_AUTHORIZATION_VALUE)
                         .content(readFileFrom(A58_VALIDATION_REQUEST_PATH)))
                 .andExpect(status().isOk()).andReturn();
+    }
+
+    @DisplayName("should test transform request case type A58 relinquished adoption")
+    @Test
+    void shouldTestTransformRequestCaseTypeA58RelinquishedAdoption() throws Exception {
+        mockMvc.perform(post(CASE_TYPE_TRANSFORM_ENDPOINT)
+                            .contentType(APPLICATION_JSON)
+                            .header(SERVICE_AUTHORIZATION, SERVICE_AUTHORIZATION_VALUE)
+                            .content(readFileFrom(A58_RELINQUISHED_ADOPTION_TRANSFORM_REQUEST_PATH)))
+            .andExpect(status().isOk())
+            .andExpect(content().json(readFileFrom(A58_RELINQUISHED_ADOPTION_TRANSFORM_RESPONSE_PATH)));
     }
 
     @DisplayName("should test validate request case type A60")

@@ -1,8 +1,24 @@
 {
   "case_creation_details":{
-    "case_type_id": "ADOPTION",
-    "event_id": "create-case-adop-bs",
+    "case_type_id":"ADOPTION",
+    "event_id":"create-case-adop-bs",
     "case_data":{
+      "scannedDocuments":[
+        {
+          "value":{
+            "document_url":"url",
+            "document_filename":"filename",
+            "document_binary_url":"binary_url"
+          }
+        },
+        {
+          "value":{
+            "document_url":"url1",
+            "document_filename":"filename1",
+            "document_binary_url":"binary_url1"
+          }
+        }
+      ],
       "applicant":[
         {
           "value":{
@@ -23,23 +39,7 @@
           }
         }
       ],
-      "applicantRelationToChildFatherPartner":"false",
-      "scannedDocuments":[
-        {
-          "value":{
-            "document_url":"url",
-            "document_filename":"filename",
-            "document_binary_url":"binary_url"
-          }
-        },
-        {
-          "value":{
-            "document_url":"url1",
-            "document_filename":"filename1",
-            "document_binary_url":"binary_url1"
-          }
-        }
-      ]
+      "applicantRelationToChildFatherPartner":"false"
     }
   },
   "warnings":[

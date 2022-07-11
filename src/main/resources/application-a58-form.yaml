@@ -108,7 +108,7 @@ uk:
                   - applicant1_telephoneNumber
                   - applicant2_telephoneNumber
                 regex: ^(?:0|\+?44)(?:\d\s?){9,10}$
-          A58_RELINQUISHED:
+          A58_RELINQUISHED_ADOPTION:
             mandatoryFields:
               - applicant1_firstName
               - applicant1_lastName
@@ -120,8 +120,13 @@ uk:
               - applicant2_lastName
               - applicant2_address
               - applicant2_telephoneNumber
-              - applicant2_relationToChild
-              - applicant_relationToChild_father_partner
+              - adoption_order_consent
+              - adoption_order_consent_advance
+              - adoption_order_consent_agency
+              - adoption_order_no_consent
+              - court_consent_parent_not_found
+              - court_consent_parent_lack_capacity
+              - court_consent_child_welfare
             regexValidationFields:
               dateFields:
                 fieldNames:

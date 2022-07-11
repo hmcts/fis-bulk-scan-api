@@ -17,10 +17,6 @@
       "value":"123 test street, London"
     },
     {
-      "name": "applicant1_relationToChild",
-      "value": "Step Parent"
-    },
-    {
       "name":"applicant2_firstName",
       "value":"applicant2_firstName"
     },
@@ -37,21 +33,32 @@
       "value":"123 test street, London"
     },
     {
-      "name": "applicant2_relationToChild",
-      "value": "Step Parent"
+      "name": "adoption_order_consent",
+      "value": "true"
     },
     {
-      "name": "applicant_relationToChild_father_partner",
+      "name": "adoption_order_consent_advance",
       "value": "true"
-    }
-  ],
-  "scanned_documents": [
+    },
     {
-      "url": {
-        "document_url":"http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c",
-        "document_filename":"test.pdf",
-        "document_binary_url":"http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
-      }
+      "name": "adoption_order_consent_agency",
+      "value": "true"
+    },
+    {
+      "name": "adoption_order_no_consent",
+      "value": "true"
+    },
+    {
+      "name": "court_consent_parent_not_found",
+      "value": "true"
+    },
+    {
+      "name": "court_consent_parent_lack_capacity",
+      "value": "true"
+    },
+    {
+      "name": "court_consent_child_welfare",
+      "value": "true"
     }
   ],
   "form_type": "A58"

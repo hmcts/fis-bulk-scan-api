@@ -73,6 +73,20 @@ public final class BulkScanConstants {
     public static final String applicants_domicile_status = "applicants_domicile_status";
     public static final String applicants_non_domicile_status = "applicants_non_domicile_status";
 
+    public static final String ADOPTION_ORDER_CONSENT = "adoption_order_consent";
+
+    public static final String ADOPTION_ORDER_CONSENT_ADVANCE = "adoption_order_consent_advance";
+
+    public static final String ADOPTION_ORDER_CONSENT_AGENCY = "adoption_order_consent_agency";
+
+    public static final String ADOPTION_ORDER_NO_CONSENT = "adoption_order_no_consent";
+
+    public static final String COURT_CONSENT_PARENT_NOT_FOUND = "court_consent_parent_not_found";
+
+    public static final String COURT_CONSENT_PARENT_LACK_CAPACITY = "court_consent_parent_lack_capacity";
+
+    public static final String COURT_CONSENT_CHILD_WELFARE = "court_consent_child_welfare";
+
     private static Map<String,String> getErrorMessageMap() {
         return Map.of(MANDATORY_KEY, MANDATORY_ERROR_MESSAGE,
                       DATE_FORMAT_FIELDS_KEY, DATE_FORMAT_MESSAGE,
