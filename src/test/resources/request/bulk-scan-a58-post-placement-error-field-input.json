@@ -1,0 +1,47 @@
+{
+  "ocr_data_fields":[
+    {
+      "name":"applicant1_firstName"
+    },
+    {
+      "name":"applicant1_lastName",
+      "value":"LastName"
+    },
+    {
+      "name":"applicant1_telephoneNumber",
+      "value":"447405878672"
+    },
+    {
+      "name":"applicant1_address",
+      "value":"123 test street, London"
+    },
+    {
+      "name":"mother_firstName",
+      "value":"testBirthMotherFirstName"
+    },
+    {
+      "name":"mother_lastName",
+      "value":"testBirthMotherLastName"
+    },
+    {
+      "name":"mother_address",
+      "value":"testBirthMotherAddress"
+    },
+    {
+      "name":"mother_nationality",
+      "value":"testBirthMotherNationality"
+    },
+    {
+      "name":"mother_occupation",
+      "value":"testBirthMotherOccupation"
+    },
+    {
+      "name":"child_relationship_father",
+      "value":"true"
+    },
+    {
+      "name": "applicant_test_field",
+      "value": "false"
+    }
+  ]
+}
