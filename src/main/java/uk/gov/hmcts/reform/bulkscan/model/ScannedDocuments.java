@@ -1,7 +1,11 @@
 package uk.gov.hmcts.reform.bulkscan.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.Builder;
+import lombok.Getter;
 
+@Getter
+@Builder
 public class ScannedDocuments {
 
     @JsonProperty("type")
@@ -9,7 +13,7 @@ public class ScannedDocuments {
     @JsonProperty("subtype")
     public String subtype;
     @JsonProperty("url")
-    public String url;
+    public ScanDocument scanDocument;
     @JsonProperty("control_number")
     public String controlNumber;
     @JsonProperty("file_name")

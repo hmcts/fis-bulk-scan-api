@@ -1,0 +1,43 @@
+{
+  "case_creation_details": {
+    "case_type_id": "A58",
+    "event_id": "create-case-adop-bs",
+    "case_data": {
+      "applicant2LastName": null,
+      "applicant1Nationality": "British",
+      "applicant2DateOfBirth": null,
+      "apllicant2Occupation": null,
+      "applicant1RelationToChild": null,
+      "applicantsDomicileStatus": "true",
+      "applicantRelationToChildFatherPartner": "",
+      "solicitor": {
+        "solicitorName": "SolName",
+        "solicitorFirm": "SolFirmName",
+        "solicitorAddress": "123, Address Tw31NN",
+        "solicitorPhoneNumber": "+447438766833",
+        "solicitorFaxNumber": null,
+        "solicitorDxNumber": null,
+        "solicitorEmail": "test@test.com",
+        "solicitorFeeAccountNumber": "12345667899"
+      },
+      "applicant1FirstName": "Test First Name",
+      "apllicant1Occupation": null,
+      "applicant2Nationality": null,
+      "scannedDocuments": [
+
+      ],
+      "applicant1TelephoneNumber": "+447438766833",
+      "applicantRelationToChild": "",
+      "applicant1Address": "Male",
+      "applicant2Address": null,
+      "applicant2RelationToChild": null,
+      "applicant2FirstName": null,
+      "applicant1LastName": "Test Last Name",
+      "applicant1DateOfBirth": null,
+      "applicant2TelephoneNumber": null
+    }
+  },
+  "warnings": [
+
+  ]
+}

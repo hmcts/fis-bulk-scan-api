@@ -30,6 +30,22 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.BULK_SCAN
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CASE_TYPE_ID;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EVENT_ID;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.UNKNOWN_FIELDS_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.applicant_applying_alone_natural_parent_died;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.applicant_applying_alone_natural_parent_not_found;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.applicant_applying_alone_no_other_parent;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.applicant_applying_alone_other_parent_exclusion_justified;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.applicant_marital_status_divorced;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.applicant_marital_status_married_spouse_incapable;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.applicant_marital_status_married_spouse_notfound;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.applicant_marital_status_married_spouse_separated;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.applicant_marital_status_single;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.applicant_marital_status_widow;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.applicant_relationToChild_father_partner;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.applicant_relationToChild_mother_partner;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.applicant_relationToChild_non_civil_partner;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.applicants_domicile_status;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.applicants_non_domicile_status;
+import static uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper.transformScanDocuments;
 import static uk.gov.hmcts.reform.bulkscan.model.FormType.A58;
 import static uk.gov.hmcts.reform.bulkscan.model.FormType.A58_STEP_PARENT;
 
@@ -38,6 +54,10 @@ public class BulkScanA58Service implements BulkScanService {
 
     public static final String STEP_PARENT_ADOPTION = "Step Parent";
     public static final String RELINQUISHED_ADOPTION = "Relinquished Adoption";
+    public static final String SCAN_DOCUMENTS = "scannedDocuments";
+    private static final String applicantsDomicileStatus = "applicantsDomicileStatus";
+    private static final String applicantRelationToChild = "applicantRelationToChild";
+    private static final String applicantMarritalStatus = "applicantMarritalStatus";
 
     @Autowired
     BulkScanFormValidationConfigManager configManager;
@@ -61,8 +81,8 @@ public class BulkScanA58Service implements BulkScanService {
         }
         // Validating the Fields..
         return bulkScanValidationHelper.validateMandatoryAndOptionalFields(bulkRequest.getOcrdatafields(),
-                                                                          configManager.getValidationConfig(
-                                                                              formType));
+                configManager.getValidationConfig(
+                        formType));
     }
 
     @Override
@@ -83,93 +103,75 @@ public class BulkScanA58Service implements BulkScanService {
 
         // Validating if any unknown fields present or not. if exist then it should go as warnings.
         BulkScanFormValidationConfigManager
-            .ValidationConfig validationConfig = configManager.getValidationConfig(formType);
+                .ValidationConfig validationConfig = configManager.getValidationConfig(formType);
         List<String> unknownFieldsList = bulkScanValidationHelper.findUnknownFields(inputFieldsList,
-                                        validationConfig.getMandatoryFields(), validationConfig.getOptionalFields());
+                validationConfig.getMandatoryFields(), validationConfig.getOptionalFields());
 
         //TODO RELINQUISHED_ADOPTION condition to be added as part of ISDB-269
 
         Map<String, Object> populatedMap = (Map<String, Object>) BulkScanTransformHelper
-                .transformToCaseData(transformConfigManager
-                        .getTransformationConfig(formType).getCaseDataFields(), inputFieldsMap);
+                .transformToCaseData(new HashMap<>(transformConfigManager
+                        .getTransformationConfig(formType).getCaseDataFields()), inputFieldsMap);
 
         // For A58 formtype we need to set some fields based on the Or Condition...
-        if(formType.equals(A58)) {
-            populatedMap.put("applicantsDomicileStatus", getDomicileStatus(inputFieldsMap));
-            populatedMap.put("applicantRelationToChild", getAplicantRelationToChild(inputFieldsMap));
+        if (formType.equals(A58)) {
+            populatedMap.put(applicantsDomicileStatus, getDomicileStatus(inputFieldsMap));
+            populatedMap.put(applicantRelationToChild, getAplicantRelationToChild(inputFieldsMap));
             // Marital status should be read if relation to child is null.
-            if(populatedMap.containsKey("applicantRelationToChild")
-                && populatedMap.get("applicantRelationToChild") == null) {
-                populatedMap.put("applicantMarritalStatus", getApplicantMarritalStatus(inputFieldsMap));
+            if (populatedMap.containsKey(applicantRelationToChild)
+                && populatedMap.get(applicantRelationToChild) == null) {
+                populatedMap.put(applicantMarritalStatus, getApplicantMarritalStatus(inputFieldsMap));
             }
 
         }
+
+        populatedMap.put(SCAN_DOCUMENTS, transformScanDocuments(bulkScanTransformationRequest));
 
         Map<String, String> caseTypeAndEventId =
                 transformConfigManager.getTransformationConfig(formType).getCaseFields();
 
         BulkScanTransformationResponse.BulkScanTransformationResponseBuilder builder = BulkScanTransformationResponse
-            .builder().caseCreationDetails(
-                CaseCreationDetails.builder()
-                        .caseTypeId(caseTypeAndEventId.get(CASE_TYPE_ID))
-                        .eventId(caseTypeAndEventId.get(EVENT_ID))
-                        .caseData(populatedMap).build());
+                .builder().caseCreationDetails(
+                        CaseCreationDetails.builder()
+                                .caseTypeId(caseTypeAndEventId.get(CASE_TYPE_ID))
+                                .eventId(caseTypeAndEventId.get(EVENT_ID))
+                                .caseData(populatedMap).build());
         if (null != unknownFieldsList && !unknownFieldsList.isEmpty()) {
             builder.warnings(Arrays.asList(String.format(UNKNOWN_FIELDS_MESSAGE,
-                                                         String.join(",", unknownFieldsList))));
+                    String.join(",", unknownFieldsList))));
         }
         return builder.build();
     }
 
     private String getApplicantMarritalStatus(Map<String, String> inputFieldsMap) {
-        if(inputFieldsMap.containsKey("applicant_marital_status_single") &&
-            inputFieldsMap.get("applicant_marital_status_single")
-                .equalsIgnoreCase("true")) {
+        if ("true".equalsIgnoreCase(inputFieldsMap.get(applicant_marital_status_single))) {
             return MaritalStatusEnum.SINGLE.name();
         }
-        if(inputFieldsMap.containsKey("applicant_marital_status_divorced") &&
-            inputFieldsMap.get("applicant_marital_status_divorced")
-                .equalsIgnoreCase("true")) {
+        if ("true".equalsIgnoreCase(inputFieldsMap.get(applicant_marital_status_divorced))) {
             return MaritalStatusEnum.DIVORCED.name();
         }
-        if(inputFieldsMap.containsKey("applicant_marital_status_widow") &&
-            inputFieldsMap.get("applicant_marital_status_widow")
-                .equalsIgnoreCase("true")) {
+        if ("true".equalsIgnoreCase(inputFieldsMap.get(applicant_marital_status_widow))) {
             return MaritalStatusEnum.WIDOW.name();
         }
-        if(inputFieldsMap.containsKey("applicant_marital_status_married_spouse_notfound") &&
-            inputFieldsMap.get("applicant_marital_status_married_spouse_notfound")
-                .equalsIgnoreCase("true")) {
+        if ("true".equalsIgnoreCase(inputFieldsMap.get(applicant_marital_status_married_spouse_notfound))) {
             return MaritalStatusEnum.SPOUSE_NOT_FOUND.name();
         }
-        if(inputFieldsMap.containsKey("applicant_marital_status_married_spouse_separated") &&
-            inputFieldsMap.get("applicant_marital_status_married_spouse_separated")
-                .equalsIgnoreCase("true")) {
+        if ("true".equalsIgnoreCase(inputFieldsMap.get(applicant_marital_status_married_spouse_separated))) {
             return MaritalStatusEnum.SPOUSE_SEPARATED.name();
         }
-        if(inputFieldsMap.containsKey("applicant_marital_status_married_spouse_incapable") &&
-            inputFieldsMap.get("applicant_marital_status_married_spouse_incapable")
-                .equalsIgnoreCase("true")) {
+        if ("true".equalsIgnoreCase(inputFieldsMap.get(applicant_marital_status_married_spouse_incapable))) {
             return MaritalStatusEnum.SPOUSE_INCAPABLE.name();
         }
-        if(inputFieldsMap.containsKey("applicant_applying_alone_natural_parent_died") &&
-            inputFieldsMap.get("applicant_applying_alone_natural_parent_died")
-                .equalsIgnoreCase("true")) {
+        if ("true".equalsIgnoreCase(inputFieldsMap.get(applicant_applying_alone_natural_parent_died))) {
             return MaritalStatusEnum.NATURAL_PARAENT_DIED.name();
         }
-        if(inputFieldsMap.containsKey("applicant_applying_alone_natural_parent_not_found") &&
-            inputFieldsMap.get("applicant_applying_alone_natural_parent_not_found")
-                .equalsIgnoreCase("true")) {
+        if ("true".equalsIgnoreCase(inputFieldsMap.get(applicant_applying_alone_natural_parent_not_found))) {
             return MaritalStatusEnum.NATURAL_PARENT_NOT_FOUND.name();
         }
-        if(inputFieldsMap.containsKey("applicant_applying_alone_no_other_parent") &&
-            inputFieldsMap.get("applicant_applying_alone_no_other_parent")
-                .equalsIgnoreCase("true")) {
+        if ("true".equalsIgnoreCase(inputFieldsMap.get(applicant_applying_alone_no_other_parent))) {
             return MaritalStatusEnum.NO_OTHER_PARENT.name();
         }
-        if(inputFieldsMap.containsKey("applicant_applying_alone_other_parent_exclusion_justified") &&
-            inputFieldsMap.get("applicant_applying_alone_other_parent_exclusion_justified")
-                .equalsIgnoreCase("true")) {
+        if ("true".equalsIgnoreCase(inputFieldsMap.get(applicant_applying_alone_other_parent_exclusion_justified))) {
             return MaritalStatusEnum.OTHER_PARENT_EXCLUSION_JUSTIFIED.name();
         }
 
@@ -177,31 +179,23 @@ public class BulkScanA58Service implements BulkScanService {
     }
 
     private String getAplicantRelationToChild(Map<String, String> inputFieldsMap) {
-        if(inputFieldsMap.containsKey("applicant_relationToChild_father_partner") &&
-            inputFieldsMap.get("applicant_relationToChild_father_partner")
-            .equalsIgnoreCase("true")) {
+        if ("true".equalsIgnoreCase(inputFieldsMap.get(applicant_relationToChild_father_partner))) {
             return RelationToChildEnum.FATHER.name();
         }
-        if(inputFieldsMap.containsKey("applicant_relationToChild_mother_partner") &&
-            inputFieldsMap.get("applicant_relationToChild_mother_partner")
-            .equalsIgnoreCase("true")) {
+        if ("true".equalsIgnoreCase(inputFieldsMap.get(applicant_relationToChild_mother_partner))) {
             return RelationToChildEnum.MOTHER.name();
         }
-        if(inputFieldsMap.containsKey("applicant_relationToChild_non_civil_partner") &&
-            inputFieldsMap.get("applicant_relationToChild_non_civil_partner")
-                .equalsIgnoreCase("true")) {
+        if ("true".equalsIgnoreCase(inputFieldsMap.get(applicant_relationToChild_non_civil_partner))) {
             return RelationToChildEnum.CIVIL.name();
         }
         return "";
     }
 
     private String getDomicileStatus(Map<String, String> inputFieldsMap) {
-        if(inputFieldsMap.containsKey("applicants_domicile_status") && inputFieldsMap.get("applicants_domicile_status")
-            .equalsIgnoreCase("true")) {
+        if ("true".equalsIgnoreCase(inputFieldsMap.get(applicants_domicile_status))) {
             return "true";
         }
-        if(inputFieldsMap.containsKey("applicants_non_domicile_status") && inputFieldsMap.get("applicants_non_domicile_status")
-            .equalsIgnoreCase("true")) {
+        if ("true".equalsIgnoreCase(inputFieldsMap.get(applicants_non_domicile_status))) {
             return "false";
         }
         return "";

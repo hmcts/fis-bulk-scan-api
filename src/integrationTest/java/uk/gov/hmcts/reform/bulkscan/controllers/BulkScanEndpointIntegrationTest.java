@@ -66,6 +66,11 @@ class BulkScanEndpointIntegrationTest {
             "classpath:request/bulk-scan-a60-validation-input.json";
     private static final String A58_VALIDATION_REQUEST_PATH =
             "classpath:request/bulk-scan-a58-validation-input.json";
+    private static final String A58_PART1_VALIDATION_REQUEST_PATH =
+        "classpath:request/bulk-scan-a58-part1-validation-input.json";
+
+    private static final String A58_PART1_TRANSFORM_REQUEST_PATH =
+        "classpath:request/bulk-scan-a58-part1-transform-input.json";
 
     @DisplayName("should test validate request case type FL401")
     @Test
@@ -208,6 +213,26 @@ class BulkScanEndpointIntegrationTest {
                             .contentType(APPLICATION_JSON)
                             .header(SERVICE_AUTHORIZATION, SERVICE_AUTHORIZATION_VALUE)
                             .content(readFileFrom(EdgeCase_TRANSFORM_REQUEST_PATH)))
+            .andExpect(status().isOk()).andReturn();
+    }
+
+    @DisplayName("should test validate request case type A58 for part1")
+    @Test
+    void shouldTestValidationRequestCaseTypeA58ForPart1() throws Exception {
+        mockMvc.perform(post(A58_CASE_TYPE_VALIDATE_ENDPOINT)
+                            .contentType(APPLICATION_JSON)
+                            .header(SERVICE_AUTHORIZATION, SERVICE_AUTHORIZATION_VALUE)
+                            .content(readFileFrom(A58_PART1_VALIDATION_REQUEST_PATH)))
+            .andExpect(status().isOk()).andReturn();
+    }
+
+    @DisplayName("should test transform request of A58 applicant part")
+    @Test
+    void shouldTestTransformOfA58Applicant() throws Exception {
+        mockMvc.perform(post(CASE_TYPE_TRANSFORM_ENDPOINT)
+                            .contentType(APPLICATION_JSON)
+                            .header(SERVICE_AUTHORIZATION, SERVICE_AUTHORIZATION_VALUE)
+                            .content(readFileFrom(A58_PART1_TRANSFORM_REQUEST_PATH)))
             .andExpect(status().isOk()).andReturn();
     }
 }

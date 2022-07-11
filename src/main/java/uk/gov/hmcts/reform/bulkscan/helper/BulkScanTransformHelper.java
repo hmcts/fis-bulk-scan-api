@@ -2,10 +2,18 @@ package uk.gov.hmcts.reform.bulkscan.helper;
 
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
+import uk.gov.hmcts.reform.bulkscan.model.ResponseScanDocument;
+import uk.gov.hmcts.reform.bulkscan.model.ResponseScanDocumentValue;
+import uk.gov.hmcts.reform.bulkscan.model.ScannedDocuments;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
+
+import static java.util.Objects.nonNull;
 
 @Slf4j
 @SuppressWarnings({"PMD.AvoidReassigningParameters", "PMD.NullAssignment"})
@@ -46,5 +54,19 @@ public final class BulkScanTransformHelper {
             object = null;
         }
         return object;
+    }
+
+    public static List<ResponseScanDocumentValue> transformScanDocuments(BulkScanTransformationRequest
+                                                                                 bulkScanTransformationRequest) {
+        List<ScannedDocuments> scannedDocumentsList = bulkScanTransformationRequest.getScannedDocuments();
+        return nonNull(scannedDocumentsList) ? bulkScanTransformationRequest
+                .getScannedDocuments().stream().map(scanDocument ->
+                        ResponseScanDocumentValue.builder().scanDocument(ResponseScanDocument
+                                        .builder()
+                                        .url(scanDocument.getScanDocument().getUrl())
+                                        .binaryUrl(scanDocument.getScanDocument().getBinaryUrl())
+                                        .filename(scanDocument.getScanDocument().getFilename())
+                                        .build())
+                                .build()).collect(Collectors.toList()) : Collections.emptyList();
     }
 }
