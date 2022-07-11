@@ -1,0 +1,43 @@
+{
+  "case_creation_details": {
+    "case_type_id": "A58",
+    "event_id": "create-case-adop-bs",
+    "case_data": {
+      "applicant2LastName": null,
+      "applicant1Nationality": null,
+      "applicant2DateOfBirth": null,
+      "apllicant2Occupation": null,
+      "applicant1RelationToChild": null,
+      "applicantsDomicileStatus": "",
+      "applicantRelationToChildFatherPartner": "",
+      "applicantMarritalStatus": "",
+      "solicitor": {
+        "solicitorName": null,
+        "solicitorFirm": null,
+        "solicitorAddress": null,
+        "solicitorPhoneNumber": null,
+        "solicitorFaxNumber": null,
+        "solicitorDxNumber": null,
+        "solicitorEmail": null,
+        "solicitorFeeAccountNumber": null
+      },
+      "applicant1FirstName": "firstName",
+      "apllicant1Occupation": null,
+      "applicant2Nationality": null,
+      "scannedDocuments": [
+
+      ],
+      "applicant1TelephoneNumber": "+447405878672",
+      "applicantRelationToChild": "",
+      "applicant1Address": "123 test street, London",
+      "applicant2Address": null,
+      "applicant2RelationToChild": null,
+      "applicant2FirstName": null,
+      "applicant1LastName": "LastName",
+      "applicant1DateOfBirth": null,
+      "applicant2TelephoneNumber": null
+    }
+  },
+  "warnings": [
+  ]
+}

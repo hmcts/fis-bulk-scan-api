@@ -28,6 +28,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_ERROR_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MISSING_FIELD_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PHONE_NUMBER_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.model.FormType.A58;
 import static uk.gov.hmcts.reform.bulkscan.utils.TestResourceUtil.readFileFrom;
 
 @ExtendWith(SpringExtension.class)
@@ -37,6 +38,8 @@ class BulkScanA58ServiceTest {
 
     private static final String A58_STEP_PARENT_TRANSFORM_RESPONSE_PATH =
             "classpath:response/bulk-scan-a58-step-parent-transform-output.json";
+    private static final String A58_PART1_TRANSFORM_RESPONSE_PATH =
+        "classpath:response/bulk-scan-a58-part1-transform-output.json";
 
     @Spy
     @Autowired
@@ -109,6 +112,30 @@ class BulkScanA58ServiceTest {
 
         JSONAssert.assertEquals(readFileFrom(A58_STEP_PARENT_TRANSFORM_RESPONSE_PATH),
                 mapper.writeValueAsString(bulkScanTransformationResponse), true);
+
+    }
+
+    @Test
+    void testA58ApplicantSuccess() {
+        BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
+            TestDataUtil.getA58Data()).build();
+        BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
+        assertEquals(Status.SUCCESS, res.status);
+    }
+
+    @Test
+    void testA58ApplicantTransformRequest() throws IOException, JSONException {
+        ObjectMapper mapper = new ObjectMapper();
+        BulkScanTransformationResponse bulkScanTransformationResponse =
+            bulkScanValidationService.transform(BulkScanTransformationRequest
+                                                    .builder()
+                                                    .formType(A58.name())
+                                                    .caseTypeId(A58.name())
+                                                    .scannedDocuments(Collections.emptyList())
+                                                    .ocrdatafields(TestDataUtil.getA58Part1Data()).build());
+
+        JSONAssert.assertEquals(readFileFrom(A58_PART1_TRANSFORM_RESPONSE_PATH),
+                                mapper.writeValueAsString(bulkScanTransformationResponse), true);
 
     }
 

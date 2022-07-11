@@ -1,5 +1,6 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanFormValidationConfigManager;
@@ -132,8 +133,8 @@ public class BulkScanA58Service implements BulkScanService {
             populatedMap.put(applicantsDomicileStatus, getDomicileStatus(inputFieldsMap));
             populatedMap.put(applicantRelationToChild, getAplicantRelationToChild(inputFieldsMap));
             // Marital status should be read if relation to child is null.
-            if (populatedMap.containsKey(applicantRelationToChild)
-                && populatedMap.get(applicantRelationToChild) == null) {
+            if (populatedMap.get(applicantRelationToChild) == null
+                || StringUtils.isEmpty((String)populatedMap.get(applicantRelationToChild))) {
                 populatedMap.put(applicantMarritalStatus, getApplicantMarritalStatus(inputFieldsMap));
             }
 
