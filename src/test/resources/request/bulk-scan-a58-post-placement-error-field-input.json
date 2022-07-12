@@ -42,6 +42,18 @@
     {
       "name": "applicant_test_field",
       "value": "false"
+    },
+    {
+      "name": "applicant_relationToChild_father_partner",
+      "value": ""
+    },
+    {
+      "name": "applicant_relationToChild_mother_partner",
+      "value": ""
+    },
+    {
+      "name": "applicant_relationToChild_non_civil_partner",
+      "value": ""
     }
   ]
 }

@@ -3,21 +3,15 @@
     "case_type_id":"A58",
     "event_id":"create-case-adop-bs",
     "case_data":{
-      "birthMotherFirstName":"Address1 London",
-      "birthMotherLastName":"motherFirstName",
-      "birthMotherAddress":"motherLastName",
-      "birthMotherNationality":"motherNationality",
-      "birthMotherOccupation":"motherOccupation",
+      "applicant2DateOfBirth":null,
+      "applicant2Occupation":null,
       "birthFatherFirstName":"Address1 London",
-      "birthFatherLastName":"fatherFirstName",
-      "birthFatherAddress":"Address1 London",
-      "birthFatherNationality":"fatherNationality",
-      "birthFatherOccupation":"fatherOccupation",
-      "parentalResponsibility":"No",
-      "parentalResponsibilityOrder":"Yes",
-      "otherParentFirstName":"guardianFirstName",
-      "otherParentLastName":"guardianLastName",
-      "otherParentAddress":"Address1 London",
+      "applicantsDomicileStatus":"true",
+      "applicantRelationToChildFatherPartner":"",
+      "applicantMarritalStatus":"",
+      "applicant2Nationality":null,
+      "birthMotherAddress":"motherLastName",
+      "guardianLastName":"guardianLastName",
       "scannedDocuments":[
         {
           "value":{
@@ -26,7 +20,44 @@
             "document_binary_url":"http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
           }
         }
-      ]
+      ],
+      "applicant1Address":"Male",
+      "applicant2Address":null,
+      "birthFatherOccupation":"fatherOccupation",
+      "birthFatherAddress":"Address1 London",
+      "guardianAddress":"Address1 London",
+      "applicant2FirstName":null,
+      "birthMotherFirstName":"Address1 London",
+      "applicant2LastName":null,
+      "applicant1Nationality":"British",
+      "otherParentRelationshipToChild":"Father",
+      "parentalResponsibility":"No",
+      "applicant1RelationToChild":null,
+      "birthMotherLastName":"motherFirstName",
+      "solicitor":{
+        "solicitorName":null,
+        "solicitorFirm":null,
+        "solicitorAddress":null,
+        "solicitorPhoneNumber":null,
+        "solicitorFaxNumber":null,
+        "solicitorDxNumber":null,
+        "solicitorEmail":null,
+        "solicitorFeeAccountNumber":null
+      },
+      "applicant1FirstName":"Test First Name",
+      "applicant1Occupation":null,
+      "birthMotherNationality":"motherNationality",
+      "applicant1TelephoneNumber":"+447438766833",
+      "guardianFirstName":"guardianFirstName",
+      "birthFatherLastName":"fatherFirstName",
+      "birthFatherNationality":"fatherNationality",
+      "parentalResponsibilityOrder":"Yes",
+      "applicantRelationToChild":"",
+      "applicant2RelationToChild":null,
+      "applicant1LastName":"Test Last Name",
+      "applicant1DateOfBirth":null,
+      "applicant2TelephoneNumber":null,
+      "birthMotherOccupation":"motherOccupation"
     }
   },
   "warnings":[

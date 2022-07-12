@@ -39,6 +39,18 @@
     {
       "name":"child_relationship_father",
       "value":"true"
+    },
+    {
+      "name": "applicant_relationToChild_father_partner",
+      "value": ""
+    },
+    {
+      "name": "applicant_relationToChild_mother_partner",
+      "value": ""
+    },
+    {
+      "name": "applicant_relationToChild_non_civil_partner",
+      "value": ""
     }
   ]
 }

@@ -135,6 +135,7 @@ def sonarExclusions = [
         '**uk/gov/hmcts/reform/bulkscan/constants/**',
         '**uk/gov/hmcts/reform/bulkscan/helper/**',
         '**uk/gov/hmcts/reform/bulkscan/utils/**',
+        '**uk/gov/hmcts/reform/bulkscan/enums/**'
 ]
 
 sonarqube {
