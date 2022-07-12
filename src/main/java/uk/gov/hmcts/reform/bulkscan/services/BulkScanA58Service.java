@@ -181,48 +181,47 @@ public class BulkScanA58Service implements BulkScanService {
 
     private String getApplicantMarritalStatus(Map<String, String> inputFieldsMap) {
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(applicant_marital_status_single))) {
-            return MaritalStatusEnum.SINGLE.name();
+            return MaritalStatusEnum.SINGLE.getName();
         }
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(applicant_marital_status_divorced))) {
-            return MaritalStatusEnum.DIVORCED.name();
+            return MaritalStatusEnum.DIVORCED.getName();
         }
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(applicant_marital_status_widow))) {
-            return MaritalStatusEnum.WIDOW.name();
+            return MaritalStatusEnum.WIDOW.getName();
         }
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(applicant_marital_status_married_spouse_notfound))) {
-            return MaritalStatusEnum.SPOUSE_NOT_FOUND.name();
+            return MaritalStatusEnum.SPOUSE_NOT_FOUND.getName();
         }
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(applicant_marital_status_married_spouse_separated))) {
-            return MaritalStatusEnum.SPOUSE_SEPARATED.name();
+            return MaritalStatusEnum.SPOUSE_SEPARATED.getName();
         }
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(applicant_marital_status_married_spouse_incapable))) {
-            return MaritalStatusEnum.SPOUSE_INCAPABLE.name();
+            return MaritalStatusEnum.SPOUSE_INCAPABLE.getName();
         }
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(applicant_applying_alone_natural_parent_died))) {
-            return MaritalStatusEnum.NATURAL_PARAENT_DIED.name();
+            return MaritalStatusEnum.NATURAL_PARAENT_DIED.getName();
         }
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(applicant_applying_alone_natural_parent_not_found))) {
-            return MaritalStatusEnum.NATURAL_PARENT_NOT_FOUND.name();
+            return MaritalStatusEnum.NATURAL_PARENT_NOT_FOUND.getName();
         }
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(applicant_applying_alone_no_other_parent))) {
-            return MaritalStatusEnum.NO_OTHER_PARENT.name();
+            return MaritalStatusEnum.NO_OTHER_PARENT.getName();
         }
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(applicant_applying_alone_other_parent_exclusion_justified))) {
-            return MaritalStatusEnum.OTHER_PARENT_EXCLUSION_JUSTIFIED.name();
+            return MaritalStatusEnum.OTHER_PARENT_EXCLUSION_JUSTIFIED.getName();
         }
-
         return "";
     }
 
     private String getAplicantRelationToChild(Map<String, String> inputFieldsMap) {
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(applicant_relationToChild_father_partner))) {
-            return RelationToChildEnum.FATHER.name();
+            return RelationToChildEnum.FATHER.getName();
         }
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(applicant_relationToChild_mother_partner))) {
-            return RelationToChildEnum.MOTHER.name();
+            return RelationToChildEnum.MOTHER.getName();
         }
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(applicant_relationToChild_non_civil_partner))) {
-            return RelationToChildEnum.CIVIL.name();
+            return RelationToChildEnum.CIVIL.getName();
         }
         return "";
     }

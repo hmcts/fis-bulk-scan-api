@@ -11,13 +11,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import uk.gov.hmcts.reform.bulkscan.enums.MaritalStatusEnum;
+import uk.gov.hmcts.reform.bulkscan.enums.RelationToChildEnum;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
+import uk.gov.hmcts.reform.bulkscan.model.FormType;
+import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
 import uk.gov.hmcts.reform.bulkscan.model.Status;
+import uk.gov.hmcts.reform.bulkscan.utils.TestDataUtil;
 
 import java.io.IOException;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -85,4 +91,197 @@ class BulkScanA58PostPlacementServiceTest {
                 mapper.writeValueAsString(res), true);
     }
 
+    @Test
+    @DisplayName("A58 post placement with other parent exclusion justified marital status")
+    void testA58PostPlacementApplicationTransformApplicantSuccess() throws IOException, JSONException {
+        BulkScanTransformationRequest bulkScanTransformationRequest = BulkScanTransformationRequest.builder().formType(
+            FormType.A58.name()).caseTypeId("A58")
+            .ocrdatafields(getOcrDataFields("applicant_applying_alone_other_parent_exclusion_justified", "true"))
+            .build();
+
+        BulkScanTransformationResponse res = bulkScanValidationService.transform(bulkScanTransformationRequest);
+        assertEquals(MaritalStatusEnum.OTHER_PARENT_EXCLUSION_JUSTIFIED.getName(),
+                                res.getCaseCreationDetails().getCaseData().get("applicantMarritalStatus"));
+    }
+
+
+    @Test
+    @DisplayName("A58 post placement with other parent exclusion justified marital status")
+    void testA58PostPlacementApplicationTransformWithNoOtherParent() throws IOException, JSONException {
+        BulkScanTransformationRequest bulkScanTransformationRequest = BulkScanTransformationRequest.builder().formType(
+            FormType.A58.name()).caseTypeId("A58")
+            .ocrdatafields(getOcrDataFields("applicant_applying_alone_no_other_parent", "true"))
+            .build();
+
+        BulkScanTransformationResponse res = bulkScanValidationService.transform(bulkScanTransformationRequest);
+        assertEquals(MaritalStatusEnum.NO_OTHER_PARENT.getName(),
+                                res.getCaseCreationDetails().getCaseData().get("applicantMarritalStatus"));
+    }
+
+    @Test
+    @DisplayName("A58 post placement with other parent Natural parentnot found marital status")
+    void testA58PostPlacementApplicationTransformWithNaturalOtherParent() throws IOException, JSONException {
+        BulkScanTransformationRequest bulkScanTransformationRequest = BulkScanTransformationRequest.builder().formType(
+            FormType.A58.name()).caseTypeId("A58")
+            .ocrdatafields(getOcrDataFields("applicant_applying_alone_natural_parent_not_found", "true"))
+            .build();
+
+        BulkScanTransformationResponse res = bulkScanValidationService.transform(bulkScanTransformationRequest);
+        assertEquals(MaritalStatusEnum.NATURAL_PARENT_NOT_FOUND.getName(),
+                                res.getCaseCreationDetails().getCaseData().get("applicantMarritalStatus"));
+    }
+
+    @Test
+    @DisplayName("A58 post placement with other parent Natural parent Died marital status")
+    void testA58PostPlacementApplicationTransformWithNaturalParentDied() throws IOException, JSONException {
+        BulkScanTransformationRequest bulkScanTransformationRequest = BulkScanTransformationRequest.builder().formType(
+            FormType.A58.name()).caseTypeId("A58")
+            .ocrdatafields(getOcrDataFields("applicant_applying_alone_natural_parent_died", "true"))
+            .build();
+
+        BulkScanTransformationResponse res = bulkScanValidationService.transform(bulkScanTransformationRequest);
+        assertEquals(MaritalStatusEnum.NATURAL_PARAENT_DIED.getName(),
+                                res.getCaseCreationDetails().getCaseData().get("applicantMarritalStatus"));
+    }
+
+    @Test
+    @DisplayName("A58 post placement with Spouse Incapable marital status")
+    void testA58PostPlacementApplicationTransformWithSpouseIncapable() throws IOException, JSONException {
+        BulkScanTransformationRequest bulkScanTransformationRequest = BulkScanTransformationRequest.builder().formType(
+                FormType.A58.name()).caseTypeId("A58")
+            .ocrdatafields(getOcrDataFields("applicant_marital_status_married_spouse_incapable", "true"))
+            .build();
+
+        BulkScanTransformationResponse res = bulkScanValidationService.transform(bulkScanTransformationRequest);
+        assertEquals(MaritalStatusEnum.SPOUSE_INCAPABLE.getName(),
+                                res.getCaseCreationDetails().getCaseData().get("applicantMarritalStatus"));
+    }
+
+    @Test
+    @DisplayName("A58 post placement with Spouse Separated marital status")
+    void testA58PostPlacementApplicationTransformWithSpouseSeparated() throws IOException, JSONException {
+        BulkScanTransformationRequest bulkScanTransformationRequest = BulkScanTransformationRequest.builder().formType(
+                FormType.A58.name()).caseTypeId("A58")
+            .ocrdatafields(getOcrDataFields("applicant_marital_status_married_spouse_separated", "true"))
+            .build();
+
+        BulkScanTransformationResponse res = bulkScanValidationService.transform(bulkScanTransformationRequest);
+        assertEquals(MaritalStatusEnum.SPOUSE_SEPARATED.getName(),
+                                res.getCaseCreationDetails().getCaseData().get("applicantMarritalStatus"));
+    }
+
+
+    @Test
+    @DisplayName("A58 post placement with Spouse not found marital status")
+    void testA58PostPlacementApplicationTransformWithSpouseNotFound() throws IOException, JSONException {
+        BulkScanTransformationRequest bulkScanTransformationRequest = BulkScanTransformationRequest.builder().formType(
+                FormType.A58.name()).caseTypeId("A58")
+            .ocrdatafields(getOcrDataFields("applicant_marital_status_married_spouse_notfound", "true"))
+            .build();
+
+        BulkScanTransformationResponse res = bulkScanValidationService.transform(bulkScanTransformationRequest);
+        assertEquals(MaritalStatusEnum.SPOUSE_NOT_FOUND.getName(),
+                                res.getCaseCreationDetails().getCaseData().get("applicantMarritalStatus"));
+    }
+
+    @Test
+    @DisplayName("A58 post placement with Widow marital status")
+    void testA58PostPlacementApplicationTransformWithWidow() throws IOException, JSONException {
+        BulkScanTransformationRequest bulkScanTransformationRequest = BulkScanTransformationRequest.builder().formType(
+                FormType.A58.name()).caseTypeId("A58")
+            .ocrdatafields(getOcrDataFields("applicant_marital_status_widow", "true"))
+            .build();
+
+        BulkScanTransformationResponse res = bulkScanValidationService.transform(bulkScanTransformationRequest);
+        assertEquals(MaritalStatusEnum.WIDOW.getName(),
+                                res.getCaseCreationDetails().getCaseData().get("applicantMarritalStatus"));
+    }
+
+    @Test
+    @DisplayName("A58 post placement with Divorced marital status")
+    void testA58PostPlacementApplicationTransformWithDivorced() throws IOException, JSONException {
+        BulkScanTransformationRequest bulkScanTransformationRequest = BulkScanTransformationRequest.builder().formType(
+                FormType.A58.name()).caseTypeId("A58")
+            .ocrdatafields(getOcrDataFields("applicant_marital_status_divorced", "true"))
+            .build();
+
+        BulkScanTransformationResponse res = bulkScanValidationService.transform(bulkScanTransformationRequest);
+        assertEquals(MaritalStatusEnum.DIVORCED.getName(),
+                                res.getCaseCreationDetails().getCaseData().get("applicantMarritalStatus"));
+    }
+
+    @Test
+    @DisplayName("A58 post placement with Divorced Single status")
+    void testA58PostPlacementApplicationTransformWithSingle() throws IOException, JSONException {
+        BulkScanTransformationRequest bulkScanTransformationRequest = BulkScanTransformationRequest.builder().formType(
+                FormType.A58.name()).caseTypeId("A58")
+            .ocrdatafields(getOcrDataFields("applicant_marital_status_single", "true"))
+            .build();
+
+        BulkScanTransformationResponse res = bulkScanValidationService.transform(bulkScanTransformationRequest);
+        assertEquals(MaritalStatusEnum.SINGLE.getName(),
+                                res.getCaseCreationDetails().getCaseData().get("applicantMarritalStatus"));
+    }
+
+    @Test
+    @DisplayName("A58 post placement with mother relationship")
+    void testA58PostPlacementApplicationRelationToChild() throws IOException, JSONException {
+        BulkScanTransformationRequest bulkScanTransformationRequest = BulkScanTransformationRequest.builder().formType(
+                FormType.A58.name()).caseTypeId("A58")
+            .ocrdatafields(getOcrDataFields("applicant_relationToChild_mother_partner", "true"))
+            .build();
+
+        BulkScanTransformationResponse res = bulkScanValidationService.transform(bulkScanTransformationRequest);
+        assertEquals(RelationToChildEnum.MOTHER.getName(),
+            res.getCaseCreationDetails().getCaseData().get("applicantRelationToChild"));
+    }
+
+    @Test
+    @DisplayName("A58 post placement with Civil relationship")
+    void testA58PostPlacementApplicationRelationToChildAsCivil() throws IOException, JSONException {
+        BulkScanTransformationRequest bulkScanTransformationRequest = BulkScanTransformationRequest.builder().formType(
+                FormType.A58.name()).caseTypeId("A58")
+            .ocrdatafields(getOcrDataFields("applicant_relationToChild_non_civil_partner", "true"))
+            .build();
+
+        BulkScanTransformationResponse res = bulkScanValidationService.transform(bulkScanTransformationRequest);
+        assertEquals(RelationToChildEnum.CIVIL.getName(),
+                                res.getCaseCreationDetails().getCaseData().get("applicantRelationToChild"));
+    }
+
+    @Test
+    @DisplayName("A58 post placement with Domicile status")
+    void testA58PostPlacementApplicationDomicilleStatus() throws IOException, JSONException {
+        BulkScanTransformationRequest bulkScanTransformationRequest = BulkScanTransformationRequest.builder().formType(
+                FormType.A58.name()).caseTypeId("A58")
+            .ocrdatafields(getOcrDataFields("applicants_domicile_status", "true"))
+            .build();
+
+        BulkScanTransformationResponse res = bulkScanValidationService.transform(bulkScanTransformationRequest);
+        assertEquals("true",
+                                res.getCaseCreationDetails().getCaseData().get("applicantsDomicileStatus"));
+    }
+
+    @Test
+    @DisplayName("A58 post placement with non Domicile status")
+    void testA58PostPlacementApplicationNonDomicilleStatus() throws IOException, JSONException {
+        BulkScanTransformationRequest bulkScanTransformationRequest = BulkScanTransformationRequest.builder().formType(
+                FormType.A58.name()).caseTypeId("A58")
+            .ocrdatafields(getOcrDataFields("applicants_non_domicile_status", "true"))
+            .build();
+
+        BulkScanTransformationResponse res = bulkScanValidationService.transform(bulkScanTransformationRequest);
+        assertEquals("false",
+                                res.getCaseCreationDetails().getCaseData().get("applicantsDomicileStatus"));
+    }
+
+
+    private List<OcrDataField> getOcrDataFields(String key, String value) {
+        List<OcrDataField> list = TestDataUtil.getA58DataWithoutRelation();
+        OcrDataField ocrDataField = new OcrDataField();
+        ocrDataField.setName(key);
+        ocrDataField.setValue(value);
+        list.add(ocrDataField);
+        return list;
+    }
 }
