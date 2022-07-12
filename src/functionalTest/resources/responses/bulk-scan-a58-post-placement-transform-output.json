@@ -8,9 +8,9 @@
       "birthFatherFirstName":"Address1 London",
       "applicantsDomicileStatus":"true",
       "applicantRelationToChildFatherPartner":"",
-      "applicantMarritalStatus":"",
+      "applicantMaritalStatus":"",
       "applicant2Nationality":null,
-      "birthMotherAddress":"motherLastName",
+      "birthMotherAddress":"motherAddress",
       "guardianLastName":"guardianLastName",
       "scannedDocuments":[
         {
@@ -27,13 +27,13 @@
       "birthFatherAddress":"Address1 London",
       "guardianAddress":"Address1 London",
       "applicant2FirstName":null,
-      "birthMotherFirstName":"Address1 London",
+      "birthMotherFirstName":"motherFirstName",
       "applicant2LastName":null,
       "applicant1Nationality":"British",
       "otherParentRelationshipToChild":"Father",
       "parentalResponsibility":"No",
       "applicant1RelationToChild":null,
-      "birthMotherLastName":"motherFirstName",
+      "birthMotherLastName":"motherLastName",
       "solicitor":{
         "solicitorName":null,
         "solicitorFirm":null,

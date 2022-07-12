@@ -101,7 +101,7 @@ class BulkScanA58PostPlacementServiceTest {
 
         BulkScanTransformationResponse res = bulkScanValidationService.transform(bulkScanTransformationRequest);
         assertEquals(MaritalStatusEnum.OTHER_PARENT_EXCLUSION_JUSTIFIED.getName(),
-                                res.getCaseCreationDetails().getCaseData().get("applicantMarritalStatus"));
+                                res.getCaseCreationDetails().getCaseData().get("applicantMaritalStatus"));
     }
 
 
@@ -115,7 +115,7 @@ class BulkScanA58PostPlacementServiceTest {
 
         BulkScanTransformationResponse res = bulkScanValidationService.transform(bulkScanTransformationRequest);
         assertEquals(MaritalStatusEnum.NO_OTHER_PARENT.getName(),
-                                res.getCaseCreationDetails().getCaseData().get("applicantMarritalStatus"));
+                                res.getCaseCreationDetails().getCaseData().get("applicantMaritalStatus"));
     }
 
     @Test
@@ -128,7 +128,7 @@ class BulkScanA58PostPlacementServiceTest {
 
         BulkScanTransformationResponse res = bulkScanValidationService.transform(bulkScanTransformationRequest);
         assertEquals(MaritalStatusEnum.NATURAL_PARENT_NOT_FOUND.getName(),
-                                res.getCaseCreationDetails().getCaseData().get("applicantMarritalStatus"));
+                                res.getCaseCreationDetails().getCaseData().get("applicantMaritalStatus"));
     }
 
     @Test
@@ -141,7 +141,7 @@ class BulkScanA58PostPlacementServiceTest {
 
         BulkScanTransformationResponse res = bulkScanValidationService.transform(bulkScanTransformationRequest);
         assertEquals(MaritalStatusEnum.NATURAL_PARAENT_DIED.getName(),
-                                res.getCaseCreationDetails().getCaseData().get("applicantMarritalStatus"));
+                                res.getCaseCreationDetails().getCaseData().get("applicantMaritalStatus"));
     }
 
     @Test
@@ -154,7 +154,7 @@ class BulkScanA58PostPlacementServiceTest {
 
         BulkScanTransformationResponse res = bulkScanValidationService.transform(bulkScanTransformationRequest);
         assertEquals(MaritalStatusEnum.SPOUSE_INCAPABLE.getName(),
-                                res.getCaseCreationDetails().getCaseData().get("applicantMarritalStatus"));
+                                res.getCaseCreationDetails().getCaseData().get("applicantMaritalStatus"));
     }
 
     @Test
@@ -167,7 +167,7 @@ class BulkScanA58PostPlacementServiceTest {
 
         BulkScanTransformationResponse res = bulkScanValidationService.transform(bulkScanTransformationRequest);
         assertEquals(MaritalStatusEnum.SPOUSE_SEPARATED.getName(),
-                                res.getCaseCreationDetails().getCaseData().get("applicantMarritalStatus"));
+                                res.getCaseCreationDetails().getCaseData().get("applicantMaritalStatus"));
     }
 
 
@@ -181,7 +181,7 @@ class BulkScanA58PostPlacementServiceTest {
 
         BulkScanTransformationResponse res = bulkScanValidationService.transform(bulkScanTransformationRequest);
         assertEquals(MaritalStatusEnum.SPOUSE_NOT_FOUND.getName(),
-                                res.getCaseCreationDetails().getCaseData().get("applicantMarritalStatus"));
+                                res.getCaseCreationDetails().getCaseData().get("applicantMaritalStatus"));
     }
 
     @Test
@@ -194,7 +194,7 @@ class BulkScanA58PostPlacementServiceTest {
 
         BulkScanTransformationResponse res = bulkScanValidationService.transform(bulkScanTransformationRequest);
         assertEquals(MaritalStatusEnum.WIDOW.getName(),
-                                res.getCaseCreationDetails().getCaseData().get("applicantMarritalStatus"));
+                                res.getCaseCreationDetails().getCaseData().get("applicantMaritalStatus"));
     }
 
     @Test
@@ -207,7 +207,7 @@ class BulkScanA58PostPlacementServiceTest {
 
         BulkScanTransformationResponse res = bulkScanValidationService.transform(bulkScanTransformationRequest);
         assertEquals(MaritalStatusEnum.DIVORCED.getName(),
-                                res.getCaseCreationDetails().getCaseData().get("applicantMarritalStatus"));
+                                res.getCaseCreationDetails().getCaseData().get("applicantMaritalStatus"));
     }
 
     @Test
@@ -220,7 +220,7 @@ class BulkScanA58PostPlacementServiceTest {
 
         BulkScanTransformationResponse res = bulkScanValidationService.transform(bulkScanTransformationRequest);
         assertEquals(MaritalStatusEnum.SINGLE.getName(),
-                                res.getCaseCreationDetails().getCaseData().get("applicantMarritalStatus"));
+                                res.getCaseCreationDetails().getCaseData().get("applicantMaritalStatus"));
     }
 
     @Test

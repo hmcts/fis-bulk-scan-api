@@ -71,9 +71,9 @@ public class BulkScanA58Service implements BulkScanService {
     public static final String RELATIONSHIP_OTHER = "child_relationship_other";
     public static final String FATHER = "Father";
     public static final String OTHER_PARENT = "Other parent";
-    public static final String applicantsDomicileStatus = "applicantsDomicileStatus";
-    public static final String applicantRelationToChild = "applicantRelationToChild";
-    public static final String applicantMarritalStatus = "applicantMarritalStatus";
+    public static final String APPLICANTS_DOMICILE_STATUS = "applicantsDomicileStatus";
+    public static final String APPLICANT_RELATION_TO_CHILD = "applicantRelationToChild";
+    public static final String APPLICANT_MARITAL_STATUS = "applicantMaritalStatus";
 
     @Autowired
     BulkScanFormValidationConfigManager configManager;
@@ -142,12 +142,12 @@ public class BulkScanA58Service implements BulkScanService {
 
         // For A58 formtype we need to set some fields based on the Or Condition...
         if (formType.equals(A58)) {
-            populatedMap.put(applicantsDomicileStatus, getDomicileStatus(inputFieldsMap));
-            populatedMap.put(applicantRelationToChild, getAplicantRelationToChild(inputFieldsMap));
+            populatedMap.put(APPLICANTS_DOMICILE_STATUS, getDomicileStatus(inputFieldsMap));
+            populatedMap.put(APPLICANT_RELATION_TO_CHILD, getAplicantRelationToChild(inputFieldsMap));
             // Marital status should be read if relation to child is null.
-            if (populatedMap.get(applicantRelationToChild) == null
-                    || StringUtils.isEmpty((String)populatedMap.get(applicantRelationToChild))) {
-                populatedMap.put(applicantMarritalStatus, getApplicantMarritalStatus(inputFieldsMap));
+            if (populatedMap.get(APPLICANT_RELATION_TO_CHILD) == null
+                    || StringUtils.isEmpty((String)populatedMap.get(APPLICANT_RELATION_TO_CHILD))) {
+                populatedMap.put(APPLICANT_MARITAL_STATUS, getApplicantMaritalStatus(inputFieldsMap));
             }
             populatedMap.put(OTHER_PARENT_RELATIONSHIP_TO_CHILD, buildRelationshipToChild(inputFieldsMap));
         }
@@ -179,7 +179,7 @@ public class BulkScanA58Service implements BulkScanService {
         return null;
     }
 
-    private String getApplicantMarritalStatus(Map<String, String> inputFieldsMap) {
+    private String getApplicantMaritalStatus(Map<String, String> inputFieldsMap) {
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(applicant_marital_status_single))) {
             return MaritalStatusEnum.SINGLE.getName();
         }
