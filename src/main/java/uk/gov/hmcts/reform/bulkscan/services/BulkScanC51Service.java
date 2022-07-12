@@ -32,6 +32,11 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.UNKNOWN_F
 import static uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper.transformScanDocuments;
 import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.SCAN_DOCUMENTS;
 
+/**
+ *  service class for C51 form
+ *  It provides methods to validate and transform requesst.
+ */
+
 @Service
 public class BulkScanC51Service implements BulkScanService {
 
@@ -49,6 +54,16 @@ public class BulkScanC51Service implements BulkScanService {
         return FormType.C51;
     }
 
+
+    /**
+     *
+     * This method will be used to validate incoming request.
+     * It can return SUCCESS, ERROR or WARNING response.
+     *
+     * @param bulkRequest
+     * @return
+     *
+     */
     @Override
     public BulkScanValidationResponse validate(BulkScanValidationRequest bulkRequest) {
         // Validating the Fields..
@@ -70,6 +85,13 @@ public class BulkScanC51Service implements BulkScanService {
         return bulkScanValidationResponse;
     }
 
+    /**
+     * This method will validate if at least one of the
+     * input (either telephone number or mobile number) is present in request
+     *
+     * @param ocrDataFields
+     * @param bulkScanValidationResponse
+     */
     private void validateConditionalFields(List<OcrDataField> ocrDataFields,
                                            BulkScanValidationResponse bulkScanValidationResponse) {
         Map<String, String> ocrDataFieldsMap = ocrDataFields
@@ -98,6 +120,12 @@ public class BulkScanC51Service implements BulkScanService {
         }
     }
 
+    /**
+     * This method will tranfrom incoming requet to CCD object
+     *
+     * @param bulkScanTransformationRequest
+     * @return
+     */
     @Override
     @SuppressWarnings("unchecked")
     public BulkScanTransformationResponse transform(BulkScanTransformationRequest bulkScanTransformationRequest) {

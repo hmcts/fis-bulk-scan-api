@@ -1,0 +1,11 @@
+{
+  "status": "ERRORS",
+  "warnings": {
+    "items": []
+  },
+  "errors": {
+    "items": [
+      "applicant1_firstName is missing"
+    ]
+  }
+}
