@@ -56,11 +56,9 @@ public class BulkScanC51Service implements BulkScanService {
 
 
     /**
-     *
      * This method will be used to validate incoming request.
      * It can return SUCCESS, ERROR or WARNING response.
-     *
-     * @param bulkRequest
+     * @param bulkRequest BulkScanValidationRequest
      * @return
      *
      */
@@ -87,10 +85,9 @@ public class BulkScanC51Service implements BulkScanService {
 
     /**
      * This method will validate if at least one of the
-     * input (either telephone number or mobile number) is present in request
-     *
-     * @param ocrDataFields
-     * @param bulkScanValidationResponse
+     * input (either telephone number or mobile number) is present in request.
+     * @param ocrDataFields OcrDataField list
+     * @param bulkScanValidationResponse BulkScanValidationResponse
      */
     private void validateConditionalFields(List<OcrDataField> ocrDataFields,
                                            BulkScanValidationResponse bulkScanValidationResponse) {
@@ -121,10 +118,9 @@ public class BulkScanC51Service implements BulkScanService {
     }
 
     /**
-     * This method will tranfrom incoming requet to CCD object
-     *
-     * @param bulkScanTransformationRequest
-     * @return
+     * This method will tranfrom incoming requet to CCD object.
+     * @param bulkScanTransformationRequest BulkScanTransformationRequest
+     * @return BulkScanTransformationResponse
      */
     @Override
     @SuppressWarnings("unchecked")

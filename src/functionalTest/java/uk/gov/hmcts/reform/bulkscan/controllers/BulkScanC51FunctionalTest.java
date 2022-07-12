@@ -106,7 +106,7 @@ public class BulkScanC51FunctionalTest {
 
     @Test
     @DisplayName("test case should failed with validation error")
-    public void shouldValidateC51BulkScanXORRequestFailed() throws Exception {
+    public void shouldValidateC51BulkScanXoRRequestFailed() throws Exception {
         String bulkScanValidationRequest =
             readFileFrom(C51_VALIDATION_ERROR_INPUT_PATH);
 
