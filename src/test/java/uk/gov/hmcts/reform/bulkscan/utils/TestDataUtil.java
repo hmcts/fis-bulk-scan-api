@@ -1,6 +1,8 @@
 package uk.gov.hmcts.reform.bulkscan.utils;
 
 import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
+import uk.gov.hmcts.reform.bulkscan.model.ScanDocument;
+import uk.gov.hmcts.reform.bulkscan.model.ScannedDocuments;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -384,6 +386,90 @@ public final class TestDataUtil {
         ocrAddressField.setName("applicant1_address");
         ocrAddressField.setValue(ADDRESS);
         fieldList.add(ocrAddressField);
+
+        return fieldList;
+    }
+
+    public static List<OcrDataField> getA59Data() {
+        List<OcrDataField> fieldList = new ArrayList<>();
+        OcrDataField ocrDataApplicant1FirstNameField = new OcrDataField();
+        ocrDataApplicant1FirstNameField.setName("applicant1_firstName");
+        ocrDataApplicant1FirstNameField.setValue("murshad");
+        fieldList.add(ocrDataApplicant1FirstNameField);
+
+        OcrDataField ocrDataApplicant1LastNameField = new OcrDataField();
+        ocrDataApplicant1LastNameField.setName("applicant1_lastName");
+        ocrDataApplicant1LastNameField.setValue("haque");
+        fieldList.add(ocrDataApplicant1LastNameField);
+
+        OcrDataField ocrApplicant1AddressField = new OcrDataField();
+        ocrApplicant1AddressField.setName("applicant1_address");
+        ocrApplicant1AddressField.setValue("123 test street, London");
+        fieldList.add(ocrApplicant1AddressField);
+
+        OcrDataField ocrApplicant1TelephoneNumberField = new OcrDataField();
+        ocrApplicant1TelephoneNumberField.setName("applicant1_telephoneNumber");
+        ocrApplicant1TelephoneNumberField.setValue("+447405878672");
+        fieldList.add(ocrApplicant1TelephoneNumberField);
+
+        OcrDataField ocrDataApplicant2FirstNameField = new OcrDataField();
+        ocrDataApplicant2FirstNameField.setName("applicant2_firstName");
+        ocrDataApplicant2FirstNameField.setValue("mohammed");
+        fieldList.add(ocrDataApplicant2FirstNameField);
+
+        OcrDataField ocrDataApplicant2LastNameField = new OcrDataField();
+        ocrDataApplicant2LastNameField.setName("applicant2_lastName");
+        ocrDataApplicant2LastNameField.setValue("haque");
+        fieldList.add(ocrDataApplicant2LastNameField);
+
+        OcrDataField ocrApplicant2AddressField = new OcrDataField();
+        ocrApplicant2AddressField.setName("applicant2_address");
+        ocrApplicant2AddressField.setValue("123 test street, London");
+        fieldList.add(ocrApplicant2AddressField);
+
+        OcrDataField ocrApplicant2TelephoneNumberField = new OcrDataField();
+        ocrApplicant2TelephoneNumberField.setName("applicant2_telephoneNumber");
+        ocrApplicant2TelephoneNumberField.setValue("+447405878672");
+        fieldList.add(ocrApplicant2TelephoneNumberField);
+
+        return fieldList;
+    }
+
+    public static List<OcrDataField> getA59ErrorData() {
+        List<OcrDataField> fieldList = new ArrayList<>();
+        OcrDataField ocrDataApplicant1FirstNameField = new OcrDataField();
+        ocrDataApplicant1FirstNameField.setName("applicant1_firstName");
+        fieldList.add(ocrDataApplicant1FirstNameField);
+
+        OcrDataField ocrApplicant1AddressField = new OcrDataField();
+        ocrApplicant1AddressField.setName("applicant1_address");
+        ocrApplicant1AddressField.setValue("123 test street, London");
+        fieldList.add(ocrApplicant1AddressField);
+
+        OcrDataField ocrApplicant1TelephoneNumberField = new OcrDataField();
+        ocrApplicant1TelephoneNumberField.setName("applicant1_telephoneNumber");
+        ocrApplicant1TelephoneNumberField.setValue("+447405");
+        fieldList.add(ocrApplicant1TelephoneNumberField);
+
+        OcrDataField ocrDataApplicant2FirstNameField = new OcrDataField();
+        ocrDataApplicant2FirstNameField.setName("applicant2_firstName");
+        ocrDataApplicant2FirstNameField.setValue("murshad");
+        fieldList.add(ocrDataApplicant2FirstNameField);
+
+        OcrDataField ocrDataApplicant2LastNameField = new OcrDataField();
+        ocrDataApplicant2LastNameField.setName("applicant2_lastName");
+        ocrDataApplicant2LastNameField.setValue("haque");
+        fieldList.add(ocrDataApplicant2LastNameField);
+
+        OcrDataField ocrApplicant2AddressField = new OcrDataField();
+        ocrApplicant2AddressField.setName("applicant2_address");
+        ocrApplicant2AddressField.setValue("123 test street, London");
+        fieldList.add(ocrApplicant2AddressField);
+
+        OcrDataField ocrApplicant2TelephoneNumberField = new OcrDataField();
+        ocrApplicant2TelephoneNumberField.setName("applicant2_telephoneNumber");
+        ocrApplicant2TelephoneNumberField.setValue("9898");
+        fieldList.add(ocrApplicant2TelephoneNumberField);
 
         return fieldList;
     }
@@ -912,5 +998,24 @@ public final class TestDataUtil {
         fieldList.add(ocrApplicantRelationToChildField);
 
         return fieldList;
+    }
+
+    public static List<ScannedDocuments> getScannedDocumentsList() {
+        return List.of(
+            ScannedDocuments.builder()
+                .scanDocument(ScanDocument.builder()
+                                  .url("url")
+                                  .binaryUrl("binary_url")
+                                  .filename("filename")
+                                  .build())
+                .build(),
+            ScannedDocuments.builder()
+                .scanDocument(ScanDocument.builder()
+                                  .url("url1")
+                                  .binaryUrl("binary_url1")
+                                  .filename("filename1")
+                                  .build())
+                .build()
+        );
     }
 }

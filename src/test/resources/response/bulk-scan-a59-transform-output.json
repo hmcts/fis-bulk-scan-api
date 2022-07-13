@@ -1,0 +1,35 @@
+{
+  "case_creation_details":{
+    "case_type_id":"A59",
+    "event_id":"create-case-adop-bs",
+    "case_data":{
+      "applicant1FirstName":"murshad",
+      "applicant1LastName":"haque",
+      "applicant1Address":"123 test street, London",
+      "applicant1TelephoneNumber":"+447405878672",
+      "applicant2FirstName":"mohammed",
+      "applicant2LastName":"haque",
+      "applicant2Address":"123 test street, London",
+      "applicant2TelephoneNumber":"+447405878672",
+      "scannedDocuments":[
+        {
+          "value":{
+            "document_url":"url",
+            "document_filename":"filename",
+            "document_binary_url":"binary_url"
+          }
+        },
+        {
+          "value":{
+            "document_url":"url1",
+            "document_filename":"filename1",
+            "document_binary_url":"binary_url1"
+          }
+        }
+      ]
+    }
+  },
+  "warnings":[
+
+  ]
+}

@@ -78,6 +78,11 @@
   </rule>
   <rule ref="category/java/performance.xml"/>
   <rule ref="category/java/security.xml"/>
+  <rule ref="category/java/design.xml/ExcessiveClassLength">
+    <properties>
+      <property name="minimum" value="1500.0" />
+    </properties>
+  </rule>
   <rule ref="category/java/design.xml/ExcessiveImports">
     <properties>
       <property name="minimum" value="55.0" />

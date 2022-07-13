@@ -1,0 +1,46 @@
+{
+  "ocr_data_fields":[
+    {
+      "name":"applicant1_firstName",
+      "value":"murshad"
+    },
+    {
+      "name":"applicant1_lastName",
+      "value":"haque"
+    },
+    {
+      "name":"applicant1_address",
+      "value":"East London"
+    },
+    {
+      "name":"applicant1_telephoneNumber",
+      "value":"07456575789"
+    },
+    {
+      "name":"applicant2_firstName",
+      "value":"mohammed"
+    },
+    {
+      "name":"applicant2_lastName",
+      "value":"haque"
+    },
+    {
+      "name":"applicant2_address",
+      "value":"West London"
+    },
+    {
+      "name":"applicant2_telephoneNumber",
+      "value":"07456575789"
+    }
+  ],
+  "scanned_documents": [
+    {
+      "url": {
+        "document_url":"http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c",
+        "document_filename":"test.pdf",
+        "document_binary_url":"http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
+      }
+    }
+  ],
+  "form_type": "A59"
+}

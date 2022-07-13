@@ -18,7 +18,6 @@ import uk.gov.hmcts.reform.bulkscan.model.Status;
 import uk.gov.hmcts.reform.bulkscan.utils.TestDataUtil;
 
 import java.io.IOException;
-import java.util.Collections;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -30,70 +29,67 @@ import static uk.gov.hmcts.reform.bulkscan.utils.TestResourceUtil.readFileFrom;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @ActiveProfiles("test")
-class BulkScanA58ServiceTest {
+class BulkScanA59ServiceTest {
 
-    private static final String A58_STEP_PARENT_TRANSFORM_RESPONSE_PATH =
-            "classpath:response/bulk-scan-a58-step-parent-transform-output.json";
+    private static final String A59_TRANSFORM_RESPONSE_PATH =
+        "classpath:response/bulk-scan-a59-transform-output.json";
 
     @Spy
     @Autowired
-    BulkScanA58Service bulkScanValidationService;
+    BulkScanA59Service bulkScanValidationService;
 
     @Test
-    void testA58Success() {
+    void testA59Success() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-                TestDataUtil.getA58Data()).build();
+            TestDataUtil.getA59Data()).build();
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.SUCCESS, res.status);
     }
 
     @Test
-    void testA58SuccessWithUnknowFieldError() {
+    void testApplicant1FirstnameMandatoryFieldErrorWhileDoingValidation() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-            TestDataUtil.getA58DataWithAdditonalOptionalFields()).build();
-        BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
-        assertEquals(Status.WARNINGS, res.status);
-    }
-
-    @Test
-    void testA58MandatoryErrorWhileDoingValidation() {
-        BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-                TestDataUtil.getA60OrC63orA58ErrorData()).build();
+            TestDataUtil.getA59ErrorData()).build();
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
         assertTrue(res.getErrors().items.contains(String.format(MANDATORY_ERROR_MESSAGE, "applicant1_firstName")));
     }
 
     @Test
-    void testA58FieldMissingErrorWhileDoingValidation() {
+    void testApplicant1LastnameMandatoryFieldErrorWhileDoingValidation() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-                TestDataUtil.getA60OrC63orA58ErrorData()).build();
+            TestDataUtil.getA59ErrorData()).build();
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
         assertTrue(res.getErrors().items.contains(String.format(MISSING_FIELD_MESSAGE, "applicant1_lastName")));
     }
 
     @Test
-    void testA58OptionalFieldsWarningsWhileDoingValidation() {
+    void testApplicant1TelephoneNumberMandatoryFieldErrorWhileDoingValidation() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-                TestDataUtil.getA60OrC63orA58ErrorData()).build();
+            TestDataUtil.getA59ErrorData()).build();
+        BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
+        assertTrue(res.getErrors().items.contains(String.format(PHONE_NUMBER_MESSAGE, "applicant1_telephoneNumber")));
+    }
+
+    @Test
+    void testApplicant2TelephoneNumberMandatoryFieldErrorWhileDoingValidation() {
+        BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
+            TestDataUtil.getA59ErrorData()).build();
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertTrue(res.getWarnings().items.contains(String.format(PHONE_NUMBER_MESSAGE, "applicant2_telephoneNumber")));
     }
 
     @Test
-    void testA58StepParentAdoptionTransformRequest() throws IOException, JSONException {
+    void testTransformRequest() throws IOException, JSONException {
         ObjectMapper mapper = new ObjectMapper();
-
         BulkScanTransformationResponse bulkScanTransformationResponse =
-                bulkScanValidationService.transform(BulkScanTransformationRequest
-                        .builder()
-                                        .scannedDocuments(Collections.emptyList())
-                        .scannedDocuments(TestDataUtil.getScannedDocumentsList())
-                        .ocrdatafields(TestDataUtil.getA60OrC63orA58Data()).build());
+            bulkScanValidationService.transform(BulkScanTransformationRequest.builder()
+                                                    .scannedDocuments(TestDataUtil.getScannedDocumentsList())
+                                                    .ocrdatafields(TestDataUtil.getA59Data()).build());
 
-        JSONAssert.assertEquals(readFileFrom(A58_STEP_PARENT_TRANSFORM_RESPONSE_PATH),
-                mapper.writeValueAsString(bulkScanTransformationResponse), true);
+        JSONAssert.assertEquals(readFileFrom(A59_TRANSFORM_RESPONSE_PATH),
+                                mapper.writeValueAsString(bulkScanTransformationResponse), true);
 
     }
 }
