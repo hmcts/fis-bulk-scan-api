@@ -38,6 +38,7 @@ spring:
       - test-A1-form
       - test-a58-transform
       - test-a59-transform
+      - test-a60-transform
 
 azure:
   application-insights:

@@ -387,11 +387,6 @@ public final class TestDataUtil {
         ocrAddressField.setValue(ADDRESS);
         fieldList.add(ocrAddressField);
 
-        OcrDataField ocrApplicantRelationToChildField = new OcrDataField();
-        ocrApplicantRelationToChildField.setName("applicant_relationToChild_father_partner");
-        ocrApplicantRelationToChildField.setValue("false");
-        fieldList.add(ocrApplicantRelationToChildField);
-
         return fieldList;
     }
 
