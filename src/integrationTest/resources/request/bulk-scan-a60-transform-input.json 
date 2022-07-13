@@ -9,12 +9,13 @@
       "value":"firstName"
     },
     {
-      "name":"applicant1_lastName",
-      "value":"lastName"
-    },
-    {
       "name":"applicant1_telephoneNumber",
       "value":"+447965999000"
+    },
+    {
+      "name":"applicant1_lastName",
+      "value":"lastName"
     }
-  ]
+  ],
+  "form_type": "A60"
 }
