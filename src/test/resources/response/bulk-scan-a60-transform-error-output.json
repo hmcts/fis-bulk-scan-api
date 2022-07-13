@@ -1,0 +1,36 @@
+{
+  "case_creation_details": {
+    "case_type_id": "ADOPTION",
+    "event_id": "create-case-adop-bs",
+    "case_data": {
+      "scannedDocuments": [
+        {
+          "value": {
+            "document_url": "url",
+            "document_filename": "errorFileName",
+            "document_binary_url": "binary_url"
+          }
+        }
+      ],
+      "applicant": [
+        {
+          "value": {
+            "applicant1FirstName": "applicant1_firstName",
+            "applicant1LastName": "applicant1_lastName",
+            "applicant1Address": "123 test street, London",
+            "applicant1TelephoneNumber": "+447405678972"
+          }
+        },
+        {
+          "value": {
+            "applicant2FirstName": null,
+            "applicant2LastName": null,
+            "applicant2Address": null,
+            "applicant2TelephoneNumber": null
+          }
+        }
+      ]
+    }
+  },
+  "warnings": []
+}

@@ -2,7 +2,7 @@
   "ocr_data_fields":[
     {
       "name":"applicant1_address",
-      "value":"123 test street, London"
+      "value":"Address1 London"
     },
     {
       "name":"applicant1_firstName",
@@ -14,7 +14,7 @@
     },
     {
       "name":"applicant1_telephoneNumber",
-      "value":"+447965999000"
+      "value":"0956B47"
     }
   ]
 }
