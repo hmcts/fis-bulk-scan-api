@@ -14,6 +14,26 @@ uk:
               - mother_address
               - mother_nationality
               - mother_occupation
+              - child_firstname_on_adoption_order
+              - child_lastname_on_adoption_order
+              -
+              - sole_applicant_or_applicant1_statement_of_truth
+              - sole_applicant_or_applicant1_legal_rep_statement_of_truth
+              - sole_applicant_or_applicant1_or_legal_rep_signature
+              - sole_applicant_or_applicant1_signing
+              - legal_rep_signing
+              - statement_of_truth_date_day
+              - statement_of_truth_date_month
+              - statement_of_truth_date_year
+
+              - sole_applicant_or_applicant2_statement_of_truth
+              - sole_applicant_or_applicant2_legal_rep_statement_of_truth
+              - applicant2_or_legal_rep_signature
+              - applicant2_signing
+              - applicant2_legal_rep_signing
+              - applicant2_statement_of_truth_date_day
+              - applicant2_statement_of_truth_date_month
+              - applicant2_statement_of_truth_date_year
             optionalFields:
               - applicant1_dateOfBirth
               - applicant1_nationality
@@ -66,6 +86,31 @@ uk:
               - guardian_firstName
               - guardian_lastName
               - guardian_address
+              - child_health_report_date
+              - child_adoption_payment_details
+
+              - sole_applicant_or_applicant1_or_legal_rep_full_name
+              - sole_applicant_or_applicant1_legal_rep_firm
+              - sole_applicant_or_applicant1_legal_rep_position
+
+              - applicant2_or_legal_rep_full_name
+              - applicant2_legal_rep_firm
+              - applicant2_legal_rep_position
+              - welsh_read_write
+              - witness_name
+              - witness_spoken_welsh
+              - witness_written_welsh
+              - witness_written_spoken_both
+              - court_unavailable_dates
+              - court_preferred_dates
+              - court_interpreter_assistance
+              - applicant_require_interpreter
+              - respondent_require_interpreter
+              - other_party_require_interpreter
+              - other_party_name
+              - court_interpreter_assistance_language
+              - spcial_assistance_facilities_required
+              - spcial_assistance_facilities
             regexValidationFields:
               dateFields:
                 fieldNames:

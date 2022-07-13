@@ -144,7 +144,9 @@ public class BulkScanValidationHelper {
                 .collect(Collectors.toMap(OcrDataField::getName, OcrDataField::getValue));
         List<String> pairs = pair.getKey();
         pairs.forEach(eachPair -> {
-            postCodeErrorMessages.addAll(validateXorField(eachPair, ocrDataFieldsMap, isOptional));
+            if (isNotEmpty(eachPair)) {
+                postCodeErrorMessages.addAll(validateXorField(eachPair, ocrDataFieldsMap, isOptional));
+            }
         });
         return postCodeErrorMessages;
     }
