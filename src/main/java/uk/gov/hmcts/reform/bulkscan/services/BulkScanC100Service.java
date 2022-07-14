@@ -33,6 +33,9 @@ public class BulkScanC100Service implements BulkScanService {
     @Autowired
     BulkScanValidationHelper bulkScanValidationHelper;
 
+    @Autowired
+    BulkScanC100ValidationService bulkScanC100ValidationService;
+
     @Override
     public FormType getCaseType() {
         return FormType.C100;
@@ -41,9 +44,16 @@ public class BulkScanC100Service implements BulkScanService {
     @Override
     public BulkScanValidationResponse validate(BulkScanValidationRequest bulkRequest) {
         // Validating the Fields..
-        return bulkScanValidationHelper.validateMandatoryAndOptionalFields(bulkRequest.getOcrdatafields(),
-                                                                          configManager.getValidationConfig(
-                                                                              FormType.C100));
+
+        List<OcrDataField> ocrDataFields = bulkRequest.getOcrdatafields();
+
+        BulkScanValidationResponse bulkScanValidationResponse = bulkScanValidationHelper.validateMandatoryAndOptionalFields(
+            ocrDataFields,
+            configManager.getValidationConfig(
+                FormType.C100)
+        );
+
+        return bulkScanC100ValidationService.validateRequiremntToAttendMiam(ocrDataFields, bulkScanValidationResponse);
     }
 
 
