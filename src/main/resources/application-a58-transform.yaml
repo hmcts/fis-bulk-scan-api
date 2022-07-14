@@ -3,6 +3,53 @@ uk:
     hmcts:
       transform:
         caseTypeofApplication:
+          A58:
+            caseFields:
+              CASE_TYPE_ID: A58
+              EVENT_ID: create-case-adop-bs
+            caseDataFields:
+              applicant1FirstName: applicant1_firstName
+              applicant1LastName: applicant1_lastName
+              applicant1Address: applicant1_address
+              applicant1TelephoneNumber: applicant1_telephoneNumber
+              applicant1RelationToChild: applicant1_relationToChild
+              applicant1DateOfBirth: applicant1_dateOfBirth
+              applicant1Nationality: applicant1_nationality
+              applicant1Occupation: applicant1_occupation
+              applicant2FirstName: applicant2_firstName
+              applicant2LastName: applicant2_lastName
+              applicant2Address: applicant2_address
+              applicant2TelephoneNumber: applicant2_telephoneNumber
+              applicant2RelationToChild: applicant2_relationToChild
+              applicant2DateOfBirth: applicant2_dateOfBirth
+              applicant2Nationality: applicant2_nationality
+              applicant2Occupation: applicant2_occupation
+              solicitor:
+                solicitorName: solicitor_name
+                solicitorFirm: solicitor_firmName
+                solicitorAddress: solicitor_address
+                solicitorPhoneNumber: solicitor_telephoneNumber
+                solicitorFaxNumber: solicitor_faxNumber
+                solicitorDxNumber: solicitor_dxNumber
+                solicitorEmail: solicitor_emailAddress
+                solicitorFeeAccountNumber: solicitor_feeAccountNumber
+              applicantsDomicileStatus: applicants_domicile_status
+              applicantRelationToChildFatherPartner: applicant_relationToChild_father_partner
+              birthMotherFirstName: mother_firstName
+              birthMotherLastName: mother_lastName
+              birthMotherAddress: mother_address
+              birthMotherNationality: mother_nationality
+              birthMotherOccupation: mother_occupation
+              birthFatherFirstName: father_firstName
+              birthFatherLastName: father_lastName
+              birthFatherAddress: father_address
+              birthFatherNationality: father_nationality
+              birthFatherOccupation: father_occupation
+              parentalResponsibility: parental_responsibility
+              parentalResponsibilityOrder: parental_responsibility_order
+              guardianFirstName: guardian_firstName
+              guardianLastName: guardian_lastName
+              guardianAddress: guardian_address
           A58_STEP_PARENT:
             caseFields:
               CASE_TYPE_ID: A58

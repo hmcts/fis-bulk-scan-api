@@ -49,6 +49,30 @@ public final class BulkScanConstants {
     public static final String DOB_HINT = "dob";
     public static final String DATE_OF_BIRTH_HINT = "dateOfBirth";
 
+    public static final String applicant_marital_status_single = "applicant_marital_status_single";
+    public static final String applicant_marital_status_divorced = "applicant_marital_status_divorced";
+    public static final String applicant_marital_status_divorced1 = "applicant_marital_status_divorced";
+    public static final String applicant_marital_status_widow = "applicant_marital_status_widow";
+    public static final String applicant_marital_status_married_spouse_notfound =
+            "applicant_marital_status_married_spouse_notfound";
+    public static final String applicant_marital_status_married_spouse_separated =
+            "applicant_marital_status_married_spouse_separated";
+    public static final String applicant_marital_status_married_spouse_incapable =
+            "applicant_marital_status_married_spouse_incapable";
+    public static final String applicant_applying_alone_natural_parent_died =
+            "applicant_applying_alone_natural_parent_died";
+    public static final String applicant_applying_alone_natural_parent_not_found =
+            "applicant_applying_alone_natural_parent_not_found";
+    public static final String applicant_applying_alone_no_other_parent = "applicant_applying_alone_no_other_parent";
+    public static final String applicant_applying_alone_other_parent_exclusion_justified =
+            "applicant_applying_alone_other_parent_exclusion_justified";
+    public static final String applicant_relationToChild_father_partner = "applicant_relationToChild_father_partner";
+    public static final String applicant_relationToChild_mother_partner = "applicant_relationToChild_mother_partner";
+    public static final String applicant_relationToChild_non_civil_partner =
+            "applicant_relationToChild_non_civil_partner";
+    public static final String applicants_domicile_status = "applicants_domicile_status";
+    public static final String applicants_non_domicile_status = "applicants_non_domicile_status";
+
     public static final String ADOPTION_ORDER_CONSENT = "adoption_order_consent";
 
     public static final String ADOPTION_ORDER_CONSENT_ADVANCE = "adoption_order_consent_advance";
