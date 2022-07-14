@@ -32,10 +32,13 @@ spring:
       - a60-form
       - c100-transform
       - a58-form
+      - a59-form
       - fgm001-form
       - c2-form
       - a1-form
       - a58-transform
+      - a59-transform
+      - a60-transform
       - c51-transform
 
 azure:
