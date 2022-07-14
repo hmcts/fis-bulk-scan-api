@@ -15,6 +15,10 @@
     {
       "name":"applicant1_telephoneNumber",
       "value":"09956575789"
+    },
+    {
+      "name": "adoption_order_consent",
+      "value": "true"
     }
   ]
 }

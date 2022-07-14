@@ -9,22 +9,72 @@ uk:
               - applicant1_lastName
               - applicant1_address
               - applicant1_telephoneNumber
+              - mother_firstName
+              - mother_lastName
+              - mother_address
+              - mother_nationality
+              - mother_occupation
             optionalFields:
+              - applicant1_dateOfBirth
+              - applicant1_nationality
+              - applicant1_occupation
+              - applicant1_gender_male
+              - applicant1_gender_female
               - applicant1_relationToChild
               - applicant2_firstName
               - applicant2_lastName
               - applicant2_address
               - applicant2_telephoneNumber
+              - applicant2_dateOfBirth
+              - applicant2_nationality
+              - applicant2_occupation
+              - applicant2_gender_male
+              - applicant2_gender_female
               - applicant2_relationToChild
+              - solicitor_name
+              - solicitor_firmName
+              - solicitor_address
+              - solicitor_telephoneNumber
+              - solicitor_faxNumber
+              - solicitor_dxNumber
+              - solicitor_emailAddress
+              - solicitor_feeAccountNumber
+              - applicants_domicile_status
+              - applicants_non_domicile_status
               - applicant_relationToChild_father_partner
+              - applicant_relationToChild_mother_partner
+              - applicant_relationToChild_non_civil_partner
+              - applicant_marital_status_single
+              - applicant_marital_status_divorced
+              - applicant_marital_status_widow
+              - applicant_marital_status_married_spouse_notfound
+              - applicant_marital_status_married_spouse_separated
+              - applicant_marital_status_married_spouse_incapable
+              - applicant_applying_alone_natural_parent_died
+              - applicant_applying_alone_natural_parent_not_found
+              - applicant_applying_alone_no_other_parent
+              - applicant_applying_alone_other_parent_exclusion_justified
+              - child_relationship_father
+              - child_relationship_other
+              - father_firstName
+              - father_lastName
+              - father_address
+              - father_nationality
+              - father_occupation
+              - parental_responsibility
+              - parental_responsibility_order
+              - guardian_firstName
+              - guardian_lastName
+              - guardian_address
             regexValidationFields:
               dateFields:
                 fieldNames:
-                  -
+                  - applicant1_dateOfBirth
+                  - applicant2_dateOfBirth
                 regex: dd/MM/yyyy
               emailFields:
                 fieldNames:
-                  -
+                  - solicitor_emailAddress
                 regex: ^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,6}$
               numericFields:
                 fieldNames:

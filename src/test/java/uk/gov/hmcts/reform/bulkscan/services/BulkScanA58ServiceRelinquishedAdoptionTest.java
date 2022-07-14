@@ -3,6 +3,7 @@ package uk.gov.hmcts.reform.bulkscan.services;
 import org.json.JSONException;
 import org.junit.FixMethodOrder;
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.runners.MethodSorters;
@@ -12,7 +13,10 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
+import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
+import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
+import uk.gov.hmcts.reform.bulkscan.model.Status;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -34,6 +38,18 @@ class BulkScanA58ServiceRelinquishedAdoptionTest {
     @BeforeEach
     void initEach() {
         ocrDataFieldList = getRequestData();
+    }
+
+    @Test
+    @DisplayName("A58 relinquished adoption form validation success scenario")
+    void testA58RelinquishedAdoptionApplicationValidationSuccess() {
+        OcrDataField ocrOrderConsentAdvanceField = new OcrDataField();
+        ocrOrderConsentAdvanceField.setName("adoption_order_consent");
+        ocrOrderConsentAdvanceField.setValue("Adoption Order Consent");
+        ocrDataFieldList.add(ocrOrderConsentAdvanceField);
+        BulkScanValidationResponse res = bulkScanValidationService.validate(BulkScanValidationRequest
+                .builder().ocrdatafields(ocrDataFieldList).build());
+        assertEquals(Status.SUCCESS, res.status);
     }
 
     @Test

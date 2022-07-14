@@ -30,7 +30,7 @@ import static uk.gov.hmcts.reform.bulkscan.utils.TestResourceUtil.readFileFrom;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @ActiveProfiles("test")
-class BulkScanA58ServiceTest {
+class BulkScanA58StepParentServiceTest {
 
     private static final String A58_STEP_PARENT_TRANSFORM_RESPONSE_PATH =
             "classpath:response/bulk-scan-a58-step-parent-transform-output.json";
