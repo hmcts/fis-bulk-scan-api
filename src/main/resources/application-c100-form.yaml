@@ -5,6 +5,11 @@ uk:
         caseTypeofApplication:
           C100:
             mandatoryFields:
+              - applicant1_firstName
+              - applicant1_lastName
+              - childArrangement_order
+              - prohibitedSteps_order
+              - specialIssue_order
               - child1_firstName
               - child1_lastName
               - child1_dateOfBirth
@@ -13,6 +18,20 @@ uk:
               - children_of_same_parent
               - subject_to_childProtectionPlan
             optionalFields:
+              - respondent1_firstName
+              - respondent1_lastName
+              - natureofOrder
+              - domesticAbuse
+              - childAbduction
+              - childAbuse
+              - drugs_alcohol_substanceAbuse
+              - otherSafety_or_welfareAbuse
+              - askingPermissionForApplication
+              - urgent_or_withoutHearing
+              - previous_or_ongoingProceeding
+              - isConsentOrder
+              - international_or_factorsAffectingLitigation
+              - welshRequired
               - child1_orderAppliedFor
               - child1_applicant1_relationship
               - child1_respondent1_relationship

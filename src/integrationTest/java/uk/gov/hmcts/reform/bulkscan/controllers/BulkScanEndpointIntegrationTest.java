@@ -56,7 +56,6 @@ class BulkScanEndpointIntegrationTest {
             "classpath:request/bulk-scan-a58-step-parent-transform-input.json";
     private static final String A58_STEP_PARENT_TRANSFORM_RESPONSE_PATH =
             "classpath:response/bulk-scan-a58-step-parent-transform-output.json";
-
     private static final String A58_RELINQUISHED_ADOPTION_TRANSFORM_REQUEST_PATH =
         "classpath:request/bulk-scan-a58-relinquished-adoption-transform-input.json";
     private static final String A58_RELINQUISHED_ADOPTION_TRANSFORM_RESPONSE_PATH =
