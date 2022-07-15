@@ -1,0 +1,22 @@
+uk:
+  gov:
+    hmcts:
+      transform:
+        caseTypeofApplication:
+          C51:
+            caseFields:
+              CASE_TYPE_ID: C51
+              EVENT_ID: create-case-adop-bs
+            caseDataFields:
+              applicant1FirstName: applicant1_firstName
+              applicant1LastName: applicant1_lastName
+              applicant1Address1: applicant_address
+              applicant1AddressPostCode: applicant_postCode
+              applicant1PoneNumber: applicant_homeTelephoneNumber
+              applicant1MobileNumber: applicant_mobileTelephoneNumber
+              applicant2FirstName: applicant2_firstName
+              applicant2LastName: applicant2_lastName
+              applicant2Address1: applicant_address
+              applicant2AddressPostCode: applicant_postCode
+              applicant2PhoneNumber: applicant_homeTelephoneNumber
+              applicant2MobileNumber: applicant_mobileTelephoneNumber

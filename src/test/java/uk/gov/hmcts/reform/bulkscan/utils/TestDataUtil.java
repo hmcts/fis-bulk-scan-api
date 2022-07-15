@@ -8,6 +8,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+
+
 public final class TestDataUtil {
 
     public static final String ADDRESS = "123 test street, London";
@@ -762,7 +764,7 @@ public final class TestDataUtil {
         fieldList.add(ocrPostCodeField);
 
         OcrDataField ocrContactNumberField = new OcrDataField();
-        ocrContactNumberField.setName("applicants_telephoneNumber");
+        ocrContactNumberField.setName("applicant_homeTelephoneNumber");
         ocrContactNumberField.setValue("+447405878672");
         fieldList.add(ocrContactNumberField);
 
@@ -1030,6 +1032,46 @@ public final class TestDataUtil {
         return fieldList;
     }
 
+    public static List<OcrDataField> getC51ConditionalFieldErrorData() {
+        List<OcrDataField> fieldList = new ArrayList<>();
+        OcrDataField ocrDataFirstNameField = new OcrDataField();
+        ocrDataFirstNameField.setName("applicant1_firstName");
+        ocrDataFirstNameField.setValue("firstName");
+        fieldList.add(ocrDataFirstNameField);
+
+        OcrDataField ocrDataLastNameField = new OcrDataField();
+        ocrDataLastNameField.setName("applicant1_lastName");
+        ocrDataLastNameField.setValue("LastName");
+        fieldList.add(ocrDataLastNameField);
+
+        OcrDataField ocrDataFirstNameField1 = new OcrDataField();
+        ocrDataFirstNameField1.setName("applicant2_firstName");
+        ocrDataFirstNameField1.setValue("applicant 2 firstName");
+        fieldList.add(ocrDataFirstNameField1);
+
+        OcrDataField ocrDataLastNameField1 = new OcrDataField();
+        ocrDataLastNameField1.setName("applicant2_lastName");
+        ocrDataLastNameField1.setValue("applicant 2 LastName");
+        fieldList.add(ocrDataLastNameField1);
+
+        OcrDataField ocrPostCodeField = new OcrDataField();
+        ocrPostCodeField.setName("applicants_postCode");
+        ocrPostCodeField.setValue("TW3 1NN");
+        fieldList.add(ocrPostCodeField);
+
+        OcrDataField ocrAddressField = new OcrDataField();
+        ocrAddressField.setName("applicants_address");
+        ocrAddressField.setValue("123 test street, London");
+        fieldList.add(ocrAddressField);
+
+        OcrDataField ocrDateField = new OcrDataField();
+        ocrDateField.setName("applicant1_dateOfBirth");
+        ocrDateField.setValue("2/02/2022");
+        fieldList.add(ocrDateField);
+
+        return fieldList;
+    }
+
     public static List<ScannedDocuments> getScannedDocumentsList() {
         return List.of(
             ScannedDocuments.builder()
@@ -1048,4 +1090,5 @@ public final class TestDataUtil {
                 .build()
         );
     }
+
 }

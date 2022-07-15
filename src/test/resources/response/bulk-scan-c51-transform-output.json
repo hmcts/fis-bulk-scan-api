@@ -1,0 +1,30 @@
+{
+  "case_creation_details": {
+    "case_type_id": "C51",
+    "event_id": "create-case-adop-bs",
+    "case_data": {
+      "applicant2LastName": null,
+      "applicant2Address1": null,
+      "applicant1Address1": null,
+      "applicant1FirstName": "firstName",
+      "applicant1AddressPostCode": null,
+      "scannedDocuments": [
+        {
+          "value": {
+            "document_url": "url1",
+            "document_filename": "filename1",
+            "document_binary_url": "binary_url1"
+          }
+        }
+      ],
+      "applicant2MobileNumber": null,
+      "applicant1PoneNumber": "+447405878672",
+      "applicant2AddressPostCode": null,
+      "applicant2PhoneNumber": "+447405878672",
+      "applicant2FirstName": null,
+      "applicant1LastName": "LastName",
+      "applicant1MobileNumber": null
+    }
+  },
+  "warnings": []
+}

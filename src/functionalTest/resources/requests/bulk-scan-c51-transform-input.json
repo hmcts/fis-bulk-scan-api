@@ -1,0 +1,47 @@
+{
+  "ocr_data_fields": [
+    {
+      "name": "applicant1_firstName",
+      "value": "test first name"
+    },
+    {
+      "name": "applicant1_lastName",
+      "value": "test last name"
+    },
+    {
+      "name": "applicant_address",
+      "value": "East London"
+    },
+    {
+      "name": "applicant_homeTelephoneNumber",
+      "value": "07456575789"
+    },
+    {
+      "name": "applicant_mobileTelephoneNumber",
+      "value": "123466465"
+    },
+    {
+      "name": "applicant2_firstName",
+      "value": "applicant 2 first name"
+    },
+    {
+      "name": "applicant2_lastName",
+      "value": "applicant 2 last name"
+    },
+    {
+      "name": "applicant_postCode",
+      "value": "AB14 2AZ"
+    }
+
+  ],
+  "scanned_documents": [
+    {
+      "url": {
+        "document_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c",
+        "document_filename": "test.pdf",
+        "document_binary_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
+      }
+    }
+  ],
+  "form_type": "C51"
+}

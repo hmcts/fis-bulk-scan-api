@@ -7,6 +7,9 @@ public final class Constants {
     public static final String TEST_URL = "Url";
     public static final String TEST_BINARY_URL = "binary_url";
 
+    public static final String APPLICANT_1_FIRST_NAME = "applicant1_firstName";
+    public static final String APPLICANT_1_LAST_NAME = "applicant1_lastName";
+
     private Constants() {
     }
 }
