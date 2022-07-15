@@ -764,7 +764,7 @@ public final class TestDataUtil {
         fieldList.add(ocrPostCodeField);
 
         OcrDataField ocrContactNumberField = new OcrDataField();
-        ocrContactNumberField.setName("applicants_telephoneNumber");
+        ocrContactNumberField.setName("applicant_homeTelephoneNumber");
         ocrContactNumberField.setValue("+447405878672");
         fieldList.add(ocrContactNumberField);
 
@@ -1055,14 +1055,19 @@ public final class TestDataUtil {
         fieldList.add(ocrDataLastNameField1);
 
         OcrDataField ocrPostCodeField = new OcrDataField();
-        ocrPostCodeField.setName("applicant_postCode");
+        ocrPostCodeField.setName("applicants_postCode");
         ocrPostCodeField.setValue("TW3 1NN");
         fieldList.add(ocrPostCodeField);
 
         OcrDataField ocrAddressField = new OcrDataField();
-        ocrAddressField.setName("applicant_address");
+        ocrAddressField.setName("applicants_address");
         ocrAddressField.setValue("123 test street, London");
         fieldList.add(ocrAddressField);
+
+        OcrDataField ocrDateField = new OcrDataField();
+        ocrDateField.setName("applicant1_dateOfBirth");
+        ocrDateField.setValue("2/02/2022");
+        fieldList.add(ocrDateField);
 
         return fieldList;
     }

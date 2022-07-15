@@ -21,9 +21,7 @@ import uk.gov.hmcts.reform.bulkscan.utils.TestDataUtil;
 
 import java.io.IOException;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -105,17 +103,4 @@ class BulkScanC51ServiceTest {
         JSONAssert.assertEquals(readFileFrom(C51_TRANSFORM_RESPONSE_PATH),
                                 mapper.writeValueAsString(bulkScanTransformationResponse), true);
     }
-
-    public Map<String,String> getTestData() {
-        Map<String,String> map = new HashMap<>();
-        map.put("applicant1_firstName","firstName");
-        map.put("applicant1_lastName","LastName");
-        map.put("applicant2_firstName","applicant 2 firstName");
-        map.put("applicant2_lastName","applicant 2 LastName");
-        map.put("applicant_postCode","TW3 1NN");
-        map.put("applicant_address","123 test street, London");
-        return map;
-
-    }
-
 }

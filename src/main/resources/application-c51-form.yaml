@@ -7,12 +7,13 @@ uk:
             mandatoryFields:
               - applicant1_firstName
               - applicant1_lastName
-              - applicant2_firstName
-              - applicant2_lastName
               - applicant_address
               - applicant_postCode
             optionalFields:
-              -
+              - applicant2_firstName
+              - applicant2_lastName
+              - applicant_homeTelephoneNumber
+              - applicant_mobileTelephoneNumber
             regexValidationFields:
               dateFields:
                 fieldNames:

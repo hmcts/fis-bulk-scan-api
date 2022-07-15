@@ -10,14 +10,14 @@ uk:
             caseDataFields:
               applicant1FirstName: applicant1_firstName
               applicant1LastName: applicant1_lastName
-              applicant1Address1: applicant_address
+              applicant1Address: applicant_address
               applicant1AddressPostCode: applicant_postCode
               applicant1PoneNumber: applicant_homeTelephoneNumber
               applicant1MobileNumber: applicant_mobileTelephoneNumber
 
               applicant2FirstName: applicant2_firstName
               applicant2LastName: applicant2_lastName
-              applicant2Address1: applicant_address
-              applicant2AddressPostCode: applicant_postCode
-              applicant2PhoneNumber: applicant_homeTelephoneNumber
-              applicant2MobileNumber: applicant_mobileTelephoneNumber
+              applicant2Address: applicant2_address
+              applicant2AddressPostCode: applicant2_postCode
+              applicant2PhoneNumber: applicant2_homeTelephoneNumber
+              applicant2MobileNumber: applicant2_mobileTelephoneNumber

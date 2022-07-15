@@ -4,8 +4,6 @@
     "event_id": "create-case-adop-bs",
     "case_data": {
       "applicant2LastName": "applicant 2 last name",
-      "applicant2Address1": "East London",
-      "applicant1Address1": "East London",
       "applicant1FirstName": "test first name",
       "applicant1AddressPostCode": "AB14 2AZ",
       "scannedDocuments": [
@@ -17,10 +15,12 @@
           }
         }
       ],
-      "applicant2MobileNumber": "123466465",
+      "applicant2MobileNumber": null,
+      "applicant1Address": "East London",
+      "applicant2Address": null,
       "applicant1PoneNumber": "07456575789",
-      "applicant2AddressPostCode": "AB14 2AZ",
-      "applicant2PhoneNumber": "07456575789",
+      "applicant2AddressPostCode": null,
+      "applicant2PhoneNumber": null,
       "applicant2FirstName": "applicant 2 first name",
       "applicant1LastName": "test last name",
       "applicant1MobileNumber": "123466465"
