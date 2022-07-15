@@ -3,7 +3,6 @@ package uk.gov.hmcts.reform.bulkscan.services;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Spy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -23,20 +22,24 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DATE_FORMAT_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EMAIL_FORMAT_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.GROUP_DEPENDENCY_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_ERROR_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MISSING_FIELD_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NUMERIC_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.POST_CODE_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.XOR_CONDITIONAL_FIELDS_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MIAM_ATTEND_EXEMPTION_GROUP_FIELD;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @ActiveProfiles("test")
 class BulkScanC100ServiceTest {
 
-    @Spy
     @Autowired
     BulkScanC100Service bulkScanValidationService;
+
+    @Autowired
+    BulkScanC100GroupDependencyValidation bulkScanDependencyService;
 
     @MockBean
     PostcodeLookupService postcodeLookupService;
@@ -143,6 +146,28 @@ class BulkScanC100ServiceTest {
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
         assertTrue(res.getWarnings().items.contains(String.format(NUMERIC_MESSAGE, "case_no")));
+    }
+
+    @Test
+    void testC100WarningExemptionToAttendMiamWithoughAPage3Checkbox() {
+        BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
+            TestDataUtil.getExemptionToAttendWarningData()).build();
+
+        BulkScanValidationResponse res = bulkScanDependencyService.validate(bulkScanValidationRequest);
+
+        assertEquals(Status.WARNINGS, res.status);
+        assertTrue(res.getWarnings().items.contains(String.format(GROUP_DEPENDENCY_MESSAGE,
+                                                                  MIAM_ATTEND_EXEMPTION_GROUP_FIELD)));
+    }
+
+    @Test
+    void testC100SuccessExemptionToAttendMiamWithPage3Checkbox() {
+        BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
+            TestDataUtil.getExemptionToAttendGroupDependencySuccessData()).build();
+
+        BulkScanValidationResponse res = bulkScanDependencyService.validate(bulkScanValidationRequest);
+
+        assertEquals(Status.SUCCESS, res.status);
     }
 
     @Test

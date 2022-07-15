@@ -13,7 +13,11 @@ public final class BulkScanConstants {
     public static final String MANDATORY_ERROR_MESSAGE = "%s should not be null or empty";
     public static final String DATE_FORMAT_MESSAGE = "%s is invalid date or format";
     public static final String EMAIL_FORMAT_MESSAGE = "%s is invalid email";
+
+    public static final String GROUP_DEPENDENCY_MESSAGE = "Group Dependency Field (%s) has "
+        + "incomplete dependency validation";
     public static final String NUMERIC_MESSAGE = "%s is not a number";
+    public static final String MIAM_ATTEND_EXEMPTION_GROUP_FIELD = "exemption_to_attend_MIAM";
     public static final String MISSING_FIELD_MESSAGE = "%s is missing";
     public static final String POST_CODE_MESSAGE = "%s is not a valid postcode";
     public static final String PHONE_NUMBER_MESSAGE = "%s is not valid phone number";
@@ -62,7 +66,7 @@ public final class BulkScanConstants {
 
     public static final String COURT_CONSENT_CHILD_WELFARE = "court_consent_child_welfare";
 
-    private static Map<String,String> getErrorMessageMap() {
+    private static Map<String, String> getErrorMessageMap() {
         return Map.of(MANDATORY_KEY, MANDATORY_ERROR_MESSAGE,
                       DATE_FORMAT_FIELDS_KEY, DATE_FORMAT_MESSAGE,
                       EMAIL_FORMAT_FIELDS_KEY, EMAIL_FORMAT_MESSAGE,
@@ -89,7 +93,7 @@ public final class BulkScanConstants {
             BulkScanFormValidationConfigManager.RegexFieldsConfig numericFields = regexValidationConfig
                 .getNumericFields();
             BulkScanFormValidationConfigManager.RegexFieldsConfig faxNumberFieldsFields = regexValidationConfig
-                    .getFaxNumberFields();
+                .getFaxNumberFields();
 
             map.put(DATE_FORMAT_FIELDS_KEY, getPairObject(dateFields));
             map.put(EMAIL_FORMAT_FIELDS_KEY, getPairObject(emailFields));
@@ -106,7 +110,7 @@ public final class BulkScanConstants {
             map.put(PHONE_NUMBER_FIELDS_KEY, getPairObject(phoneNumberFields));
 
             BulkScanFormValidationConfigManager.RegexFieldsConfig xorConditionalFields = regexValidationConfig
-                    .getXorConditionalFields();
+                .getXorConditionalFields();
             map.put(XOR_CONDITIONAL_FIELDS_MESSAGE_KEY, getPairObject(xorConditionalFields));
 
             BulkScanFormValidationConfigManager.RegexFieldsConfig alphaNumericFields = regexValidationConfig
