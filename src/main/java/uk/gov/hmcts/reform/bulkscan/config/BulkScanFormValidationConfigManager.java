@@ -74,4 +74,5 @@ public class BulkScanFormValidationConfigManager {
     public ValidationConfig getValidationConfig(FormType formType) {
         return caseTypeofApplication.get(formType.name());
     }
+
 }

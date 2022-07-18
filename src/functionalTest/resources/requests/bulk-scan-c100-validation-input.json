@@ -1,0 +1,58 @@
+{
+  "ocr_data_fields":[
+    {
+      "name":"applicant1_firstName",
+      "value":"applicant1_firstName"
+    },
+    {
+      "name":"applicant1_lastName",
+      "value":"applicant1_lastName"
+    },
+    {
+      "name":"applicant1_telephoneNumber",
+      "value":"09999999990"
+    },
+    {
+      "name":"applicant1_address",
+      "value":"123 test street, London"
+    },
+    {
+      "name": "applicant1_relationToChild",
+      "value": "Step Parent"
+    },
+    {
+      "name":"applicant2_firstName",
+      "value":"applicant2_firstName"
+    },
+    {
+      "name":"applicant2_lastName",
+      "value":"applicant2_lastName"
+    },
+    {
+      "name":"applicant2_telephoneNumber",
+      "value":"09999999990"
+    },
+    {
+      "name":"applicant2_address",
+      "value":"123 test street, London"
+    },
+    {
+      "name": "applicant2_relationToChild",
+      "value": "Step Parent"
+    },
+    {
+      "name": "applicant_relationToChild_father_partner",
+      "value": "true"
+    }
+  ],
+  "scanned_documents": [
+    {
+      "url": {
+        "document_url":"http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c",
+        "document_filename":"test.pdf",
+        "document_binary_url":"http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
+      }
+    }
+  ],
+  "form_type": "A58"
+}

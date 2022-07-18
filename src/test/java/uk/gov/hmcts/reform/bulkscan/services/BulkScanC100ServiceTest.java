@@ -1,6 +1,7 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,13 +23,13 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DATE_FORMAT_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EMAIL_FORMAT_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.GROUP_DEPENDENCY_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_ERROR_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MISSING_FIELD_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NUMERIC_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.POST_CODE_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.XOR_CONDITIONAL_FIELDS_MESSAGE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MIAM_ATTEND_EXEMPTION_GROUP_FIELD;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -39,7 +40,7 @@ class BulkScanC100ServiceTest {
     BulkScanC100Service bulkScanValidationService;
 
     @Autowired
-    BulkScanC100GroupDependencyValidation bulkScanDependencyService;
+    BulkScanC100FieldDependencyService bulkScanDependencyService;
 
     @MockBean
     PostcodeLookupService postcodeLookupService;
@@ -56,7 +57,7 @@ class BulkScanC100ServiceTest {
     @Test
     void testC100WhenPostCodeNotValid() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-                TestDataUtil.getData()).build();
+            TestDataUtil.getData()).build();
         when(postcodeLookupService.isValidPostCode("TW3 1NN", null)).thenReturn(false);
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
@@ -66,12 +67,12 @@ class BulkScanC100ServiceTest {
     @Test
     void testC100WhenNotOneFieldPresentOutOfXoRFields() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-                TestDataUtil.getErrorData()).build();
+            TestDataUtil.getErrorData()).build();
         when(postcodeLookupService.isValidPostCode("TW3 1NN", null)).thenReturn(false);
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
         assertTrue(res.getErrors().items.contains(String.format(XOR_CONDITIONAL_FIELDS_MESSAGE,
-                "appellant_postCode,appellant_lastName")));
+                                                                "appellant_postCode,appellant_lastName")));
     }
 
     @Test
@@ -149,6 +150,7 @@ class BulkScanC100ServiceTest {
     }
 
     @Test
+    @DisplayName("Should generate warning on absence of dependency field(s) on exemption_To_Attend_MIAM field")
     void testC100WarningExemptionToAttendMiamWithoughAPage3Checkbox() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
             TestDataUtil.getExemptionToAttendWarningData()).build();
@@ -157,10 +159,11 @@ class BulkScanC100ServiceTest {
 
         assertEquals(Status.WARNINGS, res.status);
         assertTrue(res.getWarnings().items.contains(String.format(GROUP_DEPENDENCY_MESSAGE,
-                                                                  MIAM_ATTEND_EXEMPTION_GROUP_FIELD)));
+                                                                  EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD)));
     }
 
     @Test
+    @DisplayName("Should allow only one mutually exclusive field on section 2 to be checked")
     void testC100SuccessExemptionToAttendMiamWithPage3Checkbox() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
             TestDataUtil.getExemptionToAttendGroupDependencySuccessData()).build();
@@ -168,6 +171,17 @@ class BulkScanC100ServiceTest {
         BulkScanValidationResponse res = bulkScanDependencyService.validate(bulkScanValidationRequest);
 
         assertEquals(Status.SUCCESS, res.status);
+    }
+
+    @Test
+    @DisplayName("Should generate warning on mutually exclusive fields which allows only one field checked")
+    void testC100MutuallyExclusiveWarningOnSectionTwoCheckbox() {
+        BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
+            TestDataUtil.getMutuallyExclusiveFieldWarningData()).build();
+
+        BulkScanValidationResponse res = bulkScanDependencyService.validate(bulkScanValidationRequest);
+
+        assertEquals(Status.WARNINGS, res.status);
     }
 
     @Test

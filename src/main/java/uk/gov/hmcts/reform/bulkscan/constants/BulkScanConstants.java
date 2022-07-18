@@ -14,10 +14,17 @@ public final class BulkScanConstants {
     public static final String DATE_FORMAT_MESSAGE = "%s is invalid date or format";
     public static final String EMAIL_FORMAT_MESSAGE = "%s is invalid email";
 
+    public static final String ATTENDED_MIAM_FIELD = "attended_MIAM";
+    public static final String C100_COMPULSORY_SECTION_2_MESSAGE = "Only one \"Yes\" box must be ticked in Section %s.";
+    public static final String EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD = "exemption_to_attend_MIAM";
+    public static final String FAMILYMEMBER_INTIMATION_ON_NO_MIAM_FIELD = "familyMember_Intimation_on_No_MIAM";
+    public static final String EXISTINGCASE_ONEMERGENCYPROTECTION_CARE_OR_SUPERVISIONORDER_FIELD
+        = "ExistingCase_onEmergencyProtection_Care_or_supervisioNorder";
     public static final String GROUP_DEPENDENCY_MESSAGE = "Group Dependency Field (%s) has "
         + "incomplete dependency validation";
     public static final String NUMERIC_MESSAGE = "%s is not a number";
-    public static final String MIAM_ATTEND_EXEMPTION_GROUP_FIELD = "exemption_to_attend_MIAM";
+    public static final String YES_VALUE = "Yes";
+
     public static final String MISSING_FIELD_MESSAGE = "%s is missing";
     public static final String POST_CODE_MESSAGE = "%s is not a valid postcode";
     public static final String PHONE_NUMBER_MESSAGE = "%s is not valid phone number";

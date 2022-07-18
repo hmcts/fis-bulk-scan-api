@@ -20,15 +20,21 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import static org.apache.commons.lang3.StringUtils.isNotEmpty;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ATTENDED_MIAM_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.C100_COMPULSORY_SECTION_2_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EXISTINGCASE_ONEMERGENCYPROTECTION_CARE_OR_SUPERVISIONORDER_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FAMILYMEMBER_INTIMATION_ON_NO_MIAM_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.GROUP_DEPENDENCY_MESSAGE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MIAM_ATTEND_EXEMPTION_GROUP_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES_VALUE;
 
 @Service
-public class BulkScanC100GroupDependencyValidation implements BulkScanService {
-    private static final int REQUIRED_EXEMPTION_DEPENDENCY_FIELD_VALIDATION = 1;
-    public static final String C100_COMPULSORY_SECTION_MESSAGE = "All applicants must complete sections "
-        + "1, 2 and 5 to 14 before signing this form. Section %s is incomplete";
-
+public class BulkScanC100FieldDependencyService implements BulkScanService {
+    public static final int EXEMPTION_TO_ATTEND_MIAM_BITSET = 0x0100;
+    public static final int FAMILYMEMBER_INTIMATION_ON_NO_MIAM_BITSET = 0x0010;
+    public static final int EXISTINGCASE_ONEMERGENCYPROTECTION_CARE_OR_SUPERVISIONORDER_BITSET = 0x1000;
+    public static final int ATTENDED_MIAM_BITSET = 0x0001;
+    public static final int REQUIRED_EXEMPTION_DEPENDENCY_FIELD_VALIDATION = 1;
 
     @Autowired
     BulkScanFormValidationConfigManager configManager;
@@ -40,16 +46,41 @@ public class BulkScanC100GroupDependencyValidation implements BulkScanService {
 
     @Override
     public BulkScanValidationResponse validate(BulkScanValidationRequest bulkRequest) {
+        BulkScanValidationResponse validateMutuallyExclusiveFieldResponse
+            = validateMutuallyExclusiveFields(
+            bulkRequest.getOcrdatafields(),
+            configManager.getFieldDependenyConfig(
+                FieldDependency.C100_FIELD_DEPENDENCY)
+        );
+
         Map<String, Integer> groupDependencyCountMap = new HashMap<>();
 
-        groupDependencyCountMap.put(MIAM_ATTEND_EXEMPTION_GROUP_FIELD, REQUIRED_EXEMPTION_DEPENDENCY_FIELD_VALIDATION);
+        groupDependencyCountMap.put(
+            EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD,
+            REQUIRED_EXEMPTION_DEPENDENCY_FIELD_VALIDATION
+        );
 
-        return validateGroupDependencyFields(
+        BulkScanValidationResponse validateGroupDependencyFieldResponse = validateGroupDependencyFields(
             bulkRequest.getOcrdatafields(),
             configManager.getFieldDependenyConfig(
                 FieldDependency.C100_FIELD_DEPENDENCY),
             groupDependencyCountMap
         );
+
+        List<String> warningItems = validateMutuallyExclusiveFieldResponse.getWarnings().getItems();
+        warningItems.addAll(validateGroupDependencyFieldResponse.getWarnings().getItems());
+
+        Status status = (Status.WARNINGS == validateMutuallyExclusiveFieldResponse.getStatus()) ? Status.WARNINGS :
+            (Status.ERRORS == validateMutuallyExclusiveFieldResponse.getStatus()) ? Status.ERRORS :
+                (Status.WARNINGS == validateGroupDependencyFieldResponse.getStatus()) ? Status.WARNINGS :
+                    (Status.ERRORS == validateGroupDependencyFieldResponse.getStatus()) ? Status.ERRORS :
+                        Status.SUCCESS;
+
+
+        return BulkScanValidationResponse.builder()
+            .warnings(Warnings.builder().items(warningItems).build())
+            .status(status)
+            .build();
     }
 
     @Override
@@ -58,7 +89,7 @@ public class BulkScanC100GroupDependencyValidation implements BulkScanService {
         return null;
     }
 
-    private BulkScanValidationResponse validateMutuallyExclusiveFielkds(
+    private BulkScanValidationResponse validateMutuallyExclusiveFields(
         List<OcrDataField> ocrDataFields,
         BulkScanFormValidationConfigManager.GroupDependencyValidationConfig grpFldDepValidationConfig) {
         Map<String, String> ocrDataFieldsMap = ocrDataFields
@@ -67,14 +98,35 @@ public class BulkScanC100GroupDependencyValidation implements BulkScanService {
 
         List<String> errorOrWarnings = new ArrayList<>();
 
-        if (ocrDataFieldsMap.get("ExistingCase_onEmergencyProtection_Care_or_supervisioNorder").isEmpty()) {
-            if (ocrDataFieldsMap.get("exemption_to_attend_MIAM").isEmpty()) {
-                if (ocrDataFieldsMap.get("familyMember_Intimation_on_No_MIAM").isEmpty()) {
-                    if (ocrDataFieldsMap.get("attended_MIAM").isEmpty()) {
-                        errorOrWarnings.add(String.format(C100_COMPULSORY_SECTION_MESSAGE, "2"));
-                    }
-                }
-            }
+        int mutualFieldSet = 0;
+
+        if (ocrDataFieldsMap.get(EXISTINGCASE_ONEMERGENCYPROTECTION_CARE_OR_SUPERVISIONORDER_FIELD) != null
+            && ocrDataFieldsMap.get(EXISTINGCASE_ONEMERGENCYPROTECTION_CARE_OR_SUPERVISIONORDER_FIELD)
+            .equals(YES_VALUE)) {
+            mutualFieldSet |= EXISTINGCASE_ONEMERGENCYPROTECTION_CARE_OR_SUPERVISIONORDER_BITSET;
+        }
+        if (ocrDataFieldsMap.get(EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD) != null
+            && ocrDataFieldsMap.get(EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD).equals(YES_VALUE)) {
+            mutualFieldSet |= EXEMPTION_TO_ATTEND_MIAM_BITSET;
+        }
+        if (ocrDataFieldsMap.get(FAMILYMEMBER_INTIMATION_ON_NO_MIAM_FIELD) != null
+            && ocrDataFieldsMap.get(FAMILYMEMBER_INTIMATION_ON_NO_MIAM_FIELD).equals(YES_VALUE)) {
+            mutualFieldSet |= FAMILYMEMBER_INTIMATION_ON_NO_MIAM_BITSET;
+        }
+        if (ocrDataFieldsMap.get(ATTENDED_MIAM_FIELD) != null
+            && ocrDataFieldsMap.get(ATTENDED_MIAM_FIELD).equals(YES_VALUE)) {
+            mutualFieldSet |= ATTENDED_MIAM_BITSET;
+        }
+
+        switch (mutualFieldSet) {
+            case EXISTINGCASE_ONEMERGENCYPROTECTION_CARE_OR_SUPERVISIONORDER_BITSET:
+            case EXEMPTION_TO_ATTEND_MIAM_BITSET:
+            case FAMILYMEMBER_INTIMATION_ON_NO_MIAM_BITSET:
+            case ATTENDED_MIAM_BITSET:
+                break;
+            default:
+                errorOrWarnings.add(String.format(C100_COMPULSORY_SECTION_2_MESSAGE, "2"));
+                break;
         }
 
         Status status = !errorOrWarnings.isEmpty() ? Status.WARNINGS : Status.SUCCESS;

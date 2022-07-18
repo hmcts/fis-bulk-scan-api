@@ -60,7 +60,7 @@ public class BulkScanEndpoint {
 
     })
     public ResponseEntity<?>
-        validateOcrData(@RequestHeader(SERVICEAUTHORIZATION) String s2sToken,
+            validateOcrData(@RequestHeader(SERVICEAUTHORIZATION) String s2sToken,
                         @RequestHeader(CONTENT_TYPE) String contentType,
                         @PathVariable("form-type") FormType formType,
                         @RequestBody final BulkScanValidationRequest bulkScanValidationRequest) {
