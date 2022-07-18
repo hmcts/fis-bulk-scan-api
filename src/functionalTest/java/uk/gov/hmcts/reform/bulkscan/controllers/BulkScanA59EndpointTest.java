@@ -33,7 +33,7 @@ public class BulkScanA59EndpointTest {
     private static final String A59_VALIDATION_OUTPUT_PATH =
         "classpath:responses/bulk-scan-a59-validation-output.json";
     private static final String A59_VALIDATION_ERROR_INPUT_PATH =
-        "classpath:requests/bulk-scan-a59-validation-error-input.json";
+        "classpath:requests/bulk-scan-a59-error-validation-input.json";
     private static final String A59_VALIDATION_ERROR_OUTPUT_PATH =
         "classpath:responses/bulk-scan-a59-validation-error-output.json";
     private static final String A59_TRANSFORM_INPUT_PATH =

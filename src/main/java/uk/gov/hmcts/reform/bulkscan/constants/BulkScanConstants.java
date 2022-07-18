@@ -87,6 +87,49 @@ public final class BulkScanConstants {
 
     public static final String COURT_CONSENT_CHILD_WELFARE = "court_consent_child_welfare";
 
+    public static final String APPLICANT2_FIRSTNAME = "applicant2_firstName";
+    public static final String APPLICANT2_SOT = "sole_applicant_or_applicant2_statement_of_truth";
+    public static final String APPLICANT2_LEGAL_REP_SOT = "sole_applicant_or_applicant2_legal_rep_statement_of_truth";
+    public static final String APPLICANT2_LEGAL_REP_SIGNATURE = "sole_applicant_or_applicant2_or_legal_rep_signature";
+    public static final String APPLICANT2_SIGNING = "applicant2_signing";
+    public static final String APPLICANT2_LEGAL_REP_SIGNING = "applicant2_legal_rep_signing";
+    public static final String APPLICANT2_SOT_DAY = "applicant2_statement_of_truth_date_day";
+    public static final String APPLICANT2_SOT_MONTH = "applicant2_statement_of_truth_date_month";
+    public static final String APPLICANT2_SOT_YEAR = "applicant2_statement_of_truth_date_year";
+    public static final String APPLICANT2_STATEMENT_OF_TRUTH_DATE = "applicant2StatementOfTruthDate";
+    public static final String APPLICANT1_SOT_DAY = "statement_of_truth_date_day";
+    public static final String APPLICANT1_SOT_MONTH = "statement_of_truth_date_month";
+    public static final String APPLICANT1_SOT_YEAR = "statement_of_truth_date_year";
+    public static final String APPLICANT1_STATEMENT_OF_TRUTH_DATE = "applicant1StatementOfTruthDate";
+    public static final String WELSH_SPOKEN_IN_COURT_REQUIRED = "welsh_spoken_in_court_required";
+    public static final String COURT_INTERPRETER_ASSISTANCE_REQUIRED = "court_interpreter_assistance_required";
+    public static final String SPECIAL_ASSISTANCE_FACILITIES_REQUIRED = "special_assistance_facilities_required";
+    public static final String WELSH_PREFERENCE_PARTY_NAME = "welsh_preference_party_name";
+    public static final String WELSH_PREFERENCE_WITNESS_NAME = "welsh_preference_witness_name";
+    public static final String WELSH_PREFERENCE_CHILD_NAME = "welsh_preference_child_name";
+    public static final String PARTY_WELSH_LANGUAGE_PREFERENCE = "party_welsh_language_preference";
+    public static final String WITNESS_WELSH_LANGUAGE_PREFERENCE = "witness_welsh_language_preference";
+    public static final String CHILD_WELSH_LANGUAGE_PREFERENCE = "child_welsh_language_preference";
+    public static final String APPLICANT_REQUIRE_INTERPRETER = "applicant_require_interpreter";
+    public static final String RESPONDENT_REQUIRE_INTERPRETER = "respondent_require_interpreter";
+    public static final String OTHER_PARTY_REQUIRE_INTERPRETER = "other_party_require_interpreter";
+    public static final String OTHER_PARTY_NAME = "other_party_name";
+    public static final String COURT_INTERPRETER_ASSISTANCE_LANGUAGE = "court_interpreter_assistance_language";
+    public static final String SPECIAL_ASSISTANCE_FACILITIES = "special_assistance_facilities";
+
+    public static final String WELSH_PREFERENCE_PARTY_NAME_CCD = "welshPreferencePartyName";
+    public static final String WELSH_PREFERENCE_WITNESS_NAME_CCD = "welshPreferenceWitnessName";
+    public static final String WELSH_PREFERENCE_CHILD_NAME_CCD = "welshPreferenceChildName";
+    public static final String PARTY_WELSH_LANGUAGE_PREFERENCE_CCD = "partyWelshLanguagePreference";
+    public static final String WITNESS_WELSH_LANGUAGE_PREFERENCE_CCD = "witnessWelshLanguagePreference";
+    public static final String CHILD_WELSH_LANGUAGE_PREFERENCE_CCD = "childWelshLanguagePreference";
+    public static final String APPLICANT_REQUIRE_INTERPRETER_CCD = "applicantRequireInterpreter";
+    public static final String RESPONDENT_REQUIRE_INTERPRETER_CCD = "respondentRequireInterpreter";
+    public static final String OTHER_PARTY_REQUIRE_INTERPRETER_CCD = "otherPartyRequireInterpreter";
+    public static final String OTHER_PARTY_NAME_CCD = "otherPartyName";
+    public static final String COURT_INTERPRETER_ASSISTANCE_LANGUAGE_CCD = "courtInterpreterAssistanceLanguage";
+    public static final String SPECIAL_ASSISTANCE_FACILITIES_CCD = "specialAssistanceFacilities";
+
     private static Map<String,String> getErrorMessageMap() {
         return Map.of(MANDATORY_KEY, MANDATORY_ERROR_MESSAGE,
                       DATE_FORMAT_FIELDS_KEY, DATE_FORMAT_MESSAGE,
