@@ -20,21 +20,15 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import static org.apache.commons.lang3.StringUtils.isNotEmpty;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ATTENDED_MIAM_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.C100_COMPULSORY_SECTION_2_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EXISTINGCASE_ONEMERGENCYPROTECTION_CARE_OR_SUPERVISIONORDER_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FAMILYMEMBER_INTIMATION_ON_NO_MIAM_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.GROUP_DEPENDENCY_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NOMIAM_DOMESTICVIOLENCE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES_VALUE;
 
 @Service
 public class BulkScanC100FieldDependencyService implements BulkScanService {
-    public static final int EXEMPTION_TO_ATTEND_MIAM_BITSET = 0x0100;
-    public static final int FAMILYMEMBER_INTIMATION_ON_NO_MIAM_BITSET = 0x0010;
-    public static final int EXISTINGCASE_ONEMERGENCYPROTECTION_CARE_OR_SUPERVISIONORDER_BITSET = 0x1000;
-    public static final int ATTENDED_MIAM_BITSET = 0x0001;
     public static final int REQUIRED_EXEMPTION_DEPENDENCY_FIELD_VALIDATION = 1;
+    public static final int REQUIRED_NOMIAM_DOMESTICVIOLENCE_DEPENDENCY_FIELD_VALIDATION = 1;
 
     @Autowired
     BulkScanFormValidationConfigManager configManager;
@@ -46,12 +40,6 @@ public class BulkScanC100FieldDependencyService implements BulkScanService {
 
     @Override
     public BulkScanValidationResponse validate(BulkScanValidationRequest bulkRequest) {
-        BulkScanValidationResponse validateMutuallyExclusiveFieldResponse
-            = validateMutuallyExclusiveFields(
-            bulkRequest.getOcrdatafields(),
-            configManager.getFieldDependenyConfig(
-                FieldDependency.C100_FIELD_DEPENDENCY)
-        );
 
         Map<String, Integer> groupDependencyCountMap = new HashMap<>();
 
@@ -59,23 +47,43 @@ public class BulkScanC100FieldDependencyService implements BulkScanService {
             EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD,
             REQUIRED_EXEMPTION_DEPENDENCY_FIELD_VALIDATION
         );
-
-        BulkScanValidationResponse validateGroupDependencyFieldResponse = validateGroupDependencyFields(
-            bulkRequest.getOcrdatafields(),
-            configManager.getFieldDependenyConfig(
-                FieldDependency.C100_FIELD_DEPENDENCY),
-            groupDependencyCountMap
+        groupDependencyCountMap.put(
+            NOMIAM_DOMESTICVIOLENCE,
+            REQUIRED_NOMIAM_DOMESTICVIOLENCE_DEPENDENCY_FIELD_VALIDATION
         );
 
-        List<String> warningItems = validateMutuallyExclusiveFieldResponse.getWarnings().getItems();
-        warningItems.addAll(validateGroupDependencyFieldResponse.getWarnings().getItems());
+        Map<String, String> ocrDataFieldsMap = bulkRequest.getOcrdatafields()
+            .stream()
+            .collect(Collectors.toMap(OcrDataField::getName, OcrDataField::getValue));
 
-        Status status = (Status.WARNINGS == validateMutuallyExclusiveFieldResponse.getStatus()) ? Status.WARNINGS :
-            (Status.ERRORS == validateMutuallyExclusiveFieldResponse.getStatus()) ? Status.ERRORS :
-                (Status.WARNINGS == validateGroupDependencyFieldResponse.getStatus()) ? Status.WARNINGS :
-                    (Status.ERRORS == validateGroupDependencyFieldResponse.getStatus()) ? Status.ERRORS :
-                        Status.SUCCESS;
+        List<String> warningItems = new ArrayList<>();
 
+        Status status = Status.SUCCESS;
+
+        boolean lbValidateExemption = false;
+
+        if (ocrDataFieldsMap.get(EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD) != null
+            && ocrDataFieldsMap.get(EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD).equals(YES_VALUE)) {
+            lbValidateExemption = true;
+        }
+        if (ocrDataFieldsMap.get(NOMIAM_DOMESTICVIOLENCE) != null
+            && ocrDataFieldsMap.get(NOMIAM_DOMESTICVIOLENCE).equals(YES_VALUE)) {
+            lbValidateExemption = true;
+        }
+
+
+        if (lbValidateExemption) {
+            BulkScanValidationResponse validateGroupDependency3aFieldResponse = validateGroupDependencyFields(
+                bulkRequest.getOcrdatafields(),
+                configManager.getFieldDependenyConfig(
+                    FieldDependency.C100_FIELD_DEPENDENCY),
+                groupDependencyCountMap
+            );
+            warningItems.addAll(validateGroupDependency3aFieldResponse.getWarnings().getItems());
+
+            status = (Status.WARNINGS == validateGroupDependency3aFieldResponse.getStatus()) ? Status.WARNINGS :
+                Status.SUCCESS;
+        }
 
         return BulkScanValidationResponse.builder()
             .warnings(Warnings.builder().items(warningItems).build())
@@ -87,54 +95,6 @@ public class BulkScanC100FieldDependencyService implements BulkScanService {
     @SuppressWarnings("unchecked")
     public BulkScanTransformationResponse transform(BulkScanTransformationRequest bulkScanTransformationRequest) {
         return null;
-    }
-
-    private BulkScanValidationResponse validateMutuallyExclusiveFields(
-        List<OcrDataField> ocrDataFields,
-        BulkScanFormValidationConfigManager.GroupDependencyValidationConfig grpFldDepValidationConfig) {
-        Map<String, String> ocrDataFieldsMap = ocrDataFields
-            .stream()
-            .collect(Collectors.toMap(OcrDataField::getName, OcrDataField::getValue));
-
-        List<String> errorOrWarnings = new ArrayList<>();
-
-        int mutualFieldSet = 0;
-
-        if (ocrDataFieldsMap.get(EXISTINGCASE_ONEMERGENCYPROTECTION_CARE_OR_SUPERVISIONORDER_FIELD) != null
-            && ocrDataFieldsMap.get(EXISTINGCASE_ONEMERGENCYPROTECTION_CARE_OR_SUPERVISIONORDER_FIELD)
-            .equals(YES_VALUE)) {
-            mutualFieldSet |= EXISTINGCASE_ONEMERGENCYPROTECTION_CARE_OR_SUPERVISIONORDER_BITSET;
-        }
-        if (ocrDataFieldsMap.get(EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD) != null
-            && ocrDataFieldsMap.get(EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD).equals(YES_VALUE)) {
-            mutualFieldSet |= EXEMPTION_TO_ATTEND_MIAM_BITSET;
-        }
-        if (ocrDataFieldsMap.get(FAMILYMEMBER_INTIMATION_ON_NO_MIAM_FIELD) != null
-            && ocrDataFieldsMap.get(FAMILYMEMBER_INTIMATION_ON_NO_MIAM_FIELD).equals(YES_VALUE)) {
-            mutualFieldSet |= FAMILYMEMBER_INTIMATION_ON_NO_MIAM_BITSET;
-        }
-        if (ocrDataFieldsMap.get(ATTENDED_MIAM_FIELD) != null
-            && ocrDataFieldsMap.get(ATTENDED_MIAM_FIELD).equals(YES_VALUE)) {
-            mutualFieldSet |= ATTENDED_MIAM_BITSET;
-        }
-
-        switch (mutualFieldSet) {
-            case EXISTINGCASE_ONEMERGENCYPROTECTION_CARE_OR_SUPERVISIONORDER_BITSET:
-            case EXEMPTION_TO_ATTEND_MIAM_BITSET:
-            case FAMILYMEMBER_INTIMATION_ON_NO_MIAM_BITSET:
-            case ATTENDED_MIAM_BITSET:
-                break;
-            default:
-                errorOrWarnings.add(String.format(C100_COMPULSORY_SECTION_2_MESSAGE, "2"));
-                break;
-        }
-
-        Status status = !errorOrWarnings.isEmpty() ? Status.WARNINGS : Status.SUCCESS;
-
-        return BulkScanValidationResponse.builder()
-            .status(status)
-            .warnings(Warnings.builder().items(errorOrWarnings).build())
-            .build();
     }
 
     private BulkScanValidationResponse validateGroupDependencyFields(
@@ -169,61 +129,39 @@ public class BulkScanC100FieldDependencyService implements BulkScanService {
         BulkScanFormValidationConfigManager.GroupDependencyFields groupDependencyFields
             = grpFldDepValidationConfig.getGroupFieldDependencyDetail();
 
-        if (groupDependencyFields.getGroupDependency1() != null
-            && groupDependencyFields.getGroupDependency1().getGroupFieldName().equals(groupField)) {
-            warnings.addAll(validateDependencyFields(
-                groupDependencyFields.getGroupDependency1(),
-                ocrDataFields,
-                dependencyFieldCount
-            ));
+        List<BulkScanFormValidationConfigManager.GroupDependencyField> dependencyFields
+            = new ArrayList<>();
+
+        if (groupDependencyFields.getGroupDependency1() != null) {
+            dependencyFields.add(groupDependencyFields.getGroupDependency1());
         }
-        if (groupDependencyFields.getGroupDependency2() != null
-            && groupDependencyFields.getGroupDependency2().getGroupFieldName().equals(groupField)) {
-            warnings.addAll(validateDependencyFields(
-                groupDependencyFields.getGroupDependency2(),
-                ocrDataFields,
-                dependencyFieldCount
-            ));
+        if (groupDependencyFields.getGroupDependency2() != null) {
+            dependencyFields.add(groupDependencyFields.getGroupDependency2());
         }
-        if (groupDependencyFields.getGroupDependency3() != null
-            && groupDependencyFields.getGroupDependency3().getGroupFieldName().equals(groupField)) {
-            warnings.addAll(validateDependencyFields(
-                groupDependencyFields.getGroupDependency3(),
-                ocrDataFields,
-                dependencyFieldCount
-            ));
+        if (groupDependencyFields.getGroupDependency3() != null) {
+            dependencyFields.add(groupDependencyFields.getGroupDependency3());
         }
-        if (groupDependencyFields.getGroupDependency4() != null
-            && groupDependencyFields.getGroupDependency4().getGroupFieldName().equals(groupField)) {
-            warnings.addAll(validateDependencyFields(
-                groupDependencyFields.getGroupDependency4(),
-                ocrDataFields,
-                dependencyFieldCount
-            ));
+        if (groupDependencyFields.getGroupDependency4() != null) {
+            dependencyFields.add(groupDependencyFields.getGroupDependency4());
         }
-        if (groupDependencyFields.getGroupDependency5() != null
-            && groupDependencyFields.getGroupDependency5().getGroupFieldName().equals(groupField)) {
-            warnings.addAll(validateDependencyFields(
-                groupDependencyFields.getGroupDependency5(),
-                ocrDataFields,
-                dependencyFieldCount
-            ));
+        if (groupDependencyFields.getGroupDependency5() != null) {
+            dependencyFields.add(groupDependencyFields.getGroupDependency5());
         }
-        if (groupDependencyFields.getGroupDependency6() != null
-            && groupDependencyFields.getGroupDependency6().getGroupFieldName().equals(groupField)) {
-            warnings.addAll(validateDependencyFields(
-                groupDependencyFields.getGroupDependency6(),
-                ocrDataFields,
-                dependencyFieldCount
-            ));
+        if (groupDependencyFields.getGroupDependency6() != null) {
+            dependencyFields.add(groupDependencyFields.getGroupDependency6());
         }
-        if (groupDependencyFields.getGroupDependency7() != null
-            && groupDependencyFields.getGroupDependency7().getGroupFieldName().equals(groupField)) {
-            warnings.addAll(validateDependencyFields(
-                groupDependencyFields.getGroupDependency7(),
-                ocrDataFields,
-                dependencyFieldCount
-            ));
+        if (groupDependencyFields.getGroupDependency7() != null) {
+            dependencyFields.add(groupDependencyFields.getGroupDependency7());
+        }
+
+        for (BulkScanFormValidationConfigManager.GroupDependencyField dependencyField : dependencyFields) {
+            if (dependencyField.getGroupFieldName().equals(groupField)) {
+                warnings.addAll(validateDependencyFields(
+                    dependencyField,
+                    ocrDataFields,
+                    dependencyFieldCount
+                ));
+            }
         }
         return warnings;
     }

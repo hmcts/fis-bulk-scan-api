@@ -27,6 +27,7 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EXEMPTION
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.GROUP_DEPENDENCY_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_ERROR_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MISSING_FIELD_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NOMIAM_DOMESTICVIOLENCE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NUMERIC_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.POST_CODE_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.XOR_CONDITIONAL_FIELDS_MESSAGE;
@@ -151,7 +152,7 @@ class BulkScanC100ServiceTest {
 
     @Test
     @DisplayName("Should generate warning on absence of dependency field(s) on exemption_To_Attend_MIAM field")
-    void testC100WarningExemptionToAttendMiamWithoughAPage3Checkbox() {
+    void testC100WarningExemptionToAttendMiamWithoutAPage3Checkbox() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
             TestDataUtil.getExemptionToAttendWarningData()).build();
 
@@ -163,10 +164,10 @@ class BulkScanC100ServiceTest {
     }
 
     @Test
-    @DisplayName("Should allow only one mutually exclusive field on section 2 to be checked")
+    @DisplayName("Should allow at least one field on section 3 to be checked")
     void testC100SuccessExemptionToAttendMiamWithPage3Checkbox() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-            TestDataUtil.getExemptionToAttendGroupDependencySuccessData()).build();
+            TestDataUtil.getExemptionToAttendMiamSuccessData()).build();
 
         BulkScanValidationResponse res = bulkScanDependencyService.validate(bulkScanValidationRequest);
 
@@ -174,14 +175,16 @@ class BulkScanC100ServiceTest {
     }
 
     @Test
-    @DisplayName("Should generate warning on mutually exclusive fields which allows only one field checked")
-    void testC100MutuallyExclusiveWarningOnSectionTwoCheckbox() {
+    @DisplayName("Should generate warning on NoMiam_DomesticViolence field checked but without dependency field(s)")
+    void testC100NoMiamDomesticViolenceWarningOnSection3ACheckbox() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-            TestDataUtil.getMutuallyExclusiveFieldWarningData()).build();
+            TestDataUtil.getNoMiamDomesticWarningData()).build();
 
         BulkScanValidationResponse res = bulkScanDependencyService.validate(bulkScanValidationRequest);
 
         assertEquals(Status.WARNINGS, res.status);
+        assertTrue(res.getWarnings().items.contains(String.format(GROUP_DEPENDENCY_MESSAGE,
+                                                                  NOMIAM_DOMESTICVIOLENCE)));
     }
 
     @Test

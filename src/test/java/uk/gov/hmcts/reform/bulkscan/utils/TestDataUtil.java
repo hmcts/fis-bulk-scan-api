@@ -7,7 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EXISTINGCASE_ONEMERGENCYPROTECTION_CARE_OR_SUPERVISIONORDER_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NOMIAM_DOMESTICVIOLENCE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES_VALUE;
 
 public final class TestDataUtil {
@@ -72,53 +72,7 @@ public final class TestDataUtil {
 
         fieldList.addAll(getAllNamesSuccessData());
 
-        fieldList.addAll(getSectionTwoSuccessData());
-
-        return fieldList;
-    }
-
-    public static List<OcrDataField> getAllNamesSuccessData() {
-        List<OcrDataField> fieldList = new ArrayList<>();
-        OcrDataField ocrDataFirstNameField = new OcrDataField();
-        ocrDataFirstNameField.setName("appellant_firstName");
-        ocrDataFirstNameField.setValue("firstName");
-        fieldList.add(ocrDataFirstNameField);
-
-        OcrDataField ocrDataLastNameField = new OcrDataField();
-        ocrDataLastNameField.setName("appellant_lastName");
-        ocrDataLastNameField.setValue("LastName");
-        fieldList.add(ocrDataLastNameField);
-
-        OcrDataField ocrDataChildFirstNameField = new OcrDataField();
-        ocrDataChildFirstNameField.setName("child_firstName");
-        ocrDataChildFirstNameField.setValue("LastName");
-        fieldList.add(ocrDataChildFirstNameField);
-
-        OcrDataField ocrDataChildLastNameField = new OcrDataField();
-        ocrDataChildLastNameField.setName("child_lastName");
-        ocrDataChildLastNameField.setValue("LastName");
-        fieldList.add(ocrDataChildLastNameField);
-
-        OcrDataField ocrDataAppellantChildRelationshipField = new OcrDataField();
-        ocrDataAppellantChildRelationshipField.setName("appellant_childRelationship");
-        ocrDataAppellantChildRelationshipField.setValue("LastName");
-        fieldList.add(ocrDataAppellantChildRelationshipField);
-
-        return fieldList;
-    }
-
-    public static List<OcrDataField> getSectionTwoSuccessData() {
-        List<OcrDataField> fieldList = new ArrayList<>();
-
-        OcrDataField ocrExemptionToAttendMiamField = new OcrDataField();
-        ocrExemptionToAttendMiamField.setName(EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD);
-        ocrExemptionToAttendMiamField.setValue(YES_VALUE);
-        fieldList.add(ocrExemptionToAttendMiamField);
-
-        OcrDataField ocrNoMiamDveCourtOrderField = new OcrDataField();
-        ocrNoMiamDveCourtOrderField.setName("NoMIAM_DVE_courtOrder");
-        ocrNoMiamDveCourtOrderField.setValue(YES_VALUE);
-        fieldList.add(ocrNoMiamDveCourtOrderField);
+        fieldList.addAll(getExemptionToAttendMiamSuccessData());
 
         return fieldList;
     }
@@ -896,14 +850,14 @@ public final class TestDataUtil {
         List<OcrDataField> fieldList = new ArrayList<>();
 
         OcrDataField ocrExemptionToAttendMiamField = new OcrDataField();
-        ocrExemptionToAttendMiamField.setName("exemption_to_attend_MIAM");
-        ocrExemptionToAttendMiamField.setValue("Yes");
+        ocrExemptionToAttendMiamField.setName(EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD);
+        ocrExemptionToAttendMiamField.setValue(YES_VALUE);
         fieldList.add(ocrExemptionToAttendMiamField);
 
         return fieldList;
     }
 
-    public static List<OcrDataField> getMutuallyExclusiveFieldWarningData() {
+    public static List<OcrDataField> getNoMiamDomesticWarningData() {
         List<OcrDataField> fieldList = new ArrayList<>();
 
         OcrDataField ocrExemptionToAttendMiamField = new OcrDataField();
@@ -912,19 +866,44 @@ public final class TestDataUtil {
         fieldList.add(ocrExemptionToAttendMiamField);
 
         OcrDataField ocrNoMiamDveCourtOrderField = new OcrDataField();
-        ocrNoMiamDveCourtOrderField.setName("NoMIAM_DVE_courtOrder");
-        ocrNoMiamDveCourtOrderField.setValue(YES_VALUE);
+        ocrNoMiamDveCourtOrderField.setName(NOMIAM_DOMESTICVIOLENCE);
+        ocrNoMiamDveCourtOrderField.setValue("true");
         fieldList.add(ocrNoMiamDveCourtOrderField);
-
-        OcrDataField ocrExistingCaseField = new OcrDataField();
-        ocrExistingCaseField.setName(EXISTINGCASE_ONEMERGENCYPROTECTION_CARE_OR_SUPERVISIONORDER_FIELD);
-        ocrExistingCaseField.setValue(YES_VALUE);
-        fieldList.add(ocrExistingCaseField);
 
         return fieldList;
     }
 
-    public static List<OcrDataField> getExemptionToAttendGroupDependencySuccessData() {
+    public static List<OcrDataField> getAllNamesSuccessData() {
+        List<OcrDataField> fieldList = new ArrayList<>();
+        OcrDataField ocrDataFirstNameField = new OcrDataField();
+        ocrDataFirstNameField.setName("appellant_firstName");
+        ocrDataFirstNameField.setValue("firstName");
+        fieldList.add(ocrDataFirstNameField);
+
+        OcrDataField ocrDataLastNameField = new OcrDataField();
+        ocrDataLastNameField.setName("appellant_lastName");
+        ocrDataLastNameField.setValue("LastName");
+        fieldList.add(ocrDataLastNameField);
+
+        OcrDataField ocrDataChildFirstNameField = new OcrDataField();
+        ocrDataChildFirstNameField.setName("child_firstName");
+        ocrDataChildFirstNameField.setValue("LastName");
+        fieldList.add(ocrDataChildFirstNameField);
+
+        OcrDataField ocrDataChildLastNameField = new OcrDataField();
+        ocrDataChildLastNameField.setName("child_lastName");
+        ocrDataChildLastNameField.setValue("LastName");
+        fieldList.add(ocrDataChildLastNameField);
+
+        OcrDataField ocrDataAppellantChildRelationshipField = new OcrDataField();
+        ocrDataAppellantChildRelationshipField.setName("appellant_childRelationship");
+        ocrDataAppellantChildRelationshipField.setValue("LastName");
+        fieldList.add(ocrDataAppellantChildRelationshipField);
+
+        return fieldList;
+    }
+
+    public static List<OcrDataField> getExemptionToAttendMiamSuccessData() {
         List<OcrDataField> fieldList = new ArrayList<>();
 
         OcrDataField ocrExemptionToAttendMiamField = new OcrDataField();
@@ -932,11 +911,17 @@ public final class TestDataUtil {
         ocrExemptionToAttendMiamField.setValue(YES_VALUE);
         fieldList.add(ocrExemptionToAttendMiamField);
 
-        OcrDataField ocrNoMiamDveCourtOrderField = new OcrDataField();
-        ocrNoMiamDveCourtOrderField.setName("NoMIAM_DVE_courtOrder");
-        ocrNoMiamDveCourtOrderField.setValue(YES_VALUE);
-        fieldList.add(ocrNoMiamDveCourtOrderField);
+        OcrDataField ocrNoMiamDomesticViolenceOrderField = new OcrDataField();
+        ocrNoMiamDomesticViolenceOrderField.setName(NOMIAM_DOMESTICVIOLENCE);
+        ocrNoMiamDomesticViolenceOrderField.setValue("true");
+        fieldList.add(ocrNoMiamDomesticViolenceOrderField);
+
+        OcrDataField ocrNoMiamArrestSimilaOffenceOrderField = new OcrDataField();
+        ocrNoMiamArrestSimilaOffenceOrderField.setName("NoMIAM_DVE_arrestedForSimilarOffence");
+        ocrNoMiamArrestSimilaOffenceOrderField.setValue("true");
+        fieldList.add(ocrNoMiamArrestSimilaOffenceOrderField);
 
         return fieldList;
     }
+
 }

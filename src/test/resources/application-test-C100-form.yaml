@@ -50,6 +50,14 @@ uk:
               groupDependency1:
                 groupFieldName: exemption_to_attend_MIAM
                 dependentFieldNames:
+                  - NoMIAM_domesticViolence
+                  - NoMIAM_childProtectionConcerns
+                  - NoMIAM_Urgency
+                  - NoMIAM_PreviousAttendence
+                  - NoMIAM_otherReasons
+              groupDependency2:
+                groupFieldName: NoMIAM_domesticViolence
+                dependentFieldNames:
                   - NoMIAM_DVE_arrestedForSimilarOffence
                   - NoMIAM_DVE_relevantPoliceCaution
                   - NoMIAM_DVE_relevantCriminalProceeding
@@ -71,16 +79,3 @@ uk:
                   - NoMIAM_DVE_publicAuthority_confirmationLetter
                   - NoMIAM_DVE_secretaryOfState_letter
                   - NoMIAM_DVE_evidenceFinancialMatters
-              groupDependency2:
-                groupFieldName: ExistingCase_onEmergencyProtection_Care_or_supervisioNorder
-                dependentFieldNames:
-                  - ExistingCase_onEmergencyProtection_Care_or_supervisioNorder
-                  - withoutNotice_emergency_Protection_Order
-                  - withoutNotice_supervisioNorder
-                  - withoutNotice_caseOrder
-                  - withoutNotice_childAbduction
-                  - withoutNotice_proceeding_for_NonMolestatioNorder
-                  - withoutNotice_contact_or_residentOrder
-                  - withoutNotice_contact_or_residentOrder_withAdoptioNorder
-                  - withoutNotice_childMaintenanceOrder
-                  - withoutNotice_childArrangementOrder
