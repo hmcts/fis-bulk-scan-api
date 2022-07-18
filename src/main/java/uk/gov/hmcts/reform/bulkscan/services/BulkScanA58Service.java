@@ -7,6 +7,11 @@ import uk.gov.hmcts.reform.bulkscan.config.BulkScanFormValidationConfigManager;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanTransformConfigManager;
 import uk.gov.hmcts.reform.bulkscan.enums.MaritalStatusEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.RelationToChildEnum;
+import uk.gov.hmcts.reform.bulkscan.group.creation.Group;
+import uk.gov.hmcts.reform.bulkscan.group.creation.GroupCreator;
+import uk.gov.hmcts.reform.bulkscan.group.handler.BulkScanGroupHandler;
+import uk.gov.hmcts.reform.bulkscan.group.util.BulkScanGroupValidatorUtil;
+import uk.gov.hmcts.reform.bulkscan.group.validation.enums.MessageTypeEnum;
 import uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper;
 import uk.gov.hmcts.reform.bulkscan.helper.BulkScanValidationHelper;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
@@ -14,13 +19,16 @@ import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.CaseCreationDetails;
+import uk.gov.hmcts.reform.bulkscan.model.Errors;
 import uk.gov.hmcts.reform.bulkscan.model.FormType;
 import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
+import uk.gov.hmcts.reform.bulkscan.model.Warnings;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
 import static java.util.Objects.nonNull;
 import static org.apache.commons.lang3.BooleanUtils.FALSE;
@@ -84,6 +92,9 @@ public class BulkScanA58Service implements BulkScanService {
     @Autowired
     BulkScanTransformConfigManager transformConfigManager;
 
+    @Autowired
+    BulkScanGroupHandler bulkScanGroupHandler;
+
     @Override
     public FormType getCaseType() {
         return A58;
@@ -103,9 +114,16 @@ public class BulkScanA58Service implements BulkScanService {
             formType = A58_RELINQUISHED_ADOPTION;
         }
         // Validating the Fields..
-        return bulkScanValidationHelper.validateMandatoryAndOptionalFields(bulkRequest.getOcrdatafields(),
-                configManager.getValidationConfig(
-                        formType));
+        BulkScanValidationResponse bulkScanValidationResponse =
+            bulkScanValidationHelper.validateMandatoryAndOptionalFields(
+            bulkRequest.getOcrdatafields(),
+            configManager.getValidationConfig(
+                formType)
+        );
+        updateGroupErrorsAndWarnings(bulkRequest, formType, bulkScanValidationResponse);
+        updateGroupMissingFields(bulkScanValidationResponse, formType);
+
+        return bulkScanValidationResponse;
     }
 
     @Override
@@ -251,5 +269,47 @@ public class BulkScanA58Service implements BulkScanService {
                 || STEP_PARENT_ADOPTION.equalsIgnoreCase(inputFieldsMap.get(APPLICANT2_RELATION_TO_CHILD))
                 || TRUE.equalsIgnoreCase(inputFieldsMap.get(APPLICANT_RELATION_TO_CHILD_FATHER_PARTNER))
                 || FALSE.equalsIgnoreCase(inputFieldsMap.get(APPLICANT_RELATION_TO_CHILD_FATHER_PARTNER));
+    }
+
+    private void updateGroupErrorsAndWarnings(BulkScanValidationRequest bulkRequest, FormType formType,
+                                              BulkScanValidationResponse bulkScanValidationResponse) {
+        Errors errors = bulkScanValidationResponse.getErrors();
+        Warnings warnings = bulkScanValidationResponse.getWarnings();
+        List<String> errorsItems = errors.getItems();
+        List<String> warningsItems = warnings.getItems();
+
+        Map<MessageTypeEnum, List<String>> errorsAndWarningsHashMap = bulkScanGroupHandler.handle(
+            formType,
+            bulkRequest.getOcrdatafields()
+        );
+        errorsItems.addAll(errorsAndWarningsHashMap.get(MessageTypeEnum.ERROR));
+        warningsItems.addAll(errorsAndWarningsHashMap.get(MessageTypeEnum.WARNING));
+
+        errors.setItems(errorsItems);
+        warnings.setItems(warningsItems);
+
+        bulkScanValidationResponse.setErrors(errors);
+        bulkScanValidationResponse.setWarnings(warnings);
+    }
+
+    private void updateGroupMissingFields(BulkScanValidationResponse bulkScanValidationResponse, FormType formType) {
+        GroupCreator groupCreator = new GroupCreator();
+        Group group = groupCreator.getGroup(formType);
+        List<String> allConfiguredGroupFields = BulkScanGroupValidatorUtil.getAllConfiguredGroupFields(group);
+        List<String> updateWarningList = bulkScanValidationResponse.getWarnings().getItems().stream()
+            .map(item -> updateMissingField(item, allConfiguredGroupFields)).collect(Collectors.toList());
+        bulkScanValidationResponse.setWarnings(Warnings.builder().items(updateWarningList).build()
+        );
+    }
+
+    private String updateMissingField(String item, List<String> allConfiguredGroupFields) {
+        if (item.contains("The following fields are are not configured with our system")) {
+            List<String> missingFieldList = Arrays.asList(item.split("\\[")[1].split("\\]")[0].split(","));
+            return "The following fields are are not configured with our system: "
+                + missingFieldList.stream()
+                .filter(s -> !allConfiguredGroupFields.contains(s))
+                .collect(Collectors.joining(","));
+        }
+        return item;
     }
 }
