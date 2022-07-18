@@ -22,6 +22,7 @@ import uk.gov.hmcts.reform.bulkscan.model.CaseCreationDetails;
 import uk.gov.hmcts.reform.bulkscan.model.Errors;
 import uk.gov.hmcts.reform.bulkscan.model.FormType;
 import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
+import uk.gov.hmcts.reform.bulkscan.model.Status;
 import uk.gov.hmcts.reform.bulkscan.model.Warnings;
 
 import java.util.Arrays;
@@ -297,18 +298,33 @@ public class BulkScanA58Service implements BulkScanService {
         Group group = groupCreator.getGroup(formType);
         List<String> allConfiguredGroupFields = BulkScanGroupValidatorUtil.getAllConfiguredGroupFields(group);
         List<String> updateWarningList = bulkScanValidationResponse.getWarnings().getItems().stream()
-            .map(item -> updateMissingField(item, allConfiguredGroupFields)).collect(Collectors.toList());
-        bulkScanValidationResponse.setWarnings(Warnings.builder().items(updateWarningList).build()
-        );
+            .map(item -> updateMissingField(item, allConfiguredGroupFields))
+            .filter(s -> !StringUtils.isEmpty(s)).collect(Collectors.toList());
+        if (!updateWarningList.isEmpty()) {
+            bulkScanValidationResponse.setWarnings(Warnings.builder().items(updateWarningList).build());
+            bulkScanValidationResponse.setStatus(Status.WARNINGS);
+        }
+        if (!bulkScanValidationResponse.getErrors().getItems().isEmpty()) {
+            bulkScanValidationResponse.setStatus(Status.ERRORS);
+        }
+        if (updateWarningList.isEmpty()
+            && bulkScanValidationResponse.getErrors().getItems().isEmpty()) {
+            bulkScanValidationResponse.setStatus(Status.SUCCESS);
+        }
     }
 
     private String updateMissingField(String item, List<String> allConfiguredGroupFields) {
         if (item.contains("The following fields are are not configured with our system")) {
             List<String> missingFieldList = Arrays.asList(item.split("\\[")[1].split("\\]")[0].split(","));
-            return "The following fields are are not configured with our system: "
-                + missingFieldList.stream()
+            String warnings = missingFieldList.stream()
                 .filter(s -> !allConfiguredGroupFields.contains(s))
                 .collect(Collectors.joining(","));
+            if (StringUtils.isEmpty(warnings)) {
+                return null;
+            } else {
+                return "The following fields are are not configured with our system: "
+                    + warnings;
+            }
         }
         return item;
     }
