@@ -303,6 +303,8 @@ public class BulkScanA58Service implements BulkScanService {
         if (!updateWarningList.isEmpty()) {
             bulkScanValidationResponse.setWarnings(Warnings.builder().items(updateWarningList).build());
             bulkScanValidationResponse.setStatus(Status.WARNINGS);
+        } else {
+            bulkScanValidationResponse.setWarnings(Warnings.builder().items(updateWarningList).build());
         }
         if (!bulkScanValidationResponse.getErrors().getItems().isEmpty()) {
             bulkScanValidationResponse.setStatus(Status.ERRORS);
