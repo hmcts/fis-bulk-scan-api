@@ -164,7 +164,7 @@ class BulkScanC100ServiceTest {
     }
 
     @Test
-    @DisplayName("Should allow at least one field on section 3 to be checked")
+    @DisplayName("Should allow at least one field on section 3 first 5 fields to be checked")
     void testC100SuccessExemptionToAttendMiamWithPage3Checkbox() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
             TestDataUtil.getExemptionToAttendMiamSuccessData()).build();
@@ -175,7 +175,7 @@ class BulkScanC100ServiceTest {
     }
 
     @Test
-    @DisplayName("Should generate warning on NoMiam_DomesticViolence field checked but without dependency field(s)")
+    @DisplayName("Should generate warning on NoMiam_DomesticViolence checked but without dependency Part 3a field(s)")
     void testC100NoMiamDomesticViolenceWarningOnSection3ACheckbox() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
             TestDataUtil.getNoMiamDomesticWarningData()).build();
