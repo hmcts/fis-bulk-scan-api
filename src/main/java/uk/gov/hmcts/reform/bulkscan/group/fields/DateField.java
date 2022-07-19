@@ -26,6 +26,10 @@ public class DateField extends Field {
             fieldValidator = fieldValidatorCreator.getValidator(FieldRequiredTypeEnum.OPTIONAL);
         }
 
-        fieldValidator.validate(this.getName(), FieldTypeEnum.DATE, ocrDataFieldOptional, errorAndWarningHandler);
+        Optional<FieldValidator> fieldValidatorOptional = Optional.ofNullable(fieldValidator);
+        if (fieldValidatorOptional.isPresent()) {
+            fieldValidator.validate(this.getName(), FieldTypeEnum.DATE,
+                                    ocrDataFieldOptional, errorAndWarningHandler);
+        }
     }
 }

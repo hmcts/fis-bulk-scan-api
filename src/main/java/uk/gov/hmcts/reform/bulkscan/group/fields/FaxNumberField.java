@@ -24,6 +24,10 @@ public class FaxNumberField extends Field {
             fieldValidator = fieldValidatorCreator.getValidator(FieldRequiredTypeEnum.OPTIONAL);
         }
 
-        fieldValidator.validate(this.getName(), FieldTypeEnum.FAX_NUMBER, ocrDataFieldOptional, errorAndWarningHandler);
+        Optional<FieldValidator> fieldValidatorOptional = Optional.ofNullable(fieldValidator);
+        if (fieldValidatorOptional.isPresent()) {
+            fieldValidator.validate(this.getName(), FieldTypeEnum.FAX_NUMBER,
+                                    ocrDataFieldOptional, errorAndWarningHandler);
+        }
     }
 }
