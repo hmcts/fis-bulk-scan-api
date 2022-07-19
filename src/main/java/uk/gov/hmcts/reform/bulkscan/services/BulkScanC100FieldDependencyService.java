@@ -60,13 +60,38 @@ public class BulkScanC100FieldDependencyService implements BulkScanService {
 
         Status status = Status.SUCCESS;
 
+        String dependencyValidationValue;
+
         if (ocrDataFieldsMap.get(EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD) != null
-            && ocrDataFieldsMap.get(EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD).equals(TICK_BOX_YES)
-            ) {
+            && ocrDataFieldsMap.get(EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD).equals(TICK_BOX_YES)) {
+
+            dependencyValidationValue = TICK_BOX_TRUE;
+
+            BulkScanValidationResponse validateExemptionToAttendGroupFieldResponse = validateGroupDependencyFields(
+                bulkRequest.getOcrdatafields(),
+                configManager.getFieldDependenyConfig(
+                    FieldDependency.C100_FIELD_DEPENDENCY),
+                EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD,
+                TICK_BOX_TRUE,
+                groupDependencyCountMap
+            );
+            warningItems.addAll(validateExemptionToAttendGroupFieldResponse.getWarnings().getItems());
+
+            status = (Status.WARNINGS == validateExemptionToAttendGroupFieldResponse.getStatus()) ? Status.WARNINGS :
+                Status.SUCCESS;
+        }
+
+        if (ocrDataFieldsMap.get(NOMIAM_DOMESTICVIOLENCE) != null
+            && ocrDataFieldsMap.get(NOMIAM_DOMESTICVIOLENCE).equals(TICK_BOX_TRUE)) {
+
+            dependencyValidationValue = TICK_BOX_TRUE;
+
             BulkScanValidationResponse validateGroupDependency3aFieldResponse = validateGroupDependencyFields(
                 bulkRequest.getOcrdatafields(),
                 configManager.getFieldDependenyConfig(
                     FieldDependency.C100_FIELD_DEPENDENCY),
+                NOMIAM_DOMESTICVIOLENCE,
+                TICK_BOX_TRUE,
                 groupDependencyCountMap
             );
             warningItems.addAll(validateGroupDependency3aFieldResponse.getWarnings().getItems());
@@ -90,15 +115,19 @@ public class BulkScanC100FieldDependencyService implements BulkScanService {
     private BulkScanValidationResponse validateGroupDependencyFields(
         List<OcrDataField> ocrDatafields,
         BulkScanFormValidationConfigManager
-            .GroupDependencyValidationConfig grpFldDepalidationConfg,
+            .GroupDependencyValidationConfig grpFldDepValidationConfg,
+        String groupField, String dependencyFieldValue,
         Map<String, Integer> groupFieldCountMap) {
         List<String> warnings = new ArrayList<>();
 
         if (!ocrDatafields.isEmpty()) {
             for (var entry : groupFieldCountMap.entrySet()) {
-                warnings.addAll(validateDependencyFields(ocrDatafields, grpFldDepalidationConfg,
-                                                         entry.getKey(), entry.getValue()
-                ));
+                if (entry.getKey().equals(groupField)) {
+                    warnings.addAll(validateDependencyFields(
+                        ocrDatafields, collateDependencyFields(grpFldDepValidationConfg),
+                        entry.getKey(), entry.getValue(), dependencyFieldValue
+                    ));
+                }
             }
         }
 
@@ -110,11 +139,8 @@ public class BulkScanC100FieldDependencyService implements BulkScanService {
             .build();
     }
 
-    private List<String> validateDependencyFields(
-        List<OcrDataField> ocrDataFields,
-        BulkScanFormValidationConfigManager.GroupDependencyValidationConfig grpFldDepValidationConfig,
-        String groupField, Integer dependencyFieldCount) {
-        List<String> warnings = new ArrayList<>();
+    private List<BulkScanFormValidationConfigManager.GroupDependencyField> collateDependencyFields(
+        BulkScanFormValidationConfigManager.GroupDependencyValidationConfig grpFldDepValidationConfig) {
 
         BulkScanFormValidationConfigManager.GroupDependencyFields groupDependencyFields
             = grpFldDepValidationConfig.getGroupFieldDependencyDetail();
@@ -144,18 +170,28 @@ public class BulkScanC100FieldDependencyService implements BulkScanService {
             dependencyFields.add(groupDependencyFields.getGroupDependency7());
         }
 
+        return dependencyFields;
+    }
+
+    private List<String> validateDependencyFields(
+        List<OcrDataField> ocrDataFields,
+        List<BulkScanFormValidationConfigManager.GroupDependencyField> dependencyFields,
+        String groupField, Integer dependencyFieldCount, String validationFieldValue) {
+        List<String> warnings = new ArrayList<>();
+
         for (BulkScanFormValidationConfigManager.GroupDependencyField dependencyField : dependencyFields) {
             if (dependencyField.getGroupFieldName().equals(groupField)) {
                 warnings.addAll(validateDependencyFields(
                     dependencyField,
                     ocrDataFields,
                     dependencyFieldCount,
-                    TICK_BOX_TRUE
+                    validationFieldValue
                 ));
             }
         }
         return warnings;
     }
+
 
     private List<String> validateDependencyFields(
         BulkScanFormValidationConfigManager.GroupDependencyField groupField,
