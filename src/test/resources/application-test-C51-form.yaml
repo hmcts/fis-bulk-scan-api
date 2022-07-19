@@ -10,9 +10,12 @@ uk:
               - applicant1_dateOfBirth
               - applicants_address
               - applicants_postCode
-              - applicants_telephoneNumber
+
             optionalFields:
-              -
+              - applicant2_firstName
+              - applicant2_lastName
+              - applicant_homeTelephoneNumber
+              - applicant_mobileTelephoneNumber
             regexValidationFields:
               dateFields:
                 fieldNames:

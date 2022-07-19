@@ -1,0 +1,28 @@
+{
+  "ocr_data_fields": [
+    {
+      "name": "applicant1_firstName",
+      "value": "sfgsfdf"
+    },
+    {
+      "name": "applicant1_lastName",
+      "value": "Smith"
+    },
+    {
+      "name": "applicant2_firstName",
+      "value": "sfgsfdf"
+    },
+    {
+      "name": "applicant2_lastName",
+      "value": "Smith"
+    },
+    {
+      "name": "applicant_address",
+      "value": "Arizona"
+    },
+    {
+      "name": "applicant_postCode",
+      "value": "WA14 2we"
+    }
+  ]
+}

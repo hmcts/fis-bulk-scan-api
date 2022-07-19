@@ -46,6 +46,9 @@ public final class BulkScanConstants {
     public static final String CASE_TYPE_ID = "CASE_TYPE_ID";
     public static final String EVENT_ID = "EVENT_ID";
 
+    public static final String APPLICANT_HOME_TELEPHONE_NUMBER = "applicant_homeTelephoneNumber";
+    public static final String APPLICANT_MOBILE_TELEPHONE_NUMBER  = "applicant_mobileTelephoneNumber";
+
     public static final String DOB_HINT = "dob";
     public static final String DATE_OF_BIRTH_HINT = "dateOfBirth";
 

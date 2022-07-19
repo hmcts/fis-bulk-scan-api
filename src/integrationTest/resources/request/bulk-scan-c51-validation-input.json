@@ -1,7 +1,7 @@
 {
   "ocr_data_fields":[
     {
-      "name":"applicants_address",
+      "name":"applicant_address",
       "value":"Address1 London"
     },
     {
@@ -13,15 +13,23 @@
       "value":"LastName"
     },
     {
-      "name":"applicants_postCode",
+      "name":"applicant2_firstName",
+      "value":"firstName"
+    },
+    {
+      "name":"applicant2_lastName",
+      "value":"LastName"
+    },
+    {
+      "name":"applicant_postCode",
       "value":"HA0 6AT"
     },
     {
-      "name":"applicant1_dateOfBirth",
+      "name":"applicant_dateOfBirth",
       "value":"01/01/1990"
     },
     {
-      "name":"applicants_telephoneNumber",
+      "name":"applicant_telephoneNumber",
       "value":"07456575789"
     }
   ]

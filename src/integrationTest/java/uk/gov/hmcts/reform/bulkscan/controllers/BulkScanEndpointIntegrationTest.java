@@ -72,6 +72,11 @@ class BulkScanEndpointIntegrationTest {
     private static final String A58_VALIDATION_REQUEST_PATH =
             "classpath:request/bulk-scan-a58-validation-input.json";
 
+    private static final String C51_TRANSFORM_REQUEST_PATH =
+        "classpath:request/bulk-scan-c51-transform-input.json";
+    private static final String C51_TRANSFORM_RESPONSE_PATH =
+        "classpath:response/bulk-scan-c51-transform-output.json";
+
     @DisplayName("should test validate request case type FL401")
     @Test
     void shouldTestValidationRequestCaseTypeFL401() throws Exception {
@@ -225,5 +230,17 @@ class BulkScanEndpointIntegrationTest {
                             .header(SERVICE_AUTHORIZATION, SERVICE_AUTHORIZATION_VALUE)
                             .content(readFileFrom(EdgeCase_TRANSFORM_REQUEST_PATH)))
             .andExpect(status().isOk()).andReturn();
+    }
+
+
+    @DisplayName("should test transform request case type C51")
+    @Test
+    void testC51TransformRequest() throws Exception {
+        mockMvc.perform(post(CASE_TYPE_TRANSFORM_ENDPOINT)
+                            .contentType(APPLICATION_JSON)
+                            .header(SERVICE_AUTHORIZATION, SERVICE_AUTHORIZATION_VALUE)
+                            .content(readFileFrom(C51_TRANSFORM_REQUEST_PATH)))
+            .andExpect(status().isOk())
+            .andExpect(content().json(readFileFrom(C51_TRANSFORM_RESPONSE_PATH)));
     }
 }
