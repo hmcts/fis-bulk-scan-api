@@ -27,6 +27,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT2_SOT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_ERROR_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.utils.TestResourceUtil.readFileFrom;
 
@@ -78,6 +79,7 @@ class BulkScanA58PostPlacementServiceTest {
                 .readValue(readFileFrom(A58_POST_PLACEMENT_ERROR_FIELD_REQUEST_PATH), BulkScanValidationRequest.class);
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertTrue(res.getErrors().items.contains(String.format(MANDATORY_ERROR_MESSAGE, "applicant1_firstName")));
+        assertTrue(res.getErrors().items.contains(String.format(MANDATORY_ERROR_MESSAGE, APPLICANT2_SOT)));
     }
 
     @Test
