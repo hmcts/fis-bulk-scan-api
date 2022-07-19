@@ -39,6 +39,130 @@
     {
       "name":"child_relationship_father",
       "value":"true"
+    },
+    {
+      "name":"applicant2_firstName",
+      "value":"applicant2firstName"
+    },
+    {
+      "name": "child_firstname_on_adoption_order",
+      "value": "charlie"
+    },
+    {
+      "name": "child_lastname_on_adoption_order",
+      "value": "impey"
+    },
+    {
+      "name": "sole_applicant_or_applicant1_statement_of_truth",
+      "value": "true"
+    },
+    {
+      "name": "sole_applicant_or_applicant1_legal_rep_statement_of_truth",
+      "value": "true"
+    },
+    {
+      "name": "sole_applicant_or_applicant1_or_legal_rep_signature",
+      "value": "true"
+    },
+    {
+      "name": "sole_applicant_or_applicant1_signing",
+      "value": "true"
+    },
+    {
+      "name": "legal_rep_signing",
+      "value": "true"
+    },
+    {
+      "name": "statement_of_truth_date_day",
+      "value": "12"
+    },
+    {
+      "name": "statement_of_truth_date_month",
+      "value": "12"
+    },
+    {
+      "name": "statement_of_truth_date_year",
+      "value": "2000"
+    },
+    {
+      "name": "applicant2_statement_of_truth_date_day",
+      "value": "11"
+    },
+    {
+      "name": "applicant2_statement_of_truth_date_month",
+      "value": "11"
+    },
+    {
+      "name": "applicant2_statement_of_truth_date_year",
+      "value": "2001"
+    },
+    {
+      "name": "welsh_spoken_in_court_required",
+      "value": "Yes"
+    },
+    {
+      "name": "welsh_preference_party_name",
+      "value": "partyName"
+    },
+    {
+      "name": "welsh_preference_witness_name",
+      "value": "witnessName"
+    },
+    {
+      "name": "welsh_preference_child_name",
+      "value": "childName"
+    },
+    {
+      "name": "party_welsh_language_preference",
+      "value": "Spoken"
+    },
+    {
+      "name": "witness_welsh_language_preference",
+      "value": "Written"
+    },
+    {
+      "name": "child_welsh_language_preference",
+      "value": "Both"
+    },
+    {
+      "name": "court_unavailable_dates",
+      "value": "10/10/2022,20/10/2022"
+    },
+    {
+      "name": "court_preferred_dates",
+      "value": "11/10/2022,21/10/2022"
+    },
+    {
+      "name": "court_interpreter_assistance_required",
+      "value": "Yes"
+    },
+    {
+      "name": "applicant_require_interpreter",
+      "value": "Yes"
+    },
+    {
+      "name": "respondent_require_interpreter",
+      "value": "Yes"
+    },
+    {
+      "name": "other_party_require_interpreter",
+      "value": "Yes"
+    },
+    {
+      "name": "other_party_name",
+      "value": "otherPartyName"
+    },
+    {
+      "name": "court_interpreter_assistance_language",
+      "value": "Spanish"
+    },
+    {
+      "name": "special_assistance_facilities_required",
+      "value": "Yes"
+    },
+    {
+      "name": "special_assistance_facilities",
+      "value": "WheelChair"
     }
   ],
   "form_type": "A58"
