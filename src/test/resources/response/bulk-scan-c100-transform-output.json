@@ -1,0 +1,66 @@
+{
+  "case_creation_details": {
+    "case_type_id": "PRLAPPS",
+    "event_id": "create-case-privatelaw-bs",
+    "case_data": {
+      "childrenKNownToLocalAuthority": "Yes",
+      "childrenKNownToLocalAuthorityTextArea": "socialWorker",
+      "childrenSubjectOfChildProtectionPlan": "protectionplan",
+      "parentalResponsibilityDetails": "parentResponsibility",
+      "childrenOfSameParent": "Yes",
+      "childrenParentsName": "parentsName",
+      "childParentsNameCollection": "parentsNameColl",
+      "personWhoLivesWithChild": "living other details",
+      "children": [
+        {
+          "value": {
+            "firstName": "firstName",
+            "lastName": "LastName",
+            "dateOfBirth": "02/02/2020",
+            "gender": "Male",
+            "orderAppliedFor": "orderAppliedFor",
+            "applicantsRelationshipToChild": "applicant",
+            "respondentsRelationshipToChild": "respondent"
+          }
+        },
+        {
+          "value": {
+            "firstName": "child2firstName",
+            "lastName": "child2LastName",
+            "dateOfBirth": "02/02/2020",
+            "gender": "Male",
+            "orderAppliedFor": "child2orderAppliedFor",
+            "applicantsRelationshipToChild": "applicant",
+            "respondentsRelationshipToChild": "respondent"
+          }
+        },
+        {
+          "value": {
+            "firstName": "child3firstName",
+            "lastName": "child3LastName",
+            "dateOfBirth": "02/02/2020",
+            "gender": "Male",
+            "orderAppliedFor": "child3orderAppliedFor",
+            "applicantsRelationshipToChild": "applicant",
+            "respondentsRelationshipToChild": "respondent"
+          }
+        },
+        {
+          "value": {
+            "firstName": "child4firstName",
+            "lastName": "child4LastName",
+            "dateOfBirth": "02/02/2020",
+            "gender": "Male",
+            "orderAppliedFor": "child3orderAppliedFor",
+            "applicantsRelationshipToChild": "applicant",
+            "respondentsRelationshipToChild": "respondent"
+          }
+        }
+      ],
+      "childLiveWith": "Applicant"
+    }
+  },
+  "warnings": [
+
+  ]
+}

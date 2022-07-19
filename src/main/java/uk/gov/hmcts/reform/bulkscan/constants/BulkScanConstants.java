@@ -10,6 +10,9 @@ import java.util.Objects;
 
 public final class BulkScanConstants {
 
+    public static final String YES = "Yes";
+    public static final String NO = "No";
+
     public static final String MANDATORY_ERROR_MESSAGE = "%s should not be null or empty";
     public static final String DATE_FORMAT_MESSAGE = "%s is invalid date or format";
     public static final String EMAIL_FORMAT_MESSAGE = "%s is invalid email";
@@ -89,6 +92,21 @@ public final class BulkScanConstants {
     public static final String COURT_CONSENT_PARENT_LACK_CAPACITY = "court_consent_parent_lack_capacity";
 
     public static final String COURT_CONSENT_CHILD_WELFARE = "court_consent_child_welfare";
+
+    // C100 manual validation Fields
+    public static final String CHILD_LIVING_WITH_APPLICANT = "child_living_with_Applicant";
+    public static final String CHILD_LIVING_WITH_RESPONDENT = "child_living_with_Respondent";
+    public static final String CHILD_LIVING_WITH_OTHERS = "child_living_with_others";
+
+    public static final String CHILDREN_OF_SAME_PARENT = "children_of_same_parent";
+    public static final String CHILDREN_PARENTS_NAME = "children_parentsName";
+    public static final String CHILDREN_PARENTS_NAME_COLLECTION = "child_parentsName_collection";
+    public static final String CHILDREN_SOCIAL_AUTHORITY = "childrenServicesAuthority";
+    public static final String CHILD_LOCAL_AUTHORITY_OR_SOCIAL_WORKER = "child1_localAuthority_or_socialWorker";
+    public static final String CHILD_LIVE_WITH_KEY = "childLiveWith";
+
+
+    public static final String CHILD_LIVE_WITH_MESSAGE = "";
 
     private static Map<String,String> getErrorMessageMap() {
         return Map.of(MANDATORY_KEY, MANDATORY_ERROR_MESSAGE,

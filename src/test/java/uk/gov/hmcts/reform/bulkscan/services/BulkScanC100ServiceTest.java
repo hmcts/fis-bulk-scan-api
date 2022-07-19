@@ -1,9 +1,12 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
-import org.junit.jupiter.api.Assertions;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.JSONException;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Spy;
+import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -15,24 +18,35 @@ import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.Status;
 import uk.gov.hmcts.reform.bulkscan.services.postcode.PostcodeLookupService;
-import uk.gov.hmcts.reform.bulkscan.utils.TestDataUtil;
+
+import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.when;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DATE_FORMAT_MESSAGE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EMAIL_FORMAT_MESSAGE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_ERROR_MESSAGE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MISSING_FIELD_MESSAGE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NUMERIC_MESSAGE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.POST_CODE_MESSAGE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.XOR_CONDITIONAL_FIELDS_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILDREN_OF_SAME_PARENT;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILDREN_PARENTS_NAME;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILDREN_PARENTS_NAME_COLLECTION;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVE_WITH_KEY;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVING_WITH_APPLICANT;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVING_WITH_OTHERS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVING_WITH_RESPONDENT;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LOCAL_AUTHORITY_OR_SOCIAL_WORKER;
+import static uk.gov.hmcts.reform.bulkscan.utils.TestResourceUtil.readFileFrom;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @ActiveProfiles("test")
 class BulkScanC100ServiceTest {
+
+    private final ObjectMapper mapper = new ObjectMapper();
+
+    private static final String C100_VALIDATION_REQUEST_PATH =
+        "classpath:request/bulk-scan-c100-validate-input.json";
+
+    private static final String C100_TRANSFORM_REQUEST_PATH =
+        "classpath:request/bulk-scan-c100-transform-input.json";
+
+    private static final String C100_TRANSFORM_RESPONSE_PATH =
+        "classpath:response/bulk-scan-c100-transform-output.json";
 
     @Spy
     @Autowired
@@ -42,114 +56,148 @@ class BulkScanC100ServiceTest {
     PostcodeLookupService postcodeLookupService;
 
     @Test
-    void testC100Success() {
-        BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-            TestDataUtil.getData()).build();
-        when(postcodeLookupService.isValidPostCode("TW3 1NN", null)).thenReturn(true);
+    @DisplayName("C100 validation with child information.")
+    void testC100ValidationSuccess() throws IOException {
+        BulkScanValidationRequest bulkScanValidationRequest = mapper
+            .readValue(readFileFrom(C100_VALIDATION_REQUEST_PATH), BulkScanValidationRequest.class);
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.SUCCESS, res.status);
     }
 
     @Test
-    void testC100WhenPostCodeNotValid() {
-        BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-                TestDataUtil.getData()).build();
-        when(postcodeLookupService.isValidPostCode("TW3 1NN", null)).thenReturn(false);
+    @DisplayName("C100 validation with empty child live with info.")
+    void testC100ValidationError() throws IOException {
+        BulkScanValidationRequest bulkScanValidationRequest = mapper
+            .readValue(readFileFrom(C100_VALIDATION_REQUEST_PATH), BulkScanValidationRequest.class);
+        bulkScanValidationRequest.getOcrdatafields().stream()
+            .filter(eachField ->
+                        CHILD_LIVING_WITH_APPLICANT.equalsIgnoreCase(eachField.getName())
+                            || CHILD_LIVING_WITH_RESPONDENT.equalsIgnoreCase(eachField.getName())
+                        || CHILD_LIVING_WITH_OTHERS.equalsIgnoreCase(eachField.getName()))
+            .forEach(field -> field.setValue(""));
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
-        assertTrue(res.getErrors().items.contains(String.format(POST_CODE_MESSAGE, "appellant_postCode")));
+        assertEquals(
+            "one field must be present out of child_living_with_Applicant,child_living_with_Respondent,"
+                + "child_living_with_others", res.getErrors().getItems().get(0));
     }
 
     @Test
-    void testC100WhenNotOneFieldPresentOutOfXoRFields() {
-        BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-                TestDataUtil.getErrorData()).build();
-        when(postcodeLookupService.isValidPostCode("TW3 1NN", null)).thenReturn(false);
+    @DisplayName("C100 validation with empty parent name.")
+    void testC100ValidationErrorWithParentName() throws IOException {
+        BulkScanValidationRequest bulkScanValidationRequest = mapper
+            .readValue(readFileFrom(C100_VALIDATION_REQUEST_PATH), BulkScanValidationRequest.class);
+        bulkScanValidationRequest.getOcrdatafields().stream()
+            .filter(eachField ->
+                        CHILDREN_PARENTS_NAME.equalsIgnoreCase(eachField.getName()))
+            .forEach(field -> field.setValue(""));
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
-        assertTrue(res.getErrors().items.contains(String.format(XOR_CONDITIONAL_FIELDS_MESSAGE,
-                "appellant_postCode,appellant_lastName")));
+        assertEquals(
+            "children_parentsName should not be null or empty", res.getErrors().getItems().get(0));
     }
 
     @Test
-    void testC100MandatoryErrorWhileDoingValidation() {
-        BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-            TestDataUtil.getErrorData()).build();
+    @DisplayName("C100 validation with empty parent collection and child paret name as No.")
+    void testC100ValidationErrorWithParentCollName() throws IOException {
+        BulkScanValidationRequest bulkScanValidationRequest = mapper
+            .readValue(readFileFrom(C100_VALIDATION_REQUEST_PATH), BulkScanValidationRequest.class);
+        bulkScanValidationRequest.getOcrdatafields().stream()
+            .filter(eachField ->
+                        CHILDREN_PARENTS_NAME_COLLECTION.equalsIgnoreCase(eachField.getName()))
+            .forEach(field -> field.setValue(""));
+        bulkScanValidationRequest.getOcrdatafields().stream()
+            .filter(eachField ->
+                        CHILDREN_OF_SAME_PARENT.equalsIgnoreCase(eachField.getName()))
+            .forEach(field -> field.setValue("No"));
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
-        assertTrue(res.getErrors().items.contains(String.format(MANDATORY_ERROR_MESSAGE, "appellant_lastName")));
+        assertEquals(
+            "child_parentsName_collection should not be null or empty", res.getErrors().getItems().get(0));
     }
 
     @Test
-    void testC100EmergencyProtectionOrderMandatoryErrorWhileDoingValidation() {
-        BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder()
-            .ocrdatafields(TestDataUtil.getErrorData()).build();
+    @DisplayName("C100 validation with empty parent collection and child paret name as No.")
+    void testC100ValidationErrorWithSocialAuth() throws IOException {
+        BulkScanValidationRequest bulkScanValidationRequest = mapper
+            .readValue(readFileFrom(C100_VALIDATION_REQUEST_PATH), BulkScanValidationRequest.class);
+        bulkScanValidationRequest.getOcrdatafields().stream()
+            .filter(eachField ->
+                        CHILDREN_PARENTS_NAME_COLLECTION.equalsIgnoreCase(eachField.getName()))
+            .forEach(field -> field.setValue(""));
+        bulkScanValidationRequest.getOcrdatafields().stream()
+            .filter(eachField ->
+                        CHILDREN_OF_SAME_PARENT.equalsIgnoreCase(eachField.getName()))
+            .forEach(field -> field.setValue("No"));
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
-        assertTrue(res.getErrors().items.contains(
-            String.format(MANDATORY_ERROR_MESSAGE, "emergency_protection_order")));
+        assertEquals(
+            "child_parentsName_collection should not be null or empty", res.getErrors().getItems().get(0));
     }
 
     @Test
-    void testC100DateErrorWhileDoingValidation() {
-        BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-            TestDataUtil.getDateErrorData()).build();
-        BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
-        assertEquals(Status.WARNINGS, res.status);
-        assertTrue(res.getWarnings().items.contains(String.format(DATE_FORMAT_MESSAGE, "appellant_dateOfBirth")));
-    }
-
-    @Test
-    void testC100OtherCourtCaseDateErrorWhileDoingValidation() {
-        BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-            TestDataUtil.getDateErrorData()).build();
-        BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
-        assertEquals(Status.WARNINGS, res.status);
-        assertTrue(res.getWarnings().items.contains(String.format(DATE_FORMAT_MESSAGE, "other_court_case_date")));
-    }
-
-    @Test
-    void testC100AuthorisedFamilyMediatorSignedDateErrorWhileDoingValidation() {
-        BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-            TestDataUtil.getDateErrorData()).build();
-        BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
-        assertEquals(Status.WARNINGS, res.status);
-        assertTrue(res.getWarnings().items.contains(
-            String.format(DATE_FORMAT_MESSAGE, "authorised_family_mediator_signed_date")));
-    }
-
-    @Test
-    void testC100EmailErrorWhileDoingValidation() {
-        BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-            TestDataUtil.getEmailErrorData()).build();
-        BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
-        assertEquals(Status.WARNINGS, res.status);
-        assertTrue(res.getWarnings().items.contains(String.format(EMAIL_FORMAT_MESSAGE, "appellant_email")));
-    }
-
-    @Test
-    void testC100FieldMissingErrorWhileDoingValidation() {
-        BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-            TestDataUtil.getFirstNameData()).build();
+    @DisplayName("C100 validation with empty local authority.")
+    void testC100ValidationErrorWithSicialAuthority() throws IOException {
+        BulkScanValidationRequest bulkScanValidationRequest = mapper
+            .readValue(readFileFrom(C100_VALIDATION_REQUEST_PATH), BulkScanValidationRequest.class);
+        bulkScanValidationRequest.getOcrdatafields().stream()
+            .filter(eachField ->
+                        CHILD_LOCAL_AUTHORITY_OR_SOCIAL_WORKER.equalsIgnoreCase(eachField.getName()))
+            .forEach(field -> field.setValue(""));
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
-        assertTrue(res.getErrors().items.contains(String.format(MISSING_FIELD_MESSAGE, "appellant_lastName")));
+        assertEquals(
+            "child1_localAuthority_or_socialWorker should not be null or empty",
+            res.getErrors().getItems().get(0));
     }
 
     @Test
-    void testC100CaseNoNumericErrorWhileDoingValidation() {
-        BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-            TestDataUtil.getNumericErrorData()).build();
-        BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
-        assertEquals(Status.ERRORS, res.status);
-        assertTrue(res.getWarnings().items.contains(String.format(NUMERIC_MESSAGE, "case_no")));
+    @DisplayName("C100 transform success.")
+    void testC100TransformSuccess() throws IOException, JSONException {
+        BulkScanTransformationRequest bulkScanTransformationRequest = mapper.readValue(
+            readFileFrom(C100_TRANSFORM_REQUEST_PATH), BulkScanTransformationRequest.class);
+
+        BulkScanTransformationResponse res = bulkScanValidationService.transform(bulkScanTransformationRequest);
+        JSONAssert.assertEquals(readFileFrom(C100_TRANSFORM_RESPONSE_PATH),
+                                mapper.writeValueAsString(res), true);
     }
 
     @Test
-    void testTransform() {
-        BulkScanTransformationResponse bulkScanTransformationResponse =
-            bulkScanValidationService.transform(mock(BulkScanTransformationRequest.class));
-        Assertions.assertNotNull(bulkScanTransformationResponse);
+    @DisplayName("C100 transform Child live with respondent.")
+    void testC100TransformWithRespondent() throws IOException, JSONException {
+        BulkScanTransformationRequest bulkScanTransformationRequest = mapper.readValue(
+            readFileFrom(C100_TRANSFORM_REQUEST_PATH), BulkScanTransformationRequest.class);
+        bulkScanTransformationRequest.getOcrdatafields().stream()
+            .filter(eachField ->
+                        CHILD_LIVING_WITH_APPLICANT.equalsIgnoreCase(eachField.getName()))
+            .forEach(field -> field.setValue("false"));
+        bulkScanTransformationRequest.getOcrdatafields().stream()
+            .filter(eachField ->
+                        CHILD_LIVING_WITH_RESPONDENT.equalsIgnoreCase(eachField.getName()))
+            .forEach(field -> field.setValue("true"));
+        BulkScanTransformationResponse res = bulkScanValidationService.transform(bulkScanTransformationRequest);
+        assertEquals(
+            "Respondent",
+            res.getCaseCreationDetails().getCaseData().get(CHILD_LIVE_WITH_KEY));
+    }
+
+    @Test
+    @DisplayName("C100 transform Child live with others.")
+    void testC100TransformWithOthers() throws IOException, JSONException {
+        BulkScanTransformationRequest bulkScanTransformationRequest = mapper.readValue(
+            readFileFrom(C100_TRANSFORM_REQUEST_PATH), BulkScanTransformationRequest.class);
+        bulkScanTransformationRequest.getOcrdatafields().stream()
+            .filter(eachField ->
+                        CHILD_LIVING_WITH_APPLICANT.equalsIgnoreCase(eachField.getName()))
+            .forEach(field -> field.setValue("false"));
+        bulkScanTransformationRequest.getOcrdatafields().stream()
+            .filter(eachField ->
+                        CHILD_LIVING_WITH_OTHERS.equalsIgnoreCase(eachField.getName()))
+            .forEach(field -> field.setValue("true"));
+        BulkScanTransformationResponse res = bulkScanValidationService.transform(bulkScanTransformationRequest);
+        assertEquals(
+            "OtherPeople",
+            res.getCaseCreationDetails().getCaseData().get(CHILD_LIVE_WITH_KEY));
     }
 
 }

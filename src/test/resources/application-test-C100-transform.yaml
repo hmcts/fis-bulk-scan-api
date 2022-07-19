@@ -4,25 +4,48 @@ uk:
       transform:
         caseTypeofApplication:
           C100:
+            caseFields:
+              CASE_TYPE_ID: PRLAPPS
+              EVENT_ID: create-case-privatelaw-bs
             caseDataFields:
-              applicant:
-                - value:
-                    firstName: applicant1_firstName
-                    lastName: applicant1_lastName
-                    gender: applicant1_gender
-                - value:
-                    firstName: applicant2_firstName
-                    lastName: applicant2_lastName
-                    gender: applicant2_gender
-              solictiorEmail: solicitorEmail
-              solicitorAddressLine1: solicitor_addressLine1
-              solicitorAddressLine2: solicitor_addressLine2
-              solicitorAddressLine3: solicitor_addressLine3
-              caseNumber: caseNumber
+              childrenKNownToLocalAuthority: childrenServicesAuthority
+              childrenKNownToLocalAuthorityTextArea: child1_localAuthority_or_socialWorker
+              childrenSubjectOfChildProtectionPlan: subject_to_childProtectionPlan
+              parentalResponsibilityDetails: parentalResponsibilityDetails
+              childrenOfSameParent: children_of_same_parent
+              childrenParentsName: children_parentsName
+              childParentsNameCollection: child_parentsName_collection
+              personWhoLivesWithChild: child_living_with_others_details
               children:
                 - value:
                     firstName: child1_firstName
                     lastName: child1_lastName
+                    dateOfBirth: child1_dateOfBirth
+                    gender: child1_gender
+                    orderAppliedFor: child1_orderAppliedFor
+                    applicantsRelationshipToChild: child1_applicant1_relationship
+                    respondentsRelationshipToChild: child1_respondent1_relationship
                 - value:
                     firstName: child2_firstName
                     lastName: child2_lastName
+                    dateOfBirth: child2_dateOfBirth
+                    gender: child2_gender
+                    orderAppliedFor: child2_orderAppliedFor
+                    applicantsRelationshipToChild: child2_applicant1_relationship
+                    respondentsRelationshipToChild: child2_respondent1_relationship
+                - value:
+                    firstName: child3_firstName
+                    lastName: child3_lastName
+                    dateOfBirth: child3_dateOfBirth
+                    gender: child3_gender
+                    orderAppliedFor: child3_orderAppliedFor
+                    applicantsRelationshipToChild: child3_applicant1_relationship
+                    respondentsRelationshipToChild: child3_respondent1_relationship
+                - value:
+                    firstName: child4_firstName
+                    lastName: child4_lastName
+                    dateOfBirth: child4_dateOfBirth
+                    gender: child4_gender
+                    orderAppliedFor: child4_orderAppliedFor
+                    applicantsRelationshipToChild: child4_applicant1_relationship
+                    respondentsRelationshipToChild: child4_respondent1_relationship
