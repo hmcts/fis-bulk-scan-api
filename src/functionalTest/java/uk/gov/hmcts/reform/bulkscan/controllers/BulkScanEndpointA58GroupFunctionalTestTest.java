@@ -75,7 +75,7 @@ public class BulkScanEndpointA58GroupFunctionalTestTest {
     @DisplayName("A58 post group validation error scenario")
     public void shouldValidate58PostPlacementBulkScanRequestErrors() throws Exception {
         String bulkScanValidationRequest =
-                readFileFrom(A58_POST_GROUP_VALIDATION_ERRORS_INPUT_PATH );
+                readFileFrom(A58_POST_GROUP_VALIDATION_ERRORS_INPUT_PATH);
 
         String bulkScanValidationResponse =
                 readFileFrom(A58_POST_GROUP_VALIDATION_ERRORS_OUTPUT_PATH);
