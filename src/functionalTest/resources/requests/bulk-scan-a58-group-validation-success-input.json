@@ -1,132 +1,40 @@
 {
-  "ocr_data_fields":[
+  "ocr_data_fields": [
     {
       "name": "applicant1_firstName",
-      "value": "Test First Name"
-    },
-    {
-      "name": "applicant1_lastName",
-      "value": "Test Last Name"
-    },
-    {
-      "name": "applicant1_address",
-      "value": "Male"
-    },
-    {
-      "name": "applicant1_telephoneNumber",
-      "value": "+447438766833"
-    },
-    {
-      "name": "applicant1_nationality",
-      "value": "British"
-    },
-    {
-      "name": "applicant1_gender_male",
-      "value": "Male"
-    },
-    {
-      "name": "solicitor_name",
-      "value": "SolName"
-    },
-    {
-      "name": "solicitor_firmName",
-      "value": "SolFirmName"
-    },
-    {
-      "name": "solicitor_address",
-      "value": "123, Address Tw31NN"
-    },
-    {
-      "name": "solicitor_telephoneNumber",
-      "value": "+447438766833"
-    },
-    {
-      "name": "solicitor_emailAddress",
-      "value": "test@test.com"
-    },
-    {
-      "name": "solicitor_feeAccountNumber",
-      "value": "12345667899"
-    },
-    {
-      "name": "applicants_domicile_status",
       "value": "true"
     },
     {
-      "name": "applicants_non_domicile_status",
+      "name": "applicant1_lastName",
       "value": "false"
     },
     {
-      "name": "applicant_relationToChild_father_partner",
-      "value": ""
-    },
-    {
-      "name": "applicant_relationToChild_mother_partner",
+      "name": "applicant1_address",
       "value": "false"
     },
     {
-      "name": "applicant_relationToChild_non_civil_partner",
-      "value": "false"
+      "name": "applicant1_telephoneNumber",
+      "value": "07471782114"
     },
     {
-      "name": "applicant_marital_status_single",
-      "value": "false"
+      "name": "mother_firstName",
+      "value": "fatema"
     },
     {
-      "name": "applicant_marital_status_divorced",
-      "value": "false"
+      "name": "mother_lastName",
+      "value": "mahabub"
     },
     {
-      "name": "applicant_marital_status_widow",
-      "value": "false"
+      "name": "mother_address",
+      "value": "London"
     },
     {
-      "name": "applicant_marital_status_married_spouse_notfound",
-      "value": "false"
+      "name": "mother_nationality",
+      "value": "German"
     },
     {
-      "name": "applicant_marital_status_married_spouse_separated",
-      "value": "false"
-    },
-    {
-      "name": "applicant_marital_status_married_spouse_incapable",
-      "value": "false"
-    },
-    {
-      "name": "applicant_applying_alone_natural_parent_died",
-      "value": "false"
-    },
-    {
-      "name": "applicant_applying_alone_natural_parent_not_found",
-      "value": "false"
-    },
-    {
-      "name": "applicant_applying_alone_no_other_parent",
-      "value": "false"
-    },
-    {
-      "name": "applicant_applying_alone_other_parent_exclusion_justified",
-      "value": "false"
-    },
-    {
-      "name":"mother_firstName",
-      "value":"motherFirstName"
-    },
-    {
-      "name":"mother_lastName",
-      "value":"motherLastName"
-    },
-    {
-      "name":"mother_address",
-      "value":"Address1 London"
-    },
-    {
-      "name":"mother_nationality",
-      "value":"motherNationality"
-    },
-    {
-      "name":"mother_occupation",
-      "value":"motherOccupation"
+      "name": "mother_occupation",
+      "value": "Engineer"
     },
     {
       "name": "child_gender",
