@@ -35,7 +35,7 @@
   <rule ref="category/java/codestyle.xml/ClassNamingConventions">
     <properties>
       <!-- same as any other class -->
-      <property name="utilityClassPattern" value="[A-Z][a-zA-Z]+"/>
+      <property name="utilityClassPattern" value="[A-Z][a-zA-Z0-9]+"/>
     </properties>
   </rule>
   <rule ref="category/java/codestyle.xml/MethodNamingConventions">
@@ -103,6 +103,11 @@
       <property name="classReportLevel" value="80" />
       <property name="methodReportLevel" value="20" />
       <property name="cycloOptions" value="" />
+    </properties>
+  </rule>
+  <rule ref="category/java/design.xml/ExcessiveClassLength">
+    <properties>
+      <property name="minimum" value="1500.0" />
     </properties>
   </rule>
 

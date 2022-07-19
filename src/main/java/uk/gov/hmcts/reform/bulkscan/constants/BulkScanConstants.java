@@ -19,11 +19,16 @@ public final class BulkScanConstants {
         + "incomplete dependency validation";
     public static final String NOMIAM_CHILDPROTECTIONCONCERNS = "NoMIAM_childProtectionConcerns";
     public static final String NOMIAM_DOMESTICVIOLENCE = "NoMIAM_domesticViolence";
+    public static final String NOMIAM_DVE_ARRESTEDFORSIMILAROFFENCE = "NoMIAM_DVE_arrestedForSimilarOffence";
     public static final String NOMIAM_URGENCY = "NoMIAM_Urgency";
-    public static final String NOMIAM_PREVIOUSATTENDENCE = "NoMIAM_PreviousAttendence";
+    public static final String NOMIAM_PREVIOUSATTENDANCE = "NoMIAM_PreviousAttendance";
     public static final String NOMIAM_OTHERREASONS = "NoMIAM_otherReasons";
     public static final String NUMERIC_MESSAGE = "%s is not a number";
-    public static final String YES_VALUE = "Yes";
+
+    public static final String TICK_BOX_FALSE = "false";
+    public static final String TICK_BOX_NO = "No";
+    public static final String TICK_BOX_TRUE = "true";
+    public static final String TICK_BOX_YES = "Yes";
 
     public static final String MISSING_FIELD_MESSAGE = "%s is missing";
     public static final String POST_CODE_MESSAGE = "%s is not a valid postcode";

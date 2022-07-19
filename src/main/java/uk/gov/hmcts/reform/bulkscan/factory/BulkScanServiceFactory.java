@@ -26,8 +26,8 @@ public final class BulkScanServiceFactory {
             return bulkScanServiceCache.get(FormType.A58);
         }
 
-        if (caseType.equals(FormType.C100)) {
-            return bulkScanServiceCache.get(FormType.C100);
+        if (caseType.equals(FormType.A60)) {
+            return bulkScanServiceCache.get(FormType.A60);
         }
         return bulkScanServiceCache.get(caseType);
     }

@@ -19,11 +19,11 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.GROUP_DEPENDENCY_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NOMIAM_DOMESTICVIOLENCE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES_VALUE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.TICK_BOX_TRUE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.TICK_BOX_YES;
 
 @Service
 public class BulkScanC100FieldDependencyService implements BulkScanService {
@@ -60,19 +60,9 @@ public class BulkScanC100FieldDependencyService implements BulkScanService {
 
         Status status = Status.SUCCESS;
 
-        boolean lbValidateExemption = false;
-
         if (ocrDataFieldsMap.get(EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD) != null
-            && ocrDataFieldsMap.get(EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD).equals(YES_VALUE)) {
-            lbValidateExemption = true;
-        }
-        if (ocrDataFieldsMap.get(NOMIAM_DOMESTICVIOLENCE) != null
-            && ocrDataFieldsMap.get(NOMIAM_DOMESTICVIOLENCE).equals(YES_VALUE)) {
-            lbValidateExemption = true;
-        }
-
-
-        if (lbValidateExemption) {
+            && ocrDataFieldsMap.get(EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD).equals(TICK_BOX_YES)
+            ) {
             BulkScanValidationResponse validateGroupDependency3aFieldResponse = validateGroupDependencyFields(
                 bulkRequest.getOcrdatafields(),
                 configManager.getFieldDependenyConfig(
@@ -159,7 +149,8 @@ public class BulkScanC100FieldDependencyService implements BulkScanService {
                 warnings.addAll(validateDependencyFields(
                     dependencyField,
                     ocrDataFields,
-                    dependencyFieldCount
+                    dependencyFieldCount,
+                    TICK_BOX_TRUE
                 ));
             }
         }
@@ -169,7 +160,7 @@ public class BulkScanC100FieldDependencyService implements BulkScanService {
     private List<String> validateDependencyFields(
         BulkScanFormValidationConfigManager.GroupDependencyField groupField,
         List<OcrDataField> ocrDataFields,
-        int piFieldPresentCount) {
+        int piFieldPresentCount, String fieldValidationValue) {
 
         List<String> errorOrWarnings = new ArrayList<>();
 
@@ -177,7 +168,7 @@ public class BulkScanC100FieldDependencyService implements BulkScanService {
             return errorOrWarnings;
         }
 
-        int liFieldCnt = 0;
+        int liRequiredFieldCount = 0;
         boolean enoughFieldPresent = false;
 
         Map<String, String> ocrDataFieldsMap = ocrDataFields
@@ -185,9 +176,11 @@ public class BulkScanC100FieldDependencyService implements BulkScanService {
             .collect(Collectors.toMap(OcrDataField::getName, OcrDataField::getValue));
 
         for (String dependencyField : groupField.getDependentFieldNames()) {
-            if (isNotEmpty(ocrDataFieldsMap.get(dependencyField))) {
-                liFieldCnt++;
-                if (liFieldCnt == piFieldPresentCount) {
+            if (ocrDataFieldsMap.get(dependencyField) != null
+                && ocrDataFieldsMap.get(dependencyField).equals(
+                fieldValidationValue)) {
+                liRequiredFieldCount++;
+                if (liRequiredFieldCount == piFieldPresentCount) {
                     enoughFieldPresent = true;
                     break;
                 }
