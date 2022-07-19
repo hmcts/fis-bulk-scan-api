@@ -50,6 +50,10 @@ uk:
               guardianFirstName: guardian_firstName
               guardianLastName: guardian_lastName
               guardianAddress: guardian_address
+              childrenGender: child_gender
+              childrenDateOfBirth: child_dateOfBirth
+              childrenApproximateDateOfBirth: child_approximateDateOfBirth
+              childrenPlaceAndCountryOfBirth: child_placeAndCountryOfBirth
           A58_STEP_PARENT:
             caseFields:
               CASE_TYPE_ID: A58
