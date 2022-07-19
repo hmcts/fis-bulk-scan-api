@@ -16,6 +16,7 @@
           }
         }
       ],
+      "courtpreferredDates":"11/10/2022,21/10/2022",
       "applicantMaritalStatus":"",
       "birthFatherOccupation":"fatherOccupation",
       "applicantRequireInterpreter":"Yes",
@@ -31,14 +32,14 @@
       "applicant1StatementOfTruthDate":"12/12/2000",
       "specialAssistanceFacilitiesRequired":"Yes",
       "solicitor":{
-        "solicitorName":null,
-        "solicitorFirm":null,
-        "solicitorAddress":null,
-        "solicitorPhoneNumber":null,
+        "solicitorName":"SolName",
+        "solicitorFirm":"SolFirmName",
+        "solicitorAddress":"123, Address Tw31NN",
+        "solicitorPhoneNumber":"+447438766833",
         "solicitorFaxNumber":null,
         "solicitorDxNumber":null,
-        "solicitorEmail":null,
-        "solicitorFeeAccountNumber":null
+        "solicitorEmail":"test@test.com",
+        "solicitorFeeAccountNumber":"12345667899"
       },
       "applicant1FirstName":"Test First Name",
       "childWelshLanguagePreference":"Both",
@@ -84,7 +85,6 @@
       "birthMotherLastName":"motherLastName",
       "birthMotherNationality":"motherNationality",
       "parentalResponsibilityOrder":"Yes",
-      "courtpreferredDates":"11/10/2022,21/10/2022",
       "welshPreferenceChildName":"childName",
       "courtInterpreterAssistanceRequired":"Yes",
       "guardianAddress":"Address1 London",

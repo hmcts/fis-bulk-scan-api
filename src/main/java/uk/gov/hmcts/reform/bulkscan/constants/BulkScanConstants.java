@@ -129,6 +129,7 @@ public final class BulkScanConstants {
     public static final String OTHER_PARTY_NAME_CCD = "otherPartyName";
     public static final String COURT_INTERPRETER_ASSISTANCE_LANGUAGE_CCD = "courtInterpreterAssistanceLanguage";
     public static final String SPECIAL_ASSISTANCE_FACILITIES_CCD = "specialAssistanceFacilities";
+    public static final String SLASH_DELIMITER = "/";
 
     private static Map<String,String> getErrorMessageMap() {
         return Map.of(MANDATORY_KEY, MANDATORY_ERROR_MESSAGE,

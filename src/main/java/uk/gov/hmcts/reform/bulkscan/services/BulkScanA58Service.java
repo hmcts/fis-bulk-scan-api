@@ -1,5 +1,6 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
+import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,18 +20,14 @@ import uk.gov.hmcts.reform.bulkscan.model.FormType;
 import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
 
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import static com.microsoft.applicationinsights.core.dependencies.apachecommons.lang3.StringUtils.isNotEmpty;
-import static java.util.Collections.emptyList;
 import static java.util.Objects.nonNull;
-import static java.util.stream.Collectors.toList;
 import static org.apache.commons.lang3.BooleanUtils.FALSE;
 import static org.apache.commons.lang3.BooleanUtils.TRUE;
-import static org.apache.commons.lang3.ObjectUtils.isEmpty;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ADOPTION_ORDER_CONSENT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ADOPTION_ORDER_CONSENT_ADVANCE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ADOPTION_ORDER_CONSENT_AGENCY;
@@ -65,7 +62,6 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.COURT_INT
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.COURT_INTERPRETER_ASSISTANCE_LANGUAGE_CCD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.COURT_INTERPRETER_ASSISTANCE_REQUIRED;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EVENT_ID;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_ERROR_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.OTHER_PARTY_NAME;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.OTHER_PARTY_NAME_CCD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.OTHER_PARTY_REQUIRE_INTERPRETER;
@@ -74,6 +70,7 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PARTY_WEL
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PARTY_WELSH_LANGUAGE_PREFERENCE_CCD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_REQUIRE_INTERPRETER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_REQUIRE_INTERPRETER_CCD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.SLASH_DELIMITER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.SPECIAL_ASSISTANCE_FACILITIES;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.SPECIAL_ASSISTANCE_FACILITIES_CCD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.SPECIAL_ASSISTANCE_FACILITIES_REQUIRED;
@@ -107,14 +104,14 @@ import static uk.gov.hmcts.reform.bulkscan.model.FormType.A58;
 import static uk.gov.hmcts.reform.bulkscan.model.FormType.A58_RELINQUISHED_ADOPTION;
 import static uk.gov.hmcts.reform.bulkscan.model.FormType.A58_STEP_PARENT;
 import static uk.gov.hmcts.reform.bulkscan.model.Status.ERRORS;
+import static uk.gov.hmcts.reform.bulkscan.utils.BulkScanValidationUtil.flattenLists;
+import static uk.gov.hmcts.reform.bulkscan.utils.BulkScanValidationUtil.notNull;
 
 @Service
 @SuppressWarnings({"PMD.ExcessiveImports", "PMD.GodClass"})
 public class BulkScanA58Service implements BulkScanService {
 
     public static final String STEP_PARENT_ADOPTION = "Step Parent";
-    public static final String SLASH_DELIMITER = "/";
-    public static final String YES_VALUE = "Yes";
 
     public static final String SCAN_DOCUMENTS = "scannedDocuments";
     public static final String OTHER_PARENT_RELATIONSHIP_TO_CHILD = "otherParentRelationshipToChild";
@@ -337,15 +334,6 @@ public class BulkScanA58Service implements BulkScanService {
         );
     }
 
-    private static List<String> notNull(String value, String field) {
-        return isEmpty(value) ? List.of(String.format(MANDATORY_ERROR_MESSAGE, field)) : emptyList();
-    }
-
-    @SafeVarargs
-    public static <E> List<E> flattenLists(List<E>... lists) {
-        return Arrays.stream(lists).flatMap(Collection::stream).collect(toList());
-    }
-
     private String buildApplicant1StatementOfTruth(Map<String, String> inputFieldsMap) {
         return inputFieldsMap.get(APPLICANT1_SOT_DAY) + SLASH_DELIMITER + inputFieldsMap.get(APPLICANT1_SOT_MONTH)
                 + SLASH_DELIMITER + inputFieldsMap.get(APPLICANT1_SOT_YEAR);
@@ -358,13 +346,13 @@ public class BulkScanA58Service implements BulkScanService {
 
     private void buildSpecialAssistanceRequiredFields(Map<String, String> inputFieldsMap,
                                                       Map<String, Object> populatedMap) {
-        if (YES_VALUE.equalsIgnoreCase(inputFieldsMap.get(SPECIAL_ASSISTANCE_FACILITIES_REQUIRED))) {
+        if (BooleanUtils.YES.equalsIgnoreCase(inputFieldsMap.get(SPECIAL_ASSISTANCE_FACILITIES_REQUIRED))) {
             populatedMap.put(SPECIAL_ASSISTANCE_FACILITIES_CCD, inputFieldsMap.get(SPECIAL_ASSISTANCE_FACILITIES));
         }
     }
 
     private void buildInterpreterRequiredFields(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
-        if (YES_VALUE.equalsIgnoreCase(inputFieldsMap.get(COURT_INTERPRETER_ASSISTANCE_REQUIRED))) {
+        if (BooleanUtils.YES.equalsIgnoreCase(inputFieldsMap.get(COURT_INTERPRETER_ASSISTANCE_REQUIRED))) {
             populatedMap.put(APPLICANT_REQUIRE_INTERPRETER_CCD, inputFieldsMap.get(APPLICANT_REQUIRE_INTERPRETER));
             populatedMap.put(RESPONDENT_REQUIRE_INTERPRETER_CCD, inputFieldsMap.get(RESPONDENT_REQUIRE_INTERPRETER));
             populatedMap.put(OTHER_PARTY_REQUIRE_INTERPRETER_CCD, inputFieldsMap.get(OTHER_PARTY_REQUIRE_INTERPRETER));
@@ -375,7 +363,7 @@ public class BulkScanA58Service implements BulkScanService {
     }
 
     private void buildWelshSpokenPreferences(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
-        if (YES_VALUE.equalsIgnoreCase(inputFieldsMap.get(WELSH_SPOKEN_IN_COURT_REQUIRED))) {
+        if (BooleanUtils.YES.equalsIgnoreCase(inputFieldsMap.get(WELSH_SPOKEN_IN_COURT_REQUIRED))) {
             populatedMap.put(WELSH_PREFERENCE_PARTY_NAME_CCD, inputFieldsMap.get(WELSH_PREFERENCE_PARTY_NAME));
             populatedMap.put(WELSH_PREFERENCE_WITNESS_NAME_CCD, inputFieldsMap.get(WELSH_PREFERENCE_WITNESS_NAME));
             populatedMap.put(WELSH_PREFERENCE_CHILD_NAME_CCD, inputFieldsMap.get(WELSH_PREFERENCE_CHILD_NAME));
