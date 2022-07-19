@@ -6,9 +6,9 @@ import lombok.experimental.SuperBuilder;
 import org.apache.commons.lang3.ObjectUtils;
 import uk.gov.hmcts.reform.bulkscan.group.handler.ErrorAndWarningHandler;
 import uk.gov.hmcts.reform.bulkscan.group.validation.FormatValidatorCreator;
-import uk.gov.hmcts.reform.bulkscan.group.validation.enums.ChildRelationEnum;
 import uk.gov.hmcts.reform.bulkscan.group.validation.enums.FieldRequiredTypeEnum;
 import uk.gov.hmcts.reform.bulkscan.group.validation.enums.FieldTypeEnum;
+import uk.gov.hmcts.reform.bulkscan.group.validation.enums.SelectorEnum;
 import uk.gov.hmcts.reform.bulkscan.group.validation.format.FormatValidator;
 import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
 
@@ -26,7 +26,7 @@ import static uk.gov.hmcts.reform.bulkscan.group.constants.BulkScanGroupConstant
 public class CompositeField extends Field {
     private final List<Field> fieldList = new ArrayList<>();
     private final FieldTypeEnum fieldType;
-    private final ChildRelationEnum childRelation;
+    private final SelectorEnum selectorType;
 
     public void add(Field field) {
         fieldList.add(field);

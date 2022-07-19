@@ -10,8 +10,8 @@ import uk.gov.hmcts.reform.bulkscan.group.fields.CompositeField;
 import uk.gov.hmcts.reform.bulkscan.group.fields.Field;
 import uk.gov.hmcts.reform.bulkscan.group.selector.Selector;
 import uk.gov.hmcts.reform.bulkscan.group.selector.SelectorCreator;
-import uk.gov.hmcts.reform.bulkscan.group.validation.enums.ChildRelationEnum;
 import uk.gov.hmcts.reform.bulkscan.group.validation.enums.MessageTypeEnum;
+import uk.gov.hmcts.reform.bulkscan.group.validation.enums.SelectorEnum;
 import uk.gov.hmcts.reform.bulkscan.model.FormType;
 import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
 
@@ -54,12 +54,12 @@ public class BulkScanGroupHandler {
 
     private void traverseFieldTree(CompositeField compositeField, List<OcrDataField> ocrDataFieldList) {
         SelectorCreator selectorCreator = new SelectorCreator();
-        Selector selector = selectorCreator.getSelector(compositeField.getChildRelation());
+        Selector selector = selectorCreator.getSelector(compositeField.getSelectorType());
         List<Field> fieldList = selector.apply(compositeField.getFieldList(), ocrDataFieldList);
         Optional<String> requiredFieldsSelected = Optional.ofNullable(requiredFieldsSelected(
             compositeField.getFieldList(),
             fieldList,
-            compositeField.getChildRelation()
+            compositeField.getSelectorType()
         ));
 
         if (requiredFieldsSelected.isPresent()) {
@@ -82,8 +82,8 @@ public class BulkScanGroupHandler {
 
     private String requiredFieldsSelected(List<Field> parentOriginalChildrenList,
                                           List<Field> parentChildrenSelectedByUserList,
-                                          ChildRelationEnum childRelation) {
-        if (ChildRelationEnum.ALL_CHILD_REQUIRED.equals(childRelation)
+                                          SelectorEnum childRelation) {
+        if (SelectorEnum.ALL_CHILD_REQUIRED.equals(childRelation)
             && parentOriginalChildrenList.size() != parentChildrenSelectedByUserList.size()) {
             return MessageConstants.ALL_OF_THE_FOLLOWING_FIELDS_MUST_BE_SELECTED_FILLED_UP
                 + parentOriginalChildrenList.stream()
@@ -95,7 +95,7 @@ public class BulkScanGroupHandler {
                     .map(field -> field.getName())
                     .collect(Collectors.joining(","));
         }
-        if (ChildRelationEnum.ONE_CHILD_REQUIRED.equals(childRelation)) {
+        if (SelectorEnum.ONE_CHILD_REQUIRED.equals(childRelation)) {
             if (parentChildrenSelectedByUserList.size() > 1) {
                 return MessageConstants.MULTIPLE_FIELDS_HAVE_BEEN_SELECTED
                     + parentOriginalChildrenList.stream().map(Object::toString).collect(

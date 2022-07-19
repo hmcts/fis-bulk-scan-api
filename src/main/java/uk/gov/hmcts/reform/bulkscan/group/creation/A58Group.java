@@ -7,9 +7,9 @@ import uk.gov.hmcts.reform.bulkscan.group.fields.DateField;
 import uk.gov.hmcts.reform.bulkscan.group.fields.EmailField;
 import uk.gov.hmcts.reform.bulkscan.group.fields.PhoneNumberField;
 import uk.gov.hmcts.reform.bulkscan.group.fields.TextField;
-import uk.gov.hmcts.reform.bulkscan.group.validation.enums.ChildRelationEnum;
 import uk.gov.hmcts.reform.bulkscan.group.validation.enums.FieldRequiredTypeEnum;
 import uk.gov.hmcts.reform.bulkscan.group.validation.enums.FieldTypeEnum;
+import uk.gov.hmcts.reform.bulkscan.group.validation.enums.SelectorEnum;
 
 public class A58Group implements Group {
 
@@ -80,14 +80,14 @@ public class A58Group implements Group {
         //child dont Know Proceeding Details WithRelation
         final CompositeField compositeFieldGroupChildProceedingDetailsWithRelation =
                                 CompositeField.builder()
-                                .childRelation(ChildRelationEnum.ONE_CHILD_REQUIRED)
+                                .selectorType(SelectorEnum.ONE_CHILD_REQUIRED)
                                 .fieldType(FieldTypeEnum.ROOT)
                                 .build();
 
         final CompositeField childProceedingDetailsWithRelation = CompositeField.builder()
                                                             .name("child_proceedingDetailsWithRelation")
                                                             .fieldType(FieldTypeEnum.CHECKBOX)
-                                                            .childRelation(ChildRelationEnum.ALL_CHILD_REQUIRED)
+                                                            .selectorType(SelectorEnum.ALL_CHILD_REQUIRED)
                                                             .fieldRequiredType(FieldRequiredTypeEnum.MANDATORY)
                                                             .build();
         childProceedingDetailsWithRelation.add(TextField.builder()
@@ -128,13 +128,13 @@ public class A58Group implements Group {
         final CompositeField compositeFieldGroupChildProceedingDetails =
                                         CompositeField.builder()
                                         .fieldType(FieldTypeEnum.ROOT)
-                                        .childRelation(ChildRelationEnum.ONE_CHILD_REQUIRED)
+                                        .selectorType(SelectorEnum.ONE_CHILD_REQUIRED)
                                         .build();
 
         final CompositeField childProceedingDetails = CompositeField.builder()
                                                 .name("child_proceedingDetails")
                                                 .fieldType(FieldTypeEnum.CHECKBOX)
-                                                .childRelation(ChildRelationEnum.ALL_CHILD_REQUIRED)
+                                                .selectorType(SelectorEnum.ALL_CHILD_REQUIRED)
                                                 .fieldRequiredType(FieldRequiredTypeEnum.MANDATORY)
                                                 .build();
         childProceedingDetails.add(TextField.builder()
@@ -168,14 +168,14 @@ public class A58Group implements Group {
         //child no Maintanence Order
         //child maintanence Order
         final CompositeField compositeFieldGroupChildMaintanenceOrder = CompositeField.builder()
-                .childRelation(ChildRelationEnum.ONE_CHILD_REQUIRED)
+                .selectorType(SelectorEnum.ONE_CHILD_REQUIRED)
                 .fieldType(FieldTypeEnum.ROOT)
                 .build();
 
         final CompositeField childMaintanenceOrder = CompositeField.builder()
             .name("child_maintanenceOrder")
             .fieldType(FieldTypeEnum.CHECKBOX)
-            .childRelation(ChildRelationEnum.ALL_CHILD_REQUIRED)
+            .selectorType(SelectorEnum.ALL_CHILD_REQUIRED)
             .fieldRequiredType(FieldRequiredTypeEnum.MANDATORY)
             .build();
         childMaintanenceOrder.add(TextField.builder()
@@ -209,13 +209,13 @@ public class A58Group implements Group {
         //child no Local authority Or Parental Responsibility
         //child Local authority or parental Responsibility Details
         final CompositeField compositeFieldGroupchildLaOrParentalResponsibilityDetails = CompositeField.builder()
-                .childRelation(ChildRelationEnum.ONE_CHILD_REQUIRED)
+                .selectorType(SelectorEnum.ONE_CHILD_REQUIRED)
                 .fieldType(FieldTypeEnum.ROOT)
                 .build();
 
         final CompositeField childLaOrParentalResponsibilityDetails = CompositeField.builder()
             .name("child_LaOrParentalResponsibilityDetails")
-            .childRelation(ChildRelationEnum.ALL_CHILD_REQUIRED)
+            .selectorType(SelectorEnum.ALL_CHILD_REQUIRED)
             .fieldType(FieldTypeEnum.CHECKBOX)
             .fieldRequiredType(FieldRequiredTypeEnum.MANDATORY)
             .build();
@@ -257,7 +257,7 @@ public class A58Group implements Group {
     private CompositeField getCompositeFieldGroupChildCourt() {
         //Group field
         final CompositeField compositeFieldGroupChildCourt = CompositeField.builder()
-                .childRelation(ChildRelationEnum.ONE_CHILD_REQUIRED)
+                .selectorType(SelectorEnum.ONE_CHILD_REQUIRED)
                 .fieldType(FieldTypeEnum.ROOT)
                 .build();
 
@@ -286,7 +286,7 @@ public class A58Group implements Group {
         final CompositeField childFreeingOrderByEnglandAndWalesCourt = CompositeField.builder()
             .name("child_freeingOrderByEnglandAndWalesCourt")
             .fieldType(FieldTypeEnum.CHECKBOX)
-            .childRelation(ChildRelationEnum.ALL_CHILD_REQUIRED)
+            .selectorType(SelectorEnum.ALL_CHILD_REQUIRED)
             .fieldRequiredType(FieldRequiredTypeEnum.MANDATORY)
             .build();
         childFreeingOrderByEnglandAndWalesCourt.add(TextField.builder()
@@ -312,7 +312,7 @@ public class A58Group implements Group {
         final CompositeField childPermanenceOrderByScotlandCourt = CompositeField.builder()
             .name("child_permanenceOrderByScotlandCourt")
             .fieldType(FieldTypeEnum.CHECKBOX)
-            .childRelation(ChildRelationEnum.ALL_CHILD_REQUIRED)
+            .selectorType(SelectorEnum.ALL_CHILD_REQUIRED)
             .fieldRequiredType(FieldRequiredTypeEnum.MANDATORY)
             .build();
         childPermanenceOrderByScotlandCourt.add(TextField.builder()
@@ -338,7 +338,7 @@ public class A58Group implements Group {
         final CompositeField childFreeingOrderByNorthernIrelandCourt = CompositeField.builder()
             .name("child_freeingOrderByNorthernIrelandCourt")
             .fieldType(FieldTypeEnum.CHECKBOX)
-            .childRelation(ChildRelationEnum.ALL_CHILD_REQUIRED)
+            .selectorType(SelectorEnum.ALL_CHILD_REQUIRED)
             .fieldRequiredType(FieldRequiredTypeEnum.MANDATORY)
             .build();
         childFreeingOrderByNorthernIrelandCourt.add(TextField.builder()
@@ -364,7 +364,7 @@ public class A58Group implements Group {
         final CompositeField childPlacementOrderByEnglandAndWalesCourt = CompositeField.builder()
             .name("child_placementOrderByEnglandAndWalesCourt")
             .fieldType(FieldTypeEnum.CHECKBOX)
-            .childRelation(ChildRelationEnum.ALL_CHILD_REQUIRED)
+            .selectorType(SelectorEnum.ALL_CHILD_REQUIRED)
             .fieldRequiredType(FieldRequiredTypeEnum.MANDATORY)
             .build();
         childPlacementOrderByEnglandAndWalesCourt.add(TextField.builder()
@@ -433,14 +433,14 @@ public class A58Group implements Group {
         //child is Adoption Agency Details Available
         final CompositeField compositeFieldGroupchildAdoptionAgencyDetailsAvailable =
             CompositeField.builder()
-                .childRelation(ChildRelationEnum.ONE_CHILD_REQUIRED)
+                .selectorType(SelectorEnum.ONE_CHILD_REQUIRED)
                 .fieldType(FieldTypeEnum.ROOT)
                 .build();
 
         CompositeField childIsAdoptionAgencyDetailsAvailable =
              CompositeField.builder()
                  .name("child_isAdoptionAgencyDetailsAvailable")
-                 .childRelation(ChildRelationEnum.ALL_CHILD_REQUIRED)
+                 .selectorType(SelectorEnum.ALL_CHILD_REQUIRED)
                  .fieldType(FieldTypeEnum.CHECKBOX)
                  .fieldRequiredType(FieldRequiredTypeEnum.MANDATORY)
                  .build();
@@ -545,14 +545,14 @@ public class A58Group implements Group {
     private CompositeField getCompositeFieldGroupChildDateOfBirth() {
         //Group field child date of birth
         CompositeField compositeFieldGroupChildDateOfBirth = CompositeField.builder()
-            .childRelation(ChildRelationEnum.ONE_CHILD_REQUIRED)
+            .selectorType(SelectorEnum.ONE_CHILD_REQUIRED)
             .fieldType(FieldTypeEnum.ROOT).build();
 
         CompositeField childApproximateDateOfBirth = CompositeField.builder()
             .name("child_approximateDateOfBirth")
             .fieldType(FieldTypeEnum.DATE)
             .fieldRequiredType(FieldRequiredTypeEnum.MANDATORY)
-            .childRelation(ChildRelationEnum.ALL_CHILD_REQUIRED)
+            .selectorType(SelectorEnum.ALL_CHILD_REQUIRED)
             .build();
 
         childApproximateDateOfBirth.add(TextField.builder()
