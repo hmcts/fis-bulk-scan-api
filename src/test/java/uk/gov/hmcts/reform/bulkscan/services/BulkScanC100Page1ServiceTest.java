@@ -1,6 +1,5 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.json.JSONException;
 import org.junit.FixMethodOrder;
