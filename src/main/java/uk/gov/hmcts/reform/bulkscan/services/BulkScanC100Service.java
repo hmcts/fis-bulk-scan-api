@@ -40,6 +40,7 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NO;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.XOR_CONDITIONAL_FIELDS_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.SCAN_DOCUMENTS;
 import static uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper.transformScanDocuments;
 
 @Service

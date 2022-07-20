@@ -1,0 +1,28 @@
+{
+  "case_creation_details":{
+    "case_type_id":"C100",
+    "event_id":"create-case-adop-bs",
+    "case_data":{
+      "childArrangementOrder": "true",
+      "prohibitedStepsOrder": "true",
+      "specialIssueOrder": "true",
+      "scannedDocuments":[
+        {
+          "value":{
+            "document_url":"http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c",
+            "document_filename":"test.pdf",
+            "document_binary_url":"http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
+          }
+        }
+      ],
+      "applicant": {
+        "value":{
+          "applicant1FirstName":"applicant1_firstName",
+          "applicant1LastName":"applicant1_lastName"
+        }
+      }
+    }
+  },
+  "warnings":[
+  ]
+}

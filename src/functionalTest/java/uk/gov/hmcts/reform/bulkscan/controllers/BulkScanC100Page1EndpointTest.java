@@ -56,12 +56,17 @@ public class BulkScanC100Page1EndpointTest {
     private static final String C100_PAGE_1_ERROR_VALIDATION_OUTPUT_PATH =
         "classpath:responses/bulk-scan-c100-error-validation-output.json";
 
+    private static final String C100_Page_1_TRANSFORM_INPUT_PATH =
+        "classpath:requests/bulk-scan-c100-transform-input.json";
+
+    private static final String C100_Page_1_TRANSFORM_OUTPUT_PATH =
+        "classpath:responses/bulk-scan-c100-transform-output.json";
+
     @Test
     @DisplayName("Validating response for C100 Page 1 request of validation API")
     public void shouldValidateC100Page1BulkScanRequest() throws Exception {
         String bulkScanValidationRequest =
             readFileFrom(C100_PAGE_1_VALIDATION_INPUT_PATH);
-
 
         String bulkScanValidationResponse =
             readFileFrom(C100_PAGE_1_VALIDATION_OUTPUT_PATH);
@@ -78,14 +83,59 @@ public class BulkScanC100Page1EndpointTest {
     }
 
     @Test
+    @DisplayName("Validating transformation response for C100 Page 1")
+    public void shouldTransformC100Page1BulkScanRequest() throws Exception {
+        String bulkScanTransformRequest =
+            readFileFrom(C100_Page_1_TRANSFORM_INPUT_PATH);
+
+        String bulkScanTransformResponse =
+            readFileFrom(C100_Page_1_TRANSFORM_OUTPUT_PATH);
+
+        Response response = request.header(AUTH_HEADER, AUTH_HEADER)
+                                .body(bulkScanTransformRequest)
+                                .when()
+                                .contentType("application/json")
+                                .post("/transform-exception-record");
+
+        response.then().assertThat().statusCode(HttpStatus.OK.value());
+
+        JSONAssert.assertEquals(bulkScanTransformResponse, response.getBody().asString(), true);
+    }
+
+    @Test
     @DisplayName("Validating errors for mandatory fields and unknown field, c100 page 1")
     public void shouldValidateC100Page1ErrorBulkScanRequest() throws Exception {
         String bulkScanValidationRequest =
             readFileFrom(C100_PAGE_1_ERROR_VALIDATION_INPUT_PATH);
 
-
         String bulkScanValidationResponse =
             readFileFrom(C100_PAGE_1_ERROR_VALIDATION_OUTPUT_PATH);
+
+        Response response = request.header(AUTH_HEADER, AUTH_HEADER)
+                                .body(bulkScanValidationRequest)
+                                .when()
+                                .contentType("application/json")
+                                .post("forms/C100/validate-ocr");
+
+        response.then().assertThat().statusCode(HttpStatus.OK.value());
+
+        JSONAssert.assertEquals(bulkScanValidationResponse, response.getBody().asString(), true);
+    }
+
+    private static final String C100_PAGE_1_WARNING_VALIDATION_INPUT_PATH =
+        "classpath:requests/bulk-scan-c100-warning-validation-input.json";
+
+    private static final String C100_PAGE_1_WARNING_VALIDATION_OUTPUT_PATH =
+        "classpath:responses/bulk-scan-c100-warning-validation-output.json";
+
+    @Test
+    @DisplayName("Validating warnings for mandatory fields and unknown field, c100 page 1")
+    public void shouldValidateC100Page1WarningBulkScanRequest() throws Exception {
+        String bulkScanValidationRequest =
+            readFileFrom(C100_PAGE_1_WARNING_VALIDATION_INPUT_PATH);
+
+        String bulkScanValidationResponse =
+            readFileFrom(C100_PAGE_1_WARNING_VALIDATION_OUTPUT_PATH);
 
         Response response = request.header(AUTH_HEADER, AUTH_HEADER)
                                 .body(bulkScanValidationRequest)
