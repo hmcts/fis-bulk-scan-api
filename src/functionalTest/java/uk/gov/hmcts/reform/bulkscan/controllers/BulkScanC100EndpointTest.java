@@ -71,7 +71,7 @@ public class BulkScanC100EndpointTest {
 
 
     @Test
-    public void shouldTransformA59BulkScanRequest() throws Exception {
+    public void shouldTransformBulkScanRequest() throws Exception {
         String bulkScanTransformRequest =
             readFileFrom(C100_TRANSFORM_INPUT_PATH);
 

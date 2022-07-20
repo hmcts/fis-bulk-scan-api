@@ -40,9 +40,12 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NO;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.XOR_CONDITIONAL_FIELDS_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES;
+import static uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper.transformScanDocuments;
 
 @Service
 public class BulkScanC100Service implements BulkScanService {
+
+    public static final String SCAN_DOCUMENTS = "scannedDocuments";
 
     @Autowired
     BulkScanFormValidationConfigManager configManager;
@@ -66,7 +69,7 @@ public class BulkScanC100Service implements BulkScanService {
         BulkScanValidationResponse response = bulkScanValidationHelper
             .validateMandatoryAndOptionalFields(bulkRequest.getOcrdatafields(), configManager.getValidationConfig(
                                                                               FormType.C100));
-        List<String> manualValidationErrors = doManualValidation(inputFieldsMap);
+        List<String> manualValidationErrors = doChildRelatedValidation(inputFieldsMap);
         if (!manualValidationErrors.isEmpty()) {
             response.setStatus(Status.ERRORS);
             response.getErrors().items.addAll(manualValidationErrors);
@@ -75,7 +78,13 @@ public class BulkScanC100Service implements BulkScanService {
         return response;
     }
 
-    List<String> doManualValidation(Map<String, String> inputFieldsMap) {
+    /**
+     * 1. Checking if any one child living with option should be available
+     * 2. if Child same parent is yes then parent name should have value
+     * 3. if Child same parent is no then parent collection name should have value
+     * 4. if social authority is yes then local authority or social worker field should have value
+     * */
+    List<String> doChildRelatedValidation(Map<String, String> inputFieldsMap) {
         List<String> errors = new ArrayList<>();
         if (StringUtils.isEmpty(inputFieldsMap.get(CHILD_LIVING_WITH_APPLICANT))
             && StringUtils.isEmpty(inputFieldsMap.get(CHILD_LIVING_WITH_RESPONDENT))
@@ -119,6 +128,8 @@ public class BulkScanC100Service implements BulkScanService {
                     .getCaseDataFields()), inputFieldsMap);
 
         populatedMap.put(CHILD_LIVE_WITH_KEY, getChildLiveWith(inputFieldsMap));
+
+        populatedMap.put(SCAN_DOCUMENTS, transformScanDocuments(bulkScanTransformationRequest));
 
         Map<String, String> caseTypeAndEventId =
             transformConfigManager.getTransformationConfig(FormType.C100).getCaseFields();

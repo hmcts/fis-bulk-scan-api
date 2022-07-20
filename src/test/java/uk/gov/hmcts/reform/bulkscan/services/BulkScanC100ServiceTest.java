@@ -137,7 +137,7 @@ class BulkScanC100ServiceTest {
 
     @Test
     @DisplayName("C100 validation with empty local authority.")
-    void testC100ValidationErrorWithSicialAuthority() throws IOException {
+    void testC100ValidationErrorWithSocialAuthority() throws IOException {
         BulkScanValidationRequest bulkScanValidationRequest = mapper
             .readValue(readFileFrom(C100_VALIDATION_REQUEST_PATH), BulkScanValidationRequest.class);
         bulkScanValidationRequest.getOcrdatafields().stream()
