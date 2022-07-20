@@ -54,6 +54,16 @@ uk:
               childrenDateOfBirth: child_dateOfBirth
               childrenApproximateDateOfBirth: child_approximateDateOfBirth
               childrenPlaceAndCountryOfBirth: child_placeAndCountryOfBirth
+              childNationality: child_nationality
+              childIsMarried: child_isMarried
+              childLiveAtHomeFrom: child_liveAtHomeFrom
+              childIsAdoptedByAgency: child_isAdoptedByAgency
+              childAndLocalAuthority: child_laName
+              childAndLocalAuthorityAddress: child_laAddress
+              childAndLocalAuthorityNotifiedDate: child_laNotifiedDate
+              childAndLocalAuthorityContactName: child_laContactName
+              childAndLocalAuthorityTelephoneNo: child_laTelephoneNo
+              childAndLocalAuthorityEmail: child_laEmail
           A58_STEP_PARENT:
             caseFields:
               CASE_TYPE_ID: A58
