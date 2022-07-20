@@ -72,7 +72,7 @@ public class BulkScanC100FieldDependencyService implements BulkScanService {
                 configManager.getFieldDependenyConfig(
                     FieldDependency.C100_FIELD_DEPENDENCY),
                 EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD,
-                TICK_BOX_TRUE,
+                dependencyValidationValue,
                 groupDependencyCountMap
             );
             warningItems.addAll(validateExemptionToAttendGroupFieldResponse.getWarnings().getItems());
@@ -91,7 +91,7 @@ public class BulkScanC100FieldDependencyService implements BulkScanService {
                 configManager.getFieldDependenyConfig(
                     FieldDependency.C100_FIELD_DEPENDENCY),
                 NOMIAM_DOMESTICVIOLENCE,
-                TICK_BOX_TRUE,
+                dependencyValidationValue,
                 groupDependencyCountMap
             );
             warningItems.addAll(validateGroupDependency3aFieldResponse.getWarnings().getItems());
