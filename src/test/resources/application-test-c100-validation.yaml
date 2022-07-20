@@ -11,12 +11,6 @@ uk:
               - child_lastName
               - appellant_childRelationship
               - emergency_protection_order
-              - exemption_to_attend_MIAM
-              - NoMIAM_domesticViolence
-              - NoMIAM_childProtectionConcerns
-              - NoMIAM_Urgency
-              - NoMIAM_PreviousAttendance
-              - NoMIAM_otherReasons
             optionalFields:
               -
             regexValidationFields:
@@ -25,10 +19,14 @@ uk:
                   - appellant_dateOfBirth
                   - other_court_case_date
                   - authorised_family_mediator_signed_date
-                regex: dd/mm/yyyy
+                  - respondent1_dateOfBirth
+                  - respondent2_dateOfBirth
+                regex: dd/MM/yyyy
               emailFields:
                 fieldNames:
                   - appellant_email
+                  - respondent1_email
+                  - respondent2_email
                 regex: ^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,6}$
               numericFields:
                 fieldNames:
@@ -36,11 +34,12 @@ uk:
                 regex: ^[0-9]*$
               postcodeFields:
                 fieldNames:
-                  -
+                  - respondent1_postCode
+                  - respondent2_postCode
                 regex: ^[A-Z]{1,2}[0-9R][0-9A-Z]? [0-9][ABD-HJLNP-UW-Z]{2}$
               phoneNumberFields:
                 fieldNames:
-                  -
+                  - appellant_contactNumber
                 regex: ^(?:0|\+?44)(?:\d\s?){9,10}$
               faxNumberFields:
                 fieldNames:
@@ -48,8 +47,40 @@ uk:
                 regex:
               xorConditionalFields:
                 fieldNames:
-                  - appellant_postCode,appellant_lastName
+                  - exemption_to_attend_MIAM
+                  - NoMIAM_DVE_arrestedForSimilarOffence
+                  - NoMIAM_DVE_relevantPoliceCaution
+                  - NoMIAM_DVE_relevantCriminalProceeding
+                  - NoMIAM_DVE_relevantConviction
+                  - NoMIAM_DVE_courtOrder
+                  - NoMIAM_DVE_protectionNotice
+                  - NoMIAM_DVE_protectiveInjunction
+                  - NoMIAM_DVE_NoCrossUndertakingGiven
+                  - NoMIAM_DVE_copyOfFactFinding
+                  - NoMIAM_DVE_expertEvidenceReport
+                  - NoMIAM_DVE_healthProfessionalReport
+                  - NoMIAM_DVE_ReferralHealthProfessionalReport
+                  - NoMIAM_DVE_memberOf_MultiAgencyRiskAssessmentConferrance_letter
+                  - NoMIAM_DVE_domesticViolenceAdvisor
+                  - NoMIAM_DVE_independentSexualViolenceAdvisor_Letter
+                  - NoMIAM_DVE_officerEmployed_localAuthority_letter
+                  - NoMIAM_DVE_domesticViolenceSupportCharity_letter
+                  - NoMIAM_DVE_domesticViolenceSupportCharity_refuge_letter
+                  - NoMIAM_DVE_publicAuthority_confirmationLetter
+                  - NoMIAM_DVE_secretaryOfState_letter
+                  - NoMIAM_DVE_evidenceFinancialMatters
+                  - ExistingCase_onEmergencyProtection_Care_or_supervisioNorder
+                  - withoutNotice_emergency_Protection_Order
+                  - withoutNotice_supervisioNorder
+                  - withoutNotice_caseOrder
+                  - withoutNotice_childAbduction
+                  - withoutNotice_proceeding_for_NonMolestatioNorder
+                  - withoutNotice_contact_or_residentOrder
+                  - withoutNotice_contact_or_residentOrder_withAdoptioNorder
+                  - withoutNotice_childMaintenanceOrder
+                  - withoutNotice_childArrangementOrder
                 regex:
+                  -
         groupDependencyOfForm:
           C100_FIELD_DEPENDENCY:
             groupFieldDependencyDetail:
@@ -59,7 +90,7 @@ uk:
                   - NoMIAM_domesticViolence
                   - NoMIAM_childProtectionConcerns
                   - NoMIAM_Urgency
-                  - NoMIAM_PreviousAttendance
+                  - NoMIAM_PreviousAttendence
                   - NoMIAM_otherReasons
               groupDependency2:
                 groupFieldName: NoMIAM_domesticViolence

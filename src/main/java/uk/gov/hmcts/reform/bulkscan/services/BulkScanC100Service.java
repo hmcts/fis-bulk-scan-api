@@ -11,8 +11,11 @@ import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.CaseCreationDetails;
+import uk.gov.hmcts.reform.bulkscan.model.Errors;
 import uk.gov.hmcts.reform.bulkscan.model.FormType;
 import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
+import uk.gov.hmcts.reform.bulkscan.model.Status;
+import uk.gov.hmcts.reform.bulkscan.model.Warnings;
 
 import java.util.HashMap;
 import java.util.List;
@@ -33,6 +36,9 @@ public class BulkScanC100Service implements BulkScanService {
     @Autowired
     BulkScanValidationHelper bulkScanValidationHelper;
 
+    @Autowired
+    BulkScanC100FieldDependencyService bulkScanGroupDependencyValidation;
+
     @Override
     public FormType getCaseType() {
         return FormType.C100;
@@ -40,12 +46,34 @@ public class BulkScanC100Service implements BulkScanService {
 
     @Override
     public BulkScanValidationResponse validate(BulkScanValidationRequest bulkRequest) {
-        // Validating the Fields..
-        return bulkScanValidationHelper.validateMandatoryAndOptionalFields(bulkRequest.getOcrdatafields(),
-                                                                          configManager.getValidationConfig(
-                                                                              FormType.C100));
-    }
 
+        BulkScanValidationResponse bulkScanGroupDependencyValidationResponse =
+            bulkScanGroupDependencyValidation.validate(bulkRequest);
+
+        BulkScanValidationResponse bulkScanValidationResponse =
+            bulkScanValidationHelper.validateMandatoryAndOptionalFields(
+                bulkRequest.getOcrdatafields(),
+                configManager.getValidationConfig(
+                    FormType.C100)
+            );
+
+        List<String> warningItems = bulkScanGroupDependencyValidationResponse.getWarnings().getItems();
+        warningItems.addAll(bulkScanValidationResponse.getWarnings().getItems());
+
+        List<String> errorItems = bulkScanValidationResponse.getErrors().getItems();
+
+        Status status = (Status.WARNINGS == bulkScanValidationResponse.getStatus()) ? Status.WARNINGS :
+            (Status.ERRORS == bulkScanValidationResponse.getStatus()) ? Status.ERRORS :
+                (Status.WARNINGS == bulkScanGroupDependencyValidationResponse.getStatus()) ? Status.WARNINGS :
+                    (Status.ERRORS == bulkScanGroupDependencyValidationResponse.getStatus()) ? Status.ERRORS :
+                        Status.SUCCESS;
+
+        return BulkScanValidationResponse.builder()
+            .warnings(Warnings.builder().items(warningItems).build())
+            .errors(Errors.builder().items(errorItems).build())
+            .status(status)
+            .build();
+    }
 
     @Override
     @SuppressWarnings("unchecked")
