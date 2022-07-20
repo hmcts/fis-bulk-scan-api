@@ -129,6 +129,46 @@
       "value":"motherOccupation"
     },
     {
+      "name": "child_firstname_on_adoption_order",
+      "value": "charlie"
+    },
+    {
+      "name": "child_lastname_on_adoption_order",
+      "value": "impey"
+    },
+    {
+      "name": "sole_applicant_or_applicant1_statement_of_truth",
+      "value": "true"
+    },
+    {
+      "name": "sole_applicant_or_applicant1_legal_rep_statement_of_truth",
+      "value": "true"
+    },
+    {
+      "name": "sole_applicant_or_applicant1_or_legal_rep_signature",
+      "value": "true"
+    },
+    {
+      "name": "sole_applicant_or_applicant1_signing",
+      "value": "true"
+    },
+    {
+      "name": "legal_rep_signing",
+      "value": "true"
+    },
+    {
+      "name": "statement_of_truth_date_day",
+      "value": "12"
+    },
+    {
+      "name": "statement_of_truth_date_month",
+      "value": "12"
+    },
+    {
+      "name": "statement_of_truth_date_year",
+      "value": "2000"
+    },
+    {
       "name": "child_gender",
       "value": "true"
     },
