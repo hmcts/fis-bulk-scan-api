@@ -4,7 +4,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Spy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
@@ -30,7 +29,6 @@ class BulkScanA58GroupFieldsTest {
     private static final String A58_GROUP_FIELD_REQUEST_ERROR_PATH =
         "classpath:request/bulk-scan-a58-group-error-input.json";
 
-    @Spy
     @Autowired
     BulkScanA58Service bulkScanValidationService;
 
@@ -44,7 +42,7 @@ class BulkScanA58GroupFieldsTest {
     }
 
     @Test
-    @DisplayName("A58 Group Fields form validation success scenario")
+    @DisplayName("A58 Group Fields form validation warning scenario")
     void testA58PostPlacementApplicationValidationWarnings() throws IOException {
         BulkScanValidationRequest bulkScanValidationRequest = mapper
             .readValue(readFileFrom(A58_GROUP_FIELD_REQUEST_WARNING_PATH), BulkScanValidationRequest.class);
@@ -53,7 +51,7 @@ class BulkScanA58GroupFieldsTest {
     }
 
     @Test
-    @DisplayName("A58 Group Fields form validation success scenario")
+    @DisplayName("A58 Group Fields form validation error scenario")
     void testA58PostPlacementApplicationValidationErrors() throws IOException {
         BulkScanValidationRequest bulkScanValidationRequest = mapper
             .readValue(readFileFrom(A58_GROUP_FIELD_REQUEST_ERROR_PATH), BulkScanValidationRequest.class);

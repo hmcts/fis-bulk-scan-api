@@ -388,6 +388,11 @@ public class BulkScanA58Service implements BulkScanService {
         }
     }
 
+    /**
+     * The yaml based framework validation throws warning for missing fields which are configured in the group
+     * validation framework.so this function removes the missing fields from warning message,
+     * which are configured in group framework.
+     */
     private void updateGroupErrorsAndWarnings(BulkScanValidationRequest bulkRequest, FormType formType,
                                               BulkScanValidationResponse bulkScanValidationResponse) {
         Errors errors = bulkScanValidationResponse.getErrors();
