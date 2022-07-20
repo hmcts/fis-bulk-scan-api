@@ -141,19 +141,11 @@
       "value": "true"
     },
     {
-      "name": "child_noProccedingDetailsWithRelation",
-      "value": "true"
-    },
-    {
       "name": "child_noMaintanenceOrder",
       "value": "true"
     },
     {
       "name": "child_noOrderAvaialble",
-      "value": "true"
-    },
-    {
-      "name": "child_noProceedingDetails",
       "value": "true"
     },
     {
