@@ -1,96 +1,40 @@
 {
-  "ocr_data_fields":[
+  "ocr_data_fields": [
     {
-      "name":"applicant1_firstName",
-      "value":"firstName"
-    },
-    {
-      "name":"applicant1_lastName",
-      "value":"LastName"
-    },
-    {
-      "name":"applicant1_telephoneNumber",
-      "value":"447405878672"
-    },
-    {
-      "name":"applicant1_address",
-      "value":"123 test street, London"
-    },
-    {
-      "name":"mother_firstName",
-      "value":"testBirthMotherFirstName"
-    },
-    {
-      "name":"mother_lastName",
-      "value":"testBirthMotherLastName"
-    },
-    {
-      "name":"mother_address",
-      "value":"testBirthMotherAddress"
-    },
-    {
-      "name":"mother_nationality",
-      "value":"testBirthMotherNationality"
-    },
-    {
-      "name":"mother_occupation",
-      "value":"testBirthMotherOccupation"
-    },
-    {
-      "name":"child_relationship_father",
-      "value":"true"
-    },
-    {
-      "name": "applicant_relationToChild_father_partner",
-      "value": ""
-    },
-    {
-      "name": "applicant_relationToChild_mother_partner",
-      "value": ""
-    },
-    {
-      "name": "applicant_relationToChild_non_civil_partner",
-      "value": ""
-    },
-    {
-      "name": "child_firstname_on_adoption_order",
-      "value": "charlie"
-    },
-    {
-      "name": "child_lastname_on_adoption_order",
-      "value": "impey"
-    },
-    {
-      "name": "sole_applicant_or_applicant1_statement_of_truth",
+      "name": "applicant1_firstName",
       "value": "true"
     },
     {
-      "name": "sole_applicant_or_applicant1_legal_rep_statement_of_truth",
-      "value": "true"
+      "name": "applicant1_lastName",
+      "value": "false"
     },
     {
-      "name": "sole_applicant_or_applicant1_or_legal_rep_signature",
-      "value": "true"
+      "name": "applicant1_address",
+      "value": "false"
     },
     {
-      "name": "sole_applicant_or_applicant1_signing",
-      "value": "true"
+      "name": "applicant1_telephoneNumber",
+      "value": "07471782114"
     },
     {
-      "name": "legal_rep_signing",
-      "value": "true"
+      "name": "mother_firstName",
+      "value": "fatema"
     },
     {
-      "name": "statement_of_truth_date_day",
-      "value": "12"
+      "name": "mother_lastName",
+      "value": "mahabub"
     },
     {
-      "name": "statement_of_truth_date_month",
-      "value": "12"
+      "name": "mother_address",
+      "value": "London"
     },
     {
-      "name": "statement_of_truth_date_year",
-      "value": "2000"
+      "name": "mother_nationality",
+      "value": "German"
+    },
+    {
+      "name": "mother_occupation",
+      "value": "Engineer"
     },
     {
       "name": "child_gender",
@@ -98,7 +42,7 @@
     },
     {
       "name": "child_approximateDateOfBirth",
-      "value": "01/01/1987"
+      "value": "date"
     },
     {
       "name": "child_placeAndCountryOfBirth",
@@ -203,6 +147,46 @@
     {
       "name": "child_noOrderAvaialble",
       "value": "true"
+    },
+    {
+      "name": "child_firstname_on_adoption_order",
+      "value": "charlie"
+    },
+    {
+      "name": "child_lastname_on_adoption_order",
+      "value": "impey"
+    },
+    {
+      "name": "sole_applicant_or_applicant1_statement_of_truth",
+      "value": "true"
+    },
+    {
+      "name": "sole_applicant_or_applicant1_legal_rep_statement_of_truth",
+      "value": "true"
+    },
+    {
+      "name": "sole_applicant_or_applicant1_or_legal_rep_signature",
+      "value": "true"
+    },
+    {
+      "name": "sole_applicant_or_applicant1_signing",
+      "value": "true"
+    },
+    {
+      "name": "legal_rep_signing",
+      "value": "true"
+    },
+    {
+      "name": "statement_of_truth_date_day",
+      "value": "12"
+    },
+    {
+      "name": "statement_of_truth_date_month",
+      "value": "12"
+    },
+    {
+      "name": "statement_of_truth_date_year",
+      "value": "2000"
     }
   ]
 }
