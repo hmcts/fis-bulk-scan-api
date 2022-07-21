@@ -3,7 +3,7 @@
     "case_type_id":"C100",
     "event_id":"create-case-adop-bs",
     "case_data":{
-      "childArrangementOrder": "true",
+      "typeOfChildArrangementsOrder": "true",
       "prohibitedStepsOrder": "true",
       "specialIssueOrder": "true",
       "scannedDocuments":[
@@ -15,10 +15,10 @@
           }
         }
       ],
-      "applicant": {
+      "applicants": {
         "value":{
-          "applicant1FirstName":"applicant1_firstName",
-          "applicant1LastName":"applicant1_lastName"
+          "firstName":"applicant1_firstName",
+          "lastName":"applicant1_lastName"
         }
       }
     }

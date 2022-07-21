@@ -8,11 +8,11 @@ uk:
               CASE_TYPE_ID: C100
               EVENT_ID: create-case-adop-bs
             caseDataFields:
-              applicant:
+              applicants:
                 value:
-                  applicant1FirstName: applicant1_firstName
-                  applicant1LastName: applicant1_lastName
-              childArrangementOrder: childArrangement_order
+                  firstName: applicant1_firstName
+                  lastName: applicant1_lastName
+              typeOfChildArrangementsOrder: childArrangement_order
               prohibitedStepsOrder: prohibitedSteps_order
               specialIssueOrder: specialIssue_order
             caseFields:
