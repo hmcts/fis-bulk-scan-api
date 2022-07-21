@@ -53,38 +53,5 @@ uk:
                 regex:
               xorConditionalFields:
                 fieldNames:
-                  - exemption_to_attend_MIAM,
-                  - applicant_postCode,
-                  - applicant_lastName,
-                  - NoMIAM_DVE_arrestedForSimilarOffence
-                  - NoMIAM_DVE_relevantPoliceCaution
-                  - NoMIAM_DVE_relevantCriminalProceeding
-                  - NoMIAM_DVE_relevantConviction
-                  - NoMIAM_DVE_courtOrder
-                  - NoMIAM_DVE_protectionNotice
-                  - NoMIAM_DVE_protectiveInjunction
-                  - NoMIAM_DVE_NoCrossUndertakingGiven
-                  - NoMIAM_DVE_copyOfFactFinding
-                  - NoMIAM_DVE_expertEvidenceReport
-                  - NoMIAM_DVE_healthProfessionalReport
-                  - NoMIAM_DVE_ReferralHealthProfessionalReport
-                  - NoMIAM_DVE_memberOf_MultiAgencyRiskAssessmentConferrance_letter
-                  - NoMIAM_DVE_domesticViolenceAdvisor
-                  - NoMIAM_DVE_independentSexualViolenceAdvisor_Letter
-                  - NoMIAM_DVE_officerEmployed_localAuthority_letter
-                  - NoMIAM_DVE_domesticViolenceSupportCharity_letter
-                  - NoMIAM_DVE_domesticViolenceSupportCharity_refuge_letter
-                  - NoMIAM_DVE_publicAuthority_confirmationLetter
-                  - NoMIAM_DVE_secretaryOfState_letter
-                  - NoMIAM_DVE_evidenceFinancialMatters
-                  - ExistingCase_onEmergencyProtection_Care_or_supervisioNorder
-                  - withoutNotice_emergency_Protection_Order
-                  - withoutNotice_supervisioNorder
-                  - withoutNotice_caseOrder
-                  - withoutNotice_childAbduction
-                  - withoutNotice_proceeding_for_NonMolestatioNorder
-                  - withoutNotice_contact_or_residentOrder
-                  - withoutNotice_contact_or_residentOrder_withAdoptioNorder
-                  - withoutNotice_childMaintenanceOrder
-                  - withoutNotice_childArrangementOrder
+                  - applicant_postCode,applicant_lastName,
                 regex:

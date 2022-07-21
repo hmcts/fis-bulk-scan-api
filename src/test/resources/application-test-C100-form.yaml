@@ -53,7 +53,5 @@ uk:
                 regex:
               xorConditionalFields:
                 fieldNames:
-                  - exemption_to_attend_MIAM,
-                  - applicant_postCode,
-                  - applicant_lastName
+                  - applicant_postCode,applicant_lastName
                 regex:

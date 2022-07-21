@@ -229,6 +229,10 @@ public final class TestDataC100Util {
         ocrDataEmergencyProtectionOrderField.setName("emergency_protection_order");
         ocrDataEmergencyProtectionOrderField.setValue("LastName");
 
+        OcrDataField ocrDataPostCodeField = new OcrDataField();
+        ocrDataPostCodeField.setName("applicant_postCode");
+        ocrDataPostCodeField.setValue(POST_CODE);
+
         OcrDataField ocrDataEmailField = new OcrDataField();
         ocrDataEmailField.setName("applicant_email");
         ocrDataEmailField.setValue("firstName");
@@ -248,8 +252,7 @@ public final class TestDataC100Util {
         return Arrays.asList(ocrDataAddressField, ocrDataFirstNameField, ocrDataLastNameField,
                 ocrDataChildFirstNameField, ocrDataChildLastNameField,
                 ocrDataApplicantChildRelationshipField, ocrDataEmergencyProtectionOrderField,
-                ocrDataEmailField,
-                ocrNumericField, ocrSolicitorFaxNumberField
+                ocrDataEmailField, ocrDataPostCodeField, ocrNumericField, ocrSolicitorFaxNumberField
         );
     }
 
