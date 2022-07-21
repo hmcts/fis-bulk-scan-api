@@ -16,18 +16,13 @@ import uk.gov.hmcts.reform.bulkscan.model.Warnings;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.GROUP_DEPENDENCY_MESSAGE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NOMIAM_DOMESTICVIOLENCE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.TICK_BOX_TRUE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.TICK_BOX_YES;
 
 @Service
 public class BulkScanC100FieldDependencyService implements BulkScanService {
-    public static final int REQUIRED_EXEMPTION_DEPENDENCY_FIELD_COUNT = 1;
-    public static final int REQUIRED_NOMIAM_DOMESTICVIOLENCE_DEPENDENCY_FIELD_COUNT = 1;
 
     @Autowired
     BulkScanDependencyValidationConfigManager configManager;
@@ -40,61 +35,70 @@ public class BulkScanC100FieldDependencyService implements BulkScanService {
     @Override
     public BulkScanValidationResponse validate(BulkScanValidationRequest bulkRequest) {
 
-        Map<String, String> ocrDataFieldsMap = bulkRequest.getOcrdatafields()
-                .stream()
-                .collect(Collectors.toMap(OcrDataField::getName, OcrDataField::getValue));
+        Map<String, String> ocrDataFieldsMap = getOcrFieldsMap(bulkRequest);
 
         List<String> warningItems = new ArrayList<>();
-        BulkScanDependencyValidationConfigManager.GroupDependencyFields dependencyGroupFields
-                = configManager.getGroupDependencyFields(FieldDependency.C100_DEPENDENCY);
 
-        if (ocrDataFieldsMap.get(EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD) != null
-                && ocrDataFieldsMap.get(EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD).equalsIgnoreCase(TICK_BOX_YES)) {
-            warningItems.addAll(findDependentFieldWarning(ocrDataFieldsMap, EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD,
-                    dependencyGroupFields.getGroupExemptionToAttendMiam(),
-                    TICK_BOX_TRUE,
-                    REQUIRED_EXEMPTION_DEPENDENCY_FIELD_COUNT));
-        }
+        Map<String, BulkScanDependencyValidationConfigManager.GroupDependencyField> groupFieldDependency
+                = convertDependecyListToMap(configManager
+                .getGroupDependencyValidationConfig(FieldDependency.C100_DEPENDENCY));
 
-        if (ocrDataFieldsMap.get(NOMIAM_DOMESTICVIOLENCE) != null
-                && ocrDataFieldsMap.get(NOMIAM_DOMESTICVIOLENCE).equalsIgnoreCase(TICK_BOX_TRUE)) {
-            warningItems.addAll(findDependentFieldWarning(ocrDataFieldsMap, NOMIAM_DOMESTICVIOLENCE,
-                    dependencyGroupFields.getGroupNoMiamDomesticViolence(),
-                    TICK_BOX_TRUE,
-                    REQUIRED_NOMIAM_DOMESTICVIOLENCE_DEPENDENCY_FIELD_COUNT));
+
+        for (Map.Entry<String, BulkScanDependencyValidationConfigManager.GroupDependencyField> dependentField
+                : groupFieldDependency.entrySet()) {
+            if (ocrDataFieldsMap.get(dependentField.getKey()) != null
+                    && ocrDataFieldsMap.get(dependentField.getValue())
+                    .equalsIgnoreCase(dependentField.getValue().getGroupValidation())) {
+                warningItems.addAll(findDependentFieldWarning(ocrDataFieldsMap, dependentField.getValue()));
+            }
         }
 
         return BulkScanValidationResponse.builder()
                 .warnings(Warnings.builder().items(warningItems).build())
-                .status(warningItems.isEmpty() ? Status.WARNINGS : Status.SUCCESS)
+                .status(warningItems.isEmpty() ? Status.SUCCESS : Status.WARNINGS)
                 .build();
     }
 
-    private List<String> findDependentFieldWarning(Map<String, String> ocrDataFieldsMap,
-                                                   String groupField,
-                                                   List<String> dependentFields,
-                                                   String dependentFieldRequiredValue,
-                                                   int piRequiredFieldCount) {
+    public Map<String, BulkScanDependencyValidationConfigManager.GroupDependencyField> convertDependecyListToMap(
+            List<BulkScanDependencyValidationConfigManager.GroupDependencyField> groupDependentLst) {
+        return groupDependentLst.stream()
+                .collect(Collectors
+                        .toMap(BulkScanDependencyValidationConfigManager.GroupDependencyField::getGroupField,
+                                Function.identity()));
+    }
+
+    private Map<String, String> getOcrFieldsMap(BulkScanValidationRequest bulkRequest) {
+        return bulkRequest.getOcrdatafields()
+                .stream()
+                .collect(Collectors.toMap(OcrDataField::getName, OcrDataField::getValue));
+    }
+
+
+    private List<String> findDependentFieldWarning(
+            Map<String, String> ocrDataFieldsMap,
+            BulkScanDependencyValidationConfigManager.GroupDependencyField dependentFields) {
+
         List<String> dependentWarnings = new ArrayList<>();
         int liValidateFieldCount = 0;
         boolean enoughFieldPresent = false;
 
-        StringBuilder concatDependentFields = new StringBuilder("");
-        for (String dependentField : dependentFields) {
-            if (ocrDataFieldsMap.get(dependentField) != null
-                    && ocrDataFieldsMap.get(dependentField).equalsIgnoreCase(
-                    dependentFieldRequiredValue)) {
+        for (Map.Entry<String, String> ocrFieldAndValue : ocrDataFieldsMap.entrySet()) {
+            if (dependentFields.getDependentFields().contains(ocrFieldAndValue.getKey())
+                    && ocrFieldAndValue.getValue().equalsIgnoreCase(dependentFields.getDependentValue())) {
                 ++liValidateFieldCount;
-                if (liValidateFieldCount == piRequiredFieldCount) {
+                if (liValidateFieldCount == Integer.parseInt(dependentFields.getValidationCount())) {
                     enoughFieldPresent = true;
                     break;
                 }
             }
-            concatDependentFields.append(dependentField).append(", ");
         }
         if (!enoughFieldPresent) {
             dependentWarnings.add(String.format(GROUP_DEPENDENCY_MESSAGE,
-                    groupField, piRequiredFieldCount, concatDependentFields.toString()));
+                    dependentFields.getGroupField(),
+                    dependentFields.getValidationCount().toString(),
+                    dependentFields.getDependentFields().stream()
+                            .map(String::valueOf)
+                            .collect(Collectors.joining(","))));
         }
 
         return dependentWarnings;

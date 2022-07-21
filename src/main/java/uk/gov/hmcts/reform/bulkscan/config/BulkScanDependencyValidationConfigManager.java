@@ -16,15 +16,23 @@ import java.util.Map;
 @Getter
 public class BulkScanDependencyValidationConfigManager {
 
-    private Map<String, GroupDependencyFields> fieldGroupDependency;
+    private Map<String, List<GroupDependencyField>> fieldGroupDependency;
 
     @Data
-    public static class GroupDependencyFields {
-        List<String> groupExemptionToAttendMiam;
-        List<String> groupNoMiamDomesticViolence;
+    public static class GroupDependencyValidationConfig {
+        List<GroupDependencyField> groupDependencyFields;
     }
 
-    public GroupDependencyFields getGroupDependencyFields(FieldDependency fieldDependency) {
+    @Data
+    public static class GroupDependencyField {
+        List<String> dependentFields;
+        String dependentValue;
+        String groupField;
+        String groupValidation;
+        String validationCount;
+    }
+
+    public List<GroupDependencyField> getGroupDependencyValidationConfig(FieldDependency fieldDependency) {
         return fieldGroupDependency.get(fieldDependency.name());
     }
 }

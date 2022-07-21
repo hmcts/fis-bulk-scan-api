@@ -53,5 +53,5 @@ uk:
                 regex:
               xorConditionalFields:
                 fieldNames:
-                  - applicant_postCode,applicant_lastName,
+                  - applicant_postCode,applicant_lastName
                 regex:
