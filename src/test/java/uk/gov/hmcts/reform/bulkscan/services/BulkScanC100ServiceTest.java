@@ -51,7 +51,7 @@ class BulkScanC100ServiceTest {
     @Test
     void testC100Success() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-            TestDataC100Util.getData()).build();
+                TestDataC100Util.getData()).build();
         when(postcodeLookupService.isValidPostCode(POST_CODE, null)).thenReturn(true);
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.SUCCESS, res.status);
@@ -60,41 +60,41 @@ class BulkScanC100ServiceTest {
     @Test
     void testC100WhenPostCodeNotValid() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-            TestDataC100Util.getData()).build();
+                TestDataC100Util.getData()).build();
         when(postcodeLookupService.isValidPostCode(POST_CODE, null)).thenReturn(false);
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
-        assertTrue(res.getErrors().items.contains(String.format(POST_CODE_MESSAGE, "appellant_postCode")));
+        assertTrue(res.getErrors().items.contains(String.format(POST_CODE_MESSAGE, "applicant_postCode")));
     }
 
     @Test
     void testC100WhenNotOneFieldPresentOutOfXoRFields() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-            TestDataC100Util.getErrorData()).build();
+                TestDataC100Util.getErrorData()).build();
         when(postcodeLookupService.isValidPostCode(POST_CODE, null)).thenReturn(false);
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
         assertTrue(res.getErrors().items.contains(String.format(XOR_CONDITIONAL_FIELDS_MESSAGE,
-                                                                "appellant_postCode,appellant_lastName")));
+                "applicant_postCode,applicant_lastName")));
     }
 
     @Test
     void testC100MandatoryErrorWhileDoingValidation() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-            TestDataC100Util.getErrorData()).build();
+                TestDataC100Util.getErrorData()).build();
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
-        assertTrue(res.getErrors().items.contains(String.format(MANDATORY_ERROR_MESSAGE, "appellant_lastName")));
+        assertTrue(res.getErrors().items.contains(String.format(MANDATORY_ERROR_MESSAGE, "applicant_lastName")));
     }
 
     @Test
     void testC100EmergencyProtectionOrderMandatoryErrorWhileDoingValidation() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder()
-            .ocrdatafields(TestDataC100Util.getErrorData()).build();
+                .ocrdatafields(TestDataC100Util.getErrorData()).build();
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
         assertTrue(res.getErrors().items.contains(
-            String.format(MANDATORY_ERROR_MESSAGE, "emergency_protection_order")));
+                String.format(MANDATORY_ERROR_MESSAGE, "emergency_protection_order")));
     }
 
     @Test
@@ -103,11 +103,12 @@ class BulkScanC100ServiceTest {
         c100GetDateError.addAll(TestDataC100Util.getDateErrorData());
         c100GetDateError.addAll(TestDataC100Util.getExemptionToAttendMiamSuccessData());
 
+        when(postcodeLookupService.isValidPostCode(POST_CODE, null)).thenReturn(true);
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-            c100GetDateError).build();
+                c100GetDateError).build();
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.WARNINGS, res.status);
-        assertTrue(res.getWarnings().items.contains(String.format(DATE_FORMAT_MESSAGE, "appellant_dateOfBirth")));
+        assertTrue(res.getWarnings().items.contains(String.format(DATE_FORMAT_MESSAGE, "applicant_dateOfBirth")));
     }
 
     @Test
@@ -116,8 +117,9 @@ class BulkScanC100ServiceTest {
         c100GetDateError.addAll(TestDataC100Util.getDateErrorData());
         c100GetDateError.addAll(TestDataC100Util.getExemptionToAttendMiamSuccessData());
 
+        when(postcodeLookupService.isValidPostCode(POST_CODE, null)).thenReturn(true);
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-            c100GetDateError).build();
+                c100GetDateError).build();
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.WARNINGS, res.status);
         assertTrue(res.getWarnings().items.contains(String.format(DATE_FORMAT_MESSAGE, "other_court_case_date")));
@@ -129,13 +131,14 @@ class BulkScanC100ServiceTest {
         c100GetDateError.addAll(TestDataC100Util.getDateErrorData());
         c100GetDateError.addAll(TestDataC100Util.getExemptionToAttendMiamSuccessData());
 
+        when(postcodeLookupService.isValidPostCode(POST_CODE, null)).thenReturn(true);
         BulkScanValidationRequest bulkScanValidationRequest
-            = BulkScanValidationRequest.builder().ocrdatafields(c100GetDateError).build();
+                = BulkScanValidationRequest.builder().ocrdatafields(c100GetDateError).build();
 
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.WARNINGS, res.status);
         assertTrue(res.getWarnings().items.contains(
-            String.format(DATE_FORMAT_MESSAGE, "authorised_family_mediator_signed_date")));
+                String.format(DATE_FORMAT_MESSAGE, "authorised_family_mediator_signed_date")));
     }
 
     @Test
@@ -145,25 +148,27 @@ class BulkScanC100ServiceTest {
         c100GetEmailError.addAll(TestDataC100Util.getExemptionToAttendMiamSuccessData());
 
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-            c100GetEmailError).build();
+                c100GetEmailError).build();
+
+        when(postcodeLookupService.isValidPostCode(POST_CODE, null)).thenReturn(true);
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.WARNINGS, res.status);
-        assertTrue(res.getWarnings().items.contains(String.format(EMAIL_FORMAT_MESSAGE, "appellant_email")));
+        assertTrue(res.getWarnings().items.contains(String.format(EMAIL_FORMAT_MESSAGE, "applicant_email")));
     }
 
     @Test
     void testC100FieldMissingErrorWhileDoingValidation() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-            TestDataC100Util.getFirstNameData()).build();
+                TestDataC100Util.getFirstNameData()).build();
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
-        assertTrue(res.getErrors().items.contains(String.format(MISSING_FIELD_MESSAGE, "appellant_lastName")));
+        assertTrue(res.getErrors().items.contains(String.format(MISSING_FIELD_MESSAGE, "applicant_lastName")));
     }
 
     @Test
     void testC100CaseNoNumericErrorWhileDoingValidation() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-            TestDataC100Util.getNumericErrorData()).build();
+                TestDataC100Util.getNumericErrorData()).build();
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
         assertTrue(res.getWarnings().items.contains(String.format(NUMERIC_MESSAGE, "case_no")));
@@ -176,37 +181,42 @@ class BulkScanC100ServiceTest {
         c100GetExemptionWarningData.addAll(TestDataC100Util.getAllNamesSuccessData());
         c100GetExemptionWarningData.addAll(TestDataC100Util.getExemptionToAttendWarningData());
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-            c100GetExemptionWarningData).build();
+                c100GetExemptionWarningData).build();
 
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
 
         assertEquals(Status.WARNINGS, res.status);
         assertTrue(res.getWarnings().items.contains(String.format(GROUP_DEPENDENCY_MESSAGE,
-                                                                  EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD)));
+                EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD)));
     }
 
     @Test
     @DisplayName("Should generate warning on NoMiam_DomesticViolence checked but without dependency Part 3a field(s)")
     void testC100NoMiamDomesticViolenceWarningOnSection3ACheckbox() {
         List<OcrDataField> c100GetDomesticViolenceWarningData = new ArrayList<>();
+        OcrDataField ocrDataPostCodeField = new OcrDataField();
+        ocrDataPostCodeField.setName("applicant_postCode");
+        ocrDataPostCodeField.setValue(POST_CODE);
+
+        c100GetDomesticViolenceWarningData.add(ocrDataPostCodeField);
         c100GetDomesticViolenceWarningData.addAll(TestDataC100Util.getAllNamesSuccessData());
         c100GetDomesticViolenceWarningData.addAll(TestDataC100Util.getNoMiamDomesticWarningData());
 
         when(postcodeLookupService.isValidPostCode(POST_CODE, null)).thenReturn(true);
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-            c100GetDomesticViolenceWarningData).build();
+                c100GetDomesticViolenceWarningData).build();
 
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
 
         assertEquals(Status.WARNINGS, res.status);
         assertTrue(res.getWarnings().items.contains(String.format(GROUP_DEPENDENCY_MESSAGE,
-                                                                  NOMIAM_DOMESTICVIOLENCE)));
+                NOMIAM_DOMESTICVIOLENCE)));
     }
 
     @Test
     void testTransform() {
         BulkScanTransformationResponse bulkScanTransformationResponse =
-            bulkScanValidationService.transform(mock(BulkScanTransformationRequest.class));
+                bulkScanValidationService.transform(mock(BulkScanTransformationRequest.class));
         Assertions.assertNotNull(bulkScanTransformationResponse);
     }
 

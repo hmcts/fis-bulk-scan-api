@@ -1,0 +1,34 @@
+uk:
+  gov:
+    hmcts:
+      dependency:
+        fieldGroupDependency:
+          C100_DEPENDENCY:
+            groupExemptionToAttendMiam:
+              - NoMIAM_domesticViolence
+              - NoMIAM_childProtectionConcerns
+              - NoMIAM_Urgency
+              - NoMIAM_PreviousAttendence
+              - NoMIAM_otherReasons
+            groupNoMiamDomesticViolence:
+              - NoMIAM_DVE_arrestedForSimilarOffence
+              - NoMIAM_DVE_relevantPoliceCaution
+              - NoMIAM_DVE_relevantCriminalProceeding
+              - NoMIAM_DVE_relevantConviction
+              - NoMIAM_DVE_courtOrder
+              - NoMIAM_DVE_protectionNotice
+              - NoMIAM_DVE_protectiveInjunction
+              - NoMIAM_DVE_NoCrossUndertakingGiven
+              - NoMIAM_DVE_copyOfFactFinding
+              - NoMIAM_DVE_expertEvidenceReport
+              - NoMIAM_DVE_healthProfessionalReport
+              - NoMIAM_DVE_ReferralHealthProfessionalReport
+              - NoMIAM_DVE_memberOf_MultiAgencyRiskAssessmentConferrance_letter
+              - NoMIAM_DVE_domesticViolenceAdvisor
+              - NoMIAM_DVE_independentSexualViolenceAdvisor_Letter
+              - NoMIAM_DVE_officerEmployed_localAuthority_letter
+              - NoMIAM_DVE_domesticViolenceSupportCharity_letter
+              - NoMIAM_DVE_domesticViolenceSupportCharity_refuge_letter
+              - NoMIAM_DVE_publicAuthority_confirmationLetter
+              - NoMIAM_DVE_secretaryOfState_letter
+              - NoMIAM_DVE_evidenceFinancialMatters

@@ -26,7 +26,7 @@ public final class BulkScanConstants {
 
     public static final String EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD = "exemption_to_attend_MIAM";
     public static final String GROUP_DEPENDENCY_MESSAGE = "Group Dependency Field (%s) has "
-        + "incomplete dependency validation";
+        + "dependency validation warning. Must contain at least %d of the fields [%s].";
     public static final String NOMIAM_CHILDPROTECTIONCONCERNS = "NoMIAM_childProtectionConcerns";
     public static final String NOMIAM_DOMESTICVIOLENCE = "NoMIAM_domesticViolence";
     public static final String NOMIAM_DVE_ARRESTEDFORSIMILAROFFENCE = "NoMIAM_DVE_arrestedForSimilarOffence";

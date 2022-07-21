@@ -17,6 +17,7 @@ import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
 import uk.gov.hmcts.reform.bulkscan.model.Status;
 import uk.gov.hmcts.reform.bulkscan.model.Warnings;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -46,33 +47,37 @@ public class BulkScanC100Service implements BulkScanService {
 
     @Override
     public BulkScanValidationResponse validate(BulkScanValidationRequest bulkRequest) {
+        List<String> warningItems = new ArrayList<>();
 
         BulkScanValidationResponse bulkScanGroupDependencyValidationResponse =
-            bulkScanGroupDependencyValidation.validate(bulkRequest);
+                bulkScanGroupDependencyValidation.validate(bulkRequest);
 
         BulkScanValidationResponse bulkScanValidationResponse =
-            bulkScanValidationHelper.validateMandatoryAndOptionalFields(
-                bulkRequest.getOcrdatafields(),
-                configManager.getValidationConfig(
-                    FormType.C100)
-            );
-
-        List<String> warningItems = bulkScanGroupDependencyValidationResponse.getWarnings().getItems();
-        warningItems.addAll(bulkScanValidationResponse.getWarnings().getItems());
+                bulkScanValidationHelper.validateMandatoryAndOptionalFields(
+                        bulkRequest.getOcrdatafields(),
+                        configManager.getValidationConfig(
+                                FormType.C100)
+                );
+        if (bulkScanGroupDependencyValidationResponse.getWarnings().getItems() != null) {
+            warningItems.addAll(bulkScanGroupDependencyValidationResponse.getWarnings().getItems());
+        }
+        if (bulkScanValidationResponse.getWarnings().getItems() != null) {
+            warningItems.addAll(bulkScanValidationResponse.getWarnings().getItems());
+        }
 
         List<String> errorItems = bulkScanValidationResponse.getErrors().getItems();
 
-        Status status = (Status.WARNINGS == bulkScanValidationResponse.getStatus()) ? Status.WARNINGS :
-            (Status.ERRORS == bulkScanValidationResponse.getStatus()) ? Status.ERRORS :
-                (Status.WARNINGS == bulkScanGroupDependencyValidationResponse.getStatus()) ? Status.WARNINGS :
-                    (Status.ERRORS == bulkScanGroupDependencyValidationResponse.getStatus()) ? Status.ERRORS :
-                        Status.SUCCESS;
+        Status status = (Status.WARNINGS == bulkScanValidationResponse.getStatus())
+                ? Status.WARNINGS : (Status.ERRORS == bulkScanValidationResponse.getStatus())
+                ? Status.ERRORS : (Status.WARNINGS == bulkScanGroupDependencyValidationResponse.getStatus())
+                ? Status.WARNINGS : (Status.ERRORS == bulkScanGroupDependencyValidationResponse.getStatus())
+                ? Status.ERRORS : Status.SUCCESS;
 
         return BulkScanValidationResponse.builder()
-            .warnings(Warnings.builder().items(warningItems).build())
-            .errors(Errors.builder().items(errorItems).build())
-            .status(status)
-            .build();
+                .warnings(Warnings.builder().items(warningItems).build())
+                .errors(Errors.builder().items(errorItems).build())
+                .status(status)
+                .build();
     }
 
     @Override
@@ -84,15 +89,15 @@ public class BulkScanC100Service implements BulkScanService {
         caseData.put(BULK_SCAN_CASE_REFERENCE, bulkScanTransformationRequest.getId());
 
         Map<String, String> inputFieldsMap = inputFieldsList.stream().collect(
-            Collectors.toMap(OcrDataField::getName, OcrDataField::getValue));
+                Collectors.toMap(OcrDataField::getName, OcrDataField::getValue));
 
         Map<String, Object> populatedMap = (Map<String, Object>) BulkScanTransformHelper
-            .transformToCaseData(transformConfigManager.getTransformationConfig(FormType.C100)
-                    .getCaseDataFields(), inputFieldsMap);
+                .transformToCaseData(transformConfigManager.getTransformationConfig(FormType.C100)
+                        .getCaseDataFields(), inputFieldsMap);
 
 
         return BulkScanTransformationResponse.builder().caseCreationDetails(
-            CaseCreationDetails.builder().caseData(populatedMap).build()).build();
+                CaseCreationDetails.builder().caseData(populatedMap).build()).build();
 
     }
 }

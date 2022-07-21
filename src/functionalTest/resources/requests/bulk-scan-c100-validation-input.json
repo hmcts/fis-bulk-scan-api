@@ -1,12 +1,12 @@
 {
   "ocr_data_fields":[
     {
-      "name":"appellant_firstName",
-      "value":"appellant_firstName"
+      "name":"applicant_firstName",
+      "value":"applicant_firstName"
     },
     {
-      "name":"appellant_lastName",
-      "value":"appellant_lastName"
+      "name":"applicant_lastName",
+      "value":"applicant_lastName"
     },
     {
       "name":"child_firstName",
@@ -17,7 +17,7 @@
       "value":"child_lastName"
     },
     {
-      "name":"appellant_childRelationship",
+      "name":"applicant_childRelationship",
       "value":"Step Father"
     },
     {
