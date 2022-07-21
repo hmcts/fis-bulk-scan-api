@@ -56,6 +56,9 @@ public class BulkScanC100Service implements BulkScanService {
     @Autowired
     BulkScanValidationHelper bulkScanValidationHelper;
 
+    @Autowired
+    BulkScanC100ValidationService bulkScanC100ValidationService;
+
     @Override
     public FormType getCaseType() {
         return FormType.C100;
@@ -74,6 +77,9 @@ public class BulkScanC100Service implements BulkScanService {
             response.setStatus(Status.ERRORS);
             response.getErrors().items.addAll(manualValidationErrors);
         }
+
+        response = bulkScanC100ValidationService
+            .validateAttendMiam(bulkRequest.getOcrdatafields(), response);
 
         return response;
     }
