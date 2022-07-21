@@ -1,0 +1,11 @@
+{
+  "status": "ERRORS",
+  "warnings": {
+    "items": []
+  },
+  "errors": {
+    "items": [
+      "child_approximateDateOfBirth is invalid date"
+    ]
+  }
+}

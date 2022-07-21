@@ -1,5 +1,6 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
+import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -7,6 +8,11 @@ import uk.gov.hmcts.reform.bulkscan.config.BulkScanFormValidationConfigManager;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanTransformConfigManager;
 import uk.gov.hmcts.reform.bulkscan.enums.MaritalStatusEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.RelationToChildEnum;
+import uk.gov.hmcts.reform.bulkscan.group.creation.Group;
+import uk.gov.hmcts.reform.bulkscan.group.creation.GroupCreator;
+import uk.gov.hmcts.reform.bulkscan.group.handler.BulkScanGroupHandler;
+import uk.gov.hmcts.reform.bulkscan.group.util.BulkScanGroupValidatorUtil;
+import uk.gov.hmcts.reform.bulkscan.group.validation.enums.MessageTypeEnum;
 import uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper;
 import uk.gov.hmcts.reform.bulkscan.helper.BulkScanValidationHelper;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
@@ -14,14 +20,19 @@ import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.CaseCreationDetails;
+import uk.gov.hmcts.reform.bulkscan.model.Errors;
 import uk.gov.hmcts.reform.bulkscan.model.FormType;
 import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
+import uk.gov.hmcts.reform.bulkscan.model.Status;
+import uk.gov.hmcts.reform.bulkscan.model.Warnings;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.stream.Collectors;
 
+import static com.microsoft.applicationinsights.core.dependencies.apachecommons.lang3.StringUtils.isNotEmpty;
 import static java.util.Objects.nonNull;
 import static org.apache.commons.lang3.BooleanUtils.FALSE;
 import static org.apache.commons.lang3.BooleanUtils.TRUE;
@@ -30,15 +41,57 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ADOPTION_
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ADOPTION_ORDER_CONSENT_AGENCY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ADOPTION_ORDER_NO_CONSENT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT1_RELATION_TO_CHILD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT1_SOT_DAY;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT1_SOT_MONTH;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT1_SOT_YEAR;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT1_STATEMENT_OF_TRUTH_DATE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT2_FIRSTNAME;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT2_LEGAL_REP_SIGNATURE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT2_LEGAL_REP_SIGNING;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT2_LEGAL_REP_SOT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT2_RELATION_TO_CHILD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT2_SIGNING;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT2_SOT;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT2_SOT_DAY;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT2_SOT_MONTH;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT2_SOT_YEAR;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT2_STATEMENT_OF_TRUTH_DATE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_RELATION_TO_CHILD_FATHER_PARTNER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_REQUIRE_INTERPRETER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_REQUIRE_INTERPRETER_CCD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.BULK_SCAN_CASE_REFERENCE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CASE_TYPE_ID;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_WELSH_LANGUAGE_PREFERENCE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_WELSH_LANGUAGE_PREFERENCE_CCD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.COURT_CONSENT_CHILD_WELFARE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.COURT_CONSENT_PARENT_LACK_CAPACITY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.COURT_CONSENT_PARENT_NOT_FOUND;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.COURT_INTERPRETER_ASSISTANCE_LANGUAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.COURT_INTERPRETER_ASSISTANCE_LANGUAGE_CCD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.COURT_INTERPRETER_ASSISTANCE_REQUIRED;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EVENT_ID;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.OTHER_PARTY_NAME;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.OTHER_PARTY_NAME_CCD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.OTHER_PARTY_REQUIRE_INTERPRETER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.OTHER_PARTY_REQUIRE_INTERPRETER_CCD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PARTY_WELSH_LANGUAGE_PREFERENCE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PARTY_WELSH_LANGUAGE_PREFERENCE_CCD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_REQUIRE_INTERPRETER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_REQUIRE_INTERPRETER_CCD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.SLASH_DELIMITER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.SPECIAL_ASSISTANCE_FACILITIES;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.SPECIAL_ASSISTANCE_FACILITIES_CCD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.SPECIAL_ASSISTANCE_FACILITIES_REQUIRED;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.UNKNOWN_FIELDS_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.WELSH_PREFERENCE_CHILD_NAME;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.WELSH_PREFERENCE_CHILD_NAME_CCD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.WELSH_PREFERENCE_PARTY_NAME;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.WELSH_PREFERENCE_PARTY_NAME_CCD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.WELSH_PREFERENCE_WITNESS_NAME;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.WELSH_PREFERENCE_WITNESS_NAME_CCD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.WELSH_SPOKEN_IN_COURT_REQUIRED;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.WITNESS_WELSH_LANGUAGE_PREFERENCE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.WITNESS_WELSH_LANGUAGE_PREFERENCE_CCD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.applicant_applying_alone_natural_parent_died;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.applicant_applying_alone_natural_parent_not_found;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.applicant_applying_alone_no_other_parent;
@@ -58,9 +111,12 @@ import static uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper.transf
 import static uk.gov.hmcts.reform.bulkscan.model.FormType.A58;
 import static uk.gov.hmcts.reform.bulkscan.model.FormType.A58_RELINQUISHED_ADOPTION;
 import static uk.gov.hmcts.reform.bulkscan.model.FormType.A58_STEP_PARENT;
+import static uk.gov.hmcts.reform.bulkscan.model.Status.ERRORS;
+import static uk.gov.hmcts.reform.bulkscan.utils.BulkScanValidationUtil.flattenLists;
+import static uk.gov.hmcts.reform.bulkscan.utils.BulkScanValidationUtil.notNull;
 
 @Service
-@SuppressWarnings("PMD.ExcessiveImports")
+@SuppressWarnings({"PMD.ExcessiveImports", "PMD.GodClass"})
 public class BulkScanA58Service implements BulkScanService {
 
     public static final String STEP_PARENT_ADOPTION = "Step Parent";
@@ -84,6 +140,9 @@ public class BulkScanA58Service implements BulkScanService {
     @Autowired
     BulkScanTransformConfigManager transformConfigManager;
 
+    @Autowired
+    BulkScanGroupHandler bulkScanGroupHandler;
+
     @Override
     public FormType getCaseType() {
         return A58;
@@ -103,9 +162,20 @@ public class BulkScanA58Service implements BulkScanService {
             formType = A58_RELINQUISHED_ADOPTION;
         }
         // Validating the Fields..
-        return bulkScanValidationHelper.validateMandatoryAndOptionalFields(bulkRequest.getOcrdatafields(),
-                configManager.getValidationConfig(
-                        formType));
+        BulkScanValidationResponse bulkScanValidationResponse =
+                bulkScanValidationHelper.validateMandatoryAndOptionalFields(bulkRequest.getOcrdatafields(),
+                configManager.getValidationConfig(formType));
+
+        if (formType.equals(A58) && isNotEmpty(inputFieldsMap.get(APPLICANT2_FIRSTNAME))) {
+            List<String> errorList = getApplicant2ErrorList(inputFieldsMap, bulkScanValidationResponse);
+            return bulkScanValidationResponse.toBuilder()
+                    .status(!errorList.isEmpty() ? ERRORS : bulkScanValidationResponse.getStatus())
+                    .errors(Errors.builder().items(errorList).build()).build();
+        }
+
+        updateGroupErrorsAndWarnings(bulkRequest, formType, bulkScanValidationResponse);
+        updateGroupMissingFields(bulkScanValidationResponse, formType);
+        return bulkScanValidationResponse;
     }
 
     @Override
@@ -150,6 +220,16 @@ public class BulkScanA58Service implements BulkScanService {
                 populatedMap.put(APPLICANT_MARITAL_STATUS, getApplicantMaritalStatus(inputFieldsMap));
             }
             populatedMap.put(OTHER_PARENT_RELATIONSHIP_TO_CHILD, buildRelationshipToChild(inputFieldsMap));
+            populatedMap.put(APPLICANT1_STATEMENT_OF_TRUTH_DATE, buildApplicant1StatementOfTruth(inputFieldsMap));
+            if (isNotEmpty(inputFieldsMap.get(APPLICANT2_FIRSTNAME))) {
+                populatedMap.put(APPLICANT2_STATEMENT_OF_TRUTH_DATE, buildApplicant2StatementOfTruth(inputFieldsMap));
+            }
+            if (isNotEmpty(inputFieldsMap.get(APPLICANT2_FIRSTNAME))) {
+                populatedMap.put(APPLICANT2_STATEMENT_OF_TRUTH_DATE, buildApplicant2StatementOfTruth(inputFieldsMap));
+            }
+            buildWelshSpokenPreferences(inputFieldsMap, populatedMap);
+            buildInterpreterRequiredFields(inputFieldsMap, populatedMap);
+            buildSpecialAssistanceRequiredFields(inputFieldsMap, populatedMap);
         }
 
         populatedMap.put(SCAN_DOCUMENTS, transformScanDocuments(bulkScanTransformationRequest));
@@ -251,5 +331,124 @@ public class BulkScanA58Service implements BulkScanService {
                 || STEP_PARENT_ADOPTION.equalsIgnoreCase(inputFieldsMap.get(APPLICANT2_RELATION_TO_CHILD))
                 || TRUE.equalsIgnoreCase(inputFieldsMap.get(APPLICANT_RELATION_TO_CHILD_FATHER_PARTNER))
                 || FALSE.equalsIgnoreCase(inputFieldsMap.get(APPLICANT_RELATION_TO_CHILD_FATHER_PARTNER));
+    }
+
+    private List<String> getApplicant2ErrorList(Map<String, String> inputFieldsMap,
+                                                BulkScanValidationResponse bulkScanValidationResponse) {
+        return flattenLists(
+                bulkScanValidationResponse.getErrors().getItems(),
+                notNull(inputFieldsMap.get(APPLICANT2_SOT), APPLICANT2_SOT),
+                notNull(inputFieldsMap.get(APPLICANT2_LEGAL_REP_SOT), APPLICANT2_LEGAL_REP_SOT),
+                notNull(inputFieldsMap.get(APPLICANT2_LEGAL_REP_SIGNATURE), APPLICANT2_LEGAL_REP_SIGNATURE),
+                notNull(inputFieldsMap.get(APPLICANT2_SIGNING), APPLICANT2_SIGNING),
+                notNull(inputFieldsMap.get(APPLICANT2_LEGAL_REP_SIGNING), APPLICANT2_LEGAL_REP_SIGNING),
+                notNull(inputFieldsMap.get(APPLICANT2_SOT_DAY), APPLICANT2_SOT_DAY),
+                notNull(inputFieldsMap.get(APPLICANT2_SOT_MONTH), APPLICANT2_SOT_MONTH),
+                notNull(inputFieldsMap.get(APPLICANT2_SOT_YEAR), APPLICANT2_SOT_YEAR)
+        );
+    }
+
+    private String buildApplicant1StatementOfTruth(Map<String, String> inputFieldsMap) {
+        return inputFieldsMap.get(APPLICANT1_SOT_DAY) + SLASH_DELIMITER + inputFieldsMap.get(APPLICANT1_SOT_MONTH)
+                + SLASH_DELIMITER + inputFieldsMap.get(APPLICANT1_SOT_YEAR);
+    }
+
+    private String buildApplicant2StatementOfTruth(Map<String, String> inputFieldsMap) {
+        return inputFieldsMap.get(APPLICANT2_SOT_DAY) + SLASH_DELIMITER + inputFieldsMap.get(APPLICANT2_SOT_MONTH)
+                + SLASH_DELIMITER + inputFieldsMap.get(APPLICANT2_SOT_YEAR);
+    }
+
+    private void buildSpecialAssistanceRequiredFields(Map<String, String> inputFieldsMap,
+                                                      Map<String, Object> populatedMap) {
+        if (BooleanUtils.YES.equalsIgnoreCase(inputFieldsMap.get(SPECIAL_ASSISTANCE_FACILITIES_REQUIRED))) {
+            populatedMap.put(SPECIAL_ASSISTANCE_FACILITIES_CCD, inputFieldsMap.get(SPECIAL_ASSISTANCE_FACILITIES));
+        }
+    }
+
+    private void buildInterpreterRequiredFields(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
+        if (BooleanUtils.YES.equalsIgnoreCase(inputFieldsMap.get(COURT_INTERPRETER_ASSISTANCE_REQUIRED))) {
+            populatedMap.put(APPLICANT_REQUIRE_INTERPRETER_CCD, inputFieldsMap.get(APPLICANT_REQUIRE_INTERPRETER));
+            populatedMap.put(RESPONDENT_REQUIRE_INTERPRETER_CCD, inputFieldsMap.get(RESPONDENT_REQUIRE_INTERPRETER));
+            populatedMap.put(OTHER_PARTY_REQUIRE_INTERPRETER_CCD, inputFieldsMap.get(OTHER_PARTY_REQUIRE_INTERPRETER));
+            populatedMap.put(OTHER_PARTY_NAME_CCD, inputFieldsMap.get(OTHER_PARTY_NAME));
+            populatedMap.put(COURT_INTERPRETER_ASSISTANCE_LANGUAGE_CCD,
+                    inputFieldsMap.get(COURT_INTERPRETER_ASSISTANCE_LANGUAGE));
+        }
+    }
+
+    private void buildWelshSpokenPreferences(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
+        if (BooleanUtils.YES.equalsIgnoreCase(inputFieldsMap.get(WELSH_SPOKEN_IN_COURT_REQUIRED))) {
+            populatedMap.put(WELSH_PREFERENCE_PARTY_NAME_CCD, inputFieldsMap.get(WELSH_PREFERENCE_PARTY_NAME));
+            populatedMap.put(WELSH_PREFERENCE_WITNESS_NAME_CCD, inputFieldsMap.get(WELSH_PREFERENCE_WITNESS_NAME));
+            populatedMap.put(WELSH_PREFERENCE_CHILD_NAME_CCD, inputFieldsMap.get(WELSH_PREFERENCE_CHILD_NAME));
+            populatedMap.put(PARTY_WELSH_LANGUAGE_PREFERENCE_CCD, inputFieldsMap.get(PARTY_WELSH_LANGUAGE_PREFERENCE));
+            populatedMap.put(WITNESS_WELSH_LANGUAGE_PREFERENCE_CCD,
+                    inputFieldsMap.get(WITNESS_WELSH_LANGUAGE_PREFERENCE));
+            populatedMap.put(CHILD_WELSH_LANGUAGE_PREFERENCE_CCD, inputFieldsMap.get(CHILD_WELSH_LANGUAGE_PREFERENCE));
+        }
+    }
+
+    /**
+     * The yaml based framework validation throws warning for missing fields which are configured in the group
+     * validation framework.so this function removes the missing fields from warning message,
+     * which are configured in group framework.
+     */
+    private void updateGroupErrorsAndWarnings(BulkScanValidationRequest bulkRequest, FormType formType,
+                                              BulkScanValidationResponse bulkScanValidationResponse) {
+        Errors errors = bulkScanValidationResponse.getErrors();
+        Warnings warnings = bulkScanValidationResponse.getWarnings();
+        List<String> errorsItems = errors.getItems();
+        List<String> warningsItems = warnings.getItems();
+
+        Map<MessageTypeEnum, List<String>> errorsAndWarningsHashMap = bulkScanGroupHandler.handle(
+            formType,
+            bulkRequest.getOcrdatafields()
+        );
+        errorsItems.addAll(errorsAndWarningsHashMap.get(MessageTypeEnum.ERROR));
+        warningsItems.addAll(errorsAndWarningsHashMap.get(MessageTypeEnum.WARNING));
+
+        errors.setItems(errorsItems);
+        warnings.setItems(warningsItems);
+
+        bulkScanValidationResponse.setErrors(errors);
+        bulkScanValidationResponse.setWarnings(warnings);
+    }
+
+    private void updateGroupMissingFields(BulkScanValidationResponse bulkScanValidationResponse, FormType formType) {
+        GroupCreator groupCreator = new GroupCreator();
+        Group group = groupCreator.getGroup(formType);
+        List<String> allConfiguredGroupFields = BulkScanGroupValidatorUtil.getAllConfiguredGroupFields(group);
+        List<String> updateWarningList = bulkScanValidationResponse.getWarnings().getItems().stream()
+            .map(item -> updateMissingField(item, allConfiguredGroupFields))
+            .filter(s -> !StringUtils.isEmpty(s)).collect(Collectors.toList());
+        if (!updateWarningList.isEmpty()) {
+            bulkScanValidationResponse.setWarnings(Warnings.builder().items(updateWarningList).build());
+            bulkScanValidationResponse.setStatus(Status.WARNINGS);
+        } else {
+            bulkScanValidationResponse.setWarnings(Warnings.builder().items(updateWarningList).build());
+        }
+        if (!bulkScanValidationResponse.getErrors().getItems().isEmpty()) {
+            bulkScanValidationResponse.setStatus(ERRORS);
+        }
+        if (updateWarningList.isEmpty()
+            && bulkScanValidationResponse.getErrors().getItems().isEmpty()) {
+            bulkScanValidationResponse.setStatus(Status.SUCCESS);
+        }
+    }
+
+    private String updateMissingField(String item, List<String> allConfiguredGroupFields) {
+        if (item.contains("The following fields are are not configured with our system")) {
+            List<String> missingFieldList = Arrays.asList(item.split("\\[")[1].split("\\]")[0].split(","));
+            String warnings = missingFieldList.stream()
+                .filter(s -> !allConfiguredGroupFields.contains(s))
+                .collect(Collectors.joining(","));
+            if (StringUtils.isEmpty(warnings)) {
+                return null;
+            } else {
+                return "The following fields are are not configured with our system: "
+                    + warnings;
+            }
+        }
+        return item;
     }
 }

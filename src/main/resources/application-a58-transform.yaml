@@ -50,20 +50,31 @@ uk:
               guardianFirstName: guardian_firstName
               guardianLastName: guardian_lastName
               guardianAddress: guardian_address
-              childrenGender: child_gender
-              childrenDateOfBirth: child_dateOfBirth
-              childrenApproximateDateOfBirth: child_approximateDateOfBirth
-              childrenPlaceAndCountryOfBirth: child_placeAndCountryOfBirth
-              childNationality: child_nationality
-              childIsMarried: child_isMarried
-              childLiveAtHomeFrom: child_liveAtHomeFrom
-              childIsAdoptedByAgency: child_isAdoptedByAgency
-              childAndLocalAuthority: child_laName
-              childAndLocalAuthorityAddress: child_laAddress
-              childAndLocalAuthorityNotifiedDate: child_laNotifiedDate
-              childAndLocalAuthorityContactName: child_laContactName
-              childAndLocalAuthorityTelephoneNo: child_laTelephoneNo
-              childAndLocalAuthorityEmail: child_laEmail
+              childrenFirstNameAfterAdoption: child_firstname_on_adoption_order
+              childrenLastNameAfterAdoption: child_lastname_on_adoption_order
+              childrenHealthReportDate: child_health_report_date
+              childrenAdoptionPaymentDetails: child_adoption_payment_details
+              applicant1StatementOfTruth: sole_applicant_or_applicant1_statement_of_truth
+              applicant1SignStatementOfTruth: sole_applicant_or_applicant1_legal_rep_statement_of_truth
+              applicant1LegalRepSignature: sole_applicant_or_applicant1_or_legal_rep_signature
+              applicant1Signing: sole_applicant_or_applicant1_signing
+              applicant1SotFullName: sole_applicant_or_applicant1_or_legal_rep_full_name
+              applicant1LegalRepFirm: sole_applicant_or_applicant1_legal_rep_firm
+              applicant1LegalRepPosition: sole_applicant_or_applicant1_legal_rep_position
+
+              applicant2StatementOfTruth: sole_applicant_or_applicant2_statement_of_truth
+              applicant2SignStatementOfTruth: sole_applicant_or_applicant2_legal_rep_statement_of_truth
+              applicant2LegalRepSignature: sole_applicant_or_applicant2_or_legal_rep_signature
+              applicant2Signing: applicant2_signing
+              applicant2SotFullName: applicant2_or_legal_rep_full_name
+              applicant2LegalRepFirm: applicant2_legal_rep_firm
+              applicant2LegalRepPosition: applicant2_legal_rep_position
+
+              welshSpokenInCourtRequired: welsh_spoken_in_court_required
+              courtUnavailableDates: court_unavailable_dates
+              courtpreferredDates: court_preferred_dates
+              courtInterpreterAssistanceRequired: court_interpreter_assistance_required
+              specialAssistanceFacilitiesRequired: special_assistance_facilities_required
           A58_STEP_PARENT:
             caseFields:
               CASE_TYPE_ID: A58
