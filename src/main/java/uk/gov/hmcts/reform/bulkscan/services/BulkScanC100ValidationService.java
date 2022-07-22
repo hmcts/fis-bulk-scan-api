@@ -89,6 +89,7 @@ public class BulkScanC100ValidationService {
                                 List<String> items) {
         if (ocrDataFieldsMap.containsKey(ATTENDED_MIAM)
             && StringUtils.hasText(ocrDataFieldsMap.get(ATTENDED_MIAM))
+            && BulkScanConstants.NO.equalsIgnoreCase(ocrDataFieldsMap.get(EXEMPTION_TO_ATTEND_MIAM))
             && BulkScanConstants.NO.equalsIgnoreCase(ocrDataFieldsMap.get(ATTENDED_MIAM)
         )) {
             items.add(String.format(
