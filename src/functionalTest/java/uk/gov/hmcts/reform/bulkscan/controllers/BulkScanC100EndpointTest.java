@@ -34,10 +34,6 @@ public class BulkScanC100EndpointTest {
         "classpath:requests/bulk-scan-c100-validation-input.json";
     private static final String C100_VALIDATION_OUTPUT_PATH =
         "classpath:responses/bulk-scan-c100-validation-output.json";
-    private static final String C100_TRANSFORM_INPUT_PATH =
-            "classpath:requests/bulk-scan-c100-transform-input.json";
-    private static final String C100_TRANSFORM_OUTPUT_PATH =
-            "classpath:responses/bulk-scan-c100-transform-output.json";
 
     private final String targetInstance =
         StringUtils.defaultIfBlank(
@@ -69,24 +65,5 @@ public class BulkScanC100EndpointTest {
         response.then().assertThat().statusCode(HttpStatus.OK.value());
 
         JSONAssert.assertEquals(bulkScanValidationResponse, response.getBody().asString(), true);
-    }
-
-    @Test
-    public void shouldTransformBulkScanRequest() throws Exception {
-        String bulkScanTransformRequest =
-                readFileFrom(C100_TRANSFORM_INPUT_PATH);
-
-        String bulkScanTransformResponse =
-                readFileFrom(C100_TRANSFORM_OUTPUT_PATH);
-
-        Response response = request.header(AUTH_HEADER, AUTH_HEADER)
-                .body(bulkScanTransformRequest)
-                .when()
-                .contentType(JSON_CONTENT_TYPE)
-                .post("/transform-exception-record");
-
-        response.then().assertThat().statusCode(HttpStatus.OK.value());
-
-        JSONAssert.assertEquals(bulkScanTransformResponse, response.getBody().asString(), true);
     }
 }

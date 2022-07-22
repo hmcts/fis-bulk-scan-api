@@ -5,21 +5,17 @@ uk:
         fieldGroupDependency:
           C100:
             - groupExemptionToAttend:
-              groupFieldName: exemption_to_tttend_MIAM
-              groupValidationValue: "Yes"
-              fieldValueToBePresent: 1
-              dependentFieldValue: "True"
               dependentFields:
                 - NoMIAM_domesticViolence
                 - NoMIAM_childProtectionConcerns
                 - NoMIAM_Urgency
                 - NoMIAM_PreviousAttendence
                 - NoMIAM_otherReasons
+              dependentFieldValue: "True"
+              groupFieldName: exemption_to_attend_MIAM
+              groupValidationValue: "Yes"
+              minFieldRequiredCount: 1
             - NoMIAM_domesticViolence:
-              groupFieldName: NoMIAM_domesticViolence
-              groupValidationValue: "True"
-              fieldValueToBePresent: 1
-              dependentFieldValue: "Yes"
               dependentFields:
                 - NoMIAM_DVE_arrestedForSimilarOffence
                 - NoMIAM_DVE_relevantPoliceCaution
@@ -42,3 +38,7 @@ uk:
                 - NoMIAM_DVE_publicAuthority_confirmationLetter
                 - NoMIAM_DVE_secretaryOfState_letter
                 - NoMIAM_DVE_evidenceFinancialMatters
+              dependentFieldValue: "Yes"
+              groupFieldName: NoMIAM_domesticViolence
+              groupValidationValue: "True"
+              minFieldRequiredCount: 1
