@@ -1,13 +1,10 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
-import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanFormValidationConfigManager;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanTransformConfigManager;
-import uk.gov.hmcts.reform.bulkscan.enums.MaritalStatusEnum;
-import uk.gov.hmcts.reform.bulkscan.enums.RelationToChildEnum;
 import uk.gov.hmcts.reform.bulkscan.group.creation.Group;
 import uk.gov.hmcts.reform.bulkscan.group.creation.GroupCreator;
 import uk.gov.hmcts.reform.bulkscan.group.handler.BulkScanGroupHandler;
@@ -25,11 +22,9 @@ import uk.gov.hmcts.reform.bulkscan.model.FormType;
 import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
 import uk.gov.hmcts.reform.bulkscan.model.Status;
 import uk.gov.hmcts.reform.bulkscan.model.Warnings;
+import uk.gov.hmcts.reform.bulkscan.helper.BulkScanConditionalTransformerHelper;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static com.microsoft.applicationinsights.core.dependencies.apachecommons.lang3.StringUtils.isNotEmpty;
@@ -41,10 +36,6 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ADOPTION_
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ADOPTION_ORDER_CONSENT_AGENCY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ADOPTION_ORDER_NO_CONSENT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT1_RELATION_TO_CHILD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT1_SOT_DAY;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT1_SOT_MONTH;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT1_SOT_YEAR;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT1_STATEMENT_OF_TRUTH_DATE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT2_FIRSTNAME;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT2_LEGAL_REP_SIGNATURE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT2_LEGAL_REP_SIGNING;
@@ -55,58 +46,14 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT2_SOT_DAY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT2_SOT_MONTH;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT2_SOT_YEAR;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT2_STATEMENT_OF_TRUTH_DATE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_RELATION_TO_CHILD_FATHER_PARTNER;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_REQUIRE_INTERPRETER;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_REQUIRE_INTERPRETER_CCD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.BULK_SCAN_CASE_REFERENCE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CASE_TYPE_ID;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_WELSH_LANGUAGE_PREFERENCE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_WELSH_LANGUAGE_PREFERENCE_CCD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.COURT_CONSENT_CHILD_WELFARE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.COURT_CONSENT_PARENT_LACK_CAPACITY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.COURT_CONSENT_PARENT_NOT_FOUND;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.COURT_INTERPRETER_ASSISTANCE_LANGUAGE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.COURT_INTERPRETER_ASSISTANCE_LANGUAGE_CCD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.COURT_INTERPRETER_ASSISTANCE_REQUIRED;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EVENT_ID;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.OTHER_PARTY_NAME;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.OTHER_PARTY_NAME_CCD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.OTHER_PARTY_REQUIRE_INTERPRETER;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.OTHER_PARTY_REQUIRE_INTERPRETER_CCD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PARTY_WELSH_LANGUAGE_PREFERENCE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PARTY_WELSH_LANGUAGE_PREFERENCE_CCD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_REQUIRE_INTERPRETER;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_REQUIRE_INTERPRETER_CCD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.SLASH_DELIMITER;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.SPECIAL_ASSISTANCE_FACILITIES;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.SPECIAL_ASSISTANCE_FACILITIES_CCD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.SPECIAL_ASSISTANCE_FACILITIES_REQUIRED;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.UNKNOWN_FIELDS_MESSAGE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.WELSH_PREFERENCE_CHILD_NAME;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.WELSH_PREFERENCE_CHILD_NAME_CCD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.WELSH_PREFERENCE_PARTY_NAME;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.WELSH_PREFERENCE_PARTY_NAME_CCD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.WELSH_PREFERENCE_WITNESS_NAME;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.WELSH_PREFERENCE_WITNESS_NAME_CCD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.WELSH_SPOKEN_IN_COURT_REQUIRED;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.WITNESS_WELSH_LANGUAGE_PREFERENCE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.WITNESS_WELSH_LANGUAGE_PREFERENCE_CCD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.applicant_applying_alone_natural_parent_died;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.applicant_applying_alone_natural_parent_not_found;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.applicant_applying_alone_no_other_parent;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.applicant_applying_alone_other_parent_exclusion_justified;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.applicant_marital_status_divorced;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.applicant_marital_status_married_spouse_incapable;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.applicant_marital_status_married_spouse_notfound;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.applicant_marital_status_married_spouse_separated;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.applicant_marital_status_single;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.applicant_marital_status_widow;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.applicant_relationToChild_father_partner;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.applicant_relationToChild_mother_partner;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.applicant_relationToChild_non_civil_partner;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.applicants_domicile_status;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.applicants_non_domicile_status;
 import static uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper.transformScanDocuments;
 import static uk.gov.hmcts.reform.bulkscan.model.FormType.A58;
 import static uk.gov.hmcts.reform.bulkscan.model.FormType.A58_RELINQUISHED_ADOPTION;
@@ -142,6 +89,9 @@ public class BulkScanA58Service implements BulkScanService {
 
     @Autowired
     BulkScanGroupHandler bulkScanGroupHandler;
+
+    @Autowired
+    BulkScanConditionalTransformerHelper bulkScanConditionalTransformerHelper;
 
     @Override
     public FormType getCaseType() {
@@ -199,37 +149,14 @@ public class BulkScanA58Service implements BulkScanService {
 
         BulkScanFormValidationConfigManager
                 .ValidationConfig validationConfig = configManager.getValidationConfig(formType);
-        if (nonNull(validationConfig)) {
-            unknownFieldsList = bulkScanValidationHelper
-               .findUnknownFields(inputFieldsList,
-                                  validationConfig.getMandatoryFields(),
-                                  validationConfig.getOptionalFields()
-           );
-        }
+
         Map<String, Object> populatedMap = (Map<String, Object>) BulkScanTransformHelper
                 .transformToCaseData(new HashMap<>(transformConfigManager
                         .getTransformationConfig(formType).getCaseDataFields()), inputFieldsMap);
 
         // For A58 formtype we need to set some fields based on the Or Condition...
         if (formType.equals(A58)) {
-            populatedMap.put(APPLICANTS_DOMICILE_STATUS, getDomicileStatus(inputFieldsMap));
-            populatedMap.put(APPLICANT_RELATION_TO_CHILD, getAplicantRelationToChild(inputFieldsMap));
-            // Marital status should be read if relation to child is null.
-            if (populatedMap.get(APPLICANT_RELATION_TO_CHILD) == null
-                    || StringUtils.isEmpty((String)populatedMap.get(APPLICANT_RELATION_TO_CHILD))) {
-                populatedMap.put(APPLICANT_MARITAL_STATUS, getApplicantMaritalStatus(inputFieldsMap));
-            }
-            populatedMap.put(OTHER_PARENT_RELATIONSHIP_TO_CHILD, buildRelationshipToChild(inputFieldsMap));
-            populatedMap.put(APPLICANT1_STATEMENT_OF_TRUTH_DATE, buildApplicant1StatementOfTruth(inputFieldsMap));
-            if (isNotEmpty(inputFieldsMap.get(APPLICANT2_FIRSTNAME))) {
-                populatedMap.put(APPLICANT2_STATEMENT_OF_TRUTH_DATE, buildApplicant2StatementOfTruth(inputFieldsMap));
-            }
-            if (isNotEmpty(inputFieldsMap.get(APPLICANT2_FIRSTNAME))) {
-                populatedMap.put(APPLICANT2_STATEMENT_OF_TRUTH_DATE, buildApplicant2StatementOfTruth(inputFieldsMap));
-            }
-            buildWelshSpokenPreferences(inputFieldsMap, populatedMap);
-            buildInterpreterRequiredFields(inputFieldsMap, populatedMap);
-            buildSpecialAssistanceRequiredFields(inputFieldsMap, populatedMap);
+            bulkScanConditionalTransformerHelper.transform(inputFieldsMap, populatedMap);
         }
 
         populatedMap.put(SCAN_DOCUMENTS, transformScanDocuments(bulkScanTransformationRequest));
@@ -243,77 +170,41 @@ public class BulkScanA58Service implements BulkScanService {
                                 .caseTypeId(caseTypeAndEventId.get(CASE_TYPE_ID))
                                 .eventId(caseTypeAndEventId.get(EVENT_ID))
                                 .caseData(populatedMap).build());
-        if (null != unknownFieldsList && !unknownFieldsList.isEmpty()) {
-            builder.warnings(Arrays.asList(String.format(UNKNOWN_FIELDS_MESSAGE,
-                    String.join(",", unknownFieldsList))));
+
+        if (nonNull(validationConfig)) {
+            unknownFieldsList = bulkScanValidationHelper
+                .findUnknownFields(inputFieldsList,
+                                   validationConfig.getMandatoryFields(),
+                                   validationConfig.getOptionalFields()
+                );
         }
+        updateTransformationUnknownFields(formType, unknownFieldsList, builder);
         return builder.build();
     }
 
-    private String buildRelationshipToChild(Map<String, String> inputFieldsMap) {
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(RELATIONSHIP_FATHER))) {
-            return FATHER;
-        } else if (TRUE.equalsIgnoreCase(inputFieldsMap.get(RELATIONSHIP_OTHER))) {
-            return OTHER_PARENT;
+    private void updateTransformationUnknownFields(FormType formType, List<String> fieldsNotKnownByYamlBasedImplementation, BulkScanTransformationResponse.BulkScanTransformationResponseBuilder builder) {
+        if (null != fieldsNotKnownByYamlBasedImplementation && !fieldsNotKnownByYamlBasedImplementation.isEmpty()) {
+            GroupCreator groupCreator = new GroupCreator();
+            Optional<Group> groupOptional = Optional.ofNullable(groupCreator.getGroup(formType));
+            if(groupOptional.isPresent()) {
+                List<String> fieldsKnownByGroupBasedImplementation = BulkScanGroupValidatorUtil.getAllConfiguredGroupFields(
+                    groupOptional.get());
+                List<String> warningMessages = fieldsNotKnownByYamlBasedImplementation.stream()
+                    .filter(warning -> !fieldsKnownByGroupBasedImplementation.contains(warning))
+                    .collect(Collectors.toList());
+                if(!warningMessages.isEmpty()) {
+                    builder.warnings(Arrays.asList(String.format(
+                        UNKNOWN_FIELDS_MESSAGE,
+                        String.join(",", warningMessages)
+                    )));
+                }
+            } else {
+                builder.warnings(Arrays.asList(String.format(
+                    UNKNOWN_FIELDS_MESSAGE,
+                    String.join(",", fieldsNotKnownByYamlBasedImplementation)
+                )));
+            }
         }
-        return null;
-    }
-
-    private String getApplicantMaritalStatus(Map<String, String> inputFieldsMap) {
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(applicant_marital_status_single))) {
-            return MaritalStatusEnum.SINGLE.getName();
-        }
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(applicant_marital_status_divorced))) {
-            return MaritalStatusEnum.DIVORCED.getName();
-        }
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(applicant_marital_status_widow))) {
-            return MaritalStatusEnum.WIDOW.getName();
-        }
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(applicant_marital_status_married_spouse_notfound))) {
-            return MaritalStatusEnum.SPOUSE_NOT_FOUND.getName();
-        }
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(applicant_marital_status_married_spouse_separated))) {
-            return MaritalStatusEnum.SPOUSE_SEPARATED.getName();
-        }
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(applicant_marital_status_married_spouse_incapable))) {
-            return MaritalStatusEnum.SPOUSE_INCAPABLE.getName();
-        }
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(applicant_applying_alone_natural_parent_died))) {
-            return MaritalStatusEnum.NATURAL_PARAENT_DIED.getName();
-        }
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(applicant_applying_alone_natural_parent_not_found))) {
-            return MaritalStatusEnum.NATURAL_PARENT_NOT_FOUND.getName();
-        }
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(applicant_applying_alone_no_other_parent))) {
-            return MaritalStatusEnum.NO_OTHER_PARENT.getName();
-        }
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(applicant_applying_alone_other_parent_exclusion_justified))) {
-            return MaritalStatusEnum.OTHER_PARENT_EXCLUSION_JUSTIFIED.getName();
-        }
-        return "";
-    }
-
-    private String getAplicantRelationToChild(Map<String, String> inputFieldsMap) {
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(applicant_relationToChild_father_partner))) {
-            return RelationToChildEnum.FATHER.getName();
-        }
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(applicant_relationToChild_mother_partner))) {
-            return RelationToChildEnum.MOTHER.getName();
-        }
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(applicant_relationToChild_non_civil_partner))) {
-            return RelationToChildEnum.CIVIL.getName();
-        }
-        return "";
-    }
-
-    private String getDomicileStatus(Map<String, String> inputFieldsMap) {
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(applicants_domicile_status))) {
-            return "true";
-        }
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(applicants_non_domicile_status))) {
-            return "false";
-        }
-        return "";
     }
 
     private boolean isA58RelinquishedAdoptionFormType(Map<String, String> inputFieldsMap) {
@@ -346,46 +237,6 @@ public class BulkScanA58Service implements BulkScanService {
                 notNull(inputFieldsMap.get(APPLICANT2_SOT_MONTH), APPLICANT2_SOT_MONTH),
                 notNull(inputFieldsMap.get(APPLICANT2_SOT_YEAR), APPLICANT2_SOT_YEAR)
         );
-    }
-
-    private String buildApplicant1StatementOfTruth(Map<String, String> inputFieldsMap) {
-        return inputFieldsMap.get(APPLICANT1_SOT_DAY) + SLASH_DELIMITER + inputFieldsMap.get(APPLICANT1_SOT_MONTH)
-                + SLASH_DELIMITER + inputFieldsMap.get(APPLICANT1_SOT_YEAR);
-    }
-
-    private String buildApplicant2StatementOfTruth(Map<String, String> inputFieldsMap) {
-        return inputFieldsMap.get(APPLICANT2_SOT_DAY) + SLASH_DELIMITER + inputFieldsMap.get(APPLICANT2_SOT_MONTH)
-                + SLASH_DELIMITER + inputFieldsMap.get(APPLICANT2_SOT_YEAR);
-    }
-
-    private void buildSpecialAssistanceRequiredFields(Map<String, String> inputFieldsMap,
-                                                      Map<String, Object> populatedMap) {
-        if (BooleanUtils.YES.equalsIgnoreCase(inputFieldsMap.get(SPECIAL_ASSISTANCE_FACILITIES_REQUIRED))) {
-            populatedMap.put(SPECIAL_ASSISTANCE_FACILITIES_CCD, inputFieldsMap.get(SPECIAL_ASSISTANCE_FACILITIES));
-        }
-    }
-
-    private void buildInterpreterRequiredFields(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
-        if (BooleanUtils.YES.equalsIgnoreCase(inputFieldsMap.get(COURT_INTERPRETER_ASSISTANCE_REQUIRED))) {
-            populatedMap.put(APPLICANT_REQUIRE_INTERPRETER_CCD, inputFieldsMap.get(APPLICANT_REQUIRE_INTERPRETER));
-            populatedMap.put(RESPONDENT_REQUIRE_INTERPRETER_CCD, inputFieldsMap.get(RESPONDENT_REQUIRE_INTERPRETER));
-            populatedMap.put(OTHER_PARTY_REQUIRE_INTERPRETER_CCD, inputFieldsMap.get(OTHER_PARTY_REQUIRE_INTERPRETER));
-            populatedMap.put(OTHER_PARTY_NAME_CCD, inputFieldsMap.get(OTHER_PARTY_NAME));
-            populatedMap.put(COURT_INTERPRETER_ASSISTANCE_LANGUAGE_CCD,
-                    inputFieldsMap.get(COURT_INTERPRETER_ASSISTANCE_LANGUAGE));
-        }
-    }
-
-    private void buildWelshSpokenPreferences(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
-        if (BooleanUtils.YES.equalsIgnoreCase(inputFieldsMap.get(WELSH_SPOKEN_IN_COURT_REQUIRED))) {
-            populatedMap.put(WELSH_PREFERENCE_PARTY_NAME_CCD, inputFieldsMap.get(WELSH_PREFERENCE_PARTY_NAME));
-            populatedMap.put(WELSH_PREFERENCE_WITNESS_NAME_CCD, inputFieldsMap.get(WELSH_PREFERENCE_WITNESS_NAME));
-            populatedMap.put(WELSH_PREFERENCE_CHILD_NAME_CCD, inputFieldsMap.get(WELSH_PREFERENCE_CHILD_NAME));
-            populatedMap.put(PARTY_WELSH_LANGUAGE_PREFERENCE_CCD, inputFieldsMap.get(PARTY_WELSH_LANGUAGE_PREFERENCE));
-            populatedMap.put(WITNESS_WELSH_LANGUAGE_PREFERENCE_CCD,
-                    inputFieldsMap.get(WITNESS_WELSH_LANGUAGE_PREFERENCE));
-            populatedMap.put(CHILD_WELSH_LANGUAGE_PREFERENCE_CCD, inputFieldsMap.get(CHILD_WELSH_LANGUAGE_PREFERENCE));
-        }
     }
 
     /**
