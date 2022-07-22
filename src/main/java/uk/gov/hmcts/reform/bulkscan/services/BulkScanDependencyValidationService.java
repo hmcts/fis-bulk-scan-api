@@ -22,7 +22,7 @@ public class BulkScanDependencyValidationService {
         List<BulkScanDependencyValidationConfigManager.GroupDependencyConfig> groupDepConfig = configManager
                 .getGroupDependencyValidationConfig(formType);
 
-        List<BulkScanDependencyValidationConfigManager.GroupDependencyConfig> errorGroupConfig =
+        List<BulkScanDependencyValidationConfigManager.GroupDependencyConfig> errorWarningGroupConfig =
                 groupDepConfig.stream().filter(eachConfig -> eachConfig.getGroupValidationValue()
                                 .equalsIgnoreCase(ocrDataFieldsMap.get(eachConfig.getGroupFieldName())))
                         .filter(eachConfig -> eachConfig.getDependentFields().stream()
@@ -31,8 +31,8 @@ public class BulkScanDependencyValidationService {
                                 < Integer.valueOf(eachConfig.getFieldValueToBePresent())).collect(
                                 Collectors.toUnmodifiableList());
 
-        if (!errorGroupConfig.isEmpty()) {
-            return errorGroupConfig.stream().map(eachConfig -> String.format(GROUP_DEPENDENCY_MESSAGE,
+        if (!errorWarningGroupConfig.isEmpty()) {
+            return errorWarningGroupConfig.stream().map(eachConfig -> String.format(GROUP_DEPENDENCY_MESSAGE,
                             eachConfig.getGroupFieldName(),
                             eachConfig.getFieldValueToBePresent().toString(),
                             eachConfig.getDependentFields().stream()

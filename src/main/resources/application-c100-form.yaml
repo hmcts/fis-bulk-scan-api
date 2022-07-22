@@ -17,14 +17,85 @@ uk:
               - NoMIAM_Urgency
               - NoMIAM_PreviousAttendance
               - NoMIAM_otherReasons
+              - child1_firstName
+              - child1_lastName
+              - child1_dateOfBirth
+              - child1_gender
+              - childrenServicesAuthority
+              - children_of_same_parent
+              - subject_to_childProtectionPlan
             optionalFields:
-              -
+              - child1_orderAppliedFor
+              - child1_applicant1_relationship
+              - child1_respondent1_relationship
+              - child1_localAuthority_or_socialWorker
+              - children_parentsName
+              - child_parentsName_collection
+              - child_living_with_others_details
+              - child_living_with_Applicant
+              - child_living_with_Respondent
+              - child_living_with_others
+              - child2_firstName
+              - child2_lastName
+              - child2_dateOfBirth
+              - child2_gender
+              - child2_orderAppliedFor
+              - child2_applicant1_relationship
+              - child2_respondent1_relationship
+              - child2_localAuthority_or_socialWorker
+              - child3_firstName
+              - child3_lastName
+              - child3_dateOfBirth
+              - child3_gender
+              - child3_orderAppliedFor
+              - child3_applicant1_relationship
+              - child3_respondent1_relationship
+              - child3_localAuthority_or_socialWorker
+              - child4_firstName
+              - child4_lastName
+              - child4_dateOfBirth
+              - child4_gender
+              - child4_orderAppliedFor
+              - child4_applicant1_relationship
+              - child4_respondent1_relationship
+              - child4_localAuthority_or_socialWorker
+              - NoMIAM_DVE_arrestedForSimilarOffence
+              - NoMIAM_DVE_relevantPoliceCaution
+              - NoMIAM_DVE_relevantCriminalProceeding
+              - NoMIAM_DVE_relevantConviction
+              - NoMIAM_DVE_courtOrder
+              - NoMIAM_DVE_protectionNotice
+              - NoMIAM_DVE_protectiveInjunction
+              - NoMIAM_DVE_NoCrossUndertakingGiven
+              - NoMIAM_DVE_copyOfFactFinding
+              - NoMIAM_DVE_expertEvidenceReport
+              - NoMIAM_DVE_healthProfessionalReport
+              - NoMIAM_DVE_ReferralHealthProfessionalReport
+              - NoMIAM_DVE_memberOf_MultiAgencyRiskAssessmentConferrance_letter
+              - NoMIAM_DVE_domesticViolenceAdvisor
+              - NoMIAM_DVE_independentSexualViolenceAdvisor_Letter
+              - NoMIAM_DVE_officerEmployed_localAuthority_letter
+              - NoMIAM_DVE_domesticViolenceSupportCharity_letter
+              - NoMIAM_DVE_domesticViolenceSupportCharity_refuge_letter
+              - NoMIAM_DVE_publicAuthority_confirmationLetter
+              - NoMIAM_DVE_secretaryOfState_letter
+              - NoMIAM_DVE_evidenceFinancialMatters
+              - NoMIAM_domesticViolence
+              - NoMIAM_childProtectionConcerns
+              - NoMIAM_Urgency
+              - NoMIAM_PreviousAttendence
+              - NoMIAM_otherReasons
+              - parentalResponsibilityDetails
             regexValidationFields:
               dateFields:
                 fieldNames:
                   - applicant_dateOfBirth
                   - other_court_case_date
                   - authorised_family_mediator_signed_date
+                  - child1_dateOfBirth
+                  - child2_dateOfBirth
+                  - child3_dateOfBirth
+                  - child4_dateOfBirth
                   - respondent1_dateOfBirth
                   - respondent2_dateOfBirth
                 regex: dd/MM/yyyy
