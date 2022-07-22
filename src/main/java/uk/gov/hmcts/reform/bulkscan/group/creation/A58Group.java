@@ -174,7 +174,7 @@ public class A58Group implements Group {
         final CompositeField childPermanenceOrderByScotlandCourt = getChildPermanenceOrderByScotlandCourt();
 
         final CheckboxField childNoOrderAvaialble = CheckboxField.builder()
-            .name("child_noOrderAvaialble")
+            .name("child_noOrderAvailable")
             .fieldRequiredType(FieldRequiredTypeEnum.MANDATORY)
             .build();
 
