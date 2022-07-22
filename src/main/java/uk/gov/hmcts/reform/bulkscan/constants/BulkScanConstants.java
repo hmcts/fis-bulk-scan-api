@@ -13,6 +13,8 @@ public final class BulkScanConstants {
     public static final String YES = "Yes";
     public static final String NO = "No";
 
+    public static final String MANDATORY_ATTENDED_MIAM_MESSAGE = "%s : value is no, "
+        + "and you cannot make this application";
     public static final String MANDATORY_ERROR_MESSAGE = "%s should not be null or empty";
     public static final String DATE_FORMAT_MESSAGE = "%s is invalid date or format";
     public static final String EMAIL_FORMAT_MESSAGE = "%s is invalid email";
