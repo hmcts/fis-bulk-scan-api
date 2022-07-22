@@ -19,26 +19,26 @@ public class BulkScanDependencyValidationService {
     BulkScanDependencyValidationConfigManager configManager;
 
     public List<String> getDependencyWarnings(Map<String, String> ocrDataFieldsMap, FormType formType) {
-        List<BulkScanDependencyValidationConfigManager.GroupDependencyConfig> groupDepCofig = configManager
-            .getGroupDependencyValidationConfig(formType);
+        List<BulkScanDependencyValidationConfigManager.GroupDependencyConfig> groupDepConfig = configManager
+                .getGroupDependencyValidationConfig(formType);
 
         List<BulkScanDependencyValidationConfigManager.GroupDependencyConfig> errorGroupConfig =
-            groupDepCofig.stream().filter(eachConfig -> eachConfig.getGroupValidationValue()
-                    .equalsIgnoreCase(ocrDataFieldsMap.get(eachConfig.getGroupFieldName())))
-                .filter(eachConfig -> eachConfig.getDependentFields().stream()
-                    .filter(eachDepField -> eachConfig.getDependentFieldValue()
-                        .equalsIgnoreCase(ocrDataFieldsMap.get(eachDepField))).count()
-                    < Integer.valueOf(eachConfig.getFieldValueToBePresent())).collect(
-                    Collectors.toUnmodifiableList());
+                groupDepConfig.stream().filter(eachConfig -> eachConfig.getGroupValidationValue()
+                                .equalsIgnoreCase(ocrDataFieldsMap.get(eachConfig.getGroupFieldName())))
+                        .filter(eachConfig -> eachConfig.getDependentFields().stream()
+                                .filter(eachDepField -> eachConfig.getDependentFieldValue()
+                                        .equalsIgnoreCase(ocrDataFieldsMap.get(eachDepField))).count()
+                                < Integer.valueOf(eachConfig.getFieldValueToBePresent())).collect(
+                                Collectors.toUnmodifiableList());
 
-        if(!errorGroupConfig.isEmpty()) {
+        if (!errorGroupConfig.isEmpty()) {
             return errorGroupConfig.stream().map(eachConfig -> String.format(GROUP_DEPENDENCY_MESSAGE,
-                                                      eachConfig.getGroupFieldName(),
-                                                      eachConfig.getFieldValueToBePresent().toString(),
-                                                      eachConfig.getDependentFields().stream()
-                                                          .map(String::valueOf)
-                                                          .collect(Collectors.joining(","))))
-                                    .collect(Collectors.toUnmodifiableList());
+                            eachConfig.getGroupFieldName(),
+                            eachConfig.getFieldValueToBePresent().toString(),
+                            eachConfig.getDependentFields().stream()
+                                    .map(String::valueOf)
+                                    .collect(Collectors.joining(","))))
+                    .collect(Collectors.toUnmodifiableList());
         }
 
         return Collections.emptyList();

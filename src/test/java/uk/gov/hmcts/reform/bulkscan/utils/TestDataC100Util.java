@@ -392,7 +392,7 @@ public final class TestDataC100Util {
 
         OcrDataField ocrNoMiamArrestSimilaOffenceOrderField = new OcrDataField();
         ocrNoMiamArrestSimilaOffenceOrderField.setName(NOMIAM_DVE_ARRESTEDFORSIMILAROFFENCE);
-        ocrNoMiamArrestSimilaOffenceOrderField.setValue(TICK_BOX_TRUE);
+        ocrNoMiamArrestSimilaOffenceOrderField.setValue(TICK_BOX_YES);
         fieldList.add(ocrNoMiamArrestSimilaOffenceOrderField);
 
         OcrDataField ocrNoMiamchildProtectionConcernsField = new OcrDataField();

@@ -25,24 +25,6 @@ public final class BulkScanConstants {
 
 
     public static final String EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD = "exemption_to_attend_MIAM";
-    public static final String EXEMPTION_TO_ATTEND_MIAM_DEPENDENCY_WARNING
-            = "Group Dependency Field (exemption_to_attend_MIAM) has dependency validation warning. "
-            + "Must contain at least 1 of the fields [NoMIAM_domesticViolence,NoMIAM_childProtectionConcerns,"
-            + "NoMIAM_Urgency,NoMIAM_PreviousAttendence,NoMIAM_otherReasons].";
-    public static final String NOMIAM_DOMESTICVIOLENCE_DEPENDENCY_WARNING
-            = "Group Dependency Field (NoMIAM_domesticViolence) has dependency validation warning. "
-            + "Must contain at least 1 of the fields [NoMIAM_DVE_arrestedForSimilarOffence,"
-            + "NoMIAM_DVE_relevantPoliceCaution,NoMIAM_DVE_relevantCriminalProceeding,NoMIAM_DVE_relevantConviction,"
-            + "NoMIAM_DVE_courtOrder,NoMIAM_DVE_protectionNotice,NoMIAM_DVE_protectiveInjunction,"
-            + "NoMIAM_DVE_NoCrossUndertakingGiven,NoMIAM_DVE_copyOfFactFinding,NoMIAM_DVE_expertEvidenceReport,"
-            + "NoMIAM_DVE_healthProfessionalReport,NoMIAM_DVE_ReferralHealthProfessionalReport,"
-            + "NoMIAM_DVE_memberOf_MultiAgencyRiskAssessmentConferrance_letter,NoMIAM_DVE_domesticViolenceAdvisor,"
-            + "NoMIAM_DVE_independentSexualViolenceAdvisor_Letter,NoMIAM_DVE_officerEmployed_localAuthority_letter,"
-            + "NoMIAM_DVE_domesticViolenceSupportCharity_letter,"
-            + "NoMIAM_DVE_domesticViolenceSupportCharity_refuge_letter,"
-            + "NoMIAM_DVE_publicAuthority_confirmationLetter,NoMIAM_DVE_secretaryOfState_letter,"
-            + "NoMIAM_DVE_evidenceFinancialMatters].";
-
     public static final String GROUP_DEPENDENCY_MESSAGE = "Group Dependency Field (%s) has "
             + "dependency validation warning. Must contain at least %s of the fields [%s].";
     public static final String NOMIAM_CHILDPROTECTIONCONCERNS = "NoMIAM_childProtectionConcerns";

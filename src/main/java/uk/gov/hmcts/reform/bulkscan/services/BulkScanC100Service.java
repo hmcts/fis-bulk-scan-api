@@ -14,7 +14,6 @@ import uk.gov.hmcts.reform.bulkscan.model.CaseCreationDetails;
 import uk.gov.hmcts.reform.bulkscan.model.FormType;
 import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -44,7 +43,6 @@ public class BulkScanC100Service implements BulkScanService {
 
     @Override
     public BulkScanValidationResponse validate(BulkScanValidationRequest bulkRequest) {
-        List<String> warningItems = new ArrayList<>();
         Map<String, String> inputFieldMap = getOcrDataFieldAsMap(bulkRequest.getOcrdatafields());
 
         BulkScanValidationResponse bulkScanValidationResponse =
@@ -55,11 +53,11 @@ public class BulkScanC100Service implements BulkScanService {
                 );
 
         bulkScanValidationResponse.addWarning(dependencyValidationService
-                                                  .getDependencyWarnings(inputFieldMap, FormType.C100));
+                .getDependencyWarnings(inputFieldMap, FormType.C100));
 
-       bulkScanValidationResponse.changeStatus();
+        bulkScanValidationResponse.changeStatus();
 
-       return bulkScanValidationResponse;
+        return bulkScanValidationResponse;
     }
 
     @Override

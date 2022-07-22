@@ -24,12 +24,12 @@ public class BulkScanValidationResponse {
     }
 
     public void changeStatus() {
-       if(!errors.getItems().isEmpty()) {
-           this.status = Status.ERRORS;
-       } else if (!warnings.getItems().isEmpty()) {
-           this.status = Status.WARNINGS;
-       } else {
-           this.status = Status.SUCCESS;
-       }
+        if (!errors.getItems().isEmpty()) {
+            this.status = Status.ERRORS;
+        } else if (!warnings.getItems().isEmpty()) {
+            this.status = Status.WARNINGS;
+        } else {
+            this.status = Status.SUCCESS;
+        }
     }
 }
