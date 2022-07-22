@@ -11,11 +11,8 @@ import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.CaseCreationDetails;
-import uk.gov.hmcts.reform.bulkscan.model.Errors;
 import uk.gov.hmcts.reform.bulkscan.model.FormType;
 import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
-import uk.gov.hmcts.reform.bulkscan.model.Status;
-import uk.gov.hmcts.reform.bulkscan.model.Warnings;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -38,7 +35,7 @@ public class BulkScanC100Service implements BulkScanService {
     BulkScanValidationHelper bulkScanValidationHelper;
 
     @Autowired
-    BulkScanC100FieldDependencyService bulkScanGroupDependencyValidation;
+    BulkScanDependencyValidationService dependencyValidationService;
 
     @Override
     public FormType getCaseType() {
@@ -48,9 +45,7 @@ public class BulkScanC100Service implements BulkScanService {
     @Override
     public BulkScanValidationResponse validate(BulkScanValidationRequest bulkRequest) {
         List<String> warningItems = new ArrayList<>();
-
-        BulkScanValidationResponse bulkScanGroupDependencyValidationResponse =
-                bulkScanGroupDependencyValidation.validate(bulkRequest);
+        Map<String, String> inputFieldMap = getOcrDataFieldAsMap(bulkRequest.getOcrdatafields());
 
         BulkScanValidationResponse bulkScanValidationResponse =
                 bulkScanValidationHelper.validateMandatoryAndOptionalFields(
@@ -58,26 +53,13 @@ public class BulkScanC100Service implements BulkScanService {
                         configManager.getValidationConfig(
                                 FormType.C100)
                 );
-        if (bulkScanGroupDependencyValidationResponse.getWarnings().getItems() != null) {
-            warningItems.addAll(bulkScanGroupDependencyValidationResponse.getWarnings().getItems());
-        }
-        if (bulkScanValidationResponse.getWarnings().getItems() != null) {
-            warningItems.addAll(bulkScanValidationResponse.getWarnings().getItems());
-        }
 
-        List<String> errorItems = bulkScanValidationResponse.getErrors().getItems();
+        bulkScanValidationResponse.addWarning(dependencyValidationService
+                                                  .getDependencyWarnings(inputFieldMap, FormType.C100));
 
-        Status status = (Status.WARNINGS == bulkScanValidationResponse.getStatus())
-                ? Status.WARNINGS : (Status.ERRORS == bulkScanValidationResponse.getStatus())
-                ? Status.ERRORS : (Status.WARNINGS == bulkScanGroupDependencyValidationResponse.getStatus())
-                ? Status.WARNINGS : (Status.ERRORS == bulkScanGroupDependencyValidationResponse.getStatus())
-                ? Status.ERRORS : Status.SUCCESS;
+       bulkScanValidationResponse.changeStatus();
 
-        return BulkScanValidationResponse.builder()
-                .warnings(Warnings.builder().items(warningItems).build())
-                .errors(Errors.builder().items(errorItems).build())
-                .status(status)
-                .build();
+       return bulkScanValidationResponse;
     }
 
     @Override
