@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanFormValidationConfigManager;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanTransformConfigManager;
 import uk.gov.hmcts.reform.bulkscan.enums.ChildLiveWithEnum;
+import uk.gov.hmcts.reform.bulkscan.enums.PermissionRequiredEnum;
 import uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper;
 import uk.gov.hmcts.reform.bulkscan.helper.BulkScanValidationHelper;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
@@ -15,7 +16,6 @@ import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.CaseCreationDetails;
 import uk.gov.hmcts.reform.bulkscan.model.FormType;
 import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
-import uk.gov.hmcts.reform.bulkscan.model.Status;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -24,6 +24,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import static org.apache.commons.lang3.BooleanUtils.TRUE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICATION_PERMISSION_REQUIRED;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ASKING_PERMISSION_FOR_APPLICATION;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.BULK_SCAN_CASE_REFERENCE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CASE_TYPE_ID;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILDREN_OF_SAME_PARENT;
@@ -38,6 +40,8 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LOC
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EVENT_ID;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_ERROR_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NO;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PERMISSION_REQUIRED;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PERMISSION_REQUIRED_REASON;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.XOR_CONDITIONAL_FIELDS_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES;
 import static uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper.transformScanDocuments;
@@ -69,13 +73,26 @@ public class BulkScanC100Service implements BulkScanService {
         BulkScanValidationResponse response = bulkScanValidationHelper
             .validateMandatoryAndOptionalFields(bulkRequest.getOcrdatafields(), configManager.getValidationConfig(
                                                                               FormType.C100));
-        List<String> manualValidationErrors = doChildRelatedValidation(inputFieldsMap);
-        if (!manualValidationErrors.isEmpty()) {
-            response.setStatus(Status.ERRORS);
-            response.getErrors().items.addAll(manualValidationErrors);
-        }
+        response.addErrors(doChildRelatedValidation(inputFieldsMap));
+        response.addErrors(doPermissionRelatedFieldValidation(inputFieldsMap));
+
+        response.changeStatus();
 
         return response;
+    }
+
+    /**
+     * if Asking permission for application is selected as yes then permission reqiured reson.
+     * in section 5 is mandatory.
+     * */
+    public List<String> doPermissionRelatedFieldValidation(Map<String, String> inputFieldsMap) {
+        List<String> errors = new ArrayList<>();
+        if (null != inputFieldsMap.get(ASKING_PERMISSION_FOR_APPLICATION)
+            && YES.equalsIgnoreCase(inputFieldsMap.get(ASKING_PERMISSION_FOR_APPLICATION))
+            && null == inputFieldsMap.get(PERMISSION_REQUIRED_REASON)) {
+            errors.add(String.format(MANDATORY_ERROR_MESSAGE, PERMISSION_REQUIRED_REASON));
+        }
+        return errors;
     }
 
     /**
@@ -128,6 +145,7 @@ public class BulkScanC100Service implements BulkScanService {
                     .getCaseDataFields()), inputFieldsMap);
 
         populatedMap.put(CHILD_LIVE_WITH_KEY, getChildLiveWith(inputFieldsMap));
+        populatedMap.put(APPLICATION_PERMISSION_REQUIRED, getApplicationPermissionRequired(inputFieldsMap));
 
         populatedMap.put(SCAN_DOCUMENTS, transformScanDocuments(bulkScanTransformationRequest));
 
@@ -151,6 +169,19 @@ public class BulkScanC100Service implements BulkScanService {
         }
         if (TRUE.equals(inputFieldsMap.get(CHILD_LIVING_WITH_OTHERS))) {
             return ChildLiveWithEnum.OTHERPEOPLE.getName();
+        }
+        return StringUtils.EMPTY;
+    }
+
+    private String getApplicationPermissionRequired(Map<String, String> inputFieldsMap) {
+        if (YES.equalsIgnoreCase(inputFieldsMap.get(PERMISSION_REQUIRED))) {
+            return PermissionRequiredEnum.yes.getDisplayedValue();
+        }
+        if ("No, permission Not required".equals(inputFieldsMap.get(PERMISSION_REQUIRED))) {
+            return PermissionRequiredEnum.noNotRequired.getDisplayedValue();
+        }
+        if ("No, permission Now sought".equals(inputFieldsMap.get(PERMISSION_REQUIRED))) {
+            return PermissionRequiredEnum.noNowSought.getDisplayedValue();
         }
         return StringUtils.EMPTY;
     }

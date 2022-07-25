@@ -12,6 +12,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import uk.gov.hmcts.reform.bulkscan.enums.PermissionRequiredEnum;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
@@ -22,14 +23,7 @@ import uk.gov.hmcts.reform.bulkscan.services.postcode.PostcodeLookupService;
 import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILDREN_OF_SAME_PARENT;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILDREN_PARENTS_NAME;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILDREN_PARENTS_NAME_COLLECTION;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVE_WITH_KEY;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVING_WITH_APPLICANT;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVING_WITH_OTHERS;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVING_WITH_RESPONDENT;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LOCAL_AUTHORITY_OR_SOCIAL_WORKER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.*;
 import static uk.gov.hmcts.reform.bulkscan.utils.TestResourceUtil.readFileFrom;
 
 @ExtendWith(SpringExtension.class)
@@ -198,6 +192,36 @@ class BulkScanC100ServiceTest {
         assertEquals(
             "OtherPeople",
             res.getCaseCreationDetails().getCaseData().get(CHILD_LIVE_WITH_KEY));
+    }
+
+    @Test
+    @DisplayName("C100 transform with permission requried option as 'No, permission Not required'.")
+    void testC100PermissionRequiredTransform() throws IOException {
+        BulkScanTransformationRequest bulkScanTransformationRequest = mapper.readValue(
+            readFileFrom(C100_TRANSFORM_REQUEST_PATH), BulkScanTransformationRequest.class);
+        bulkScanTransformationRequest.getOcrdatafields().stream()
+            .filter(eachField ->
+                        PERMISSION_REQUIRED.equalsIgnoreCase(eachField.getName()))
+            .forEach(field -> field.setValue("No, permission Not required"));
+        BulkScanTransformationResponse res = bulkScanValidationService.transform(bulkScanTransformationRequest);
+        assertEquals(
+            PermissionRequiredEnum.noNotRequired.getDisplayedValue(),
+            res.getCaseCreationDetails().getCaseData().get(APPLICATION_PERMISSION_REQUIRED));
+    }
+
+    @Test
+    @DisplayName("C100 transform with permission requried option as 'No, permission Now sought'.")
+    void testC100PermissionRequiredAsSoughtTransform() throws IOException {
+        BulkScanTransformationRequest bulkScanTransformationRequest = mapper.readValue(
+            readFileFrom(C100_TRANSFORM_REQUEST_PATH), BulkScanTransformationRequest.class);
+        bulkScanTransformationRequest.getOcrdatafields().stream()
+            .filter(eachField ->
+                        PERMISSION_REQUIRED.equalsIgnoreCase(eachField.getName()))
+            .forEach(field -> field.setValue("No, permission Now sought"));
+        BulkScanTransformationResponse res = bulkScanValidationService.transform(bulkScanTransformationRequest);
+        assertEquals(
+            PermissionRequiredEnum.noNowSought.getDisplayedValue(),
+            res.getCaseCreationDetails().getCaseData().get(APPLICATION_PERMISSION_REQUIRED));
     }
 
 }

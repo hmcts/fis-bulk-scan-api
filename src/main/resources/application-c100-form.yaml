@@ -48,6 +48,10 @@ uk:
               - child4_applicant1_relationship
               - child4_respondent1_relationship
               - child4_localAuthority_or_socialWorker
+              - permissionRequired
+              - permissionRequiredReason
+              - briefDetailsOnTheApplication
+              - havePreviousParentingPlan
             regexValidationFields:
               dateFields:
                 fieldNames:

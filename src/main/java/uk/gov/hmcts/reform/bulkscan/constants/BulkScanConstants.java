@@ -150,6 +150,14 @@ public final class BulkScanConstants {
     public static final String CHILD_LOCAL_AUTHORITY_OR_SOCIAL_WORKER = "child1_localAuthority_or_socialWorker";
     public static final String CHILD_LIVE_WITH_KEY = "childLiveWith";
 
+    public static final String ASKING_PERMISSION_FOR_APPLICATION = "askingPermissionForApplication";
+    public static final String PERMISSION_REQUIRED_REASON = "permissionRequiredReason";
+
+    public static final String APPLICATION_PERMISSION_REQUIRED = "applicationPermissionRequired";
+    public static final String PERMISSION_REQUIRED = "permissionRequired";
+
+
+
     private static Map<String,String> getErrorMessageMap() {
         return Map.of(MANDATORY_KEY, MANDATORY_ERROR_MESSAGE,
                       DATE_FORMAT_FIELDS_KEY, DATE_FORMAT_MESSAGE,
