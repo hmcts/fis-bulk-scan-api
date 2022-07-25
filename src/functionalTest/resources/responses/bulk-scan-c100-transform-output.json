@@ -4,70 +4,74 @@
     "event_id": "create-case-privatelaw-bs",
     "case_data": {
       "parentalResponsibilityDetails": "parentResponsibility",
+      "familyMediatorMiam": null,
       "childrenKNownToLocalAuthorityTextArea": "socialWorker",
       "childrenParentsName": "parentsName",
-      "briefDetailsOnTheApplication": "briefDetails",
+      "applicantAttendedMiam": null,
       "childrenSubjectOfChildProtectionPlan": "protectionplan",
-      "scannedDocuments": [
-
-      ],
+      "miamTable": {
+        "claimingExemptionMiam": null,
+        "familyMediatorMiam": null,
+        "applicantAttendedMiam": null
+      },
+      "scannedDocuments": [],
       "childrenKNownToLocalAuthority": "Yes",
+      "briefDetailsOnTheApplication": "briefDetails",
       "havePreviousParentingPlan": "parentingplan",
       "children": [
         {
           "value": {
-            "firstName": "firstName",
-            "lastName": "LastName",
-            "dateOfBirth": "02/02/2020",
-            "gender": "Male",
-            "orderAppliedFor": "orderAppliedFor",
-            "applicantsRelationshipToChild": "applicant",
-            "respondentsRelationshipToChild": "respondent"
+            "firstName": null,
+            "lastName": null,
+            "dateOfBirth": null,
+            "gender": null,
+            "orderAppliedFor": null,
+            "applicantsRelationshipToChild": null,
+            "respondentsRelationshipToChild": null
           }
         },
         {
           "value": {
-            "firstName": "child2firstName",
-            "lastName": "child2LastName",
-            "dateOfBirth": "02/02/2020",
-            "gender": "Male",
-            "orderAppliedFor": "child2orderAppliedFor",
-            "applicantsRelationshipToChild": "applicant",
-            "respondentsRelationshipToChild": "respondent"
+            "firstName": null,
+            "lastName": null,
+            "dateOfBirth": null,
+            "gender": null,
+            "orderAppliedFor": null,
+            "applicantsRelationshipToChild": null,
+            "respondentsRelationshipToChild": null
           }
         },
         {
           "value": {
-            "firstName": "child3firstName",
-            "lastName": "child3LastName",
-            "dateOfBirth": "02/02/2020",
-            "gender": "Male",
-            "orderAppliedFor": "child3orderAppliedFor",
-            "applicantsRelationshipToChild": "applicant",
-            "respondentsRelationshipToChild": "respondent"
+            "firstName": null,
+            "lastName": null,
+            "dateOfBirth": null,
+            "gender": null,
+            "orderAppliedFor": null,
+            "applicantsRelationshipToChild": null,
+            "respondentsRelationshipToChild": null
           }
         },
         {
           "value": {
-            "firstName": "child4firstName",
-            "lastName": "child4LastName",
-            "dateOfBirth": "02/02/2020",
-            "gender": "Male",
-            "orderAppliedFor": "child3orderAppliedFor",
-            "applicantsRelationshipToChild": "applicant",
-            "respondentsRelationshipToChild": "respondent"
+            "firstName": null,
+            "lastName": null,
+            "dateOfBirth": null,
+            "gender": null,
+            "orderAppliedFor": null,
+            "applicantsRelationshipToChild": null,
+            "respondentsRelationshipToChild": null
           }
         }
       ],
       "personWhoLivesWithChild": "living other details",
-      "applicationPermissionRequiredReason": "reason",
       "childrenOfSameParent": "Yes",
       "childLiveWith": "Applicant",
+      "claimingExemptionMiam": "yes",
       "childParentsNameCollection": "parentsNameColl",
+      "applicationPermissionRequiredReason": "reason",
       "applicationPermissionRequired": "yes"
     }
   },
-  "warnings": [
-
-  ]
+  "warnings": []
 }

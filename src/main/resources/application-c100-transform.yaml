@@ -49,6 +49,14 @@ uk:
               childrenParentsName: children_parentsName
               childParentsNameCollection: child_parentsName_collection
               personWhoLivesWithChild: child_living_with_others_details
+              claimingExemptionMiam: exemption_to_attend_MIAM
+              familyMediatorMiam: familyMember_Intimation_on_No_MIAM
+              applicantAttendedMiam: attended_MIAM
               applicationPermissionRequiredReason: permissionRequiredReason
               briefDetailsOnTheApplication: briefDetailsOnTheApplication
               havePreviousParentingPlan: havePreviousParentingPlan
+              miamTable:
+                claimingExemptionMiam: exemption_to_attend_MIAM
+                familyMediatorMiam: familyMember_Intimation_on_No_MIAM
+                applicantAttendedMiam: attended_MIAM
+

@@ -175,7 +175,6 @@
       "name":"child4_localAuthority_or_socialWorker",
       "value":"socialWorker"
     },
-
     {
       "name":"permissionRequired",
       "value":"Yes"
@@ -193,8 +192,12 @@
       "value":"parentingplan"
     },
     {
-      "name":"askingPermissionForApplication",
-      "value":"Yes"
+      "name": "askingPermissionForApplication",
+      "value": "Yes"
+    },
+    {
+      "name":"exemption_to_attend_MIAM",
+      "value":"yes"
     }
   ],
   "form_type": "C100"
