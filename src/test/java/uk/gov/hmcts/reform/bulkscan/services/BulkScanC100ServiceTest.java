@@ -242,7 +242,7 @@ class BulkScanC100ServiceTest {
     @DisplayName("Should generate warnings on [NoMiam_ChildProtectionConcerns,NoNiam_Urgency,"
             + "NoMIAM_PreviousAttendanceReason,NoMIAM_other_Reasons] checked but without"
             + " dependent Part 3b-3e respective field(s)")
-    void testC100NoMiamChildProtectionConcernsWarningOnSection3ACheckbox() {
+    void testC100NoMiamChildProtectionConcernsWarningOnSections3BTo3ECheckbox() {
         List<OcrDataField> c100GetDomesticViolenceWarningData = new ArrayList<>();
         c100GetDomesticViolenceWarningData.addAll(TestDataC100Util.getAllNamesRelationSuccessData());
         c100GetDomesticViolenceWarningData.addAll(TestDataC100Util.getExemptionDependentNoMiamFieldWarningData());
