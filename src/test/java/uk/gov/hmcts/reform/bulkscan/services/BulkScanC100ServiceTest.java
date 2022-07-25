@@ -41,7 +41,23 @@ class BulkScanC100ServiceTest {
     private static final String EXEMPTION_TO_ATTEND_MIAM_DEPENDENCY_WARNING
             = "Group Dependency Field (exemption_to_attend_MIAM) has dependency validation warning. "
             + "Must contain at least 1 of the fields [NoMIAM_domesticViolence,NoMIAM_childProtectionConcerns,"
-            + "NoMIAM_Urgency,NoMIAM_PreviousAttendence,NoMIAM_otherReasons].";
+            + "NoMIAM_Urgency,NoMIAM_PreviousAttendance,NoMIAM_otherReasons].";
+    private static final String NOMIAM_CHILDPROTECTIONCONCERNS_DEPENDENCY_WARNING
+            = "Group Dependency Field (NoMIAM_childProtectionConcerns) has dependency validation warning. "
+            + "Must contain at least 1 of the fields [NoMIAM_subjectOfEnquiries_byLocalAuthority,"
+            + "NoMIAM_subjectOfCPP_byLocalAuthority].";
+    private static final String NOMIAM_PREVIOUSATTENDANCE_DEPENDENCY_WARNING
+            = "Group Dependency Field (NoMIAM_PreviousAttendance) has dependency validation warning. "
+            + "Must contain at least 1 of the fields [NoMIAM_PreviousAttendanceReason].";
+    private static final String NOMIAM_OTHERREASONS_DEPENDENCY_WARNING
+            = "Group Dependency Field (NoMIAM_otherReasons) has dependency validation warning. "
+            + "Must contain at least 1 of the fields [NoMIAM_otherExceptions].";
+    private static final String NOMIAM_URGENCY_DEPENDENCY_WARNING
+            = "Group Dependency Field (NoMIAM_Urgency) has dependency validation warning. "
+            + "Must contain at least 1 of the fields [NoMIAM_urgency_risk_to_life_liberty_or_safety,"
+            + "NoMIAM_urgency_riskOfHarm,NoMIAM_urgency_risk_to_unlawfulRemoval,"
+            + "NoMIAM_urgency_risk_to_miscarriageOfJustice,NoMIAM_urgency_unreasonablehardship,"
+            + "NoMIAM_urgency_irretrievableProblem,NoMIAM_urgency_conflictWithOtherStateCourts].";
     private static final String NOMIAM_DOMESTICVIOLENCE_DEPENDENCY_WARNING
             = "Group Dependency Field (NoMIAM_domesticViolence) has dependency validation warning. "
             + "Must contain at least 1 of the fields [NoMIAM_DVE_arrestedForSimilarOffence,"
@@ -193,7 +209,7 @@ class BulkScanC100ServiceTest {
     @DisplayName("Should generate warning on absence of dependency field(s) on exemption_To_Attend_MIAM field")
     void testC100WarningExemptionToAttendMiamWithoutAPage3Checkbox() {
         List<OcrDataField> c100GetExemptionWarningData = new ArrayList<>();
-        c100GetExemptionWarningData.addAll(TestDataC100Util.getAllNamesSuccessData());
+        c100GetExemptionWarningData.addAll(TestDataC100Util.getAllNamesRelationSuccessData());
         c100GetExemptionWarningData.addAll(TestDataC100Util.getExemptionToAttendWarningData());
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
                 c100GetExemptionWarningData).build();
@@ -202,18 +218,14 @@ class BulkScanC100ServiceTest {
 
         assertEquals(Status.WARNINGS, res.status);
         assertTrue(res.getWarnings().items.contains(String.format(EXEMPTION_TO_ATTEND_MIAM_DEPENDENCY_WARNING)));
+
     }
 
     @Test
     @DisplayName("Should generate warning on NoMiam_DomesticViolence checked but without dependency Part 3a field(s)")
     void testC100NoMiamDomesticViolenceWarningOnSection3ACheckbox() {
         List<OcrDataField> c100GetDomesticViolenceWarningData = new ArrayList<>();
-        OcrDataField ocrDataPostCodeField = new OcrDataField();
-        ocrDataPostCodeField.setName("applicant_postCode");
-        ocrDataPostCodeField.setValue(POST_CODE);
-
-        c100GetDomesticViolenceWarningData.add(ocrDataPostCodeField);
-        c100GetDomesticViolenceWarningData.addAll(TestDataC100Util.getAllNamesSuccessData());
+        c100GetDomesticViolenceWarningData.addAll(TestDataC100Util.getAllNamesRelationSuccessData());
         c100GetDomesticViolenceWarningData.addAll(TestDataC100Util.getNoMiamDomesticWarningData());
 
         when(postcodeLookupService.isValidPostCode(POST_CODE, null)).thenReturn(true);
@@ -224,6 +236,28 @@ class BulkScanC100ServiceTest {
 
         assertEquals(Status.WARNINGS, res.status);
         assertTrue(res.getWarnings().items.contains(NOMIAM_DOMESTICVIOLENCE_DEPENDENCY_WARNING));
+    }
+
+    @Test
+    @DisplayName("Should generate warnings on [NoMiam_ChildProtectionConcerns,NoNiam_Urgency,"
+            + "NoMIAM_PreviousAttendanceReason,NoMIAM_other_Reasons] checked but without"
+            + " dependent Part 3b-3e respective field(s)")
+    void testC100NoMiamChildProtectionConcernsWarningOnSection3ACheckbox() {
+        List<OcrDataField> c100GetDomesticViolenceWarningData = new ArrayList<>();
+        c100GetDomesticViolenceWarningData.addAll(TestDataC100Util.getAllNamesRelationSuccessData());
+        c100GetDomesticViolenceWarningData.addAll(TestDataC100Util.getExemptionDependentNoMiamFieldWarningData());
+
+        when(postcodeLookupService.isValidPostCode(POST_CODE, null)).thenReturn(true);
+        BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
+                c100GetDomesticViolenceWarningData).build();
+
+        BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
+
+        assertEquals(Status.WARNINGS, res.status);
+        assertTrue(res.getWarnings().items.contains(NOMIAM_CHILDPROTECTIONCONCERNS_DEPENDENCY_WARNING));
+        assertTrue(res.getWarnings().items.contains(NOMIAM_OTHERREASONS_DEPENDENCY_WARNING));
+        assertTrue(res.getWarnings().items.contains(NOMIAM_PREVIOUSATTENDANCE_DEPENDENCY_WARNING));
+        assertTrue(res.getWarnings().items.contains(NOMIAM_URGENCY_DEPENDENCY_WARNING));
     }
 
     @Test

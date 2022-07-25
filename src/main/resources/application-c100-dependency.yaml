@@ -14,7 +14,7 @@ uk:
               dependentFieldValue: "True"
               groupFieldName: exemption_to_attend_MIAM
               groupValidationValue: "Yes"
-              minFieldRequiredCount: 1
+              requiredFieldCount: 1
             - NoMIAM_domesticViolence:
               dependentFields:
                 - NoMIAM_DVE_arrestedForSimilarOffence
@@ -41,7 +41,7 @@ uk:
               dependentFieldValue: "Yes"
               groupFieldName: NoMIAM_domesticViolence
               groupValidationValue: "True"
-              minFieldRequiredCount: 1
+              requiredFieldCount: 1
             - groupNoMIAMChildProtectionConcerns:
               dependentFields:
                 - NoMIAM_subjectOfEnquiries_byLocalAuthority
@@ -49,7 +49,7 @@ uk:
               dependentFieldValue: "Yes"
               groupFieldName: NoMIAM_childProtectionConcerns
               groupValidationValue: "True"
-              minFieldRequiredCount: 1
+              requiredFieldCount: 1
             - groupNoMIAMUrgency:
               dependentFields:
                 - NoMIAM_urgency_risk_to_life_liberty_or_safety
@@ -62,18 +62,18 @@ uk:
               dependentFieldValue: "Yes"
               groupFieldName: NoMIAM_Urgency
               groupValidationValue: "True"
-              minFieldRequiredCount: 1
+              requiredFieldCount: 1
             - groupNoMIAMPreviousAttendance:
               dependentFields:
                 - NoMIAM_PreviousAttendanceReason
               dependentFieldValue: "Yes"
               groupFieldName: NoMIAM_PreviousAttendance
               groupValidationValue: "True"
-              minFieldRequiredCount: 1
+              requiredFieldCount: 1
             - groupNoMIAMOtherReasons:
               dependentFields:
                 - NoMIAM_otherExceptions
               dependentFieldValue: "Yes"
-              groupFieldName: NoMIAM_other_Reasons
+              groupFieldName: NoMIAM_otherReasons
               groupValidationValue: "True"
-              minFieldRequiredCount: 1
+              requiredFieldCount: 1
