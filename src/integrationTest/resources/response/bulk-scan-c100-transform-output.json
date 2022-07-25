@@ -3,17 +3,19 @@
     "case_type_id": "PRLAPPS",
     "event_id": "create-case-privatelaw-bs",
     "case_data": {
-      "scannedDocuments":[
-
-      ],
-      "childrenKNownToLocalAuthority": "Yes",
-      "childrenKNownToLocalAuthorityTextArea": "socialWorker",
-      "childrenSubjectOfChildProtectionPlan": "protectionplan",
       "parentalResponsibilityDetails": "parentResponsibility",
-      "childrenOfSameParent": "Yes",
+      "childrenKNownToLocalAuthorityTextArea": "socialWorker",
+      "applicants": {
+        "value": {
+          "firstName": null,
+          "lastName": null
+        }
+      },
       "childrenParentsName": "parentsName",
-      "childParentsNameCollection": "parentsNameColl",
-      "personWhoLivesWithChild": "living other details",
+      "childrenSubjectOfChildProtectionPlan": "protectionplan",
+      "scannedDocuments": [],
+      "childrenKNownToLocalAuthority": "Yes",
+      "prohibitedStepsOrder": null,
       "children": [
         {
           "value": {
@@ -60,10 +62,13 @@
           }
         }
       ],
-      "childLiveWith": "Applicant"
+      "personWhoLivesWithChild": "living other details",
+      "childrenOfSameParent": "Yes",
+      "childLiveWith": "Applicant",
+      "specialIssueOrder": null,
+      "typeOfChildArrangementsOrder": null,
+      "childParentsNameCollection": "parentsNameColl"
     }
   },
-  "warnings": [
-
-  ]
+  "warnings": []
 }

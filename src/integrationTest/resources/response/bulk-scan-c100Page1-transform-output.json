@@ -1,7 +1,7 @@
 {
   "case_creation_details":{
-    "case_type_id":"C100",
-    "event_id":"create-case-adop-bs",
+    "case_type_id":"PRLAPPS",
+    "event_id":"create-case-privatelaw-bs",
     "case_data":{
       "typeOfChildArrangementsOrder": "true",
       "prohibitedStepsOrder": "true",
