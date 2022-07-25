@@ -110,6 +110,6 @@
     }
   },
   "warnings":[
-    "The following fields are are not configured with our system. [child_dateOFBirth,child_agreementDate] "
+
   ]
 }
