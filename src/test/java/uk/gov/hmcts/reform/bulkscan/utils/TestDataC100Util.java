@@ -13,6 +13,7 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NOMIAM_OT
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NOMIAM_PREVIOUSATTENDANCE_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NOMIAM_URGENCY_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.TICK_BOX_FALSE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.TICK_BOX_NO;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.TICK_BOX_TRUE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.TICK_BOX_YES;
 
@@ -35,6 +36,27 @@ public final class TestDataC100Util {
 
     public static List<OcrDataField> getAllNamesRelationSuccessData() {
         List<OcrDataField> fieldList = new ArrayList<>();
+
+        OcrDataField ocrDataPreviousOrOngoingProceedingField = new OcrDataField();
+        ocrDataPreviousOrOngoingProceedingField.setName("previous_or_ongoingProceeding");
+        ocrDataPreviousOrOngoingProceedingField.setValue(TICK_BOX_NO);
+        fieldList.add(ocrDataPreviousOrOngoingProceedingField);
+
+        OcrDataField ocrDataExistingCaseEmergencyProtectionField = new OcrDataField();
+        ocrDataExistingCaseEmergencyProtectionField
+                .setName("existingCase_onEmergencyProtection_Care_or_supervisioNorder");
+        ocrDataExistingCaseEmergencyProtectionField.setValue(TICK_BOX_NO);
+        fieldList.add(ocrDataExistingCaseEmergencyProtectionField);
+
+        OcrDataField ocrDataFamilyMemberIntimationField = new OcrDataField();
+        ocrDataFamilyMemberIntimationField.setName("familyMember_Intimation_on_No_MIAM");
+        ocrDataFamilyMemberIntimationField.setValue(TICK_BOX_NO);
+        fieldList.add(ocrDataFamilyMemberIntimationField);
+
+        OcrDataField ocrDataAttendedMiamField = new OcrDataField();
+        ocrDataAttendedMiamField.setName("attended_MIAM");
+        ocrDataAttendedMiamField.setValue(TICK_BOX_NO);
+        fieldList.add(ocrDataAttendedMiamField);
 
         fieldList.addAll(getChild1NamesRelationSuccessData());
 
