@@ -18,11 +18,13 @@ public class BulkScanDependencyValidationService {
     @Autowired
     BulkScanDependencyValidationConfigManager configManager;
 
-    /***
+    @SuppressWarnings("Summary")
+    /**
+     * Records dependency validation warnings for group fields
      *
-     * @param ocrDataFieldsMap: for all fields and respective values in the bulkscan request
-     * @param formType: affected case form - e.g. C100, A58...
-     * @return: A list of warnings for all field dependent groups not satisfying applicant's form requirements
+     * @param ocrDataFieldsMap HashMap of all fields and respective values in the bulkscan request
+     * @param formType type of forms e.g. C100, A58...
+     * @return list of warnings for all group fields violating form requirements
      */
     public List<String> getDependencyWarnings(Map<String, String> ocrDataFieldsMap, FormType formType) {
         List<BulkScanDependencyValidationConfigManager.GroupDependencyConfig> groupDepConfig = configManager
@@ -34,13 +36,13 @@ public class BulkScanDependencyValidationService {
                         .filter(eachConfig -> eachConfig.getDependentFields().stream()
                                 .filter(eachDepField -> eachConfig.getDependentFieldValue()
                                         .equalsIgnoreCase(ocrDataFieldsMap.get(eachDepField))).count()
-                                < Integer.valueOf(eachConfig.getMinFieldRequiredCount())).collect(
+                                < Integer.valueOf(eachConfig.getRequiredFieldCount())).collect(
                                 Collectors.toUnmodifiableList());
 
         if (!errWarningGroupConfig.isEmpty()) {
             return errWarningGroupConfig.stream().map(eachConfig -> String.format(GROUP_DEPENDENCY_MESSAGE,
                             eachConfig.getGroupFieldName(),
-                            eachConfig.getMinFieldRequiredCount().toString(),
+                            eachConfig.getRequiredFieldCount().toString(),
                             eachConfig.getDependentFields().stream()
                                     .map(String::valueOf)
                                     .collect(Collectors.joining(","))))

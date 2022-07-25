@@ -29,7 +29,7 @@ public class BulkScanDependencyValidationConfigManager {
         String dependentFieldValue;
         String groupFieldName;
         String groupValidationValue;
-        String minFieldRequiredCount;
+        String requiredFieldCount;
     }
 
     public List<GroupDependencyConfig> getGroupDependencyValidationConfig(FormType formType) {

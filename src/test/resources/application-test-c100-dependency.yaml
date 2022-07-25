@@ -14,7 +14,7 @@ uk:
               dependentFieldValue: "True"
               groupFieldName: exemption_to_attend_MIAM
               groupValidationValue: "Yes"
-              minFieldRequiredCount: 1
+              requiredFieldCount: 1
             - NoMIAM_domesticViolence:
               dependentFields:
                 - NoMIAM_DVE_arrestedForSimilarOffence
@@ -41,4 +41,4 @@ uk:
               dependentFieldValue: "Yes"
               groupFieldName: NoMIAM_domesticViolence
               groupValidationValue: "True"
-              minFieldRequiredCount: 1
+              requiredFieldCount: 1
