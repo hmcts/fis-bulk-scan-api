@@ -27,12 +27,12 @@ public final class BulkScanConstants {
     public static final String EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD = "exemption_to_attend_MIAM";
     public static final String GROUP_DEPENDENCY_MESSAGE = "Group Dependency Field (%s) has "
             + "dependency validation warning. Must contain at least %s of the fields [%s].";
-    public static final String NOMIAM_CHILDPROTECTIONCONCERNS = "NoMIAM_childProtectionConcerns";
-    public static final String NOMIAM_DOMESTICVIOLENCE = "NoMIAM_domesticViolence";
-    public static final String NOMIAM_DVE_ARRESTEDFORSIMILAROFFENCE = "NoMIAM_DVE_arrestedForSimilarOffence";
-    public static final String NOMIAM_URGENCY = "NoMIAM_Urgency";
-    public static final String NOMIAM_PREVIOUSATTENDANCE = "NoMIAM_PreviousAttendance";
-    public static final String NOMIAM_OTHERREASONS = "NoMIAM_otherReasons";
+    public static final String NOMIAM_CHILDPROTECTIONCONCERNS_FIELD = "NoMIAM_childProtectionConcerns";
+    public static final String NOMIAM_DOMESTICVIOLENCE_FIELD = "NoMIAM_domesticViolence";
+    public static final String NOMIAM_DVE_ARRESTEDFORSIMILAROFFENCE_FIELD = "NoMIAM_DVE_arrestedForSimilarOffence";
+    public static final String NOMIAM_URGENCY_FIELD = "NoMIAM_Urgency";
+    public static final String NOMIAM_PREVIOUSATTENDANCE_FIELD = "NoMIAM_PreviousAttendance";
+    public static final String NOMIAM_OTHERREASONS_FIELD = "NoMIAM_otherReasons";
 
     public static final String TICK_BOX_FALSE = "false";
     public static final String TICK_BOX_NO = "No";

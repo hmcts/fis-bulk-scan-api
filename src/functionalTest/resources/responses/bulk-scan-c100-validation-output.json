@@ -1,7 +1,13 @@
 {
   "status":"WARNINGS",
   "warnings":{
-    "items":["Group Dependency Field (NoMIAM_domesticViolence) has dependency validation warning. Must contain at least 1 of the fields [NoMIAM_DVE_arrestedForSimilarOffence,NoMIAM_DVE_relevantPoliceCaution,NoMIAM_DVE_relevantCriminalProceeding,NoMIAM_DVE_relevantConviction,NoMIAM_DVE_courtOrder,NoMIAM_DVE_protectionNotice,NoMIAM_DVE_protectiveInjunction,NoMIAM_DVE_NoCrossUndertakingGiven,NoMIAM_DVE_copyOfFactFinding,NoMIAM_DVE_expertEvidenceReport,NoMIAM_DVE_healthProfessionalReport,NoMIAM_DVE_ReferralHealthProfessionalReport,NoMIAM_DVE_memberOf_MultiAgencyRiskAssessmentConferrance_letter,NoMIAM_DVE_domesticViolenceAdvisor,NoMIAM_DVE_independentSexualViolenceAdvisor_Letter,NoMIAM_DVE_officerEmployed_localAuthority_letter,NoMIAM_DVE_domesticViolenceSupportCharity_letter,NoMIAM_DVE_domesticViolenceSupportCharity_refuge_letter,NoMIAM_DVE_publicAuthority_confirmationLetter,NoMIAM_DVE_secretaryOfState_letter,NoMIAM_DVE_evidenceFinancialMatters]."]
+    "items":[
+      "Group Dependency Field (NoMIAM_domesticViolence) has dependency validation warning. Must contain at least 1 of the fields [NoMIAM_DVE_arrestedForSimilarOffence,NoMIAM_DVE_relevantPoliceCaution,NoMIAM_DVE_relevantCriminalProceeding,NoMIAM_DVE_relevantConviction,NoMIAM_DVE_courtOrder,NoMIAM_DVE_protectionNotice,NoMIAM_DVE_protectiveInjunction,NoMIAM_DVE_NoCrossUndertakingGiven,NoMIAM_DVE_copyOfFactFinding,NoMIAM_DVE_expertEvidenceReport,NoMIAM_DVE_healthProfessionalReport,NoMIAM_DVE_ReferralHealthProfessionalReport,NoMIAM_DVE_memberOf_MultiAgencyRiskAssessmentConferrance_letter,NoMIAM_DVE_domesticViolenceAdvisor,NoMIAM_DVE_independentSexualViolenceAdvisor_Letter,NoMIAM_DVE_officerEmployed_localAuthority_letter,NoMIAM_DVE_domesticViolenceSupportCharity_letter,NoMIAM_DVE_domesticViolenceSupportCharity_refuge_letter,NoMIAM_DVE_publicAuthority_confirmationLetter,NoMIAM_DVE_secretaryOfState_letter,NoMIAM_DVE_evidenceFinancialMatters].",
+      "Group Dependency Field (NoMIAM_childProtectionConcerns) has dependency validation warning. Must contain at least 1 of the fields [NoMIAM_subjectOfEnquiries_byLocalAuthority,NoMIAM_subjectOfCPP_byLocalAuthority].",
+      "Group Dependency Field (NoMIAM_Urgency) has dependency validation warning. Must contain at least 1 of the fields [NoMIAM_urgency_risk_to_life_liberty_or_safety,NoMIAM_urgency_riskOfHarm,NoMIAM_urgency_risk_to_unlawfulRemoval,NoMIAM_urgency_risk_to_miscarriageOfJustice,NoMIAM_urgency_unreasonablehardship,NoMIAM_urgency_irretrievableProblem,NoMIAM_urgency_conflictWithOtherStateCourts].",
+      "Group Dependency Field (NoMIAM_PreviousAttendance) has dependency validation warning. Must contain at least 1 of the fields [NoMIAM_PreviousAttendanceReason].",
+      "Group Dependency Field (NoMIAM_otherReasons) has dependency validation warning. Must contain at least 1 of the fields [NoMIAM_otherExceptions]."
+    ]
   },
   "errors":{
     "items":[]

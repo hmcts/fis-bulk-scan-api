@@ -9,7 +9,7 @@ uk:
                 - NoMIAM_domesticViolence
                 - NoMIAM_childProtectionConcerns
                 - NoMIAM_Urgency
-                - NoMIAM_PreviousAttendence
+                - NoMIAM_PreviousAttendance
                 - NoMIAM_otherReasons
               dependentFieldValue: "True"
               groupFieldName: exemption_to_attend_MIAM
@@ -40,5 +40,40 @@ uk:
                 - NoMIAM_DVE_evidenceFinancialMatters
               dependentFieldValue: "Yes"
               groupFieldName: NoMIAM_domesticViolence
+              groupValidationValue: "True"
+              requiredFieldCount: 1
+            - groupNoMIAMChildProtectionConcerns:
+              dependentFields:
+                - NoMIAM_subjectOfEnquiries_byLocalAuthority
+                - NoMIAM_subjectOfCPP_byLocalAuthority
+              dependentFieldValue: "Yes"
+              groupFieldName: NoMIAM_childProtectionConcerns
+              groupValidationValue: "True"
+              requiredFieldCount: 1
+            - groupNoMIAMUrgency:
+              dependentFields:
+                - NoMIAM_urgency_risk_to_life_liberty_or_safety
+                - NoMIAM_urgency_riskOfHarm
+                - NoMIAM_urgency_risk_to_unlawfulRemoval
+                - NoMIAM_urgency_risk_to_miscarriageOfJustice
+                - NoMIAM_urgency_unreasonablehardship
+                - NoMIAM_urgency_irretrievableProblem
+                - NoMIAM_urgency_conflictWithOtherStateCourts
+              dependentFieldValue: "Yes"
+              groupFieldName: NoMIAM_Urgency
+              groupValidationValue: "True"
+              requiredFieldCount: 1
+            - groupNoMIAMPreviousAttendance:
+              dependentFields:
+                - NoMIAM_PreviousAttendanceReason
+              dependentFieldValue: "Yes"
+              groupFieldName: NoMIAM_PreviousAttendance
+              groupValidationValue: "True"
+              requiredFieldCount: 1
+            - groupNoMIAMOtherReasons:
+              dependentFields:
+                - NoMIAM_otherExceptions
+              dependentFieldValue: "Yes"
+              groupFieldName: NoMIAM_otherReasons
               groupValidationValue: "True"
               requiredFieldCount: 1

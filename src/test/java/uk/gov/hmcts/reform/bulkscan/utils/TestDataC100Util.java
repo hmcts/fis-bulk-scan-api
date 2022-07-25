@@ -7,12 +7,12 @@ import java.util.Arrays;
 import java.util.List;
 
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NOMIAM_CHILDPROTECTIONCONCERNS;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NOMIAM_DOMESTICVIOLENCE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NOMIAM_DVE_ARRESTEDFORSIMILAROFFENCE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NOMIAM_OTHERREASONS;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NOMIAM_PREVIOUSATTENDANCE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NOMIAM_URGENCY;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NOMIAM_CHILDPROTECTIONCONCERNS_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NOMIAM_DOMESTICVIOLENCE_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NOMIAM_DVE_ARRESTEDFORSIMILAROFFENCE_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NOMIAM_OTHERREASONS_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NOMIAM_PREVIOUSATTENDANCE_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NOMIAM_URGENCY_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.TICK_BOX_FALSE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.TICK_BOX_TRUE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.TICK_BOX_YES;
@@ -31,16 +31,6 @@ public final class TestDataC100Util {
 
     public static List<OcrDataField> getData() {
         List<OcrDataField> fieldList = new ArrayList<>();
-
-        OcrDataField ocrDataEmergencyProtectionOrder = new OcrDataField();
-        ocrDataEmergencyProtectionOrder.setName("emergency_protection_order");
-        ocrDataEmergencyProtectionOrder.setValue("7777777");
-        fieldList.add(ocrDataEmergencyProtectionOrder);
-
-        OcrDataField ocrApplicantRelationToChildField = new OcrDataField();
-        ocrApplicantRelationToChildField.setName("applicant_relationToChild");
-        ocrApplicantRelationToChildField.setValue("Step Father");
-        fieldList.add(ocrApplicantRelationToChildField);
 
         OcrDataField ocrEmailField = new OcrDataField();
         ocrEmailField.setName("applicant_email");
@@ -82,14 +72,13 @@ public final class TestDataC100Util {
         ocrAddressField.setValue("123 test street, London");
         fieldList.add(ocrAddressField);
 
-        fieldList.addAll(getAllNamesSuccessData());
-
+        fieldList.addAll(getAllNamesRelationSuccessData());
         fieldList.addAll(getExemptionToAttendMiamSuccessData());
 
         return fieldList;
     }
 
-    public static List<OcrDataField> getAllNamesSuccessData() {
+    public static List<OcrDataField> getAllNamesRelationSuccessData() {
         List<OcrDataField> fieldList = new ArrayList<>();
         OcrDataField ocrDataFirstNameField = new OcrDataField();
         ocrDataFirstNameField.setName("applicant_firstName");
@@ -115,6 +104,16 @@ public final class TestDataC100Util {
         ocrDataApplicantChildRelationshipField.setName("applicant_childRelationship");
         ocrDataApplicantChildRelationshipField.setValue("LastName");
         fieldList.add(ocrDataApplicantChildRelationshipField);
+
+        OcrDataField ocrDataEmergencyProtectionOrder = new OcrDataField();
+        ocrDataEmergencyProtectionOrder.setName("emergency_protection_order");
+        ocrDataEmergencyProtectionOrder.setValue("7777777");
+        fieldList.add(ocrDataEmergencyProtectionOrder);
+
+        OcrDataField ocrApplicantRelationToChildField = new OcrDataField();
+        ocrApplicantRelationToChildField.setName("applicant_relationToChild");
+        ocrApplicantRelationToChildField.setValue("Step Father");
+        fieldList.add(ocrApplicantRelationToChildField);
 
         return fieldList;
     }
@@ -297,38 +296,33 @@ public final class TestDataC100Util {
     public static List<OcrDataField> getExemptionToAttendWarningData() {
         List<OcrDataField> fieldList = new ArrayList<>();
 
-        OcrDataField ocrDataEmergencyProtectionOrderField = new OcrDataField();
-        ocrDataEmergencyProtectionOrderField.setName("emergency_protection_order");
-        ocrDataEmergencyProtectionOrderField.setValue("LastName");
-        fieldList.add(ocrDataEmergencyProtectionOrderField);
-
         OcrDataField ocrExemptionToAttendMiamField = new OcrDataField();
         ocrExemptionToAttendMiamField.setName(EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD);
         ocrExemptionToAttendMiamField.setValue(TICK_BOX_YES);
         fieldList.add(ocrExemptionToAttendMiamField);
 
         OcrDataField ocrNoMiamDomesticViolenceOrderField = new OcrDataField();
-        ocrNoMiamDomesticViolenceOrderField.setName(NOMIAM_DOMESTICVIOLENCE);
+        ocrNoMiamDomesticViolenceOrderField.setName(NOMIAM_DOMESTICVIOLENCE_FIELD);
         ocrNoMiamDomesticViolenceOrderField.setValue(TICK_BOX_FALSE);
         fieldList.add(ocrNoMiamDomesticViolenceOrderField);
 
         OcrDataField ocrNoMiamchildProtectionConcernsField = new OcrDataField();
-        ocrNoMiamchildProtectionConcernsField.setName(NOMIAM_CHILDPROTECTIONCONCERNS);
+        ocrNoMiamchildProtectionConcernsField.setName(NOMIAM_CHILDPROTECTIONCONCERNS_FIELD);
         ocrNoMiamchildProtectionConcernsField.setValue(TICK_BOX_FALSE);
         fieldList.add(ocrNoMiamchildProtectionConcernsField);
 
         OcrDataField ocrNoMiamUrgencyField = new OcrDataField();
-        ocrNoMiamUrgencyField.setName(NOMIAM_URGENCY);
+        ocrNoMiamUrgencyField.setName(NOMIAM_URGENCY_FIELD);
         ocrNoMiamUrgencyField.setValue(TICK_BOX_FALSE);
         fieldList.add(ocrNoMiamUrgencyField);
 
         OcrDataField ocrNoMiamPreviousAttendanceField = new OcrDataField();
-        ocrNoMiamPreviousAttendanceField.setName(NOMIAM_PREVIOUSATTENDANCE);
+        ocrNoMiamPreviousAttendanceField.setName(NOMIAM_PREVIOUSATTENDANCE_FIELD);
         ocrNoMiamPreviousAttendanceField.setValue(TICK_BOX_FALSE);
         fieldList.add(ocrNoMiamPreviousAttendanceField);
 
         OcrDataField ocrNoMiamotherReasonsField = new OcrDataField();
-        ocrNoMiamotherReasonsField.setName(NOMIAM_OTHERREASONS);
+        ocrNoMiamotherReasonsField.setName(NOMIAM_OTHERREASONS_FIELD);
         ocrNoMiamotherReasonsField.setValue(TICK_BOX_FALSE);
         fieldList.add(ocrNoMiamotherReasonsField);
 
@@ -339,10 +333,41 @@ public final class TestDataC100Util {
     public static List<OcrDataField> getNoMiamDomesticWarningData() {
         List<OcrDataField> fieldList = new ArrayList<>();
 
-        OcrDataField ocrDataEmergencyProtectionOrderField = new OcrDataField();
-        ocrDataEmergencyProtectionOrderField.setName("emergency_protection_order");
-        ocrDataEmergencyProtectionOrderField.setValue("LastName");
-        fieldList.add(ocrDataEmergencyProtectionOrderField);
+        OcrDataField ocrExemptionToAttendMiamField = new OcrDataField();
+        ocrExemptionToAttendMiamField.setName(EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD);
+        ocrExemptionToAttendMiamField.setValue(TICK_BOX_YES);
+        fieldList.add(ocrExemptionToAttendMiamField);
+
+        OcrDataField ocrNoMiamdomesticViolenceField = new OcrDataField();
+        ocrNoMiamdomesticViolenceField.setName(NOMIAM_DOMESTICVIOLENCE_FIELD);
+        ocrNoMiamdomesticViolenceField.setValue(TICK_BOX_TRUE);
+        fieldList.add(ocrNoMiamdomesticViolenceField);
+
+        OcrDataField ocrNoMiamchildProtectionConcernsField = new OcrDataField();
+        ocrNoMiamchildProtectionConcernsField.setName(NOMIAM_CHILDPROTECTIONCONCERNS_FIELD);
+        ocrNoMiamchildProtectionConcernsField.setValue(TICK_BOX_FALSE);
+        fieldList.add(ocrNoMiamchildProtectionConcernsField);
+
+        OcrDataField ocrNoMiamUrgencyField = new OcrDataField();
+        ocrNoMiamUrgencyField.setName(NOMIAM_URGENCY_FIELD);
+        ocrNoMiamUrgencyField.setValue(TICK_BOX_FALSE);
+        fieldList.add(ocrNoMiamUrgencyField);
+
+        OcrDataField ocrNoMiamPreviousAttendanceField = new OcrDataField();
+        ocrNoMiamPreviousAttendanceField.setName(NOMIAM_PREVIOUSATTENDANCE_FIELD);
+        ocrNoMiamPreviousAttendanceField.setValue(TICK_BOX_FALSE);
+        fieldList.add(ocrNoMiamPreviousAttendanceField);
+
+        OcrDataField ocrNoMiamotherReasonsField = new OcrDataField();
+        ocrNoMiamotherReasonsField.setName(NOMIAM_OTHERREASONS_FIELD);
+        ocrNoMiamotherReasonsField.setValue(TICK_BOX_FALSE);
+        fieldList.add(ocrNoMiamotherReasonsField);
+
+        return fieldList;
+    }
+
+    public static List<OcrDataField> getExemptionDependentNoMiamFieldWarningsData() {
+        List<OcrDataField> fieldList = new ArrayList<>();
 
         OcrDataField ocrExemptionToAttendMiamField = new OcrDataField();
         ocrExemptionToAttendMiamField.setName(EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD);
@@ -350,28 +375,28 @@ public final class TestDataC100Util {
         fieldList.add(ocrExemptionToAttendMiamField);
 
         OcrDataField ocrNoMiamdomesticViolenceField = new OcrDataField();
-        ocrNoMiamdomesticViolenceField.setName(NOMIAM_DOMESTICVIOLENCE);
+        ocrNoMiamdomesticViolenceField.setName(NOMIAM_DOMESTICVIOLENCE_FIELD);
         ocrNoMiamdomesticViolenceField.setValue(TICK_BOX_TRUE);
         fieldList.add(ocrNoMiamdomesticViolenceField);
 
         OcrDataField ocrNoMiamchildProtectionConcernsField = new OcrDataField();
-        ocrNoMiamchildProtectionConcernsField.setName(NOMIAM_CHILDPROTECTIONCONCERNS);
-        ocrNoMiamchildProtectionConcernsField.setValue(TICK_BOX_FALSE);
+        ocrNoMiamchildProtectionConcernsField.setName(NOMIAM_CHILDPROTECTIONCONCERNS_FIELD);
+        ocrNoMiamchildProtectionConcernsField.setValue(TICK_BOX_TRUE);
         fieldList.add(ocrNoMiamchildProtectionConcernsField);
 
         OcrDataField ocrNoMiamUrgencyField = new OcrDataField();
-        ocrNoMiamUrgencyField.setName(NOMIAM_URGENCY);
-        ocrNoMiamUrgencyField.setValue(TICK_BOX_FALSE);
+        ocrNoMiamUrgencyField.setName(NOMIAM_URGENCY_FIELD);
+        ocrNoMiamUrgencyField.setValue(TICK_BOX_TRUE);
         fieldList.add(ocrNoMiamUrgencyField);
 
         OcrDataField ocrNoMiamPreviousAttendanceField = new OcrDataField();
-        ocrNoMiamPreviousAttendanceField.setName(NOMIAM_PREVIOUSATTENDANCE);
-        ocrNoMiamPreviousAttendanceField.setValue(TICK_BOX_FALSE);
+        ocrNoMiamPreviousAttendanceField.setName(NOMIAM_PREVIOUSATTENDANCE_FIELD);
+        ocrNoMiamPreviousAttendanceField.setValue(TICK_BOX_TRUE);
         fieldList.add(ocrNoMiamPreviousAttendanceField);
 
         OcrDataField ocrNoMiamotherReasonsField = new OcrDataField();
-        ocrNoMiamotherReasonsField.setName(NOMIAM_OTHERREASONS);
-        ocrNoMiamotherReasonsField.setValue(TICK_BOX_FALSE);
+        ocrNoMiamotherReasonsField.setName(NOMIAM_OTHERREASONS_FIELD);
+        ocrNoMiamotherReasonsField.setValue(TICK_BOX_TRUE);
         fieldList.add(ocrNoMiamotherReasonsField);
 
         return fieldList;
@@ -386,34 +411,95 @@ public final class TestDataC100Util {
         fieldList.add(ocrExemptionToAttendMiamField);
 
         OcrDataField ocrNoMiamDomesticViolenceOrderField = new OcrDataField();
-        ocrNoMiamDomesticViolenceOrderField.setName(NOMIAM_DOMESTICVIOLENCE);
+        ocrNoMiamDomesticViolenceOrderField.setName(NOMIAM_DOMESTICVIOLENCE_FIELD);
         ocrNoMiamDomesticViolenceOrderField.setValue(TICK_BOX_TRUE);
         fieldList.add(ocrNoMiamDomesticViolenceOrderField);
 
         OcrDataField ocrNoMiamArrestSimilaOffenceOrderField = new OcrDataField();
-        ocrNoMiamArrestSimilaOffenceOrderField.setName(NOMIAM_DVE_ARRESTEDFORSIMILAROFFENCE);
+        ocrNoMiamArrestSimilaOffenceOrderField.setName(NOMIAM_DVE_ARRESTEDFORSIMILAROFFENCE_FIELD);
         ocrNoMiamArrestSimilaOffenceOrderField.setValue(TICK_BOX_YES);
         fieldList.add(ocrNoMiamArrestSimilaOffenceOrderField);
 
         OcrDataField ocrNoMiamchildProtectionConcernsField = new OcrDataField();
-        ocrNoMiamchildProtectionConcernsField.setName(NOMIAM_CHILDPROTECTIONCONCERNS);
+        ocrNoMiamchildProtectionConcernsField.setName(NOMIAM_CHILDPROTECTIONCONCERNS_FIELD);
         ocrNoMiamchildProtectionConcernsField.setValue(TICK_BOX_FALSE);
         fieldList.add(ocrNoMiamchildProtectionConcernsField);
 
         OcrDataField ocrNoMiamUrgencyField = new OcrDataField();
-        ocrNoMiamUrgencyField.setName(NOMIAM_URGENCY);
+        ocrNoMiamUrgencyField.setName(NOMIAM_URGENCY_FIELD);
         ocrNoMiamUrgencyField.setValue(TICK_BOX_FALSE);
         fieldList.add(ocrNoMiamUrgencyField);
 
         OcrDataField ocrNoMiamPreviousAttendanceField = new OcrDataField();
-        ocrNoMiamPreviousAttendanceField.setName(NOMIAM_PREVIOUSATTENDANCE);
+        ocrNoMiamPreviousAttendanceField.setName(NOMIAM_PREVIOUSATTENDANCE_FIELD);
         ocrNoMiamPreviousAttendanceField.setValue(TICK_BOX_FALSE);
         fieldList.add(ocrNoMiamPreviousAttendanceField);
 
         OcrDataField ocrNoMiamotherReasonsField = new OcrDataField();
-        ocrNoMiamotherReasonsField.setName(NOMIAM_OTHERREASONS);
+        ocrNoMiamotherReasonsField.setName(NOMIAM_OTHERREASONS_FIELD);
         ocrNoMiamotherReasonsField.setValue(TICK_BOX_FALSE);
         fieldList.add(ocrNoMiamotherReasonsField);
+
+        return fieldList;
+    }
+
+    public static List<OcrDataField> getExemptionToAttendMiamDependentSuccessData() {
+        List<OcrDataField> fieldList = new ArrayList<>();
+
+        OcrDataField ocrExemptionToAttendMiamField = new OcrDataField();
+        ocrExemptionToAttendMiamField.setName(EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD);
+        ocrExemptionToAttendMiamField.setValue(TICK_BOX_YES);
+        fieldList.add(ocrExemptionToAttendMiamField);
+
+        OcrDataField ocrNoMiamDomesticViolenceOrderField = new OcrDataField();
+        ocrNoMiamDomesticViolenceOrderField.setName(NOMIAM_DOMESTICVIOLENCE_FIELD);
+        ocrNoMiamDomesticViolenceOrderField.setValue(TICK_BOX_TRUE);
+        fieldList.add(ocrNoMiamDomesticViolenceOrderField);
+
+        OcrDataField ocrNoMiamArrestSimilaOffenceOrderField = new OcrDataField();
+        ocrNoMiamArrestSimilaOffenceOrderField.setName(NOMIAM_DVE_ARRESTEDFORSIMILAROFFENCE_FIELD);
+        ocrNoMiamArrestSimilaOffenceOrderField.setValue(TICK_BOX_YES);
+        fieldList.add(ocrNoMiamArrestSimilaOffenceOrderField);
+
+        OcrDataField ocrNoMiamchildProtectionConcernsField = new OcrDataField();
+        ocrNoMiamchildProtectionConcernsField.setName(NOMIAM_CHILDPROTECTIONCONCERNS_FIELD);
+        ocrNoMiamchildProtectionConcernsField.setValue(TICK_BOX_TRUE);
+        fieldList.add(ocrNoMiamchildProtectionConcernsField);
+
+        OcrDataField ocrNoMiamSubjectOfEnquiriesField = new OcrDataField();
+        ocrNoMiamSubjectOfEnquiriesField.setName("NoMIAM_subjectOfEnquiries_byLocalAuthority");
+        ocrNoMiamSubjectOfEnquiriesField.setValue(TICK_BOX_YES);
+        fieldList.add(ocrNoMiamSubjectOfEnquiriesField);
+
+        OcrDataField ocrNoMiamUrgencyField = new OcrDataField();
+        ocrNoMiamUrgencyField.setName(NOMIAM_URGENCY_FIELD);
+        ocrNoMiamUrgencyField.setValue(TICK_BOX_TRUE);
+        fieldList.add(ocrNoMiamUrgencyField);
+
+        OcrDataField ocrNoMiamUrgencyRiskOfHarmField = new OcrDataField();
+        ocrNoMiamUrgencyRiskOfHarmField.setName("NoMIAM_urgency_riskOfHarm");
+        ocrNoMiamUrgencyRiskOfHarmField.setValue(TICK_BOX_YES);
+        fieldList.add(ocrNoMiamUrgencyRiskOfHarmField);
+
+        OcrDataField ocrNoMiamPreviousAttendanceField = new OcrDataField();
+        ocrNoMiamPreviousAttendanceField.setName(NOMIAM_PREVIOUSATTENDANCE_FIELD);
+        ocrNoMiamPreviousAttendanceField.setValue(TICK_BOX_TRUE);
+        fieldList.add(ocrNoMiamPreviousAttendanceField);
+
+        OcrDataField ocrNoMiamPreviousAttendanceReasonField = new OcrDataField();
+        ocrNoMiamPreviousAttendanceReasonField.setName("NoMIAM_PreviousAttendanceReason");
+        ocrNoMiamPreviousAttendanceReasonField.setValue(TICK_BOX_YES);
+        fieldList.add(ocrNoMiamPreviousAttendanceReasonField);
+
+        OcrDataField ocrNoMiamotherReasonsField = new OcrDataField();
+        ocrNoMiamotherReasonsField.setName(NOMIAM_OTHERREASONS_FIELD);
+        ocrNoMiamotherReasonsField.setValue(TICK_BOX_TRUE);
+        fieldList.add(ocrNoMiamotherReasonsField);
+
+        OcrDataField ocrNoMiamOtherExceptionsField = new OcrDataField();
+        ocrNoMiamOtherExceptionsField.setName("NoMIAM_otherExceptions");
+        ocrNoMiamOtherExceptionsField.setValue(TICK_BOX_YES);
+        fieldList.add(ocrNoMiamOtherExceptionsField);
 
         return fieldList;
     }
