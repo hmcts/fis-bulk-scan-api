@@ -13,6 +13,8 @@ public final class BulkScanConstants {
     public static final String YES = "Yes";
     public static final String NO = "No";
 
+    public static final String MANDATORY_ATTENDED_MIAM_MESSAGE = "%s : value is no, "
+            + "and you cannot make this application";
     public static final String MANDATORY_ERROR_MESSAGE = "%s should not be null or empty";
     public static final String DATE_FORMAT_MESSAGE = "%s is invalid date or format";
     public static final String EMAIL_FORMAT_MESSAGE = "%s is invalid email";
@@ -165,6 +167,20 @@ public final class BulkScanConstants {
     public static final String CHILDREN_SOCIAL_AUTHORITY = "childrenServicesAuthority";
     public static final String CHILD_LOCAL_AUTHORITY_OR_SOCIAL_WORKER = "child1_localAuthority_or_socialWorker";
     public static final String CHILD_LIVE_WITH_KEY = "childLiveWith";
+
+    // C100 form section 2 validation fields
+
+    public static final String PREVIOUS_OR_ONGOING_PROCEEDING =  "previous_or_ongoingProceeding";
+
+    public static final String EXISTING_CASE_ON_EMERGENCY_PROTECTION_CARE_OR_SUPERVISION_ORDER =
+            "existingCase_onEmergencyProtection_Care_or_supervisioNorder";
+
+    public static final String EXEMPTION_TO_ATTEND_MIAM =  "exemption_to_attend_MIAM";
+
+    public static final String FAMILY_MEMBER_INTIMATION_ON_NO_MIAM = "familyMember_Intimation_on_No_MIAM";
+
+    public static final String ATTENDED_MIAM = "attended_MIAM";
+    //END C100 form section 2 validation fields
 
     private static Map<String,String> getErrorMessageMap() {
         return Map.of(MANDATORY_KEY, MANDATORY_ERROR_MESSAGE,

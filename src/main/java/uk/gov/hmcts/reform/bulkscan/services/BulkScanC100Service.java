@@ -56,6 +56,9 @@ public class BulkScanC100Service implements BulkScanService {
     BulkScanValidationHelper bulkScanValidationHelper;
 
     @Autowired
+    BulkScanC100ValidationService bulkScanC100ValidationService;
+
+    @Autowired
     BulkScanDependencyValidationService dependencyValidationService;
 
     @Override
@@ -82,6 +85,13 @@ public class BulkScanC100Service implements BulkScanService {
 
         bulkScanValidationResponse.addWarning(dependencyValidationService
                 .getDependencyWarnings(inputFieldMap, FormType.C100));
+
+        BulkScanValidationResponse response = BulkScanValidationResponse.builder()
+                .errors(bulkScanValidationResponse.getErrors()).build();
+        response = bulkScanC100ValidationService
+                .validateAttendMiam(bulkRequest.getOcrdatafields(), response);
+
+        bulkScanValidationResponse.addErrors(response.getErrors().getItems());
 
         bulkScanValidationResponse.changeStatus();
 

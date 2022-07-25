@@ -3,7 +3,6 @@ package uk.gov.hmcts.reform.bulkscan.utils;
 import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD;
