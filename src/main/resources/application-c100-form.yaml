@@ -5,7 +5,11 @@ uk:
         caseTypeofApplication:
           C100:
             mandatoryFields:
+              - previous_or_ongoingProceeding
+              - existingCase_onEmergencyProtection_Care_or_supervisioNorder
               - exemption_to_attend_MIAM
+              - familyMember_Intimation_on_No_MIAM
+              - attended_MIAM
               - NoMIAM_domesticViolence
               - NoMIAM_childProtectionConcerns
               - NoMIAM_Urgency
