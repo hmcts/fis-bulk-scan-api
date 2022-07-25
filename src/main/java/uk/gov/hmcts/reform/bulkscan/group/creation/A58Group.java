@@ -41,8 +41,14 @@ public class A58Group implements Group {
                 getCompositeFieldGroupchildLaOrParentalResponsibilityDetails();
         final CompositeField compositeFieldGroupChildMaintanenceOrder =
                 getCompositeFieldGroupChildMaintanenceOrder();
+        final CompositeField compositeFieldGroupChildProceedingDetails =
+            getCompositeFieldGroupChildProceedingDetails();
+        final CompositeField compositeFieldGroupChildProceedingDetailsWithRelation =
+            getCompositeFieldGroupChildProceedingDetailsWithRelation();
 
         // Add groups
+        formIndividualGroup.add(compositeFieldGroupChildProceedingDetailsWithRelation);
+        formIndividualGroup.add(compositeFieldGroupChildProceedingDetails);
         formIndividualGroup.add(compositeFieldGroupChildMaintanenceOrder);
         formIndividualGroup.add(compositeFieldGroupchildLaOrParentalResponsibilityDetails);
         formIndividualGroup.add(compositeFieldGroupChildCourt);
@@ -480,5 +486,95 @@ public class A58Group implements Group {
             .name("child_gender")
             .fieldRequiredType(FieldRequiredTypeEnum.MANDATORY)
             .build();
+    }
+
+    private CompositeField getCompositeFieldGroupChildProceedingDetailsWithRelation() {
+        //child no Procceding Details With Relation
+        //child proceeding Details With Relation
+        //child dont Know Proceeding Details WithRelation
+        final CompositeField compositeFieldGroupChildProceedingDetailsWithRelation =
+            CompositeField.builder()
+                .selectorType(SelectorEnum.ONE_CHILD_REQUIRED)
+                .fieldType(FieldTypeEnum.ROOT)
+                .build();
+
+        final CompositeField childProceedingDetailsWithRelation = CompositeField.builder()
+            .name("child_proceedingDetailsWithRelation")
+            .fieldType(FieldTypeEnum.CHECKBOX)
+            .selectorType(SelectorEnum.ALL_CHILD_REQUIRED)
+            .fieldRequiredType(FieldRequiredTypeEnum.MANDATORY)
+            .build();
+        childProceedingDetailsWithRelation.add(TextField.builder()
+                                                   .name("child_typeOfOrderRelation")
+                                                   .fieldRequiredType(FieldRequiredTypeEnum.MANDATORY)
+                                                   .build());
+        childProceedingDetailsWithRelation.add(DateField.builder()
+                                                   .name("child_dateOfOrderRelation")
+                                                   .fieldRequiredType(FieldRequiredTypeEnum.MANDATORY)
+                                                   .build());
+        childProceedingDetailsWithRelation.add(TextField.builder()
+                                                   .name("child_nameOfCourtRelation")
+                                                   .fieldRequiredType(FieldRequiredTypeEnum.MANDATORY)
+                                                   .build());
+        childProceedingDetailsWithRelation.add(TextField.builder()
+                                                   .name("child_caseNumberRelation")
+                                                   .fieldRequiredType(FieldRequiredTypeEnum.MANDATORY)
+                                                   .build());
+
+        CheckboxField childNoProccedingDetailsWithRelation = CheckboxField.builder()
+            .name("child_noProccedingDetailsWithRelation")
+            .fieldRequiredType(FieldRequiredTypeEnum.MANDATORY)
+            .build();
+        CheckboxField childDontKnowProceedingDetailsWithRelation = CheckboxField.builder()
+            .name("child_dontKnowProceedingDetailsWithRelation")
+            .fieldRequiredType(FieldRequiredTypeEnum.MANDATORY)
+            .build();
+
+        compositeFieldGroupChildProceedingDetailsWithRelation.add(childProceedingDetailsWithRelation);
+        compositeFieldGroupChildProceedingDetailsWithRelation.add(childNoProccedingDetailsWithRelation);
+        compositeFieldGroupChildProceedingDetailsWithRelation.add(childDontKnowProceedingDetailsWithRelation);
+        return compositeFieldGroupChildProceedingDetailsWithRelation;
+    }
+
+    private CompositeField getCompositeFieldGroupChildProceedingDetails() {
+        //child no Proceeding Details
+        //child proceeding Details
+        final CompositeField compositeFieldGroupChildProceedingDetails =
+            CompositeField.builder()
+                .fieldType(FieldTypeEnum.ROOT)
+                .selectorType(SelectorEnum.ONE_CHILD_REQUIRED)
+                .build();
+
+        final CompositeField childProceedingDetails = CompositeField.builder()
+            .name("child_proceedingDetails")
+            .fieldType(FieldTypeEnum.CHECKBOX)
+            .selectorType(SelectorEnum.ALL_CHILD_REQUIRED)
+            .fieldRequiredType(FieldRequiredTypeEnum.MANDATORY)
+            .build();
+        childProceedingDetails.add(TextField.builder()
+                                       .name("child_typeOfOrder")
+                                       .fieldRequiredType(FieldRequiredTypeEnum.MANDATORY)
+                                       .build());
+        childProceedingDetails.add(DateField.builder()
+                                       .name("child_dateOfOrder")
+                                       .fieldRequiredType(FieldRequiredTypeEnum.MANDATORY)
+                                       .build());
+        childProceedingDetails.add(TextField.builder()
+                                       .name("child_nameOfCourt")
+                                       .fieldRequiredType(FieldRequiredTypeEnum.MANDATORY)
+                                       .build());
+        childProceedingDetails.add(DateField.builder()
+                                       .name("child_caseNumber")
+                                       .fieldRequiredType(FieldRequiredTypeEnum.MANDATORY)
+                                       .build());
+
+        final CheckboxField childNoProceedingDetails = CheckboxField.builder()
+            .name("child_noProceedingDetails")
+            .fieldRequiredType(FieldRequiredTypeEnum.MANDATORY)
+            .build();
+
+        compositeFieldGroupChildProceedingDetails.add(childProceedingDetails);
+        compositeFieldGroupChildProceedingDetails.add(childNoProceedingDetails);
+        return compositeFieldGroupChildProceedingDetails;
     }
 }

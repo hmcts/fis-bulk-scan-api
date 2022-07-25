@@ -55,29 +55,28 @@ public final class BulkScanConstants {
     public static final String DOB_HINT = "dob";
     public static final String DATE_OF_BIRTH_HINT = "dateOfBirth";
 
-    public static final String applicant_marital_status_single = "applicant_marital_status_single";
-    public static final String applicant_marital_status_divorced = "applicant_marital_status_divorced";
+    public static final String APPLICANT_MARITAL_STATUS_SINGLE = "applicant_marital_status_single";
+    public static final String APPLICANT_MARITAL_STATUS_DIVORCED = "applicant_marital_status_divorced";
     public static final String applicant_marital_status_divorced1 = "applicant_marital_status_divorced";
-    public static final String applicant_marital_status_widow = "applicant_marital_status_widow";
-    public static final String applicant_marital_status_married_spouse_notfound =
+    public static final String APPLICANT_MARITAL_STATUS_WIDOW = "applicant_marital_status_widow";
+    public static final String APPLICANT_MARITAL_STATUS_MARRIED_SPOUSE_NOTFOUND =
             "applicant_marital_status_married_spouse_notfound";
-    public static final String applicant_marital_status_married_spouse_separated =
+    public static final String APPLICANT_MARITAL_STATUS_MARRIED_SPOUSE_SEPARATED =
             "applicant_marital_status_married_spouse_separated";
-    public static final String applicant_marital_status_married_spouse_incapable =
+    public static final String APPLICANT_MARITAL_STATUS_MARRIED_SPOUSE_INCAPABLE =
             "applicant_marital_status_married_spouse_incapable";
-    public static final String applicant_applying_alone_natural_parent_died =
+    public static final String APPLICANT_APPLYING_ALONE_NATURAL_PARENT_DIED =
             "applicant_applying_alone_natural_parent_died";
-    public static final String applicant_applying_alone_natural_parent_not_found =
+    public static final String APPLICANT_APPLYING_ALONE_NATURAL_PARENT_NOT_FOUND =
             "applicant_applying_alone_natural_parent_not_found";
-    public static final String applicant_applying_alone_no_other_parent = "applicant_applying_alone_no_other_parent";
-    public static final String applicant_applying_alone_other_parent_exclusion_justified =
+    public static final String APPLICANT_APPLYING_ALONE_NO_OTHER_PARENT = "applicant_applying_alone_no_other_parent";
+    public static final String APPLICANT_APPLYING_ALONE_OTHER_PARENT_EXCLUSION_JUSTIFIED =
             "applicant_applying_alone_other_parent_exclusion_justified";
-    public static final String applicant_relationToChild_father_partner = "applicant_relationToChild_father_partner";
-    public static final String applicant_relationToChild_mother_partner = "applicant_relationToChild_mother_partner";
-    public static final String applicant_relationToChild_non_civil_partner =
+    public static final String APPLICANT_RELATION_TO_CHILD_MOTHER_PARTNER = "applicant_relationToChild_mother_partner";
+    public static final String APPLICANT_RELATION_TO_CHILD_NON_CIVIL_PARTNER =
             "applicant_relationToChild_non_civil_partner";
-    public static final String applicants_domicile_status = "applicants_domicile_status";
-    public static final String applicants_non_domicile_status = "applicants_non_domicile_status";
+    public static final String APPLICANTS_DOMICILE_STATUS = "applicants_domicile_status";
+    public static final String APPLICANTS_NON_DOMICILE_STATUS = "applicants_non_domicile_status";
 
     public static final String ADOPTION_ORDER_CONSENT = "adoption_order_consent";
 

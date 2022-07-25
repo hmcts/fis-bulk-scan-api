@@ -81,14 +81,7 @@ uk:
                 approximateDateOfBirth: child_approximateDateOfBirth
                 placeAndCountry: child_placeAndCoutryOfBirth
                 nationality: child_nationality
-                additionalNationalities: child_nationality
                 isMarried: child_isMarried
-              adopAgencyOrLAs: # if null check it required then implement it in java class
-                adopAgencyOrLaName: child_laName
-                adopAgencyOrLaaddress: child_laAddress
-                adopAgencyOrLaContactName: child_laContactName
-                adopAgencyOrLaPhoneNumber: child_laTelephoneNo
-                adopAgencyOrLaContactEmail: child_laEmail
               maintanenceOrder:
                 name: child_personName
                 address: child_personAddress
@@ -97,11 +90,6 @@ uk:
                 agreementDate: child_agreementDate
               dateChildMovedIn: child_liveAtHomeFrom
               hasAnotherAdopAgencyOrLA: child_isAdoptedByAgency
-              proceedingDetails:
-                typeOfOrder: child_typeOfOrder
-                dateOfOrder: child_dateOfOrder
-                nameOfCourt: child_nameOfCourt
-                caseNumber: child_caseNumber
           A58_STEP_PARENT:
             caseFields:
               CASE_TYPE_ID: A58

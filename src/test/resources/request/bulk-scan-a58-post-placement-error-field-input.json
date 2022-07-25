@@ -58,6 +58,18 @@
     {
       "name": "applicant_relationToChild_non_civil_partner",
       "value": ""
+    },
+    {
+      "name": "child_dontKnowProceedingDetailsWithRelation",
+      "value": "true"
+    },
+    {
+      "name": "child_noProceedingDetails",
+      "value": "true"
+    },
+    {
+      "name": "child_noOrderAvailable",
+      "value": "true"
     }
   ]
 }

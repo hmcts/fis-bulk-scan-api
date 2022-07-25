@@ -21,10 +21,14 @@ import uk.gov.hmcts.reform.bulkscan.model.Errors;
 import uk.gov.hmcts.reform.bulkscan.model.FormType;
 import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
 import uk.gov.hmcts.reform.bulkscan.model.Status;
+import uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformerExtenderHelper;
 import uk.gov.hmcts.reform.bulkscan.model.Warnings;
-import uk.gov.hmcts.reform.bulkscan.helper.BulkScanConditionalTransformerHelper;
 
-import java.util.*;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static com.microsoft.applicationinsights.core.dependencies.apachecommons.lang3.StringUtils.isNotEmpty;
@@ -91,7 +95,7 @@ public class BulkScanA58Service implements BulkScanService {
     BulkScanGroupHandler bulkScanGroupHandler;
 
     @Autowired
-    BulkScanConditionalTransformerHelper bulkScanConditionalTransformerHelper;
+    BulkScanTransformerExtenderHelper bulkScanTransformerExtenderHelper;
 
     @Override
     public FormType getCaseType() {
@@ -156,7 +160,7 @@ public class BulkScanA58Service implements BulkScanService {
 
         // For A58 formtype we need to set some fields based on the Or Condition...
         if (formType.equals(A58)) {
-            bulkScanConditionalTransformerHelper.transform(inputFieldsMap, populatedMap);
+            bulkScanTransformerExtenderHelper.transform(inputFieldsMap, populatedMap);
         }
 
         populatedMap.put(SCAN_DOCUMENTS, transformScanDocuments(bulkScanTransformationRequest));
@@ -182,17 +186,20 @@ public class BulkScanA58Service implements BulkScanService {
         return builder.build();
     }
 
-    private void updateTransformationUnknownFields(FormType formType, List<String> fieldsNotKnownByYamlBasedImplementation, BulkScanTransformationResponse.BulkScanTransformationResponseBuilder builder) {
+    private void updateTransformationUnknownFields(
+        FormType formType,
+        List<String> fieldsNotKnownByYamlBasedImplementation,
+        BulkScanTransformationResponse.BulkScanTransformationResponseBuilder builder) {
         if (null != fieldsNotKnownByYamlBasedImplementation && !fieldsNotKnownByYamlBasedImplementation.isEmpty()) {
             GroupCreator groupCreator = new GroupCreator();
             Optional<Group> groupOptional = Optional.ofNullable(groupCreator.getGroup(formType));
-            if(groupOptional.isPresent()) {
-                List<String> fieldsKnownByGroupBasedImplementation = BulkScanGroupValidatorUtil.getAllConfiguredGroupFields(
-                    groupOptional.get());
+            if (groupOptional.isPresent()) {
+                List<String> fieldsKnownByGroupBasedImplementation =
+                    BulkScanGroupValidatorUtil.getAllConfiguredGroupFields(groupOptional.get());
                 List<String> warningMessages = fieldsNotKnownByYamlBasedImplementation.stream()
                     .filter(warning -> !fieldsKnownByGroupBasedImplementation.contains(warning))
                     .collect(Collectors.toList());
-                if(!warningMessages.isEmpty()) {
+                if (!warningMessages.isEmpty()) {
                     builder.warnings(Arrays.asList(String.format(
                         UNKNOWN_FIELDS_MESSAGE,
                         String.join(",", warningMessages)

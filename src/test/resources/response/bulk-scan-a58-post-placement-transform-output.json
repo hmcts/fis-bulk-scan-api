@@ -10,8 +10,24 @@
       "scannedDocuments":[
 
       ],
+      "maintanenceOrder":{
+        "name":"murshad",
+        "address":"london",
+        "nameOfCourt":"HMCTSCourt",
+        "dateOfOrder":"01/01/2000",
+        "agreementDate":"01/01/2001"
+      },
+      "courtpreferredDates":"11/10/2022,21/10/2022",
       "applicantMaritalStatus":"",
       "birthFatherOccupation":null,
+      "children":{
+        "gender":"male",
+        "dateOFBirth":"31/12/1985",
+        "approximateDateOfBirth":null,
+        "placeAndCountry":null,
+        "nationality":"german",
+        "isMarried":"yes"
+      },
       "applicantRequireInterpreter":"Yes",
       "applicant2FirstName":"applicant2firstName",
       "birthMotherFirstName":"testBirthMotherFirstName",
@@ -53,11 +69,13 @@
       "applicantsDomicileStatus":"",
       "applicantRelationToChildFatherPartner":null,
       "applicant1SignStatementOfTruth":"true",
+      "dateChildMovedIn":"01/01/2012",
       "applicant1LegalRepSignature":"true",
       "applicant2Nationality":null,
       "applicant2LegalRepPosition":null,
       "birthMotherAddress":"testBirthMotherAddress",
       "childrenAdoptionPaymentDetails":null,
+      "hasMaintanenceOrder":"yes",
       "guardianLastName":null,
       "welshSpokenInCourtRequired":"Yes",
       "applicant1LegalRepFirm":null,
@@ -77,9 +95,9 @@
       "partyWelshLanguagePreference":"Spoken",
       "applicant1SotFullName":null,
       "birthMotherLastName":"testBirthMotherLastName",
+      "hasAnotherAdopAgencyOrLA":"true",
       "birthMotherNationality":"testBirthMotherNationality",
       "parentalResponsibilityOrder":null,
-      "courtpreferredDates":"11/10/2022,21/10/2022",
       "welshPreferenceChildName":"childName",
       "courtInterpreterAssistanceRequired":"Yes",
       "guardianAddress":null,
@@ -92,6 +110,6 @@
     }
   },
   "warnings":[
-
+    "The following fields are are not configured with our system. [child_dateOFBirth,child_agreementDate] "
   ]
 }
