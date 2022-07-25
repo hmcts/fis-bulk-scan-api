@@ -5,9 +5,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanFormValidationConfigManager;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanTransformConfigManager;
+import uk.gov.hmcts.reform.bulkscan.enums.ChildLiveWithEnum;
 import uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper;
 import uk.gov.hmcts.reform.bulkscan.helper.BulkScanValidationHelper;
-import uk.gov.hmcts.reform.bulkscan.model.*;
+import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
+import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
+import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
+import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
+import uk.gov.hmcts.reform.bulkscan.model.CaseCreationDetails;
+import uk.gov.hmcts.reform.bulkscan.model.FormType;
+import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -15,8 +22,24 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.*;
+import static org.apache.commons.lang3.BooleanUtils.TRUE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.BULK_SCAN_CASE_REFERENCE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CASE_TYPE_ID;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILDREN_OF_SAME_PARENT;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILDREN_PARENTS_NAME;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILDREN_PARENTS_NAME_COLLECTION;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILDREN_SOCIAL_AUTHORITY;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVE_WITH_KEY;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVING_WITH_APPLICANT;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVING_WITH_OTHERS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVING_WITH_RESPONDENT;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LOCAL_AUTHORITY_OR_SOCIAL_WORKER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EVENT_ID;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_ERROR_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NO;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.XOR_CONDITIONAL_FIELDS_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES;
+import static uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper.transformScanDocuments;
 
 @Service
 public class BulkScanC100Service implements BulkScanService {
@@ -43,7 +66,7 @@ public class BulkScanC100Service implements BulkScanService {
     @Override
     public BulkScanValidationResponse validate(BulkScanValidationRequest bulkRequest) {
         // Validating the Fields..
-        Map<String, String> inputFieldsMap = getOcrDataFieldAsMap(bulkRequest.getOcrdatafields());
+        Map<String, String> inputFieldMap = getOcrDataFieldAsMap(bulkRequest.getOcrdatafields());
 
         BulkScanValidationResponse bulkScanValidationResponse =
                 bulkScanValidationHelper.validateMandatoryAndOptionalFields(
