@@ -10,6 +10,9 @@ import java.util.Objects;
 
 public final class BulkScanConstants {
 
+    public static final String YES = "Yes";
+    public static final String NO = "No";
+
     public static final String MANDATORY_ERROR_MESSAGE = "%s should not be null or empty";
     public static final String DATE_FORMAT_MESSAGE = "%s is invalid date or format";
     public static final String EMAIL_FORMAT_MESSAGE = "%s is invalid email";
@@ -21,7 +24,7 @@ public final class BulkScanConstants {
     public static final String FAX_NUMBER_ERROR_MESSAGE = "%s is in the wrong format";
     public static final String ALPHA_NUMERIC_FIELDS_MESSAGE = "%s is not valid alpha numeric";
     public static final String UNKNOWN_FIELDS_MESSAGE = "The following fields are are not configured "
-            + "with our system. [%s] ";
+        + "with our system. [%s] ";
 
 
     public static final String EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD = "exemption_to_attend_MIAM";
@@ -63,7 +66,7 @@ public final class BulkScanConstants {
     public static final String EVENT_ID = "EVENT_ID";
 
     public static final String APPLICANT_HOME_TELEPHONE_NUMBER = "applicant_homeTelephoneNumber";
-    public static final String APPLICANT_MOBILE_TELEPHONE_NUMBER = "applicant_mobileTelephoneNumber";
+    public static final String APPLICANT_MOBILE_TELEPHONE_NUMBER  = "applicant_mobileTelephoneNumber";
 
     public static final String DOB_HINT = "dob";
     public static final String DATE_OF_BIRTH_HINT = "dateOfBirth";
@@ -150,32 +153,45 @@ public final class BulkScanConstants {
     public static final String SPECIAL_ASSISTANCE_FACILITIES_CCD = "specialAssistanceFacilities";
     public static final String SLASH_DELIMITER = "/";
 
-    private static Map<String, String> getErrorMessageMap() {
+
+    // C100 manual validation Fields
+    public static final String CHILD_LIVING_WITH_APPLICANT = "child_living_with_Applicant";
+    public static final String CHILD_LIVING_WITH_RESPONDENT = "child_living_with_Respondent";
+    public static final String CHILD_LIVING_WITH_OTHERS = "child_living_with_others";
+
+    public static final String CHILDREN_OF_SAME_PARENT = "children_of_same_parent";
+    public static final String CHILDREN_PARENTS_NAME = "children_parentsName";
+    public static final String CHILDREN_PARENTS_NAME_COLLECTION = "child_parentsName_collection";
+    public static final String CHILDREN_SOCIAL_AUTHORITY = "childrenServicesAuthority";
+    public static final String CHILD_LOCAL_AUTHORITY_OR_SOCIAL_WORKER = "child1_localAuthority_or_socialWorker";
+    public static final String CHILD_LIVE_WITH_KEY = "childLiveWith";
+
+    private static Map<String,String> getErrorMessageMap() {
         return Map.of(MANDATORY_KEY, MANDATORY_ERROR_MESSAGE,
-                DATE_FORMAT_FIELDS_KEY, DATE_FORMAT_MESSAGE,
-                EMAIL_FORMAT_FIELDS_KEY, EMAIL_FORMAT_MESSAGE,
-                NUMERIC_FIELDS_KEY, NUMERIC_MESSAGE, POST_CODE_FIELDS_KEY, POST_CODE_MESSAGE,
-                PHONE_NUMBER_FIELDS_KEY, PHONE_NUMBER_MESSAGE,
-                FAX_NUMBER_FORMAT_MESSAGE_KEY, FAX_NUMBER_ERROR_MESSAGE,
-                XOR_CONDITIONAL_FIELDS_MESSAGE_KEY, XOR_CONDITIONAL_FIELDS_MESSAGE,
-                ALPHA_NUMERIC_FIELDS_KEY, ALPHA_NUMERIC_FIELDS_MESSAGE
+                      DATE_FORMAT_FIELDS_KEY, DATE_FORMAT_MESSAGE,
+                      EMAIL_FORMAT_FIELDS_KEY, EMAIL_FORMAT_MESSAGE,
+                      NUMERIC_FIELDS_KEY, NUMERIC_MESSAGE, POST_CODE_FIELDS_KEY, POST_CODE_MESSAGE,
+                      PHONE_NUMBER_FIELDS_KEY, PHONE_NUMBER_MESSAGE,
+                      FAX_NUMBER_FORMAT_MESSAGE_KEY, FAX_NUMBER_ERROR_MESSAGE,
+                      XOR_CONDITIONAL_FIELDS_MESSAGE_KEY, XOR_CONDITIONAL_FIELDS_MESSAGE,
+                      ALPHA_NUMERIC_FIELDS_KEY, ALPHA_NUMERIC_FIELDS_MESSAGE
         );
     }
 
     public static Map<String, Pair<List<String>, String>> getValidationFieldsMap(
-            BulkScanFormValidationConfigManager.ValidationConfig validationConfig) {
+        BulkScanFormValidationConfigManager.ValidationConfig validationConfig) {
         Map<String, Pair<List<String>, String>> map = new HashMap<>();
 
         map.put(MANDATORY_KEY, Pair.of(validationConfig.getMandatoryFields(), null));
 
         BulkScanFormValidationConfigManager.RegexValidationConfig regexValidationConfig =
-                validationConfig.getRegexValidationFields();
+            validationConfig.getRegexValidationFields();
 
         if (regexValidationConfig != null) {
             BulkScanFormValidationConfigManager.RegexFieldsConfig dateFields = regexValidationConfig.getDateFields();
             BulkScanFormValidationConfigManager.RegexFieldsConfig emailFields = regexValidationConfig.getEmailFields();
             BulkScanFormValidationConfigManager.RegexFieldsConfig numericFields = regexValidationConfig
-                    .getNumericFields();
+                .getNumericFields();
             BulkScanFormValidationConfigManager.RegexFieldsConfig faxNumberFieldsFields = regexValidationConfig
                     .getFaxNumberFields();
 
@@ -186,11 +202,11 @@ public final class BulkScanConstants {
 
 
             BulkScanFormValidationConfigManager.RegexFieldsConfig postCodeFields = regexValidationConfig
-                    .getPostCodeFields();
+                .getPostCodeFields();
             map.put(POST_CODE_FIELDS_KEY, getPairObject(postCodeFields));
 
             BulkScanFormValidationConfigManager.RegexFieldsConfig phoneNumberFields = regexValidationConfig
-                    .getPhoneNumberFields();
+                .getPhoneNumberFields();
             map.put(PHONE_NUMBER_FIELDS_KEY, getPairObject(phoneNumberFields));
 
             BulkScanFormValidationConfigManager.RegexFieldsConfig xorConditionalFields = regexValidationConfig
@@ -198,7 +214,7 @@ public final class BulkScanConstants {
             map.put(XOR_CONDITIONAL_FIELDS_MESSAGE_KEY, getPairObject(xorConditionalFields));
 
             BulkScanFormValidationConfigManager.RegexFieldsConfig alphaNumericFields = regexValidationConfig
-                    .getAlphaNumericFields();
+                .getAlphaNumericFields();
             map.put(ALPHA_NUMERIC_FIELDS_KEY, getPairObject(alphaNumericFields));
         }
 
@@ -209,7 +225,7 @@ public final class BulkScanConstants {
     }
 
     private static Pair<List<String>, String> getPairObject(BulkScanFormValidationConfigManager
-                                                                    .RegexFieldsConfig fields) {
+                                                                .RegexFieldsConfig fields) {
         if (fields != null && fields.getFieldNames() != null) {
             return Pair.of(fields.getFieldNames(), fields.getRegex());
         }

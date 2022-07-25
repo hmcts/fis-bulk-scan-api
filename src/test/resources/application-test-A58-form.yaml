@@ -12,8 +12,6 @@ uk:
               - mother_firstName
               - mother_lastName
               - mother_address
-              - mother_nationality
-              - mother_occupation
               - child_firstname_on_adoption_order
               - child_lastname_on_adoption_order
               - sole_applicant_or_applicant1_statement_of_truth
@@ -66,6 +64,8 @@ uk:
               - applicant_applying_alone_other_parent_exclusion_justified
               - child_relationship_father
               - child_relationship_other
+              - mother_nationality
+              - mother_occupation
               - father_firstName
               - father_lastName
               - father_address
@@ -92,7 +92,6 @@ uk:
               - applicant2_or_legal_rep_full_name
               - applicant2_legal_rep_firm
               - applicant2_legal_rep_position
-
               - welsh_spoken_in_court_required
               - welsh_preference_party_name
               - welsh_preference_witness_name
@@ -210,4 +209,3 @@ uk:
                   - applicant1_telephoneNumber
                   - applicant2_telephoneNumber
                 regex: ^(?:0|\+?44)(?:\d\s?){9,10}$
-
