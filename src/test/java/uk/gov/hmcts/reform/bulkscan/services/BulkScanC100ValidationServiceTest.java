@@ -17,6 +17,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -59,6 +60,20 @@ class BulkScanC100ValidationServiceTest {
         assertEquals(Status.ERRORS, bulkScanValidationResponse.status);
     }
 
+    @Test
+    void testOcrDataListEmptyOrNull() {
+        List<OcrDataField> ocrDataFieldList = new ArrayList<>();
+        List<OcrDataField> ocrDataFieldListNull = null;
+
+        bulkScanValidationResponse = bulkScanC100ValidationService
+            .validateAttendMiam(ocrDataFieldList,bulkScanValidationResponse);
+        assertNotEquals(Status.ERRORS, bulkScanValidationResponse.status);
+
+        bulkScanValidationResponse = bulkScanC100ValidationService
+            .validateAttendMiam(ocrDataFieldListNull,bulkScanValidationResponse);
+        assertNotEquals(Status.ERRORS, bulkScanValidationResponse.status);
+    }
+
     public List<OcrDataField> getRequestData() {
         List<OcrDataField> fieldList = new ArrayList<>();
         OcrDataField ocrDataFirstNameField = new OcrDataField();
@@ -80,6 +95,12 @@ class BulkScanC100ValidationServiceTest {
         ocrSpecialIssueOrderField.setName("familyMember_Intimation_on_No_MIAM");
         ocrSpecialIssueOrderField.setValue("No");
         fieldList.add(ocrSpecialIssueOrderField);
+
+        OcrDataField ocrAttendedMiamField = new OcrDataField();
+        ocrAttendedMiamField.setName("attended_MIAM");
+        ocrAttendedMiamField.setValue("No");
+        fieldList.add(ocrAttendedMiamField);
+
 
         return fieldList;
     }

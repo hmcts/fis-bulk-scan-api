@@ -116,8 +116,8 @@ public class BulkScanC100ValidationService {
     }
 
     private Map<String, String> getOcrDataFieldsMap(List<OcrDataField> ocrDataFields) {
-        return ocrDataFields
+        return null != ocrDataFields ? ocrDataFields
                 .stream()
-                .collect(Collectors.toMap(OcrDataField::getName, OcrDataField::getValue));
+                .collect(Collectors.toMap(OcrDataField::getName, OcrDataField::getValue)) : null;
     }
 }
