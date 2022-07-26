@@ -36,8 +36,7 @@ public class BulkScanC100ValidationService {
      */
 
     public  BulkScanValidationResponse validateAttendMiam(List<OcrDataField> ocrDataFields,
-                                                  BulkScanValidationResponse bulkScanValidationResponse) {
-
+                                                      BulkScanValidationResponse bulkScanValidationResponse) {
 
         Map<String, String> ocrDataFieldsMap = getOcrDataFieldsMap(ocrDataFields);
 
@@ -60,6 +59,7 @@ public class BulkScanC100ValidationService {
                 EXISTING_CASE_ON_EMERGENCY_PROTECTION_CARE_OR_SUPERVISION_ORDER))) {
                 setErrorMsg(bulkScanValidationResponse, ocrDataFieldsMap, items,
                             EXEMPTION_TO_ATTEND_MIAM);
+
             }
 
             if (ocrDataFieldsMap.containsKey(EXEMPTION_TO_ATTEND_MIAM)
@@ -76,6 +76,7 @@ public class BulkScanC100ValidationService {
             )) {
                 setErrorMsg(bulkScanValidationResponse, ocrDataFieldsMap, items,
                             ATTENDED_MIAM);
+
                 isMiamAttended(ocrDataFieldsMap,bulkScanValidationResponse, items);
             }
 
@@ -87,7 +88,6 @@ public class BulkScanC100ValidationService {
                                 BulkScanValidationResponse bulkScanValidationResponse,
                                 List<String> items) {
         if (ocrDataFieldsMap.containsKey(ATTENDED_MIAM)
-
             && StringUtils.hasText(ocrDataFieldsMap.get(ATTENDED_MIAM))
             && BulkScanConstants.NO.equalsIgnoreCase(ocrDataFieldsMap.get(EXEMPTION_TO_ATTEND_MIAM))
             && BulkScanConstants.NO.equalsIgnoreCase(ocrDataFieldsMap.get(ATTENDED_MIAM)
@@ -95,24 +95,21 @@ public class BulkScanC100ValidationService {
             items.add(String.format(
                 MANDATORY_ATTENDED_MIAM_MESSAGE,
                 ATTENDED_MIAM
-
             ));
             bulkScanValidationResponse.setStatus(Status.ERRORS);
         }
     }
 
     private void setErrorMsg(BulkScanValidationResponse bulkScanValidationResponse,
-                             Map<String, String> ocrDataFieldsMap,
-                             List<String> items,String field) {
-
+                                 Map<String, String> ocrDataFieldsMap,
+                                 List<String> items,String field) {
         if (!StringUtils.hasText(ocrDataFieldsMap.get(
                 field))) {
 
             items.add(String.format(
                     MANDATORY_ERROR_MESSAGE,
                     field
-            ));
-
+                ));
 
             bulkScanValidationResponse.setStatus(Status.ERRORS);
         }
