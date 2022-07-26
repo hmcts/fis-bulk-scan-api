@@ -12,7 +12,7 @@ uk:
                 value:
                   firstName: applicant1_firstName
                   lastName: applicant1_lastName
-              typeOfChildArrangementsOrder: childArrangement_order
+              orderAppliedFor: childArrangement_order
               prohibitedStepsOrder: prohibitedSteps_order
               specialIssueOrder: specialIssue_order
               children:
@@ -59,8 +59,34 @@ uk:
               claimingExemptionMiam: exemption_to_attend_MIAM
               familyMediatorMiam: familyMember_Intimation_on_No_MIAM
               applicantAttendedMiam: attended_MIAM
+              applicationPermissionRequired : askingPermissionForApplication
+              isCaseUrgent : urgent_or_withoutHearing
+              previousOrOngoingProceedings : previous_or_ongoingProceeding
+              consentOrder : isConsentOrder
+              habitualResidentINotherState : international_or_factorsAffectingLitigation
+              welshLanguageRequirement : welshRequired
               miamTable:
                 claimingExemptionMiam: exemption_to_attend_MIAM
                 familyMediatorMiam: familyMember_Intimation_on_No_MIAM
                 applicantAttendedMiam: attended_MIAM
+              allegationsOfHarmOverviewTable :
+                allegationsOfHarmDomesticAbuseYesNo: domesticAbuse
+                allegationsOfHarmChildAbductionYesNo: childAbduction
+                allegationsOfHarmChildAbuseYesNo: childAbuse
+                allegationsOfHarmSubstanceAbuseYesNo : drugs_alcohol_substanceAbuse
+                allegationsOfHarmOtherConcernsYesNo: otherSafety_or_welfareAbuse
+              typeOfApplicationTable :
+                applicationPermissionRequired : askingPermissionForApplication
+              hearingUrgencyTable:
+                isCaseUrgent : urgent_or_withoutHearing
+              otherProceedingsTable :
+                previousOrOngoingProceedings : previous_or_ongoingProceeding
+              otherProceedingsDetailsTable :
+                - value:
+                    previousOrOngoingProceedings : previous_or_ongoingProceeding
+
+
+
+
+
 
