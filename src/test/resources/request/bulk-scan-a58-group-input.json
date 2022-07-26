@@ -193,8 +193,24 @@
       "value": "true"
     },
     {
-      "name": "child_noOrderAvailable",
+      "name": "child_placementOrderByEnglandAndWalesCourt",
       "value": "true"
+    },
+    {
+      "name": "child_placmentOrderByEnglandAndWalesCourtName",
+      "value": "HMCTS"
+    },
+    {
+      "name": "child_placmentOrderByEnglandAndWalesCaseNumber",
+      "value": "123456"
+    },
+    {
+      "name": "child_placmentOrderByEnglandAndWalesTypeOfOrder",
+      "value": "Case"
+    },
+    {
+      "name": "child_placmentOrderByEnglandAndWalesDateOfOrder",
+      "value": "01/01/1987"
     }
   ]
 }
