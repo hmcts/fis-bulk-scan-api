@@ -42,7 +42,7 @@ public class BulkScanDependencyValidationService {
         if (!errWarningGroupConfig.isEmpty()) {
             return errWarningGroupConfig.stream().map(eachConfig -> String.format(GROUP_DEPENDENCY_MESSAGE,
                             eachConfig.getGroupFieldName(),
-                            eachConfig.getRequiredFieldCount().toString(),
+                            eachConfig.getRequiredFieldCount(),
                             eachConfig.getDependentFields().stream()
                                     .map(String::valueOf)
                                     .collect(Collectors.joining(","))))
