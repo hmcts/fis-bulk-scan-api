@@ -51,6 +51,7 @@
         "solicitorFeeAccountNumber":null
       },
       "applicant1FirstName":"firstName",
+      "hasProceedingDetails":"no",
       "childWelshLanguagePreference":"Both",
       "applicant1TelephoneNumber":"447405878672",
       "birthFatherLastName":null,
@@ -83,6 +84,7 @@
       "applicant2Address":null,
       "birthFatherAddress":null,
       "applicant2LegalRepFirm":null,
+      "hasProceedingDetailsWithRelation":"DontKnow",
       "welshPreferenceWitnessName":"witnessName",
       "applicant1StatementOfTruth":"true",
       "applicant2LastName":null,

@@ -207,6 +207,34 @@
     {
       "name": "child_isAdoptedByAgency",
       "value": "true"
+    },
+    {
+      "name": "child_dontKnowProceedingDetailsWithRelation",
+      "value": "true"
+    },
+    {
+      "name": "child_noProceedingDetails",
+      "value": "true"
+    },
+    {
+      "name": "child_placementOrderByEnglandAndWalesCourt",
+      "value": "true"
+    },
+    {
+      "name": "child_placmentOrderByEnglandAndWalesCourtName",
+      "value": "HMCTS"
+    },
+    {
+      "name": "child_placmentOrderByEnglandAndWalesCaseNumber",
+      "value": "123456"
+    },
+    {
+      "name": "child_placmentOrderByEnglandAndWalesTypeOfOrder",
+      "value": "Case"
+    },
+    {
+      "name": "child_placmentOrderByEnglandAndWalesDateOfOrder",
+      "value": "asdfsdf"
     }
   ],
   "form_type": "A58"
