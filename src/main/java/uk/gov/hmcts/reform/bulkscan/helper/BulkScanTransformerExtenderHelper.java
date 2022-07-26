@@ -73,6 +73,53 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_APPLYING_ALONE_NO_OTHER_PARENT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_APPLYING_ALONE_OTHER_PARENT_EXCLUSION_JUSTIFIED;
 import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.RELATIONSHIP_OTHER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_PLACEMENT_ORDER_BY_ENGLAND_AND_WALES_COURT;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_PLACMENT_ORDER_BY_ENGLAND_AND_WALES_COURT_NAME;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_PLACMENT_ORDER_BY_ENGLAND_AND_WALES_CASE_NUMBER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_PLACMENT_ORDER_BY_ENGLAND_AND_WALES_TYPE_OF_ORDER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_PLACMENT_ORDER_BY_ENGLAND_AND_WALES_DATE_OF_ORDER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_FREEING_ORDER_BY_ENGLAND_AND_WALES_COURT;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_FREEING_ORDER_BY_ENGLAND_AND_WALES_COURT_NAME;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_FREEING_ORDER_BY_ENGLAND_AND_WALES_CASE_NUMBER ;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_FREEING_ORDER_BY_ENGLAND_AND_WALES_TYPE_OF_ORDER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_FREEING_ORDER_BY_ENGLAND_AND_WALES_DATE_OF_ORDER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_FREEING_ORDER_BY_NORTHERN_IRELAND_COURT;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_FREEING_ORDER_BY_NORTHERN_IRELAND_COURT_NAME;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_FREEING_ORDER_BY_NORTHERN_IRELAND_CASE_NUMBER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_FREEING_ORDER_BY_NORTHERN_IRELAND_TYPE_OF_ORDER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_FREEING_ORDER_BY_NORTHERN_IRELAND_DATE_OF_ORDER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_PERMANENCE_ORDER_BY_SCOTLAND_COURT;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_PERMANENCE_ORDER_BY_SCOTLAND_COURT_NAME;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_PERMANENCE_ORDER_BY_SCOTLAND_CASE_NUMBER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_PERMANENCE_ORDER_BY_SCOTLAND_TYPE_OF_ORDER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_PERMANENCE_ORDER_BY_SCOTLAND_DATE_OF_ORDER ;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_NO_ORDER_AVAILABLE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ANY_OTHER_ORDERS_AVAILABLE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PLACEMENT_ORDER_COURT;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PLACEMENT_ORDER_ID;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PLACEMENT_ORDER_TYPE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PLACEMENT_ORDER_DATE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FREEING_ORDER_COURT;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FREEING_ORDER_ID;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FREEING_ORDER_TYPE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FREEING_ORDER_DATE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_NO_LA_OR_PARENTAL_RESPONSIBILITY;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.LA_OR_PARENTAL_RESPONSIBILITY;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MAINTANENCE_ORDER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_COURT_AND_DATE_OF_ORDER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NAME_OF_COURT;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DATE_OF_ORDER ;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_NO_MAINTANENCE_ORDER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_MAINTANENCE_ORDER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.HAS_MAINTANENCE_ORDER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_NO_PROCEEDING_DETAILS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.HAS_PROCEEDING_DETAILS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_PROCEEDING_DETAILS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_NO_PROCEEDING_DETAILS_WITH_RELATION;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.HAS_PROCEEDING_DETAILS_WITH_RELATION;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_PROCEEDING_DETAILS_WITH_RELATION;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_DONT_KNOW_PROCEEDING_DETAILS_WITH_RELATION;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DONT_KNOW;
 
 @SuppressWarnings("PMD.GodClass")
 @Component
@@ -111,55 +158,71 @@ public class BulkScanTransformerExtenderHelper {
     }
 
     public void buildCourtInformation(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
-        if (BooleanUtils.YES.equalsIgnoreCase(inputFieldsMap.get("child_placementOrderByEnglandAndWalesCourt"))) {
-            populatedMap.put("placementOrderCourt",
-                             inputFieldsMap.get("child_placmentOrderByEnglandAndWalesCourtName"));
-            populatedMap.put("placementOrderId",
-                             inputFieldsMap.get("child_placmentOrderByEnglandAndWalesCaseNumber"));
-            populatedMap.put("placementOrderType",
-                             inputFieldsMap.get("child_placmentOrderByEnglandAndWalesTypeOfOrder"));
-            populatedMap.put("placementOrderDate",
-                             inputFieldsMap.get("child_placmentOrderByEnglandAndWalesDateOfOrder"));
-        } else if (BooleanUtils.YES.equalsIgnoreCase(inputFieldsMap.get("child_freeingOrderByEnglandAndWalesCourt"))) {
-            populatedMap.put("freeingOrderCourt",
-                             inputFieldsMap.get("child_freeingOrderByEnglandAndWalesCourtName"));
-            populatedMap.put("freeingOrderId",
-                             inputFieldsMap.get("child_freeingOrderByEnglandAndWalesCaseNumber"));
-            populatedMap.put("freeingOrderType",
-                             inputFieldsMap.get("child_freeingOrderByEnglandAndWalesTypeOfOrder"));
-            populatedMap.put("freeingOrderDate",
-                             inputFieldsMap.get("child_freeingOrderByEnglandAndWalesDateOfOrder"));
-        } else if (BooleanUtils.YES.equalsIgnoreCase(inputFieldsMap.get("child_freeingOrderByNorthernIrelandCourt"))) {
-            populatedMap.put("freeingOrderCourt",
-                             inputFieldsMap.get("child_freeingOrderByNorthernIrelandCourtName"));
-            populatedMap.put("freeingOrderId",
-                             inputFieldsMap.get("child_freeingOrderByNorthernIrelandCaseNumber"));
-            populatedMap.put("freeingOrderType",
-                             inputFieldsMap.get("child_freeingOrderByNorthernIrelandTypeOfOrder"));
-            populatedMap.put("freeingOrderDate",
-                             inputFieldsMap.get("child_freeingOrderByNorthernIrelandDateOfOrder"));
-        } else if (BooleanUtils.YES.equalsIgnoreCase(inputFieldsMap.get("child_permanenceOrderByScotlandCourt"))) {
-            populatedMap.put("freeingOrderCourt",
-                             inputFieldsMap.get("child_permanenceOrderByScotlandCourtName"));
-            populatedMap.put("freeingOrderId",
-                             inputFieldsMap.get("child_permanenceOrderByScotlandCaseNumber"));
-            populatedMap.put("freeingOrderType",
-                             inputFieldsMap.get("child_permanenceOrderByScotlandTypeOfOrder"));
-            populatedMap.put("freeingOrderDate",
-                             inputFieldsMap.get("child_permanenceOrderByScotlandDateOfOrder"));
-        } else if (TRUE.equalsIgnoreCase(inputFieldsMap.get("child_noOrderAvailable"))) {
-            populatedMap.put("anyOtherOrdersAvailable", "yes");
-        } else if (FALSE.equalsIgnoreCase(inputFieldsMap.get("child_noOrderAvailable"))) {
-            populatedMap.put("anyOtherOrdersAvailable", "no");
+        if (BooleanUtils.YES.equalsIgnoreCase(inputFieldsMap.get(CHILD_PLACEMENT_ORDER_BY_ENGLAND_AND_WALES_COURT))) {
+            populatedMap.put(
+                PLACEMENT_ORDER_COURT,
+                inputFieldsMap.get(CHILD_PLACMENT_ORDER_BY_ENGLAND_AND_WALES_COURT_NAME));
+            populatedMap.put(
+                PLACEMENT_ORDER_ID,
+                inputFieldsMap.get(CHILD_PLACMENT_ORDER_BY_ENGLAND_AND_WALES_CASE_NUMBER));
+            populatedMap.put(
+                PLACEMENT_ORDER_TYPE,
+                inputFieldsMap.get(CHILD_PLACMENT_ORDER_BY_ENGLAND_AND_WALES_TYPE_OF_ORDER));
+            populatedMap.put(
+                PLACEMENT_ORDER_DATE,
+                inputFieldsMap.get(CHILD_PLACMENT_ORDER_BY_ENGLAND_AND_WALES_DATE_OF_ORDER));
+        } else if (BooleanUtils.YES.equalsIgnoreCase(inputFieldsMap.get(CHILD_FREEING_ORDER_BY_ENGLAND_AND_WALES_COURT))) {
+            populatedMap.put(
+                FREEING_ORDER_COURT,
+                inputFieldsMap.get(CHILD_FREEING_ORDER_BY_ENGLAND_AND_WALES_COURT_NAME));
+            populatedMap.put(
+                FREEING_ORDER_ID,
+                inputFieldsMap.get(CHILD_FREEING_ORDER_BY_ENGLAND_AND_WALES_CASE_NUMBER));
+            populatedMap.put(
+                FREEING_ORDER_TYPE,
+                inputFieldsMap.get(CHILD_FREEING_ORDER_BY_ENGLAND_AND_WALES_TYPE_OF_ORDER));
+            populatedMap.put(
+                FREEING_ORDER_DATE,
+                inputFieldsMap.get(CHILD_FREEING_ORDER_BY_ENGLAND_AND_WALES_DATE_OF_ORDER));
+        } else if (BooleanUtils.YES.equalsIgnoreCase(inputFieldsMap.get(CHILD_FREEING_ORDER_BY_NORTHERN_IRELAND_COURT))) {
+            populatedMap.put(
+                FREEING_ORDER_COURT,
+                inputFieldsMap.get(CHILD_FREEING_ORDER_BY_NORTHERN_IRELAND_COURT_NAME));
+            populatedMap.put(
+                FREEING_ORDER_ID,
+                inputFieldsMap.get(CHILD_FREEING_ORDER_BY_NORTHERN_IRELAND_CASE_NUMBER));
+            populatedMap.put(
+                FREEING_ORDER_TYPE,
+                inputFieldsMap.get(CHILD_FREEING_ORDER_BY_NORTHERN_IRELAND_TYPE_OF_ORDER));
+            populatedMap.put(
+                FREEING_ORDER_DATE,
+                inputFieldsMap.get(CHILD_FREEING_ORDER_BY_NORTHERN_IRELAND_DATE_OF_ORDER));
+        } else if (BooleanUtils.YES.equalsIgnoreCase(inputFieldsMap.get(CHILD_PERMANENCE_ORDER_BY_SCOTLAND_COURT))) {
+            populatedMap.put(
+                FREEING_ORDER_COURT,
+                inputFieldsMap.get(CHILD_PERMANENCE_ORDER_BY_SCOTLAND_COURT_NAME));
+            populatedMap.put(
+                FREEING_ORDER_ID,
+                inputFieldsMap.get(CHILD_PERMANENCE_ORDER_BY_SCOTLAND_CASE_NUMBER));
+            populatedMap.put(
+                FREEING_ORDER_TYPE,
+                inputFieldsMap.get(CHILD_PERMANENCE_ORDER_BY_SCOTLAND_TYPE_OF_ORDER));
+            populatedMap.put(
+                FREEING_ORDER_DATE,
+                inputFieldsMap.get(CHILD_PERMANENCE_ORDER_BY_SCOTLAND_DATE_OF_ORDER));
+        } else if (TRUE.equalsIgnoreCase(inputFieldsMap.get(CHILD_NO_ORDER_AVAILABLE))) {
+            populatedMap.put(ANY_OTHER_ORDERS_AVAILABLE, "yes");
+        } else if (FALSE.equalsIgnoreCase(inputFieldsMap.get(CHILD_NO_ORDER_AVAILABLE))) {
+            populatedMap.put(ANY_OTHER_ORDERS_AVAILABLE, "no");
         }
     }
 
     public void buildChildNoLaOrParentalResponsibility(Map<String, String> inputFieldsMap,
                                                        Map<String, Object> populatedMap) {
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("child_noLaOrParentalResponsibility"))) {
-            populatedMap.put("laOrParentalResponsibility", "yes");
-        } else if (FALSE.equalsIgnoreCase(inputFieldsMap.get("child_noLaOrParentalResponsibility"))) {
-            populatedMap.put("laOrParentalResponsibility", "no");
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(CHILD_NO_LA_OR_PARENTAL_RESPONSIBILITY))) {
+            populatedMap.put(LA_OR_PARENTAL_RESPONSIBILITY, "yes");
+        } else if (FALSE.equalsIgnoreCase(inputFieldsMap.get(CHILD_NO_LA_OR_PARENTAL_RESPONSIBILITY))) {
+            populatedMap.put(LA_OR_PARENTAL_RESPONSIBILITY, "no");
         }
     }
 
@@ -167,41 +230,41 @@ public class BulkScanTransformerExtenderHelper {
     public void buildChildMaintanenceOrder(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
         // nameOfCourt: child_courtAndDateOfOrder.
         // dateOfOrder: child_courtAndDateOfOrder
-        Optional<Object> maintanenceOrderOptional = Optional.ofNullable(populatedMap.get("maintanenceOrder"));
+        Optional<Object> maintanenceOrderOptional = Optional.ofNullable(populatedMap.get(MAINTANENCE_ORDER));
         if (maintanenceOrderOptional.isPresent()) {
-            LinkedHashMap maintanenceOrder = (LinkedHashMap) populatedMap.get("maintanenceOrder");
+            LinkedHashMap maintanenceOrder = (LinkedHashMap) populatedMap.get(MAINTANENCE_ORDER);
             Optional<String> childCourtAndDateOfOrderOptional =
-                Optional.ofNullable(inputFieldsMap.get("child_courtAndDateOfOrder"));
+                Optional.ofNullable(inputFieldsMap.get(CHILD_COURT_AND_DATE_OF_ORDER));
             childCourtAndDateOfOrderOptional.ifPresent(childCourtAndDateOfOrder -> {
-                maintanenceOrder.put("nameOfCourt", childCourtAndDateOfOrder.split(" ")[0]);
-                maintanenceOrder.put("dateOfOrder", childCourtAndDateOfOrder.split(" ")[1]);
+                maintanenceOrder.put(NAME_OF_COURT, childCourtAndDateOfOrder.split(" ")[0]);
+                maintanenceOrder.put(DATE_OF_ORDER, childCourtAndDateOfOrder.split(" ")[1]);
             });
-            populatedMap.put("maintanenceOrder", maintanenceOrder);
+            populatedMap.put(MAINTANENCE_ORDER, maintanenceOrder);
         }
 
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("child_noMaintanenceOrder"))) {
-            populatedMap.put("hasMaintanenceOrder", "no");
-        } else if (TRUE.equalsIgnoreCase(inputFieldsMap.get("child_maintanenceOrder"))) {
-            populatedMap.put("hasMaintanenceOrder", "yes");
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(CHILD_NO_MAINTANENCE_ORDER))) {
+            populatedMap.put(HAS_MAINTANENCE_ORDER, "no");
+        } else if (TRUE.equalsIgnoreCase(inputFieldsMap.get(CHILD_MAINTANENCE_ORDER))) {
+            populatedMap.put(HAS_MAINTANENCE_ORDER, "yes");
         }
     }
 
     public void buildChildProceedingDetails(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("child_noProceedingDetails"))) {
-            populatedMap.put("hasProceedingDetails", "no");
-        } else if (TRUE.equalsIgnoreCase(inputFieldsMap.get("child_proceedingDetails"))) {
-            populatedMap.put("hasProceedingDetails", "yes");
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(CHILD_NO_PROCEEDING_DETAILS))) {
+            populatedMap.put(HAS_PROCEEDING_DETAILS, "no");
+        } else if (TRUE.equalsIgnoreCase(inputFieldsMap.get(CHILD_PROCEEDING_DETAILS))) {
+            populatedMap.put(HAS_PROCEEDING_DETAILS, "yes");
         }
     }
 
     public void buildChildProceedingDetailsWithRelation(Map<String, String> inputFieldsMap,
                                                         Map<String, Object> populatedMap) {
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("child_noProceedingDetailsWithRelation"))) {
-            populatedMap.put("hasProceedingDetailsWithRelation", "no");
-        } else if (TRUE.equalsIgnoreCase(inputFieldsMap.get("child_proceedingDetailsWithRelation"))) {
-            populatedMap.put("hasProceedingDetailsWithRelation", "yes");
-        } else if (TRUE.equalsIgnoreCase(inputFieldsMap.get("child_dontKnowProceedingDetailsWithRelation"))) {
-            populatedMap.put("hasProceedingDetailsWithRelation", "DontKnow");
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(CHILD_NO_PROCEEDING_DETAILS_WITH_RELATION))) {
+            populatedMap.put(HAS_PROCEEDING_DETAILS_WITH_RELATION, "no");
+        } else if (TRUE.equalsIgnoreCase(inputFieldsMap.get(CHILD_PROCEEDING_DETAILS_WITH_RELATION))) {
+            populatedMap.put(HAS_PROCEEDING_DETAILS_WITH_RELATION, "yes");
+        } else if (TRUE.equalsIgnoreCase(inputFieldsMap.get(CHILD_DONT_KNOW_PROCEEDING_DETAILS_WITH_RELATION))) {
+            populatedMap.put(HAS_PROCEEDING_DETAILS_WITH_RELATION, DONT_KNOW);
         }
     }
 

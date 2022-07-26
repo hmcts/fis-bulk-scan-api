@@ -149,6 +149,55 @@ public final class BulkScanConstants {
     public static final String CHILD_LOCAL_AUTHORITY_OR_SOCIAL_WORKER = "child1_localAuthority_or_socialWorker";
     public static final String CHILD_LIVE_WITH_KEY = "childLiveWith";
 
+    //A58
+    public static final String CHILD_PLACEMENT_ORDER_BY_ENGLAND_AND_WALES_COURT = "child_placementOrderByEnglandAndWalesCourt";
+    public static final String CHILD_PLACMENT_ORDER_BY_ENGLAND_AND_WALES_COURT_NAME = "child_placmentOrderByEnglandAndWalesCourtName";
+    public static final String CHILD_PLACMENT_ORDER_BY_ENGLAND_AND_WALES_CASE_NUMBER = "child_placmentOrderByEnglandAndWalesCaseNumber";
+    public static final String CHILD_PLACMENT_ORDER_BY_ENGLAND_AND_WALES_TYPE_OF_ORDER = "child_placmentOrderByEnglandAndWalesTypeOfOrder";
+    public static final String CHILD_PLACMENT_ORDER_BY_ENGLAND_AND_WALES_DATE_OF_ORDER = "child_placmentOrderByEnglandAndWalesDateOfOrder";
+    public static final String CHILD_FREEING_ORDER_BY_ENGLAND_AND_WALES_COURT = "child_freeingOrderByEnglandAndWalesCourt";
+    public static final String CHILD_FREEING_ORDER_BY_ENGLAND_AND_WALES_COURT_NAME = "child_freeingOrderByEnglandAndWalesCourtName";
+    public static final String CHILD_FREEING_ORDER_BY_ENGLAND_AND_WALES_CASE_NUMBER = "child_freeingOrderByEnglandAndWalesCaseNumber";
+    public static final String CHILD_FREEING_ORDER_BY_ENGLAND_AND_WALES_TYPE_OF_ORDER = "child_freeingOrderByEnglandAndWalesTypeOfOrder";
+    public static final String CHILD_FREEING_ORDER_BY_ENGLAND_AND_WALES_DATE_OF_ORDER = "child_freeingOrderByEnglandAndWalesDateOfOrder";
+    public static final String CHILD_FREEING_ORDER_BY_NORTHERN_IRELAND_COURT = "child_freeingOrderByNorthernIrelandCourt";
+    public static final String CHILD_FREEING_ORDER_BY_NORTHERN_IRELAND_COURT_NAME = "child_freeingOrderByNorthernIrelandCourtName";
+    public static final String CHILD_FREEING_ORDER_BY_NORTHERN_IRELAND_CASE_NUMBER = "child_freeingOrderByNorthernIrelandCaseNumber";
+    public static final String CHILD_FREEING_ORDER_BY_NORTHERN_IRELAND_TYPE_OF_ORDER = "child_freeingOrderByNorthernIrelandTypeOfOrder";
+    public static final String CHILD_FREEING_ORDER_BY_NORTHERN_IRELAND_DATE_OF_ORDER = "child_freeingOrderByNorthernIrelandDateOfOrder";
+    public static final String CHILD_PERMANENCE_ORDER_BY_SCOTLAND_COURT = "child_permanenceOrderByScotlandCourt";
+    public static final String CHILD_PERMANENCE_ORDER_BY_SCOTLAND_COURT_NAME = "child_permanenceOrderByScotlandCourtName";
+    public static final String CHILD_PERMANENCE_ORDER_BY_SCOTLAND_CASE_NUMBER = "child_permanenceOrderByScotlandCaseNumber";
+    public static final String CHILD_PERMANENCE_ORDER_BY_SCOTLAND_TYPE_OF_ORDER = "child_permanenceOrderByScotlandTypeOfOrder";
+    public static final String CHILD_PERMANENCE_ORDER_BY_SCOTLAND_DATE_OF_ORDER = "child_permanenceOrderByScotlandDateOfOrder";
+    public static final String CHILD_NO_ORDER_AVAILABLE = "child_noOrderAvailable";
+    public static final String ANY_OTHER_ORDERS_AVAILABLE = "anyOtherOrdersAvailable";
+    public static final String PLACEMENT_ORDER_COURT = "placementOrderCourt";
+    public static final String PLACEMENT_ORDER_ID = "placementOrderId";
+    public static final String PLACEMENT_ORDER_TYPE = "placementOrderType";
+    public static final String PLACEMENT_ORDER_DATE = "placementOrderDate";
+    public static final String FREEING_ORDER_COURT = "freeingOrderCourt";
+    public static final String FREEING_ORDER_ID = "freeingOrderId";
+    public static final String FREEING_ORDER_TYPE = "freeingOrderType";
+    public static final String FREEING_ORDER_DATE = "freeingOrderDate";
+    public static final String CHILD_NO_LA_OR_PARENTAL_RESPONSIBILITY = "child_noLaOrParentalResponsibility";
+    public static final String LA_OR_PARENTAL_RESPONSIBILITY = "laOrParentalResponsibility";
+    public static final String MAINTANENCE_ORDER = "maintanenceOrder";
+    public static final String CHILD_COURT_AND_DATE_OF_ORDER = "child_courtAndDateOfOrder";
+    public static final String NAME_OF_COURT = "nameOfCourt";
+    public static final String DATE_OF_ORDER = "dateOfOrder";
+    public static final String CHILD_NO_MAINTANENCE_ORDER = "child_noMaintanenceOrder";
+    public static final String CHILD_MAINTANENCE_ORDER = "child_maintanenceOrder";
+    public static final String HAS_MAINTANENCE_ORDER = "hasMaintanenceOrder";
+    public static final String CHILD_NO_PROCEEDING_DETAILS = "child_noProceedingDetails";
+    public static final String HAS_PROCEEDING_DETAILS = "hasProceedingDetails";
+    public static final String CHILD_PROCEEDING_DETAILS = "child_proceedingDetails";
+    public static final String CHILD_NO_PROCEEDING_DETAILS_WITH_RELATION = "child_noProceedingDetailsWithRelation";
+    public static final String HAS_PROCEEDING_DETAILS_WITH_RELATION = "hasProceedingDetailsWithRelation";
+    public static final String CHILD_PROCEEDING_DETAILS_WITH_RELATION = "child_proceedingDetailsWithRelation";
+    public static final String CHILD_DONT_KNOW_PROCEEDING_DETAILS_WITH_RELATION = "child_dontKnowProceedingDetailsWithRelation";
+    public static final String DONT_KNOW = "DontKnow";
+
     private static Map<String,String> getErrorMessageMap() {
         return Map.of(MANDATORY_KEY, MANDATORY_ERROR_MESSAGE,
                       DATE_FORMAT_FIELDS_KEY, DATE_FORMAT_MESSAGE,
