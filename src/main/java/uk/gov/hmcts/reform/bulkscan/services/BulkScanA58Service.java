@@ -94,7 +94,7 @@ public class BulkScanA58Service implements BulkScanService {
     BulkScanGroupHandler bulkScanGroupHandler;
 
     @Autowired
-    BulkScanA58TransformerService bulkScanA58TransformerService;
+    BulkScanA58ConditionalTransformerService bulkScanA58ConditionalTransformerService;
 
     @Override
     public FormType getCaseType() {
@@ -159,7 +159,7 @@ public class BulkScanA58Service implements BulkScanService {
 
         // For A58 formtype we need to set some fields based on the Or Condition...
         if (formType.equals(A58)) {
-            bulkScanA58TransformerService.transform(inputFieldsMap, populatedMap);
+            bulkScanA58ConditionalTransformerService.conditionalTransform(inputFieldsMap, populatedMap);
         }
 
         populatedMap.put(SCAN_DOCUMENTS, transformScanDocuments(bulkScanTransformationRequest));

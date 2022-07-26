@@ -124,9 +124,9 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DONT_KNOW
 //Divided this class to multiple classes based on formtype and remove suppress warning
 @SuppressWarnings({"PMD.GodClass", "PMD.ExcessiveImports"})
 @Component
-public class BulkScanA58TransformerService {
+public class BulkScanA58ConditionalTransformerService {
 
-    public void transform(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
+    public void conditionalTransform(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
         populatedMap.put(APPLICANTS_DOMICILE_STATUS, getDomicileStatus(inputFieldsMap));
         populatedMap.put(APPLICANT_RELATION_TO_CHILD, getAplicantRelationToChild(inputFieldsMap));
 
