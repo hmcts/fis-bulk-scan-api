@@ -11,22 +11,22 @@
 
       ],
       "maintanenceOrder":{
-        "name":"murshad",
-        "address":"london",
+        "name":null,
+        "address":null,
         "nameOfCourt":"HMCTSCourt",
         "dateOfOrder":"01/01/2000",
-        "agreementDate":"01/01/2001"
+        "agreementDate":null
       },
       "courtpreferredDates":"11/10/2022,21/10/2022",
       "applicantMaritalStatus":"",
       "birthFatherOccupation":null,
       "children":{
-        "gender":"male",
-        "dateOfBirth":"31/12/1985",
+        "gender":null,
+        "dateOfBirth":null,
         "approximateDateOfBirth":null,
         "placeAndCountry":null,
-        "nationality":"german",
-        "isMarried":"yes"
+        "nationality":null,
+        "isMarried":null
       },
       "applicantRequireInterpreter":"Yes",
       "applicant2FirstName":"applicant2firstName",
