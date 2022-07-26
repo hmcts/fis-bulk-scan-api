@@ -18,6 +18,17 @@
       <property name="ignoredAnnotations" value="Autowired" />
     </properties>
   </rule>
+  <rule ref="category/java/bestpractices.xml/UnusedPrivateField">
+    <properties>
+      <property name="ignoredAnnotations" value="lombok.Setter|lombok.Getter|lombok.Builder|lombok.Data|lombok.RequiredArgsConstructor|lombok.AllArgsConstructor|lombok.Value|lombok.NoArgsConstructor|java.lang.Deprecated|javafx.fxml.FXML|lombok.experimental.Delegate|lombok.EqualsAndHashCode" />
+    </properties>
+  </rule>
+  <rule ref="category/java/errorprone.xml/AvoidLiteralsInIfCondition">
+    <properties>
+      <property name="ignoreMagicNumbers" value="1" />
+      <property name="ignoreExpressions" value="true" />
+    </properties>
+  </rule>
   <rule ref="category/java/codestyle.xml">
     <exclude name="AtLeastOneConstructor"/>
     <exclude name="LocalVariableCouldBeFinal"/>
@@ -43,6 +54,13 @@
       <property name="junit4TestPattern" value="[a-z][a-zA-Z0-9_]+"/>
     </properties>
   </rule>
+    <rule ref="category/java/design.xml/NcssCount">
+        <properties>
+            <property name="methodReportLevel" value="200"/>
+            <property name="classReportLevel" value="1500"/>
+            <property name="ncssOptions" value=""/>
+        </properties>
+    </rule>
   <rule ref="category/java/codestyle.xml/ShortVariable">
     <properties>
       <property name="minimum" value="2"/>
