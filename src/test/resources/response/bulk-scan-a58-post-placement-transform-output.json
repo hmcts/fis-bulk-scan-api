@@ -11,22 +11,22 @@
 
       ],
       "maintanenceOrder":{
-        "name":null,
-        "address":null,
+        "name":"murshad",
+        "address":"london",
         "nameOfCourt":"HMCTSCourt",
         "dateOfOrder":"01/01/2000",
-        "agreementDate":null
+        "agreementDate":"01/01/2001"
       },
       "courtpreferredDates":"11/10/2022,21/10/2022",
       "applicantMaritalStatus":"",
       "birthFatherOccupation":null,
       "children":{
-        "gender":null,
-        "dateOfBirth":null,
+        "gender":"male",
+        "dateOfBirth":"31/12/1985",
         "approximateDateOfBirth":null,
         "placeAndCountry":null,
-        "nationality":null,
-        "isMarried":null
+        "nationality":"german",
+        "isMarried":"yes"
       },
       "applicantRequireInterpreter":"Yes",
       "applicant2FirstName":"applicant2firstName",
@@ -51,6 +51,7 @@
         "solicitorFeeAccountNumber":null
       },
       "applicant1FirstName":"firstName",
+      "placementOrderDate":"asdfsdf",
       "hasProceedingDetails":"no",
       "childWelshLanguagePreference":"Both",
       "applicant1TelephoneNumber":"447405878672",
@@ -85,8 +86,10 @@
       "birthFatherAddress":null,
       "applicant2LegalRepFirm":null,
       "hasProceedingDetailsWithRelation":"DontKnow",
+      "placementOrderId":"123456",
       "welshPreferenceWitnessName":"witnessName",
       "applicant1StatementOfTruth":"true",
+      "placementOrderType":"Case",
       "applicant2LastName":null,
       "childrenHealthReportDate":null,
       "applicant1Nationality":null,
@@ -105,6 +108,7 @@
       "guardianAddress":null,
       "applicant2Occupation":null,
       "applicant1LegalRepPosition":null,
+      "placementOrderCourt":"HMCTS",
       "birthMotherOccupation":"testBirthMotherOccupation",
       "applicant2SotFullName":null,
       "applicant2LegalRepSignature":null,

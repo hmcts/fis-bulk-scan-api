@@ -159,7 +159,7 @@ public class BulkScanA58ConditionalTransformerService {
     }
 
     public void buildCourtInformation(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
-        if (BooleanUtils.YES.equalsIgnoreCase(inputFieldsMap.get(CHILD_PLACEMENT_ORDER_BY_ENGLAND_AND_WALES_COURT))) {
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(CHILD_PLACEMENT_ORDER_BY_ENGLAND_AND_WALES_COURT))) {
             populatedMap.put(
                 PLACEMENT_ORDER_COURT,
                 inputFieldsMap.get(CHILD_PLACMENT_ORDER_BY_ENGLAND_AND_WALES_COURT_NAME));
@@ -172,7 +172,7 @@ public class BulkScanA58ConditionalTransformerService {
             populatedMap.put(
                 PLACEMENT_ORDER_DATE,
                 inputFieldsMap.get(CHILD_PLACMENT_ORDER_BY_ENGLAND_AND_WALES_DATE_OF_ORDER));
-        } else if (BooleanUtils.YES.equalsIgnoreCase(
+        } else if (TRUE.equalsIgnoreCase(
             inputFieldsMap.get(CHILD_FREEING_ORDER_BY_ENGLAND_AND_WALES_COURT))) {
             populatedMap.put(
                 FREEING_ORDER_COURT,
@@ -186,7 +186,7 @@ public class BulkScanA58ConditionalTransformerService {
             populatedMap.put(
                 FREEING_ORDER_DATE,
                 inputFieldsMap.get(CHILD_FREEING_ORDER_BY_ENGLAND_AND_WALES_DATE_OF_ORDER));
-        } else if (BooleanUtils.YES.equalsIgnoreCase(
+        } else if (TRUE.equalsIgnoreCase(
             inputFieldsMap.get(CHILD_FREEING_ORDER_BY_NORTHERN_IRELAND_COURT))) {
             populatedMap.put(
                 FREEING_ORDER_COURT,
@@ -200,7 +200,7 @@ public class BulkScanA58ConditionalTransformerService {
             populatedMap.put(
                 FREEING_ORDER_DATE,
                 inputFieldsMap.get(CHILD_FREEING_ORDER_BY_NORTHERN_IRELAND_DATE_OF_ORDER));
-        } else if (BooleanUtils.YES.equalsIgnoreCase(inputFieldsMap.get(CHILD_PERMANENCE_ORDER_BY_SCOTLAND_COURT))) {
+        } else if (TRUE.equalsIgnoreCase(inputFieldsMap.get(CHILD_PERMANENCE_ORDER_BY_SCOTLAND_COURT))) {
             populatedMap.put(
                 FREEING_ORDER_COURT,
                 inputFieldsMap.get(CHILD_PERMANENCE_ORDER_BY_SCOTLAND_COURT_NAME));
