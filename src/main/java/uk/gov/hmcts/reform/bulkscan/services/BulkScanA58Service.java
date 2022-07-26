@@ -303,8 +303,8 @@ public class BulkScanA58Service implements BulkScanService {
             if (StringUtils.isEmpty(warnings)) {
                 return null;
             } else {
-                return "The following fields are are not configured with our system: "
-                    + warnings;
+                return "The following fields are are not configured with our system. ["
+                    + warnings + "]";
             }
         }
         return item;
