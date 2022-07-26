@@ -72,7 +72,6 @@ class BulkScanC100ServiceTest {
             + "NoMIAM_DVE_publicAuthority_confirmationLetter,NoMIAM_DVE_secretaryOfState_letter,"
             + "NoMIAM_DVE_evidenceFinancialMatters].";
 
-
     @Autowired
     BulkScanC100Service bulkScanValidationService;
 
