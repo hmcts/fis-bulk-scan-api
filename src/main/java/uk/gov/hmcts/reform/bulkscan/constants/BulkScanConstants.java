@@ -235,6 +235,7 @@ public final class BulkScanConstants {
         CHILD_DONT_KNOW_PROCEEDING_DETAILS_WITH_RELATION = "child_dontKnowProceedingDetailsWithRelation";
     public static final String DONT_KNOW = "DontKnow";
     //End of A58
+
     private static Map<String,String> getErrorMessageMap() {
         return Map.of(MANDATORY_KEY, MANDATORY_ERROR_MESSAGE,
                       DATE_FORMAT_FIELDS_KEY, DATE_FORMAT_MESSAGE,
