@@ -3,17 +3,27 @@
     "case_type_id": "PRLAPPS",
     "event_id": "create-case-privatelaw-bs",
     "case_data": {
-      "scannedDocuments":[
-
+      "parentalResponsibilityDetails": "parentResponsibility",
+      "childrenKNownToLocalAuthorityTextArea": "socialWorker",
+      "applicants": {
+        "value": {
+          "firstName": "applicant1_firstName",
+          "lastName": "applicant1_lastName"
+        }
+      },
+      "childrenParentsName": "parentsName",
+      "childrenSubjectOfChildProtectionPlan": "protectionplan",
+      "scannedDocuments": [
+        {
+          "value": {
+            "document_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c",
+            "document_filename": "test.pdf",
+            "document_binary_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
+          }
+        }
       ],
       "childrenKNownToLocalAuthority": "Yes",
-      "childrenKNownToLocalAuthorityTextArea": "socialWorker",
-      "childrenSubjectOfChildProtectionPlan": "protectionplan",
-      "parentalResponsibilityDetails": "parentResponsibility",
-      "childrenOfSameParent": "Yes",
-      "childrenParentsName": "parentsName",
-      "childParentsNameCollection": "parentsNameColl",
-      "personWhoLivesWithChild": "living other details",
+      "prohibitedStepsOrder": "true",
       "children": [
         {
           "value": {
@@ -60,10 +70,13 @@
           }
         }
       ],
-      "childLiveWith": "Applicant"
+      "personWhoLivesWithChild": "living other details",
+      "childrenOfSameParent": "Yes",
+      "childLiveWith": "Applicant",
+      "specialIssueOrder": "true",
+      "typeOfChildArrangementsOrder": "true",
+      "childParentsNameCollection": "parentsNameColl"
     }
   },
-  "warnings": [
-
-  ]
+  "warnings": []
 }

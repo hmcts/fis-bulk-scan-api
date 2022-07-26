@@ -174,6 +174,35 @@
     {
       "name":"child4_localAuthority_or_socialWorker",
       "value":"socialWorker"
+    },
+    {
+      "name":"applicant1_firstName",
+      "value":"applicant1_firstName"
+    },
+    {
+      "name":"applicant1_lastName",
+      "value":"applicant1_lastName"
+    },
+    {
+      "name": "childArrangement_order",
+      "value": "true"
+    },
+    {
+      "name": "prohibitedSteps_order",
+      "value": "true"
+    },
+    {
+      "name": "specialIssue_order",
+      "value": "true"
+    }
+  ],
+  "scanned_documents": [
+    {
+      "url": {
+        "document_url":"http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c",
+        "document_filename":"test.pdf",
+        "document_binary_url":"http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
+      }
     }
   ],
   "form_type": "C100"

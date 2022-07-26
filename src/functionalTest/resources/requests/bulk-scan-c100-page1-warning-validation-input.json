@@ -1,6 +1,30 @@
 {
   "ocr_data_fields":[
     {
+      "name":"applicant1_firstName",
+      "value":"John"
+    },
+    {
+      "name":"applicant1_lastName",
+      "value":"Peters"
+    },
+    {
+      "name":"childArrangement_order",
+      "value":"childArrangementOrder"
+    },
+    {
+      "name":"applicant1_dateOfBirth",
+      "value":"01/01/1994"
+    },
+    {
+      "name":"prohibitedSteps_order",
+      "value":"prohibitedSteps_order"
+    },
+    {
+      "name":"specialIssue_order",
+      "value":"specialIssueOrder"
+    },
+    {
       "name":"child1_firstName",
       "value":"firstName"
     },
@@ -174,27 +198,6 @@
     {
       "name":"child4_localAuthority_or_socialWorker",
       "value":"socialWorker"
-    },
-    {
-      "name":"applicant1_firstName",
-      "value":"applicant1_firstName"
-    },
-    {
-      "name":"applicant1_lastName",
-      "value":"applicant1_lastName"
-    },
-    {
-      "name": "childArrangement_order",
-      "value": "true"
-    },
-    {
-      "name": "prohibitedSteps_order",
-      "value": "true"
-    },
-    {
-      "name": "specialIssue_order",
-      "value": "true"
     }
-  ],
-  "form_type": "C100"
+  ]
 }
