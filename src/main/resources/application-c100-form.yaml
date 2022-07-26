@@ -57,6 +57,7 @@ uk:
               - permissionRequiredReason
               - briefDetailsOnTheApplication
               - havePreviousParentingPlan
+              - askingPermissionForApplication
             regexValidationFields:
               dateFields:
                 fieldNames:
