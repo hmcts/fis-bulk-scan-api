@@ -157,10 +157,8 @@ class BulkScanC100ServiceTest {
             readFileFrom(C100_TRANSFORM_REQUEST_PATH), BulkScanTransformationRequest.class);
 
         BulkScanTransformationResponse res = bulkScanValidationService.transform(bulkScanTransformationRequest);
-        System.out.println(mapper.writeValueAsString(res));
         JSONAssert.assertEquals(readFileFrom(C100_TRANSFORM_RESPONSE_PATH),
                                 mapper.writeValueAsString(res), true);
-
     }
 
     @Test
