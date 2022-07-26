@@ -471,7 +471,7 @@ public class A58Group implements Group {
                                             .build());
 
         DateField childDateOfBirth = DateField.builder()
-                                            .name("child_dateOFBirth")
+                                            .name("child_dateOfBirth")
                                             .fieldRequiredType(FieldRequiredTypeEnum.MANDATORY)
                                             .build();
 
