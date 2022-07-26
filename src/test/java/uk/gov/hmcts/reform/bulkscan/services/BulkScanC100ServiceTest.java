@@ -260,7 +260,7 @@ class BulkScanC100ServiceTest {
 
     @Test
     @DisplayName("Should generate warning on absence of dependency field(s) on exemption_To_Attend_MIAM field")
-    void testC100WarningExemptionToAttendMiamWithoutAPage3Checkbox() {
+    void testC100WarningExemptionToAttendMiamWithoutAnyDependentFields() {
         List<OcrDataField> c100GetExemptionWarningData = new ArrayList<>();
         c100GetExemptionWarningData.addAll(TestDataC100Util.getAllNamesRelationSuccessData());
         c100GetExemptionWarningData.addAll(TestDataC100Util.getExemptionToAttendWarningData());
@@ -275,7 +275,7 @@ class BulkScanC100ServiceTest {
 
     @Test
     @DisplayName("Should generate warning on NoMiam_DomesticViolence checked but without dependency Part 3a field(s)")
-    void testC100NoMiamDomesticViolenceWarningOnSection3ACheckbox() {
+    void testC100NoMiamDomesticViolenceWarning() {
         List<OcrDataField> c100GetDomesticViolenceWarningData = new ArrayList<>();
         OcrDataField ocrDataPostCodeField = new OcrDataField();
         ocrDataPostCodeField.setName("applicant_postCode");
@@ -298,7 +298,7 @@ class BulkScanC100ServiceTest {
     @Test
     @DisplayName("Should generate warnings on [NoMiam_ChildProtectionConcerns] checked but without"
             + " dependent Part 3b field(s)")
-    void testC100NoMiamChildProtectionConcernsWarningOnSections3BCheckbox() {
+    void testC100NoMiamChildProtectionConcernsWarning() {
         List<OcrDataField> c100GetDomesticViolenceWarningData = new ArrayList<>();
         c100GetDomesticViolenceWarningData.addAll(TestDataC100Util.getAllNamesRelationSuccessData());
         c100GetDomesticViolenceWarningData.addAll(TestDataC100Util.getExemptionDependentNoMiamFieldWarningsData());
@@ -315,7 +315,7 @@ class BulkScanC100ServiceTest {
 
     @Test
     @DisplayName("Should generate warnings on [NoNiam_Urgency] checked but without dependent Part 3c field(s)")
-    void testC100NoMiamUrgencyWarningOnSections3CCheckbox() {
+    void testC100NoMiamUrgencyWarning() {
         List<OcrDataField> c100GetDomesticViolenceWarningData = new ArrayList<>();
         c100GetDomesticViolenceWarningData.addAll(TestDataC100Util.getAllNamesRelationSuccessData());
         c100GetDomesticViolenceWarningData.addAll(TestDataC100Util.getExemptionDependentNoMiamFieldWarningsData());
@@ -333,7 +333,7 @@ class BulkScanC100ServiceTest {
     @Test
     @DisplayName("Should generate warnings on [NoMIAM_PreviousAttendanceReason] checked but without"
             + " dependent Part 3d field(s)")
-    void testC100NoMiamPreviousAttendanceReasonWarningOnSections3DCheckbox() {
+    void testC100NoMiamPreviousAttendanceReasonWarning() {
         List<OcrDataField> c100GetDomesticViolenceWarningData = new ArrayList<>();
         c100GetDomesticViolenceWarningData.addAll(TestDataC100Util.getAllNamesRelationSuccessData());
         c100GetDomesticViolenceWarningData.addAll(TestDataC100Util.getExemptionDependentNoMiamFieldWarningsData());
@@ -351,7 +351,7 @@ class BulkScanC100ServiceTest {
     @Test
     @DisplayName("Should generate warnings on [NoMIAM_otherReasons] checked but without"
             + " dependent Part 3e field(s)")
-    void testC100NoMiamOtherReasonsWarningOnSections3ECheckbox() {
+    void testC100NoMiamOtherReasonsWarning() {
         List<OcrDataField> c100GetDomesticViolenceWarningData = new ArrayList<>();
         c100GetDomesticViolenceWarningData.addAll(TestDataC100Util.getAllNamesRelationSuccessData());
         c100GetDomesticViolenceWarningData.addAll(TestDataC100Util.getExemptionDependentNoMiamFieldWarningsData());
