@@ -11,7 +11,6 @@ import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.services.postcode.PostcodeLookupService;
-import uk.gov.hmcts.reform.bulkscan.utils.TestDataC100Util;
 import uk.gov.hmcts.reform.bulkscan.utils.TestDataUtil;
 
 import static org.junit.Assert.assertEquals;
@@ -34,7 +33,7 @@ class BulkScanEndpointTest {
     @Test
     void testC100ValidationUnknownFormType() throws Exception {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder()
-            .ocrdatafields(TestDataC100Util.getData()).build();
+            .ocrdatafields(TestDataUtil.getData()).build();
         ResponseEntity<?> response =
             bulkScanEndpoint.validateOcrData(S2S_TOKEN, CONTENT_TYPE, null, bulkScanValidationRequest);
         assertEquals(response.getStatusCode(),HttpStatus.OK);
@@ -43,7 +42,7 @@ class BulkScanEndpointTest {
     @Test
     void testC100ValidationHappyPath() throws Exception {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder()
-            .ocrdatafields(TestDataC100Util.getData()).build();
+            .ocrdatafields(TestDataUtil.getData()).build();
         when(postcodeLookupService.isValidPostCode("TW3 1NN", null)).thenReturn(true);
         ResponseEntity<?> response =
             bulkScanEndpoint.validateOcrData(S2S_TOKEN, CONTENT_TYPE, C100, bulkScanValidationRequest);
@@ -72,7 +71,7 @@ class BulkScanEndpointTest {
     void testC100TransformService() {
         //Given
         BulkScanTransformationRequest bulkScanTransformationRequest = BulkScanTransformationRequest.builder()
-            .ocrdatafields(TestDataC100Util.getData()).formType(
+            .ocrdatafields(TestDataUtil.getData()).formType(
             C100.name()).build();
 
         //When
