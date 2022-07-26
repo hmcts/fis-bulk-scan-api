@@ -5,6 +5,16 @@ uk:
         caseTypeofApplication:
           C100:
             caseFields:
+              CASE_TYPE_ID: C100
+                EVENT_ID: create-case-adop-bs
+              caseDataFields:
+                applicants:
+                  value:
+                    firstName: applicant1_firstName
+                    lastName: applicant1_lastName
+                typeOfChildArrangementsOrder: childArrangement_order
+                prohibitedStepsOrder: prohibitedSteps_order
+                specialIssueOrder: specialIssue_order
               CASE_TYPE_ID: PRLAPPS
               EVENT_ID: create-case-privatelaw-bs
             caseDataFields:

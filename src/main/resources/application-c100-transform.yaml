@@ -8,6 +8,13 @@ uk:
               CASE_TYPE_ID: PRLAPPS
               EVENT_ID: create-case-privatelaw-bs
             caseDataFields:
+              applicants:
+                value:
+                  firstName: applicant1_firstName
+                  lastName: applicant1_lastName
+              typeOfChildArrangementsOrder: childArrangement_order
+              prohibitedStepsOrder: prohibitedSteps_order
+              specialIssueOrder: specialIssue_order
               children:
                 - value:
                     firstName: child1_firstName
