@@ -21,7 +21,6 @@ import uk.gov.hmcts.reform.bulkscan.model.Errors;
 import uk.gov.hmcts.reform.bulkscan.model.FormType;
 import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
 import uk.gov.hmcts.reform.bulkscan.model.Status;
-import uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformerExtenderHelper;
 import uk.gov.hmcts.reform.bulkscan.model.Warnings;
 
 import java.util.Arrays;
@@ -95,7 +94,7 @@ public class BulkScanA58Service implements BulkScanService {
     BulkScanGroupHandler bulkScanGroupHandler;
 
     @Autowired
-    BulkScanTransformerExtenderHelper bulkScanTransformerExtenderHelper;
+    BulkScanA58TransformerService bulkScanA58TransformerService;
 
     @Override
     public FormType getCaseType() {
@@ -160,7 +159,7 @@ public class BulkScanA58Service implements BulkScanService {
 
         // For A58 formtype we need to set some fields based on the Or Condition...
         if (formType.equals(A58)) {
-            bulkScanTransformerExtenderHelper.transform(inputFieldsMap, populatedMap);
+            bulkScanA58TransformerService.transform(inputFieldsMap, populatedMap);
         }
 
         populatedMap.put(SCAN_DOCUMENTS, transformScanDocuments(bulkScanTransformationRequest));

@@ -1,4 +1,4 @@
-package uk.gov.hmcts.reform.bulkscan.helper;
+package uk.gov.hmcts.reform.bulkscan.services;
 
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -124,7 +124,7 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DONT_KNOW
 //Divided this class to multiple classes based on formtype and remove suppress warning
 @SuppressWarnings({"PMD.GodClass", "PMD.ExcessiveImports"})
 @Component
-public class BulkScanTransformerExtenderHelper {
+public class BulkScanA58TransformerService {
 
     public void transform(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
         populatedMap.put(APPLICANTS_DOMICILE_STATUS, getDomicileStatus(inputFieldsMap));
