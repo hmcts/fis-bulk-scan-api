@@ -17,7 +17,7 @@
       "value": "No"
     },
     {
-      "name": "Attend_MIAM",
+      "name": "attended_MIAM",
       "value": "No"
     },
     {
@@ -132,8 +132,6 @@
       "name":"child_living_with_others",
       "value":"false"
     },
-
-
     {
       "name":"child2_firstName",
       "value":"child2firstName"
@@ -166,9 +164,6 @@
       "name":"child2_localAuthority_or_socialWorker",
       "value":"socialWorker"
     },
-
-
-
     {
       "name":"child3_firstName",
       "value":"child3firstName"
@@ -201,8 +196,6 @@
       "name":"child3_localAuthority_or_socialWorker",
       "value":"socialWorker"
     },
-
-
     {
       "name":"child4_firstName",
       "value":"child4firstName"
