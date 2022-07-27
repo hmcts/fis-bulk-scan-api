@@ -145,10 +145,6 @@
       "value": "true"
     },
     {
-      "name": "child_noOrderAvaialble",
-      "value": "true"
-    },
-    {
       "name": "unknown",
       "value": "true"
     },
@@ -191,6 +187,18 @@
     {
       "name": "statement_of_truth_date_year",
       "value": "2000"
+    },
+    {
+      "name": "child_dontKnowProceedingDetailsWithRelation",
+      "value": "true"
+    },
+    {
+      "name": "child_noProceedingDetails",
+      "value": "true"
+    },
+    {
+      "name": "child_noOrderAvailable",
+      "value": "true"
     }
   ]
 }
