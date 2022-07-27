@@ -209,11 +209,11 @@
       "value": "true"
     },
     {
-      "name": "child_noOrderAvaialble",
+      "name": "child_noProceedingDetails",
       "value": "true"
     },
     {
-      "name": "child_noProceedingDetails",
+      "name": "child_noOrderAvailable",
       "value": "true"
     }
   ]

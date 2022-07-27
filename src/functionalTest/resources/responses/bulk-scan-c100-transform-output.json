@@ -3,19 +3,32 @@
     "case_type_id": "PRLAPPS",
     "event_id": "create-case-privatelaw-bs",
     "case_data": {
-      "parentalResponsibilityDetails": "parentResponsibility",
-      "familyMediatorMiam": null,
-      "childrenKNownToLocalAuthorityTextArea": "socialWorker",
-      "childrenParentsName": "parentsName",
-      "applicantAttendedMiam": null,
-      "childrenSubjectOfChildProtectionPlan": "protectionplan",
-      "miamTable": {
-        "claimingExemptionMiam": null,
-        "familyMediatorMiam": null,
-        "applicantAttendedMiam": null
+      "otherProceedingsDetailsTable": [
+        {
+          "value": {
+            "previousOrOngoingProceedings": null
+          }
+        }
+      ],
+      "applicants": {
+        "value": {
+          "firstName": "applicant1_firstName",
+          "lastName": "applicant1_lastName"
+        }
       },
-      "scannedDocuments": [],
-      "childrenKNownToLocalAuthority": "Yes",
+      "otherProceedingsTable": {
+        "previousOrOngoingProceedings": null
+      },
+      "scannedDocuments": [
+        {
+          "value": {
+            "document_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c",
+            "document_filename": "test.pdf",
+            "document_binary_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
+          }
+        }
+      ],
+      "orderAppliedFor": "true",
       "children": [
         {
           "value": {
@@ -62,10 +75,43 @@
           }
         }
       ],
+      "hearingUrgencyTable": {
+        "isCaseUrgent": null
+      },
       "personWhoLivesWithChild": "living other details",
+      "applicationPermissionRequired": "yes",
+      "habitualResidentINotherState": "yes",
+      "parentalResponsibilityDetails": "parentResponsibility",
+      "familyMediatorMiam": null,
+      "isCaseUrgent": "yes",
+      "typeOfApplicationTable": {
+        "applicationPermissionRequired": null
+      },
+      "childrenKNownToLocalAuthorityTextArea": "socialWorker",
+      "childrenParentsName": "parentsName",
+      "previousOrOngoingProceedings": "yes",
+      "applicantAttendedMiam": null,
+      "childrenSubjectOfChildProtectionPlan": "protectionplan",
+      "miamTable": {
+        "claimingExemptionMiam": null,
+        "familyMediatorMiam": null,
+        "applicantAttendedMiam": null
+      },
+      "childrenKNownToLocalAuthority": "Yes",
+      "prohibitedStepsOrder": "true",
+      "allegationsOfHarmOverviewTable": {
+        "allegationsOfHarmDomesticAbuseYesNo": null,
+        "allegationsOfHarmChildAbductionYesNo": null,
+        "allegationsOfHarmChildAbuseYesNo": null,
+        "allegationsOfHarmSubstanceAbuseYesNo": null,
+        "allegationsOfHarmOtherConcernsYesNo": null
+      },
       "childrenOfSameParent": "Yes",
       "childLiveWith": "Applicant",
+      "consentOrder": "yes",
+      "specialIssueOrder": "true",
       "claimingExemptionMiam": "yes",
+      "welshLanguageRequirement": "yes",
       "childParentsNameCollection": "parentsNameColl"
     }
   },

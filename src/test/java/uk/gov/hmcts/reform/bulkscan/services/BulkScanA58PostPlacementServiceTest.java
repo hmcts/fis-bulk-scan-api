@@ -43,6 +43,8 @@ class BulkScanA58PostPlacementServiceTest {
 
     private static final String A58_POST_PLACEMENT_REQUEST_PATH =
             "classpath:request/bulk-scan-a58-post-placement-input.json";
+    private static final String A58_POST_PLACEMENT_WARNING_REQUEST_PATH =
+        "classpath:request/bulk-scan-a58-post-placement-warning-input.json";
     private static final String A58_POST_PLACEMENT_UNKNOWN_FIELD_REQUEST_PATH =
             "classpath:request/bulk-scan-a58-post-placement-unknown-field-input.json";
     private static final String A58_POST_PLACEMENT_ERROR_FIELD_REQUEST_PATH =
@@ -61,6 +63,15 @@ class BulkScanA58PostPlacementServiceTest {
                 .readValue(readFileFrom(A58_POST_PLACEMENT_REQUEST_PATH), BulkScanValidationRequest.class);
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.SUCCESS, res.status);
+    }
+
+    @Test
+    @DisplayName("A58 post placement form validation success scenario")
+    void testA58PostPlacementApplicationValidationWithWarning() throws IOException {
+        BulkScanValidationRequest bulkScanValidationRequest = mapper
+            .readValue(readFileFrom(A58_POST_PLACEMENT_WARNING_REQUEST_PATH), BulkScanValidationRequest.class);
+        BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
+        assertEquals(Status.ERRORS, res.status);
     }
 
     @Test

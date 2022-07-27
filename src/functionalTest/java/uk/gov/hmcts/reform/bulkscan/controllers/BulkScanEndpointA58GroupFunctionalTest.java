@@ -25,7 +25,7 @@ import static uk.gov.hmcts.reform.bulkscan.util.TestResourceUtil.readFileFrom;
 @RunWith(SpringRunner.class)
 @ContextConfiguration
 @TestPropertySource("classpath:application.yaml")
-public class BulkScanEndpointA58GroupFunctionalTestTest {
+public class BulkScanEndpointA58GroupFunctionalTest {
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
     private static final String AUTH_HEADER = "serviceauthorization";

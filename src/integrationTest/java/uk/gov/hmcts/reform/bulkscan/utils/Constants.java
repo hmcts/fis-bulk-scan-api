@@ -11,6 +11,9 @@ public final class Constants {
     public static final String A58_CASE_TYPE_VALIDATE_ENDPOINT = "/forms/A58/validate-ocr";
     public static final String A59_CASE_TYPE_VALIDATE_ENDPOINT = "/forms/A59/validate-ocr";
     public static final String A60_CASE_TYPE_VALIDATE_ENDPOINT = "/forms/A60/validate-ocr";
+
+    public static final String C100_VALIDATION_REQUEST_PATH =
+        "classpath:request/bulk-scan-c100-Page1-validation-input.json";
     public static final String A60_VALIDATION_REQUEST_PATH =
         "classpath:request/bulk-scan-a60-validation-input.json";
     public static final String C100_CASE_TYPE_VALIDATE_ENDPOINT = "/forms/C100/validate-ocr";
