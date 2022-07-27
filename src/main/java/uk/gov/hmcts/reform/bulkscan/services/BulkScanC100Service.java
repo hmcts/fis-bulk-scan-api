@@ -15,7 +15,6 @@ import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.CaseCreationDetails;
 import uk.gov.hmcts.reform.bulkscan.model.FormType;
 import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
-import uk.gov.hmcts.reform.bulkscan.model.Status;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -59,6 +58,9 @@ public class BulkScanC100Service implements BulkScanService {
     @Autowired
     BulkScanC100ValidationService bulkScanC100ValidationService;
 
+    @Autowired
+    BulkScanDependencyValidationService dependencyValidationService;
+
     @Override
     public FormType getCaseType() {
         return FormType.C100;
@@ -67,21 +69,34 @@ public class BulkScanC100Service implements BulkScanService {
     @Override
     public BulkScanValidationResponse validate(BulkScanValidationRequest bulkRequest) {
         // Validating the Fields..
-        Map<String, String> inputFieldsMap = getOcrDataFieldAsMap(bulkRequest.getOcrdatafields());
+        Map<String, String> inputFieldMap = getOcrDataFieldAsMap(bulkRequest.getOcrdatafields());
 
-        BulkScanValidationResponse response = bulkScanValidationHelper
-            .validateMandatoryAndOptionalFields(bulkRequest.getOcrdatafields(), configManager.getValidationConfig(
-                                                                              FormType.C100));
-        List<String> manualValidationErrors = doChildRelatedValidation(inputFieldsMap);
+        BulkScanValidationResponse bulkScanValidationResponse =
+                bulkScanValidationHelper.validateMandatoryAndOptionalFields(
+                        bulkRequest.getOcrdatafields(),
+                        configManager.getValidationConfig(
+                                FormType.C100)
+                );
+
+        List<String> manualValidationErrors = doChildRelatedValidation(inputFieldMap);
         if (!manualValidationErrors.isEmpty()) {
-            response.setStatus(Status.ERRORS);
-            response.getErrors().items.addAll(manualValidationErrors);
+            bulkScanValidationResponse.addErrors(manualValidationErrors);
         }
 
-        response = bulkScanC100ValidationService
-            .validateAttendMiam(bulkRequest.getOcrdatafields(), response);
+        bulkScanValidationResponse.addWarning(dependencyValidationService
+                .getDependencyWarnings(inputFieldMap, FormType.C100));
 
-        return response;
+        BulkScanValidationResponse response = BulkScanValidationResponse.builder()
+                .errors(bulkScanValidationResponse.getErrors()).build();
+
+        response = bulkScanC100ValidationService
+                .validateAttendMiam(bulkRequest.getOcrdatafields(), response);
+
+        bulkScanValidationResponse.addErrors(response.getErrors().getItems());
+
+        bulkScanValidationResponse.changeStatus();
+
+        return bulkScanValidationResponse;
     }
 
     /**
@@ -93,30 +108,29 @@ public class BulkScanC100Service implements BulkScanService {
     List<String> doChildRelatedValidation(Map<String, String> inputFieldsMap) {
         List<String> errors = new ArrayList<>();
         if (StringUtils.isEmpty(inputFieldsMap.get(CHILD_LIVING_WITH_APPLICANT))
-            && StringUtils.isEmpty(inputFieldsMap.get(CHILD_LIVING_WITH_RESPONDENT))
-            && StringUtils.isEmpty(inputFieldsMap.get(CHILD_LIVING_WITH_OTHERS))) {
+                && StringUtils.isEmpty(inputFieldsMap.get(CHILD_LIVING_WITH_RESPONDENT))
+                && StringUtils.isEmpty(inputFieldsMap.get(CHILD_LIVING_WITH_OTHERS))) {
             errors.add(String.format(XOR_CONDITIONAL_FIELDS_MESSAGE, CHILD_LIVING_WITH_APPLICANT
-                .concat(",").concat(CHILD_LIVING_WITH_RESPONDENT).concat(",").concat(CHILD_LIVING_WITH_OTHERS)));
+                    .concat(",").concat(CHILD_LIVING_WITH_RESPONDENT).concat(",").concat(CHILD_LIVING_WITH_OTHERS)));
         }
 
         if (YES.equalsIgnoreCase(inputFieldsMap.get(CHILDREN_OF_SAME_PARENT))
-            && StringUtils.isEmpty(inputFieldsMap.get(CHILDREN_PARENTS_NAME))) {
+                && StringUtils.isEmpty(inputFieldsMap.get(CHILDREN_PARENTS_NAME))) {
             errors.add(String.format(MANDATORY_ERROR_MESSAGE, CHILDREN_PARENTS_NAME));
         }
 
         if (NO.equalsIgnoreCase(inputFieldsMap.get(CHILDREN_OF_SAME_PARENT))
-            && StringUtils.isEmpty(inputFieldsMap.get(CHILDREN_PARENTS_NAME_COLLECTION))) {
+                && StringUtils.isEmpty(inputFieldsMap.get(CHILDREN_PARENTS_NAME_COLLECTION))) {
             errors.add(String.format(MANDATORY_ERROR_MESSAGE, CHILDREN_PARENTS_NAME_COLLECTION));
         }
 
         if (YES.equalsIgnoreCase(inputFieldsMap.get(CHILDREN_SOCIAL_AUTHORITY))
-            && StringUtils.isEmpty(inputFieldsMap.get(CHILD_LOCAL_AUTHORITY_OR_SOCIAL_WORKER))) {
+                && StringUtils.isEmpty(inputFieldsMap.get(CHILD_LOCAL_AUTHORITY_OR_SOCIAL_WORKER))) {
             errors.add(String.format(MANDATORY_ERROR_MESSAGE, CHILD_LOCAL_AUTHORITY_OR_SOCIAL_WORKER));
         }
 
         return errors;
     }
-
 
     @Override
     @SuppressWarnings("unchecked")

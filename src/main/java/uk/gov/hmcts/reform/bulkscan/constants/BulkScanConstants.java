@@ -15,6 +15,7 @@ public final class BulkScanConstants {
 
     public static final String MANDATORY_ATTENDED_MIAM_MESSAGE = "%s : value is no, "
         + "and you cannot make this application";
+
     public static final String MANDATORY_ERROR_MESSAGE = "%s should not be null or empty";
     public static final String DATE_FORMAT_MESSAGE = "%s is invalid date or format";
     public static final String EMAIL_FORMAT_MESSAGE = "%s is invalid email";
@@ -27,6 +28,10 @@ public final class BulkScanConstants {
     public static final String ALPHA_NUMERIC_FIELDS_MESSAGE = "%s is not valid alpha numeric";
     public static final String UNKNOWN_FIELDS_MESSAGE = "The following fields are are not configured "
         + "with our system. [%s] ";
+
+
+    public static final String GROUP_DEPENDENCY_MESSAGE = "Group Dependency Field (%s) has "
+            + "dependency validation warning. Must contain at least %s of the fields [%s].";
 
     public static final String XOR_CONDITIONAL_FIELDS_MESSAGE = "one field must be present out of %s";
 
