@@ -58,6 +58,8 @@ public final class TestDataC100Util {
         ocrDataAttendedMiamField.setValue(TICK_BOX_NO);
         fieldList.add(ocrDataAttendedMiamField);
 
+        fieldList.addAll(getApplicantSuccessData());
+
         fieldList.addAll(getChild1NamesRelationSuccessData());
 
         fieldList.addAll(getChild2NamesRelationSuccessData());
@@ -65,6 +67,37 @@ public final class TestDataC100Util {
         fieldList.addAll(getChild3NamesRelationSuccessData());
 
         fieldList.addAll(getChild4NamesRelationSuccessData());
+
+        return fieldList;
+    }
+
+    public static List<OcrDataField> getApplicantSuccessData() {
+        List<OcrDataField> fieldList = new ArrayList<>();
+
+        OcrDataField ocrDataApplicant1FirstName = new OcrDataField();
+        ocrDataApplicant1FirstName.setName("applicant1_firstName");
+        ocrDataApplicant1FirstName.setValue("John");
+        fieldList.add(ocrDataApplicant1FirstName);
+
+        OcrDataField ocrDataApplicant1LastName = new OcrDataField();
+        ocrDataApplicant1LastName.setName("applicant1_lastName");
+        ocrDataApplicant1LastName.setValue("Peters");
+        fieldList.add(ocrDataApplicant1LastName);
+
+        OcrDataField ocrDataChildArrangementOrder = new OcrDataField();
+        ocrDataChildArrangementOrder.setName("childArrangement_order");
+        ocrDataChildArrangementOrder.setValue("childArrangementOrder");
+        fieldList.add(ocrDataChildArrangementOrder);
+
+        OcrDataField ocrDataProhibitedStepsOrder = new OcrDataField();
+        ocrDataProhibitedStepsOrder.setName("prohibitedSteps_order");
+        ocrDataProhibitedStepsOrder.setValue("prohibitedSteps_order");
+        fieldList.add(ocrDataProhibitedStepsOrder);
+
+        OcrDataField ocrDataSpecialIssueOrder = new OcrDataField();
+        ocrDataSpecialIssueOrder.setName("specialIssue_order");
+        ocrDataSpecialIssueOrder.setValue("specialIssueOrder");
+        fieldList.add(ocrDataSpecialIssueOrder);
 
         return fieldList;
     }

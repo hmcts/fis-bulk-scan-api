@@ -13,6 +13,11 @@ uk:
               - children_of_same_parent
               - subject_to_childProtectionPlan
             optionalFields:
+              - applicant1_firstName
+              - applicant1_lastName
+              - childArrangement_order
+              - prohibitedSteps_order
+              - specialIssue_order
               - child1_orderAppliedFor
               - child1_applicant1_relationship
               - child1_respondent1_relationship
