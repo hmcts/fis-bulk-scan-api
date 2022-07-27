@@ -6,6 +6,8 @@ import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanFormValidationConfigManager;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanTransformConfigManager;
 import uk.gov.hmcts.reform.bulkscan.enums.ChildLiveWithEnum;
+import uk.gov.hmcts.reform.bulkscan.enums.DomesticViolenceEvidenceEnum;
+import uk.gov.hmcts.reform.bulkscan.enums.MaritalStatusEnum;
 import uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper;
 import uk.gov.hmcts.reform.bulkscan.helper.BulkScanValidationHelper;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
@@ -24,22 +26,8 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import static org.apache.commons.lang3.BooleanUtils.TRUE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.BULK_SCAN_CASE_REFERENCE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CASE_TYPE_ID;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILDREN_OF_SAME_PARENT;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILDREN_PARENTS_NAME;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILDREN_PARENTS_NAME_COLLECTION;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILDREN_SOCIAL_AUTHORITY;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVE_WITH_KEY;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVING_WITH_APPLICANT;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVING_WITH_OTHERS;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVING_WITH_RESPONDENT;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LOCAL_AUTHORITY_OR_SOCIAL_WORKER;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EVENT_ID;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_ERROR_MESSAGE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NO;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.XOR_CONDITIONAL_FIELDS_MESSAGE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.*;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.applicant_applying_alone_other_parent_exclusion_justified;
 import static uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper.transformScanDocuments;
 
 @Service
@@ -154,4 +142,76 @@ public class BulkScanC100Service implements BulkScanService {
         }
         return StringUtils.EMPTY;
     }
+
+    private String getApplicantDomesticViolenceEvidenceStatus(Map<String, String> inputFieldsMap) {
+        if (YES.equalsIgnoreCase(inputFieldsMap.get(EVIDENCE_OF_ARREST_FOR_RELEVANT_DOMESTIC_VIOLENCE_OFFENCE))) {
+            return DomesticViolenceEvidenceEnum.ARRESTED_FOR_DOMESTIC_VIOLENCE_OFFENCE.getName();
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get(EVIDENCE_OF_POLICE_CAUTION_FOR_DOMESTIC_VIOLENCE_OFFENCE))) {
+            return DomesticViolenceEvidenceEnum.POLICE_CAUTION_FOR_DOMESTIC_VIOLENCE_OFFENCE.getName();
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get(EVIDENCE_OF_CRIMINAL_PROCEEDINGS_FOR_DOMESTIC_VIOLENCE_NOT_CONCLUDED))) {
+            return DomesticViolenceEvidenceEnum.CRIMINAL_PROCEEDINGS_FOR_DOMESTIC_VIOLENCE_NOT_CONCLUDED.getName();
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get(EVIDENCE_OF_CONVICTION_FOR_DOMESTIC_VIOLENCE_OFFENCE))) {
+            return DomesticViolenceEvidenceEnum.CONVICTION_FOR_DOMESTIC_VIOLENCE_OFFENCE.getName();
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get(
+            COURT_ORDER_BINDING_PROSPECTIVE_PARTY_IN_CONNECTION_WITH_DOMESTIC_VIOLENCE_OFFENCE))) {
+            return DomesticViolenceEvidenceEnum.COURT_ORDER_BINDING_PARTY_IN_CONNECTION_WITH_DOMESTIC_VIOLENCE.getName();
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get(
+            DOMESTIC_VIOLENCE_PROTECTION_NOTICE_ISSUED_S24_CSA_AGAINST_A_PROSPECTIVE_PARTY))) {
+            return DomesticViolenceEvidenceEnum.DOMESTIC_VIOLENCE_PROTECTION_NOTICE_ISSUED_S24_CSA.getName();
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get(RELEVANT_PROTECTIVE_INJUNCTION))) {
+            return DomesticViolenceEvidenceEnum.PROTECTIVE_INJUNCTION.getName();
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get(
+            UNDERTAKING_S46_OR_63E_PROVIDED_CROSS_UNDERTAKING_RELATED_TO_DOMESTIC_VIOLENCE_NOT_GIVEN_BY_OTHER))) {
+            return DomesticViolenceEvidenceEnum.UNDERTAKING_PROVIDED_CROSS_UNDERTAKING_RELATED_TO_DOMESTIC_VIOLENCE_NOT_GIVEN_BY_OTHER.getName();
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get(COPY_OF_FINDING_FACT_OF_DOMESTIC_VIOLENCE))) {
+            return DomesticViolenceEvidenceEnum.COPY_OF_FINDING_OF_FACT_IN_UK_OF_DOMESTIC_VIOLENCE.getName();
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get(EXPERT_REPORT_EVIDENCE_PARTY_ASSESSED_AS_A_VICTIM))) {
+            return DomesticViolenceEvidenceEnum.EXPERT_REPORT_ASSESSED_AS_A_VICTIM.getName();
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get(HEALTH_PROFESSIONAL_REPORT_IN_PERSON_ON_DOMESTIC_ABUSE_INJURIES))) {
+            return DomesticViolenceEvidenceEnum.HEALTH_PROFESSIONAL_REPORT_ON_DOMESTIC_ABUSE_INJURIES.getName();
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get(REFERRAL_HEALTH_REPORT_TO_SPECIALIST_SUPPORT))) {
+            return DomesticViolenceEvidenceEnum.REFERRAL_HEALTH_REPORT.getName();
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get(MULTI_AGENCY_RISK_ASSESSMENT_CONFERENCE_LETTER_PART_AT_RISK))) {
+            return DomesticViolenceEvidenceEnum.MULTI_AGENCY_RISK_ASSESSMENT_CONFERENCE_LETTER.getName();
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get(DOMESTIC_VIOLENCE_ADVISOR_CONFIRMING_SUPPORT))) {
+            return DomesticViolenceEvidenceEnum.DOMESTIC_VIOLENCE_ADVISOR.getName();
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get(LETTER_FROM_INDEPENDENT_SEXUAL_VIOLENCE_ADVISOR))) {
+            return DomesticViolenceEvidenceEnum.INDEPENDENT_SEXUAL_VIOLENCE_ADVISOR.getName();
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get(LETTER_LOCAL_AUTHORITY_FOR_SUPPORTING_TENANTS))) {
+            return DomesticViolenceEvidenceEnum.LETTER_LOCAL_AUTHORITY.getName();
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get(LETTER_FROM_DOMESTIC_VIOLENCE_SUPPORT_CHARITY))) {
+            return DomesticViolenceEvidenceEnum.DOMESTIC_VIOLENCE_SUPPORT_CHARITY.getName();
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get(DOMESTIC_VIOLENCE_SUPPORT_CHARITY_REFUGE))) {
+            return DomesticViolenceEvidenceEnum.DOMESTIC_VIOLENCE_SUPPORT_CHARITY_REFUGE_LETTER.getName();
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get(PUBLIC_AUTHORITY_CONFIRMATION_LETTER_OR_COPY))) {
+            return DomesticViolenceEvidenceEnum.PUBLIC_AUTHORITY_CONFIRMATION_LETTER.getName();
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get(SECRETARY_OF_STATE))) {
+            return DomesticViolenceEvidenceEnum.SECRETARY_OF_STATE_LETTER.getName();
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get(EVIDENCE_OF_ABUSE_OF_FINANCIAL_MATTERS))) {
+            return DomesticViolenceEvidenceEnum.EVIDENCE_OF_FINANCIAL_MATTERS.getName();
+        }
+
+        return "";
+    }
+
 }

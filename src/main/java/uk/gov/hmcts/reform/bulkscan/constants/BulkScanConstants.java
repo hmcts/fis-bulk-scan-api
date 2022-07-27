@@ -149,6 +149,35 @@ public final class BulkScanConstants {
     public static final String CHILDREN_SOCIAL_AUTHORITY = "childrenServicesAuthority";
     public static final String CHILD_LOCAL_AUTHORITY_OR_SOCIAL_WORKER = "child1_localAuthority_or_socialWorker";
     public static final String CHILD_LIVE_WITH_KEY = "childLiveWith";
+    //
+    public static final String EVIDENCE_OF_ARREST_FOR_RELEVANT_DOMESTIC_VIOLENCE_OFFENCE = "NoMIAM_DVE_arrestedForSimilarOffence";
+
+    public static final String EVIDENCE_OF_POLICE_CAUTION_FOR_DOMESTIC_VIOLENCE_OFFENCE = "NoMIAM_DVE_relevantPoliceCaution";
+
+    public static final String EVIDENCE_OF_CRIMINAL_PROCEEDINGS_FOR_DOMESTIC_VIOLENCE_NOT_CONCLUDED = "NoMIAM_DVE_relevantCriminalProceeding";
+
+    public static final String EVIDENCE_OF_CONVICTION_FOR_DOMESTIC_VIOLENCE_OFFENCE = "NoMIAM_DVE_relevantConviction";
+
+    public static final String COURT_ORDER_BINDING_PROSPECTIVE_PARTY_IN_CONNECTION_WITH_DOMESTIC_VIOLENCE_OFFENCE = "miamExemptionsTable/domesticViolenceEvidence";
+    public static final String DOMESTIC_VIOLENCE_PROTECTION_NOTICE_ISSUED_S24_CSA_AGAINST_A_PROSPECTIVE_PARTY = "NoMIAM_DVE_protectionNotice";
+    public static final String RELEVANT_PROTECTIVE_INJUNCTION = "A relevant protective injunction";
+    public static final String UNDERTAKING_S46_OR_63E_PROVIDED_CROSS_UNDERTAKING_RELATED_TO_DOMESTIC_VIOLENCE_NOT_GIVEN_BY_OTHER = "NoMIAM_DVE_NoCrossUndertakingGiven";
+    public static final String COPY_OF_FINDING_FACT_OF_DOMESTIC_VIOLENCE = "NoMIAM_DVE_copyOfFactFinding";
+    public static final String EXPERT_REPORT_EVIDENCE_PARTY_ASSESSED_AS_A_VICTIM = "NoMIAM_DVE_expertEvidenceReport";
+    public static final String HEALTH_PROFESSIONAL_REPORT_IN_PERSON_ON_DOMESTIC_ABUSE_INJURIES = "NoMIAM_DVE_healthProfessionalReport";
+    public static final String REFERRAL_HEALTH_REPORT_TO_SPECIALIST_SUPPORT = "NoMIAM_DVE_ReferralHealthProfessionalReport";
+    public static final String MULTI_AGENCY_RISK_ASSESSMENT_CONFERENCE_LETTER_PART_AT_RISK = "NoMIAM_DVE_memberOf_MultiAgencyRiskAssessmentConferrance_letter";
+    public static final String DOMESTIC_VIOLENCE_ADVISOR_CONFIRMING_SUPPORT = "NoMIAM_DVE_domesticViolenceAdvisor";
+
+    public static final String LETTER_FROM_INDEPENDENT_SEXUAL_VIOLENCE_ADVISOR = "NoMIAM_DVE_independentSexualViolenceAdvisor_Letter";
+    public static final String LETTER_LOCAL_AUTHORITY_FOR_SUPPORTING_TENANTS = "NoMIAM_DVE_officerEmployed_localAuthority_letter";
+    public static final String LETTER_FROM_DOMESTIC_VIOLENCE_SUPPORT_CHARITY = "NoMIAM_DVE_domesticViolenceSupportCharity_letter";
+    public static final String DOMESTIC_VIOLENCE_SUPPORT_CHARITY_REFUGE = "NoMIAM_DVE_domesticViolenceSupportCharity_refuge_letter";
+    public static final String PUBLIC_AUTHORITY_CONFIRMATION_LETTER_OR_COPY = "NoMIAM_DVE_publicAuthority_confirmationLetter";
+    public static final String SECRETARY_OF_STATE = "NoMIAM_DVE_secretaryOfState_letter";
+    public static final String EVIDENCE_OF_ABUSE_OF_FINANCIAL_MATTERS = "NoMIAM_DVE_evidenceFinancialMatters";
+
+    //A copy of a finding of fact, made in proceedings in the United Kingdom, that there has been domestic violence by a prospective party
 
     private static Map<String,String> getErrorMessageMap() {
         return Map.of(MANDATORY_KEY, MANDATORY_ERROR_MESSAGE,
