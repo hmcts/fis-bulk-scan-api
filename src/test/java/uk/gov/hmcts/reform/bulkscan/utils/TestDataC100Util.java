@@ -5,17 +5,17 @@ import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
 import java.util.ArrayList;
 import java.util.List;
 
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NOMIAM_CHILDPROTECTIONCONCERNS_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NOMIAM_DOMESTICVIOLENCE_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NOMIAM_DVE_ARRESTEDFORSIMILAROFFENCE_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NOMIAM_OTHERREASONS_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NOMIAM_PREVIOUSATTENDANCE_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NOMIAM_URGENCY_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.TICK_BOX_FALSE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.TICK_BOX_NO;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.TICK_BOX_TRUE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.TICK_BOX_YES;
+import static uk.gov.hmcts.reform.bulkscan.utils.Constants.EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.utils.Constants.NOMIAM_CHILDPROTECTIONCONCERNS_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.utils.Constants.NOMIAM_DOMESTICVIOLENCE_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.utils.Constants.NOMIAM_DVE_ARRESTEDFORSIMILAROFFENCE_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.utils.Constants.NOMIAM_OTHERREASONS_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.utils.Constants.NOMIAM_PREVIOUSATTENDANCE_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.utils.Constants.NOMIAM_URGENCY_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.utils.Constants.TICK_BOX_FALSE;
+import static uk.gov.hmcts.reform.bulkscan.utils.Constants.TICK_BOX_NO;
+import static uk.gov.hmcts.reform.bulkscan.utils.Constants.TICK_BOX_TRUE;
+import static uk.gov.hmcts.reform.bulkscan.utils.Constants.TICK_BOX_YES;
 
 public final class TestDataC100Util {
 
