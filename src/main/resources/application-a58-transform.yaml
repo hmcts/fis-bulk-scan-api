@@ -75,6 +75,21 @@ uk:
               courtpreferredDates: court_preferred_dates
               courtInterpreterAssistanceRequired: court_interpreter_assistance_required
               specialAssistanceFacilitiesRequired: special_assistance_facilities_required
+              children:
+                gender: child_gender
+                dateOfBirth: child_dateOfBirth
+                approximateDateOfBirth: child_approximateDateOfBirth
+                placeAndCountry: child_placeAndCoutryOfBirth
+                nationality: child_nationality
+                isMarried: child_isMarried
+              maintanenceOrder:
+                name: child_personName
+                address: child_personAddress
+                nameOfCourt: child_courtAndDateOfOrder.
+                dateOfOrder: child_courtAndDateOfOrder
+                agreementDate: child_maintanenceAgreementDate
+              dateChildMovedIn: child_liveAtHomeFrom
+              hasAnotherAdopAgencyOrLA: child_isAdoptedByAgency
           A58_STEP_PARENT:
             caseFields:
               CASE_TYPE_ID: A58
