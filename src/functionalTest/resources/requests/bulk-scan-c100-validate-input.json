@@ -61,6 +61,26 @@
       "value": "Yes"
     },
     {
+      "name":"applicant1_firstName",
+      "value":"John"
+    },
+    {
+      "name":"applicant1_lastName",
+      "value":"Peters"
+    },
+    {
+      "name":"childArrangement_order",
+      "value":"childArrangementOrder"
+    },
+    {
+      "name":"prohibitedSteps_order",
+      "value":"prohibitedSteps_order"
+    },
+    {
+      "name":"specialIssue_order",
+      "value":"specialIssueOrder"
+    },
+    {
       "name":"child1_firstName",
       "value":"firstName"
     },
