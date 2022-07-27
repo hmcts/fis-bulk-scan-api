@@ -115,6 +115,7 @@ class BulkScanC100ServiceTest {
     }
 
     @Test
+    @DisplayName("Test a sample successful C100 application validation with full details.")
     void testC100Success() {
         BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
                 TestDataC100Util.getData()).build();
