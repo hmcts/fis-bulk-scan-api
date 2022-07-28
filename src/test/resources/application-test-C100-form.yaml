@@ -67,6 +67,11 @@ uk:
               - child4_applicant1_relationship
               - child4_respondent1_relationship
               - child4_localAuthority_or_socialWorker
+              - permissionRequired
+              - permissionRequiredReason
+              - briefDetailsOnTheApplication
+              - havePreviousParentingPlan
+              - askingPermissionForApplication
               - previous_or_ongoingProceeding
               - existingCase_onEmergencyProtection_Care_or_supervisioNorder
               - exemption_to_attend_MIAM

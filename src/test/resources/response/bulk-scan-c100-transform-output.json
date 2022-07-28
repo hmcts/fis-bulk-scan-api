@@ -27,6 +27,14 @@
         "miamDomesticViolenceChecklistEnum_Value_20",
         "miamDomesticViolenceChecklistEnum_Value_21",
         "miamDomesticViolenceChecklistEnum_Value_22"],
+      "childrenParentsName": "parentsName",
+      "briefDetailsOnTheApplication": "briefDetails",
+      "childrenSubjectOfChildProtectionPlan": "protectionplan",
+      "scannedDocuments": [
+
+      ],
+      "childrenKNownToLocalAuthority": "Yes",
+      "havePreviousParentingPlan": "parentingplan",
       "applicants": {
         "value": {
           "firstName": "applicant1_firstName",
@@ -85,6 +93,11 @@
         }
       ],
       "personWhoLivesWithChild": "living other details",
+      "applicationPermissionRequiredReason": "reason",
+      "childrenOfSameParent": "Yes",
+      "childLiveWith": "Applicant",
+      "childParentsNameCollection": "parentsNameColl",
+      "applicationPermissionRequired": "yes",
       "childrenOfSameParent": "Yes",
       "childLiveWith": "Applicant",
       "specialIssueOrder": "true",

@@ -8,6 +8,17 @@ uk:
               CASE_TYPE_ID: PRLAPPS
               EVENT_ID: create-case-privatelaw-bs
             caseDataFields:
+              childrenKNownToLocalAuthority: childrenServicesAuthority
+              childrenKNownToLocalAuthorityTextArea: child1_localAuthority_or_socialWorker
+              childrenSubjectOfChildProtectionPlan: subject_to_childProtectionPlan
+              parentalResponsibilityDetails: parentalResponsibilityDetails
+              childrenOfSameParent: children_of_same_parent
+              childrenParentsName: children_parentsName
+              childParentsNameCollection: child_parentsName_collection
+              personWhoLivesWithChild: child_living_with_others_details
+              applicationPermissionRequiredReason: permissionRequiredReason
+              briefDetailsOnTheApplication: briefDetailsOnTheApplication
+              havePreviousParentingPlan: havePreviousParentingPlan
               applicants:
                 value:
                   firstName: applicant1_firstName
@@ -48,11 +59,4 @@ uk:
                     orderAppliedFor: child4_orderAppliedFor
                     applicantsRelationshipToChild: child4_applicant1_relationship
                     respondentsRelationshipToChild: child4_respondent1_relationship
-              childrenKNownToLocalAuthority: childrenServicesAuthority
-              childrenKNownToLocalAuthorityTextArea: child1_localAuthority_or_socialWorker
-              childrenSubjectOfChildProtectionPlan: subject_to_childProtectionPlan
-              parentalResponsibilityDetails: parentalResponsibilityDetails
-              childrenOfSameParent:  children_of_same_parent
-              childrenParentsName: children_parentsName
-              childParentsNameCollection: child_parentsName_collection
-              personWhoLivesWithChild: child_living_with_others_details
+

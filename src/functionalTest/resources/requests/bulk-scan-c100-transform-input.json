@@ -169,6 +169,30 @@
       "value": "respondent"
     },
     {
+      "name":"permissionRequired",
+      "value":"Yes"
+    },
+    {
+      "name":"permissionRequiredReason",
+      "value":"reason"
+    },
+    {
+      "name":"briefDetailsOnTheApplication",
+      "value":"briefDetails"
+    },
+    {
+      "name":"havePreviousParentingPlan",
+      "value":"parentingplan"
+    },
+    {
+      "name": "askingPermissionForApplication",
+      "value": "Yes"
+    },
+    {
+      "name": "exemption_to_attend_MIAM",
+      "value": "yes"
+    },
+    {
       "name": "child4_localAuthority_or_socialWorker",
       "value": "socialWorker"
     },
