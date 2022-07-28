@@ -71,41 +71,28 @@ public class BulkScanC100Service implements BulkScanService {
         // Validating the Fields..
         Map<String, String> inputFieldMap = getOcrDataFieldAsMap(bulkRequest.getOcrdatafields());
 
-        BulkScanValidationResponse bulkScanValidationResponse =
-                bulkScanValidationHelper.validateMandatoryAndOptionalFields(
-                        bulkRequest.getOcrdatafields(),
-                        configManager.getValidationConfig(
-                                FormType.C100)
-                );
+        BulkScanValidationResponse response = bulkScanValidationHelper
+                .validateMandatoryAndOptionalFields(bulkRequest.getOcrdatafields(), configManager.getValidationConfig(
+                        FormType.C100));
+        response.addErrors(bulkScanC100ValidationService.doChildRelatedValidation(inputFieldMap));
+        response.addErrors(bulkScanC100ValidationService.doPermissionRelatedFieldValidation(inputFieldMap));
 
-        List<String> manualValidationErrors = doChildRelatedValidation(inputFieldMap);
-        if (!manualValidationErrors.isEmpty()) {
-            bulkScanValidationResponse.addErrors(manualValidationErrors);
-        }
-
-        bulkScanValidationResponse.addWarning(dependencyValidationService
+        response.addWarning(dependencyValidationService
                 .getDependencyWarnings(inputFieldMap, FormType.C100));
 
-        BulkScanValidationResponse response = BulkScanValidationResponse.builder()
-                .errors(bulkScanValidationResponse.getErrors())
-                .warnings(bulkScanValidationResponse.getWarnings())
-                .build();
+        response = dependencyValidationService
+                .validateStraightDependentFields(bulkRequest.getOcrdatafields(), response);
+
+        response.addWarning(response.getWarnings().getItems());
 
         response = bulkScanC100ValidationService
                 .validateAttendMiam(bulkRequest.getOcrdatafields(), response);
 
-        bulkScanValidationResponse.addErrors(response.getErrors().getItems());
+        response.addErrors(response.getErrors().getItems());
 
-        bulkScanValidationResponse.changeStatus();
+        response.changeStatus();
 
-        response = bulkScanC100ValidationService
-                .validateStraightDependentFields(bulkRequest.getOcrdatafields(), response);
-
-        bulkScanValidationResponse.addWarning(response.getWarnings().getItems());
-
-        bulkScanValidationResponse.changeStatus();
-
-        return bulkScanValidationResponse;
+        return response;
     }
 
     /**
