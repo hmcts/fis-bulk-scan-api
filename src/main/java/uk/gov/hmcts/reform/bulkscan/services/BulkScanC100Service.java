@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanFormValidationConfigManager;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanTransformConfigManager;
 import uk.gov.hmcts.reform.bulkscan.enums.ChildLiveWithEnum;
+import uk.gov.hmcts.reform.bulkscan.enums.PermissionRequiredEnum;
 import uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper;
 import uk.gov.hmcts.reform.bulkscan.helper.BulkScanValidationHelper;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
@@ -23,6 +24,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import static org.apache.commons.lang3.BooleanUtils.TRUE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICATION_PERMISSION_REQUIRED;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.BULK_SCAN_CASE_REFERENCE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CASE_TYPE_ID;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILDREN_OF_SAME_PARENT;
@@ -37,6 +39,7 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LOC
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EVENT_ID;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_ERROR_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NO;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PERMISSION_REQUIRED;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.XOR_CONDITIONAL_FIELDS_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES;
 import static uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper.transformScanDocuments;
@@ -71,32 +74,23 @@ public class BulkScanC100Service implements BulkScanService {
         // Validating the Fields..
         Map<String, String> inputFieldMap = getOcrDataFieldAsMap(bulkRequest.getOcrdatafields());
 
-        BulkScanValidationResponse bulkScanValidationResponse =
-                bulkScanValidationHelper.validateMandatoryAndOptionalFields(
-                        bulkRequest.getOcrdatafields(),
-                        configManager.getValidationConfig(
-                                FormType.C100)
-                );
+        BulkScanValidationResponse response = bulkScanValidationHelper
+            .validateMandatoryAndOptionalFields(bulkRequest.getOcrdatafields(), configManager.getValidationConfig(
+                                                                              FormType.C100));
+        response.addErrors(bulkScanC100ValidationService.doChildRelatedValidation(inputFieldMap));
+        response.addErrors(bulkScanC100ValidationService.doPermissionRelatedFieldValidation(inputFieldMap));
 
-        List<String> manualValidationErrors = doChildRelatedValidation(inputFieldMap);
-        if (!manualValidationErrors.isEmpty()) {
-            bulkScanValidationResponse.addErrors(manualValidationErrors);
-        }
-
-        bulkScanValidationResponse.addWarning(dependencyValidationService
+        response.addWarning(dependencyValidationService
                 .getDependencyWarnings(inputFieldMap, FormType.C100));
-
-        BulkScanValidationResponse response = BulkScanValidationResponse.builder()
-                .errors(bulkScanValidationResponse.getErrors()).build();
 
         response = bulkScanC100ValidationService
                 .validateAttendMiam(bulkRequest.getOcrdatafields(), response);
 
-        bulkScanValidationResponse.addErrors(response.getErrors().getItems());
+        response.addErrors(response.getErrors().getItems());
 
-        bulkScanValidationResponse.changeStatus();
+        response.changeStatus();
 
-        return bulkScanValidationResponse;
+        return response;
     }
 
     /**
@@ -128,7 +122,6 @@ public class BulkScanC100Service implements BulkScanService {
                 && StringUtils.isEmpty(inputFieldsMap.get(CHILD_LOCAL_AUTHORITY_OR_SOCIAL_WORKER))) {
             errors.add(String.format(MANDATORY_ERROR_MESSAGE, CHILD_LOCAL_AUTHORITY_OR_SOCIAL_WORKER));
         }
-
         return errors;
     }
 
@@ -148,6 +141,7 @@ public class BulkScanC100Service implements BulkScanService {
                     .getCaseDataFields()), inputFieldsMap);
 
         populatedMap.put(CHILD_LIVE_WITH_KEY, getChildLiveWith(inputFieldsMap));
+        populatedMap.put(APPLICATION_PERMISSION_REQUIRED, getApplicationPermissionRequired(inputFieldsMap));
 
         populatedMap.put(SCAN_DOCUMENTS, transformScanDocuments(bulkScanTransformationRequest));
 
@@ -171,6 +165,19 @@ public class BulkScanC100Service implements BulkScanService {
         }
         if (TRUE.equals(inputFieldsMap.get(CHILD_LIVING_WITH_OTHERS))) {
             return ChildLiveWithEnum.OTHERPEOPLE.getName();
+        }
+        return StringUtils.EMPTY;
+    }
+
+    private String getApplicationPermissionRequired(Map<String, String> inputFieldsMap) {
+        if (YES.equalsIgnoreCase(inputFieldsMap.get(PERMISSION_REQUIRED))) {
+            return PermissionRequiredEnum.yes.getDisplayedValue();
+        }
+        if ("No, permission Not required".equals(inputFieldsMap.get(PERMISSION_REQUIRED))) {
+            return PermissionRequiredEnum.noNotRequired.getDisplayedValue();
+        }
+        if ("No, permission Now sought".equals(inputFieldsMap.get(PERMISSION_REQUIRED))) {
+            return PermissionRequiredEnum.noNowSought.getDisplayedValue();
         }
         return StringUtils.EMPTY;
     }

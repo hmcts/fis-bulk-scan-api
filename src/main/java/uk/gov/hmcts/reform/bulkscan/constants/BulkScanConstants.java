@@ -156,6 +156,12 @@ public final class BulkScanConstants {
     public static final String CHILD_LOCAL_AUTHORITY_OR_SOCIAL_WORKER = "child1_localAuthority_or_socialWorker";
     public static final String CHILD_LIVE_WITH_KEY = "childLiveWith";
 
+    public static final String ASKING_PERMISSION_FOR_APPLICATION = "askingPermissionForApplication";
+    public static final String PERMISSION_REQUIRED_REASON = "permissionRequiredReason";
+
+    public static final String APPLICATION_PERMISSION_REQUIRED = "applicationPermissionRequired";
+    public static final String PERMISSION_REQUIRED = "permissionRequired";
+
     // C100 form section 2 validation fields
 
     public static final String PREVIOUS_OR_ONGOING_PROCEEDING =  "previous_or_ongoingProceeding";

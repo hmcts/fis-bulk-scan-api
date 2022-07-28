@@ -16,6 +16,9 @@
           "lastName": "applicant1_lastName"
         }
       },
+      "childrenKNownToLocalAuthority": "Yes",
+      "briefDetailsOnTheApplication": "briefDetails",
+      "havePreviousParentingPlan": "parentingplan",
       "otherProceedingsTable": {
         "previousOrOngoingProceedings": null
       },
@@ -111,6 +114,9 @@
       "consentOrder": "yes",
       "specialIssueOrder": "true",
       "claimingExemptionMiam": "yes",
+      "childParentsNameCollection": "parentsNameColl",
+      "applicationPermissionRequiredReason": "reason",
+      "applicationPermissionRequired": "yes",
       "welshLanguageRequirement": "yes",
       "childParentsNameCollection": "parentsNameColl"
     }

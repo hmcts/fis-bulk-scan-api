@@ -72,6 +72,11 @@ uk:
               - exemption_to_attend_MIAM
               - familyMember_Intimation_on_No_MIAM
               - attended_MIAM
+              - permissionRequired
+              - permissionRequiredReason
+              - briefDetailsOnTheApplication
+              - havePreviousParentingPlan
+              - askingPermissionForApplication
               - NoMIAM_domesticViolence
               - NoMIAM_childProtectionConcerns
               - NoMIAM_Urgency

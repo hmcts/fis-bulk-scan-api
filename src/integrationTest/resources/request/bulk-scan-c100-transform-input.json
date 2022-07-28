@@ -165,12 +165,32 @@
       "value": "applicant"
     },
     {
-      "name": "child4_respondent1_relationship",
-      "value": "respondent"
+      "name":"child4_localAuthority_or_socialWorker",
+      "value":"socialWorker"
     },
     {
-      "name": "child4_localAuthority_or_socialWorker",
-      "value": "socialWorker"
+      "name":"permissionRequired",
+      "value":"Yes"
+    },
+    {
+      "name":"permissionRequiredReason",
+      "value":"reason"
+    },
+    {
+      "name":"briefDetailsOnTheApplication",
+      "value":"briefDetails"
+    },
+    {
+      "name":"havePreviousParentingPlan",
+      "value":"parentingplan"
+    },
+    {
+      "name": "askingPermissionForApplication",
+      "value": "yes"
+    },
+    {
+      "name": "child4_respondent1_relationship",
+      "value": "respondent"
     },
     {
       "name": "applicant1_firstName",
@@ -218,10 +238,6 @@
     },
     {
       "name": "otherSafety_or_welfareAbuse",
-      "value": "yes"
-    },
-    {
-      "name": "askingPermissionForApplication",
       "value": "yes"
     },
     {

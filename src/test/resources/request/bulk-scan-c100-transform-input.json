@@ -176,6 +176,26 @@
       "value":"socialWorker"
     },
     {
+      "name":"permissionRequired",
+      "value":"Yes"
+    },
+    {
+      "name":"permissionRequiredReason",
+      "value":"reason"
+    },
+    {
+      "name":"briefDetailsOnTheApplication",
+      "value":"briefDetails"
+    },
+    {
+      "name":"havePreviousParentingPlan",
+      "value":"parentingplan"
+    },
+    {
+      "name": "askingPermissionForApplication",
+      "value": "Yes"
+    },
+    {
       "name":"applicant1_firstName",
       "value":"applicant1_firstName"
     },
