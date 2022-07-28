@@ -87,12 +87,21 @@ public class BulkScanC100Service implements BulkScanService {
                 .getDependencyWarnings(inputFieldMap, FormType.C100));
 
         BulkScanValidationResponse response = BulkScanValidationResponse.builder()
-                .errors(bulkScanValidationResponse.getErrors()).build();
+                .errors(bulkScanValidationResponse.getErrors())
+                .warnings(bulkScanValidationResponse.getWarnings())
+                .build();
 
         response = bulkScanC100ValidationService
                 .validateAttendMiam(bulkRequest.getOcrdatafields(), response);
 
         bulkScanValidationResponse.addErrors(response.getErrors().getItems());
+
+        bulkScanValidationResponse.changeStatus();
+
+        response = bulkScanC100ValidationService
+                .validateStraightDependentFields(bulkRequest.getOcrdatafields(), response);
+
+        bulkScanValidationResponse.addWarning(response.getWarnings().getItems());
 
         bulkScanValidationResponse.changeStatus();
 
