@@ -5,8 +5,8 @@
     "case_data": {
       "parentalResponsibilityDetails": "parentResponsibility",
       "childrenKNownToLocalAuthorityTextArea": "socialWorker",
-      "miamDomesticViolenceChecklist":
-      ["miamDomesticViolenceChecklistEnum_Value_1",
+      "miamDomesticViolenceChecklist": [
+        "miamDomesticViolenceChecklistEnum_Value_1",
         "miamDomesticViolenceChecklistEnum_Value_2",
         "miamDomesticViolenceChecklistEnum_Value_3",
         "miamDomesticViolenceChecklistEnum_Value_4",
@@ -26,7 +26,8 @@
         "miamDomesticViolenceChecklistEnum_Value_19",
         "miamDomesticViolenceChecklistEnum_Value_20",
         "miamDomesticViolenceChecklistEnum_Value_21",
-        "miamDomesticViolenceChecklistEnum_Value_22"],
+        "miamDomesticViolenceChecklistEnum_Value_22"
+      ],
       "childrenParentsName": "parentsName",
       "briefDetailsOnTheApplication": "briefDetails",
       "childrenSubjectOfChildProtectionPlan": "protectionplan",

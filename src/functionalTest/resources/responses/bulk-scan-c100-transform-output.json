@@ -1,125 +1,147 @@
 {
-  "case_creation_details": {
-    "case_type_id": "PRLAPPS",
-    "event_id": "create-case-privatelaw-bs",
-    "case_data": {
-      "otherProceedingsDetailsTable": [
+  "case_creation_details":{
+    "case_type_id":"PRLAPPS",
+    "event_id":"create-case-privatelaw-bs",
+    "case_data":{
+      "otherProceedingsDetailsTable":[
         {
-          "value": {
-            "previousOrOngoingProceedings": null
+          "value":{
+            "previousOrOngoingProceedings":null
           }
         }
       ],
-      "applicants": {
-        "value": {
-          "firstName": "applicant1_firstName",
-          "lastName": "applicant1_lastName"
+      "applicants":{
+        "value":{
+          "firstName":"applicant1_firstName",
+          "lastName":"applicant1_lastName"
         }
       },
-      "childrenKNownToLocalAuthority": "Yes",
-      "briefDetailsOnTheApplication": "briefDetails",
-      "havePreviousParentingPlan": "parentingplan",
-      "otherProceedingsTable": {
-        "previousOrOngoingProceedings": null
+      "otherProceedingsTable":{
+        "previousOrOngoingProceedings":null
       },
-      "scannedDocuments": [
+      "briefDetailsOnTheApplication":"briefDetails",
+      "scannedDocuments":[
         {
-          "value": {
-            "document_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c",
-            "document_filename": "test.pdf",
-            "document_binary_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
+          "value":{
+            "document_url":"http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c",
+            "document_filename":"test.pdf",
+            "document_binary_url":"http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
           }
         }
       ],
-      "orderAppliedFor": "true",
-      "children": [
+      "orderAppliedFor":"true",
+      "children":[
         {
-          "value": {
-            "firstName": null,
-            "lastName": null,
-            "dateOfBirth": null,
-            "gender": null,
-            "orderAppliedFor": null,
-            "applicantsRelationshipToChild": null,
-            "respondentsRelationshipToChild": null
+          "value":{
+            "firstName":null,
+            "lastName":null,
+            "dateOfBirth":null,
+            "gender":null,
+            "orderAppliedFor":null,
+            "applicantsRelationshipToChild":null,
+            "respondentsRelationshipToChild":null
           }
         },
         {
-          "value": {
-            "firstName": null,
-            "lastName": null,
-            "dateOfBirth": null,
-            "gender": null,
-            "orderAppliedFor": null,
-            "applicantsRelationshipToChild": null,
-            "respondentsRelationshipToChild": null
+          "value":{
+            "firstName":null,
+            "lastName":null,
+            "dateOfBirth":null,
+            "gender":null,
+            "orderAppliedFor":null,
+            "applicantsRelationshipToChild":null,
+            "respondentsRelationshipToChild":null
           }
         },
         {
-          "value": {
-            "firstName": null,
-            "lastName": null,
-            "dateOfBirth": null,
-            "gender": null,
-            "orderAppliedFor": null,
-            "applicantsRelationshipToChild": null,
-            "respondentsRelationshipToChild": null
+          "value":{
+            "firstName":null,
+            "lastName":null,
+            "dateOfBirth":null,
+            "gender":null,
+            "orderAppliedFor":null,
+            "applicantsRelationshipToChild":null,
+            "respondentsRelationshipToChild":null
           }
         },
         {
-          "value": {
-            "firstName": null,
-            "lastName": null,
-            "dateOfBirth": null,
-            "gender": null,
-            "orderAppliedFor": null,
-            "applicantsRelationshipToChild": null,
-            "respondentsRelationshipToChild": null
+          "value":{
+            "firstName":null,
+            "lastName":null,
+            "dateOfBirth":null,
+            "gender":null,
+            "orderAppliedFor":null,
+            "applicantsRelationshipToChild":null,
+            "respondentsRelationshipToChild":null
           }
         }
       ],
-      "hearingUrgencyTable": {
-        "isCaseUrgent": null
+      "hearingUrgencyTable":{
+        "isCaseUrgent":null
       },
-      "personWhoLivesWithChild": "living other details",
-      "applicationPermissionRequired": "yes",
-      "habitualResidentINotherState": "yes",
-      "parentalResponsibilityDetails": "parentResponsibility",
-      "familyMediatorMiam": null,
-      "isCaseUrgent": "yes",
-      "typeOfApplicationTable": {
-        "applicationPermissionRequired": null
+      "personWhoLivesWithChild":"living other details",
+      "applicationPermissionRequired":"yes",
+      "habitualResidentINotherState":"yes",
+      "parentalResponsibilityDetails":"parentResponsibility",
+      "familyMediatorMiam":null,
+      "isCaseUrgent":"yes",
+      "typeOfApplicationTable":{
+        "applicationPermissionRequired":null
       },
-      "childrenKNownToLocalAuthorityTextArea": "socialWorker",
-      "childrenParentsName": "parentsName",
-      "previousOrOngoingProceedings": "yes",
-      "applicantAttendedMiam": null,
-      "childrenSubjectOfChildProtectionPlan": "protectionplan",
-      "miamTable": {
-        "claimingExemptionMiam": null,
-        "familyMediatorMiam": null,
-        "applicantAttendedMiam": null
+      "childrenKNownToLocalAuthorityTextArea":"socialWorker",
+      "miamDomesticViolenceChecklist":[
+        "miamDomesticViolenceChecklistEnum_Value_1",
+        "miamDomesticViolenceChecklistEnum_Value_2",
+        "miamDomesticViolenceChecklistEnum_Value_3",
+        "miamDomesticViolenceChecklistEnum_Value_4",
+        "miamDomesticViolenceChecklistEnum_Value_5",
+        "miamDomesticViolenceChecklistEnum_Value_6",
+        "miamDomesticViolenceChecklistEnum_Value_7",
+        "miamDomesticViolenceChecklistEnum_Value_8",
+        "miamDomesticViolenceChecklistEnum_Value_9",
+        "miamDomesticViolenceChecklistEnum_Value_10",
+        "miamDomesticViolenceChecklistEnum_Value_11",
+        "miamDomesticViolenceChecklistEnum_Value_12",
+        "miamDomesticViolenceChecklistEnum_Value_13",
+        "miamDomesticViolenceChecklistEnum_Value_15",
+        "miamDomesticViolenceChecklistEnum_Value_16",
+        "miamDomesticViolenceChecklistEnum_Value_17",
+        "miamDomesticViolenceChecklistEnum_Value_18",
+        "miamDomesticViolenceChecklistEnum_Value_19",
+        "miamDomesticViolenceChecklistEnum_Value_20",
+        "miamDomesticViolenceChecklistEnum_Value_21",
+        "miamDomesticViolenceChecklistEnum_Value_22"
+      ],
+      "childrenParentsName":"parentsName",
+      "previousOrOngoingProceedings":"yes",
+      "applicantAttendedMiam":null,
+      "childrenSubjectOfChildProtectionPlan":"protectionplan",
+      "miamTable":{
+        "claimingExemptionMiam":null,
+        "familyMediatorMiam":null,
+        "applicantAttendedMiam":null
       },
-      "childrenKNownToLocalAuthority": "Yes",
-      "prohibitedStepsOrder": "true",
-      "allegationsOfHarmOverviewTable": {
-        "allegationsOfHarmDomesticAbuseYesNo": null,
-        "allegationsOfHarmChildAbductionYesNo": null,
-        "allegationsOfHarmChildAbuseYesNo": null,
-        "allegationsOfHarmSubstanceAbuseYesNo": null,
-        "allegationsOfHarmOtherConcernsYesNo": null
+      "childrenKNownToLocalAuthority":"Yes",
+      "prohibitedStepsOrder":"true",
+      "havePreviousParentingPlan":"parentingplan",
+      "allegationsOfHarmOverviewTable":{
+        "allegationsOfHarmDomesticAbuseYesNo":null,
+        "allegationsOfHarmChildAbductionYesNo":null,
+        "allegationsOfHarmChildAbuseYesNo":null,
+        "allegationsOfHarmSubstanceAbuseYesNo":null,
+        "allegationsOfHarmOtherConcernsYesNo":null
       },
-      "childrenOfSameParent": "Yes",
-      "childLiveWith": "Applicant",
-      "consentOrder": "yes",
-      "specialIssueOrder": "true",
-      "claimingExemptionMiam": "yes",
-      "childParentsNameCollection": "parentsNameColl",
-      "applicationPermissionRequiredReason": "reason",
-      "applicationPermissionRequired": "yes",
-      "welshLanguageRequirement": "yes",
-      "childParentsNameCollection": "parentsNameColl"
+      "applicationPermissionRequiredReason":"reason",
+      "childrenOfSameParent":"Yes",
+      "childLiveWith":"Applicant",
+      "consentOrder":"yes",
+      "specialIssueOrder":"true",
+      "claimingExemptionMiam":"yes",
+      "welshLanguageRequirement":"yes",
+      "childParentsNameCollection":"parentsNameColl"
     }
   },
-  "warnings": []
+  "warnings":[
+
+  ]
 }
