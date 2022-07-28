@@ -134,7 +134,8 @@ public class BulkScanC100Service implements BulkScanService {
             .transformToCaseData(new HashMap<>(transformConfigManager.getTransformationConfig(FormType.C100)
                     .getCaseDataFields()), inputFieldsMap);
 
-        bulkScanC100ConditionalTransformerService.transform(populatedMap, inputFieldsMap, bulkScanTransformationRequest);
+        bulkScanC100ConditionalTransformerService
+            .transform(populatedMap, inputFieldsMap, bulkScanTransformationRequest);
         Map<String, String> caseTypeAndEventId =
             transformConfigManager.getTransformationConfig(FormType.C100).getCaseFields();
 
