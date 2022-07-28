@@ -18,7 +18,6 @@ import static uk.gov.hmcts.reform.bulkscan.utils.Constants.TICK_BOX_TRUE;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.TICK_BOX_YES;
 
 public final class TestDataC100Util {
-
     public static final String POST_CODE = "TW3 1NN";
 
     private TestDataC100Util() {
@@ -67,6 +66,10 @@ public final class TestDataC100Util {
         fieldList.addAll(getChild3NamesRelationSuccessData());
 
         fieldList.addAll(getChild4NamesRelationSuccessData());
+
+        fieldList.addAll(getRespondent1Details());
+
+        fieldList.addAll(getRespondent2Details());
 
         return fieldList;
     }
@@ -543,6 +546,190 @@ public final class TestDataC100Util {
         ocrNoMiamOtherExceptionsField.setName("NoMIAM_otherExceptions");
         ocrNoMiamOtherExceptionsField.setValue(TICK_BOX_YES);
         fieldList.add(ocrNoMiamOtherExceptionsField);
+
+        return fieldList;
+    }
+
+    public static List<OcrDataField> getRespondent1Details() {
+        List<OcrDataField> fieldList = new ArrayList<>();
+
+        OcrDataField ocrrespondentOneFirstName = new OcrDataField();
+        ocrrespondentOneFirstName.setName("respondentOneFirstName");
+        ocrrespondentOneFirstName.setValue("respondent1_FirstName");
+        fieldList.add(ocrrespondentOneFirstName);
+
+        OcrDataField ocrrespondentOneLastName = new OcrDataField();
+        ocrrespondentOneLastName.setName("respondentOneLastName");
+        ocrrespondentOneLastName.setValue("respondent1_LastName");
+        fieldList.add(ocrrespondentOneLastName);
+
+        OcrDataField ocrrespondentOnePreviousNames = new OcrDataField();
+        ocrrespondentOnePreviousNames.setName("respondentOnePreviousNames");
+        ocrrespondentOnePreviousNames.setValue("respondent1_PreviousNames");
+        fieldList.add(ocrrespondentOnePreviousNames);
+
+        OcrDataField ocrrespondentOneGender = new OcrDataField();
+        ocrrespondentOneGender.setName("respondentOneGender");
+        ocrrespondentOneGender.setValue("Yes");
+        fieldList.add(ocrrespondentOneGender);
+
+        OcrDataField ocrrespondentOneDateOfBirth = new OcrDataField();
+        ocrrespondentOneDateOfBirth.setName("respondentOneDateOfBirth");
+        ocrrespondentOneDateOfBirth.setValue("20/02/2002");
+        fieldList.add(ocrrespondentOneDateOfBirth);
+
+        OcrDataField ocrrespondentOneDateOfBirthDontKnow = new OcrDataField();
+        ocrrespondentOneDateOfBirthDontKnow.setName("respondentOneDateOfBirthDontKnow");
+        ocrrespondentOneDateOfBirthDontKnow.setValue("");
+        fieldList.add(ocrrespondentOneDateOfBirthDontKnow);
+
+        OcrDataField ocrrespondentOnePlaceOfBirth = new OcrDataField();
+        ocrrespondentOnePlaceOfBirth.setName("respondentOnePlaceOfBirth");
+        ocrrespondentOnePlaceOfBirth.setValue("London");
+        fieldList.add(ocrrespondentOnePlaceOfBirth);
+
+        OcrDataField ocrrespondentOneAddress = new OcrDataField();
+        ocrrespondentOneAddress.setName("respondentOneAddress");
+        ocrrespondentOneAddress.setValue("123, Topsfield Parade");
+        fieldList.add(ocrrespondentOneAddress);
+
+        OcrDataField ocrrespondentOneAddressPostCode = new OcrDataField();
+        ocrrespondentOneAddressPostCode.setName("respondentOneAddressPostCode");
+        ocrrespondentOneAddressPostCode.setValue("N8 8PE");
+        fieldList.add(ocrrespondentOneAddressPostCode);
+
+        OcrDataField ocrrespondentOneAddressDontKnow = new OcrDataField();
+        ocrrespondentOneAddressDontKnow.setName("respondentOneAddressDontKnow");
+        ocrrespondentOneAddressDontKnow.setValue("");
+        fieldList.add(ocrrespondentOneAddressDontKnow);
+
+        OcrDataField ocrrespondentOneHomePhoneNumber = new OcrDataField();
+        ocrrespondentOneHomePhoneNumber.setName("respondentOneHomePhoneNumber");
+        ocrrespondentOneHomePhoneNumber.setValue("+442083332222");
+        fieldList.add(ocrrespondentOneHomePhoneNumber);
+
+        OcrDataField ocrrespondentOneMobilePhoneNumber = new OcrDataField();
+        ocrrespondentOneMobilePhoneNumber.setName("respondentOneMobilePhoneNumber");
+        ocrrespondentOneMobilePhoneNumber.setValue("+447999444444");
+        fieldList.add(ocrrespondentOneMobilePhoneNumber);
+
+        OcrDataField ocrrespondentOneMobilePhoneNumberDontKnow = new OcrDataField();
+        ocrrespondentOneMobilePhoneNumberDontKnow.setName("respondentOneMobilePhoneNumberDontKnow");
+        ocrrespondentOneMobilePhoneNumberDontKnow.setValue("");
+        fieldList.add(ocrrespondentOneMobilePhoneNumberDontKnow);
+
+        OcrDataField ocrrespondentOneEmailAddress = new OcrDataField();
+        ocrrespondentOneEmailAddress.setName("respondentOneEmailAddress");
+        ocrrespondentOneEmailAddress.setValue("test@test.com");
+        fieldList.add(ocrrespondentOneEmailAddress);
+
+        OcrDataField ocrrespondentOneEmailAddressDontKnow = new OcrDataField();
+        ocrrespondentOneEmailAddressDontKnow.setName("respondentOneEmailAddressDontKnow");
+        ocrrespondentOneEmailAddressDontKnow.setValue("");
+        fieldList.add(ocrrespondentOneEmailAddressDontKnow);
+
+        OcrDataField ocrhasRespondentOneLivedAtThisAddressForOverFiveYears = new OcrDataField();
+        ocrhasRespondentOneLivedAtThisAddressForOverFiveYears
+                .setName("hasRespondentOneLivedAtThisAddressForOverFiveYears");
+        ocrhasRespondentOneLivedAtThisAddressForOverFiveYears.setValue("No");
+        fieldList.add(ocrhasRespondentOneLivedAtThisAddressForOverFiveYears);
+
+        OcrDataField ocrrespondentOneAllAddressesForLastFiveYears = new OcrDataField();
+        ocrrespondentOneAllAddressesForLastFiveYears.setName("respondentOneAllAddressesForLastFiveYears");
+        ocrrespondentOneAllAddressesForLastFiveYears.setValue("225, Topsfield Parade, N8 8PE");
+        fieldList.add(ocrrespondentOneAllAddressesForLastFiveYears);
+
+        return fieldList;
+    }
+
+    public static List<OcrDataField> getRespondent2Details() {
+        List<OcrDataField> fieldList = new ArrayList<>();
+
+        OcrDataField ocrrespondentTwoFirstName = new OcrDataField();
+        ocrrespondentTwoFirstName.setName("respondentTwoFirstName");
+        ocrrespondentTwoFirstName.setValue("respondent2_FirstName");
+        fieldList.add(ocrrespondentTwoFirstName);
+
+        OcrDataField ocrrespondentTwoLastName = new OcrDataField();
+        ocrrespondentTwoLastName.setName("respondentTwoLastName");
+        ocrrespondentTwoLastName.setValue("respondent2_LastName");
+        fieldList.add(ocrrespondentTwoLastName);
+
+        OcrDataField ocrrespondentTwoPreviousNames = new OcrDataField();
+        ocrrespondentTwoPreviousNames.setName("respondentTwoPreviousNames");
+        ocrrespondentTwoPreviousNames.setValue("respondent2_PreviousNames");
+        fieldList.add(ocrrespondentTwoPreviousNames);
+
+        OcrDataField ocrrespondentTwoGender = new OcrDataField();
+        ocrrespondentTwoGender.setName("respondentTwoGender");
+        ocrrespondentTwoGender.setValue("Yes");
+        fieldList.add(ocrrespondentTwoGender);
+
+        OcrDataField ocrrespondentTwoDateOfBirth = new OcrDataField();
+        ocrrespondentTwoDateOfBirth.setName("respondentTwoDateOfBirth");
+        ocrrespondentTwoDateOfBirth.setValue("21/02/2002");
+        fieldList.add(ocrrespondentTwoDateOfBirth);
+
+        OcrDataField ocrrespondentTwoDateOfBirthDontKnow = new OcrDataField();
+        ocrrespondentTwoDateOfBirthDontKnow.setName("respondentTwoDateOfBirthDontKnow");
+        ocrrespondentTwoDateOfBirthDontKnow.setValue("");
+        fieldList.add(ocrrespondentTwoDateOfBirthDontKnow);
+
+        OcrDataField ocrrespondentTwoPlaceOfBirth = new OcrDataField();
+        ocrrespondentTwoPlaceOfBirth.setName("respondentTwoPlaceOfBirth");
+        ocrrespondentTwoPlaceOfBirth.setValue("London");
+        fieldList.add(ocrrespondentTwoPlaceOfBirth);
+
+        OcrDataField ocrrespondentTwoAddress = new OcrDataField();
+        ocrrespondentTwoAddress.setName("respondentTwoAddress");
+        ocrrespondentTwoAddress.setValue("124, Topsfield Parade");
+        fieldList.add(ocrrespondentTwoAddress);
+
+        OcrDataField ocrrespondentTwoAddressPostCode = new OcrDataField();
+        ocrrespondentTwoAddressPostCode.setName("respondentTwoAddressPostCode");
+        ocrrespondentTwoAddressPostCode.setValue("N8 8PE");
+        fieldList.add(ocrrespondentTwoAddressPostCode);
+
+        OcrDataField ocrrespondentTwoAddressDontKnow = new OcrDataField();
+        ocrrespondentTwoAddressDontKnow.setName("respondentTwoAddressDontKnow");
+        ocrrespondentTwoAddressDontKnow.setValue("");
+        fieldList.add(ocrrespondentTwoAddressDontKnow);
+
+        OcrDataField ocrrespondentTwoHomePhoneNumber = new OcrDataField();
+        ocrrespondentTwoHomePhoneNumber.setName("respondentTwoHomePhoneNumber");
+        ocrrespondentTwoHomePhoneNumber.setValue("+442081112222");
+        fieldList.add(ocrrespondentTwoHomePhoneNumber);
+
+        OcrDataField ocrrespondentTwoMobilePhoneNumber = new OcrDataField();
+        ocrrespondentTwoMobilePhoneNumber.setName("respondentTwoMobilePhoneNumber");
+        ocrrespondentTwoMobilePhoneNumber.setValue("+447999666666");
+        fieldList.add(ocrrespondentTwoMobilePhoneNumber);
+
+        OcrDataField ocrrespondentTwoMobilePhoneNumberDontKnow = new OcrDataField();
+        ocrrespondentTwoMobilePhoneNumberDontKnow.setName("respondentTwoMobilePhoneNumberDontKnow");
+        ocrrespondentTwoMobilePhoneNumberDontKnow.setValue("");
+        fieldList.add(ocrrespondentTwoMobilePhoneNumberDontKnow);
+
+        OcrDataField ocrrespondentTwoEmailAddress = new OcrDataField();
+        ocrrespondentTwoEmailAddress.setName("respondentTwoEmailAddress");
+        ocrrespondentTwoEmailAddress.setValue("test@test.com");
+        fieldList.add(ocrrespondentTwoEmailAddress);
+
+        OcrDataField ocrrespondentTwoEmailAddressDontKnow = new OcrDataField();
+        ocrrespondentTwoEmailAddressDontKnow.setName("respondentTwoEmailAddressDontKnow");
+        ocrrespondentTwoEmailAddressDontKnow.setValue("");
+        fieldList.add(ocrrespondentTwoEmailAddressDontKnow);
+
+        OcrDataField ocrhasRespondentTwoLivedAtThisAddressForOverFiveYears = new OcrDataField();
+        ocrhasRespondentTwoLivedAtThisAddressForOverFiveYears
+                .setName("hasRespondentTwoLivedAtThisAddressForOverFiveYears");
+        ocrhasRespondentTwoLivedAtThisAddressForOverFiveYears.setValue("No");
+        fieldList.add(ocrhasRespondentTwoLivedAtThisAddressForOverFiveYears);
+
+        OcrDataField ocrrespondentTwoAllAddressesForLastFiveYears = new OcrDataField();
+        ocrrespondentTwoAllAddressesForLastFiveYears.setName("respondentTwoAllAddressesForLastFiveYears");
+        ocrrespondentTwoAllAddressesForLastFiveYears.setValue("227, Topsfield Parade, N8 8PE");
+        fieldList.add(ocrrespondentTwoAllAddressesForLastFiveYears);
 
         return fieldList;
     }
