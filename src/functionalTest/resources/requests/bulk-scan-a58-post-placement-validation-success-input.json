@@ -277,7 +277,15 @@
       "value": "true"
     },
     {
-      "name": "child_noOrderAvaialble",
+      "name": "child_noOrderAvailable",
+      "value": "true"
+    },
+    {
+      "name": "child_dontKnowProceedingDetailsWithRelation",
+      "value": "true"
+    },
+    {
+      "name": "child_noProceedingDetails",
       "value": "true"
     }
   ]

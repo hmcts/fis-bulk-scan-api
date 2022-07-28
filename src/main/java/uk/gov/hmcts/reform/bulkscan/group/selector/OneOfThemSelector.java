@@ -18,12 +18,12 @@ public class OneOfThemSelector implements Selector {
         if (SelectorEnum.ONE_CHILD_REQUIRED.equals(selectorType)) {
             if (selectedFieldList.size() > 1) {
                 errorAndWarningHandler.updateError(MessageConstants.MULTIPLE_FIELDS_HAVE_BEEN_SELECTED
-                    + selectedFieldList.stream().map(Object::toString).collect(
+                    + fieldList.stream().map(field -> field.getName()).collect(
                     Collectors.joining(",")));
             }
             if (selectedFieldList.isEmpty()) {
                 errorAndWarningHandler.updateError(MessageConstants.AT_LEAST_ONE_OF_THE_CHECKBOX_MUST_BE_SELECTED
-                    + selectedFieldList.stream().map(field -> field.getName()).collect(
+                    + fieldList.stream().map(field -> field.getName()).collect(
                     Collectors.joining(",")));
             }
         }

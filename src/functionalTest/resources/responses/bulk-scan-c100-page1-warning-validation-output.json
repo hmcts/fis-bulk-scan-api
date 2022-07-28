@@ -1,0 +1,12 @@
+{
+  "status": "WARNINGS",
+  "warnings": {
+    "items": [
+      "The following fields are are not configured with our system. [applicant1_dateOfBirth] "
+    ]
+  },
+  "errors": {
+    "items": [
+    ]
+  }
+}

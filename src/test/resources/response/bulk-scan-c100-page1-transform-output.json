@@ -5,14 +5,6 @@
     "case_data": {
       "parentalResponsibilityDetails": "parentResponsibility",
       "childrenKNownToLocalAuthorityTextArea": "socialWorker",
-      "childrenParentsName": "parentsName",
-      "briefDetailsOnTheApplication": "briefDetails",
-      "childrenSubjectOfChildProtectionPlan": "protectionplan",
-      "scannedDocuments": [
-
-      ],
-      "childrenKNownToLocalAuthority": "Yes",
-      "havePreviousParentingPlan": "parentingplan",
       "applicants": {
         "value": {
           "firstName": "applicant1_firstName",
@@ -21,7 +13,15 @@
       },
       "childrenParentsName": "parentsName",
       "childrenSubjectOfChildProtectionPlan": "protectionplan",
-      "scannedDocuments": [],
+      "scannedDocuments": [
+        {
+          "value": {
+            "document_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c",
+            "document_filename": "test.pdf",
+            "document_binary_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
+          }
+        }
+      ],
       "childrenKNownToLocalAuthority": "Yes",
       "prohibitedStepsOrder": "true",
       "children": [
@@ -71,11 +71,6 @@
         }
       ],
       "personWhoLivesWithChild": "living other details",
-      "applicationPermissionRequiredReason": "reason",
-      "childrenOfSameParent": "Yes",
-      "childLiveWith": "Applicant",
-      "childParentsNameCollection": "parentsNameColl",
-      "applicationPermissionRequired": "yes",
       "childrenOfSameParent": "Yes",
       "childLiveWith": "Applicant",
       "specialIssueOrder": "true",

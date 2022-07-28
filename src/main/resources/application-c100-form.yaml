@@ -5,6 +5,11 @@ uk:
         caseTypeofApplication:
           C100:
             mandatoryFields:
+              - applicant1_firstName
+              - applicant1_lastName
+              - childArrangement_order
+              - prohibitedSteps_order
+              - specialIssue_order
               - child1_firstName
               - child1_lastName
               - child1_dateOfBirth
@@ -13,6 +18,20 @@ uk:
               - children_of_same_parent
               - subject_to_childProtectionPlan
             optionalFields:
+              - respondent1_firstName
+              - respondent1_lastName
+              - natureofOrder
+              - domesticAbuse
+              - childAbduction
+              - childAbuse
+              - drugs_alcohol_substanceAbuse
+              - otherSafety_or_welfareAbuse
+              - askingPermissionForApplication
+              - urgent_or_withoutHearing
+              - previous_or_ongoingProceeding
+              - isConsentOrder
+              - international_or_factorsAffectingLitigation
+              - welshRequired
               - child1_orderAppliedFor
               - child1_applicant1_relationship
               - child1_respondent1_relationship
@@ -58,6 +77,49 @@ uk:
               - briefDetailsOnTheApplication
               - havePreviousParentingPlan
               - askingPermissionForApplication
+              - NoMIAM_domesticViolence
+              - NoMIAM_childProtectionConcerns
+              - NoMIAM_Urgency
+              - NoMIAM_PreviousAttendance
+              - NoMIAM_otherReasons
+              - NoMIAM_DVE_arrestedForSimilarOffence
+              - NoMIAM_DVE_relevantPoliceCaution
+              - NoMIAM_DVE_relevantCriminalProceeding
+              - NoMIAM_DVE_relevantConviction
+              - NoMIAM_DVE_courtOrder
+              - NoMIAM_DVE_protectionNotice
+              - NoMIAM_DVE_protectiveInjunction
+              - NoMIAM_DVE_NoCrossUndertakingGiven
+              - NoMIAM_DVE_copyOfFactFinding
+              - NoMIAM_DVE_expertEvidenceReport
+              - NoMIAM_DVE_healthProfessionalReport
+              - NoMIAM_DVE_ReferralHealthProfessionalReport
+              - NoMIAM_DVE_memberOf_MultiAgencyRiskAssessmentConferrance_letter
+              - NoMIAM_DVE_domesticViolenceAdvisor
+              - NoMIAM_DVE_independentSexualViolenceAdvisor_Letter
+              - NoMIAM_DVE_officerEmployed_localAuthority_letter
+              - NoMIAM_DVE_domesticViolenceSupportCharity_letter
+              - NoMIAM_DVE_domesticViolenceSupportCharity_refuge_letter
+              - NoMIAM_DVE_publicAuthority_confirmationLetter
+              - NoMIAM_DVE_secretaryOfState_letter
+              - NoMIAM_DVE_evidenceFinancialMatters
+              - NoMIAM_domesticViolence
+              - NoMIAM_childProtectionConcerns
+              - NoMIAM_Urgency
+              - NoMIAM_PreviousAttendence
+              - NoMIAM_otherReasons
+              - NoMIAM_otherExceptions
+              - NoMIAM_subjectOfEnquiries_byLocalAuthority
+              - NoMIAM_subjectOfCPP_byLocalAuthority
+              - NoMIAM_urgency_risk_to_life_liberty_or_safety
+              - NoMIAM_urgency_riskOfHarm
+              - NoMIAM_urgency_risk_to_unlawfulRemoval
+              - NoMIAM_urgency_risk_to_miscarriageOfJustice
+              - NoMIAM_urgency_unreasonablehardship
+              - NoMIAM_urgency_irretrievableProblem
+              - NoMIAM_urgency_conflictWithOtherStateCourts
+              - NoMIAM_PreviousAttendanceReason
+              - parentalResponsibilityDetails
             regexValidationFields:
               dateFields:
                 fieldNames:

@@ -1,86 +1,6 @@
 {
   "ocr_data_fields":[
     {
-      "name": "previous_or_ongoingProceeding",
-      "value": "No"
-    },
-    {
-      "name": "exemption_to_attend_MIAM",
-      "value": "Yes"
-    },
-    {
-      "name": "existingCase_onEmergencyProtection_Care_or_supervisioNorder",
-      "value": "No"
-    },
-    {
-      "name": "familyMember_Intimation_on_No_MIAM",
-      "value": "No"
-    },
-    {
-      "name": "attended_MIAM",
-      "value": "No"
-    },
-    {
-      "name": "NoMIAM_domesticViolence",
-      "value": "true"
-    },
-    {
-      "name": "NoMIAM_childProtectionConcerns",
-      "value": "true"
-    },
-    {
-      "name": "NoMIAM_Urgency",
-      "value": "true"
-    },
-    {
-      "name": "NoMIAM_PreviousAttendence",
-      "value": "true"
-    },
-    {
-      "name": "NoMIAM_otherReasons",
-      "value": "true"
-    },
-    {
-      "name": "NoMIAM_DVE_arrestedForSimilarOffence",
-      "value": "Yes"
-    },
-    {
-      "name": "NoMIAM_subjectOfEnquiries_byLocalAuthority",
-      "value": "Yes"
-    },
-    {
-      "name": "NoMIAM_urgency_riskOfHarm",
-      "value": "Yes"
-    },
-    {
-      "name": "NoMIAM_PreviousAttendanceReason",
-      "value": "Yes"
-    },
-    {
-      "name": "NoMIAM_otherExceptions",
-      "value": "Yes"
-    },
-    {
-      "name":"applicant1_firstName",
-      "value":"John"
-    },
-    {
-      "name":"applicant1_lastName",
-      "value":"Peters"
-    },
-    {
-      "name":"childArrangement_order",
-      "value":"childArrangementOrder"
-    },
-    {
-      "name":"prohibitedSteps_order",
-      "value":"prohibitedSteps_order"
-    },
-    {
-      "name":"specialIssue_order",
-      "value":"specialIssueOrder"
-    },
-    {
       "name":"child1_firstName",
       "value":"firstName"
     },
@@ -152,6 +72,8 @@
       "name":"child_living_with_others",
       "value":"false"
     },
+
+
     {
       "name":"child2_firstName",
       "value":"child2firstName"
@@ -184,6 +106,9 @@
       "name":"child2_localAuthority_or_socialWorker",
       "value":"socialWorker"
     },
+
+
+
     {
       "name":"child3_firstName",
       "value":"child3firstName"
@@ -216,6 +141,8 @@
       "name":"child3_localAuthority_or_socialWorker",
       "value":"socialWorker"
     },
+
+
     {
       "name":"child4_firstName",
       "value":"child4firstName"
@@ -249,25 +176,34 @@
       "value":"socialWorker"
     },
     {
-      "name":"permissionRequired",
-      "value":"Yes"
-    },
-
-    {
-      "name":"permissionRequiredReason",
-      "value":"reason"
+      "name":"applicant1_firstName",
+      "value":"applicant1_firstName"
     },
     {
-      "name":"briefDetailsOnTheApplication",
-      "value":"briefDetails"
+      "name":"applicant1_lastName",
+      "value":"applicant1_lastName"
     },
     {
-      "name":"havePreviousParentingPlan",
-      "value":"parentingplan"
+      "name": "childArrangement_order",
+      "value": "true"
     },
     {
-      "name":"askingPermissionForApplication",
-      "value":"Yes"
+      "name": "prohibitedSteps_order",
+      "value": "true"
+    },
+    {
+      "name": "specialIssue_order",
+      "value": "true"
     }
-  ]
+  ],
+  "scanned_documents": [
+    {
+      "url": {
+        "document_url":"http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c",
+        "document_filename":"test.pdf",
+        "document_binary_url":"http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
+      }
+    }
+  ],
+  "form_type": "C100"
 }

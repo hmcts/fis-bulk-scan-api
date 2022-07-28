@@ -15,6 +15,7 @@ public final class BulkScanConstants {
 
     public static final String MANDATORY_ATTENDED_MIAM_MESSAGE = "%s : value is no, "
         + "and you cannot make this application";
+
     public static final String MANDATORY_ERROR_MESSAGE = "%s should not be null or empty";
     public static final String DATE_FORMAT_MESSAGE = "%s is invalid date or format";
     public static final String EMAIL_FORMAT_MESSAGE = "%s is invalid email";
@@ -27,6 +28,10 @@ public final class BulkScanConstants {
     public static final String ALPHA_NUMERIC_FIELDS_MESSAGE = "%s is not valid alpha numeric";
     public static final String UNKNOWN_FIELDS_MESSAGE = "The following fields are are not configured "
         + "with our system. [%s] ";
+
+
+    public static final String GROUP_DEPENDENCY_MESSAGE = "Group Dependency Field (%s) has "
+            + "dependency validation warning. Must contain at least %s of the fields [%s].";
 
     public static final String XOR_CONDITIONAL_FIELDS_MESSAGE = "one field must be present out of %s";
 
@@ -57,29 +62,28 @@ public final class BulkScanConstants {
     public static final String DOB_HINT = "dob";
     public static final String DATE_OF_BIRTH_HINT = "dateOfBirth";
 
-    public static final String applicant_marital_status_single = "applicant_marital_status_single";
-    public static final String applicant_marital_status_divorced = "applicant_marital_status_divorced";
+    public static final String APPLICANT_MARITAL_STATUS_SINGLE = "applicant_marital_status_single";
+    public static final String APPLICANT_MARITAL_STATUS_DIVORCED = "applicant_marital_status_divorced";
     public static final String applicant_marital_status_divorced1 = "applicant_marital_status_divorced";
-    public static final String applicant_marital_status_widow = "applicant_marital_status_widow";
-    public static final String applicant_marital_status_married_spouse_notfound =
+    public static final String APPLICANT_MARITAL_STATUS_WIDOW = "applicant_marital_status_widow";
+    public static final String APPLICANT_MARITAL_STATUS_MARRIED_SPOUSE_NOTFOUND =
             "applicant_marital_status_married_spouse_notfound";
-    public static final String applicant_marital_status_married_spouse_separated =
+    public static final String APPLICANT_MARITAL_STATUS_MARRIED_SPOUSE_SEPARATED =
             "applicant_marital_status_married_spouse_separated";
-    public static final String applicant_marital_status_married_spouse_incapable =
+    public static final String APPLICANT_MARITAL_STATUS_MARRIED_SPOUSE_INCAPABLE =
             "applicant_marital_status_married_spouse_incapable";
-    public static final String applicant_applying_alone_natural_parent_died =
+    public static final String APPLICANT_APPLYING_ALONE_NATURAL_PARENT_DIED =
             "applicant_applying_alone_natural_parent_died";
-    public static final String applicant_applying_alone_natural_parent_not_found =
+    public static final String APPLICANT_APPLYING_ALONE_NATURAL_PARENT_NOT_FOUND =
             "applicant_applying_alone_natural_parent_not_found";
-    public static final String applicant_applying_alone_no_other_parent = "applicant_applying_alone_no_other_parent";
-    public static final String applicant_applying_alone_other_parent_exclusion_justified =
+    public static final String APPLICANT_APPLYING_ALONE_NO_OTHER_PARENT = "applicant_applying_alone_no_other_parent";
+    public static final String APPLICANT_APPLYING_ALONE_OTHER_PARENT_EXCLUSION_JUSTIFIED =
             "applicant_applying_alone_other_parent_exclusion_justified";
-    public static final String applicant_relationToChild_father_partner = "applicant_relationToChild_father_partner";
-    public static final String applicant_relationToChild_mother_partner = "applicant_relationToChild_mother_partner";
-    public static final String applicant_relationToChild_non_civil_partner =
+    public static final String APPLICANT_RELATION_TO_CHILD_MOTHER_PARTNER = "applicant_relationToChild_mother_partner";
+    public static final String APPLICANT_RELATION_TO_CHILD_NON_CIVIL_PARTNER =
             "applicant_relationToChild_non_civil_partner";
-    public static final String applicants_domicile_status = "applicants_domicile_status";
-    public static final String applicants_non_domicile_status = "applicants_non_domicile_status";
+    public static final String APPLICANTS_DOMICILE_STATUS = "applicants_domicile_status";
+    public static final String APPLICANTS_NON_DOMICILE_STATUS = "applicants_non_domicile_status";
 
     public static final String ADOPTION_ORDER_CONSENT = "adoption_order_consent";
 
@@ -171,6 +175,77 @@ public final class BulkScanConstants {
 
     public static final String ATTENDED_MIAM = "attended_MIAM";
     //END C100 form section 2 validation fields
+
+    //A58
+    public static final String
+        CHILD_PLACEMENT_ORDER_BY_ENGLAND_AND_WALES_COURT = "child_placementOrderByEnglandAndWalesCourt";
+    public static final String
+        CHILD_PLACMENT_ORDER_BY_ENGLAND_AND_WALES_COURT_NAME = "child_placmentOrderByEnglandAndWalesCourtName";
+    public static final String
+        CHILD_PLACMENT_ORDER_BY_ENGLAND_AND_WALES_CASE_NUMBER = "child_placmentOrderByEnglandAndWalesCaseNumber";
+    public static final String
+        CHILD_PLACMENT_ORDER_BY_ENGLAND_AND_WALES_TYPE_OF_ORDER = "child_placmentOrderByEnglandAndWalesTypeOfOrder";
+    public static final String
+        CHILD_PLACMENT_ORDER_BY_ENGLAND_AND_WALES_DATE_OF_ORDER = "child_placmentOrderByEnglandAndWalesDateOfOrder";
+    public static final String
+        CHILD_FREEING_ORDER_BY_ENGLAND_AND_WALES_COURT = "child_freeingOrderByEnglandAndWalesCourt";
+    public static final String
+        CHILD_FREEING_ORDER_BY_ENGLAND_AND_WALES_COURT_NAME = "child_freeingOrderByEnglandAndWalesCourtName";
+    public static final String
+        CHILD_FREEING_ORDER_BY_ENGLAND_AND_WALES_CASE_NUMBER = "child_freeingOrderByEnglandAndWalesCaseNumber";
+    public static final String
+        CHILD_FREEING_ORDER_BY_ENGLAND_AND_WALES_TYPE_OF_ORDER = "child_freeingOrderByEnglandAndWalesTypeOfOrder";
+    public static final String
+        CHILD_FREEING_ORDER_BY_ENGLAND_AND_WALES_DATE_OF_ORDER = "child_freeingOrderByEnglandAndWalesDateOfOrder";
+    public static final String
+        CHILD_FREEING_ORDER_BY_NORTHERN_IRELAND_COURT = "child_freeingOrderByNorthernIrelandCourt";
+    public static final String
+        CHILD_FREEING_ORDER_BY_NORTHERN_IRELAND_COURT_NAME = "child_freeingOrderByNorthernIrelandCourtName";
+    public static final String
+        CHILD_FREEING_ORDER_BY_NORTHERN_IRELAND_CASE_NUMBER = "child_freeingOrderByNorthernIrelandCaseNumber";
+    public static final String
+        CHILD_FREEING_ORDER_BY_NORTHERN_IRELAND_TYPE_OF_ORDER = "child_freeingOrderByNorthernIrelandTypeOfOrder";
+    public static final String
+        CHILD_FREEING_ORDER_BY_NORTHERN_IRELAND_DATE_OF_ORDER = "child_freeingOrderByNorthernIrelandDateOfOrder";
+    public static final String
+        CHILD_PERMANENCE_ORDER_BY_SCOTLAND_COURT = "child_permanenceOrderByScotlandCourt";
+    public static final String
+        CHILD_PERMANENCE_ORDER_BY_SCOTLAND_COURT_NAME = "child_permanenceOrderByScotlandCourtName";
+    public static final String
+        CHILD_PERMANENCE_ORDER_BY_SCOTLAND_CASE_NUMBER = "child_permanenceOrderByScotlandCaseNumber";
+    public static final String
+        CHILD_PERMANENCE_ORDER_BY_SCOTLAND_TYPE_OF_ORDER = "child_permanenceOrderByScotlandTypeOfOrder";
+    public static final String
+        CHILD_PERMANENCE_ORDER_BY_SCOTLAND_DATE_OF_ORDER = "child_permanenceOrderByScotlandDateOfOrder";
+    public static final String CHILD_NO_ORDER_AVAILABLE = "child_noOrderAvailable";
+    public static final String ANY_OTHER_ORDERS_AVAILABLE = "anyOtherOrdersAvailable";
+    public static final String PLACEMENT_ORDER_COURT = "placementOrderCourt";
+    public static final String PLACEMENT_ORDER_ID = "placementOrderId";
+    public static final String PLACEMENT_ORDER_TYPE = "placementOrderType";
+    public static final String PLACEMENT_ORDER_DATE = "placementOrderDate";
+    public static final String FREEING_ORDER_COURT = "freeingOrderCourt";
+    public static final String FREEING_ORDER_ID = "freeingOrderId";
+    public static final String FREEING_ORDER_TYPE = "freeingOrderType";
+    public static final String FREEING_ORDER_DATE = "freeingOrderDate";
+    public static final String CHILD_NO_LA_OR_PARENTAL_RESPONSIBILITY = "child_noLaOrParentalResponsibility";
+    public static final String LA_OR_PARENTAL_RESPONSIBILITY = "laOrParentalResponsibility";
+    public static final String MAINTANENCE_ORDER = "maintanenceOrder";
+    public static final String CHILD_COURT_AND_DATE_OF_ORDER = "child_courtAndDateOfOrder";
+    public static final String NAME_OF_COURT = "nameOfCourt";
+    public static final String DATE_OF_ORDER = "dateOfOrder";
+    public static final String CHILD_NO_MAINTANENCE_ORDER = "child_noMaintanenceOrder";
+    public static final String CHILD_MAINTANENCE_ORDER = "child_maintanenceOrder";
+    public static final String HAS_MAINTANENCE_ORDER = "hasMaintanenceOrder";
+    public static final String CHILD_NO_PROCEEDING_DETAILS = "child_noProceedingDetails";
+    public static final String HAS_PROCEEDING_DETAILS = "hasProceedingDetails";
+    public static final String CHILD_PROCEEDING_DETAILS = "child_proceedingDetails";
+    public static final String CHILD_NO_PROCEEDING_DETAILS_WITH_RELATION = "child_noProceedingDetailsWithRelation";
+    public static final String HAS_PROCEEDING_DETAILS_WITH_RELATION = "hasProceedingDetailsWithRelation";
+    public static final String CHILD_PROCEEDING_DETAILS_WITH_RELATION = "child_proceedingDetailsWithRelation";
+    public static final String
+        CHILD_DONT_KNOW_PROCEEDING_DETAILS_WITH_RELATION = "child_dontKnowProceedingDetailsWithRelation";
+    public static final String DONT_KNOW = "DontKnow";
+    //End of A58
 
     private static Map<String,String> getErrorMessageMap() {
         return Map.of(MANDATORY_KEY, MANDATORY_ERROR_MESSAGE,
