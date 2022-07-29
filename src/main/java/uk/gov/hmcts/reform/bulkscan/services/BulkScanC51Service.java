@@ -30,7 +30,6 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CASE_TYPE
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EVENT_ID;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.UNKNOWN_FIELDS_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper.transformScanDocuments;
-import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.SCAN_DOCUMENTS;
 
 /**
  *  service class for C51 form
@@ -148,7 +147,7 @@ public class BulkScanC51Service implements BulkScanService {
             .transformToCaseData(new HashMap<>(transformConfigManager
                                      .getTransformationConfig(formType).getCaseDataFields()), inputFieldsMap);
 
-        populatedMap.put(SCAN_DOCUMENTS, transformScanDocuments(bulkScanTransformationRequest));
+        populatedMap.put(BulkScanA58Service.SCAN_DOCUMENTS, transformScanDocuments(bulkScanTransformationRequest));
 
         Map<String, String> caseTypeAndEventId =
             transformConfigManager.getTransformationConfig(formType).getCaseFields();

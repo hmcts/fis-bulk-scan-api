@@ -83,10 +83,17 @@ public class BulkScanC100Service implements BulkScanService {
         response.addWarning(dependencyValidationService
                 .getDependencyWarnings(inputFieldMap, FormType.C100));
 
+//          got rid of the warnings and erros as they will produce a double
+//        response.addWarning(response.getWarnings().getItems());
+
         response = bulkScanC100ValidationService
                 .validateAttendMiam(bulkRequest.getOcrdatafields(), response);
 
-        response.addErrors(response.getErrors().getItems());
+//        response.addErrors(response.getErrors().getItems());
+
+        //mine
+        response = bulkScanC100ValidationService
+                       .validateApplicantAddressFiveYears(bulkRequest.getOcrdatafields(), response);
 
         response.changeStatus();
 

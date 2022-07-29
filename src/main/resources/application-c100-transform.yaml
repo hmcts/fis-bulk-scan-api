@@ -9,9 +9,34 @@ uk:
               EVENT_ID: create-case-privatelaw-bs
             caseDataFields:
               applicants:
-                value:
-                  firstName: applicant1_firstName
-                  lastName: applicant1_lastName
+                - value:
+                    firstName: applicantOneFirstName
+                    lastName: applicantOneLastName
+                    previousName: applicantOnePreviousNames
+                    gender: applicantOneGender
+                    dateOfBirth: applicantOneDateOfBirth
+                    placeOfBirth: applicantOnePlaceOfBirth
+                    AddressLine1: applicantOneAddress
+                    PostCode: applicantOneAddressPostCode
+                    landline: applicantOneHomePhoneNumber
+                    phoneNumber: applicantOneMobilePhoneNumber
+                    email: applicantOneEmailAddress
+                    isAtAddressLessThan5Years: hasApplicantOneLivedAtThisAddressForOverFiveYears
+                    addressLivedLessThan5YearsDetails: applicantOneAllAddressesForLastFiveYears
+                - value:
+                    firstName: applicantTwoFirstName
+                    lastName: applicantTwoLastName
+                    previousName: applicantTwoPreviousNames
+                    gender: applicantTwoGender
+                    dateOfBirth: applicantTwoDateOfBirth
+                    placeOfBirth: applicantTwoPlaceOfBirth
+                    AddressLine1: applicantTwoAddress
+                    PostCode: applicantTwoAddressPostCode
+                    landline: applicantTwoHomePhoneNumber
+                    phoneNumber: applicantTwoMobilePhoneNumber
+                    email: applicantTwoEmailAddress
+                    isAtAddressLessThan5Years: hasApplicantTwoLivedAtThisAddressForOverFiveYears
+                    addressLivedLessThan5YearsDetails: applicantTwoAllAddressesForLastFiveYears
               orderAppliedFor: childArrangement_order
               prohibitedStepsOrder: prohibitedSteps_order
               specialIssueOrder: specialIssue_order

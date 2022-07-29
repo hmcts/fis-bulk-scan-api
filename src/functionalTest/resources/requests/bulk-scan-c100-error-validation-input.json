@@ -1,6 +1,10 @@
 {
   "ocr_data_fields":[
     {
+      "name":"applicant1_dateOfBirth",
+      "value":"01/01/1994"
+    },
+    {
       "name": "previous_or_ongoingProceeding",
       "value": "No"
     },
@@ -63,10 +67,6 @@
     {
       "name":"applicantOneFirstName",
       "value":"John"
-    },
-    {
-      "name":"applicantOneLastName",
-      "value":"Peters"
     },
     {
       "name":"applicantOnePreviousNames",

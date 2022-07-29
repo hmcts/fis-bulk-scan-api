@@ -10,15 +10,46 @@
           }
         }
       ],
-      "applicants": {
-        "value": {
-          "firstName": "applicant1_firstName",
-          "lastName": "applicant1_lastName"
+      "applicants": [
+        {
+          "value": {
+            "firstName": "John",
+            "lastName": "Peters",
+            "previousName": "Winters",
+            "gender": "Male",
+            "dateOfBirth": "02/09/87",
+            "placeOfBirth": "Surrey",
+            "AddressLine1": "Hackney",
+            "PostCode": "w34fgt",
+            "landline": "7876540984",
+            "phoneNumber": "8766540984",
+            "email": "johnnyj@hotmail.uk",
+            "isAtAddressLessThan5Years": "Yes",
+            "addressLivedLessThan5YearsDetails": "Hackney"
+          }
+        },
+        {
+          "value": {
+            "firstName": "Wendy",
+            "lastName": "Chan",
+            "previousName": "Walters",
+            "gender": "Female",
+            "dateOfBirth": "03/09/45",
+            "placeOfBirth": "Colchester",
+            "AddressLine1": "London",
+            "PostCode": "w12ghw",
+            "landline": "7347678354",
+            "phoneNumber": "3476785563",
+            "email": "wendy@hotmail.uk",
+            "isAtAddressLessThan5Years": "Yes",
+            "addressLivedLessThan5YearsDetails": "Baker St"
+          }
         }
-      },
+      ],
       "otherProceedingsTable": {
         "previousOrOngoingProceedings": "yes"
       },
+      "briefDetailsOnTheApplication": "briefDetails",
       "scannedDocuments": [
         {
           "value": {
@@ -99,6 +130,7 @@
       },
       "childrenKNownToLocalAuthority": "Yes",
       "prohibitedStepsOrder": "true",
+      "havePreviousParentingPlan": "parentingplan",
       "allegationsOfHarmOverviewTable": {
         "allegationsOfHarmDomesticAbuseYesNo": "yes",
         "allegationsOfHarmChildAbductionYesNo": "yes",
@@ -106,6 +138,7 @@
         "allegationsOfHarmSubstanceAbuseYesNo": "yes",
         "allegationsOfHarmOtherConcernsYesNo": "yes"
       },
+      "applicationPermissionRequiredReason": "reason",
       "childrenOfSameParent": "Yes",
       "childLiveWith": "Applicant",
       "consentOrder": "yes",

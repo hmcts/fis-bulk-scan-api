@@ -294,7 +294,7 @@ public class BulkScanA58Service implements BulkScanService {
     }
 
     private String updateMissingField(String item, List<String> allConfiguredGroupFields) {
-        if (item.contains("The following fields are are not configured with our system")) {
+        if (item.contains("The following fields are not configured with our system")) {
             List<String> missingFieldList = Arrays.asList(item.split("\\[")[1].split("\\]")[0].split(","));
             String warnings = missingFieldList.stream()
                 .filter(s -> !allConfiguredGroupFields.contains(s))
@@ -302,7 +302,7 @@ public class BulkScanA58Service implements BulkScanService {
             if (StringUtils.isEmpty(warnings)) {
                 return null;
             } else {
-                return "The following fields are are not configured with our system. ["
+                return "The following fields are not configured with our system. ["
                     + warnings + "]";
             }
         }

@@ -5,8 +5,10 @@ uk:
         caseTypeofApplication:
           C100:
             mandatoryFields:
-              - applicant1_firstName
-              - applicant1_lastName
+              - applicantOneFirstName
+              - applicantOneLastName
+              - applicantOneDateOfBirth
+              - applicantOnePlaceOfBirth
               - childArrangement_order
               - prohibitedSteps_order
               - specialIssue_order
@@ -18,6 +20,28 @@ uk:
               - children_of_same_parent
               - subject_to_childProtectionPlan
             optionalFields:
+              - applicantOneGender
+              - applicantOnePreviousNames
+              - applicantOneAddress
+              - applicantOneAddressPostCode
+              - applicantOneHomePhoneNumber
+              - applicantOneMobilePhoneNumber
+              - applicantOneEmailAddress
+              - hasApplicantOneLivedAtThisAddressForOverFiveYears
+              - applicantOneAllAddressesForLastFiveYears
+              - applicantTwoFirstName
+              - applicantTwoLastName
+              - applicantTwoPreviousNames
+              - applicantTwoGender
+              - applicantTwoDateOfBirth
+              - applicantTwoPlaceOfBirth
+              - applicantTwoAddress
+              - applicantTwoAddressPostCode
+              - applicantTwoHomePhoneNumber
+              - applicantTwoMobilePhoneNumber
+              - applicantTwoEmailAddress
+              - hasApplicantTwoLivedAtThisAddressForOverFiveYears
+              - applicantTwoAllAddressesForLastFiveYears
               - respondent1_firstName
               - respondent1_lastName
               - natureofOrder
