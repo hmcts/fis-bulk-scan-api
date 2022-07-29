@@ -185,6 +185,14 @@
       "value":"parentingplan"
     },
     {
+      "name": "askingPermissionForApplication",
+      "value": "Yes"
+    },
+    {
+      "name": "exemption_to_attend_MIAM",
+      "value": "yes"
+    },
+    {
       "name": "child4_localAuthority_or_socialWorker",
       "value": "socialWorker"
     },
@@ -263,110 +271,6 @@
     {
       "name": "natureofOrder",
       "value": "yes"
-    },
-    {
-      "name": "NoMIAM_DVE_relevantPoliceCaution",
-      "value": "true"
-    },
-    {
-      "name": "NoMIAM_DVE_relevantCriminalProceeding",
-      "value": "true"
-    },
-    {
-      "name": "NoMIAM_DVE_relevantConviction",
-      "value": "true"
-    },
-    {
-      "name": "NoMIAM_DVE_courtOrder",
-      "value": "true"
-    },
-    {
-      "name": "NoMIAM_DVE_protectionNotice",
-      "value": "true"
-    },
-    {
-      "name": "NoMIAM_DVE_protectiveInjunction",
-      "value": "true"
-    },
-    {
-      "name": "NoMIAM_DVE_NoCrossUndertakingGiven",
-      "value": "true"
-    },
-    {
-      "name": "NoMIAM_DVE_copyOfFactFinding",
-      "value": "true"
-    },
-    {
-      "name": "NoMIAM_DVE_expertEvidenceReport",
-      "value": "true"
-    },
-    {
-      "name": "NoMIAM_DVE_healthProfessionalReport",
-      "value": "true"
-    },
-    {
-      "name": "NoMIAM_DVE_ReferralHealthProfessionalReport",
-      "value": "true"
-    },
-    {
-      "name": "NoMIAM_DVE_memberOf_MultiAgencyRiskAssessmentConferrance_letter",
-      "value": "true"
-    },
-    {
-      "name": "NoMIAM_DVE_domesticViolenceAdvisor",
-      "value": "true"
-    },
-    {
-      "name": "NoMIAM_DVE_independentSexualViolenceAdvisor_Letter",
-      "value": "true"
-    },
-    {
-      "name": "NoMIAM_DVE_officerEmployed_localAuthority_letter",
-      "value": "true"
-    },
-    {
-      "name": "NoMIAM_DVE_domesticViolenceSupportCharity_letter",
-      "value": "true"
-    },
-    {
-      "name": "NoMIAM_DVE_domesticViolenceSupportCharity_refuge_letter",
-      "value": "true"
-    },
-    {
-      "name": "NoMIAM_DVE_publicAuthority_confirmationLetter",
-      "value": "true"
-    },
-    {
-      "name": "NoMIAM_DVE_secretaryOfState_letter",
-      "value": "true"
-    },
-    {
-      "name": "NoMIAM_DVE_evidenceFinancialMatters",
-      "value": "true"
-    },
-    {
-      "name": "NoMIAM_DVE_arrestedForSimilarOffence",
-      "value": "true"
-    },
-    {
-      "name":"NoMIAM_domesticViolance",
-      "value":"true"
-    },
-    {
-      "name":"NoMIAM_childProtectionConcerns",
-      "value":"true"
-    },
-    {
-      "name":"NoMIAM_Urgency",
-      "value":"true"
-    },
-    {
-      "name":"NoMIAM_PreviousAttendence",
-      "value":"true"
-    },
-    {
-      "name":"NoMIAM_otherReasons",
-      "value":"true"
     }
   ],
   "scanned_documents": [
