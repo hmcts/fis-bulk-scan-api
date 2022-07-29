@@ -65,13 +65,7 @@
                 value="LITERAL_TRY, LITERAL_CATCH, LITERAL_FINALLY, LITERAL_IF, LITERAL_ELSE,
                     LITERAL_DO"/>
     </module>
-   <!-- <module name="RightCurly">
-      <property name="id" value="RightCurlyAlone"/>
-      <property name="option" value="alone"/>
-      <property name="tokens"
-                value="CLASS_DEF, METHOD_DEF, CTOR_DEF, LITERAL_FOR, LITERAL_WHILE, STATIC_INIT,
-                    INSTANCE_INIT"/>
-    </module>-->
+
     <module name="WhitespaceAround">
       <property name="allowEmptyConstructors" value="true"/>
       <property name="allowEmptyMethods" value="true"/>
@@ -191,12 +185,12 @@
     <module name="OverloadMethodsDeclarationOrder"/>
     <module name="VariableDeclarationUsageDistance"/>
 
-    <module name="CustomImportOrder">
-      <property name="customImportOrderRules" value="SPECIAL_IMPORTS###STATIC"/>
+  <!--  <module name="CustomImportOrder">
+      <property name="customImportOrderRules" value="SPECIAL_IMPORTS"/>
       <property name="sortImportsInGroupAlphabetically" value="false"/>
       <property name="standardPackageRegExp" value="^(java|javax)\."/>
       <property name="separateLineBetweenGroups" value="false"/>
-    </module>
+    </module>-->
     <module name="MethodParamPad"/>
     <module name="NoWhitespaceBefore">
       <property name="tokens"
