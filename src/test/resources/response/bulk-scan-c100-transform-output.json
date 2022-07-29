@@ -5,6 +5,13 @@
     "case_data": {
       "parentalResponsibilityDetails": "parentResponsibility",
       "childrenKNownToLocalAuthorityTextArea": "socialWorker",
+      "miamExemptionsChecklist": [
+        "domesticViolence",
+        "childProtectionConcern",
+        "urgency",
+        "previousMIAMattendance",
+        "other"
+      ],
       "miamDomesticViolenceChecklist": [
         "miamDomesticViolenceChecklistEnum_Value_1",
         "miamDomesticViolenceChecklistEnum_Value_2",
@@ -28,12 +35,7 @@
         "miamDomesticViolenceChecklistEnum_Value_21",
         "miamDomesticViolenceChecklistEnum_Value_22"
       ],
-      "childrenParentsName": "parentsName",
       "briefDetailsOnTheApplication": "briefDetails",
-      "childrenSubjectOfChildProtectionPlan": "protectionplan",
-      "scannedDocuments": [
-
-      ],
       "childrenKNownToLocalAuthority": "Yes",
       "havePreviousParentingPlan": "parentingplan",
       "applicants": {
@@ -45,7 +47,6 @@
       "childrenParentsName": "parentsName",
       "childrenSubjectOfChildProtectionPlan": "protectionplan",
       "scannedDocuments": [],
-      "childrenKNownToLocalAuthority": "Yes",
       "prohibitedStepsOrder": "true",
       "children": [
         {
@@ -99,11 +100,8 @@
       "childLiveWith": "Applicant",
       "childParentsNameCollection": "parentsNameColl",
       "applicationPermissionRequired": "yes",
-      "childrenOfSameParent": "Yes",
-      "childLiveWith": "Applicant",
       "specialIssueOrder": "true",
-      "typeOfChildArrangementsOrder": "true",
-      "childParentsNameCollection": "parentsNameColl"
+      "typeOfChildArrangementsOrder": "true"
     }
   },
   "warnings": []

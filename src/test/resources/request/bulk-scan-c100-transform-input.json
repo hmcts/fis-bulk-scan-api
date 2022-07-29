@@ -298,6 +298,26 @@
     {
       "name": "NoMIAM_DVE_arrestedForSimilarOffence",
       "value": "true"
+    },
+    {
+      "name":"NoMIAM_domesticViolance",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_childProtectionConcerns",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_Urgency",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_PreviousAttendence",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_otherReasons",
+      "value":"true"
     }
   ],
   "form_type": "C100"

@@ -7,9 +7,9 @@ import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
 import uk.gov.hmcts.reform.bulkscan.model.Status;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ASKING_PERMISSION_FOR_APPLICATION;
@@ -32,7 +32,6 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PERMISSIO
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PREVIOUS_OR_ONGOING_PROCEEDING;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.XOR_CONDITIONAL_FIELDS_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES;
-
 
 /**
  * This class will custom validation methods related to.

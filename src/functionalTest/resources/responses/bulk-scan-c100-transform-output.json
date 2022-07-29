@@ -30,6 +30,13 @@
         }
       ],
       "orderAppliedFor":"true",
+      "miamExemptionsChecklist":[
+        "domesticViolence",
+        "childProtectionConcern",
+        "urgency",
+        "previousMIAMattendance",
+        "other"
+      ],
       "children":[
         {
           "value":{

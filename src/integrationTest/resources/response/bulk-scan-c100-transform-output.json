@@ -88,6 +88,13 @@
         "applicationPermissionRequired": "yes"
       },
       "childrenKNownToLocalAuthorityTextArea": "socialWorker",
+      "miamExemptionsChecklist": [
+        "domesticViolence",
+        "childProtectionConcern",
+        "urgency",
+        "previousMIAMattendance",
+        "other"
+      ],
       "miamDomesticViolenceChecklist":[
         "miamDomesticViolenceChecklistEnum_Value_1",
         "miamDomesticViolenceChecklistEnum_Value_2",
