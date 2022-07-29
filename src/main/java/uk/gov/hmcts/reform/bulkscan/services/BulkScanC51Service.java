@@ -1,5 +1,19 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_HOME_TELEPHONE_NUMBER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_MOBILE_TELEPHONE_NUMBER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.BULK_SCAN_CASE_REFERENCE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CASE_TYPE_ID;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EVENT_ID;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.UNKNOWN_FIELDS_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper.transformScanDocuments;
+import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.SCAN_DOCUMENTS;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -17,62 +31,36 @@ import uk.gov.hmcts.reform.bulkscan.model.FormType;
 import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
 import uk.gov.hmcts.reform.bulkscan.model.Status;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_HOME_TELEPHONE_NUMBER;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_MOBILE_TELEPHONE_NUMBER;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.BULK_SCAN_CASE_REFERENCE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CASE_TYPE_ID;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EVENT_ID;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.UNKNOWN_FIELDS_MESSAGE;
-import static uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper.transformScanDocuments;
-import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.SCAN_DOCUMENTS;
-
-/**
- *  service class for C51 form
- *  It provides methods to validate and transform requesst.
- */
-
+/** service class for C51 form It provides methods to validate and transform requesst. */
 @Service
 public class BulkScanC51Service implements BulkScanService {
 
-    @Autowired
-    BulkScanFormValidationConfigManager configManager;
+    @Autowired BulkScanFormValidationConfigManager configManager;
 
-    @Autowired
-    BulkScanValidationHelper bulkScanValidationHelper;
+    @Autowired BulkScanValidationHelper bulkScanValidationHelper;
 
-    @Autowired
-    BulkScanTransformConfigManager transformConfigManager;
+    @Autowired BulkScanTransformConfigManager transformConfigManager;
 
     @Override
     public FormType getCaseType() {
         return FormType.C51;
     }
 
-
     /**
-     * This method will be used to validate incoming request.
-     * It can return SUCCESS, ERROR or WARNING response.
-     * @param bulkRequest BulkScanValidationRequest
-     * @return
+     * This method will be used to validate incoming request. It can return SUCCESS, ERROR or
+     * WARNING response.
      *
+     * @param bulkRequest BulkScanValidationRequest
+     * @return BulkScanValidationResponse object
      */
     @Override
     public BulkScanValidationResponse validate(BulkScanValidationRequest bulkRequest) {
         // Validating the Fields..
         List<OcrDataField> ocrDataFields = bulkRequest.getOcrdatafields();
 
-        BulkScanValidationResponse bulkScanValidationResponse = bulkScanValidationHelper
-            .validateMandatoryAndOptionalFields(
-            ocrDataFields,
-            configManager.getValidationConfig(
-                FormType.C51)
-        );
+        BulkScanValidationResponse bulkScanValidationResponse =
+                bulkScanValidationHelper.validateMandatoryAndOptionalFields(
+                        ocrDataFields, configManager.getValidationConfig(FormType.C51));
 
         // validate conditional fields
 
@@ -84,23 +72,26 @@ public class BulkScanC51Service implements BulkScanService {
     }
 
     /**
-     * This method will validate if at least one of the
-     * input (either telephone number or mobile number) is present in request.
+     * This method will validate if at least one of the input (either telephone number or mobile
+     * number) is present in request.
+     *
      * @param ocrDataFields OcrDataField list
      * @param bulkScanValidationResponse BulkScanValidationResponse
      */
-    private void validateConditionalFields(List<OcrDataField> ocrDataFields,
-                                           BulkScanValidationResponse bulkScanValidationResponse) {
-        Map<String, String> ocrDataFieldsMap = ocrDataFields
-            .stream()
-            .collect(Collectors.toMap(OcrDataField::getName, OcrDataField::getValue));
+    private void validateConditionalFields(
+            List<OcrDataField> ocrDataFields,
+            BulkScanValidationResponse bulkScanValidationResponse) {
+        Map<String, String> ocrDataFieldsMap =
+                ocrDataFields.stream()
+                        .collect(Collectors.toMap(OcrDataField::getName, OcrDataField::getValue));
 
-        List<String> conditionalFields = List.of(APPLICANT_HOME_TELEPHONE_NUMBER, APPLICANT_MOBILE_TELEPHONE_NUMBER);
+        List<String> conditionalFields =
+                List.of(APPLICANT_HOME_TELEPHONE_NUMBER, APPLICANT_MOBILE_TELEPHONE_NUMBER);
         boolean validField = false;
 
         for (String conditionalField : conditionalFields) {
             if (ocrDataFieldsMap.containsKey(conditionalField)
-                && StringUtils.hasText(ocrDataFieldsMap.get(conditionalField))) {
+                    && StringUtils.hasText(ocrDataFieldsMap.get(conditionalField))) {
                 validField = true;
                 break;
             }
@@ -110,21 +101,24 @@ public class BulkScanC51Service implements BulkScanService {
 
             bulkScanValidationResponse.setStatus(Status.ERRORS);
 
-            List<String> items = bulkScanValidationResponse.getErrors()
-                    .getItems();
+            List<String> items = bulkScanValidationResponse.getErrors().getItems();
 
-            items.add(String.format(BulkScanConstants.XOR_CONDITIONAL_FIELDS_MESSAGE, conditionalFields));
+            items.add(
+                    String.format(
+                            BulkScanConstants.XOR_CONDITIONAL_FIELDS_MESSAGE, conditionalFields));
         }
     }
 
     /**
      * This method will tranfrom incoming requet to CCD object.
+     *
      * @param bulkScanTransformationRequest BulkScanTransformationRequest
      * @return BulkScanTransformationResponse
      */
     @Override
     @SuppressWarnings("unchecked")
-    public BulkScanTransformationResponse transform(BulkScanTransformationRequest bulkScanTransformationRequest) {
+    public BulkScanTransformationResponse transform(
+            BulkScanTransformationRequest bulkScanTransformationRequest) {
 
         Map<String, Object> caseData = new HashMap<>();
         List<OcrDataField> inputFieldsList = bulkScanTransformationRequest.getOcrdatafields();
@@ -136,35 +130,43 @@ public class BulkScanC51Service implements BulkScanService {
         Map<String, String> inputFieldsMap = getOcrDataFieldAsMap(inputFieldsList);
 
         // Validating if any unknown fields present or not. if exist then it should go as warnings.
-        BulkScanFormValidationConfigManager
-            .ValidationConfig validationConfig = configManager.getValidationConfig(formType);
+        BulkScanFormValidationConfigManager.ValidationConfig validationConfig =
+                configManager.getValidationConfig(formType);
 
-        List<String> unknownFieldsList = bulkScanValidationHelper.findUnknownFields(inputFieldsList, validationConfig
-                                                                                        .getMandatoryFields(),
-                                                                                    validationConfig
-                                                                                        .getOptionalFields());
+        List<String> unknownFieldsList =
+                bulkScanValidationHelper.findUnknownFields(
+                        inputFieldsList,
+                        validationConfig.getMandatoryFields(),
+                        validationConfig.getOptionalFields());
 
-        Map<String, Object> populatedMap = (Map<String, Object>) BulkScanTransformHelper
-            .transformToCaseData(new HashMap<>(transformConfigManager
-                                     .getTransformationConfig(formType).getCaseDataFields()), inputFieldsMap);
+        Map<String, Object> populatedMap =
+                (Map<String, Object>)
+                        BulkScanTransformHelper.transformToCaseData(
+                                new HashMap<>(
+                                        transformConfigManager
+                                                .getTransformationConfig(formType)
+                                                .getCaseDataFields()),
+                                inputFieldsMap);
 
         populatedMap.put(SCAN_DOCUMENTS, transformScanDocuments(bulkScanTransformationRequest));
 
         Map<String, String> caseTypeAndEventId =
-            transformConfigManager.getTransformationConfig(formType).getCaseFields();
+                transformConfigManager.getTransformationConfig(formType).getCaseFields();
 
         BulkScanTransformationResponse.BulkScanTransformationResponseBuilder builder =
-            BulkScanTransformationResponse
-            .builder().caseCreationDetails(
-                CaseCreationDetails.builder()
-                    .caseTypeId(caseTypeAndEventId.get(CASE_TYPE_ID))
-                    .eventId(caseTypeAndEventId.get(EVENT_ID))
-                    .caseData(populatedMap).build());
+                BulkScanTransformationResponse.builder()
+                        .caseCreationDetails(
+                                CaseCreationDetails.builder()
+                                        .caseTypeId(caseTypeAndEventId.get(CASE_TYPE_ID))
+                                        .eventId(caseTypeAndEventId.get(EVENT_ID))
+                                        .caseData(populatedMap)
+                                        .build());
         if (null != unknownFieldsList && !unknownFieldsList.isEmpty()) {
-            builder.warnings(Arrays.asList(String.format(UNKNOWN_FIELDS_MESSAGE,
-                                                         String.join(",", unknownFieldsList))));
+            builder.warnings(
+                    Arrays.asList(
+                            String.format(
+                                    UNKNOWN_FIELDS_MESSAGE, String.join(",", unknownFieldsList))));
         }
         return builder.build();
-
     }
 }
