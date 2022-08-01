@@ -480,6 +480,7 @@ class BulkScanC100ServiceTest {
             res.getCaseCreationDetails().getCaseData().get(APPLICATION_PERMISSION_REQUIRED));
     }
 
+    @Test
     @DisplayName("Should generate SUCCESS status with NoMIAM_PreviousAttendance field in bulkscan request")
     void testC100NoMiamPreviousAttendanceSuccessData() {
         List<OcrDataField> c100GetDomesticViolenceWarningData = new ArrayList<>();
@@ -522,7 +523,8 @@ class BulkScanC100ServiceTest {
     }
 
     @Test
-    @DisplayName("Should generate SUCCESS status with NoMIAM_otherReasons field in bulkscan request")
+    @DisplayName("Should generate Warning for respondent_1 not lived for 5 years in current address "
+            + "without previous address details")
     void testC100RespondentOneNotLivedInAddressForFiveYearsWarning() {
         List<OcrDataField> c100GetDomesticViolenceWarningData = new ArrayList<>();
         c100GetDomesticViolenceWarningData.addAll(TestDataC100Util.getData());
@@ -548,7 +550,8 @@ class BulkScanC100ServiceTest {
     }
 
     @Test
-    @DisplayName("Should generate SUCCESS status with NoMIAM_otherReasons field in bulkscan request")
+    @DisplayName("Should generate Warning for respondent_2 not lived for 5 years in current address "
+            + "without previous address details")
     void testC100RespondentTweNotLivedInAddressForFiveYearsWarning() {
         List<OcrDataField> c100GetDomesticViolenceWarningData = new ArrayList<>();
         c100GetDomesticViolenceWarningData.addAll(TestDataC100Util.getData());

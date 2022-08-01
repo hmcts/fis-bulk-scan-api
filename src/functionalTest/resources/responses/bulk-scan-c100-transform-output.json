@@ -6,7 +6,7 @@
       "otherProceedingsDetailsTable": [
         {
           "value": {
-            "previousOrOngoingProceedings": null
+            "previousOrOngoingProceedings": "yes"
           }
         }
       ],
@@ -16,11 +16,8 @@
           "lastName": "applicant1_lastName"
         }
       },
-      "childrenKNownToLocalAuthority": "Yes",
-      "briefDetailsOnTheApplication": "briefDetails",
-      "havePreviousParentingPlan": "parentingplan",
       "otherProceedingsTable": {
-        "previousOrOngoingProceedings": null
+        "previousOrOngoingProceedings": "yes"
       },
       "scannedDocuments": [
         {
@@ -35,51 +32,51 @@
       "children": [
         {
           "value": {
-            "firstName": null,
-            "lastName": null,
-            "dateOfBirth": null,
-            "gender": null,
-            "orderAppliedFor": null,
-            "applicantsRelationshipToChild": null,
-            "respondentsRelationshipToChild": null
+            "firstName": "firstName",
+            "lastName": "LastName",
+            "dateOfBirth": "02/02/2020",
+            "gender": "Male",
+            "orderAppliedFor": "orderAppliedFor",
+            "applicantsRelationshipToChild": "applicant",
+            "respondentsRelationshipToChild": "respondent"
           }
         },
         {
           "value": {
-            "firstName": null,
-            "lastName": null,
-            "dateOfBirth": null,
-            "gender": null,
-            "orderAppliedFor": null,
-            "applicantsRelationshipToChild": null,
-            "respondentsRelationshipToChild": null
+            "firstName": "child2firstName",
+            "lastName": "child2LastName",
+            "dateOfBirth": "02/02/2020",
+            "gender": "Male",
+            "orderAppliedFor": "child2orderAppliedFor",
+            "applicantsRelationshipToChild": "applicant",
+            "respondentsRelationshipToChild": "respondent"
           }
         },
         {
           "value": {
-            "firstName": null,
-            "lastName": null,
-            "dateOfBirth": null,
-            "gender": null,
-            "orderAppliedFor": null,
-            "applicantsRelationshipToChild": null,
-            "respondentsRelationshipToChild": null
+            "firstName": "child3firstName",
+            "lastName": "child3LastName",
+            "dateOfBirth": "02/02/2020",
+            "gender": "Male",
+            "orderAppliedFor": "child3orderAppliedFor",
+            "applicantsRelationshipToChild": "applicant",
+            "respondentsRelationshipToChild": "respondent"
           }
         },
         {
           "value": {
-            "firstName": null,
-            "lastName": null,
-            "dateOfBirth": null,
-            "gender": null,
-            "orderAppliedFor": null,
-            "applicantsRelationshipToChild": null,
-            "respondentsRelationshipToChild": null
+            "firstName": "child4firstName",
+            "lastName": "child4LastName",
+            "dateOfBirth": "02/02/2020",
+            "gender": "Male",
+            "orderAppliedFor": "child3orderAppliedFor",
+            "applicantsRelationshipToChild": "applicant",
+            "respondentsRelationshipToChild": "respondent"
           }
         }
       ],
       "hearingUrgencyTable": {
-        "isCaseUrgent": null
+        "isCaseUrgent": "yes"
       },
       "personWhoLivesWithChild": "living other details",
       "applicationPermissionRequired": "yes",
@@ -88,7 +85,7 @@
       "familyMediatorMiam": null,
       "isCaseUrgent": "yes",
       "typeOfApplicationTable": {
-        "applicationPermissionRequired": null
+        "applicationPermissionRequired": "yes"
       },
       "childrenKNownToLocalAuthorityTextArea": "socialWorker",
       "childrenParentsName": "parentsName",
@@ -96,29 +93,70 @@
       "applicantAttendedMiam": null,
       "childrenSubjectOfChildProtectionPlan": "protectionplan",
       "miamTable": {
-        "claimingExemptionMiam": null,
+        "claimingExemptionMiam": "yes",
         "familyMediatorMiam": null,
         "applicantAttendedMiam": null
       },
       "childrenKNownToLocalAuthority": "Yes",
       "prohibitedStepsOrder": "true",
       "allegationsOfHarmOverviewTable": {
-        "allegationsOfHarmDomesticAbuseYesNo": null,
-        "allegationsOfHarmChildAbductionYesNo": null,
-        "allegationsOfHarmChildAbuseYesNo": null,
-        "allegationsOfHarmSubstanceAbuseYesNo": null,
-        "allegationsOfHarmOtherConcernsYesNo": null
+        "allegationsOfHarmDomesticAbuseYesNo": "yes",
+        "allegationsOfHarmChildAbductionYesNo": "yes",
+        "allegationsOfHarmChildAbuseYesNo": "yes",
+        "allegationsOfHarmSubstanceAbuseYesNo": "yes",
+        "allegationsOfHarmOtherConcernsYesNo": "yes"
       },
       "childrenOfSameParent": "Yes",
       "childLiveWith": "Applicant",
       "consentOrder": "yes",
       "specialIssueOrder": "true",
       "claimingExemptionMiam": "yes",
-      "childParentsNameCollection": "parentsNameColl",
-      "applicationPermissionRequiredReason": "reason",
-      "applicationPermissionRequired": "yes",
       "welshLanguageRequirement": "yes",
-      "childParentsNameCollection": "parentsNameColl"
+      "childParentsNameCollection": "parentsNameColl",
+      "respondents": [
+        {
+          "value": {
+            "firstName": "Robert",
+            "lastName": "Zane",
+            "previousName": null,
+            "gender": "male",
+            "dateOfBirth": "20/02/2002",
+            "isDateOfBirthUnknown": null,
+            "placeOfBirth": "London",
+            "AddressLine1": "123, Topsfield Parade",
+            "PostCode": "N8 8PE",
+            "isAddressUnknown": null,
+            "landline": "+442083332222",
+            "phoneNumber": "+447999444444",
+            "canYouProvidePhoneNumber": null,
+            "email": "test@test.com",
+            "canYouProvideEmailAddress": null,
+            "isAtAddressLessThan5Years": "no",
+            "addressLivedLessThan5YearsDetails": "225, Topsfield Parade, N8 8PE"
+          }
+        },
+        {
+          "value": {
+            "firstName": "Rachel",
+            "lastName": "Brandl",
+            "previousName": null,
+            "gender": "female",
+            "dateOfBirth": "21/02/2002",
+            "isDateOfBirthUnknown": null,
+            "placeOfBirth": "London",
+            "AddressLine1": "124, Topsfield Parade",
+            "PostCode": "N8 8PE",
+            "isAddressUnknown": null,
+            "landline": "+442081112222",
+            "phoneNumber": "+447999666666",
+            "canYouProvidePhoneNumber": null,
+            "email": "test@test.com",
+            "canYouProvideEmailAddress": null,
+            "isAtAddressLessThan5Years": "no",
+            "addressLivedLessThan5YearsDetails": "227, Topsfield Parade, N8 8PE"
+          }
+        }
+      ]
     }
   },
   "warnings": []

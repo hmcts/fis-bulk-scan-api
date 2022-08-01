@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanDependencyValidationConfigManager;
-import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.FormType;
 import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
 
@@ -70,19 +69,17 @@ public class BulkScanDependencyValidationService {
      * data.
      *
      * @param ocrDataFields              represents request payload
-     * @param bulkScanValidationResponse is used to add error/warnings
      * @return BulkScanValidationResponse object
      */
 
-    public BulkScanValidationResponse validateStraightDependentFields(
-            List<OcrDataField> ocrDataFields,
-            BulkScanValidationResponse bulkScanValidationResponse) {
+    public List<String> validateStraightDependentFields(List<OcrDataField> ocrDataFields) {
+
+        List<String> items = new ArrayList<>();
 
         Map<String, String> ocrDataFieldsMap = getOcrDataFieldsMap(ocrDataFields);
 
         if (null != ocrDataFieldsMap && !ocrDataFieldsMap.isEmpty()) {
 
-            List<String> items = new ArrayList<>();
 
             if (ocrDataFieldsMap.containsKey(HASRESPONDENTONELIVEDATTHISADDRESSFOROVERFIVEYEARS)
                     && ocrDataFieldsMap.get(HASRESPONDENTONELIVEDATTHISADDRESSFOROVERFIVEYEARS).equalsIgnoreCase(NO)
@@ -100,12 +97,9 @@ public class BulkScanDependencyValidationService {
                         RESPONDENT_TWO, RESPONDENTTWOALLADDRESSESFORLASTFIVEYEARS));
             }
 
-            if (!items.isEmpty()) {
-                bulkScanValidationResponse.addWarning(items);
-            }
         }
 
-        return bulkScanValidationResponse;
+        return items;
     }
 
     private Map<String, String> getOcrDataFieldsMap(List<OcrDataField> ocrDataFields) {

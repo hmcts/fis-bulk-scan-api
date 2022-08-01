@@ -8,22 +8,11 @@ uk:
               CASE_TYPE_ID: PRLAPPS
               EVENT_ID: create-case-privatelaw-bs
             caseDataFields:
-              childrenKNownToLocalAuthority: childrenServicesAuthority
-              childrenKNownToLocalAuthorityTextArea: child1_localAuthority_or_socialWorker
-              childrenSubjectOfChildProtectionPlan: subject_to_childProtectionPlan
-              parentalResponsibilityDetails: parentalResponsibilityDetails
-              childrenOfSameParent: children_of_same_parent
-              childrenParentsName: children_parentsName
-              childParentsNameCollection: child_parentsName_collection
-              personWhoLivesWithChild: child_living_with_others_details
-              applicationPermissionRequiredReason: permissionRequiredReason
-              briefDetailsOnTheApplication: briefDetailsOnTheApplication
-              havePreviousParentingPlan: havePreviousParentingPlan
               applicants:
                 value:
                   firstName: applicant1_firstName
                   lastName: applicant1_lastName
-              typeOfChildArrangementsOrder: childArrangement_order
+              orderAppliedFor: childArrangement_order
               prohibitedStepsOrder: prohibitedSteps_order
               specialIssueOrder: specialIssue_order
               children:
@@ -59,4 +48,79 @@ uk:
                     orderAppliedFor: child4_orderAppliedFor
                     applicantsRelationshipToChild: child4_applicant1_relationship
                     respondentsRelationshipToChild: child4_respondent1_relationship
-
+              childrenKNownToLocalAuthority: childrenServicesAuthority
+              childrenKNownToLocalAuthorityTextArea: child1_localAuthority_or_socialWorker
+              childrenSubjectOfChildProtectionPlan: subject_to_childProtectionPlan
+              parentalResponsibilityDetails: parentalResponsibilityDetails
+              childrenOfSameParent:  children_of_same_parent
+              childrenParentsName: children_parentsName
+              childParentsNameCollection: child_parentsName_collection
+              personWhoLivesWithChild: child_living_with_others_details
+              claimingExemptionMiam: exemption_to_attend_MIAM
+              familyMediatorMiam: familyMember_Intimation_on_No_MIAM
+              applicantAttendedMiam: attended_MIAM
+              applicationPermissionRequiredReason: permissionRequiredReason
+              briefDetailsOnTheApplication: briefDetailsOnTheApplication
+              havePreviousParentingPlan: havePreviousParentingPlan
+              applicationPermissionRequired : askingPermissionForApplication
+              isCaseUrgent : urgent_or_withoutHearing
+              previousOrOngoingProceedings : previous_or_ongoingProceeding
+              consentOrder : isConsentOrder
+              habitualResidentINotherState : international_or_factorsAffectingLitigation
+              welshLanguageRequirement : welshRequired
+              miamTable:
+                claimingExemptionMiam: exemption_to_attend_MIAM
+                familyMediatorMiam: familyMember_Intimation_on_No_MIAM
+                applicantAttendedMiam: attended_MIAM
+              allegationsOfHarmOverviewTable :
+                allegationsOfHarmDomesticAbuseYesNo: domesticAbuse
+                allegationsOfHarmChildAbductionYesNo: childAbduction
+                allegationsOfHarmChildAbuseYesNo: childAbuse
+                allegationsOfHarmSubstanceAbuseYesNo : drugs_alcohol_substanceAbuse
+                allegationsOfHarmOtherConcernsYesNo: otherSafety_or_welfareAbuse
+              typeOfApplicationTable :
+                applicationPermissionRequired : askingPermissionForApplication
+              hearingUrgencyTable:
+                isCaseUrgent : urgent_or_withoutHearing
+              otherProceedingsTable :
+                previousOrOngoingProceedings : previous_or_ongoingProceeding
+              otherProceedingsDetailsTable :
+                - value:
+                    previousOrOngoingProceedings : previous_or_ongoingProceeding
+              respondents:
+                - value:
+                    firstName: respondentOneFirstName
+                    lastName: respondentOneLastName
+                    previousName: respondentOnePreviousNames
+                    gender: respondentOneGender
+                    dateOfBirth: respondentOneDateOfBirth
+                    isDateOfBirthUnknown: respondentOneDateOfBirthDontKnow
+                    placeOfBirth: respondentOnePlaceOfBirth
+                    AddressLine1: respondentOneAddress
+                    PostCode: respondentOneAddressPostCode
+                    isAddressUnknown: respondentOneAddressDontKnow
+                    landline: respondentOneHomePhoneNumber
+                    phoneNumber: respondentOneMobilePhoneNumber
+                    canYouProvidePhoneNumber: respondentOneMobilePhoneNumberDontKnow
+                    email: respondentOneEmailAddress
+                    canYouProvideEmailAddress: respondentOneEmailAddressDontKnow
+                    isAtAddressLessThan5Years: hasrespondentOneLivedAtThisAddressForOverFiveYears
+                    addressLivedLessThan5YearsDetails: respondentOneAllAddressesForLastFiveYears
+                - value:
+                    firstName: respondentTwoFirstName
+                    lastName: respondentTwoLastName
+                    previousName: respondentTwoPreviousNames
+                    gender: respondentTwoGender
+                    dateOfBirth: respondentTwoDateOfBirth
+                    isDateOfBirthUnknown: respondentTwoDateOfBirthDontKnow
+                    placeOfBirth: respondentTwoPlaceOfBirth
+                    AddressLine1: respondentTwoAddress
+                    PostCode: respondentTwoAddressPostCode
+                    isAddressUnknown: respondentTwoAddressDontKnow
+                    landline: respondentTwoHomePhoneNumber
+                    phoneNumber: respondentTwoMobilePhoneNumber
+                    canYouProvidePhoneNumber: respondentTwoMobilePhoneNumberDontKnow
+                    email: respondentTwoEmailAddress
+                    canYouProvideEmailAddress: respondentTwoEmailAddressDontKnow
+                    isAtAddressLessThan5Years: hasrespondentTwoLivedAtThisAddressForOverFiveYears
+                    addressLivedLessThan5YearsDetails: respondentTwoAllAddressesForLastFiveYears
