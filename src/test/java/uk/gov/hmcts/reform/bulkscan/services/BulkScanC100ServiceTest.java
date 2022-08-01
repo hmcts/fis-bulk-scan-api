@@ -42,12 +42,12 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIV
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVING_WITH_OTHERS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVING_WITH_RESPONDENT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LOCAL_AUTHORITY_OR_SOCIAL_WORKER;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.HASRESPONDENTONELIVEDATTHISADDRESSFOROVERFIVEYEARS;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.HASRESPONDENTTWOLIVEDATTHISADDRESSFOROVERFIVEYEARS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT1LIVEDATTHISADDRESSFOROVERFIVEYEARS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT2LIVEDATTHISADDRESSFOROVERFIVEYEARS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NO;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PERMISSION_REQUIRED;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENTONEALLADDRESSESFORLASTFIVEYEARS;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENTTWOALLADDRESSESFORLASTFIVEYEARS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT1ALLADDRESSESFORLASTFIVEYEARS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT2ALLADDRESSESFORLASTFIVEYEARS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_ONE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_TWO;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.NOMIAM_CHILDPROTECTIONCONCERNS_FIELD;
@@ -99,12 +99,12 @@ class BulkScanC100ServiceTest {
 
     private static final String RESPONDENT_ONE_NOT_LIVED_IN_ADDRESS_FOR_FIVE_YEARS
             = "(" + RESPONDENT_ONE + ") has not lived at the current address "
-            + "for more than 5 years. Previous address(es) field (" + RESPONDENTONEALLADDRESSESFORLASTFIVEYEARS
+            + "for more than 5 years. Previous address(es) field (" + RESPONDENT1ALLADDRESSESFORLASTFIVEYEARS
             + ") should not be empty or null.";
 
     private static final String RESPONDENT_TWO_NOT_LIVED_IN_ADDRESS_FOR_FIVE_YEARS
             = "(" + RESPONDENT_TWO + ") has not lived at the current address "
-            + "for more than 5 years. Previous address(es) field (" + RESPONDENTTWOALLADDRESSESFORLASTFIVEYEARS
+            + "for more than 5 years. Previous address(es) field (" + RESPONDENT2ALLADDRESSESFORLASTFIVEYEARS
             + ") should not be empty or null.";
 
     private final ObjectMapper mapper = new ObjectMapper();
@@ -535,12 +535,12 @@ class BulkScanC100ServiceTest {
 
         bulkScanValidationRequest.getOcrdatafields().stream()
                 .filter(eachField ->
-                        RESPONDENTONEALLADDRESSESFORLASTFIVEYEARS.equalsIgnoreCase(eachField.getName()))
+                        RESPONDENT1ALLADDRESSESFORLASTFIVEYEARS.equalsIgnoreCase(eachField.getName()))
                 .forEach(field -> field.setValue(""));
 
         bulkScanValidationRequest.getOcrdatafields().stream()
                 .filter(eachField ->
-                        HASRESPONDENTONELIVEDATTHISADDRESSFOROVERFIVEYEARS.equalsIgnoreCase(eachField.getName()))
+                        RESPONDENT1LIVEDATTHISADDRESSFOROVERFIVEYEARS.equalsIgnoreCase(eachField.getName()))
                 .forEach(field -> field.setValue(NO));
 
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
@@ -562,12 +562,12 @@ class BulkScanC100ServiceTest {
 
         bulkScanValidationRequest.getOcrdatafields().stream()
                 .filter(eachField ->
-                        RESPONDENTTWOALLADDRESSESFORLASTFIVEYEARS.equalsIgnoreCase(eachField.getName()))
+                        RESPONDENT2ALLADDRESSESFORLASTFIVEYEARS.equalsIgnoreCase(eachField.getName()))
                 .forEach(field -> field.setValue(""));
 
         bulkScanValidationRequest.getOcrdatafields().stream()
                 .filter(eachField ->
-                        HASRESPONDENTTWOLIVEDATTHISADDRESSFOROVERFIVEYEARS.equalsIgnoreCase(eachField.getName()))
+                        RESPONDENT2LIVEDATTHISADDRESSFOROVERFIVEYEARS.equalsIgnoreCase(eachField.getName()))
                 .forEach(field -> field.setValue(NO));
 
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);

@@ -15,13 +15,13 @@ import java.util.stream.Collectors;
 
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ADDRESS_NOT_LIVED_FOR_FIVE_YEARS_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.GROUP_DEPENDENCY_MESSAGE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.HASRESPONDENTONELIVEDATTHISADDRESSFOROVERFIVEYEARS;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.HASRESPONDENTTWOLIVEDATTHISADDRESSFOROVERFIVEYEARS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT1LIVEDATTHISADDRESSFOROVERFIVEYEARS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT2LIVEDATTHISADDRESSFOROVERFIVEYEARS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NO;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_ONE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_TWO;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENTONEALLADDRESSESFORLASTFIVEYEARS;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENTTWOALLADDRESSESFORLASTFIVEYEARS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT1ALLADDRESSESFORLASTFIVEYEARS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT2ALLADDRESSESFORLASTFIVEYEARS;
 
 
 @Service
@@ -81,20 +81,20 @@ public class BulkScanDependencyValidationService {
         if (null != ocrDataFieldsMap && !ocrDataFieldsMap.isEmpty()) {
 
 
-            if (ocrDataFieldsMap.containsKey(HASRESPONDENTONELIVEDATTHISADDRESSFOROVERFIVEYEARS)
-                    && ocrDataFieldsMap.get(HASRESPONDENTONELIVEDATTHISADDRESSFOROVERFIVEYEARS).equalsIgnoreCase(NO)
-                    && ocrDataFieldsMap.containsKey(RESPONDENTONEALLADDRESSESFORLASTFIVEYEARS)
-                    && !StringUtils.hasText(ocrDataFieldsMap.get(RESPONDENTONEALLADDRESSESFORLASTFIVEYEARS))) {
+            if (ocrDataFieldsMap.containsKey(RESPONDENT1LIVEDATTHISADDRESSFOROVERFIVEYEARS)
+                    && ocrDataFieldsMap.get(RESPONDENT1LIVEDATTHISADDRESSFOROVERFIVEYEARS).equalsIgnoreCase(NO)
+                    && ocrDataFieldsMap.containsKey(RESPONDENT1ALLADDRESSESFORLASTFIVEYEARS)
+                    && !StringUtils.hasText(ocrDataFieldsMap.get(RESPONDENT1ALLADDRESSESFORLASTFIVEYEARS))) {
                 items.add(String.format(ADDRESS_NOT_LIVED_FOR_FIVE_YEARS_MESSAGE,
-                        RESPONDENT_ONE, RESPONDENTONEALLADDRESSESFORLASTFIVEYEARS));
+                        RESPONDENT_ONE, RESPONDENT1ALLADDRESSESFORLASTFIVEYEARS));
             }
 
-            if (ocrDataFieldsMap.containsKey(HASRESPONDENTTWOLIVEDATTHISADDRESSFOROVERFIVEYEARS)
-                    && ocrDataFieldsMap.get(HASRESPONDENTTWOLIVEDATTHISADDRESSFOROVERFIVEYEARS).equalsIgnoreCase(NO)
-                    && ocrDataFieldsMap.containsKey(RESPONDENTTWOALLADDRESSESFORLASTFIVEYEARS)
-                    && !StringUtils.hasText(ocrDataFieldsMap.get(RESPONDENTTWOALLADDRESSESFORLASTFIVEYEARS))) {
+            if (ocrDataFieldsMap.containsKey(RESPONDENT2LIVEDATTHISADDRESSFOROVERFIVEYEARS)
+                    && ocrDataFieldsMap.get(RESPONDENT2LIVEDATTHISADDRESSFOROVERFIVEYEARS).equalsIgnoreCase(NO)
+                    && ocrDataFieldsMap.containsKey(RESPONDENT2ALLADDRESSESFORLASTFIVEYEARS)
+                    && !StringUtils.hasText(ocrDataFieldsMap.get(RESPONDENT2ALLADDRESSESFORLASTFIVEYEARS))) {
                 items.add(String.format(ADDRESS_NOT_LIVED_FOR_FIVE_YEARS_MESSAGE,
-                        RESPONDENT_TWO, RESPONDENTTWOALLADDRESSESFORLASTFIVEYEARS));
+                        RESPONDENT_TWO, RESPONDENT2ALLADDRESSESFORLASTFIVEYEARS));
             }
 
         }

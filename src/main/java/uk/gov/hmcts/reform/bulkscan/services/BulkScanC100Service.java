@@ -89,8 +89,6 @@ public class BulkScanC100Service implements BulkScanService {
         response = bulkScanC100ValidationService
                 .validateAttendMiam(bulkRequest.getOcrdatafields(), response);
 
-        response.addErrors(response.getErrors().getItems());
-
         response.changeStatus();
 
         return response;
