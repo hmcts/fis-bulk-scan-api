@@ -9,6 +9,7 @@ import uk.gov.hmcts.reform.bulkscan.model.ScannedDocuments;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -35,10 +36,12 @@ public final class BulkScanTransformHelper {
         if (object instanceof Map) {
             Map<String, Object> innerMap = (Map<String, Object>) object;
             innerMap.forEach((k, v) -> {
-                if (k instanceof String && StringUtils.isNumeric(k)) {
+                if (StringUtils.isNumeric(k)) {
                     list.add(innerMap.get(k));
                 } else if (v != null) {
-                    innerMap.put(k, transformToCaseData(v, inputFieldsMap));
+                    innerMap.put(k, transformToCaseData(
+                        v instanceof LinkedHashMap ? new LinkedHashMap<>((Map<String, Object>)v) : v,
+                        inputFieldsMap));
                 }
             });
 
@@ -48,10 +51,8 @@ public final class BulkScanTransformHelper {
                 });
                 object = list;
             }
-        } else if (object instanceof String && inputFieldsMap.containsKey(object)) {
-            object = inputFieldsMap.get(object);
-        } else if (object instanceof String && !inputFieldsMap.containsKey(object)) {
-            object = null;
+        } else if (object instanceof String) {
+            object = inputFieldsMap.getOrDefault(object, null);
         }
         return object;
     }
