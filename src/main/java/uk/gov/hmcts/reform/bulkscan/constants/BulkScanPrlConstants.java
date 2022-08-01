@@ -11,11 +11,6 @@ public final class BulkScanPrlConstants {
     public static final String NO_MIAM_URGENCY = "NoMIAM_Urgency";
     public static final String NO_MIAM_PREVIOUS_ATTENDENCE = "NoMIAM_PreviousAttendence";
     public static final String NO_MIAM_OTHER_REASONS = "NoMIAM_otherReasons";
-    public static final String DOMESTIC_VIOLENCE = "domesticViolence";
-    public static final String CHILD_PROTECTION_CONCERN = "childProtectionConcern";
-    public static final String URGENCY = "urgency";
-    public static final String PREVIOUS_MIA_MATTENDANCE = "previousMIAMattendance";
-    public static final String OTHER = "other";
     public static final String PREVIOUS_OR_ONGOING_PROCEEDING =  "previous_or_ongoingProceeding";
     public static final String EXISTING_CASE_ON_EMERGENCY_PROTECTION_CARE_OR_SUPERVISION_ORDER =
         "existingCase_onEmergencyProtection_Care_or_supervisioNorder";

@@ -3,9 +3,10 @@ package uk.gov.hmcts.reform.bulkscan.services;
 import com.microsoft.applicationinsights.boot.dependencies.apachecommons.lang3.StringUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.springframework.stereotype.Component;
-import uk.gov.hmcts.reform.bulkscan.enums.ChildLiveWithEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.MiamDomesticViolenceChecklistEnum;
+import uk.gov.hmcts.reform.bulkscan.enums.MiamExemptionsChecklistEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.PermissionRequiredEnum;
+import uk.gov.hmcts.reform.bulkscan.enums.ChildLiveWithEnum;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
 
 import java.util.List;
@@ -46,17 +47,12 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.NO_MIA
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PERMISSION_REQUIRED;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.SCAN_DOCUMENTS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.CHILD_PROTECTION_CONCERN;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.NO_MIAM_URGENCY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.MIAM_EXEMPTIONS_CHECKLIST;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.NO_MIAM_DOMESTIC_VIOLANCE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.DOMESTIC_VIOLENCE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.NO_MIAM_CHILD_PROTECTION_CONCERNS;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.URGENCY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.NO_MIAM_PREVIOUS_ATTENDENCE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.PREVIOUS_MIA_MATTENDANCE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.NO_MIAM_OTHER_REASONS;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER;
 import static uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper.transformScanDocuments;
 
 @SuppressWarnings({"PMD.ExcessiveImports"})
@@ -72,26 +68,26 @@ public class BulkScanC100ConditionalTransformerService {
         populatedMap.put(MIAM_EXEMPTIONS_CHECKLIST, transformMiamExemptionsChecklist(inputFieldsMap));
     }
 
-    private List<String> transformMiamExemptionsChecklist(Map<String, String> inputFieldsMap) {
-        List<String> miamExemptionsChecklist = new ArrayList<>();
+    private List<MiamExemptionsChecklistEnum> transformMiamExemptionsChecklist(Map<String, String> inputFieldsMap) {
+        List<MiamExemptionsChecklistEnum> miamExemptionsChecklist = new ArrayList<>();
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_DOMESTIC_VIOLANCE))) {
-            miamExemptionsChecklist.add(DOMESTIC_VIOLENCE);
+            miamExemptionsChecklist.add(MiamExemptionsChecklistEnum.domesticViolence);
         }
 
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_CHILD_PROTECTION_CONCERNS))) {
-            miamExemptionsChecklist.add(CHILD_PROTECTION_CONCERN);
+            miamExemptionsChecklist.add(MiamExemptionsChecklistEnum.childProtectionConcern);
         }
 
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_URGENCY))) {
-            miamExemptionsChecklist.add(URGENCY);
+            miamExemptionsChecklist.add(MiamExemptionsChecklistEnum.urgency);
         }
 
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_PREVIOUS_ATTENDENCE))) {
-            miamExemptionsChecklist.add(PREVIOUS_MIA_MATTENDANCE);
+            miamExemptionsChecklist.add(MiamExemptionsChecklistEnum.previousMIAMattendance);
         }
 
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_OTHER_REASONS))) {
-            miamExemptionsChecklist.add(OTHER);
+            miamExemptionsChecklist.add(MiamExemptionsChecklistEnum.other);
         }
 
         return miamExemptionsChecklist;
