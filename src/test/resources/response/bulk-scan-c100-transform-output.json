@@ -20,13 +20,6 @@
         "previousOrOngoingProceedings": "yes"
       },
       "scannedDocuments": [
-        {
-          "value": {
-            "document_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c",
-            "document_filename": "test.pdf",
-            "document_binary_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
-          }
-        }
       ],
       "orderAppliedFor": "true",
       "children": [
@@ -79,6 +72,7 @@
         "isCaseUrgent": "yes"
       },
       "personWhoLivesWithChild": "living other details",
+      "applicationPermissionRequiredReason": "reason",
       "applicationPermissionRequired": "yes",
       "habitualResidentINotherState": "yes",
       "parentalResponsibilityDetails": "parentResponsibility",
@@ -98,6 +92,8 @@
         "applicantAttendedMiam": null
       },
       "childrenKNownToLocalAuthority": "Yes",
+      "havePreviousParentingPlan": "parentingplan",
+      "briefDetailsOnTheApplication": "briefDetails",
       "prohibitedStepsOrder": "true",
       "allegationsOfHarmOverviewTable": {
         "allegationsOfHarmDomesticAbuseYesNo": "yes",
@@ -131,7 +127,7 @@
             "canYouProvidePhoneNumber": null,
             "email": "test@test.com",
             "canYouProvideEmailAddress": null,
-            "isAtAddressLessThan5Years": "no",
+            "isAtAddressLessThan5Years": "No",
             "addressLivedLessThan5YearsDetails": "225, Topsfield Parade, N8 8PE"
           }
         },
@@ -152,7 +148,7 @@
             "canYouProvidePhoneNumber": null,
             "email": "test@test.com",
             "canYouProvideEmailAddress": null,
-            "isAtAddressLessThan5Years": "no",
+            "isAtAddressLessThan5Years": "No",
             "addressLivedLessThan5YearsDetails": "227, Topsfield Parade, N8 8PE"
           }
         }

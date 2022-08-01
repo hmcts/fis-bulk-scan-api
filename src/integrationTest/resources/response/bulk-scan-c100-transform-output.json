@@ -131,7 +131,7 @@
             "canYouProvidePhoneNumber": null,
             "email": "test@test.com",
             "canYouProvideEmailAddress": null,
-            "isAtAddressLessThan5Years": "no",
+            "isAtAddressLessThan5Years": "No",
             "addressLivedLessThan5YearsDetails": "225, Topsfield Parade, N8 8PE"
           }
         },
@@ -152,7 +152,7 @@
             "canYouProvidePhoneNumber": null,
             "email": "test@test.com",
             "canYouProvideEmailAddress": null,
-            "isAtAddressLessThan5Years": "no",
+            "isAtAddressLessThan5Years": "No",
             "addressLivedLessThan5YearsDetails": "227, Topsfield Parade, N8 8PE"
           }
         }

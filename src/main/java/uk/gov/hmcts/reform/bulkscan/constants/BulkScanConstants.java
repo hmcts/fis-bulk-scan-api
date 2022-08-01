@@ -178,15 +178,15 @@ public final class BulkScanConstants {
 
     // C100 form section 12 validation fields
     public static final String HASRESPONDENTONELIVEDATTHISADDRESSFOROVERFIVEYEARS
-            = "hasRespondentOneLivedAtThisAddressForOverFiveYears";
+            = "respondent1LivedAtThisAddressForOverFiveYears";
     public static final String HASRESPONDENTTWOLIVEDATTHISADDRESSFOROVERFIVEYEARS
-            = "hasRespondentTwoLivedAtThisAddressForOverFiveYears";
+            = "respondent2LivedAtThisAddressForOverFiveYears";
     public static final String RESPONDENT_ONE = "Respondent 1";
     public static final String RESPONDENTONEALLADDRESSESFORLASTFIVEYEARS
-            = "respondentOneAllAddressesForLastFiveYears";
+            = "respondent1AllAddressesForLastFiveYears";
     public static final String RESPONDENT_TWO = "Respondent 2";
     public static final String RESPONDENTTWOALLADDRESSESFORLASTFIVEYEARS
-            = "respondentTwoAllAddressesForLastFiveYears";
+            = "respondent2AllAddressesForLastFiveYears";
 
     public static final String ADDRESS_NOT_LIVED_FOR_FIVE_YEARS_MESSAGE
             = "(%s) has not lived at the current address "
