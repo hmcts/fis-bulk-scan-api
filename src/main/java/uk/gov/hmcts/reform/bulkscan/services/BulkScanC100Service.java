@@ -86,8 +86,6 @@ public class BulkScanC100Service implements BulkScanService {
         response.addWarning(dependencyValidationService
                 .validateStraightDependentFields(bulkRequest.getOcrdatafields()));
 
-        response.addWarning(response.getWarnings().getItems());
-
         response = bulkScanC100ValidationService
                 .validateAttendMiam(bulkRequest.getOcrdatafields(), response);
 
