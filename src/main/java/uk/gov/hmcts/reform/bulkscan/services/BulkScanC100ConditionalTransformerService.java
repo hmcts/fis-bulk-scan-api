@@ -94,6 +94,11 @@ public class BulkScanC100ConditionalTransformerService {
 
     }
 
+    /**
+     * C100 form Above fields of Section 1.
+     * @param inputFieldsMap All input key-value pair from transformation request.
+     * @return list of values for ordersApplyingFor field in the transformation output.
+     */
     private List<String>  transformOrderAppliedFor(Map<String, String> inputFieldsMap) {
         List<String> orderAppliedForList = new ArrayList<>();
 
@@ -111,6 +116,11 @@ public class BulkScanC100ConditionalTransformerService {
         return orderAppliedForList;
     }
 
+    /**
+     * C100 form Section 3c.
+     * @param inputFieldsMap All input key-value pair from transformation request.
+     * @return list of enum values for miamUrgencyReasonChecklist field in the transformation output.
+     */
     private List<MiamUrgencyReasonChecklistEnum> transformMiamUrgencyReasonChecklist(
         Map<String, String> inputFieldsMap) {
         List<MiamUrgencyReasonChecklistEnum> miamUrgencyReasonChecklistEnumList = new ArrayList<>();
@@ -149,6 +159,11 @@ public class BulkScanC100ConditionalTransformerService {
         return miamUrgencyReasonChecklistEnumList;
     }
 
+    /**
+     * C100 form Section 3b.
+     * @param inputFieldsMap All input key-value pair from transformation request.
+     * @return list of enum values for miamChildProtectionConcernList field in the transformation output.
+     */
     private List<MiamChildProtectionConcernChecklistEnum> transformNoMiamChildProtectionConcerns(
         Map<String, String> inputFieldsMap) {
         List<MiamChildProtectionConcernChecklistEnum> miamChildProtectionConcernList = new ArrayList<>();
@@ -164,6 +179,11 @@ public class BulkScanC100ConditionalTransformerService {
         return miamChildProtectionConcernList;
     }
 
+    /**
+     * C100 form beginning of Section 3.
+     * @param inputFieldsMap All input key-value pair from transformation request.
+     * @return list of enum values for miamExemptionsChecklist field in the transformation output.
+     */
     private List<MiamExemptionsChecklistEnum> transformMiamExemptionsChecklist(Map<String, String> inputFieldsMap) {
         List<MiamExemptionsChecklistEnum> miamExemptionsChecklist = new ArrayList<>();
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_DOMESTIC_VIOLANCE))) {
@@ -189,6 +209,11 @@ public class BulkScanC100ConditionalTransformerService {
         return miamExemptionsChecklist;
     }
 
+    /**
+     * C100 form Section 3a.
+     * @param inputFieldsMap All input key-value pair from transformation request.
+     * @return list of enum values for miamDomesticViolenceChecklist field in the transformation output.
+     */
     private List<MiamDomesticViolenceChecklistEnum> transformMiamDomesticViolenceChecklist(
         Map<String, String> inputFieldsMap) {
 
@@ -210,6 +235,10 @@ public class BulkScanC100ConditionalTransformerService {
         return miamDomesticViolenceChecklistEnumList.stream().sorted().collect(Collectors.toList());
     }
 
+    /**
+     * C100 form Section 3a.
+     * @return prepare a Map key-value pair for MiamDomesticViolenceChecklist.
+     */
     private Map<String, MiamDomesticViolenceChecklistEnum> getStringMiamDomesticViolenceChecklistEnumMap() {
         Map<String, MiamDomesticViolenceChecklistEnum> miamDomesticViolenceChecklistEnumMap
             = new HashMap<>();
