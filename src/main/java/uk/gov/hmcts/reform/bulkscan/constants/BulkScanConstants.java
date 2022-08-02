@@ -176,13 +176,13 @@ public final class BulkScanConstants {
     public static final String ATTENDED_MIAM = "attended_MIAM";
 
     public static final String HAS_APPLICANT_ONE_LIVED_AT_THIS_ADDRESS_FOR_OVER_FIVE_YEARS
-        = "hasApplicantOneLivedAtThisAddressForOverFiveYears";
+        = "applicantOneLivedAtThisAddressForOverFiveYears";
 
     public static final String APPLICANT_ONE_ALL_ADDRESSES_FOR_FIVE_LAST_YEARS
         = "applicantOneAllAddressesForLastFiveYears";
 
     public static final String HAS_APPLICANT_TWO_LIVED_AT_THIS_ADDRESS_FOR_OVER_FIVE_YEARS
-        = "hasApplicantTwoLivedAtThisAddressForOverFiveYears";
+        = "applicantTwoLivedAtThisAddressForOverFiveYears";
 
     public static final String APPLICANT_TWO_ALL_ADDRESSES_FOR_FIVE_LAST_YEARS
         = "applicantOneAllAddressesForLastFiveYears";

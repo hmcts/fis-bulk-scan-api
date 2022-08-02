@@ -65,103 +65,103 @@
       "value": "Yes"
     },
     {
-      "name":"applicantOneFirstName",
+      "name":"applicant1FirstName",
       "value":"John"
     },
     {
-      "name":"applicantOnePreviousNames",
+      "name":"applicant1PreviousNames",
       "value":"Winters"
     },
     {
-      "name":"applicantOneGender",
+      "name":"applicant1Gender",
       "value":"Male"
     },
     {
-      "name":"applicantOneDateOfBirth",
+      "name":"applicant1DateOfBirth",
       "value":"02/09/87"
     },
     {
-      "name":"applicantOnePlaceOfBirth",
+      "name":"applicant1PlaceOfBirth",
       "value":"Surrey"
     },
     {
-      "name":"applicantOneAddress",
+      "name":"applicant1Address",
       "value":"Hackney"
     },
     {
-      "name":"applicantOneAddressPostCode",
+      "name":"applicant1AddressPostCode",
       "value":"w34fgt"
     },
     {
-      "name":"applicantOneHomePhoneNumber",
+      "name":"applicant1HomePhoneNumber",
       "value":"7876540984"
     },
     {
-      "name":"applicantOneMobilePhoneNumber",
+      "name":"applicant1MobilePhoneNumber",
       "value":"8766540984"
     },
     {
-      "name":"applicantOneEmailAddress",
+      "name":"applicant1EmailAddress",
       "value":"johnnyj@hotmail.uk"
     },
     {
-      "name":"hasApplicantOneLivedAtThisAddressForOverFiveYears",
+      "name":"applicant1LivedAtThisAddressForOverFiveYears",
       "value":"Yes"
     },
     {
-      "name":"applicantOneAllAddressesForLastFiveYears",
+      "name":"applicant1AllAddressesForLastFiveYears",
       "value":"Hackney"
     },
     {
-      "name":"applicantTwoFirstName",
+      "name":"applicant2FirstName",
       "value":"Wendy"
     },
     {
-      "name":"applicantTwoLastName",
+      "name":"applicant2LastName",
       "value":"Chan"
     },
     {
-      "name":"applicantTwoPreviousNames",
+      "name":"applicant2PreviousNames",
       "value":"Walters"
     },
     {
-      "name":"applicantTwoGender",
+      "name":"applicant2Gender",
       "value":"Female"
     },
     {
-      "name":"applicantTwoDateOfBirth",
+      "name":"applicant2DateOfBirth",
       "value":"03/09/45"
     },
     {
-      "name":"applicantTwoPlaceOfBirth",
+      "name":"applicant2PlaceOfBirth",
       "value":"Colchester"
     },
     {
-      "name":"applicantTwoAddress",
+      "name":"applicant2Address",
       "value":"London"
     },
     {
-      "name":"applicantTwoAddressPostCode",
+      "name":"applicant2AddressPostCode",
       "value":"w12ghw"
     },
     {
-      "name":"applicantTwoHomePhoneNumber",
+      "name":"applicant2HomePhoneNumber",
       "value":"7347678354"
     },
     {
-      "name":"applicantTwoMobilePhoneNumber",
+      "name":"applicant2MobilePhoneNumber",
       "value":"3476785563"
     },
     {
-      "name":"applicantTwoEmailAddress",
+      "name":"applicant2EmailAddress",
       "value":"wendy@hotmail.uk"
     },
     {
-      "name":"hasApplicantTwoLivedAtThisAddressForOverFiveYears",
+      "name":"applicant2LivedAtThisAddressForOverFiveYears",
       "value":"Yes"
     },
     {
-      "name":"applicantTwoAllAddressesForLastFiveYears",
+      "name":"applicant2AllAddressesForLastFiveYears",
       "value":"Baker St"
     },
     {
@@ -363,7 +363,7 @@
     },
     {
       "name":"askingPermissionForApplication",
-      "value":"Yes"
+      "value":"yes"
     }
   ]
 }

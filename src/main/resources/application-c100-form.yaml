@@ -5,10 +5,10 @@ uk:
         caseTypeofApplication:
           C100:
             mandatoryFields:
-              - applicantOneFirstName
-              - applicantOneLastName
-              - applicantOneDateOfBirth
-              - applicantOnePlaceOfBirth
+              - applicant1FirstName
+              - applicant1LastName
+              - applicant1DateOfBirth
+              - applicant1PlaceOfBirth
               - childArrangement_order
               - prohibitedSteps_order
               - specialIssue_order
@@ -20,28 +20,28 @@ uk:
               - children_of_same_parent
               - subject_to_childProtectionPlan
             optionalFields:
-              - applicantOneGender
-              - applicantOnePreviousNames
-              - applicantOneAddress
-              - applicantOneAddressPostCode
-              - applicantOneHomePhoneNumber
-              - applicantOneMobilePhoneNumber
-              - applicantOneEmailAddress
-              - hasApplicantOneLivedAtThisAddressForOverFiveYears
-              - applicantOneAllAddressesForLastFiveYears
-              - applicantTwoFirstName
-              - applicantTwoLastName
-              - applicantTwoPreviousNames
-              - applicantTwoGender
-              - applicantTwoDateOfBirth
-              - applicantTwoPlaceOfBirth
-              - applicantTwoAddress
-              - applicantTwoAddressPostCode
-              - applicantTwoHomePhoneNumber
-              - applicantTwoMobilePhoneNumber
-              - applicantTwoEmailAddress
-              - hasApplicantTwoLivedAtThisAddressForOverFiveYears
-              - applicantTwoAllAddressesForLastFiveYears
+              - applicant1Gender
+              - applicant1PreviousNames
+              - applicant1Address
+              - applicant1AddressPostCode
+              - applicant1HomePhoneNumber
+              - applicant1MobilePhoneNumber
+              - applicant1EmailAddress
+              - applicant1LivedAtThisAddressForOverFiveYears
+              - applicant1AllAddressesForLastFiveYears
+              - applicant2FirstName
+              - applicant2LastName
+              - applicant2PreviousNames
+              - applicant2Gender
+              - applicant2DateOfBirth
+              - applicant2PlaceOfBirth
+              - applicant2Address
+              - applicant2AddressPostCode
+              - applicant2HomePhoneNumber
+              - applicant2MobilePhoneNumber
+              - applicant2EmailAddress
+              - applicant2LivedAtThisAddressForOverFiveYears
+              - applicant2AllAddressesForLastFiveYears
               - respondent1_firstName
               - respondent1_lastName
               - natureofOrder

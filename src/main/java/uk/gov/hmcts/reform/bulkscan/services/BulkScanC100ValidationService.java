@@ -41,10 +41,12 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ADDRESS_NOT_LIVED_FOR_FIVE_YEARS_MESSAGE;
 
 
+
 /**
  * This class will custom validation methods related to.
  * C100 form custom validation
  */
+@SuppressWarnings("PMD")
 @Service
 public class BulkScanC100ValidationService {
 
@@ -107,42 +109,6 @@ public class BulkScanC100ValidationService {
             }
 
         }
-        return bulkScanValidationResponse;
-    }
-
-    public BulkScanValidationResponse validateApplicantAddressFiveYears(
-        List<OcrDataField> ocrDataFields, BulkScanValidationResponse bulkScanValidationResponse) {
-
-        Map<String, String> ocrDataFieldsMap = getOcrDataFieldsMap(ocrDataFields);
-
-        if (null != ocrDataFieldsMap && !ocrDataFieldsMap.isEmpty()) {
-
-            List<String> items = new ArrayList<>();
-
-            if (ocrDataFieldsMap.containsKey(HAS_APPLICANT_ONE_LIVED_AT_THIS_ADDRESS_FOR_OVER_FIVE_YEARS)
-                    && ocrDataFieldsMap.get(HAS_APPLICANT_ONE_LIVED_AT_THIS_ADDRESS_FOR_OVER_FIVE_YEARS)
-                           .equalsIgnoreCase(NO)
-                    && ocrDataFieldsMap.containsKey(APPLICANT_ONE_ALL_ADDRESSES_FOR_FIVE_LAST_YEARS)
-                    && !StringUtils.hasText(ocrDataFieldsMap.get(APPLICANT_ONE_ALL_ADDRESSES_FOR_FIVE_LAST_YEARS))) {
-                items.add(String.format(ADDRESS_NOT_LIVED_FOR_FIVE_YEARS_MESSAGE,
-                                        APPLICANT_ONE, APPLICANT_ONE_ALL_ADDRESSES_FOR_FIVE_LAST_YEARS));
-            }
-
-            if (ocrDataFieldsMap.containsKey(HAS_APPLICANT_TWO_LIVED_AT_THIS_ADDRESS_FOR_OVER_FIVE_YEARS)
-                    && ocrDataFieldsMap.get(HAS_APPLICANT_TWO_LIVED_AT_THIS_ADDRESS_FOR_OVER_FIVE_YEARS)
-                           .equalsIgnoreCase(
-                NO)
-                    && ocrDataFieldsMap.containsKey(APPLICANT_TWO_ALL_ADDRESSES_FOR_FIVE_LAST_YEARS)
-                    && !StringUtils.hasText(ocrDataFieldsMap.get(APPLICANT_TWO_ALL_ADDRESSES_FOR_FIVE_LAST_YEARS))) {
-                items.add(String.format(ADDRESS_NOT_LIVED_FOR_FIVE_YEARS_MESSAGE,
-                                        APPLICANT_TWO, APPLICANT_ONE_ALL_ADDRESSES_FOR_FIVE_LAST_YEARS));
-            }
-
-            if (!items.isEmpty()) {
-                bulkScanValidationResponse.addWarning(items);
-            }
-        }
-
         return bulkScanValidationResponse;
     }
 
@@ -229,5 +195,41 @@ public class BulkScanC100ValidationService {
         return null != ocrDataFields ? ocrDataFields
                 .stream()
                 .collect(Collectors.toMap(OcrDataField::getName, OcrDataField::getValue)) : null;
+    }
+
+    public BulkScanValidationResponse validateApplicantAddressFiveYears(
+        List<OcrDataField> ocrDataFields, BulkScanValidationResponse bulkScanValidationResponse) {
+
+        Map<String, String> ocrDataFieldsMap = getOcrDataFieldsMap(ocrDataFields);
+
+        if (null != ocrDataFieldsMap && !ocrDataFieldsMap.isEmpty()) {
+
+            List<String> items = new ArrayList<>();
+
+            if (ocrDataFieldsMap.containsKey(HAS_APPLICANT_ONE_LIVED_AT_THIS_ADDRESS_FOR_OVER_FIVE_YEARS)
+                    && ocrDataFieldsMap.get(HAS_APPLICANT_ONE_LIVED_AT_THIS_ADDRESS_FOR_OVER_FIVE_YEARS)
+                           .equalsIgnoreCase(NO)
+                    && ocrDataFieldsMap.containsKey(APPLICANT_ONE_ALL_ADDRESSES_FOR_FIVE_LAST_YEARS)
+                    && !StringUtils.hasText(ocrDataFieldsMap.get(APPLICANT_ONE_ALL_ADDRESSES_FOR_FIVE_LAST_YEARS))) {
+                items.add(String.format(ADDRESS_NOT_LIVED_FOR_FIVE_YEARS_MESSAGE,
+                                        APPLICANT_ONE, APPLICANT_ONE_ALL_ADDRESSES_FOR_FIVE_LAST_YEARS));
+            }
+
+            if (ocrDataFieldsMap.containsKey(HAS_APPLICANT_TWO_LIVED_AT_THIS_ADDRESS_FOR_OVER_FIVE_YEARS)
+                    && ocrDataFieldsMap.get(HAS_APPLICANT_TWO_LIVED_AT_THIS_ADDRESS_FOR_OVER_FIVE_YEARS)
+                           .equalsIgnoreCase(
+                               NO)
+                    && ocrDataFieldsMap.get(HAS_APPLICANT_TWO_LIVED_AT_THIS_ADDRESS_FOR_OVER_FIVE_YEARS) != null
+                    && ocrDataFieldsMap.containsKey(APPLICANT_TWO_ALL_ADDRESSES_FOR_FIVE_LAST_YEARS)
+                    && !StringUtils.hasText(ocrDataFieldsMap.get(APPLICANT_TWO_ALL_ADDRESSES_FOR_FIVE_LAST_YEARS))) {
+                items.add(String.format(ADDRESS_NOT_LIVED_FOR_FIVE_YEARS_MESSAGE,
+                                        APPLICANT_TWO, APPLICANT_ONE_ALL_ADDRESSES_FOR_FIVE_LAST_YEARS));
+            }
+
+            if (!items.isEmpty()) {
+                bulkScanValidationResponse.addWarning(items);
+            }
+        }
+        return bulkScanValidationResponse;
     }
 }
