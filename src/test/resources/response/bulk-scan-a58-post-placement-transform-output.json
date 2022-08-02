@@ -10,23 +10,23 @@
       "scannedDocuments":[
 
       ],
-      "maintanenceOrder":{
-        "name":null,
-        "address":null,
-        "nameOfCourt":"HMCTSCourt",
-        "dateOfOrder":"01/01/2000",
-        "agreementDate":null
+      "maintanenceOrder": {
+        "name": "murshad",
+        "address": "london",
+        "nameOfCourt": "HMCTSCourt",
+        "dateOfOrder": "01/01/2000",
+        "agreementDate": "01/01/2001"
       },
       "courtpreferredDates":"11/10/2022,21/10/2022",
       "applicantMaritalStatus":"",
       "birthFatherOccupation":null,
-      "children":{
-        "gender":null,
-        "dateOfBirth":null,
-        "approximateDateOfBirth":null,
-        "placeAndCountry":null,
-        "nationality":null,
-        "isMarried":null
+      "children": {
+        "gender": "male",
+        "dateOfBirth": "31/12/1985",
+        "approximateDateOfBirth": null,
+        "placeAndCountry": null,
+        "nationality": "german",
+        "isMarried": "yes"
       },
       "applicantRequireInterpreter":"Yes",
       "applicant2FirstName":"applicant2firstName",
