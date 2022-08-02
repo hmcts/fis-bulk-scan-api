@@ -50,7 +50,18 @@
       "childrenKNownToLocalAuthority":"Yes",
       "prohibitedStepsOrder":"true",
       "havePreviousParentingPlan":"parentingplan",
-      "children":[
+      "otherProceedingsDetailsTable": [
+        {
+          "value": {
+            "previousOrOngoingProceedings": "yes"
+          }
+        }
+      ],
+
+      "scannedDocuments": [
+      ],
+      "orderAppliedFor": "true",
+      "children": [
         {
           "value":{
             "firstName":"firstName",
@@ -106,7 +117,93 @@
       "applicationPermissionRequired":"yes"
     }
   },
-  "warnings":[
-
-  ]
+      "hearingUrgencyTable": {
+        "isCaseUrgent": "yes"
+      },
+      "personWhoLivesWithChild": "living other details",
+      "applicationPermissionRequiredReason": "reason",
+      "applicationPermissionRequired": "yes",
+      "habitualResidentINotherState": "yes",
+      "parentalResponsibilityDetails": "parentResponsibility",
+      "familyMediatorMiam": null,
+      "isCaseUrgent": "yes",
+      "typeOfApplicationTable": {
+        "applicationPermissionRequired": "yes"
+      },
+      "childrenKNownToLocalAuthorityTextArea": "socialWorker",
+      "childrenParentsName": "parentsName",
+      "previousOrOngoingProceedings": "yes",
+      "applicantAttendedMiam": null,
+      "childrenSubjectOfChildProtectionPlan": "protectionplan",
+      "miamTable": {
+        "claimingExemptionMiam": "yes",
+        "familyMediatorMiam": null,
+        "applicantAttendedMiam": null
+      },
+      "childrenKNownToLocalAuthority": "Yes",
+      "havePreviousParentingPlan": "parentingplan",
+      "briefDetailsOnTheApplication": "briefDetails",
+      "prohibitedStepsOrder": "true",
+      "allegationsOfHarmOverviewTable": {
+        "allegationsOfHarmDomesticAbuseYesNo": "yes",
+        "allegationsOfHarmChildAbductionYesNo": "yes",
+        "allegationsOfHarmChildAbuseYesNo": "yes",
+        "allegationsOfHarmSubstanceAbuseYesNo": "yes",
+        "allegationsOfHarmOtherConcernsYesNo": "yes"
+      },
+      "childrenOfSameParent": "Yes",
+      "childLiveWith": "Applicant",
+      "consentOrder": "yes",
+      "specialIssueOrder": "true",
+      "claimingExemptionMiam": "yes",
+      "welshLanguageRequirement": "yes",
+      "childParentsNameCollection": "parentsNameColl",
+      "respondents": [
+        {
+          "value": {
+            "firstName": "Robert",
+            "lastName": "Zane",
+            "previousName": null,
+            "gender": "male",
+            "dateOfBirth": "20/02/2002",
+            "isDateOfBirthUnknown": null,
+            "placeOfBirth": "London",
+            "AddressLine1": "123, Topsfield Parade",
+            "PostCode": "N8 8PE",
+            "isAddressUnknown": null,
+            "landline": "+442083332222",
+            "phoneNumber": "+447999444444",
+            "canYouProvidePhoneNumber": null,
+            "email": "test@test.com",
+            "canYouProvideEmailAddress": null,
+            "isAtAddressLessThan5Years": "No",
+            "addressLivedLessThan5YearsDetails": "225, Topsfield Parade, N8 8PE"
+          }
+        },
+        {
+          "value": {
+            "firstName": "Rachel",
+            "lastName": "Brandl",
+            "previousName": null,
+            "gender": "female",
+            "dateOfBirth": "21/02/2002",
+            "isDateOfBirthUnknown": null,
+            "placeOfBirth": "London",
+            "AddressLine1": "124, Topsfield Parade",
+            "PostCode": "N8 8PE",
+            "isAddressUnknown": null,
+            "landline": "+442081112222",
+            "phoneNumber": "+447999666666",
+            "canYouProvidePhoneNumber": null,
+            "email": "test@test.com",
+            "canYouProvideEmailAddress": null,
+            "isAtAddressLessThan5Years": "No",
+            "addressLivedLessThan5YearsDetails": "227, Topsfield Parade, N8 8PE"
+          }
+        }
+      ]
+    }
+  },
+  "warnings": []
 }
+

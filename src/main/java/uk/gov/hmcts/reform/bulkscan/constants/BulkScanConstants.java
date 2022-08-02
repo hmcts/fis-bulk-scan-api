@@ -195,6 +195,23 @@ public final class BulkScanConstants {
               + "for more then 5 years. Previous address(es) field (%s) should not be empty or null.";
     //END C100 form section 2 validation fields
 
+    // C100 form section 12 validation fields
+    public static final String RESPONDENT1LIVEDATTHISADDRESSFOROVERFIVEYEARS
+            = "respondent1LivedAtThisAddressForOverFiveYears";
+    public static final String RESPONDENT2LIVEDATTHISADDRESSFOROVERFIVEYEARS
+            = "respondent2LivedAtThisAddressForOverFiveYears";
+    public static final String RESPONDENT_ONE = "Respondent 1";
+    public static final String RESPONDENT1ALLADDRESSESFORLASTFIVEYEARS
+            = "respondent1AllAddressesForLastFiveYears";
+    public static final String RESPONDENT_TWO = "Respondent 2";
+    public static final String RESPONDENT2ALLADDRESSESFORLASTFIVEYEARS
+            = "respondent2AllAddressesForLastFiveYears";
+
+    public static final String ADDRESS_NOT_LIVED_FOR_FIVE_YEARS_MESSAGE
+            = "(%s) has not lived at the current address "
+            + "for more than 5 years. Previous address(es) field (%s) should not be empty or null.";
+    //END C100 form section 12 validation fields
+
     //A58
     public static final String
         CHILD_PLACEMENT_ORDER_BY_ENGLAND_AND_WALES_COURT = "child_placementOrderByEnglandAndWalesCourt";

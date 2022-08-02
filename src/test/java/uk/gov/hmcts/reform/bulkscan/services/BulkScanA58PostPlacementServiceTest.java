@@ -100,6 +100,7 @@ class BulkScanA58PostPlacementServiceTest {
                 readFileFrom(A58_POST_PLACEMENT_TRANSFORM_REQUEST_PATH), BulkScanTransformationRequest.class);
 
         BulkScanTransformationResponse res = bulkScanValidationService.transform(bulkScanTransformationRequest);
+
         JSONAssert.assertEquals(readFileFrom(A58_POST_PLACEMENT_TRANSFORM_RESPONSE_PATH),
                 mapper.writeValueAsString(res), true);
     }
