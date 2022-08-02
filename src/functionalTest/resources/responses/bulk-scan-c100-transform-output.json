@@ -3,6 +3,8 @@
     "case_type_id":"PRLAPPS",
     "event_id":"create-case-privatelaw-bs",
     "case_data":{
+      "miamOtherGroundsChecklist": "miamOtherGroundsChecklistEnum_Value_9",
+      "miamPreviousAttendanceChecklist": "miamPreviousAttendanceChecklistEnum_Value_4",
       "otherProceedingsDetailsTable":[
         {
           "value":{
@@ -28,14 +30,6 @@
             "document_binary_url":"http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
           }
         }
-      ],
-      "orderAppliedFor":"true",
-      "miamExemptionsChecklist":[
-        "domesticViolence",
-        "childProtectionConcern",
-        "urgency",
-        "previousMIAMattendance",
-        "other"
       ],
       "children":[
         {
@@ -96,7 +90,14 @@
         "applicationPermissionRequired":null
       },
       "childrenKNownToLocalAuthorityTextArea":"socialWorker",
-      "miamDomesticViolenceChecklist":[
+      "miamExemptionsChecklist": [
+        "domesticViolence",
+        "childProtectionConcern",
+        "urgency",
+        "previousMIAMattendance",
+        "other"
+      ],
+      "miamDomesticViolenceChecklist": [
         "miamDomesticViolenceChecklistEnum_Value_1",
         "miamDomesticViolenceChecklistEnum_Value_2",
         "miamDomesticViolenceChecklistEnum_Value_3",
@@ -119,6 +120,24 @@
         "miamDomesticViolenceChecklistEnum_Value_21",
         "miamDomesticViolenceChecklistEnum_Value_22"
       ],
+      "ordersApplyingFor":[
+        "childArrangementsOrder",
+        "prohibitedStepsOrder",
+        "specificIssueOrder"
+      ],
+      "miamUrgencyReasonChecklist":[
+        "miamUrgencyReasonChecklistEnum_Value_1",
+        "miamUrgencyReasonChecklistEnum_Value_2",
+        "miamUrgencyReasonChecklistEnum_Value_3",
+        "miamUrgencyReasonChecklistEnum_Value_4",
+        "miamUrgencyReasonChecklistEnum_Value_5",
+        "miamUrgencyReasonChecklistEnum_Value_6",
+        "miamUrgencyReasonChecklistEnum_Value_7"
+      ],
+      "miamChildProtectionConcernList":[
+        "MIAMChildProtectionConcernChecklistEnum_value_1",
+        "MIAMChildProtectionConcernChecklistEnum_value_2"
+      ],
       "childrenParentsName":"parentsName",
       "previousOrOngoingProceedings":"yes",
       "applicantAttendedMiam":null,
@@ -129,7 +148,6 @@
         "applicantAttendedMiam":null
       },
       "childrenKNownToLocalAuthority":"Yes",
-      "prohibitedStepsOrder":"true",
       "havePreviousParentingPlan":"parentingplan",
       "allegationsOfHarmOverviewTable":{
         "allegationsOfHarmDomesticAbuseYesNo":null,
@@ -142,7 +160,6 @@
       "childrenOfSameParent":"Yes",
       "childLiveWith":"Applicant",
       "consentOrder":"yes",
-      "specialIssueOrder":"true",
       "claimingExemptionMiam":"yes",
       "welshLanguageRequirement":"yes",
       "childParentsNameCollection":"parentsNameColl"

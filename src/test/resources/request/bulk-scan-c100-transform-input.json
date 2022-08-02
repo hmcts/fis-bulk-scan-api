@@ -204,18 +204,6 @@
       "value":"applicant1_lastName"
     },
     {
-      "name": "childArrangement_order",
-      "value": "true"
-    },
-    {
-      "name": "prohibitedSteps_order",
-      "value": "true"
-    },
-    {
-      "name": "specialIssue_order",
-      "value": "true"
-    },
-    {
       "name": "NoMIAM_DVE_relevantPoliceCaution",
       "value": "true"
     },
@@ -317,6 +305,62 @@
     },
     {
       "name":"NoMIAM_otherReasons",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_PreviousAttendenceReason",
+      "value":"miamPreviousAttendanceChecklistEnum_Value_4"
+    },
+    {
+      "name":"NoMIAM_otherExceptions",
+      "value":"miamOtherGroundsChecklistEnum_Value_9"
+    },
+    {
+      "name":"NoMIAM_subjectOfEnquiries_byLocalAuthority",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_subjectOfCPP_byLocalAuthority",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_urgency_risk_to_life_liberty_or_safety",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_urgency_riskOfHarm",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_urgency_risk_to_unlawfulRemoval",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_urgency_risk_to_miscarriageOfJustice",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_urgency_unreasonablehardship",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_urgency_irretrievableProblem",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_urgency_conflictWithOtherStateCourts",
+      "value":"true"
+    },
+    {
+      "name":"childArrangement_order",
+      "value":"true"
+    },
+    {
+      "name":"prohibitedSteps_order",
+      "value":"true"
+    },
+    {
+      "name":"specialIssue_order",
       "value":"true"
     }
   ],

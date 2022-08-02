@@ -3,10 +3,12 @@ package uk.gov.hmcts.reform.bulkscan.services;
 import com.microsoft.applicationinsights.boot.dependencies.apachecommons.lang3.StringUtils;
 import org.apache.commons.lang3.BooleanUtils;
 import org.springframework.stereotype.Component;
-import uk.gov.hmcts.reform.bulkscan.enums.MiamDomesticViolenceChecklistEnum;
+import uk.gov.hmcts.reform.bulkscan.enums.MiamUrgencyReasonChecklistEnum;
+import uk.gov.hmcts.reform.bulkscan.enums.MiamChildProtectionConcernChecklistEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.MiamExemptionsChecklistEnum;
-import uk.gov.hmcts.reform.bulkscan.enums.PermissionRequiredEnum;
+import uk.gov.hmcts.reform.bulkscan.enums.MiamDomesticViolenceChecklistEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.ChildLiveWithEnum;
+import uk.gov.hmcts.reform.bulkscan.enums.PermissionRequiredEnum;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
 
 import java.util.List;
@@ -53,6 +55,24 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.NO_MIA
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.NO_MIAM_CHILD_PROTECTION_CONCERNS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.NO_MIAM_PREVIOUS_ATTENDENCE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.NO_MIAM_OTHER_REASONS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.NO_MIAM_CHILD_PROTECTION_CONCERNS_CHECKLIST;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.MIAM_URGENCY_REASON_CHECKLIST;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.ORDER_APPLIED_FOR;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.CHILD_ARRANGEMENT_ORDER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.CHILD_ARRANGEMENTS_ORDER_DESCRIPTION;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.PROHIBITED_STEPS_ORDER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.PROHIBITED_STEPS_ORDER_DESCRIPTION;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.SPECIAL_ISSUE_ORDER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.SPECIFIC_ISSUE_ORDER_DESCRIPTION;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.NO_MIAM_URGENCY_RISK_TO_LIFE_LIBERTY_OR_SAFETY;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.NO_MIAM_URGENCY_RISK_OF_HARM;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.NO_MIAM_URGENCY_RISK_TO_UNLAWFUL_REMOVAL;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.NO_MIAM_URGENCY_RISK_TO_MISCARRIAGE_OF_JUSTICE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.NO_MIAM_URGENCY_UNREASONABLEHARDSHIP;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.NO_MIAM_URGENCY_IRRETRIEVABLE_PROBLEM;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.NO_MIAM_URGENCY_CONFLICT_WITH_OTHER_STATE_COURTS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.NO_MIAM_SUBJECT_OF_ENQUIRIES_BY_LOCAL_AUTHORITY;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.NO_MIAM_SUBJECT_OF_CPP_BY_LOCAL_AUTHORITY;
 import static uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper.transformScanDocuments;
 
 @SuppressWarnings({"PMD.ExcessiveImports"})
@@ -66,6 +86,82 @@ public class BulkScanC100ConditionalTransformerService {
         populatedMap.put(SCAN_DOCUMENTS, transformScanDocuments(bulkScanTransformationRequest));
         populatedMap.put(MIAM_DOMESTIC_VIOLENCE_CHECKLIST, transformMiamDomesticViolenceChecklist(inputFieldsMap));
         populatedMap.put(MIAM_EXEMPTIONS_CHECKLIST, transformMiamExemptionsChecklist(inputFieldsMap));
+        populatedMap.put(NO_MIAM_CHILD_PROTECTION_CONCERNS_CHECKLIST,
+                         transformNoMiamChildProtectionConcerns(inputFieldsMap));
+        populatedMap.put(MIAM_URGENCY_REASON_CHECKLIST, transformMiamUrgencyReasonChecklist(inputFieldsMap));
+        populatedMap.put(ORDER_APPLIED_FOR, transformOrderAppliedFor(inputFieldsMap));
+
+
+    }
+
+    private List<String>  transformOrderAppliedFor(Map<String, String> inputFieldsMap) {
+        List<String> orderAppliedForList = new ArrayList<>();
+
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(CHILD_ARRANGEMENT_ORDER))) {
+            orderAppliedForList.add(CHILD_ARRANGEMENTS_ORDER_DESCRIPTION);
+        }
+
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(PROHIBITED_STEPS_ORDER))) {
+            orderAppliedForList.add(PROHIBITED_STEPS_ORDER_DESCRIPTION);
+        }
+
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(SPECIAL_ISSUE_ORDER))) {
+            orderAppliedForList.add(SPECIFIC_ISSUE_ORDER_DESCRIPTION);
+        }
+        return orderAppliedForList;
+    }
+
+    private List<MiamUrgencyReasonChecklistEnum> transformMiamUrgencyReasonChecklist(
+        Map<String, String> inputFieldsMap) {
+        List<MiamUrgencyReasonChecklistEnum> miamUrgencyReasonChecklistEnumList = new ArrayList<>();
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_URGENCY_RISK_TO_LIFE_LIBERTY_OR_SAFETY))) {
+            miamUrgencyReasonChecklistEnumList
+                .add(MiamUrgencyReasonChecklistEnum.miamUrgencyReasonChecklistEnum_Value_1);
+        }
+
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_URGENCY_RISK_OF_HARM))) {
+            miamUrgencyReasonChecklistEnumList
+                .add(MiamUrgencyReasonChecklistEnum.miamUrgencyReasonChecklistEnum_Value_2);
+        }
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_URGENCY_RISK_TO_UNLAWFUL_REMOVAL))) {
+            miamUrgencyReasonChecklistEnumList
+                .add(MiamUrgencyReasonChecklistEnum.miamUrgencyReasonChecklistEnum_Value_3);
+        }
+
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_URGENCY_RISK_TO_MISCARRIAGE_OF_JUSTICE))) {
+            miamUrgencyReasonChecklistEnumList
+                .add(MiamUrgencyReasonChecklistEnum.miamUrgencyReasonChecklistEnum_Value_4);
+        }
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_URGENCY_UNREASONABLEHARDSHIP))) {
+            miamUrgencyReasonChecklistEnumList
+                .add(MiamUrgencyReasonChecklistEnum.miamUrgencyReasonChecklistEnum_Value_5);
+        }
+
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_URGENCY_IRRETRIEVABLE_PROBLEM))) {
+            miamUrgencyReasonChecklistEnumList
+                .add(MiamUrgencyReasonChecklistEnum.miamUrgencyReasonChecklistEnum_Value_6);
+        }
+
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_URGENCY_CONFLICT_WITH_OTHER_STATE_COURTS))) {
+            miamUrgencyReasonChecklistEnumList
+                .add(MiamUrgencyReasonChecklistEnum.miamUrgencyReasonChecklistEnum_Value_7);
+        }
+        return miamUrgencyReasonChecklistEnumList;
+    }
+
+    private List<MiamChildProtectionConcernChecklistEnum> transformNoMiamChildProtectionConcerns(
+        Map<String, String> inputFieldsMap) {
+        List<MiamChildProtectionConcernChecklistEnum> miamChildProtectionConcernList = new ArrayList<>();
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_SUBJECT_OF_ENQUIRIES_BY_LOCAL_AUTHORITY))) {
+            miamChildProtectionConcernList
+                .add(MiamChildProtectionConcernChecklistEnum.MIAMChildProtectionConcernChecklistEnum_value_1);
+        }
+
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_SUBJECT_OF_CPP_BY_LOCAL_AUTHORITY))) {
+            miamChildProtectionConcernList
+                .add(MiamChildProtectionConcernChecklistEnum.MIAMChildProtectionConcernChecklistEnum_value_2);
+        }
+        return miamChildProtectionConcernList;
     }
 
     private List<MiamExemptionsChecklistEnum> transformMiamExemptionsChecklist(Map<String, String> inputFieldsMap) {

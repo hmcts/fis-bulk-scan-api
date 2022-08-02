@@ -28,7 +28,6 @@
           }
         }
       ],
-      "orderAppliedFor": "true",
       "children": [
         {
           "value": {
@@ -128,7 +127,6 @@
         "applicantAttendedMiam": null
       },
       "childrenKNownToLocalAuthority": "Yes",
-      "prohibitedStepsOrder": "true",
       "allegationsOfHarmOverviewTable": {
         "allegationsOfHarmDomesticAbuseYesNo": "yes",
         "allegationsOfHarmChildAbductionYesNo": "yes",
@@ -139,7 +137,6 @@
       "childrenOfSameParent": "Yes",
       "childLiveWith": "Applicant",
       "consentOrder": "yes",
-      "specialIssueOrder": "true",
       "claimingExemptionMiam": "yes",
       "welshLanguageRequirement": "yes",
       "childParentsNameCollection": "parentsNameColl"

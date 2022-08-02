@@ -46,6 +46,28 @@ public final class BulkScanPrlConstants {
         = "NoMIAM_DVE_publicAuthority_confirmationLetter";
     public static final String NO_MIAM_DVE_SECRETARY_OF_STATE_LETTER = "NoMIAM_DVE_secretaryOfState_letter";
     public static final String NO_MIAM_DVE_EVIDENCE_FINANCIAL_MATTERS = "NoMIAM_DVE_evidenceFinancialMatters";
+    public static final String NO_MIAM_CHILD_PROTECTION_CONCERNS_CHECKLIST = "miamChildProtectionConcernList";
+    public static final String NO_MIAM_SUBJECT_OF_ENQUIRIES_BY_LOCAL_AUTHORITY
+        = "NoMIAM_subjectOfEnquiries_byLocalAuthority";
+    public static final String NO_MIAM_SUBJECT_OF_CPP_BY_LOCAL_AUTHORITY = "NoMIAM_subjectOfCPP_byLocalAuthority";
+    public static final String MIAM_URGENCY_REASON_CHECKLIST = "miamUrgencyReasonChecklist";
+    public static final String NO_MIAM_URGENCY_RISK_TO_LIFE_LIBERTY_OR_SAFETY
+        = "NoMIAM_urgency_risk_to_life_liberty_or_safety";
+    public static final String NO_MIAM_URGENCY_RISK_OF_HARM = "NoMIAM_urgency_riskOfHarm";
+    public static final String NO_MIAM_URGENCY_RISK_TO_UNLAWFUL_REMOVAL = "NoMIAM_urgency_risk_to_unlawfulRemoval";
+    public static final String NO_MIAM_URGENCY_RISK_TO_MISCARRIAGE_OF_JUSTICE
+        = "NoMIAM_urgency_risk_to_miscarriageOfJustice";
+    public static final String NO_MIAM_URGENCY_UNREASONABLEHARDSHIP = "NoMIAM_urgency_unreasonablehardship";
+    public static final String NO_MIAM_URGENCY_IRRETRIEVABLE_PROBLEM = "NoMIAM_urgency_irretrievableProblem";
+    public static final String NO_MIAM_URGENCY_CONFLICT_WITH_OTHER_STATE_COURTS
+        = "NoMIAM_urgency_conflictWithOtherStateCourts";
+    public static final String ORDER_APPLIED_FOR = "ordersApplyingFor";
+    public static final String CHILD_ARRANGEMENT_ORDER = "childArrangement_order";
+    public static final String PROHIBITED_STEPS_ORDER = "prohibitedSteps_order";
+    public static final String SPECIAL_ISSUE_ORDER = "specialIssue_order";
+    public static final String SPECIFIC_ISSUE_ORDER_DESCRIPTION = "specificIssueOrder";
+    public static final String PROHIBITED_STEPS_ORDER_DESCRIPTION = "prohibitedStepsOrder";
+    public static final String CHILD_ARRANGEMENTS_ORDER_DESCRIPTION = "childArrangementsOrder";
 
     private BulkScanPrlConstants() {
 
