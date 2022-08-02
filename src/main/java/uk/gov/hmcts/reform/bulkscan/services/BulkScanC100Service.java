@@ -19,7 +19,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.BULK_SCAN_CASE_REFERENCE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CASE_TYPE_ID;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EVENT_ID;
 
@@ -74,10 +73,7 @@ public class BulkScanC100Service implements BulkScanService {
     @Override
     @SuppressWarnings("unchecked")
     public BulkScanTransformationResponse transform(BulkScanTransformationRequest bulkScanTransformationRequest) {
-        Map<String, Object> caseData = new HashMap<>();
         List<OcrDataField> inputFieldsList = bulkScanTransformationRequest.getOcrdatafields();
-
-        caseData.put(BULK_SCAN_CASE_REFERENCE, bulkScanTransformationRequest.getId());
 
         Map<String, String> inputFieldsMap = inputFieldsList.stream().collect(
             Collectors.toMap(OcrDataField::getName, OcrDataField::getValue));
