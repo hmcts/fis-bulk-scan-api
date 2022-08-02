@@ -86,9 +86,40 @@ uk:
               otherProceedingsDetailsTable :
                 - value:
                     previousOrOngoingProceedings : previous_or_ongoingProceeding
-
-
-
-
-
-
+              respondents:
+                - value:
+                    firstName: respondent1FirstName
+                    lastName: respondent1LastName
+                    previousName: respondent1PreviousNames
+                    gender: respondent1Gender
+                    dateOfBirth: respondent1DateOfBirth
+                    isDateOfBirthUnknown: respondent1DateOfBirthDontKnow
+                    placeOfBirth: respondent1PlaceOfBirth
+                    AddressLine1: respondent1Address
+                    PostCode: respondent1AddressPostCode
+                    isAddressUnknown: respondent1AddressDontKnow
+                    landline: respondent1HomePhoneNumber
+                    phoneNumber: respondent1MobilePhoneNumber
+                    canYouProvidePhoneNumber: respondent1MobilePhoneNumberDontKnow
+                    email: respondent1EmailAddress
+                    canYouProvideEmailAddress: respondent1EmailAddressDontKnow
+                    isAtAddressLessThan5Years: respondent1LivedAtThisAddressForOverFiveYears
+                    addressLivedLessThan5YearsDetails: respondent1AllAddressesForLastFiveYears
+                - value:
+                    firstName: respondent2FirstName
+                    lastName: respondent2LastName
+                    previousName: respondent2PreviousNames
+                    gender: respondent2Gender
+                    dateOfBirth: respondent2DateOfBirth
+                    isDateOfBirthUnknown: respondent2DateOfBirthDontKnow
+                    placeOfBirth: respondent2PlaceOfBirth
+                    AddressLine1: respondent2Address
+                    PostCode: respondent2AddressPostCode
+                    isAddressUnknown: respondent2AddressDontKnow
+                    landline: respondent2HomePhoneNumber
+                    phoneNumber: respondent2MobilePhoneNumber
+                    canYouProvidePhoneNumber: respondent2MobilePhoneNumberDontKnow
+                    email: respondent2EmailAddress
+                    canYouProvideEmailAddress: respondent2EmailAddressDontKnow
+                    isAtAddressLessThan5Years: respondent2LivedAtThisAddressForOverFiveYears
+                    addressLivedLessThan5YearsDetails: respondent2AllAddressesForLastFiveYears
