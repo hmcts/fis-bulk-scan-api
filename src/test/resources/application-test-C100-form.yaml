@@ -67,16 +67,16 @@ uk:
               - child4_applicant1_relationship
               - child4_respondent1_relationship
               - child4_localAuthority_or_socialWorker
-              - permissionRequired
-              - permissionRequiredReason
-              - briefDetailsOnTheApplication
-              - havePreviousParentingPlan
-              - askingPermissionForApplication
               - previous_or_ongoingProceeding
               - existingCase_onEmergencyProtection_Care_or_supervisioNorder
               - exemption_to_attend_MIAM
               - familyMember_Intimation_on_No_MIAM
               - attended_MIAM
+              - permissionRequired
+              - permissionRequiredReason
+              - briefDetailsOnTheApplication
+              - havePreviousParentingPlan
+              - askingPermissionForApplication
               - NoMIAM_domesticViolence
               - NoMIAM_childProtectionConcerns
               - NoMIAM_Urgency
@@ -120,6 +120,40 @@ uk:
               - NoMIAM_urgency_conflictWithOtherStateCourts
               - NoMIAM_PreviousAttendanceReason
               - parentalResponsibilityDetails
+              - respondent1FirstName
+              - respondent1LastName
+              - respondent1PreviousNames
+              - respondent1Gender
+              - respondent1DateOfBirth
+              - respondent1DateOfBirthDontKnow
+              - respondent1PlaceOfBirth
+              - respondent1Address
+              - respondent1AddressPostCode
+              - respondent1AddressDontKnow
+              - respondent1HomePhoneNumber
+              - respondent1MobilePhoneNumber
+              - respondent1MobilePhoneNumberDontKnow
+              - respondent1EmailAddress
+              - respondent1EmailAddressDontKnow
+              - respondent1LivedAtThisAddressForOverFiveYears
+              - respondent1AllAddressesForLastFiveYears
+              - respondent2FirstName
+              - respondent2LastName
+              - respondent2PreviousNames
+              - respondent2Gender
+              - respondent2DateOfBirth
+              - respondent2DateOfBirthDontKnow
+              - respondent2PlaceOfBirth
+              - respondent2Address
+              - respondent2AddressDontKnow
+              - respondent2AddressPostCode
+              - respondent2HomePhoneNumber
+              - respondent2MobilePhoneNumber
+              - respondent2MobilePhoneNumberDontKnow
+              - respondent2EmailAddress
+              - respondent2EmailAddressDontKnow
+              - respondent2LivedAtThisAddressForOverFiveYears
+              - respondent2AllAddressesForLastFiveYears
             regexValidationFields:
               dateFields:
                 fieldNames:
@@ -127,6 +161,8 @@ uk:
                   - child2_dateOfBirth
                   - child3_dateOfBirth
                   - child4_dateOfBirth
+                  - respondent1DateOfBirth
+                  - respondent2DateOfBirth
                 regex: dd/MM/yyyy
               emailFields:
                 fieldNames:
@@ -142,7 +178,10 @@ uk:
                 regex: ^[A-Z]{1,2}[0-9R][0-9A-Z]? [0-9][ABD-HJLNP-UW-Z]{2}$
               phoneNumberFields:
                 fieldNames:
-                  -
+                  - respondent1HomePhoneNumber
+                  - respondent1MobilePhoneNumber
+                  - respondent2HomePhoneNumber
+                  - respondent2MobilePhoneNumber
                 regex: ^(?:0|\+?44)(?:\d\s?){9,10}$
               faxNumberFields:
                 fieldNames:

@@ -17,6 +17,7 @@ public final class Constants {
     public static final String NOMIAM_URGENCY_FIELD = "NoMIAM_Urgency";
     public static final String NOMIAM_PREVIOUSATTENDANCE_FIELD = "NoMIAM_PreviousAttendance";
     public static final String NOMIAM_OTHERREASONS_FIELD = "NoMIAM_otherReasons";
+    public static final String POST_CODE = "TW3 1NN";
 
     public static final String TICK_BOX_FALSE = "false";
     public static final String TICK_BOX_NO = "No";
