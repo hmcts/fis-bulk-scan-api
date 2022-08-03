@@ -1,87 +1,112 @@
 {
-  "case_creation_details": {
-    "case_type_id": "PRLAPPS",
-    "event_id": "create-case-privatelaw-bs",
-    "case_data": {
-      "parentalResponsibilityDetails": "parentResponsibility",
-      "childrenKNownToLocalAuthorityTextArea": "socialWorker",
-      "childrenParentsName": "parentsName",
-      "briefDetailsOnTheApplication": "briefDetails",
-      "childrenSubjectOfChildProtectionPlan": "protectionplan",
-      "scannedDocuments": [
+  "case_creation_details":{
+    "case_type_id":"PRLAPPS",
+    "event_id":"create-case-privatelaw-bs",
+    "case_data":{
+      "parentalResponsibilityDetails":"parentResponsibility",
+      "childrenKNownToLocalAuthorityTextArea":"socialWorker",
+      "childrenParentsName":"parentsName",
+      "applicants":[
+        {
+          "value":{
+            "firstName":"John",
+            "lastName":"Peters",
+            "previousName":"Winters",
+            "gender":"Male",
+            "dateOfBirth":"02/09/87",
+            "placeOfBirth":"Surrey",
+            "AddressLine1":"Hackney",
+            "PostCode":"w34fgt",
+            "landline":"7876540984",
+            "phoneNumber":"8766540984",
+            "email":"johnnyj@hotmail.uk",
+            "isAtAddressLessThan5Years":null,
+            "addressLivedLessThan5YearsDetails":"Hackney"
+          }
+        },
+        {
+          "value":{
+            "firstName":"Wendy",
+            "lastName":"Chan",
+            "previousName":"Walters",
+            "gender":"Female",
+            "dateOfBirth":"03/09/45",
+            "placeOfBirth":"Colchester",
+            "AddressLine1":"London",
+            "PostCode":"w12ghw",
+            "landline":"7347678354",
+            "phoneNumber":"3476785563",
+            "email":"wendy@hotmail.uk",
+            "isAtAddressLessThan5Years":null,
+            "addressLivedLessThan5YearsDetails":"Baker St"
+          }
+        }
+      ],
+      "briefDetailsOnTheApplication":"briefDetails",
+      "childrenSubjectOfChildProtectionPlan":"protectionplan",
+      "scannedDocuments":[
 
       ],
-      "childrenKNownToLocalAuthority": "Yes",
-      "havePreviousParentingPlan": "parentingplan",
-      "applicants": {
-        "value": {
-          "firstName": "applicant1_firstName",
-          "lastName": "applicant1_lastName"
-        }
-      },
-      "childrenParentsName": "parentsName",
-      "childrenSubjectOfChildProtectionPlan": "protectionplan",
-      "scannedDocuments": [],
-      "childrenKNownToLocalAuthority": "Yes",
-      "prohibitedStepsOrder": "true",
-      "children": [
+      "childrenKNownToLocalAuthority":"Yes",
+      "prohibitedStepsOrder":"true",
+      "havePreviousParentingPlan":"parentingplan",
+      "children":[
         {
-          "value": {
-            "firstName": "firstName",
-            "lastName": "LastName",
-            "dateOfBirth": "02/02/2020",
-            "gender": "Male",
-            "orderAppliedFor": "orderAppliedFor",
-            "applicantsRelationshipToChild": "applicant",
-            "respondentsRelationshipToChild": "respondent"
+          "value":{
+            "firstName":"firstName",
+            "lastName":"LastName",
+            "dateOfBirth":"02/02/2020",
+            "gender":"Male",
+            "orderAppliedFor":"orderAppliedFor",
+            "applicantsRelationshipToChild":"applicant",
+            "respondentsRelationshipToChild":"respondent"
           }
         },
         {
-          "value": {
-            "firstName": "child2firstName",
-            "lastName": "child2LastName",
-            "dateOfBirth": "02/02/2020",
-            "gender": "Male",
-            "orderAppliedFor": "child2orderAppliedFor",
-            "applicantsRelationshipToChild": "applicant",
-            "respondentsRelationshipToChild": "respondent"
+          "value":{
+            "firstName":"child2firstName",
+            "lastName":"child2LastName",
+            "dateOfBirth":"02/02/2020",
+            "gender":"Male",
+            "orderAppliedFor":"child2orderAppliedFor",
+            "applicantsRelationshipToChild":"applicant",
+            "respondentsRelationshipToChild":"respondent"
           }
         },
         {
-          "value": {
-            "firstName": "child3firstName",
-            "lastName": "child3LastName",
-            "dateOfBirth": "02/02/2020",
-            "gender": "Male",
-            "orderAppliedFor": "child3orderAppliedFor",
-            "applicantsRelationshipToChild": "applicant",
-            "respondentsRelationshipToChild": "respondent"
+          "value":{
+            "firstName":"child3firstName",
+            "lastName":"child3LastName",
+            "dateOfBirth":"02/02/2020",
+            "gender":"Male",
+            "orderAppliedFor":"child3orderAppliedFor",
+            "applicantsRelationshipToChild":"applicant",
+            "respondentsRelationshipToChild":"respondent"
           }
         },
         {
-          "value": {
-            "firstName": "child4firstName",
-            "lastName": "child4LastName",
-            "dateOfBirth": "02/02/2020",
-            "gender": "Male",
-            "orderAppliedFor": "child3orderAppliedFor",
-            "applicantsRelationshipToChild": "applicant",
-            "respondentsRelationshipToChild": "respondent"
+          "value":{
+            "firstName":"child4firstName",
+            "lastName":"child4LastName",
+            "dateOfBirth":"02/02/2020",
+            "gender":"Male",
+            "orderAppliedFor":"child3orderAppliedFor",
+            "applicantsRelationshipToChild":"applicant",
+            "respondentsRelationshipToChild":"respondent"
           }
         }
       ],
-      "personWhoLivesWithChild": "living other details",
-      "applicationPermissionRequiredReason": "reason",
-      "childrenOfSameParent": "Yes",
-      "childLiveWith": "Applicant",
-      "childParentsNameCollection": "parentsNameColl",
-      "applicationPermissionRequired": "yes",
-      "childrenOfSameParent": "Yes",
-      "childLiveWith": "Applicant",
-      "specialIssueOrder": "true",
-      "typeOfChildArrangementsOrder": "true",
-      "childParentsNameCollection": "parentsNameColl"
+      "personWhoLivesWithChild":"living other details",
+      "applicationPermissionRequiredReason":"reason",
+      "childrenOfSameParent":"Yes",
+      "childLiveWith":"Applicant",
+      "specialIssueOrder":"true",
+      "childParentsNameCollection":"parentsNameColl",
+      "typeOfChildArrangementsOrder":"true",
+      "applicationPermissionRequired":"yes"
     }
   },
-  "warnings": []
+  "warnings":[
+
+  ]
 }
