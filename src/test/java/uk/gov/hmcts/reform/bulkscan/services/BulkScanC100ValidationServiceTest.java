@@ -74,6 +74,31 @@ class BulkScanC100ValidationServiceTest {
         assertNotEquals(Status.ERRORS, bulkScanValidationResponse.status);
     }
 
+    @Test
+    void testOcrDataListForApplicantAddress() {
+        List<OcrDataField> ocrDataFieldList = new ArrayList<>();
+        OcrDataField applicantOneLivedAtThisAddressForOverFiveYears = new OcrDataField();
+        applicantOneLivedAtThisAddressForOverFiveYears.setName("applicantOneLivedAtThisAddressForOverFiveYears");
+        applicantOneLivedAtThisAddressForOverFiveYears.setValue("No");
+        ocrDataFieldList.add(applicantOneLivedAtThisAddressForOverFiveYears);
+        OcrDataField applicantOneAllAddressesForLastFiveYears = new OcrDataField();
+        applicantOneAllAddressesForLastFiveYears.setName("applicantOneAllAddressesForLastFiveYears");
+        ocrDataFieldList.add(applicantOneAllAddressesForLastFiveYears);
+        OcrDataField applicantTwoLivedAtThisAddressForOverFiveYears = new OcrDataField();
+        applicantTwoLivedAtThisAddressForOverFiveYears.setName("applicantTwoLivedAtThisAddressForOverFiveYears");
+        applicantTwoLivedAtThisAddressForOverFiveYears.setValue("No");
+        ocrDataFieldList.add(applicantTwoLivedAtThisAddressForOverFiveYears);
+        OcrDataField applicantTwoAllAddressesForLastFiveYears = new OcrDataField();
+        applicantTwoAllAddressesForLastFiveYears.setName("applicantTwoAllAddressesForLastFiveYears");
+        ocrDataFieldList.add(applicantTwoAllAddressesForLastFiveYears);
+
+        bulkScanValidationResponse = bulkScanC100ValidationService
+            .validateApplicantAddressFiveYears(ocrDataFieldList,bulkScanValidationResponse);
+        assertNotEquals(Status.ERRORS, bulkScanValidationResponse.status);
+    }
+
+
+
     public List<OcrDataField> getRequestData() {
         List<OcrDataField> fieldList = new ArrayList<>();
         OcrDataField ocrDataFirstNameField = new OcrDataField();

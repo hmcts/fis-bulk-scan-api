@@ -193,7 +193,10 @@ public class BulkScanC100ValidationService {
     private Map<String, String> getOcrDataFieldsMap(List<OcrDataField> ocrDataFields) {
         return null != ocrDataFields ? ocrDataFields
                 .stream()
-                .collect(Collectors.toMap(OcrDataField::getName, OcrDataField::getValue)) : null;
+                .collect(Collectors.toMap(
+                    ocrDataField -> ocrDataField.getName(),
+                    ocrDataField -> ocrDataField.getValue() == null
+                        ? org.apache.commons.lang3.StringUtils.EMPTY : ocrDataField.getValue())) : null;
     }
 
     public BulkScanValidationResponse validateApplicantAddressFiveYears(

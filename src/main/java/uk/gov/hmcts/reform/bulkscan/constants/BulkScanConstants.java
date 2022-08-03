@@ -185,7 +185,7 @@ public final class BulkScanConstants {
         = "applicantTwoLivedAtThisAddressForOverFiveYears";
 
     public static final String APPLICANT_TWO_ALL_ADDRESSES_FOR_FIVE_LAST_YEARS
-        = "applicantOneAllAddressesForLastFiveYears";
+        = "applicantTwoAllAddressesForLastFiveYears";
 
     public static final String APPLICANT_ONE = "Applicant 1";
     public static final String APPLICANT_TWO = "Applicant 2";
