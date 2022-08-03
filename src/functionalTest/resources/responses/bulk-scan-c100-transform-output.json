@@ -8,7 +8,7 @@
       "otherProceedingsDetailsTable":[
         {
           "value":{
-            "previousOrOngoingProceedings":null
+            "previousOrOngoingProceedings": "yes"
           }
         }
       ],
@@ -19,7 +19,7 @@
         }
       },
       "otherProceedingsTable":{
-        "previousOrOngoingProceedings":null
+        "previousOrOngoingProceedings": "yes"
       },
       "briefDetailsOnTheApplication":"briefDetails",
       "scannedDocuments":[
@@ -31,63 +31,63 @@
           }
         }
       ],
-      "children":[
+      "children": [
         {
-          "value":{
-            "firstName":null,
-            "lastName":null,
-            "dateOfBirth":null,
-            "gender":null,
-            "orderAppliedFor":null,
-            "applicantsRelationshipToChild":null,
-            "respondentsRelationshipToChild":null
+          "value": {
+            "firstName": "firstName",
+            "lastName": "LastName",
+            "dateOfBirth": "02/02/2020",
+            "gender": "Male",
+            "orderAppliedFor": "orderAppliedFor",
+            "applicantsRelationshipToChild": "applicant",
+            "respondentsRelationshipToChild": "respondent"
           }
         },
         {
-          "value":{
-            "firstName":null,
-            "lastName":null,
-            "dateOfBirth":null,
-            "gender":null,
-            "orderAppliedFor":null,
-            "applicantsRelationshipToChild":null,
-            "respondentsRelationshipToChild":null
+          "value": {
+            "firstName": "child2firstName",
+            "lastName": "child2LastName",
+            "dateOfBirth": "02/02/2020",
+            "gender": "Male",
+            "orderAppliedFor": "child2orderAppliedFor",
+            "applicantsRelationshipToChild": "applicant",
+            "respondentsRelationshipToChild": "respondent"
           }
         },
         {
-          "value":{
-            "firstName":null,
-            "lastName":null,
-            "dateOfBirth":null,
-            "gender":null,
-            "orderAppliedFor":null,
-            "applicantsRelationshipToChild":null,
-            "respondentsRelationshipToChild":null
+          "value": {
+            "firstName": "child3firstName",
+            "lastName": "child3LastName",
+            "dateOfBirth": "02/02/2020",
+            "gender": "Male",
+            "orderAppliedFor": "child3orderAppliedFor",
+            "applicantsRelationshipToChild": "applicant",
+            "respondentsRelationshipToChild": "respondent"
           }
         },
         {
-          "value":{
-            "firstName":null,
-            "lastName":null,
-            "dateOfBirth":null,
-            "gender":null,
-            "orderAppliedFor":null,
-            "applicantsRelationshipToChild":null,
-            "respondentsRelationshipToChild":null
+          "value": {
+            "firstName": "child4firstName",
+            "lastName": "child4LastName",
+            "dateOfBirth": "02/02/2020",
+            "gender": "Male",
+            "orderAppliedFor": "child3orderAppliedFor",
+            "applicantsRelationshipToChild": "applicant",
+            "respondentsRelationshipToChild": "respondent"
           }
         }
       ],
-      "hearingUrgencyTable":{
-        "isCaseUrgent":null
+      "hearingUrgencyTable": {
+        "isCaseUrgent": "yes"
       },
-      "personWhoLivesWithChild":"living other details",
-      "applicationPermissionRequired":"yes",
-      "habitualResidentINotherState":"yes",
-      "parentalResponsibilityDetails":"parentResponsibility",
-      "familyMediatorMiam":null,
-      "isCaseUrgent":"yes",
-      "typeOfApplicationTable":{
-        "applicationPermissionRequired":null
+      "personWhoLivesWithChild": "living other details",
+      "applicationPermissionRequired": "yes",
+      "habitualResidentINotherState": "yes",
+      "parentalResponsibilityDetails": "parentResponsibility",
+      "familyMediatorMiam": null,
+      "isCaseUrgent": "yes",
+      "typeOfApplicationTable": {
+        "applicationPermissionRequired": "yes"
       },
       "childrenKNownToLocalAuthorityTextArea":"socialWorker",
       "miamExemptionsChecklist": [
@@ -143,29 +143,71 @@
       "applicantAttendedMiam":null,
       "childrenSubjectOfChildProtectionPlan":"protectionplan",
       "miamTable":{
-        "claimingExemptionMiam":null,
+        "claimingExemptionMiam": "yes",
         "familyMediatorMiam":null,
         "applicantAttendedMiam":null
       },
-      "childrenKNownToLocalAuthority":"Yes",
-      "havePreviousParentingPlan":"parentingplan",
-      "allegationsOfHarmOverviewTable":{
-        "allegationsOfHarmDomesticAbuseYesNo":null,
-        "allegationsOfHarmChildAbductionYesNo":null,
-        "allegationsOfHarmChildAbuseYesNo":null,
-        "allegationsOfHarmSubstanceAbuseYesNo":null,
-        "allegationsOfHarmOtherConcernsYesNo":null
+      "childrenKNownToLocalAuthority": "Yes",
+      "allegationsOfHarmOverviewTable": {
+        "allegationsOfHarmDomesticAbuseYesNo": "yes",
+        "allegationsOfHarmChildAbductionYesNo": "yes",
+        "allegationsOfHarmChildAbuseYesNo": "yes",
+        "allegationsOfHarmSubstanceAbuseYesNo": "yes",
+        "allegationsOfHarmOtherConcernsYesNo": "yes"
       },
+      "childrenOfSameParent": "Yes",
+      "childLiveWith": "Applicant",
+      "consentOrder": "yes",
+      "claimingExemptionMiam": "yes",
+      "welshLanguageRequirement": "yes",
+      "childParentsNameCollection": "parentsNameColl",
+      "havePreviousParentingPlan":"parentingplan",
       "applicationPermissionRequiredReason":"reason",
-      "childrenOfSameParent":"Yes",
-      "childLiveWith":"Applicant",
-      "consentOrder":"yes",
-      "claimingExemptionMiam":"yes",
-      "welshLanguageRequirement":"yes",
-      "childParentsNameCollection":"parentsNameColl"
+      "respondents": [
+        {
+          "value": {
+            "firstName": "Robert",
+            "lastName": "Zane",
+            "previousName": null,
+            "gender": "male",
+            "dateOfBirth": "20/02/2002",
+            "isDateOfBirthUnknown": null,
+            "placeOfBirth": "London",
+            "AddressLine1": "123, Topsfield Parade",
+            "PostCode": "N8 8PE",
+            "isAddressUnknown": null,
+            "landline": "+442083332222",
+            "phoneNumber": "+447999444444",
+            "canYouProvidePhoneNumber": null,
+            "email": "test@test.com",
+            "canYouProvideEmailAddress": null,
+            "isAtAddressLessThan5Years": "No",
+            "addressLivedLessThan5YearsDetails": "225, Topsfield Parade, N8 8PE"
+          }
+        },
+        {
+          "value": {
+            "firstName": "Rachel",
+            "lastName": "Brandl",
+            "previousName": null,
+            "gender": "female",
+            "dateOfBirth": "21/02/2002",
+            "isDateOfBirthUnknown": null,
+            "placeOfBirth": "London",
+            "AddressLine1": "124, Topsfield Parade",
+            "PostCode": "N8 8PE",
+            "isAddressUnknown": null,
+            "landline": "+442081112222",
+            "phoneNumber": "+447999666666",
+            "canYouProvidePhoneNumber": null,
+            "email": "test@test.com",
+            "canYouProvideEmailAddress": null,
+            "isAtAddressLessThan5Years": "No",
+            "addressLivedLessThan5YearsDetails": "227, Topsfield Parade, N8 8PE"
+          }
+        }
+      ]
     }
   },
-  "warnings":[
-
-  ]
+  "warnings": []
 }

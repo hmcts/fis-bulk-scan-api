@@ -3,9 +3,15 @@
     "case_type_id": "PRLAPPS",
     "event_id": "create-case-privatelaw-bs",
     "case_data": {
+      "otherProceedingsDetailsTable": [
+        {
+          "value": {
+            "previousOrOngoingProceedings": "yes"
+          }
+        }
+      ],
       "miamOtherGroundsChecklist": "miamOtherGroundsChecklistEnum_Value_9",
       "parentalResponsibilityDetails": "parentResponsibility",
-      "childrenKNownToLocalAuthorityTextArea": "socialWorker",
       "miamPreviousAttendanceChecklist": "miamPreviousAttendanceChecklistEnum_Value_4",
       "miamExemptionsChecklist": [
         "domesticViolence",
@@ -46,6 +52,9 @@
           "lastName": "applicant1_lastName"
         }
       },
+      "otherProceedingsTable": {
+        "previousOrOngoingProceedings": "yes"
+      },
       "ordersApplyingFor":[
         "childArrangementsOrder",
         "prohibitedStepsOrder",
@@ -64,10 +73,10 @@
         "MIAMChildProtectionConcernChecklistEnum_value_1",
         "MIAMChildProtectionConcernChecklistEnum_value_2"
       ],
+      "typeOfChildArrangementsOrder": "true",
       "childrenParentsName": "parentsName",
       "childrenSubjectOfChildProtectionPlan": "protectionplan",
       "scannedDocuments": [],
-      "prohibitedStepsOrder": "true",
       "children": [
         {
           "value": {
@@ -114,14 +123,83 @@
           }
         }
       ],
+      "hearingUrgencyTable": {
+        "isCaseUrgent": "yes"
+      },
       "personWhoLivesWithChild": "living other details",
       "applicationPermissionRequiredReason": "reason",
+      "applicationPermissionRequired": "yes",
+      "habitualResidentINotherState": "yes",
+      "familyMediatorMiam": null,
+      "isCaseUrgent": "yes",
+      "typeOfApplicationTable": {
+        "applicationPermissionRequired": "Yes"
+      },
+      "childrenKNownToLocalAuthorityTextArea": "socialWorker",
+      "previousOrOngoingProceedings": "yes",
+      "applicantAttendedMiam": null,
+      "miamTable": {
+        "claimingExemptionMiam": null,
+        "familyMediatorMiam": null,
+        "applicantAttendedMiam": null
+      },
+      "allegationsOfHarmOverviewTable": {
+        "allegationsOfHarmDomesticAbuseYesNo": "yes",
+        "allegationsOfHarmChildAbductionYesNo": "yes",
+        "allegationsOfHarmChildAbuseYesNo": "yes",
+        "allegationsOfHarmSubstanceAbuseYesNo": "yes",
+        "allegationsOfHarmOtherConcernsYesNo": "yes"
+      },
       "childrenOfSameParent": "Yes",
       "childLiveWith": "Applicant",
+      "consentOrder": "yes",
+      "claimingExemptionMiam": null,
+      "welshLanguageRequirement": "yes",
       "childParentsNameCollection": "parentsNameColl",
-      "applicationPermissionRequired": "yes",
-      "specialIssueOrder": "true",
-      "typeOfChildArrangementsOrder": "true"
+      "respondents": [
+        {
+          "value": {
+            "firstName": "Robert",
+            "lastName": "Zane",
+            "previousName": null,
+            "gender": "male",
+            "dateOfBirth": "20/02/2002",
+            "isDateOfBirthUnknown": null,
+            "placeOfBirth": "London",
+            "AddressLine1": "123, Topsfield Parade",
+            "PostCode": "N8 8PE",
+            "isAddressUnknown": null,
+            "landline": "+442083332222",
+            "phoneNumber": "+447999444444",
+            "canYouProvidePhoneNumber": null,
+            "email": "test@test.com",
+            "canYouProvideEmailAddress": null,
+            "isAtAddressLessThan5Years": "No",
+            "addressLivedLessThan5YearsDetails": "225, Topsfield Parade, N8 8PE"
+          }
+        },
+        {
+          "value": {
+            "firstName": "Rachel",
+            "lastName": "Brandl",
+            "previousName": null,
+            "gender": "female",
+            "dateOfBirth": "21/02/2002",
+            "isDateOfBirthUnknown": null,
+            "placeOfBirth": "London",
+            "AddressLine1": "124, Topsfield Parade",
+            "PostCode": "N8 8PE",
+            "isAddressUnknown": null,
+            "landline": "+442081112222",
+            "phoneNumber": "+447999666666",
+            "canYouProvidePhoneNumber": null,
+            "email": "test@test.com",
+            "canYouProvideEmailAddress": null,
+            "isAtAddressLessThan5Years": "No",
+            "addressLivedLessThan5YearsDetails": "227, Topsfield Parade, N8 8PE"
+          }
+        }
+      ]
     }
   },
   "warnings": []

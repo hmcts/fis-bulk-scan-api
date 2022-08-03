@@ -12,12 +12,9 @@ uk:
                 value:
                   firstName: applicant1_firstName
                   lastName: applicant1_lastName
-              orderAppliedFor: childArrangement_order
               miamPreviousAttendanceChecklist: NoMIAM_PreviousAttendenceReason
               miamOtherGroundsChecklist: NoMIAM_otherExceptions
               typeOfChildArrangementsOrder: childArrangement_order
-              prohibitedStepsOrder: prohibitedSteps_order
-              specialIssueOrder: specialIssue_order
               children:
                 - value:
                     firstName: child1_firstName
