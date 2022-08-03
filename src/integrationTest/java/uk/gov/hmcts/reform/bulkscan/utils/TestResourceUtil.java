@@ -1,16 +1,13 @@
 package uk.gov.hmcts.reform.bulkscan.utils;
 
-import org.springframework.util.ResourceUtils;
-
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import org.springframework.util.ResourceUtils;
 
 public final class TestResourceUtil {
 
-    private TestResourceUtil() {
-
-    }
+    private TestResourceUtil() {}
 
     public static String readFileFrom(final String resourcePath) throws IOException {
         return resourceAsString(resourcePath);

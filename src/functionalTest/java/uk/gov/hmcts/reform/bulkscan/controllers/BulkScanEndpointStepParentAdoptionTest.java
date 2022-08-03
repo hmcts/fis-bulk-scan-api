@@ -1,5 +1,7 @@
 package uk.gov.hmcts.reform.bulkscan.controllers;
 
+import static uk.gov.hmcts.reform.bulkscan.util.TestResourceUtil.readFileFrom;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import io.restassured.RestAssured;
@@ -16,8 +18,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import static uk.gov.hmcts.reform.bulkscan.util.TestResourceUtil.readFileFrom;
 
 @Slf4j
 @SpringBootTest
@@ -39,12 +39,10 @@ public class BulkScanEndpointStepParentAdoptionTest {
             "classpath:responses/bulk-scan-a58-step-parent-transform-output.json";
 
     private final String targetInstance =
-        StringUtils.defaultIfBlank(
-            System.getenv("TEST_URL"),
-            "http://localhost:8090"
-        );
+            StringUtils.defaultIfBlank(System.getenv("TEST_URL"), "http://localhost:8090");
 
-    private final RequestSpecification request = RestAssured.given().relaxedHTTPSValidation().baseUri(targetInstance);
+    private final RequestSpecification request =
+            RestAssured.given().relaxedHTTPSValidation().baseUri(targetInstance);
 
     @Before
     public void setUp() {
@@ -53,17 +51,16 @@ public class BulkScanEndpointStepParentAdoptionTest {
 
     @Test
     public void shouldValidate58StepParentBulkScanRequest() throws Exception {
-        String bulkScanValidationRequest =
-                readFileFrom(A58_STEP_PARENT_VALIDATION_INPUT_PATH);
+        String bulkScanValidationRequest = readFileFrom(A58_STEP_PARENT_VALIDATION_INPUT_PATH);
 
-        String bulkScanValidationResponse =
-                readFileFrom(A58_STEP_PARENT_VALIDATION_OUTPUT_PATH);
+        String bulkScanValidationResponse = readFileFrom(A58_STEP_PARENT_VALIDATION_OUTPUT_PATH);
 
-        Response response = request.header(AUTH_HEADER, AUTH_HEADER)
-                .body(bulkScanValidationRequest)
-                .when()
-                .contentType("application/json")
-                .post("forms/A58/validate-ocr");
+        Response response =
+                request.header(AUTH_HEADER, AUTH_HEADER)
+                        .body(bulkScanValidationRequest)
+                        .when()
+                        .contentType("application/json")
+                        .post("forms/A58/validate-ocr");
 
         response.then().assertThat().statusCode(HttpStatus.OK.value());
 
@@ -72,17 +69,16 @@ public class BulkScanEndpointStepParentAdoptionTest {
 
     @Test
     public void shouldTransformA58StepParentBulkScanRequest() throws Exception {
-        String bulkScanTransformRequest =
-                readFileFrom(A58_STEP_PARENT_TRANSFORM_INPUT_PATH);
+        String bulkScanTransformRequest = readFileFrom(A58_STEP_PARENT_TRANSFORM_INPUT_PATH);
 
-        String bulkScanTransformResponse =
-                readFileFrom(A58_STEP_PARENT_TRANSFORM_OUTPUT_PATH);
+        String bulkScanTransformResponse = readFileFrom(A58_STEP_PARENT_TRANSFORM_OUTPUT_PATH);
 
-        Response response = request.header(AUTH_HEADER, AUTH_HEADER)
-                .body(bulkScanTransformRequest)
-                .when()
-                .contentType("application/json")
-                .post("/transform-exception-record");
+        Response response =
+                request.header(AUTH_HEADER, AUTH_HEADER)
+                        .body(bulkScanTransformRequest)
+                        .when()
+                        .contentType("application/json")
+                        .post("/transform-exception-record");
 
         response.then().assertThat().statusCode(HttpStatus.OK.value());
 

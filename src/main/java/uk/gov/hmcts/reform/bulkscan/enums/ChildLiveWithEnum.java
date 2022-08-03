@@ -6,7 +6,6 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum ChildLiveWithEnum {
-
     APPLICANT("Applicant"),
     RESPONDENT("Respondent"),
     OTHERPEOPLE("OtherPeople");

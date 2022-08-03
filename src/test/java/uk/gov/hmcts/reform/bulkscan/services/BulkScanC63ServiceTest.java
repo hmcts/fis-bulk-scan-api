@@ -1,5 +1,14 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.Mockito.mock;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DATE_FORMAT_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_ERROR_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MISSING_FIELD_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PHONE_NUMBER_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.POST_CODE_MESSAGE;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -15,67 +24,90 @@ import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.Status;
 import uk.gov.hmcts.reform.bulkscan.utils.TestDataUtil;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.mock;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DATE_FORMAT_MESSAGE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_ERROR_MESSAGE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MISSING_FIELD_MESSAGE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PHONE_NUMBER_MESSAGE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.POST_CODE_MESSAGE;
-
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @ActiveProfiles("test")
 class BulkScanC63ServiceTest {
 
-    @Spy
-    @Autowired
-    BulkScanC63Service bulkScanValidationService;
+    @Spy @Autowired BulkScanC63Service bulkScanValidationService;
 
     @Test
     void testC63Success() {
-        BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-                TestDataUtil.getC63Data()).build();
-        BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
+        BulkScanValidationRequest bulkScanValidationRequest =
+                BulkScanValidationRequest.builder()
+                        .ocrdatafields(TestDataUtil.getC63Data())
+                        .build();
+        BulkScanValidationResponse res =
+                bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.SUCCESS, res.status);
     }
 
     @Test
     void testC63MandatoryErrorWhileDoingValidation() {
-        BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-                TestDataUtil.getA60OrC63orA58ErrorData()).build();
-        BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
+        BulkScanValidationRequest bulkScanValidationRequest =
+                BulkScanValidationRequest.builder()
+                        .ocrdatafields(TestDataUtil.getA60OrC63orA58ErrorData())
+                        .build();
+        BulkScanValidationResponse res =
+                bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
-        assertTrue(res.getErrors().items.contains(String.format(MANDATORY_ERROR_MESSAGE, "applicant1_firstName")));
+        assertTrue(
+                res.getErrors()
+                        .items
+                        .contains(String.format(MANDATORY_ERROR_MESSAGE, "applicant1_firstName")));
     }
 
     @Test
     void testC63DateErrorWhileDoingValidation() {
-        BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-                TestDataUtil.getA60OrC63orA58ErrorData()).build();
-        BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
+        BulkScanValidationRequest bulkScanValidationRequest =
+                BulkScanValidationRequest.builder()
+                        .ocrdatafields(TestDataUtil.getA60OrC63orA58ErrorData())
+                        .build();
+        BulkScanValidationResponse res =
+                bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
-        assertTrue(res.getErrors().items.contains(String.format(DATE_FORMAT_MESSAGE, "applicant1_dateOfBirth")));
+        assertTrue(
+                res.getErrors()
+                        .items
+                        .contains(String.format(DATE_FORMAT_MESSAGE, "applicant1_dateOfBirth")));
     }
 
     @Test
     void testC63FieldMissingErrorWhileDoingValidation() {
-        BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-                TestDataUtil.getA60OrC63orA58ErrorData()).build();
-        BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
+        BulkScanValidationRequest bulkScanValidationRequest =
+                BulkScanValidationRequest.builder()
+                        .ocrdatafields(TestDataUtil.getA60OrC63orA58ErrorData())
+                        .build();
+        BulkScanValidationResponse res =
+                bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
-        assertTrue(res.getErrors().items.contains(String.format(MISSING_FIELD_MESSAGE, "applicant1_lastName")));
+        assertTrue(
+                res.getErrors()
+                        .items
+                        .contains(String.format(MISSING_FIELD_MESSAGE, "applicant1_lastName")));
     }
 
     @Test
     void testC63OptionalFieldsWarningsWhileDoingValidation() {
-        BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
-                TestDataUtil.getA60OrC63orA58ErrorData()).build();
-        BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
-        assertTrue(res.getWarnings().items.contains(String.format(DATE_FORMAT_MESSAGE, "applicant2_dateOfBirth")));
-        assertTrue(res.getWarnings().items.contains(String.format(POST_CODE_MESSAGE, "applicant2_postCode")));
-        assertTrue(res.getWarnings().items.contains(String.format(PHONE_NUMBER_MESSAGE, "applicant2_telephoneNumber")));
+        BulkScanValidationRequest bulkScanValidationRequest =
+                BulkScanValidationRequest.builder()
+                        .ocrdatafields(TestDataUtil.getA60OrC63orA58ErrorData())
+                        .build();
+        BulkScanValidationResponse res =
+                bulkScanValidationService.validate(bulkScanValidationRequest);
+        assertTrue(
+                res.getWarnings()
+                        .items
+                        .contains(String.format(DATE_FORMAT_MESSAGE, "applicant2_dateOfBirth")));
+        assertTrue(
+                res.getWarnings()
+                        .items
+                        .contains(String.format(POST_CODE_MESSAGE, "applicant2_postCode")));
+        assertTrue(
+                res.getWarnings()
+                        .items
+                        .contains(
+                                String.format(PHONE_NUMBER_MESSAGE, "applicant2_telephoneNumber")));
     }
 
     @Test
@@ -84,5 +116,4 @@ class BulkScanC63ServiceTest {
                 bulkScanValidationService.transform(mock(BulkScanTransformationRequest.class));
         Assertions.assertNull(bulkScanTransformationResponse);
     }
-
 }

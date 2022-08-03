@@ -1,9 +1,9 @@
 package uk.gov.hmcts.reform.bulkscan.group.validation.format;
 
-import lombok.Data;
-
 import static uk.gov.hmcts.reform.bulkscan.group.constants.BulkScanGroupConstants.PHONE_NUMBER_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.group.constants.BulkScanGroupConstants.VALID_MESSAGE;
+
+import lombok.Data;
 
 @Data
 public class PhoneNumberFormatValidator implements FormatValidator {

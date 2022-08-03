@@ -1,11 +1,11 @@
 package uk.gov.hmcts.reform.bulkscan.utils;
 
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
-
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(SpringExtension.class)
 class BulkValidationUtilTest {
@@ -16,13 +16,13 @@ class BulkValidationUtilTest {
 
     @Test
     void testValidDateFormat() {
-        boolean dateValid = BulkScanValidationUtil.isDateValid("","2/02/2022", dateFormat);
+        boolean dateValid = BulkScanValidationUtil.isDateValid("", "2/02/2022", dateFormat);
         assertTrue(dateValid);
     }
 
     @Test
     void testInvalidDateFormat() {
-        boolean dateValid = BulkScanValidationUtil.isDateValid("","invalidformat", dateFormat);
+        boolean dateValid = BulkScanValidationUtil.isDateValid("", "invalidformat", dateFormat);
         assertFalse(dateValid);
     }
 

@@ -9,8 +9,12 @@ import org.springframework.context.annotation.ComponentScan;
 @EnableFeignClients(basePackages = {"uk.gov.hmcts.reform.bulkscan.*"})
 @SpringBootConfiguration
 @EnableAutoConfiguration
-@ComponentScan(basePackages = {  "uk.gov.hmcts.reform.bulkscan", "uk.gov.hmcts.reform.bulkscan.services",
-    "uk.gov.hmcts.reform.bulkscan.config"})
+@ComponentScan(
+        basePackages = {
+            "uk.gov.hmcts.reform.bulkscan",
+            "uk.gov.hmcts.reform.bulkscan.services",
+            "uk.gov.hmcts.reform.bulkscan.config"
+        })
 @SuppressWarnings("HideUtilityClassConstructor")
 public class Application {
 

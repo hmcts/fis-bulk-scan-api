@@ -1,10 +1,5 @@
 package uk.gov.hmcts.reform.bulkscan.utils;
 
-import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
-
-import java.util.ArrayList;
-import java.util.List;
-
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.NOMIAM_CHILDPROTECTIONCONCERNS_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.NOMIAM_DOMESTICVIOLENCE_FIELD;
@@ -17,12 +12,14 @@ import static uk.gov.hmcts.reform.bulkscan.utils.Constants.TICK_BOX_NO;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.TICK_BOX_TRUE;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.TICK_BOX_YES;
 
+import java.util.ArrayList;
+import java.util.List;
+import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
+
 public final class TestDataC100Util {
     public static final String POST_CODE = "TW3 1NN";
 
-    private TestDataC100Util() {
-
-    }
+    private TestDataC100Util() {}
 
     public static List<OcrDataField> getData() {
         List<OcrDataField> fieldList = new ArrayList<>();
@@ -51,8 +48,8 @@ public final class TestDataC100Util {
         fieldList.add(ocrDataPreviousOrOngoingProceedingField);
 
         OcrDataField ocrDataExistingCaseEmergencyProtectionField = new OcrDataField();
-        ocrDataExistingCaseEmergencyProtectionField
-                .setName("existingCase_onEmergencyProtection_Care_or_supervisioNorder");
+        ocrDataExistingCaseEmergencyProtectionField.setName(
+                "existingCase_onEmergencyProtection_Care_or_supervisioNorder");
         ocrDataExistingCaseEmergencyProtectionField.setValue(TICK_BOX_NO);
         fieldList.add(ocrDataExistingCaseEmergencyProtectionField);
 
@@ -79,7 +76,7 @@ public final class TestDataC100Util {
         return fieldList;
     }
 
-    //applicant warning
+    // applicant warning
     public static List<OcrDataField> getAllNamesRelationSuccessData() {
         List<OcrDataField> fieldList = new ArrayList<>();
 
@@ -89,8 +86,8 @@ public final class TestDataC100Util {
         fieldList.add(ocrDataPreviousOrOngoingProceedingField);
 
         OcrDataField ocrDataExistingCaseEmergencyProtectionField = new OcrDataField();
-        ocrDataExistingCaseEmergencyProtectionField
-            .setName("existingCase_onEmergencyProtection_Care_or_supervisioNorder");
+        ocrDataExistingCaseEmergencyProtectionField.setName(
+                "existingCase_onEmergencyProtection_Care_or_supervisioNorder");
         ocrDataExistingCaseEmergencyProtectionField.setValue(TICK_BOX_NO);
         fieldList.add(ocrDataExistingCaseEmergencyProtectionField);
 
@@ -470,7 +467,6 @@ public final class TestDataC100Util {
         ocrNoMiamotherReasonsField.setValue(TICK_BOX_FALSE);
         fieldList.add(ocrNoMiamotherReasonsField);
 
-
         return fieldList;
     }
 
@@ -727,13 +723,14 @@ public final class TestDataC100Util {
         fieldList.add(ocrrespondent1EmailAddressDontKnow);
 
         OcrDataField ocrRespondent1LivedAtThisAddressForOverFiveYears = new OcrDataField();
-        ocrRespondent1LivedAtThisAddressForOverFiveYears
-                .setName("respondent1LivedAtThisAddressForOverFiveYears");
+        ocrRespondent1LivedAtThisAddressForOverFiveYears.setName(
+                "respondent1LivedAtThisAddressForOverFiveYears");
         ocrRespondent1LivedAtThisAddressForOverFiveYears.setValue("No");
         fieldList.add(ocrRespondent1LivedAtThisAddressForOverFiveYears);
 
         OcrDataField ocrrespondent1AllAddressesForLastFiveYears = new OcrDataField();
-        ocrrespondent1AllAddressesForLastFiveYears.setName("respondent1AllAddressesForLastFiveYears");
+        ocrrespondent1AllAddressesForLastFiveYears.setName(
+                "respondent1AllAddressesForLastFiveYears");
         ocrrespondent1AllAddressesForLastFiveYears.setValue("225, Topsfield Parade, N8 8PE");
         fieldList.add(ocrrespondent1AllAddressesForLastFiveYears);
 
@@ -819,13 +816,14 @@ public final class TestDataC100Util {
         fieldList.add(ocrrespondent2EmailAddressDontKnow);
 
         OcrDataField ocrRespondent2LivedAtThisAddressForOverFiveYears = new OcrDataField();
-        ocrRespondent2LivedAtThisAddressForOverFiveYears
-                .setName("respondent2LivedAtThisAddressForOverFiveYears");
+        ocrRespondent2LivedAtThisAddressForOverFiveYears.setName(
+                "respondent2LivedAtThisAddressForOverFiveYears");
         ocrRespondent2LivedAtThisAddressForOverFiveYears.setValue("No");
         fieldList.add(ocrRespondent2LivedAtThisAddressForOverFiveYears);
 
         OcrDataField ocrrespondent2AllAddressesForLastFiveYears = new OcrDataField();
-        ocrrespondent2AllAddressesForLastFiveYears.setName("respondent2AllAddressesForLastFiveYears");
+        ocrrespondent2AllAddressesForLastFiveYears.setName(
+                "respondent2AllAddressesForLastFiveYears");
         ocrrespondent2AllAddressesForLastFiveYears.setValue("227, Topsfield Parade, N8 8PE");
         fieldList.add(ocrrespondent2AllAddressesForLastFiveYears);
 

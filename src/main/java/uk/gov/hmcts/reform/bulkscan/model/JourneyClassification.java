@@ -4,11 +4,9 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 public enum JourneyClassification {
     @JsonProperty("exception")
-        exception,
+    exception,
     @JsonProperty("new_application")
-        newApplication,
+    newApplication,
     @JsonProperty("supplementary_evidence")
-        supplementaryEvidence;
-
+    supplementaryEvidence;
 }
-

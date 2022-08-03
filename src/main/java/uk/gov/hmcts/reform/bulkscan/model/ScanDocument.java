@@ -10,8 +10,10 @@ public class ScanDocument {
 
     @JsonProperty("document_url")
     public String url;
+
     @JsonProperty("document_filename")
     public String filename;
+
     @JsonProperty("document_binary_url")
     public String binaryUrl;
 }

@@ -18,28 +18,33 @@ The project uses [Gradle](https://gradle.org) as a build tool. It already contai
 To build the project execute the following command:
 
 ```bash
-  ./gradlew build
+./gradlew build
 ```
+
+To Apply formating code or resolve checkSytle issues execute the following command:
+
+```bash
+./gradlew spotlessApply
 
 ### Running the application
 
 Create the image of the application by executing the following command:
 
 ```bash
-  ./gradlew assemble
+./gradlew assemble
 ```
 
 Create docker image:
 
 ```bash
-  docker-compose build
+docker-compose build
 ```
 
 Run the distribution (created in `build/install/fis-bulk-scan-api` directory)
 by executing the following command:
 
 ```bash
-  docker-compose up
+docker-compose up
 ```
 
 This will start the API container exposing the application's port
@@ -48,13 +53,13 @@ This will start the API container exposing the application's port
 In order to test if the application is up, you can call its health endpoint:
 
 ```bash
-  curl http://localhost:8090/health
+curl http://localhost:8090/health
 ```
 
 You should get a response similar to this:
 
 ```
-  {"status":"UP","diskSpace":{"status":"UP","total":249644974080,"free":137188298752,"threshold":10485760}}
+{"status":"UP","diskSpace":{"status":"UP","total":249644974080,"free":137188298752,"threshold":10485760}}
 ```
 
 ### Alternative script to run application
@@ -93,11 +98,10 @@ Hystrix offers much more than Circuit Breaker pattern implementation or command 
 Here are some other functionalities it provides:
  * [Separate, per-dependency thread pools](https://github.com/Netflix/Hystrix/wiki/How-it-Works#isolation)
  * [Semaphores](https://github.com/Netflix/Hystrix/wiki/How-it-Works#semaphores), which you can use to limit
- the number of concurrent calls to any given dependency
+the number of concurrent calls to any given dependency
  * [Request caching](https://github.com/Netflix/Hystrix/wiki/How-it-Works#request-caching), allowing
- different code paths to execute Hystrix Commands without worrying about duplicating work
+different code paths to execute Hystrix Commands without worrying about duplicating work
 
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
-

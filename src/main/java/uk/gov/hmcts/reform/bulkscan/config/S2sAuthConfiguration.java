@@ -19,10 +19,10 @@ public class S2sAuthConfiguration {
 
     @Bean
     public AuthTokenGenerator serviceAuthTokenGenerator(
-        @Value("${idam.s2s-auth.secret}") final String secret,
-        @Value("${idam.s2s-auth.microservice}") final String microService,
-        final ServiceAuthorisationApi serviceAuthorisationApi
-    ) {
-        return AuthTokenGeneratorFactory.createDefaultGenerator(secret, microService, serviceAuthorisationApi);
+            @Value("${idam.s2s-auth.secret}") final String secret,
+            @Value("${idam.s2s-auth.microservice}") final String microService,
+            final ServiceAuthorisationApi serviceAuthorisationApi) {
+        return AuthTokenGeneratorFactory.createDefaultGenerator(
+                secret, microService, serviceAuthorisationApi);
     }
 }

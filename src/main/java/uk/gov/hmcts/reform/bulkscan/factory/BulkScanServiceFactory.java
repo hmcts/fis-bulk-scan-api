@@ -1,13 +1,12 @@
 package uk.gov.hmcts.reform.bulkscan.factory;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.bulkscan.model.FormType;
 import uk.gov.hmcts.reform.bulkscan.services.BulkScanService;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 @Service
 public final class BulkScanServiceFactory {
@@ -22,7 +21,8 @@ public final class BulkScanServiceFactory {
     }
 
     public static BulkScanService getService(FormType caseType) {
-        if (caseType.equals(FormType.A58_STEP_PARENT) || caseType.equals(FormType.A58_RELINQUISHED_ADOPTION)) {
+        if (caseType.equals(FormType.A58_STEP_PARENT)
+                || caseType.equals(FormType.A58_RELINQUISHED_ADOPTION)) {
             return bulkScanServiceCache.get(FormType.A58);
         }
 

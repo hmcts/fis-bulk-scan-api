@@ -6,7 +6,6 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum RelationToChildEnum {
-
     FATHER("Father"),
     MOTHER("Mother"),
     CIVIL("Civil");

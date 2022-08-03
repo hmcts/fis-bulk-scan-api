@@ -20,16 +20,16 @@ public class HttpClientConfiguration {
 
     private CloseableHttpClient getHttpClient() {
         int timeout = 10000;
-        RequestConfig config = RequestConfig.custom()
-            .setConnectTimeout(timeout)
-            .setConnectionRequestTimeout(timeout)
-            .setSocketTimeout(timeout)
-            .build();
+        RequestConfig config =
+                RequestConfig.custom()
+                        .setConnectTimeout(timeout)
+                        .setConnectionRequestTimeout(timeout)
+                        .setSocketTimeout(timeout)
+                        .build();
 
-        return HttpClientBuilder
-            .create()
-            .useSystemProperties()
-            .setDefaultRequestConfig(config)
-            .build();
+        return HttpClientBuilder.create()
+                .useSystemProperties()
+                .setDefaultRequestConfig(config)
+                .build();
     }
 }

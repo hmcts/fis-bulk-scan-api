@@ -1,14 +1,11 @@
 package uk.gov.hmcts.reform.bulkscan.utils;
 
-import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
-import uk.gov.hmcts.reform.bulkscan.model.ScanDocument;
-import uk.gov.hmcts.reform.bulkscan.model.ScannedDocuments;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-
+import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
+import uk.gov.hmcts.reform.bulkscan.model.ScanDocument;
+import uk.gov.hmcts.reform.bulkscan.model.ScannedDocuments;
 
 public final class TestDataUtil {
 
@@ -18,9 +15,7 @@ public final class TestDataUtil {
     public static final String PHONE_NUMBER = "+447405878672";
     public static final String POST_CODE = "TW3 1NN";
 
-    private TestDataUtil() {
-
-    }
+    private TestDataUtil() {}
 
     public static List<OcrDataField> getData() {
         List<OcrDataField> fieldList = new ArrayList<>();
@@ -75,7 +70,8 @@ public final class TestDataUtil {
         fieldList.add(ocrDateOtherCourtCaseDateField);
 
         OcrDataField ocrDateAuthorisedFamilyMediatorSignedDateField = new OcrDataField();
-        ocrDateAuthorisedFamilyMediatorSignedDateField.setName("authorised_family_mediator_signed_date");
+        ocrDateAuthorisedFamilyMediatorSignedDateField.setName(
+                "authorised_family_mediator_signed_date");
         ocrDateAuthorisedFamilyMediatorSignedDateField.setValue("2/02/2022");
         fieldList.add(ocrDateAuthorisedFamilyMediatorSignedDateField);
 
@@ -93,7 +89,6 @@ public final class TestDataUtil {
         ocrAddressField.setName("appellant_address");
         ocrAddressField.setValue("123 test street, London");
         fieldList.add(ocrAddressField);
-
 
         return fieldList;
     }
@@ -119,9 +114,12 @@ public final class TestDataUtil {
         ocrNumericField.setName("appellant_case_number");
         ocrNumericField.setValue("1311231231");
 
-        return Arrays.asList(ocrDataAddressField, ocrDataFirstNameField,
-                             ocrDataEmergencyProtectionOrder, ocrDataLastNameField, ocrNumericField
-        );
+        return Arrays.asList(
+                ocrDataAddressField,
+                ocrDataFirstNameField,
+                ocrDataEmergencyProtectionOrder,
+                ocrDataLastNameField,
+                ocrNumericField);
     }
 
     public static List<OcrDataField> getDateErrorData() {
@@ -158,7 +156,8 @@ public final class TestDataUtil {
         ocrDataOtherCourtCaseDateField.setValue("testdate");
 
         OcrDataField ocrDataAuthorisedFamilyMediatorSignedDateField = new OcrDataField();
-        ocrDataAuthorisedFamilyMediatorSignedDateField.setName("authorised_family_mediator_signed_date");
+        ocrDataAuthorisedFamilyMediatorSignedDateField.setName(
+                "authorised_family_mediator_signed_date");
         ocrDataAuthorisedFamilyMediatorSignedDateField.setValue("testdate");
 
         OcrDataField ocrDataAddressField = new OcrDataField();
@@ -169,14 +168,18 @@ public final class TestDataUtil {
         ocrNumericField.setName("appellant_case_number");
         ocrNumericField.setValue("1311231231");
 
-
-        return Arrays.asList(ocrDataAddressField, ocrDataFirstNameField, ocrDataLastNameField,
-                             ocrDataChildFirstNameField, ocrDataChildLastNameField,
-                             ocrDataAppellantChildRelationshipField,
-                             ocrDataEmergencyProtectionOrderField,
-                             ocrDataDateField, ocrDataOtherCourtCaseDateField,
-                             ocrDataAuthorisedFamilyMediatorSignedDateField, ocrNumericField
-        );
+        return Arrays.asList(
+                ocrDataAddressField,
+                ocrDataFirstNameField,
+                ocrDataLastNameField,
+                ocrDataChildFirstNameField,
+                ocrDataChildLastNameField,
+                ocrDataAppellantChildRelationshipField,
+                ocrDataEmergencyProtectionOrderField,
+                ocrDataDateField,
+                ocrDataOtherCourtCaseDateField,
+                ocrDataAuthorisedFamilyMediatorSignedDateField,
+                ocrNumericField);
     }
 
     public static List<OcrDataField> getEmailErrorData() {
@@ -220,12 +223,17 @@ public final class TestDataUtil {
         ocrSolicitorFaxNumberField.setName("solicitor_fax_number");
         ocrSolicitorFaxNumberField.setValue("131123");
 
-        return Arrays.asList(ocrDataAddressField, ocrDataFirstNameField, ocrDataLastNameField,
-                             ocrDataChildFirstNameField, ocrDataChildLastNameField,
-                             ocrDataAppellantChildRelationshipField, ocrDataEmergencyProtectionOrderField,
-                             ocrDataEmailField,
-                             ocrNumericField, ocrSolicitorFaxNumberField
-        );
+        return Arrays.asList(
+                ocrDataAddressField,
+                ocrDataFirstNameField,
+                ocrDataLastNameField,
+                ocrDataChildFirstNameField,
+                ocrDataChildLastNameField,
+                ocrDataAppellantChildRelationshipField,
+                ocrDataEmergencyProtectionOrderField,
+                ocrDataEmailField,
+                ocrNumericField,
+                ocrSolicitorFaxNumberField);
     }
 
     public static List<OcrDataField> getNumericErrorData() {
@@ -241,16 +249,13 @@ public final class TestDataUtil {
         ocrNumericField.setName("case_no");
         ocrNumericField.setValue("should_be_numeric");
 
-        return Arrays.asList(ocrDataFirstNameField, ocrDataLastNameField,
-                             ocrNumericField
-        );
+        return Arrays.asList(ocrDataFirstNameField, ocrDataLastNameField, ocrNumericField);
     }
 
     public static List<OcrDataField> getFirstNameData() {
         OcrDataField ocrDataFirstNameField = new OcrDataField();
         ocrDataFirstNameField.setName("appellant_firstName");
         ocrDataFirstNameField.setValue(FIRST_NAME);
-
 
         OcrDataField ocrDataAddressField = new OcrDataField();
         ocrDataAddressField.setName("appellant_address");
@@ -260,9 +265,7 @@ public final class TestDataUtil {
         ocrNumericField.setName("appellant_case_number");
         ocrNumericField.setValue("1311231231");
 
-        return Arrays.asList(ocrDataAddressField, ocrDataFirstNameField,
-                             ocrNumericField
-        );
+        return Arrays.asList(ocrDataAddressField, ocrDataFirstNameField, ocrNumericField);
     }
 
     public static List<OcrDataField> getA60OrC63orA58Data() {
@@ -592,7 +595,6 @@ public final class TestDataUtil {
         return fieldList;
     }
 
-
     public static List<OcrDataField> getA60OrC63orA58ErrorData() {
         List<OcrDataField> fieldList = new ArrayList<>();
         OcrDataField ocrDataFirstNameField = new OcrDataField();
@@ -842,7 +844,6 @@ public final class TestDataUtil {
         ocrMobileNumberField.setValue("+447405878672");
         fieldList.add(ocrMobileNumberField);
 
-
         return fieldList;
     }
 
@@ -863,7 +864,6 @@ public final class TestDataUtil {
         ocrPostCodeField.setName("applicant1_placeOfBirth");
         ocrPostCodeField.setValue("Place of Birth");
         fieldList.add(ocrPostCodeField);
-
 
         return fieldList;
     }
@@ -947,7 +947,6 @@ public final class TestDataUtil {
         ocrDataLastNameField.setName("applicant1_lastName");
         ocrDataLastNameField.setValue("LastName");
         fieldList.add(ocrDataLastNameField);
-
 
         OcrDataField ocrContactNumberField = new OcrDataField();
         ocrContactNumberField.setName("applicant1_telephoneNumber");
@@ -1074,21 +1073,21 @@ public final class TestDataUtil {
 
     public static List<ScannedDocuments> getScannedDocumentsList() {
         return List.of(
-            ScannedDocuments.builder()
-                .scanDocument(ScanDocument.builder()
-                                  .url("url")
-                                  .binaryUrl("binary_url")
-                                  .filename("filename")
-                                  .build())
-                .build(),
-            ScannedDocuments.builder()
-                .scanDocument(ScanDocument.builder()
-                                  .url("url1")
-                                  .binaryUrl("binary_url1")
-                                  .filename("filename1")
-                                  .build())
-                .build()
-        );
+                ScannedDocuments.builder()
+                        .scanDocument(
+                                ScanDocument.builder()
+                                        .url("url")
+                                        .binaryUrl("binary_url")
+                                        .filename("filename")
+                                        .build())
+                        .build(),
+                ScannedDocuments.builder()
+                        .scanDocument(
+                                ScanDocument.builder()
+                                        .url("url1")
+                                        .binaryUrl("binary_url1")
+                                        .filename("filename1")
+                                        .build())
+                        .build());
     }
-
 }

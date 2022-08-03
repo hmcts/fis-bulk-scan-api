@@ -1,27 +1,5 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-import uk.gov.hmcts.reform.bulkscan.config.BulkScanFormValidationConfigManager;
-import uk.gov.hmcts.reform.bulkscan.config.BulkScanTransformConfigManager;
-import uk.gov.hmcts.reform.bulkscan.group.handler.BulkScanGroupHandler;
-import uk.gov.hmcts.reform.bulkscan.group.util.BulkScanGroupValidatorUtil;
-import uk.gov.hmcts.reform.bulkscan.group.validation.enums.MessageTypeEnum;
-import uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper;
-import uk.gov.hmcts.reform.bulkscan.helper.BulkScanValidationHelper;
-import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
-import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
-import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
-import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
-import uk.gov.hmcts.reform.bulkscan.model.CaseCreationDetails;
-import uk.gov.hmcts.reform.bulkscan.model.Errors;
-import uk.gov.hmcts.reform.bulkscan.model.FormType;
-import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 import static com.microsoft.applicationinsights.core.dependencies.apachecommons.lang3.StringUtils.isNotEmpty;
 import static java.util.Objects.nonNull;
 import static org.apache.commons.lang3.BooleanUtils.FALSE;
@@ -55,6 +33,27 @@ import static uk.gov.hmcts.reform.bulkscan.model.Status.ERRORS;
 import static uk.gov.hmcts.reform.bulkscan.utils.BulkScanValidationUtil.flattenLists;
 import static uk.gov.hmcts.reform.bulkscan.utils.BulkScanValidationUtil.notNull;
 
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import uk.gov.hmcts.reform.bulkscan.config.BulkScanFormValidationConfigManager;
+import uk.gov.hmcts.reform.bulkscan.config.BulkScanTransformConfigManager;
+import uk.gov.hmcts.reform.bulkscan.group.handler.BulkScanGroupHandler;
+import uk.gov.hmcts.reform.bulkscan.group.util.BulkScanGroupValidatorUtil;
+import uk.gov.hmcts.reform.bulkscan.group.validation.enums.MessageTypeEnum;
+import uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper;
+import uk.gov.hmcts.reform.bulkscan.helper.BulkScanValidationHelper;
+import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
+import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
+import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
+import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
+import uk.gov.hmcts.reform.bulkscan.model.CaseCreationDetails;
+import uk.gov.hmcts.reform.bulkscan.model.Errors;
+import uk.gov.hmcts.reform.bulkscan.model.FormType;
+import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
+
 @Service
 @SuppressWarnings({"PMD.ExcessiveImports", "PMD.GodClass"})
 public class BulkScanA58Service implements BulkScanService {
@@ -62,7 +61,8 @@ public class BulkScanA58Service implements BulkScanService {
     public static final String STEP_PARENT_ADOPTION = "Step Parent";
 
     public static final String SCAN_DOCUMENTS = "scannedDocuments";
-    public static final String OTHER_PARENT_RELATIONSHIP_TO_CHILD = "otherParentRelationshipToChild";
+    public static final String OTHER_PARENT_RELATIONSHIP_TO_CHILD =
+            "otherParentRelationshipToChild";
     public static final String RELATIONSHIP_FATHER = "child_relationship_father";
     public static final String RELATIONSHIP_OTHER = "child_relationship_other";
     public static final String FATHER = "Father";
@@ -71,20 +71,15 @@ public class BulkScanA58Service implements BulkScanService {
     public static final String APPLICANT_RELATION_TO_CHILD = "applicantRelationToChild";
     public static final String APPLICANT_MARITAL_STATUS = "applicantMaritalStatus";
 
-    @Autowired
-    BulkScanFormValidationConfigManager configManager;
+    @Autowired BulkScanFormValidationConfigManager configManager;
 
-    @Autowired
-    BulkScanValidationHelper bulkScanValidationHelper;
+    @Autowired BulkScanValidationHelper bulkScanValidationHelper;
 
-    @Autowired
-    BulkScanTransformConfigManager transformConfigManager;
+    @Autowired BulkScanTransformConfigManager transformConfigManager;
 
-    @Autowired
-    BulkScanGroupHandler bulkScanGroupHandler;
+    @Autowired BulkScanGroupHandler bulkScanGroupHandler;
 
-    @Autowired
-    BulkScanA58ConditionalTransformerService bulkScanA58ConditionalTransformerService;
+    @Autowired BulkScanA58ConditionalTransformerService bulkScanA58ConditionalTransformerService;
 
     @Override
     public FormType getCaseType() {
@@ -106,28 +101,30 @@ public class BulkScanA58Service implements BulkScanService {
         }
         // Validating the Fields..
         BulkScanValidationResponse bulkScanValidationResponse =
-                bulkScanValidationHelper.validateMandatoryAndOptionalFields(bulkRequest.getOcrdatafields(),
-                configManager.getValidationConfig(formType));
+                bulkScanValidationHelper.validateMandatoryAndOptionalFields(
+                        bulkRequest.getOcrdatafields(),
+                        configManager.getValidationConfig(formType));
 
         if (formType.equals(A58) && isNotEmpty(inputFieldsMap.get(APPLICANT2_FIRSTNAME))) {
-            List<String> errorList = getApplicant2ErrorList(inputFieldsMap, bulkScanValidationResponse);
+            List<String> errorList =
+                    getApplicant2ErrorList(inputFieldsMap, bulkScanValidationResponse);
             return bulkScanValidationResponse.toBuilder()
                     .status(!errorList.isEmpty() ? ERRORS : bulkScanValidationResponse.getStatus())
-                    .errors(Errors.builder().items(errorList).build()).build();
+                    .errors(Errors.builder().items(errorList).build())
+                    .build();
         }
-        Map<MessageTypeEnum, List<String>> groupErrorsAndWarningsHashMap = bulkScanGroupHandler.handle(
-            formType,
-            bulkRequest.getOcrdatafields()
-        );
-        BulkScanGroupValidatorUtil.updateGroupErrorsAndWarnings(bulkScanValidationResponse,
-                                                                groupErrorsAndWarningsHashMap);
+        Map<MessageTypeEnum, List<String>> groupErrorsAndWarningsHashMap =
+                bulkScanGroupHandler.handle(formType, bulkRequest.getOcrdatafields());
+        BulkScanGroupValidatorUtil.updateGroupErrorsAndWarnings(
+                bulkScanValidationResponse, groupErrorsAndWarningsHashMap);
         BulkScanGroupValidatorUtil.updateGroupMissingFields(bulkScanValidationResponse, formType);
         return bulkScanValidationResponse;
     }
 
     @Override
     @SuppressWarnings("unchecked")
-    public BulkScanTransformationResponse transform(BulkScanTransformationRequest bulkScanTransformationRequest) {
+    public BulkScanTransformationResponse transform(
+            BulkScanTransformationRequest bulkScanTransformationRequest) {
         List<OcrDataField> inputFieldsList = bulkScanTransformationRequest.getOcrdatafields();
 
         FormType formType = A58;
@@ -141,16 +138,22 @@ public class BulkScanA58Service implements BulkScanService {
         }
         List<String> unknownFieldsList = null;
 
-        BulkScanFormValidationConfigManager
-                .ValidationConfig validationConfig = configManager.getValidationConfig(formType);
+        BulkScanFormValidationConfigManager.ValidationConfig validationConfig =
+                configManager.getValidationConfig(formType);
 
-        Map<String, Object> populatedMap = (Map<String, Object>) BulkScanTransformHelper
-                .transformToCaseData(new HashMap<>(transformConfigManager
-                        .getTransformationConfig(formType).getCaseDataFields()), inputFieldsMap);
+        Map<String, Object> populatedMap =
+                (Map<String, Object>)
+                        BulkScanTransformHelper.transformToCaseData(
+                                new HashMap<>(
+                                        transformConfigManager
+                                                .getTransformationConfig(formType)
+                                                .getCaseDataFields()),
+                                inputFieldsMap);
 
         // For A58 formtype we need to set some fields based on the Or Condition...
         if (formType.equals(A58)) {
-            bulkScanA58ConditionalTransformerService.conditionalTransform(inputFieldsMap, populatedMap);
+            bulkScanA58ConditionalTransformerService.conditionalTransform(
+                    inputFieldsMap, populatedMap);
         }
 
         populatedMap.put(SCAN_DOCUMENTS, transformScanDocuments(bulkScanTransformationRequest));
@@ -158,21 +161,24 @@ public class BulkScanA58Service implements BulkScanService {
         Map<String, String> caseTypeAndEventId =
                 transformConfigManager.getTransformationConfig(formType).getCaseFields();
 
-        BulkScanTransformationResponse.BulkScanTransformationResponseBuilder builder = BulkScanTransformationResponse
-                .builder().caseCreationDetails(
-                        CaseCreationDetails.builder()
-                                .caseTypeId(caseTypeAndEventId.get(CASE_TYPE_ID))
-                                .eventId(caseTypeAndEventId.get(EVENT_ID))
-                                .caseData(populatedMap).build());
+        BulkScanTransformationResponse.BulkScanTransformationResponseBuilder builder =
+                BulkScanTransformationResponse.builder()
+                        .caseCreationDetails(
+                                CaseCreationDetails.builder()
+                                        .caseTypeId(caseTypeAndEventId.get(CASE_TYPE_ID))
+                                        .eventId(caseTypeAndEventId.get(EVENT_ID))
+                                        .caseData(populatedMap)
+                                        .build());
 
         if (nonNull(validationConfig)) {
-            unknownFieldsList = bulkScanValidationHelper
-                .findUnknownFields(inputFieldsList,
-                                   validationConfig.getMandatoryFields(),
-                                   validationConfig.getOptionalFields()
-                );
+            unknownFieldsList =
+                    bulkScanValidationHelper.findUnknownFields(
+                            inputFieldsList,
+                            validationConfig.getMandatoryFields(),
+                            validationConfig.getOptionalFields());
         }
-        BulkScanGroupValidatorUtil.updateTransformationUnknownFieldsByGroupFields(formType, unknownFieldsList, builder);
+        BulkScanGroupValidatorUtil.updateTransformationUnknownFieldsByGroupFields(
+                formType, unknownFieldsList, builder);
         return builder.build();
     }
 
@@ -187,24 +193,32 @@ public class BulkScanA58Service implements BulkScanService {
     }
 
     private boolean isA58ParentFormType(Map<String, String> inputFieldsMap) {
-        return STEP_PARENT_ADOPTION.equalsIgnoreCase(inputFieldsMap.get(APPLICANT1_RELATION_TO_CHILD))
-                || STEP_PARENT_ADOPTION.equalsIgnoreCase(inputFieldsMap.get(APPLICANT2_RELATION_TO_CHILD))
-                || TRUE.equalsIgnoreCase(inputFieldsMap.get(APPLICANT_RELATION_TO_CHILD_FATHER_PARTNER))
-                || FALSE.equalsIgnoreCase(inputFieldsMap.get(APPLICANT_RELATION_TO_CHILD_FATHER_PARTNER));
+        return STEP_PARENT_ADOPTION.equalsIgnoreCase(
+                        inputFieldsMap.get(APPLICANT1_RELATION_TO_CHILD))
+                || STEP_PARENT_ADOPTION.equalsIgnoreCase(
+                        inputFieldsMap.get(APPLICANT2_RELATION_TO_CHILD))
+                || TRUE.equalsIgnoreCase(
+                        inputFieldsMap.get(APPLICANT_RELATION_TO_CHILD_FATHER_PARTNER))
+                || FALSE.equalsIgnoreCase(
+                        inputFieldsMap.get(APPLICANT_RELATION_TO_CHILD_FATHER_PARTNER));
     }
 
-    private List<String> getApplicant2ErrorList(Map<String, String> inputFieldsMap,
-                                                BulkScanValidationResponse bulkScanValidationResponse) {
+    private List<String> getApplicant2ErrorList(
+            Map<String, String> inputFieldsMap,
+            BulkScanValidationResponse bulkScanValidationResponse) {
         return flattenLists(
                 bulkScanValidationResponse.getErrors().getItems(),
                 notNull(inputFieldsMap.get(APPLICANT2_SOT), APPLICANT2_SOT),
                 notNull(inputFieldsMap.get(APPLICANT2_LEGAL_REP_SOT), APPLICANT2_LEGAL_REP_SOT),
-                notNull(inputFieldsMap.get(APPLICANT2_LEGAL_REP_SIGNATURE), APPLICANT2_LEGAL_REP_SIGNATURE),
+                notNull(
+                        inputFieldsMap.get(APPLICANT2_LEGAL_REP_SIGNATURE),
+                        APPLICANT2_LEGAL_REP_SIGNATURE),
                 notNull(inputFieldsMap.get(APPLICANT2_SIGNING), APPLICANT2_SIGNING),
-                notNull(inputFieldsMap.get(APPLICANT2_LEGAL_REP_SIGNING), APPLICANT2_LEGAL_REP_SIGNING),
+                notNull(
+                        inputFieldsMap.get(APPLICANT2_LEGAL_REP_SIGNING),
+                        APPLICANT2_LEGAL_REP_SIGNING),
                 notNull(inputFieldsMap.get(APPLICANT2_SOT_DAY), APPLICANT2_SOT_DAY),
                 notNull(inputFieldsMap.get(APPLICANT2_SOT_MONTH), APPLICANT2_SOT_MONTH),
-                notNull(inputFieldsMap.get(APPLICANT2_SOT_YEAR), APPLICANT2_SOT_YEAR)
-        );
+                notNull(inputFieldsMap.get(APPLICANT2_SOT_YEAR), APPLICANT2_SOT_YEAR));
     }
 }
