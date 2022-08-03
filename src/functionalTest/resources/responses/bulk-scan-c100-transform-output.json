@@ -3,6 +3,42 @@
     "case_type_id":"PRLAPPS",
     "event_id":"create-case-privatelaw-bs",
     "case_data":{
+      "applicants": [
+        {
+          "value": {
+            "firstName": null,
+            "lastName": null,
+            "previousName": null,
+            "gender": null,
+            "dateOfBirth": null,
+            "placeOfBirth": null,
+            "AddressLine1": null,
+            "PostCode": null,
+            "landline": null,
+            "phoneNumber": null,
+            "email": null,
+            "isAtAddressLessThan5Years": null,
+            "addressLivedLessThan5YearsDetails": null
+          }
+        },
+        {
+          "value": {
+            "firstName": null,
+            "lastName": null,
+            "previousName": null,
+            "gender": null,
+            "dateOfBirth": null,
+            "placeOfBirth": null,
+            "AddressLine1": null,
+            "PostCode": null,
+            "landline": null,
+            "phoneNumber": null,
+            "email": null,
+            "isAtAddressLessThan5Years": null,
+            "addressLivedLessThan5YearsDetails": null
+          }
+        }
+      ],
       "miamOtherGroundsChecklist": "miamOtherGroundsChecklistEnum_Value_9",
       "miamPreviousAttendanceChecklist": "miamPreviousAttendanceChecklistEnum_Value_4",
       "otherProceedingsDetailsTable":[
@@ -12,12 +48,6 @@
           }
         }
       ],
-      "applicants":{
-        "value":{
-          "firstName":"applicant1_firstName",
-          "lastName":"applicant1_lastName"
-        }
-      },
       "otherProceedingsTable":{
         "previousOrOngoingProceedings": "yes"
       },

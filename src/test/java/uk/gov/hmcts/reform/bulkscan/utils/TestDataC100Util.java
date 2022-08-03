@@ -33,7 +33,16 @@ public final class TestDataC100Util {
         return fieldList;
     }
 
-    public static List<OcrDataField> getAllNamesRelationSuccessData() {
+    public static List<OcrDataField> getApplicantWarning() {
+        List<OcrDataField> fieldList = new ArrayList<>();
+
+        fieldList.addAll(getAllNamesRelationWarningData());
+        fieldList.addAll(getExemptionToAttendMiamSuccessData());
+
+        return fieldList;
+    }
+
+    public static List<OcrDataField> getAllNamesRelationWarningData() {
         List<OcrDataField> fieldList = new ArrayList<>();
 
         OcrDataField ocrDataPreviousOrOngoingProceedingField = new OcrDataField();
@@ -44,6 +53,44 @@ public final class TestDataC100Util {
         OcrDataField ocrDataExistingCaseEmergencyProtectionField = new OcrDataField();
         ocrDataExistingCaseEmergencyProtectionField
                 .setName("existingCase_onEmergencyProtection_Care_or_supervisioNorder");
+        ocrDataExistingCaseEmergencyProtectionField.setValue(TICK_BOX_NO);
+        fieldList.add(ocrDataExistingCaseEmergencyProtectionField);
+
+        OcrDataField ocrDataFamilyMemberIntimationField = new OcrDataField();
+        ocrDataFamilyMemberIntimationField.setName("familyMember_Intimation_on_No_MIAM");
+        ocrDataFamilyMemberIntimationField.setValue(TICK_BOX_NO);
+        fieldList.add(ocrDataFamilyMemberIntimationField);
+
+        OcrDataField ocrDataAttendedMiamField = new OcrDataField();
+        ocrDataAttendedMiamField.setName("attended_MIAM");
+        ocrDataAttendedMiamField.setValue(TICK_BOX_NO);
+        fieldList.add(ocrDataAttendedMiamField);
+
+        fieldList.addAll(getApplicantSuccessData());
+
+        fieldList.addAll(getChild1NamesRelationSuccessData());
+
+        fieldList.addAll(getChild2NamesRelationSuccessData());
+
+        fieldList.addAll(getChild3NamesRelationSuccessData());
+
+        fieldList.addAll(getChild4NamesRelationSuccessData());
+
+        return fieldList;
+    }
+
+    //applicant warning
+    public static List<OcrDataField> getAllNamesRelationSuccessData() {
+        List<OcrDataField> fieldList = new ArrayList<>();
+
+        OcrDataField ocrDataPreviousOrOngoingProceedingField = new OcrDataField();
+        ocrDataPreviousOrOngoingProceedingField.setName("previous_or_ongoingProceeding");
+        ocrDataPreviousOrOngoingProceedingField.setValue(TICK_BOX_NO);
+        fieldList.add(ocrDataPreviousOrOngoingProceedingField);
+
+        OcrDataField ocrDataExistingCaseEmergencyProtectionField = new OcrDataField();
+        ocrDataExistingCaseEmergencyProtectionField
+            .setName("existingCase_onEmergencyProtection_Care_or_supervisioNorder");
         ocrDataExistingCaseEmergencyProtectionField.setValue(TICK_BOX_NO);
         fieldList.add(ocrDataExistingCaseEmergencyProtectionField);
 
@@ -78,14 +125,65 @@ public final class TestDataC100Util {
         List<OcrDataField> fieldList = new ArrayList<>();
 
         OcrDataField ocrDataApplicant1FirstName = new OcrDataField();
-        ocrDataApplicant1FirstName.setName("applicant1_firstName");
+        ocrDataApplicant1FirstName.setName("applicant1FirstName");
         ocrDataApplicant1FirstName.setValue("John");
         fieldList.add(ocrDataApplicant1FirstName);
 
         OcrDataField ocrDataApplicant1LastName = new OcrDataField();
-        ocrDataApplicant1LastName.setName("applicant1_lastName");
+        ocrDataApplicant1LastName.setName("applicant1LastName");
         ocrDataApplicant1LastName.setValue("Peters");
         fieldList.add(ocrDataApplicant1LastName);
+
+        OcrDataField ocrDataApplicant1DateOfBirth = new OcrDataField();
+        ocrDataApplicant1DateOfBirth.setName("applicant1DateOfBirth");
+        ocrDataApplicant1DateOfBirth.setValue("09/08/01");
+        fieldList.add(ocrDataApplicant1DateOfBirth);
+
+        OcrDataField ocrDataApplicant1PlaceOfBirth = new OcrDataField();
+        ocrDataApplicant1PlaceOfBirth.setName("applicant1PlaceOfBirth");
+        ocrDataApplicant1PlaceOfBirth.setValue("Petersburg");
+        fieldList.add(ocrDataApplicant1PlaceOfBirth);
+
+        OcrDataField ocrDataChildArrangementOrder = new OcrDataField();
+        ocrDataChildArrangementOrder.setName("childArrangement_order");
+        ocrDataChildArrangementOrder.setValue("childArrangementOrder");
+        fieldList.add(ocrDataChildArrangementOrder);
+
+        OcrDataField ocrDataProhibitedStepsOrder = new OcrDataField();
+        ocrDataProhibitedStepsOrder.setName("prohibitedSteps_order");
+        ocrDataProhibitedStepsOrder.setValue("prohibitedSteps_order");
+        fieldList.add(ocrDataProhibitedStepsOrder);
+
+        OcrDataField ocrDataSpecialIssueOrder = new OcrDataField();
+        ocrDataSpecialIssueOrder.setName("specialIssue_order");
+        ocrDataSpecialIssueOrder.setValue("specialIssueOrder");
+        fieldList.add(ocrDataSpecialIssueOrder);
+
+        return fieldList;
+    }
+
+    public static List<OcrDataField> getApplicantWarningData() {
+        List<OcrDataField> fieldList = new ArrayList<>();
+
+        OcrDataField ocrDataApplicant1FirstName = new OcrDataField();
+        ocrDataApplicant1FirstName.setName("applicant1FirstName");
+        ocrDataApplicant1FirstName.setValue("John");
+        fieldList.add(ocrDataApplicant1FirstName);
+
+        OcrDataField ocrDataApplicant1LastName = new OcrDataField();
+        ocrDataApplicant1LastName.setName("applicant1LastName");
+        ocrDataApplicant1LastName.setValue("Peters");
+        fieldList.add(ocrDataApplicant1LastName);
+
+        OcrDataField ocrDataApplicant1DateOfBirth = new OcrDataField();
+        ocrDataApplicant1DateOfBirth.setName("applicant1DateOfBirth");
+        ocrDataApplicant1DateOfBirth.setValue("09/08/01");
+        fieldList.add(ocrDataApplicant1DateOfBirth);
+
+        OcrDataField ocrDataApplicant1PlaceOfBirth = new OcrDataField();
+        ocrDataApplicant1PlaceOfBirth.setName("applicant1PlaceOfBirth");
+        ocrDataApplicant1PlaceOfBirth.setValue("Petersburg");
+        fieldList.add(ocrDataApplicant1PlaceOfBirth);
 
         OcrDataField ocrDataChildArrangementOrder = new OcrDataField();
         ocrDataChildArrangementOrder.setName("childArrangement_order");

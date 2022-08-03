@@ -30,6 +30,7 @@ public class BulkScanDependencyValidationService {
     @Autowired
     BulkScanDependencyValidationConfigManager configManager;
 
+
     @SuppressWarnings("Summary")
     /**
      * Records dependency validation warnings for group fields

@@ -39,16 +39,16 @@ public class BulkScanC100EndpointTest {
         "classpath:responses/bulk-scan-c100-transform-output.json";
 
     private static final String C100_PAGE_1_WARNING_VALIDATION_INPUT_PATH =
-        "classpath:requests/bulk-scan-c100-page1-warning-validation-input.json";
+        "classpath:requests/bulk-scan-c100-warning-validation-input.json";
 
     private static final String C100_PAGE_1_WARNING_VALIDATION_OUTPUT_PATH =
-        "classpath:responses/bulk-scan-c100-page1-warning-validation-output.json";
+        "classpath:responses/bulk-scan-c100-warning-validation-output.json";
 
     private static final String C100_PAGE_1_ERROR_VALIDATION_INPUT_PATH =
-        "classpath:requests/bulk-scan-c100-page1-error-validation-input.json";
+        "classpath:requests/bulk-scan-c100-error-validation-input.json";
 
     private static final String C100_PAGE_1_ERROR_VALIDATION_OUTPUT_PATH =
-        "classpath:responses/bulk-scan-c100-page1-error-validation-output.json";
+        "classpath:responses/bulk-scan-c100-error-validation-output.json";
 
     private final String targetInstance =
         StringUtils.defaultIfBlank(
@@ -103,8 +103,8 @@ public class BulkScanC100EndpointTest {
     }
 
     @Test
-    @DisplayName("Validating errors for mandatory fields and unknown field, c100 page 1")
-    public void shouldValidateC100Page1ErrorBulkScanRequest() throws Exception {
+    @DisplayName("Validating errors for mandatory fields and unknown field for c100")
+    public void shouldValidateC100ErrorBulkScanRequest() throws Exception {
         String bulkScanValidationRequest =
             readFileFrom(C100_PAGE_1_ERROR_VALIDATION_INPUT_PATH);
 
@@ -123,8 +123,8 @@ public class BulkScanC100EndpointTest {
     }
 
     @Test
-    @DisplayName("Validating warnings for mandatory fields and unknown field, c100 page 1")
-    public void shouldValidateC100Page1WarningBulkScanRequest() throws Exception {
+    @DisplayName("Validating warnings for mandatory fields and unknown field for c100")
+    public void shouldValidateC100WarningBulkScanRequest() throws Exception {
         String bulkScanValidationRequest =
             readFileFrom(C100_PAGE_1_WARNING_VALIDATION_INPUT_PATH);
 

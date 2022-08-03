@@ -22,6 +22,7 @@ import java.util.stream.Collectors;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CASE_TYPE_ID;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EVENT_ID;
 
+
 @Service
 public class BulkScanC100Service implements BulkScanService {
 
@@ -67,6 +68,9 @@ public class BulkScanC100Service implements BulkScanService {
 
         bulkScanC100ValidationService
                 .validateAttendMiam(bulkRequest.getOcrdatafields(), response);
+
+        bulkScanC100ValidationService
+                       .validateApplicantAddressFiveYears(bulkRequest.getOcrdatafields(), response);
 
         response.changeStatus();
 

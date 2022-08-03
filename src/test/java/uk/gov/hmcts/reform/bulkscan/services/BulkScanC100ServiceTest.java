@@ -588,4 +588,5 @@ class BulkScanC100ServiceTest {
                 .stream()
                 .collect(Collectors.toMap(OcrDataField::getName, OcrDataField::getValue));
     }
+
 }

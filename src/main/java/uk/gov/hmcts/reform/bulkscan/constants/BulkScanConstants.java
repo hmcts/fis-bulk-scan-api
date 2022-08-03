@@ -174,6 +174,25 @@ public final class BulkScanConstants {
     public static final String FAMILY_MEMBER_INTIMATION_ON_NO_MIAM = "familyMember_Intimation_on_No_MIAM";
 
     public static final String ATTENDED_MIAM = "attended_MIAM";
+
+    public static final String HAS_APPLICANT_ONE_LIVED_AT_THIS_ADDRESS_FOR_OVER_FIVE_YEARS
+        = "applicantOneLivedAtThisAddressForOverFiveYears";
+
+    public static final String APPLICANT_ONE_ALL_ADDRESSES_FOR_FIVE_LAST_YEARS
+        = "applicantOneAllAddressesForLastFiveYears";
+
+    public static final String HAS_APPLICANT_TWO_LIVED_AT_THIS_ADDRESS_FOR_OVER_FIVE_YEARS
+        = "applicantTwoLivedAtThisAddressForOverFiveYears";
+
+    public static final String APPLICANT_TWO_ALL_ADDRESSES_FOR_FIVE_LAST_YEARS
+        = "applicantTwoAllAddressesForLastFiveYears";
+
+    public static final String APPLICANT_ONE = "Applicant 1";
+    public static final String APPLICANT_TWO = "Applicant 2";
+
+    public static final String ADDRESS_NOT_LIVED_FOR_FIVE_YEARS_MESSAGE
+        = "(%s) has not lived at the current address"
+              + " for more than 5 years. Previous address(es) field (%s) should not be empty or null.";
     //END C100 form section 2 validation fields
 
     // C100 form section 12 validation fields
@@ -188,9 +207,6 @@ public final class BulkScanConstants {
     public static final String RESPONDENT2ALLADDRESSESFORLASTFIVEYEARS
             = "respondent2AllAddressesForLastFiveYears";
 
-    public static final String ADDRESS_NOT_LIVED_FOR_FIVE_YEARS_MESSAGE
-            = "(%s) has not lived at the current address "
-            + "for more than 5 years. Previous address(es) field (%s) should not be empty or null.";
     //END C100 form section 12 validation fields
 
     //A58
