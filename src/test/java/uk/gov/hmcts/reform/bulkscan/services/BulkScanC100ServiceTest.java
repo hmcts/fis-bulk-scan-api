@@ -28,12 +28,12 @@ import java.util.Map;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICATION_PERMISSION_REQUIRED;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICATION_PERMISSION_REQUIRED;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILDREN_OF_SAME_PARENT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILDREN_PARENTS_NAME;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILDREN_PARENTS_NAME_COLLECTION;
@@ -42,7 +42,14 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIV
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVING_WITH_OTHERS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVING_WITH_RESPONDENT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LOCAL_AUTHORITY_OR_SOCIAL_WORKER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT1LIVEDATTHISADDRESSFOROVERFIVEYEARS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT2LIVEDATTHISADDRESSFOROVERFIVEYEARS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NO;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PERMISSION_REQUIRED;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT1ALLADDRESSESFORLASTFIVEYEARS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT2ALLADDRESSESFORLASTFIVEYEARS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_ONE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_TWO;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.NOMIAM_CHILDPROTECTIONCONCERNS_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.NOMIAM_DOMESTICVIOLENCE_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.NOMIAM_OTHERREASONS_FIELD;
@@ -89,6 +96,16 @@ class BulkScanC100ServiceTest {
             + "NoMIAM_DVE_domesticViolenceSupportCharity_refuge_letter,"
             + "NoMIAM_DVE_publicAuthority_confirmationLetter,NoMIAM_DVE_secretaryOfState_letter,"
             + "NoMIAM_DVE_evidenceFinancialMatters].";
+
+    private static final String RESPONDENT_ONE_NOT_LIVED_IN_ADDRESS_FOR_FIVE_YEARS
+            = "(" + RESPONDENT_ONE + ") has not lived at the current address "
+            + "for more than 5 years. Previous address(es) field (" + RESPONDENT1ALLADDRESSESFORLASTFIVEYEARS
+            + ") should not be empty or null.";
+
+    private static final String RESPONDENT_TWO_NOT_LIVED_IN_ADDRESS_FOR_FIVE_YEARS
+            = "(" + RESPONDENT_TWO + ") has not lived at the current address "
+            + "for more than 5 years. Previous address(es) field (" + RESPONDENT2ALLADDRESSESFORLASTFIVEYEARS
+            + ") should not be empty or null.";
 
     private final ObjectMapper mapper = new ObjectMapper();
 
@@ -463,6 +480,7 @@ class BulkScanC100ServiceTest {
             res.getCaseCreationDetails().getCaseData().get(APPLICATION_PERMISSION_REQUIRED));
     }
 
+    @Test
     @DisplayName("Should generate SUCCESS status with NoMIAM_PreviousAttendance field in bulkscan request")
     void testC100NoMiamPreviousAttendanceSuccessData() {
         List<OcrDataField> c100GetDomesticViolenceWarningData = new ArrayList<>();
@@ -502,6 +520,60 @@ class BulkScanC100ServiceTest {
         assertEquals(TICK_BOX_TRUE, ocrDataFieldMap.get("NoMIAM_otherReasons"));
         assertEquals(Status.SUCCESS, res.status);
         assertFalse(res.getWarnings().items.contains(NOMIAM_OTHERREASONS_DEPENDENCY_WARNING));
+    }
+
+    @Test
+    @DisplayName("Should generate Warning for respondent_1 not lived for 5 years in current address "
+            + "without previous address details")
+    void testC100RespondentOneNotLivedInAddressForFiveYearsWarning() {
+        List<OcrDataField> c100GetDomesticViolenceWarningData = new ArrayList<>();
+        c100GetDomesticViolenceWarningData.addAll(TestDataC100Util.getData());
+
+        when(postcodeLookupService.isValidPostCode(POST_CODE, null)).thenReturn(true);
+        BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
+                c100GetDomesticViolenceWarningData).build();
+
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(eachField ->
+                        RESPONDENT1ALLADDRESSESFORLASTFIVEYEARS.equalsIgnoreCase(eachField.getName()))
+                .forEach(field -> field.setValue(""));
+
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(eachField ->
+                        RESPONDENT1LIVEDATTHISADDRESSFOROVERFIVEYEARS.equalsIgnoreCase(eachField.getName()))
+                .forEach(field -> field.setValue(NO));
+
+        BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
+
+        assertEquals(Status.WARNINGS, res.status);
+        assertTrue(res.getWarnings().items.contains(RESPONDENT_ONE_NOT_LIVED_IN_ADDRESS_FOR_FIVE_YEARS));
+    }
+
+    @Test
+    @DisplayName("Should generate Warning for respondent_2 not lived for 5 years in current address "
+            + "without previous address details")
+    void testC100RespondentTweNotLivedInAddressForFiveYearsWarning() {
+        List<OcrDataField> c100GetDomesticViolenceWarningData = new ArrayList<>();
+        c100GetDomesticViolenceWarningData.addAll(TestDataC100Util.getData());
+
+        when(postcodeLookupService.isValidPostCode(POST_CODE, null)).thenReturn(true);
+        BulkScanValidationRequest bulkScanValidationRequest = BulkScanValidationRequest.builder().ocrdatafields(
+                c100GetDomesticViolenceWarningData).build();
+
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(eachField ->
+                        RESPONDENT2ALLADDRESSESFORLASTFIVEYEARS.equalsIgnoreCase(eachField.getName()))
+                .forEach(field -> field.setValue(""));
+
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(eachField ->
+                        RESPONDENT2LIVEDATTHISADDRESSFOROVERFIVEYEARS.equalsIgnoreCase(eachField.getName()))
+                .forEach(field -> field.setValue(NO));
+
+        BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
+
+        assertEquals(Status.WARNINGS, res.status);
+        assertTrue(res.getWarnings().items.contains(RESPONDENT_TWO_NOT_LIVED_IN_ADDRESS_FOR_FIVE_YEARS));
     }
 
     @Test

@@ -7,13 +7,13 @@ import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
 import uk.gov.hmcts.reform.bulkscan.model.Status;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
+import java.util.List;
+import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ASKING_PERMISSION_FOR_APPLICATION;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ATTENDED_MIAM;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.ATTENDED_MIAM;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILDREN_OF_SAME_PARENT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILDREN_PARENTS_NAME;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILDREN_PARENTS_NAME_COLLECTION;
@@ -22,14 +22,14 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIV
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVING_WITH_OTHERS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVING_WITH_RESPONDENT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LOCAL_AUTHORITY_OR_SOCIAL_WORKER;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EXEMPTION_TO_ATTEND_MIAM;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EXISTING_CASE_ON_EMERGENCY_PROTECTION_CARE_OR_SUPERVISION_ORDER;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FAMILY_MEMBER_INTIMATION_ON_NO_MIAM;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.EXEMPTION_TO_ATTEND_MIAM;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.EXISTING_CASE_ON_EMERGENCY_PROTECTION_CARE_OR_SUPERVISION_ORDER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.FAMILY_MEMBER_INTIMATION_ON_NO_MIAM;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_ATTENDED_MIAM_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_ERROR_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NO;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PERMISSION_REQUIRED_REASON;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PREVIOUS_OR_ONGOING_PROCEEDING;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.PREVIOUS_OR_ONGOING_PROCEEDING;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.XOR_CONDITIONAL_FIELDS_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.HAS_APPLICANT_ONE_LIVED_AT_THIS_ADDRESS_FOR_OVER_FIVE_YEARS;
@@ -39,7 +39,6 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_ONE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_TWO;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ADDRESS_NOT_LIVED_FOR_FIVE_YEARS_MESSAGE;
-
 
 
 /**

@@ -1,12 +1,12 @@
 {
-  "case_creation_details":{
-    "case_type_id":"PRLAPPS",
-    "event_id":"create-case-privatelaw-bs",
-    "case_data":{
-      "otherProceedingsDetailsTable":[
+  "case_creation_details": {
+    "case_type_id": "PRLAPPS",
+    "event_id": "create-case-privatelaw-bs",
+    "case_data": {
+      "otherProceedingsDetailsTable": [
         {
-          "value":{
-            "previousOrOngoingProceedings":"yes"
+          "value": {
+            "previousOrOngoingProceedings": "yes"
           }
         }
       ],
@@ -59,8 +59,7 @@
           }
         }
       ],
-      "orderAppliedFor":"true",
-      "children":[
+      "children": [
         {
           "value":{
             "firstName":"firstName",
@@ -118,37 +117,105 @@
       "typeOfApplicationTable":{
         "applicationPermissionRequired":"yes"
       },
-      "childrenKNownToLocalAuthorityTextArea":"socialWorker",
-      "childrenParentsName":"parentsName",
-      "previousOrOngoingProceedings":"yes",
-      "applicantAttendedMiam":null,
-      "childrenSubjectOfChildProtectionPlan":"protectionplan",
-      "miamTable":{
-        "claimingExemptionMiam":"yes",
-        "familyMediatorMiam":null,
-        "applicantAttendedMiam":null
+      "childrenKNownToLocalAuthorityTextArea": "socialWorker",
+      "miamExemptionsChecklist": [
+        "domesticViolence",
+        "childProtectionConcern",
+        "urgency",
+        "previousMIAMattendance",
+        "other"
+      ],
+      "miamDomesticViolenceChecklist":[
+        "miamDomesticViolenceChecklistEnum_Value_1",
+        "miamDomesticViolenceChecklistEnum_Value_2",
+        "miamDomesticViolenceChecklistEnum_Value_3",
+        "miamDomesticViolenceChecklistEnum_Value_4",
+        "miamDomesticViolenceChecklistEnum_Value_5",
+        "miamDomesticViolenceChecklistEnum_Value_6",
+        "miamDomesticViolenceChecklistEnum_Value_7",
+        "miamDomesticViolenceChecklistEnum_Value_8",
+        "miamDomesticViolenceChecklistEnum_Value_9",
+        "miamDomesticViolenceChecklistEnum_Value_10",
+        "miamDomesticViolenceChecklistEnum_Value_11",
+        "miamDomesticViolenceChecklistEnum_Value_12",
+        "miamDomesticViolenceChecklistEnum_Value_13",
+        "miamDomesticViolenceChecklistEnum_Value_15",
+        "miamDomesticViolenceChecklistEnum_Value_16",
+        "miamDomesticViolenceChecklistEnum_Value_17",
+        "miamDomesticViolenceChecklistEnum_Value_18",
+        "miamDomesticViolenceChecklistEnum_Value_19",
+        "miamDomesticViolenceChecklistEnum_Value_20",
+        "miamDomesticViolenceChecklistEnum_Value_21",
+        "miamDomesticViolenceChecklistEnum_Value_22"
+      ],
+      "childrenParentsName": "parentsName",
+      "previousOrOngoingProceedings": "yes",
+      "applicantAttendedMiam": null,
+      "childrenSubjectOfChildProtectionPlan": "protectionplan",
+      "miamTable": {
+        "claimingExemptionMiam": "yes",
+        "familyMediatorMiam": null,
+        "applicantAttendedMiam": null
       },
-      "childrenKNownToLocalAuthority":"Yes",
-      "prohibitedStepsOrder":"true",
-      "havePreviousParentingPlan":"parentingplan",
-      "allegationsOfHarmOverviewTable":{
-        "allegationsOfHarmDomesticAbuseYesNo":"yes",
-        "allegationsOfHarmChildAbductionYesNo":"yes",
-        "allegationsOfHarmChildAbuseYesNo":"yes",
-        "allegationsOfHarmSubstanceAbuseYesNo":"yes",
-        "allegationsOfHarmOtherConcernsYesNo":"yes"
+      "childrenKNownToLocalAuthority": "Yes",
+      "allegationsOfHarmOverviewTable": {
+        "allegationsOfHarmDomesticAbuseYesNo": "yes",
+        "allegationsOfHarmChildAbductionYesNo": "yes",
+        "allegationsOfHarmChildAbuseYesNo": "yes",
+        "allegationsOfHarmSubstanceAbuseYesNo": "yes",
+        "allegationsOfHarmOtherConcernsYesNo": "yes"
       },
-      "applicationPermissionRequiredReason":"reason",
-      "childrenOfSameParent":"Yes",
-      "childLiveWith":"Applicant",
-      "consentOrder":"yes",
-      "specialIssueOrder":"true",
-      "claimingExemptionMiam":"yes",
-      "welshLanguageRequirement":"yes",
-      "childParentsNameCollection":"parentsNameColl"
+      "childrenOfSameParent": "Yes",
+      "childLiveWith": "Applicant",
+      "consentOrder": "yes",
+      "claimingExemptionMiam": "yes",
+      "welshLanguageRequirement": "yes",
+      "childParentsNameCollection": "parentsNameColl",
+      "respondents": [
+        {
+          "value": {
+            "firstName": "Robert",
+            "lastName": "Zane",
+            "previousName": null,
+            "gender": "male",
+            "dateOfBirth": "20/02/2002",
+            "isDateOfBirthUnknown": null,
+            "placeOfBirth": "London",
+            "AddressLine1": "123, Topsfield Parade",
+            "PostCode": "N8 8PE",
+            "isAddressUnknown": null,
+            "landline": "+442083332222",
+            "phoneNumber": "+447999444444",
+            "canYouProvidePhoneNumber": null,
+            "email": "test@test.com",
+            "canYouProvideEmailAddress": null,
+            "isAtAddressLessThan5Years": "No",
+            "addressLivedLessThan5YearsDetails": "225, Topsfield Parade, N8 8PE"
+          }
+        },
+        {
+          "value": {
+            "firstName": "Rachel",
+            "lastName": "Brandl",
+            "previousName": null,
+            "gender": "female",
+            "dateOfBirth": "21/02/2002",
+            "isDateOfBirthUnknown": null,
+            "placeOfBirth": "London",
+            "AddressLine1": "124, Topsfield Parade",
+            "PostCode": "N8 8PE",
+            "isAddressUnknown": null,
+            "landline": "+442081112222",
+            "phoneNumber": "+447999666666",
+            "canYouProvidePhoneNumber": null,
+            "email": "test@test.com",
+            "canYouProvideEmailAddress": null,
+            "isAtAddressLessThan5Years": "No",
+            "addressLivedLessThan5YearsDetails": "227, Topsfield Parade, N8 8PE"
+          }
+        }
+      ]
     }
   },
-  "warnings":[
-
-  ]
+  "warnings": []
 }

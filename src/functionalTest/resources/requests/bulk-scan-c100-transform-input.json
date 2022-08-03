@@ -73,10 +73,6 @@
       "value": "false"
     },
     {
-      "name": "exemption_to_attend_MIAM",
-      "value": "yes"
-    },
-    {
       "name": "child2_firstName",
       "value": "child2firstName"
     },
@@ -185,7 +181,7 @@
       "value":"parentingplan"
     },
     {
-      "name": "askingPermissionForApplication",
+      "name": "exemption_to_attend_MIAM",
       "value": "yes"
     },
     {
@@ -297,18 +293,6 @@
       "value":"Baker St"
     },
     {
-      "name": "childArrangement_order",
-      "value": "true"
-    },
-    {
-      "name": "prohibitedSteps_order",
-      "value": "true"
-    },
-    {
-      "name": "specialIssue_order",
-      "value": "true"
-    },
-    {
       "name": "respondent1_firstName",
       "value": "Johnny"
     },
@@ -337,6 +321,10 @@
       "value": "yes"
     },
     {
+      "name": "askingPermissionForApplication",
+      "value": "yes"
+    },
+    {
       "name": "urgent_or_withoutHearing",
       "value": "yes"
     },
@@ -359,6 +347,262 @@
     {
       "name": "natureofOrder",
       "value": "yes"
+    },
+    {
+      "name":"NoMIAM_domesticViolance",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_childProtectionConcerns",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_Urgency",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_PreviousAttendence",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_otherReasons",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_PreviousAttendenceReason",
+      "value":"miamPreviousAttendanceChecklistEnum_Value_4"
+    },
+    {
+      "name":"NoMIAM_otherExceptions",
+      "value":"miamOtherGroundsChecklistEnum_Value_9"
+    },
+    {
+      "name":"NoMIAM_subjectOfEnquiries_byLocalAuthority",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_subjectOfCPP_byLocalAuthority",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_urgency_risk_to_life_liberty_or_safety",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_urgency_riskOfHarm",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_urgency_risk_to_unlawfulRemoval",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_urgency_risk_to_miscarriageOfJustice",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_urgency_unreasonablehardship",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_urgency_irretrievableProblem",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_urgency_conflictWithOtherStateCourts",
+      "value":"true"
+    },
+    {
+      "name":"childArrangement_order",
+      "value":"true"
+    },
+    {
+      "name":"prohibitedSteps_order",
+      "value":"true"
+    },
+    {
+      "name":"specialIssue_order",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_DVE_arrestedForSimilarOffence",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_DVE_relevantPoliceCaution",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_DVE_relevantCriminalProceeding",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_DVE_relevantConviction",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_DVE_courtOrder",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_DVE_protectionNotice",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_DVE_protectiveInjunction",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_DVE_NoCrossUndertakingGiven",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_DVE_copyOfFactFinding",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_DVE_expertEvidenceReport",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_DVE_healthProfessionalReport",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_DVE_memberOf_MultiAgencyRiskAssessmentConferrance_letter",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_DVE_domesticViolenceAdvisor",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_DVE_independentSexualViolenceAdvisor_Letter",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_DVE_officerEmployed_localAuthority_letter",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_DVE_domesticViolenceSupportCharity_letter",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_DVE_domesticViolenceSupportCharity_refuge_letter",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_DVE_publicAuthority_confirmationLetter",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_DVE_secretaryOfState_letter",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_DVE_evidenceFinancialMatters",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_DVE_ReferralHealthProfessionalReport",
+      "value":"true"
+    },
+    {
+      "name": "respondent1FirstName",
+      "value": "Robert"
+    },
+    {
+      "name": "respondent1LastName",
+      "value": "Zane"
+    },
+    {
+      "name": "respondent1Gender",
+      "value": "male"
+    },
+    {
+      "name": "respondent1DateOfBirth",
+      "value": "20/02/2002"
+    },
+    {
+      "name": "respondent1PlaceOfBirth",
+      "value": "London"
+    },
+    {
+      "name": "respondent1Address",
+      "value": "123, Topsfield Parade"
+    },
+    {
+      "name": "respondent1AddressPostCode",
+      "value": "N8 8PE"
+    },
+    {
+      "name": "respondent1HomePhoneNumber",
+      "value": "+442083332222"
+    },
+    {
+      "name": "respondent1MobilePhoneNumber",
+      "value": "+447999444444"
+    },
+    {
+      "name": "respondent1EmailAddress",
+      "value": "test@test.com"
+    },
+    {
+      "name": "respondent1LivedAtThisAddressForOverFiveYears",
+      "value": "No"
+    },
+    {
+      "name": "respondent1AllAddressesForLastFiveYears",
+      "value": "225, Topsfield Parade, N8 8PE"
+    },
+    {
+      "name": "respondent2FirstName",
+      "value": "Rachel"
+    },
+    {
+      "name": "respondent2LastName",
+      "value": "Brandl"
+    },
+    {
+      "name": "respondent2Gender",
+      "value": "female"
+    },
+    {
+      "name": "respondent2DateOfBirth",
+      "value": "21/02/2002"
+    },
+    {
+      "name": "respondent2PlaceOfBirth",
+      "value": "London"
+    },
+    {
+      "name": "respondent2Address",
+      "value": "124, Topsfield Parade"
+    },
+    {
+      "name": "respondent2AddressPostCode",
+      "value": "N8 8PE"
+    },
+    {
+      "name": "respondent2HomePhoneNumber",
+      "value": "+442081112222"
+    },
+    {
+      "name": "respondent2MobilePhoneNumber",
+      "value": "+447999666666"
+    },
+    {
+      "name": "respondent2EmailAddress",
+      "value": "test@test.com"
+    },
+    {
+      "name": "respondent2LivedAtThisAddressForOverFiveYears",
+      "value": "No"
+    },
+    {
+      "name": "respondent2AllAddressesForLastFiveYears",
+      "value": "227, Topsfield Parade, N8 8PE"
     }
   ],
   "scanned_documents": [
