@@ -1,168 +1,172 @@
 {
-  "ocr_data_fields": [
+  "ocr_data_fields":[
     {
-      "name": "child1_firstName",
-      "value": "firstName"
+      "name":"child1_firstName",
+      "value":"firstName"
     },
     {
-      "name": "child1_lastName",
-      "value": "LastName"
+      "name":"child1_lastName",
+      "value":"LastName"
     },
     {
-      "name": "child1_dateOfBirth",
-      "value": "02/02/2020"
+      "name":"child1_dateOfBirth",
+      "value":"02/02/2020"
     },
     {
-      "name": "child1_gender",
-      "value": "Male"
+      "name":"child1_gender",
+      "value":"Male"
     },
     {
-      "name": "child1_orderAppliedFor",
-      "value": "orderAppliedFor"
+      "name":"child1_orderAppliedFor",
+      "value":"orderAppliedFor"
     },
     {
-      "name": "child1_applicant1_relationship",
-      "value": "applicant"
+      "name":"child1_applicant1_relationship",
+      "value":"applicant"
     },
     {
-      "name": "child1_respondent1_relationship",
-      "value": "respondent"
+      "name":"child1_respondent1_relationship",
+      "value":"respondent"
     },
     {
-      "name": "child1_localAuthority_or_socialWorker",
-      "value": "socialWorker"
+      "name":"child1_localAuthority_or_socialWorker",
+      "value":"socialWorker"
     },
     {
-      "name": "childrenServicesAuthority",
-      "value": "Yes"
+      "name":"childrenServicesAuthority",
+      "value":"Yes"
     },
     {
-      "name": "children_of_same_parent",
-      "value": "Yes"
+      "name":"children_of_same_parent",
+      "value":"Yes"
     },
     {
-      "name": "subject_to_childProtectionPlan",
-      "value": "protectionplan"
+      "name":"subject_to_childProtectionPlan",
+      "value":"protectionplan"
     },
     {
-      "name": "children_parentsName",
-      "value": "parentsName"
+      "name":"children_parentsName",
+      "value":"parentsName"
     },
     {
-      "name": "child_parentsName_collection",
-      "value": "parentsNameColl"
+      "name":"child_parentsName_collection",
+      "value":"parentsNameColl"
     },
     {
-      "name": "parentalResponsibilityDetails",
-      "value": "parentResponsibility"
+      "name":"parentalResponsibilityDetails",
+      "value":"parentResponsibility"
     },
     {
-      "name": "child_living_with_others_details",
-      "value": "living other details"
+      "name":"child_living_with_others_details",
+      "value":"living other details"
     },
     {
-      "name": "child_living_with_Applicant",
-      "value": "true"
+      "name":"child_living_with_Applicant",
+      "value":"true"
     },
     {
-      "name": "child_living_with_Respondent",
-      "value": "false"
+      "name":"child_living_with_Respondent",
+      "value":"false"
     },
     {
-      "name": "child_living_with_others",
-      "value": "false"
+      "name":"child_living_with_others",
+      "value":"false"
+    },
+
+
+    {
+      "name":"child2_firstName",
+      "value":"child2firstName"
     },
     {
-      "name": "exemption_to_attend_MIAM",
-      "value": "yes"
+      "name":"child2_lastName",
+      "value":"child2LastName"
     },
     {
-      "name": "child2_firstName",
-      "value": "child2firstName"
+      "name":"child2_dateOfBirth",
+      "value":"02/02/2020"
     },
     {
-      "name": "child2_lastName",
-      "value": "child2LastName"
+      "name":"child2_gender",
+      "value":"Male"
     },
     {
-      "name": "child2_dateOfBirth",
-      "value": "02/02/2020"
+      "name":"child2_orderAppliedFor",
+      "value":"child2orderAppliedFor"
     },
     {
-      "name": "child2_gender",
-      "value": "Male"
+      "name":"child2_applicant1_relationship",
+      "value":"applicant"
     },
     {
-      "name": "child2_orderAppliedFor",
-      "value": "child2orderAppliedFor"
+      "name":"child2_respondent1_relationship",
+      "value":"respondent"
     },
     {
-      "name": "child2_applicant1_relationship",
-      "value": "applicant"
+      "name":"child2_localAuthority_or_socialWorker",
+      "value":"socialWorker"
     },
     {
-      "name": "child2_respondent1_relationship",
-      "value": "respondent"
+      "name":"child3_firstName",
+      "value":"child3firstName"
     },
     {
-      "name": "child2_localAuthority_or_socialWorker",
-      "value": "socialWorker"
+      "name":"child3_lastName",
+      "value":"child3LastName"
     },
     {
-      "name": "child3_firstName",
-      "value": "child3firstName"
+      "name":"child3_dateOfBirth",
+      "value":"02/02/2020"
     },
     {
-      "name": "child3_lastName",
-      "value": "child3LastName"
+      "name":"child3_gender",
+      "value":"Male"
     },
     {
-      "name": "child3_dateOfBirth",
-      "value": "02/02/2020"
+      "name":"child3_orderAppliedFor",
+      "value":"child3orderAppliedFor"
     },
     {
-      "name": "child3_gender",
-      "value": "Male"
+      "name":"child3_applicant1_relationship",
+      "value":"applicant"
     },
     {
-      "name": "child3_orderAppliedFor",
-      "value": "child3orderAppliedFor"
+      "name":"child3_respondent1_relationship",
+      "value":"respondent"
     },
     {
-      "name": "child3_applicant1_relationship",
-      "value": "applicant"
+      "name":"child3_localAuthority_or_socialWorker",
+      "value":"socialWorker"
+    },
+
+
+    {
+      "name":"child4_firstName",
+      "value":"child4firstName"
     },
     {
-      "name": "child3_respondent1_relationship",
-      "value": "respondent"
+      "name":"child4_lastName",
+      "value":"child4LastName"
     },
     {
-      "name": "child3_localAuthority_or_socialWorker",
-      "value": "socialWorker"
+      "name":"child4_dateOfBirth",
+      "value":"02/02/2020"
     },
     {
-      "name": "child4_firstName",
-      "value": "child4firstName"
+      "name":"child4_gender",
+      "value":"Male"
     },
     {
-      "name": "child4_lastName",
-      "value": "child4LastName"
+      "name":"child4_orderAppliedFor",
+      "value":"child3orderAppliedFor"
     },
     {
-      "name": "child4_dateOfBirth",
-      "value": "02/02/2020"
+      "name":"child4_applicant1_relationship",
+      "value":"applicant"
     },
     {
-      "name": "child4_gender",
-      "value": "Male"
-    },
-    {
-      "name": "child4_orderAppliedFor",
-      "value": "child3orderAppliedFor"
-    },
-    {
-      "name": "child4_applicant1_relationship",
-      "value": "applicant"
+      "name":"child4_respondent1_relationship",
+      "value":"respondent"
     },
     {
       "name":"child4_localAuthority_or_socialWorker",
@@ -186,31 +190,175 @@
     },
     {
       "name": "askingPermissionForApplication",
-      "value": "yes"
+      "value": "Yes"
     },
     {
-      "name": "child4_respondent1_relationship",
-      "value": "respondent"
+      "name":"applicant1_firstName",
+      "value":"applicant1_firstName"
     },
     {
-      "name": "applicant1_firstName",
-      "value": "applicant1_firstName"
+      "name":"applicant1_lastName",
+      "value":"applicant1_lastName"
     },
     {
-      "name": "applicant1_lastName",
-      "value": "applicant1_lastName"
-    },
-    {
-      "name": "childArrangement_order",
+      "name": "NoMIAM_DVE_relevantPoliceCaution",
       "value": "true"
     },
     {
-      "name": "prohibitedSteps_order",
+      "name": "NoMIAM_DVE_relevantCriminalProceeding",
       "value": "true"
     },
     {
-      "name": "specialIssue_order",
+      "name": "NoMIAM_DVE_relevantConviction",
       "value": "true"
+    },
+    {
+      "name": "NoMIAM_DVE_courtOrder",
+      "value": "true"
+    },
+    {
+      "name": "NoMIAM_DVE_protectionNotice",
+      "value": "true"
+    },
+    {
+      "name": "NoMIAM_DVE_protectiveInjunction",
+      "value": "true"
+    },
+    {
+      "name": "NoMIAM_DVE_NoCrossUndertakingGiven",
+      "value": "true"
+    },
+    {
+      "name": "NoMIAM_DVE_copyOfFactFinding",
+      "value": "true"
+    },
+    {
+      "name": "NoMIAM_DVE_expertEvidenceReport",
+      "value": "true"
+    },
+    {
+      "name": "NoMIAM_DVE_healthProfessionalReport",
+      "value": "true"
+    },
+    {
+      "name": "NoMIAM_DVE_ReferralHealthProfessionalReport",
+      "value": "true"
+    },
+    {
+      "name": "NoMIAM_DVE_memberOf_MultiAgencyRiskAssessmentConferrance_letter",
+      "value": "true"
+    },
+    {
+      "name": "NoMIAM_DVE_domesticViolenceAdvisor",
+      "value": "true"
+    },
+    {
+      "name": "NoMIAM_DVE_independentSexualViolenceAdvisor_Letter",
+      "value": "true"
+    },
+    {
+      "name": "NoMIAM_DVE_officerEmployed_localAuthority_letter",
+      "value": "true"
+    },
+    {
+      "name": "NoMIAM_DVE_domesticViolenceSupportCharity_letter",
+      "value": "true"
+    },
+    {
+      "name": "NoMIAM_DVE_domesticViolenceSupportCharity_refuge_letter",
+      "value": "true"
+    },
+    {
+      "name": "NoMIAM_DVE_publicAuthority_confirmationLetter",
+      "value": "true"
+    },
+    {
+      "name": "NoMIAM_DVE_secretaryOfState_letter",
+      "value": "true"
+    },
+    {
+      "name": "NoMIAM_DVE_evidenceFinancialMatters",
+      "value": "true"
+    },
+    {
+      "name": "NoMIAM_DVE_arrestedForSimilarOffence",
+      "value": "true"
+    },
+    {
+      "name":"NoMIAM_domesticViolance",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_childProtectionConcerns",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_Urgency",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_PreviousAttendence",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_otherReasons",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_PreviousAttendenceReason",
+      "value":"miamPreviousAttendanceChecklistEnum_Value_4"
+    },
+    {
+      "name":"NoMIAM_otherExceptions",
+      "value":"miamOtherGroundsChecklistEnum_Value_9"
+    },
+    {
+      "name":"NoMIAM_subjectOfEnquiries_byLocalAuthority",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_subjectOfCPP_byLocalAuthority",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_urgency_risk_to_life_liberty_or_safety",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_urgency_riskOfHarm",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_urgency_risk_to_unlawfulRemoval",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_urgency_risk_to_miscarriageOfJustice",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_urgency_unreasonablehardship",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_urgency_irretrievableProblem",
+      "value":"true"
+    },
+    {
+      "name":"NoMIAM_urgency_conflictWithOtherStateCourts",
+      "value":"true"
+    },
+    {
+      "name":"childArrangement_order",
+      "value":"true"
+    },
+    {
+      "name":"prohibitedSteps_order",
+      "value":"true"
+    },
+    {
+      "name":"specialIssue_order",
+      "value":"true"
     },
     {
       "name": "respondent1_firstName",
