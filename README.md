@@ -19,13 +19,12 @@ To build the project execute the following command:
 
 ```bash
 ./gradlew build
-
+```
 
 To Apply formating code or resolve checkSytle issues execute the following command:
 
 ```bash
 ./gradlew spotlessApply
-```
 
 ### Running the application
 
