@@ -42,7 +42,6 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT2_SOT_MONTH;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT2_SOT_YEAR;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_RELATION_TO_CHILD_FATHER_PARTNER;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.BULK_SCAN_CASE_REFERENCE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CASE_TYPE_ID;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.COURT_CONSENT_CHILD_WELFARE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.COURT_CONSENT_PARENT_LACK_CAPACITY;
@@ -120,7 +119,8 @@ public class BulkScanA58Service implements BulkScanService {
             formType,
             bulkRequest.getOcrdatafields()
         );
-        BulkScanGroupValidatorUtil.updateGroupErrorsAndWarnings(bulkScanValidationResponse, groupErrorsAndWarningsHashMap);
+        BulkScanGroupValidatorUtil.updateGroupErrorsAndWarnings(bulkScanValidationResponse,
+                                                                groupErrorsAndWarningsHashMap);
         BulkScanGroupValidatorUtil.updateGroupMissingFields(bulkScanValidationResponse, formType);
         return bulkScanValidationResponse;
     }
