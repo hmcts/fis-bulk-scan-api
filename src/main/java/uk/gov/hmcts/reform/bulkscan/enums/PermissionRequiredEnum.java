@@ -6,7 +6,6 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public enum PermissionRequiredEnum {
-
     yes("yes"),
     noNowSought("no now sought"),
     noNotRequired("no, permission not required");
@@ -22,6 +21,4 @@ public enum PermissionRequiredEnum {
     public static PermissionRequiredEnum getValue(String key) {
         return PermissionRequiredEnum.valueOf(key);
     }
-
 }
-

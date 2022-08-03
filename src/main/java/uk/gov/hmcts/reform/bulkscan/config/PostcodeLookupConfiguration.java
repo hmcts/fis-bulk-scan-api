@@ -12,8 +12,9 @@ public class PostcodeLookupConfiguration {
     private final String url;
     private final String accessKey;
 
-    public PostcodeLookupConfiguration(@Value("${postcodelookup.api.url}") String url,
-                                       @Value("${postcodelookup.api.key}") String accessKey) {
+    public PostcodeLookupConfiguration(
+            @Value("${postcodelookup.api.url}") String url,
+            @Value("${postcodelookup.api.key}") String accessKey) {
         this.url = url;
         this.accessKey = accessKey;
     }

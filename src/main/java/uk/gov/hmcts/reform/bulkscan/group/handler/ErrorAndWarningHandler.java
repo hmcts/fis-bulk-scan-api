@@ -1,20 +1,17 @@
 package uk.gov.hmcts.reform.bulkscan.group.handler;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.stereotype.Component;
 import uk.gov.hmcts.reform.bulkscan.group.validation.enums.MessageTypeEnum;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 @Component
 public class ErrorAndWarningHandler {
-    @Getter
-    @Setter
-    private Map<MessageTypeEnum, List<String>> errorOrWarning = new HashMap<>();
+    @Getter @Setter private Map<MessageTypeEnum, List<String>> errorOrWarning = new HashMap<>();
 
     public void update(Map<MessageTypeEnum, List<String>> errorOrWarningHashMap) {
         final List<String> newWarningMessageList = new ArrayList<>();

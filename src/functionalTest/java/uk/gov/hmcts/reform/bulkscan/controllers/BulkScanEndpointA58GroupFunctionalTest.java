@@ -1,5 +1,7 @@
 package uk.gov.hmcts.reform.bulkscan.controllers;
 
+import static uk.gov.hmcts.reform.bulkscan.util.TestResourceUtil.readFileFrom;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import io.restassured.RestAssured;
@@ -17,8 +19,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
-
-import static uk.gov.hmcts.reform.bulkscan.util.TestResourceUtil.readFileFrom;
 
 @Slf4j
 @SpringBootTest
@@ -39,12 +39,10 @@ public class BulkScanEndpointA58GroupFunctionalTest {
             "classpath:responses/bulk-scan-a58-group-validation-success-output.json";
 
     private final String targetInstance =
-        StringUtils.defaultIfBlank(
-            System.getenv("TEST_URL"),
-            "http://localhost:8090"
-        );
+            StringUtils.defaultIfBlank(System.getenv("TEST_URL"), "http://localhost:8090");
 
-    private final RequestSpecification request = RestAssured.given().relaxedHTTPSValidation().baseUri(targetInstance);
+    private final RequestSpecification request =
+            RestAssured.given().relaxedHTTPSValidation().baseUri(targetInstance);
 
     @Before
     public void setUp() {
@@ -60,11 +58,12 @@ public class BulkScanEndpointA58GroupFunctionalTest {
         String bulkScanValidationResponse =
                 readFileFrom(A58_POST_GROUP_VALIDATION_SUCCESS_OUTPUT_PATH);
 
-        Response response = request.header(AUTH_HEADER, AUTH_HEADER)
-                .body(bulkScanValidationRequest)
-                .when()
-                .contentType("application/json")
-                .post("forms/A58/validate-ocr");
+        Response response =
+                request.header(AUTH_HEADER, AUTH_HEADER)
+                        .body(bulkScanValidationRequest)
+                        .when()
+                        .contentType("application/json")
+                        .post("forms/A58/validate-ocr");
 
         response.then().assertThat().statusCode(HttpStatus.OK.value());
 
@@ -80,11 +79,12 @@ public class BulkScanEndpointA58GroupFunctionalTest {
         String bulkScanValidationResponse =
                 readFileFrom(A58_POST_GROUP_VALIDATION_ERRORS_OUTPUT_PATH);
 
-        Response response = request.header(AUTH_HEADER, AUTH_HEADER)
-                .body(bulkScanValidationRequest)
-                .when()
-                .contentType("application/json")
-                .post("forms/A58/validate-ocr");
+        Response response =
+                request.header(AUTH_HEADER, AUTH_HEADER)
+                        .body(bulkScanValidationRequest)
+                        .when()
+                        .contentType("application/json")
+                        .post("forms/A58/validate-ocr");
 
         response.then().assertThat().statusCode(HttpStatus.OK.value());
 

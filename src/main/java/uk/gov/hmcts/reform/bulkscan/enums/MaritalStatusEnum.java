@@ -6,7 +6,6 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum MaritalStatusEnum {
-
     SINGLE("Single"),
     DIVORCED("Divorced"),
     WIDOW("Widow"),

@@ -1,10 +1,9 @@
 package uk.gov.hmcts.reform.bulkscan.model;
 
+import java.util.List;
 import lombok.Builder;
 import lombok.Data;
 import lombok.ToString;
-
-import java.util.List;
 
 @Data
 @ToString

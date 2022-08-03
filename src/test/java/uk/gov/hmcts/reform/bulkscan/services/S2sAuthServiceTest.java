@@ -1,5 +1,7 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
+import static org.mockito.Mockito.times;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -10,19 +12,14 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import uk.gov.hmcts.reform.authorisation.generators.AuthTokenGenerator;
 import uk.gov.hmcts.reform.authorisation.validators.AuthTokenValidator;
 
-import static org.mockito.Mockito.times;
-
 @ExtendWith(MockitoExtension.class)
 class S2sAuthServiceTest {
 
-    @Mock
-    private AuthTokenValidator authTokenValidator;
+    @Mock private AuthTokenValidator authTokenValidator;
 
-    @Mock
-    private AuthTokenGenerator authTokenGenerator;
+    @Mock private AuthTokenGenerator authTokenGenerator;
 
-    @InjectMocks
-    private S2sAuthService s2sAuthService;
+    @InjectMocks private S2sAuthService s2sAuthService;
 
     @Test
     void tokenValidator() {

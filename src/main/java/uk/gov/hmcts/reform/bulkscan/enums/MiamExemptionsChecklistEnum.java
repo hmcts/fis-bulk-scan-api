@@ -2,10 +2,8 @@ package uk.gov.hmcts.reform.bulkscan.enums;
 
 import lombok.RequiredArgsConstructor;
 
-
 @RequiredArgsConstructor
 public enum MiamExemptionsChecklistEnum {
-
     domesticViolence("Domestic violence"),
     urgency("Urgency"),
     previousMIAMattendance("Previous MIAM attendance or previous MIAM exemption"),
@@ -21,5 +19,4 @@ public enum MiamExemptionsChecklistEnum {
     public static MiamExemptionsChecklistEnum getValue(String key) {
         return MiamExemptionsChecklistEnum.valueOf(key);
     }
-
 }

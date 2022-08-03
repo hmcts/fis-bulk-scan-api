@@ -1,6 +1,11 @@
 package uk.gov.hmcts.reform.bulkscan.services.postcode;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+import java.util.stream.Collectors;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
@@ -18,12 +23,6 @@ import uk.gov.hmcts.reform.bulkscan.config.PostcodeLookupConfiguration;
 import uk.gov.hmcts.reform.bulkscan.exception.PostCodeValidationException;
 import uk.gov.hmcts.reform.bulkscan.model.postcode.PostCodeResponse;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Locale;
-import java.util.Map;
-import java.util.stream.Collectors;
-
 @Service
 @Slf4j
 @SuppressWarnings("unchecked")
@@ -31,32 +30,40 @@ public class PostcodeLookupService {
 
     private static final Logger LOG = LoggerFactory.getLogger(PostcodeLookupService.class);
 
-    @Autowired
-    ObjectMapper objectMapper;
+    @Autowired ObjectMapper objectMapper;
 
-    @Autowired
-    RestTemplate restTemplate;
+    @Autowired RestTemplate restTemplate;
 
-    @Autowired
-    PostcodeLookupConfiguration configuration;
+    @Autowired PostcodeLookupConfiguration configuration;
 
     public boolean isValidPostCode(String postcode, String addressOrHouseNumber) {
         PostCodeResponse response = fetchCountryFromPostCode(postcode.toUpperCase(Locale.UK));
 
-        boolean isValidPostCode = response != null && response.getResults() != null
-            && !response.getResults().isEmpty();
+        boolean isValidPostCode =
+                response != null
+                        && response.getResults() != null
+                        && !response.getResults().isEmpty();
 
         boolean isHouseNumberValid = true;
         if (isValidPostCode && addressOrHouseNumber != null && !addressOrHouseNumber.isEmpty()) {
-            List<String> buildingNumberList = response.getResults().stream().filter(eachObj -> null != eachObj.getDpa()
-                && eachObj.getDpa().getBuildingNumber() != null  && !eachObj.getDpa().getBuildingNumber().isEmpty())
-                .map(eachObj -> eachObj.getDpa().getBuildingNumber())
-                .collect(Collectors.toList());
+            List<String> buildingNumberList =
+                    response.getResults().stream()
+                            .filter(
+                                    eachObj ->
+                                            null != eachObj.getDpa()
+                                                    && eachObj.getDpa().getBuildingNumber() != null
+                                                    && !eachObj.getDpa()
+                                                            .getBuildingNumber()
+                                                            .isEmpty())
+                            .map(eachObj -> eachObj.getDpa().getBuildingNumber())
+                            .collect(Collectors.toList());
             if (!buildingNumberList.isEmpty()) {
-                isHouseNumberValid = buildingNumberList.stream()
-                   .anyMatch(eachBuildNumber -> eachBuildNumber.contains(addressOrHouseNumber));
+                isHouseNumberValid =
+                        buildingNumberList.stream()
+                                .anyMatch(
+                                        eachBuildNumber ->
+                                                eachBuildNumber.contains(addressOrHouseNumber));
             }
-
         }
 
         return isValidPostCode && isHouseNumberValid;
@@ -84,8 +91,12 @@ public class PostcodeLookupService {
             HttpHeaders headers = new HttpHeaders();
             headers.set("Accept", "application/json");
 
-            HttpEntity<String> response = restTemplate.exchange(builder.toUriString(), HttpMethod.GET,
-                                                                new HttpEntity(headers), String.class);
+            HttpEntity<String> response =
+                    restTemplate.exchange(
+                            builder.toUriString(),
+                            HttpMethod.GET,
+                            new HttpEntity(headers),
+                            String.class);
 
             HttpStatus responseStatus = ((ResponseEntity) response).getStatusCode();
 

@@ -1,13 +1,12 @@
 package uk.gov.hmcts.reform.bulkscan.config;
 
+import java.util.Map;
 import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
 import uk.gov.hmcts.reform.bulkscan.model.FormType;
-
-import java.util.Map;
 
 @ConfigurationProperties(prefix = "uk.gov.hmcts.transform")
 @Configuration

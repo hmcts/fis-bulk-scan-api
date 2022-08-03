@@ -12,11 +12,9 @@ import uk.gov.hmcts.reform.authorisation.validators.AuthTokenValidator;
 @Import(S2sAuthConfiguration.class)
 class S2sAuthConfigurationTest {
 
-    @Autowired
-    private AuthTokenValidator authTokenValidator;
+    @Autowired private AuthTokenValidator authTokenValidator;
 
-    @Autowired
-    private AuthTokenGenerator authTokenGenerator;
+    @Autowired private AuthTokenGenerator authTokenGenerator;
 
     @Test
     void tokenValidator() {

@@ -11,6 +11,5 @@ public final class BulkScanGroupConstants {
     public static final String VALID_MESSAGE = "VALID";
     public static final String INVALID_DATE_FORMAT_MESSAGE = "%s is invalid date";
 
-    private BulkScanGroupConstants() {
-    }
+    private BulkScanGroupConstants() {}
 }

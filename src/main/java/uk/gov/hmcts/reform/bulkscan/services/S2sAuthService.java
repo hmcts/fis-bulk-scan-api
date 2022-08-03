@@ -8,11 +8,9 @@ import uk.gov.hmcts.reform.authorisation.validators.AuthTokenValidator;
 @Service
 public class S2sAuthService {
 
-    @Autowired
-    private AuthTokenValidator authTokenValidator;
+    @Autowired private AuthTokenValidator authTokenValidator;
 
-    @Autowired
-    private AuthTokenGenerator authTokenGenerator;
+    @Autowired private AuthTokenGenerator authTokenGenerator;
 
     public void tokenValidator(String token) {
         authTokenValidator.validate(token);

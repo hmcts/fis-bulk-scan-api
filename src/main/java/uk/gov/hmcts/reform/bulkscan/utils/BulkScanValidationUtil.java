@@ -1,6 +1,9 @@
 package uk.gov.hmcts.reform.bulkscan.utils;
 
-import uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants;
+import static java.util.Collections.emptyList;
+import static java.util.stream.Collectors.toList;
+import static org.apache.commons.lang3.ObjectUtils.isEmpty;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_ERROR_MESSAGE;
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -12,17 +15,11 @@ import java.util.List;
 import java.util.Locale;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
-
-import static java.util.Collections.emptyList;
-import static java.util.stream.Collectors.toList;
-import static org.apache.commons.lang3.ObjectUtils.isEmpty;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_ERROR_MESSAGE;
+import uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants;
 
 public final class BulkScanValidationUtil {
 
-    private BulkScanValidationUtil() {
-
-    }
+    private BulkScanValidationUtil() {}
 
     public static boolean isDateValid(String fieldName, String dateStr, String format) {
         DateFormat sdf = new SimpleDateFormat(format, Locale.UK);
@@ -31,7 +28,8 @@ public final class BulkScanValidationUtil {
             Date parse = sdf.parse(dateStr);
             Date current = new Date();
             if ((fieldName.contains(BulkScanConstants.DOB_HINT)
-                || fieldName.contains(BulkScanConstants.DATE_OF_BIRTH_HINT)) && parse.after(current)) {
+                            || fieldName.contains(BulkScanConstants.DATE_OF_BIRTH_HINT))
+                    && parse.after(current)) {
                 return false;
             }
         } catch (ParseException e) {
@@ -42,7 +40,7 @@ public final class BulkScanValidationUtil {
     }
 
     public static boolean isValidFormat(String value, String regex) {
-        Pattern regexPattern = Pattern.compile(regex,Pattern.CASE_INSENSITIVE);
+        Pattern regexPattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
         Matcher matcher = regexPattern.matcher(value);
         return matcher.matches();
     }
@@ -54,7 +52,9 @@ public final class BulkScanValidationUtil {
     }
 
     public static List<String> notNull(String value, String field) {
-        return isEmpty(value) ? List.of(String.format(MANDATORY_ERROR_MESSAGE, field)) : emptyList();
+        return isEmpty(value)
+                ? List.of(String.format(MANDATORY_ERROR_MESSAGE, field))
+                : emptyList();
     }
 
     @SafeVarargs

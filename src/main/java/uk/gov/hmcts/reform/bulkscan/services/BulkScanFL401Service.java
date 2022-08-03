@@ -15,18 +15,17 @@ import uk.gov.hmcts.reform.bulkscan.model.FormType;
 @Service
 public class BulkScanFL401Service implements BulkScanService {
 
-    @Autowired
-    BulkScanFormValidationConfigManager configManager;
+    @Autowired BulkScanFormValidationConfigManager configManager;
 
-    @Autowired
-    BulkScanValidationHelper bulkScanValidationHelper;
+    @Autowired BulkScanValidationHelper bulkScanValidationHelper;
 
     @Override
-    public BulkScanValidationResponse validate(BulkScanValidationRequest bulkScanValidationRequest) {
+    public BulkScanValidationResponse validate(
+            BulkScanValidationRequest bulkScanValidationRequest) {
         // Validating the Fields..
-        return bulkScanValidationHelper.validateMandatoryAndOptionalFields(bulkScanValidationRequest.getOcrdatafields(),
-                                                                           configManager
-                                                                               .getValidationConfig(FormType.FL401));
+        return bulkScanValidationHelper.validateMandatoryAndOptionalFields(
+                bulkScanValidationRequest.getOcrdatafields(),
+                configManager.getValidationConfig(FormType.FL401));
     }
 
     @Override
@@ -35,8 +34,9 @@ public class BulkScanFL401Service implements BulkScanService {
     }
 
     @Override
-    public BulkScanTransformationResponse transform(BulkScanTransformationRequest bulkScanTransformationRequest) {
-        //TODO transformation logic
+    public BulkScanTransformationResponse transform(
+            BulkScanTransformationRequest bulkScanTransformationRequest) {
+        // TODO transformation logic
         return null;
     }
 }

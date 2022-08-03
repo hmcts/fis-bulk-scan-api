@@ -1,5 +1,12 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CASE_TYPE_ID;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EVENT_ID;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanFormValidationConfigManager;
@@ -14,35 +21,20 @@ import uk.gov.hmcts.reform.bulkscan.model.CaseCreationDetails;
 import uk.gov.hmcts.reform.bulkscan.model.FormType;
 import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
 
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
-
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CASE_TYPE_ID;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EVENT_ID;
-
-
 @Service
 public class BulkScanC100Service implements BulkScanService {
 
-    @Autowired
-    BulkScanFormValidationConfigManager configManager;
+    @Autowired BulkScanFormValidationConfigManager configManager;
 
-    @Autowired
-    BulkScanTransformConfigManager transformConfigManager;
+    @Autowired BulkScanTransformConfigManager transformConfigManager;
 
-    @Autowired
-    BulkScanValidationHelper bulkScanValidationHelper;
+    @Autowired BulkScanValidationHelper bulkScanValidationHelper;
 
-    @Autowired
-    BulkScanC100ValidationService bulkScanC100ValidationService;
+    @Autowired BulkScanC100ValidationService bulkScanC100ValidationService;
 
-    @Autowired
-    BulkScanDependencyValidationService dependencyValidationService;
+    @Autowired BulkScanDependencyValidationService dependencyValidationService;
 
-    @Autowired
-    BulkScanC100ConditionalTransformerService bulkScanC100ConditionalTransformerService;
+    @Autowired BulkScanC100ConditionalTransformerService bulkScanC100ConditionalTransformerService;
 
     @Override
     public FormType getCaseType() {
@@ -54,23 +46,25 @@ public class BulkScanC100Service implements BulkScanService {
         // Validating the Fields..
         Map<String, String> inputFieldMap = getOcrDataFieldAsMap(bulkRequest.getOcrdatafields());
 
-        BulkScanValidationResponse response = bulkScanValidationHelper
-            .validateMandatoryAndOptionalFields(bulkRequest.getOcrdatafields(), configManager.getValidationConfig(
-                                                                              FormType.C100));
+        BulkScanValidationResponse response =
+                bulkScanValidationHelper.validateMandatoryAndOptionalFields(
+                        bulkRequest.getOcrdatafields(),
+                        configManager.getValidationConfig(FormType.C100));
         response.addErrors(bulkScanC100ValidationService.doChildRelatedValidation(inputFieldMap));
-        response.addErrors(bulkScanC100ValidationService.doPermissionRelatedFieldValidation(inputFieldMap));
+        response.addErrors(
+                bulkScanC100ValidationService.doPermissionRelatedFieldValidation(inputFieldMap));
 
-        response.addWarning(dependencyValidationService
-                .getDependencyWarnings(inputFieldMap, FormType.C100));
+        response.addWarning(
+                dependencyValidationService.getDependencyWarnings(inputFieldMap, FormType.C100));
 
-        response.addWarning(dependencyValidationService
-                .validateStraightDependentFields(bulkRequest.getOcrdatafields()));
+        response.addWarning(
+                dependencyValidationService.validateStraightDependentFields(
+                        bulkRequest.getOcrdatafields()));
 
-        bulkScanC100ValidationService
-                .validateAttendMiam(bulkRequest.getOcrdatafields(), response);
+        bulkScanC100ValidationService.validateAttendMiam(bulkRequest.getOcrdatafields(), response);
 
-        bulkScanC100ValidationService
-                       .validateApplicantAddressFiveYears(bulkRequest.getOcrdatafields(), response);
+        bulkScanC100ValidationService.validateApplicantAddressFiveYears(
+                bulkRequest.getOcrdatafields(), response);
 
         response.changeStatus();
 
@@ -79,26 +73,35 @@ public class BulkScanC100Service implements BulkScanService {
 
     @Override
     @SuppressWarnings("unchecked")
-    public BulkScanTransformationResponse transform(BulkScanTransformationRequest bulkScanTransformationRequest) {
+    public BulkScanTransformationResponse transform(
+            BulkScanTransformationRequest bulkScanTransformationRequest) {
         List<OcrDataField> inputFieldsList = bulkScanTransformationRequest.getOcrdatafields();
 
-        Map<String, String> inputFieldsMap = inputFieldsList.stream().collect(
-            Collectors.toMap(OcrDataField::getName, OcrDataField::getValue));
+        Map<String, String> inputFieldsMap =
+                inputFieldsList.stream()
+                        .collect(Collectors.toMap(OcrDataField::getName, OcrDataField::getValue));
 
-        Map<String, Object> populatedMap = (Map<String, Object>) BulkScanTransformHelper
-            .transformToCaseData(new HashMap<>(transformConfigManager.getTransformationConfig(FormType.C100)
-                    .getCaseDataFields()), inputFieldsMap);
+        Map<String, Object> populatedMap =
+                (Map<String, Object>)
+                        BulkScanTransformHelper.transformToCaseData(
+                                new HashMap<>(
+                                        transformConfigManager
+                                                .getTransformationConfig(FormType.C100)
+                                                .getCaseDataFields()),
+                                inputFieldsMap);
 
-        bulkScanC100ConditionalTransformerService
-            .transform(populatedMap, inputFieldsMap, bulkScanTransformationRequest);
+        bulkScanC100ConditionalTransformerService.transform(
+                populatedMap, inputFieldsMap, bulkScanTransformationRequest);
         Map<String, String> caseTypeAndEventId =
-            transformConfigManager.getTransformationConfig(FormType.C100).getCaseFields();
+                transformConfigManager.getTransformationConfig(FormType.C100).getCaseFields();
 
-
-        return BulkScanTransformationResponse.builder().caseCreationDetails(
-            CaseCreationDetails.builder()
-                .caseTypeId(caseTypeAndEventId.get(CASE_TYPE_ID))
-                .eventId(caseTypeAndEventId.get(EVENT_ID))
-                .caseData(populatedMap).build()).build();
+        return BulkScanTransformationResponse.builder()
+                .caseCreationDetails(
+                        CaseCreationDetails.builder()
+                                .caseTypeId(caseTypeAndEventId.get(CASE_TYPE_ID))
+                                .eventId(caseTypeAndEventId.get(EVENT_ID))
+                                .caseData(populatedMap)
+                                .build())
+                .build();
     }
 }

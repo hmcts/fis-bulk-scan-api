@@ -10,5 +10,4 @@ public enum FieldTypeEnum {
     NUMERIC,
     POSTCODE,
     FAX_NUMBER
-
 }

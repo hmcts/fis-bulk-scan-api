@@ -7,7 +7,7 @@ public interface FormatValidator {
 
     String validateFormat(String fieldName, String value);
 
-    default  boolean isValidFormat(String value, String regex) {
+    default boolean isValidFormat(String value, String regex) {
         Pattern regexPattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
         Matcher matcher = regexPattern.matcher(value);
         return matcher.matches();

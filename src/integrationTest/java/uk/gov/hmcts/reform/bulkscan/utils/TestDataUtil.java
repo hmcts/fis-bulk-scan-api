@@ -1,15 +1,12 @@
 package uk.gov.hmcts.reform.bulkscan.utils;
 
-import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
-
 import java.util.Arrays;
 import java.util.List;
+import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
 
 public final class TestDataUtil {
 
-    private TestDataUtil() {
-
-    }
+    private TestDataUtil() {}
 
     public static List<OcrDataField> buildFL403ValidationRequest() {
 
@@ -46,16 +43,16 @@ public final class TestDataUtil {
         ocrDataSolicitorDxField.setName("solicitor_fax_number");
         ocrDataSolicitorDxField.setValue("123455");
 
-        return Arrays.asList(ocrDataApplicantFirstName,
-                             ocrDataApplicantLastName,
-                             ocrDataApplicantAddress,
-                             ocrDataApplicantPostcode,
-                             ocrDataApplicantTelephoneField,
-                             ocrDataApplicantEmailField,
-                             ocrDataSolicitorAddressField,
-                             ocrDataFirstNameField,
-                             ocrDataSolicitorTelephoneField,
-                             ocrDataSolicitorDxField
-        );
+        return Arrays.asList(
+                ocrDataApplicantFirstName,
+                ocrDataApplicantLastName,
+                ocrDataApplicantAddress,
+                ocrDataApplicantPostcode,
+                ocrDataApplicantTelephoneField,
+                ocrDataApplicantEmailField,
+                ocrDataSolicitorAddressField,
+                ocrDataFirstNameField,
+                ocrDataSolicitorTelephoneField,
+                ocrDataSolicitorDxField);
     }
 }
