@@ -26,8 +26,8 @@ public final class BulkScanConstants {
     public static final String DUPLICATE_FIELDS_MESSAGE = "Invalid OCR data. Duplicate fields exist: %s";
     public static final String FAX_NUMBER_ERROR_MESSAGE = "%s is in the wrong format";
     public static final String ALPHA_NUMERIC_FIELDS_MESSAGE = "%s is not valid alpha numeric";
-    public static final String UNKNOWN_FIELDS_MESSAGE = "The following fields are are not configured "
-        + "with our system. [%s] ";
+    public static final String UNKNOWN_FIELDS_MESSAGE = "The following fields are not configured "
+        + "with our system: [%s] ";
 
 
     public static final String GROUP_DEPENDENCY_MESSAGE = "Group Dependency Field (%s) has "
