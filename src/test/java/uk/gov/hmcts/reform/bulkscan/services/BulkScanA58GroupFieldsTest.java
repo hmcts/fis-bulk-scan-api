@@ -38,7 +38,7 @@ class BulkScanA58GroupFieldsTest {
         BulkScanValidationRequest bulkScanValidationRequest = mapper
             .readValue(readFileFrom(A58_GROUP_FIELD_REQUEST_PATH), BulkScanValidationRequest.class);
         BulkScanValidationResponse res = bulkScanValidationService.validate(bulkScanValidationRequest);
-        assertEquals(Status.WARNINGS, res.status);//TODO, need to correct for success status
+        assertEquals(Status.SUCCESS, res.status);
     }
 
     @Test

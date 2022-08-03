@@ -162,14 +162,15 @@
       "habitualResidentINotherState": "yes",
       "familyMediatorMiam": null,
       "isCaseUrgent": "yes",
+      "claimingExemptionMiam":"yes",
       "typeOfApplicationTable": {
-        "applicationPermissionRequired": "Yes"
+        "applicationPermissionRequired": "yes"
       },
       "childrenKNownToLocalAuthorityTextArea": "socialWorker",
       "previousOrOngoingProceedings": "yes",
       "applicantAttendedMiam": null,
       "miamTable": {
-        "claimingExemptionMiam": null,
+        "claimingExemptionMiam": "yes",
         "familyMediatorMiam": null,
         "applicantAttendedMiam": null
       },
@@ -183,7 +184,6 @@
       "childrenOfSameParent": "Yes",
       "childLiveWith": "Applicant",
       "consentOrder": "yes",
-      "claimingExemptionMiam": null,
       "welshLanguageRequirement": "yes",
       "childParentsNameCollection": "parentsNameColl",
       "respondents": [
