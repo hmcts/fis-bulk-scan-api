@@ -1,11 +1,9 @@
 package uk.gov.hmcts.reform.bulkscan.config;
 
-import java.lang.reflect.Type;
-import java.util.HashMap;
-import java.util.Map;
-
 import com.microsoft.applicationinsights.core.dependencies.google.common.reflect.TypeToken;
 import com.microsoft.applicationinsights.core.dependencies.google.gson.Gson;
+import java.util.HashMap;
+import java.util.Map;
 import lombok.AccessLevel;
 import lombok.Data;
 import lombok.Getter;
@@ -25,16 +23,15 @@ public class BulkScanTransformConfigManager {
     @Data
     public static class TransformationConfig {
         Map<String, String> caseFields;
+
         @Getter(AccessLevel.NONE)
         Map<String, Object> caseDataFields;
 
-        /***
-         * This mehtod will return the deep copy of hashmap instead of touching the original one.
-         * */
         public Map<String, Object> getCaseDataFields() {
             Gson gson = new Gson();
-            return gson.fromJson(gson.toJson(this.caseDataFields),
-                                                              new TypeToken<HashMap<String, Object>>(){}.getType());
+            return gson.fromJson(
+                    gson.toJson(this.caseDataFields),
+                    new TypeToken<HashMap<String, Object>>() {}.getType());
         }
     }
 
