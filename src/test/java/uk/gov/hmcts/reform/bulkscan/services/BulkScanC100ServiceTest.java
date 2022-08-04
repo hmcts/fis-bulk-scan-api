@@ -7,6 +7,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICATION_PERMISSION_REQUIRED;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ASSESSMENT_BY_ADULT_LEARNING_TEAM_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILDREN_OF_SAME_PARENT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILDREN_PARENTS_NAME;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILDREN_PARENTS_NAME_COLLECTION;
@@ -15,6 +16,12 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIV
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVING_WITH_OTHERS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVING_WITH_RESPONDENT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LOCAL_AUTHORITY_OR_SOCIAL_WORKER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FACTORS_AFFECTING_LITIGATION_CAPACITY_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FACTORS_AFFECTING_PERSON_IN_COURT_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.INTERNATIONALELEMENT_JURISDICTIONISSUE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.INTERNATIONAL_OR_FACTORS_AFFECTING_LITIGATION_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NO;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PERMISSION_REQUIRED;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT1ALLADDRESSESFORLASTFIVEYEARS;
@@ -23,12 +30,17 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDEN
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT2LIVEDATTHISADDRESSFOROVERFIVEYEARS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_ONE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_TWO;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES;
+import static uk.gov.hmcts.reform.bulkscan.utils.Constants.EMPTY_STRING;
+import static uk.gov.hmcts.reform.bulkscan.utils.Constants.INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH_DETAILS;
+import static uk.gov.hmcts.reform.bulkscan.utils.Constants.INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE_DETAILS;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.NOMIAM_CHILDPROTECTIONCONCERNS_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.NOMIAM_DOMESTICVIOLENCE_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.NOMIAM_OTHERREASONS_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.NOMIAM_PREVIOUSATTENDANCE_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.NOMIAM_URGENCY_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.TICK_BOX_TRUE;
+import static uk.gov.hmcts.reform.bulkscan.utils.Constants.WITHOUTNOTICE_JURISDICTIONISSUE_DETAILS;
 import static uk.gov.hmcts.reform.bulkscan.utils.TestDataC100Util.POST_CODE;
 import static uk.gov.hmcts.reform.bulkscan.utils.TestResourceUtil.readFileFrom;
 
@@ -36,8 +48,6 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Collectors;
 import org.json.JSONException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -99,6 +109,15 @@ class BulkScanC100ServiceTest {
                 + "NoMIAM_DVE_publicAuthority_confirmationLetter,NoMIAM_DVE_secretaryOfState_letter,"
                 + "NoMIAM_DVE_evidenceFinancialMatters].";
 
+    private static final String INTERNATIONAL_FACTORS_AFFECTING_LITIGATION_WARNING =
+            "Group Dependency Field (international_or_factorsAffectingLitigation) has dependency"
+                + " validation warning. Must contain at least 1 of the fields "
+                + "[internationalElement_request_toCentral_or_Consular_authority,"
+                + "internationalElement_Resident_of_another_state,internationalElement_jurisdictionIssue"
+                + " (value should be Yes); "
+                + "internationalElement_jurisdictionIssue,internationalElement_jurisdictionIssue,internationalElement_jurisdictionIssue"
+                + " (value should be empty)].";
+
     private static final String RESPONDENT_ONE_NOT_LIVED_IN_ADDRESS_FOR_FIVE_YEARS =
             "("
                     + RESPONDENT_ONE
@@ -114,6 +133,20 @@ class BulkScanC100ServiceTest {
                     + "for more than 5 years. Previous address(es) field ("
                     + RESPONDENT2ALLADDRESSESFORLASTFIVEYEARS
                     + ") should not be empty or null.";
+
+    private static final String INTERNATIONAL_JURISDICTION_WARNING_MESSAGE =
+            "Group Dependency Field (internationalElement_jurisdictionIssue) has dependency"
+                    + " validation warning. Must contain at least 1 of the fields"
+                    + " [withoutNotice_jurisdictionIssue_details].";
+
+    private static final String INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE_WARNING_MESSAGE =
+            "Group Dependency Field (internationalElement_Resident_of_another_state) has dependency"
+                    + " validation warning. Must contain at least 1 of the fields"
+                    + " [internationalElement_Resident_of_another_state_details].";
+    private static final String INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH_WARNING_MESSAGE =
+            "Group Dependency Field (internationalElement_request_toCentral_or_Consular_authority)"
+                    + " has dependency validation warning. Must contain at least 1 of the fields"
+                    + " [internationalElement_request_toCentral_or_Consular_authority_details].";
 
     private final ObjectMapper mapper = new ObjectMapper();
 
@@ -170,7 +203,7 @@ class BulkScanC100ServiceTest {
                                                 eachField.getName())
                                         || CHILD_LIVING_WITH_OTHERS.equalsIgnoreCase(
                                                 eachField.getName()))
-                .forEach(field -> field.setValue(""));
+                .forEach(field -> field.setValue(EMPTY_STRING));
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
@@ -190,7 +223,7 @@ class BulkScanC100ServiceTest {
                         BulkScanValidationRequest.class);
         bulkScanValidationRequest.getOcrdatafields().stream()
                 .filter(eachField -> CHILDREN_PARENTS_NAME.equalsIgnoreCase(eachField.getName()))
-                .forEach(field -> field.setValue(""));
+                .forEach(field -> field.setValue(EMPTY_STRING));
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
@@ -211,7 +244,7 @@ class BulkScanC100ServiceTest {
                         eachField ->
                                 CHILDREN_PARENTS_NAME_COLLECTION.equalsIgnoreCase(
                                         eachField.getName()))
-                .forEach(field -> field.setValue(""));
+                .forEach(field -> field.setValue(EMPTY_STRING));
         bulkScanValidationRequest.getOcrdatafields().stream()
                 .filter(eachField -> CHILDREN_OF_SAME_PARENT.equalsIgnoreCase(eachField.getName()))
                 .forEach(field -> field.setValue("No"));
@@ -235,7 +268,7 @@ class BulkScanC100ServiceTest {
                         eachField ->
                                 CHILDREN_PARENTS_NAME_COLLECTION.equalsIgnoreCase(
                                         eachField.getName()))
-                .forEach(field -> field.setValue(""));
+                .forEach(field -> field.setValue(EMPTY_STRING));
         bulkScanValidationRequest.getOcrdatafields().stream()
                 .filter(eachField -> CHILDREN_OF_SAME_PARENT.equalsIgnoreCase(eachField.getName()))
                 .forEach(field -> field.setValue("No"));
@@ -259,7 +292,7 @@ class BulkScanC100ServiceTest {
                         eachField ->
                                 CHILD_LOCAL_AUTHORITY_OR_SOCIAL_WORKER.equalsIgnoreCase(
                                         eachField.getName()))
-                .forEach(field -> field.setValue(""));
+                .forEach(field -> field.setValue(EMPTY_STRING));
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
@@ -479,10 +512,13 @@ class BulkScanC100ServiceTest {
             "Should generate SUCCESS status with NoMIAM_domesticViolence field in bulkscan request")
     void testC100NoMiamDomesticViolenceSuccessData() {
         List<OcrDataField> c100GetDomesticViolenceWarningData = new ArrayList<>();
-        c100GetDomesticViolenceWarningData.addAll(
-                TestDataC100Util.getAllNamesRelationSuccessData());
-        c100GetDomesticViolenceWarningData.addAll(
-                TestDataC100Util.getExemptionToAttendMiamDependentSuccessData());
+        c100GetDomesticViolenceWarningData.addAll(TestDataC100Util.getData());
+
+        OcrDataField subjectOfEnquiries = new OcrDataField();
+        subjectOfEnquiries.setName("NoMIAM_DVE_protectionNotice");
+        subjectOfEnquiries.setValue("Yes");
+
+        c100GetDomesticViolenceWarningData.add(subjectOfEnquiries);
 
         when(postcodeLookupService.isValidPostCode(POST_CODE, null)).thenReturn(true);
         BulkScanValidationRequest bulkScanValidationRequest =
@@ -490,13 +526,26 @@ class BulkScanC100ServiceTest {
                         .ocrdatafields(c100GetDomesticViolenceWarningData)
                         .build();
 
-        Map<String, String> ocrDataFieldMap = getOcrFieldsMap(bulkScanValidationRequest);
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                NOMIAM_DOMESTICVIOLENCE_FIELD.equalsIgnoreCase(eachField.getName()))
+                .forEach(field -> field.setValue(TICK_BOX_TRUE));
 
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
-        assertNotNull(ocrDataFieldMap.get(NOMIAM_DOMESTICVIOLENCE_FIELD));
-        assertEquals(TICK_BOX_TRUE, ocrDataFieldMap.get(NOMIAM_DOMESTICVIOLENCE_FIELD));
+        assertEquals(
+                TICK_BOX_TRUE,
+                bulkScanValidationRequest.getOcrdatafields().stream()
+                        .filter(
+                                eachField ->
+                                        NOMIAM_DOMESTICVIOLENCE_FIELD.equalsIgnoreCase(
+                                                eachField.getName()))
+                        .findAny()
+                        .orElse(null)
+                        .getValue());
+
         assertEquals(Status.SUCCESS, res.status);
         assertFalse(res.getWarnings().items.contains(NOMIAM_OTHERREASONS_DEPENDENCY_WARNING));
     }
@@ -506,25 +555,42 @@ class BulkScanC100ServiceTest {
             "Should generate SUCCESS status with NoMIAM_childProtectionConcerns field in bulkscan"
                     + " request")
     void testC100NoMiamChildProtectionConcernsSuccessData() {
-        List<OcrDataField> c100GetDomesticViolenceWarningData = new ArrayList<>();
-        c100GetDomesticViolenceWarningData.addAll(
-                TestDataC100Util.getAllNamesRelationSuccessData());
-        c100GetDomesticViolenceWarningData.addAll(
-                TestDataC100Util.getExemptionToAttendMiamDependentSuccessData());
+        List<OcrDataField> c100GetProtectionConcernsWarningData = new ArrayList<>();
+        c100GetProtectionConcernsWarningData.addAll(TestDataC100Util.getData());
+
+        OcrDataField subjectOfEnquiries = new OcrDataField();
+        subjectOfEnquiries.setName("NoMIAM_subjectOfEnquiries_byLocalAuthority");
+        subjectOfEnquiries.setValue("Yes");
+
+        c100GetProtectionConcernsWarningData.add(subjectOfEnquiries);
 
         when(postcodeLookupService.isValidPostCode(POST_CODE, null)).thenReturn(true);
         BulkScanValidationRequest bulkScanValidationRequest =
                 BulkScanValidationRequest.builder()
-                        .ocrdatafields(c100GetDomesticViolenceWarningData)
+                        .ocrdatafields(c100GetProtectionConcernsWarningData)
                         .build();
 
-        Map<String, String> ocrDataFieldMap = getOcrFieldsMap(bulkScanValidationRequest);
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                NOMIAM_CHILDPROTECTIONCONCERNS_FIELD.equalsIgnoreCase(
+                                        eachField.getName()))
+                .forEach(field -> field.setValue(TICK_BOX_TRUE));
 
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
-        assertNotNull(ocrDataFieldMap.get(NOMIAM_CHILDPROTECTIONCONCERNS_FIELD));
-        assertEquals(TICK_BOX_TRUE, ocrDataFieldMap.get(NOMIAM_CHILDPROTECTIONCONCERNS_FIELD));
+        assertEquals(
+                TICK_BOX_TRUE,
+                bulkScanValidationRequest.getOcrdatafields().stream()
+                        .filter(
+                                eachField ->
+                                        NOMIAM_CHILDPROTECTIONCONCERNS_FIELD.equalsIgnoreCase(
+                                                eachField.getName()))
+                        .findAny()
+                        .orElse(null)
+                        .getValue());
+
         assertEquals(Status.SUCCESS, res.status);
         assertFalse(
                 res.getWarnings()
@@ -535,25 +601,36 @@ class BulkScanC100ServiceTest {
     @Test
     @DisplayName("Should generate SUCCESS status with NoMIAM_Urgency field in bulkscan request")
     void testC100NoMiamUrgencySuccessData() {
-        List<OcrDataField> c100GetDomesticViolenceWarningData = new ArrayList<>();
-        c100GetDomesticViolenceWarningData.addAll(
-                TestDataC100Util.getAllNamesRelationSuccessData());
-        c100GetDomesticViolenceWarningData.addAll(
-                TestDataC100Util.getExemptionToAttendMiamDependentSuccessData());
+        List<OcrDataField> c100GetMiamUrgencyWarningData = new ArrayList<>();
+        c100GetMiamUrgencyWarningData.addAll(TestDataC100Util.getData());
+        OcrDataField noMiamUrgencyReason = new OcrDataField();
+        noMiamUrgencyReason.setName("NoMIAM_urgency_riskOfHarm");
+        noMiamUrgencyReason.setValue("Yes");
+
+        c100GetMiamUrgencyWarningData.add(noMiamUrgencyReason);
 
         when(postcodeLookupService.isValidPostCode(POST_CODE, null)).thenReturn(true);
         BulkScanValidationRequest bulkScanValidationRequest =
                 BulkScanValidationRequest.builder()
-                        .ocrdatafields(c100GetDomesticViolenceWarningData)
+                        .ocrdatafields(c100GetMiamUrgencyWarningData)
                         .build();
 
-        Map<String, String> ocrDataFieldMap = getOcrFieldsMap(bulkScanValidationRequest);
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(eachField -> NOMIAM_URGENCY_FIELD.equalsIgnoreCase(eachField.getName()))
+                .forEach(field -> field.setValue(TICK_BOX_TRUE));
 
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
-        assertNotNull(ocrDataFieldMap.get(NOMIAM_URGENCY_FIELD));
-        assertEquals(TICK_BOX_TRUE, ocrDataFieldMap.get(NOMIAM_URGENCY_FIELD));
+        assertEquals(
+                TICK_BOX_TRUE,
+                bulkScanValidationRequest.getOcrdatafields().stream()
+                        .filter(
+                                eachField ->
+                                        NOMIAM_URGENCY_FIELD.equalsIgnoreCase(eachField.getName()))
+                        .findAny()
+                        .orElse(null)
+                        .getValue());
         assertEquals(Status.SUCCESS, res.status);
         assertFalse(res.getWarnings().items.contains(NOMIAM_URGENCY_DEPENDENCY_WARNING));
     }
@@ -598,10 +675,12 @@ class BulkScanC100ServiceTest {
                     + " request")
     void testC100NoMiamPreviousAttendanceSuccessData() {
         List<OcrDataField> c100GetDomesticViolenceWarningData = new ArrayList<>();
-        c100GetDomesticViolenceWarningData.addAll(
-                TestDataC100Util.getAllNamesRelationSuccessData());
-        c100GetDomesticViolenceWarningData.addAll(
-                TestDataC100Util.getExemptionToAttendMiamDependentSuccessData());
+        c100GetDomesticViolenceWarningData.addAll(TestDataC100Util.getData());
+        OcrDataField previousAttendanceReason = new OcrDataField();
+        previousAttendanceReason.setName("NoMIAM_PreviousAttendanceReason");
+        previousAttendanceReason.setValue("Yes");
+
+        c100GetDomesticViolenceWarningData.add(previousAttendanceReason);
 
         when(postcodeLookupService.isValidPostCode(POST_CODE, null)).thenReturn(true);
         BulkScanValidationRequest bulkScanValidationRequest =
@@ -609,13 +688,26 @@ class BulkScanC100ServiceTest {
                         .ocrdatafields(c100GetDomesticViolenceWarningData)
                         .build();
 
-        Map<String, String> ocrDataFieldMap = getOcrFieldsMap(bulkScanValidationRequest);
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                NOMIAM_PREVIOUSATTENDANCE_FIELD.equalsIgnoreCase(
+                                        eachField.getName()))
+                .forEach(field -> field.setValue(TICK_BOX_TRUE));
 
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
-        assertNotNull(ocrDataFieldMap.get(NOMIAM_PREVIOUSATTENDANCE_FIELD));
-        assertEquals(TICK_BOX_TRUE, ocrDataFieldMap.get(NOMIAM_PREVIOUSATTENDANCE_FIELD));
+        assertEquals(
+                TICK_BOX_TRUE,
+                bulkScanValidationRequest.getOcrdatafields().stream()
+                        .filter(
+                                eachField ->
+                                        "NoMIAM_PreviousAttendance"
+                                                .equalsIgnoreCase(eachField.getName()))
+                        .findAny()
+                        .orElse(null)
+                        .getValue());
         assertEquals(Status.SUCCESS, res.status);
         assertFalse(res.getWarnings().items.contains(NOMIAM_PREVIOUSATTENDANCE_DEPENDENCY_WARNING));
     }
@@ -624,25 +716,41 @@ class BulkScanC100ServiceTest {
     @DisplayName(
             "Should generate SUCCESS status with NoMIAM_otherReasons field in bulkscan request")
     void testC100NoMiamOtherReasonsSuccessData() {
-        List<OcrDataField> c100GetDomesticViolenceWarningData = new ArrayList<>();
-        c100GetDomesticViolenceWarningData.addAll(
-                TestDataC100Util.getAllNamesRelationSuccessData());
-        c100GetDomesticViolenceWarningData.addAll(
-                TestDataC100Util.getExemptionToAttendMiamDependentSuccessData());
+        List<OcrDataField> c100GetOtherResonsWarningData = new ArrayList<>();
+        c100GetOtherResonsWarningData.addAll(TestDataC100Util.getData());
+
+        OcrDataField subjectOfEnquiries = new OcrDataField();
+        subjectOfEnquiries.setName("NoMIAM_otherExceptions");
+        subjectOfEnquiries.setValue("Yes");
+
+        c100GetOtherResonsWarningData.add(subjectOfEnquiries);
 
         when(postcodeLookupService.isValidPostCode(POST_CODE, null)).thenReturn(true);
         BulkScanValidationRequest bulkScanValidationRequest =
                 BulkScanValidationRequest.builder()
-                        .ocrdatafields(c100GetDomesticViolenceWarningData)
+                        .ocrdatafields(c100GetOtherResonsWarningData)
                         .build();
 
-        Map<String, String> ocrDataFieldMap = getOcrFieldsMap(bulkScanValidationRequest);
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                NOMIAM_OTHERREASONS_FIELD.equalsIgnoreCase(eachField.getName()))
+                .forEach(field -> field.setValue(TICK_BOX_TRUE));
 
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
-        assertNotNull(ocrDataFieldMap.get(NOMIAM_OTHERREASONS_FIELD));
-        assertEquals(TICK_BOX_TRUE, ocrDataFieldMap.get("NoMIAM_otherReasons"));
+        assertEquals(
+                TICK_BOX_TRUE,
+                bulkScanValidationRequest.getOcrdatafields().stream()
+                        .filter(
+                                eachField ->
+                                        NOMIAM_OTHERREASONS_FIELD.equalsIgnoreCase(
+                                                eachField.getName()))
+                        .findAny()
+                        .orElse(null)
+                        .getValue());
+
         assertEquals(Status.SUCCESS, res.status);
         assertFalse(res.getWarnings().items.contains(NOMIAM_OTHERREASONS_DEPENDENCY_WARNING));
     }
@@ -666,7 +774,7 @@ class BulkScanC100ServiceTest {
                         eachField ->
                                 RESPONDENT1ALLADDRESSESFORLASTFIVEYEARS.equalsIgnoreCase(
                                         eachField.getName()))
-                .forEach(field -> field.setValue(""));
+                .forEach(field -> field.setValue(EMPTY_STRING));
 
         bulkScanValidationRequest.getOcrdatafields().stream()
                 .filter(
@@ -689,7 +797,7 @@ class BulkScanC100ServiceTest {
     @DisplayName(
             "Should generate Warning for respondent_2 not lived for 5 years in current address "
                     + "without previous address details")
-    void testC100RespondentTweNotLivedInAddressForFiveYearsWarning() {
+    void testC100RespondentTwoNotLivedInAddressForFiveYearsWarning() {
         List<OcrDataField> c100GetDomesticViolenceWarningData = new ArrayList<>();
         c100GetDomesticViolenceWarningData.addAll(TestDataC100Util.getData());
 
@@ -704,7 +812,7 @@ class BulkScanC100ServiceTest {
                         eachField ->
                                 RESPONDENT2ALLADDRESSESFORLASTFIVEYEARS.equalsIgnoreCase(
                                         eachField.getName()))
-                .forEach(field -> field.setValue(""));
+                .forEach(field -> field.setValue(EMPTY_STRING));
 
         bulkScanValidationRequest.getOcrdatafields().stream()
                 .filter(
@@ -724,14 +832,287 @@ class BulkScanC100ServiceTest {
     }
 
     @Test
+    @DisplayName(
+            "Should generate success for international_or_factorsAffectingLitigation without any"
+                    + " information on sections 8 and 9 of application form.")
+    void testC100InternationalOrFactorsAffectingLitigationWarning() {
+        List<OcrDataField> c100GetDomesticViolenceWarningData = new ArrayList<>();
+        c100GetDomesticViolenceWarningData.addAll(TestDataC100Util.getData());
+
+        when(postcodeLookupService.isValidPostCode(POST_CODE, null)).thenReturn(true);
+        BulkScanValidationRequest bulkScanValidationRequest =
+                BulkScanValidationRequest.builder()
+                        .ocrdatafields(c100GetDomesticViolenceWarningData)
+                        .build();
+
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                INTERNATIONAL_OR_FACTORS_AFFECTING_LITIGATION_FIELD
+                                        .equalsIgnoreCase(eachField.getName()))
+                .forEach(field -> field.setValue(YES));
+
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                INTERNATIONALELEMENT_JURISDICTIONISSUE.equalsIgnoreCase(
+                                        eachField.getName()))
+                .forEach(field -> field.setValue(EMPTY_STRING));
+
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE.equalsIgnoreCase(
+                                        eachField.getName()))
+                .forEach(field -> field.setValue(EMPTY_STRING));
+
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH.equalsIgnoreCase(
+                                        eachField.getName()))
+                .forEach(field -> field.setValue(EMPTY_STRING));
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                ASSESSMENT_BY_ADULT_LEARNING_TEAM_FIELD.equalsIgnoreCase(
+                                        eachField.getName()))
+                .forEach(field -> field.setValue(EMPTY_STRING));
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                FACTORS_AFFECTING_PERSON_IN_COURT_FIELD.equalsIgnoreCase(
+                                        eachField.getName()))
+                .forEach(field -> field.setValue(EMPTY_STRING));
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                FACTORS_AFFECTING_LITIGATION_CAPACITY_FIELD.equalsIgnoreCase(
+                                        eachField.getName()))
+                .forEach(field -> field.setValue(EMPTY_STRING));
+
+        BulkScanValidationResponse res =
+                bulkScanValidationService.validate(bulkScanValidationRequest);
+
+        assertEquals(Status.WARNINGS, res.status);
+        assertTrue(
+                res.getWarnings()
+                        .items
+                        .contains(INTERNATIONAL_FACTORS_AFFECTING_LITIGATION_WARNING));
+    }
+
+    @Test
+    @DisplayName(
+            "Should generate success for international_or_factorsAffectingLitigation without Yes"
+                    + " but No Checkbox information on sections 8 and 9 of application form.")
+    void testC100InternationalOrFactorsAffectingLitigationWithoutYesCheckboxAndAllEmptyWarning() {
+        List<OcrDataField> c100GetDomesticViolenceWarningData = new ArrayList<>();
+        c100GetDomesticViolenceWarningData.addAll(TestDataC100Util.getData());
+
+        when(postcodeLookupService.isValidPostCode(POST_CODE, null)).thenReturn(true);
+        BulkScanValidationRequest bulkScanValidationRequest =
+                BulkScanValidationRequest.builder()
+                        .ocrdatafields(c100GetDomesticViolenceWarningData)
+                        .build();
+
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                INTERNATIONAL_OR_FACTORS_AFFECTING_LITIGATION_FIELD
+                                        .equalsIgnoreCase(eachField.getName()))
+                .forEach(field -> field.setValue(YES));
+
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                INTERNATIONALELEMENT_JURISDICTIONISSUE.equalsIgnoreCase(
+                                        eachField.getName()))
+                .forEach(field -> field.setValue(NO));
+
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE.equalsIgnoreCase(
+                                        eachField.getName()))
+                .forEach(field -> field.setValue(NO));
+
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH.equalsIgnoreCase(
+                                        eachField.getName()))
+                .forEach(field -> field.setValue(NO));
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                ASSESSMENT_BY_ADULT_LEARNING_TEAM_FIELD.equalsIgnoreCase(
+                                        eachField.getName()))
+                .forEach(field -> field.setValue(EMPTY_STRING));
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                FACTORS_AFFECTING_PERSON_IN_COURT_FIELD.equalsIgnoreCase(
+                                        eachField.getName()))
+                .forEach(field -> field.setValue(EMPTY_STRING));
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                FACTORS_AFFECTING_LITIGATION_CAPACITY_FIELD.equalsIgnoreCase(
+                                        eachField.getName()))
+                .forEach(field -> field.setValue(EMPTY_STRING));
+
+        BulkScanValidationResponse res =
+                bulkScanValidationService.validate(bulkScanValidationRequest);
+
+        assertEquals(Status.WARNINGS, res.status);
+        assertTrue(
+                res.getWarnings()
+                        .items
+                        .contains(INTERNATIONAL_FACTORS_AFFECTING_LITIGATION_WARNING));
+    }
+
+    @Test
+    @DisplayName(
+            "Should generate warning for checkbox ticked with 'Yes' when there is any reason to"
+                + " believe that any child, parent or potentially significant adult in he child’s"
+                + " life may be habitually resident in another state sections 8 of application form"
+                + " but no details were given.")
+    void testC100InternationalElementResidentOfAnotherStateWithoutDetailsWarning() {
+        List<OcrDataField> c100GetResidentOfAnotherStateWarningData = new ArrayList<>();
+        c100GetResidentOfAnotherStateWarningData.addAll(TestDataC100Util.getData());
+
+        when(postcodeLookupService.isValidPostCode(POST_CODE, null)).thenReturn(true);
+        BulkScanValidationRequest bulkScanValidationRequest =
+                BulkScanValidationRequest.builder()
+                        .ocrdatafields(c100GetResidentOfAnotherStateWarningData)
+                        .build();
+
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                INTERNATIONAL_OR_FACTORS_AFFECTING_LITIGATION_FIELD
+                                        .equalsIgnoreCase(eachField.getName()))
+                .forEach(field -> field.setValue(YES));
+
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE.equalsIgnoreCase(
+                                        eachField.getName()))
+                .forEach(field -> field.setValue("Yes"));
+
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE_DETAILS
+                                        .equalsIgnoreCase(eachField.getName()))
+                .forEach(field -> field.setValue(EMPTY_STRING));
+
+        BulkScanValidationResponse res =
+                bulkScanValidationService.validate(bulkScanValidationRequest);
+
+        assertEquals(Status.WARNINGS, res.status);
+        assertTrue(
+                res.getWarnings()
+                        .items
+                        .contains(INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE_WARNING_MESSAGE));
+    }
+
+    @Test
+    @DisplayName(
+            "Should generate warning for checkbox ticked with 'Yes' when there is any reason to"
+                    + " believe that there may be an issue as to jurisdiction in this case but no"
+                    + " details were given")
+    void testC100InternationalElementJurisdictionIssueWithoutDetailsWarning() {
+        List<OcrDataField> c100GetJurisdictionIssueWarningData = new ArrayList<>();
+        c100GetJurisdictionIssueWarningData.addAll(TestDataC100Util.getData());
+
+        when(postcodeLookupService.isValidPostCode(POST_CODE, null)).thenReturn(true);
+        BulkScanValidationRequest bulkScanValidationRequest =
+                BulkScanValidationRequest.builder()
+                        .ocrdatafields(c100GetJurisdictionIssueWarningData)
+                        .build();
+
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                INTERNATIONAL_OR_FACTORS_AFFECTING_LITIGATION_FIELD
+                                        .equalsIgnoreCase(eachField.getName()))
+                .forEach(field -> field.setValue(YES));
+
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                INTERNATIONALELEMENT_JURISDICTIONISSUE.equalsIgnoreCase(
+                                        eachField.getName()))
+                .forEach(field -> field.setValue("Yes"));
+
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                WITHOUTNOTICE_JURISDICTIONISSUE_DETAILS.equalsIgnoreCase(
+                                        eachField.getName()))
+                .forEach(field -> field.setValue(EMPTY_STRING));
+
+        BulkScanValidationResponse res =
+                bulkScanValidationService.validate(bulkScanValidationRequest);
+
+        assertEquals(Status.WARNINGS, res.status);
+        assertTrue(res.getWarnings().items.contains(INTERNATIONAL_JURISDICTION_WARNING_MESSAGE));
+    }
+
+    @Test
+    @DisplayName(
+            "Should generate warning for checkbox ticked with 'Yes' when a requesthas been made or"
+                    + "should a request be made to a Central Authority or other competent "
+                    + "authority in a foreign state or a consular authority in England and Wales"
+                    + "on sections 8 of application form but no details were given.")
+    void testC100InternationalElementRequestCentralConsularWithoutDetailsWarning() {
+        List<OcrDataField> c100GetRequestCentralConsularWarningData = new ArrayList<>();
+        c100GetRequestCentralConsularWarningData.addAll(TestDataC100Util.getData());
+
+        when(postcodeLookupService.isValidPostCode(POST_CODE, null)).thenReturn(true);
+        BulkScanValidationRequest bulkScanValidationRequest =
+                BulkScanValidationRequest.builder()
+                        .ocrdatafields(c100GetRequestCentralConsularWarningData)
+                        .build();
+
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                INTERNATIONAL_OR_FACTORS_AFFECTING_LITIGATION_FIELD
+                                        .equalsIgnoreCase(eachField.getName()))
+                .forEach(field -> field.setValue(YES));
+
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH.equalsIgnoreCase(
+                                        eachField.getName()))
+                .forEach(field -> field.setValue("Yes"));
+
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH_DETAILS
+                                        .equalsIgnoreCase(eachField.getName()))
+                .forEach(field -> field.setValue(EMPTY_STRING));
+
+        BulkScanValidationResponse res =
+                bulkScanValidationService.validate(bulkScanValidationRequest);
+
+        assertEquals(Status.WARNINGS, res.status);
+        assertTrue(
+                res.getWarnings()
+                        .items
+                        .contains(
+                                INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH_WARNING_MESSAGE));
+    }
+
+    @Test
     void testTransform() {
         BulkScanTransformationResponse bulkScanTransformationResponse =
                 bulkScanValidationService.transform(mock(BulkScanTransformationRequest.class));
         assertNotNull(bulkScanTransformationResponse);
-    }
-
-    private Map<String, String> getOcrFieldsMap(BulkScanValidationRequest bulkRequest) {
-        return bulkRequest.getOcrdatafields().stream()
-                .collect(Collectors.toMap(OcrDataField::getName, OcrDataField::getValue));
     }
 }

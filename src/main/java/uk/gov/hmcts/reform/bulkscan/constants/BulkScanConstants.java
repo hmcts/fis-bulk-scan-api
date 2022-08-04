@@ -11,6 +11,7 @@ public final class BulkScanConstants {
 
     public static final String YES = "Yes";
     public static final String NO = "No";
+    public static final String WILDCARD_DEPENDENT_INPUT = "*";
 
     public static final String MANDATORY_ATTENDED_MIAM_MESSAGE =
             "%s : value is no, " + "and you cannot make this application";
@@ -145,6 +146,9 @@ public final class BulkScanConstants {
             "court_interpreter_assistance_language";
     public static final String SPECIAL_ASSISTANCE_FACILITIES = "special_assistance_facilities";
 
+    public static final String INTERNATIONAL_OR_FACTORS_AFFECTING_LITIGATION_FIELD =
+            "international_or_factorsAffectingLitigation";
+
     public static final String WELSH_PREFERENCE_PARTY_NAME_CCD = "welshPreferencePartyName";
     public static final String WELSH_PREFERENCE_WITNESS_NAME_CCD = "welshPreferenceWitnessName";
     public static final String WELSH_PREFERENCE_CHILD_NAME_CCD = "welshPreferenceChildName";
@@ -212,7 +216,26 @@ public final class BulkScanConstants {
     public static final String ADDRESS_NOT_LIVED_FOR_FIVE_YEARS_MESSAGE =
             "(%s) has not lived at the current address for more than 5 years. Previous address(es)"
                     + " field (%s) should not be empty or null.";
+    public static final String PARENT_FIELD_VIOLATION_SHOULD_BE_EMPTY =
+            "Parent field violation - dependent field (%s) should be empty as it requires parent "
+                    + "field (%s) having value (%s).";
+
     // END C100 form section 2 validation fields
+
+    // C100 form section 8 & 9 validation fields
+    public static final String ASSESSMENT_BY_ADULT_LEARNING_TEAM_FIELD =
+            "assessmentByAdultLearningTeam";
+    public static final String FACTORS_AFFECTING_LITIGATION_CAPACITY_FIELD =
+            "factorAffectingLitigationCapacity";
+    public static final String FACTORS_AFFECTING_PERSON_IN_COURT_FIELD =
+            "factorsAffectingPersonInCourt";
+    public static final String INTERNATIONALELEMENT_JURISDICTIONISSUE =
+            "internationalElement_jurisdictionIssue";
+    public static final String INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH =
+            "internationalElement_request_toCentral_or_Consular_authority";
+    public static final String INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE =
+            "internationalElement_Resident_of_another_state";
+    // END C100 form sections 8 & 9 validation fields
 
     // C100 form section 12 validation fields
     public static final String RESPONDENT1LIVEDATTHISADDRESSFOROVERFIVEYEARS =

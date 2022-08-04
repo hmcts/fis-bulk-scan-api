@@ -77,3 +77,36 @@ uk:
               groupFieldName: NoMIAM_otherReasons
               groupValidationValue: "True"
               requiredFieldCount: 1
+            - groupInternationalFactorsAffectingLitigationCheckbox:
+              dependentFields:
+                - internationalElement_Resident_of_another_state
+                - internationalElement_jurisdictionIssue
+                - internationalElement_request_toCentral_or_Consular_authority
+                - factorAffectingLitigationCapacity
+                - assessmentByAdultLearningTeam
+                - factorsAffectingPersonInCourt
+              dependentFieldValue: "*"
+              groupFieldName: international_or_factorsAffectingLitigation
+              groupValidationValue: "Yes"
+              requiredFieldCount: 1
+            - groupInternationalResidentOfAnotherState:
+              dependentFields:
+                - internationalElement_Resident_of_another_state_details
+              dependentFieldValue: "*"
+              groupFieldName: internationalElement_Resident_of_another_state
+              groupValidationValue: "Yes"
+              requiredFieldCount: 1
+            - groupInternationalJurisdictionIssue:
+              dependentFields:
+                - withoutNotice_jurisdictionIssue_details
+              dependentFieldValue: "*"
+              groupFieldName: internationalElement_jurisdictionIssue
+              groupValidationValue: "Yes"
+              requiredFieldCount: 1
+            - groupInternationalRequestCentralConsularAuthority:
+              dependentFields:
+                - internationalElement_request_toCentral_or_Consular_authority_details
+              dependentFieldValue: "*"
+              groupFieldName: internationalElement_request_toCentral_or_Consular_authority
+              groupValidationValue: "Yes"
+              requiredFieldCount: 1
