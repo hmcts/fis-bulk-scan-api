@@ -120,6 +120,9 @@ class BulkScanC100ServiceTest {
     private static final String C100_VALIDATION_REQUEST_PATH =
             "classpath:request/bulk-scan-c100-validate-input.json";
 
+    private static final String C100_SECTION_6B_VALIDATION_REQUEST_PATH =
+        "classpath:request/bulk-scan-c100-section6b-validate-input.json";
+
     private static final String C100_TRANSFORM_REQUEST_PATH =
             "classpath:request/bulk-scan-c100-transform-input.json";
 
@@ -139,6 +142,18 @@ class BulkScanC100ServiceTest {
                         BulkScanValidationRequest.class);
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
+        assertEquals(Status.SUCCESS, res.status);
+    }
+
+    @Test
+    @DisplayName("C100 section 6b validation success.")
+    void testC100Section6bValidationSuccess() throws IOException {
+        BulkScanValidationRequest bulkScanValidationRequest =
+            mapper.readValue(
+                readFileFrom(C100_SECTION_6B_VALIDATION_REQUEST_PATH),
+                BulkScanValidationRequest.class);
+        BulkScanValidationResponse res =
+            bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.SUCCESS, res.status);
     }
 
