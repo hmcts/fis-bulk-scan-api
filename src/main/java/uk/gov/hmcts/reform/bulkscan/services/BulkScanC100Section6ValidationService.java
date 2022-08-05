@@ -26,10 +26,10 @@ import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
 
 /** This class will do custom validation for c100 form sections 6 to 14. */
 @Service
-public class BulkScanC100Sec6ValidationService implements BulkScanSectionValidationService {
+public class BulkScanC100Section6ValidationService implements BulkScanSectionValidationService {
 
     /**
-     * This method will validate C100 form, section 2. data.
+     * This method will validate C100 form, section 6 data.
      *
      * @param bulkScanValidationRequest request payload
      * @param bulkScanValidationResponse response payload (errors/warnings)

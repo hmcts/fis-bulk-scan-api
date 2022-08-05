@@ -19,7 +19,7 @@ import uk.gov.hmcts.reform.bulkscan.model.Status;
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @ActiveProfiles("test")
-class BulkScanC100Sec6ValidationServiceTest {
+class BulkScanC100Section6ValidationServiceTest {
     private static final String C100_SECTION6B_ERROR_VALIDATION_REQUEST_PATH =
             "classpath:request/bulk-scan-c100-section6b-error-validate-input.json";
 
