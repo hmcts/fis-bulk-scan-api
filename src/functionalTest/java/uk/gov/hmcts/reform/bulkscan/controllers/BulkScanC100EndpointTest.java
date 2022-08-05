@@ -32,13 +32,13 @@ public class BulkScanC100EndpointTest {
     private static final String C100_VALIDATION_INPUT_PATH =
             "classpath:requests/bulk-scan-c100-validate-input.json";
     private static final String C100_VALIDATION_OUTPUT_PATH =
-        "classpath:responses/bulk-scan-c100-validation-output.json";
+            "classpath:responses/bulk-scan-c100-validation-output.json";
     private static final String C100_VALIDATION_SECTION6B_INPUT_PATH =
             "classpath:requests/bulk-scan-c100-section6b-validate-input.json";
     private static final String C100_VALIDATION_SECTION6B_ERROR_INPUT_PATH =
-        "classpath:requests/bulk-scan-c100-section6b-error-validate-input.json";
+            "classpath:requests/bulk-scan-c100-section6b-error-validate-input.json";
     private static final String C100_VALIDATION_SECTION6B_ERROR_OUTPUT_PATH =
-        "classpath:responses/bulk-scan-c100-section6b-error-validation-output.json";
+            "classpath:responses/bulk-scan-c100-section6b-error-validation-output.json";
     private static final String C100_TRANSFORM_INPUT_PATH =
             "classpath:requests/bulk-scan-c100-transform-input.json";
     private static final String C100_TRANSFORM_OUTPUT_PATH =
@@ -107,14 +107,15 @@ public class BulkScanC100EndpointTest {
     public void shouldValidateC100Section6bErrorBulkScanRequest() throws Exception {
         String bulkScanValidationRequest = readFileFrom(C100_VALIDATION_SECTION6B_ERROR_INPUT_PATH);
 
-        String bulkScanValidationResponse = readFileFrom(C100_VALIDATION_SECTION6B_ERROR_OUTPUT_PATH);
+        String bulkScanValidationResponse =
+                readFileFrom(C100_VALIDATION_SECTION6B_ERROR_OUTPUT_PATH);
 
         Response response =
-            request.header(AUTH_HEADER, AUTH_HEADER)
-                .body(bulkScanValidationRequest)
-                .when()
-                .contentType("application/json")
-                .post("forms/C100/validate-ocr");
+                request.header(AUTH_HEADER, AUTH_HEADER)
+                        .body(bulkScanValidationRequest)
+                        .when()
+                        .contentType("application/json")
+                        .post("forms/C100/validate-ocr");
 
         response.then().assertThat().statusCode(HttpStatus.OK.value());
 
