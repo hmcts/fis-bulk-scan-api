@@ -23,6 +23,21 @@ uk:
                     email: applicant1EmailAddress
                     isAtAddressLessThan5Years: hasApplicant1LivedAtThisAddressForOverFiveYears
                     addressLivedLessThan5YearsDetails: applicant1AllAddressesForLastFiveYears
+                    doTheyHaveLegalRepresentation: doYouHaveSolicitor
+                    representativeFirstName: your_solicitor_name
+                    solicitorOrg:
+                      - value:
+                          OrganisationName: solicitor_firm_name
+                    solicitorAddress:
+                      - value:
+                          AddressLine1: solicitor_address
+                          PostCode: solicitor_postcode
+                    solicitorTelephone: solicitor_telephone_number
+                    solicitorFaxNumber: solicitor_fax_number
+                    dxNumber: solicitor_dx_number
+                    solicitorReference: solicitor_reference
+                    solicitorFeeAccount: solicitor_fee_account_No
+                    solicitorEmail: solicitor_email_address
                 - value:
                     firstName: applicant2FirstName
                     lastName: applicant2LastName
@@ -92,6 +107,7 @@ uk:
               consentOrder : isConsentOrder
               habitualResidentINotherState : international_or_factorsAffectingLitigation
               welshLanguageRequirement : welshRequired
+
               miamTable:
                 claimingExemptionMiam: exemption_to_attend_MIAM
                 familyMediatorMiam: familyMember_Intimation_on_No_MIAM

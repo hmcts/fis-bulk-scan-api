@@ -238,7 +238,7 @@
     },
     {
       "name":"applicant1LivedAtThisAddressForOverFiveYears",
-      "value":"Yes"
+      "value":"yes"
     },
     {
       "name":"applicant1AllAddressesForLastFiveYears",
@@ -603,6 +603,50 @@
     {
       "name": "respondent2AllAddressesForLastFiveYears",
       "value": "227, Topsfield Parade, N8 8PE"
+    },
+    {
+      "name":"doYouHaveSolicitor",
+      "value":"yes"
+    },
+    {
+      "name":"your_solicitor_name",
+      "value":"Frank Burns"
+    },
+    {
+      "name":"solicitor_firm_name",
+      "value":"Burns, Burns and Burns"
+    },
+    {
+      "name":"solicitor_address",
+      "value":"Richmond"
+    },
+    {
+      "name":"solicitor_postcode",
+      "value":"W93qb"
+    },
+    {
+      "name":"solicitor_telephone_number",
+      "value":"7876567984"
+    },
+    {
+      "name":"solicitor_fax_number",
+      "value":"8766509984"
+    },
+    {
+      "name":"solicitor_dx_number",
+      "value":"8766509984"
+    },
+    {
+      "name":"solicitor_reference",
+      "value":"IO908765"
+    },
+    {
+      "name":"solicitor_fee_account_No",
+      "value":"9876567984"
+    },
+    {
+      "name":"solicitor_email_address",
+      "value":"FBurnsBBB@gmail.com"
     }
   ],
   "scanned_documents": [
