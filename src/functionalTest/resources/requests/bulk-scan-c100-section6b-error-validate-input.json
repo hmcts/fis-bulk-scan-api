@@ -514,15 +514,7 @@
       "value": "Yes"
     },
     {
-      "name": "withoutNotice_abridged_or_informalNotice_reasons",
-      "value": "Yes"
-    },
-    {
       "name": "withoutNotice_frustrateTheOrder",
-      "value": "Yes"
-    },
-    {
-      "name": "withoutNotice_frustrateTheOrder_reason",
       "value": "Yes"
     }
   ]
