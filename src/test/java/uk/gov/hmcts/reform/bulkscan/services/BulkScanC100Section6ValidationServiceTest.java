@@ -21,7 +21,7 @@ import uk.gov.hmcts.reform.bulkscan.model.Status;
 @ActiveProfiles("test")
 class BulkScanC100Section6ValidationServiceTest {
     private static final String C100_SECTION6A_ERROR_VALIDATION_REQUEST_PATH =
-        "classpath:request/bulk-scan-c100-section6b-error-validate-input.json";
+            "classpath:request/bulk-scan-c100-section6b-error-validate-input.json";
 
     private static final String C100_SECTION6B_ERROR_VALIDATION_REQUEST_PATH =
             "classpath:request/bulk-scan-c100-section6b-error-validate-input.json";
@@ -60,15 +60,15 @@ class BulkScanC100Section6ValidationServiceTest {
 
     @Test
     @DisplayName(
-        "Test a sample successful C100 section 6a application validation error with full"
-            + " details.")
+            "Test a sample successful C100 section 6a application validation error with full"
+                    + " details.")
     void testC100Section6aError() throws IOException {
         BulkScanValidationRequest bulkScanValidationRequest =
-            mapper.readValue(
-                readFileFrom(C100_SECTION6A_ERROR_VALIDATION_REQUEST_PATH),
-                BulkScanValidationRequest.class);
+                mapper.readValue(
+                        readFileFrom(C100_SECTION6A_ERROR_VALIDATION_REQUEST_PATH),
+                        BulkScanValidationRequest.class);
         BulkScanValidationResponse res =
-            bulkScanValidationService.validate(bulkScanValidationRequest);
+                bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
     }
 }
