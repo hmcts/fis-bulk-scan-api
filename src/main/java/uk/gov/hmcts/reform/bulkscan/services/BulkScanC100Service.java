@@ -36,6 +36,8 @@ public class BulkScanC100Service implements BulkScanService {
 
     @Autowired BulkScanC100ConditionalTransformerService bulkScanC100ConditionalTransformerService;
 
+    @Autowired BulkScanC100Sec6ValidationService bulkScanC100Sec6ValidationService;
+
     @Override
     public FormType getCaseType() {
         return FormType.C100;
@@ -65,6 +67,7 @@ public class BulkScanC100Service implements BulkScanService {
 
         bulkScanC100ValidationService.validateApplicantAddressFiveYears(
                 bulkRequest.getOcrdatafields(), response);
+        bulkScanC100Sec6ValidationService.validate(bulkRequest, response);
 
         response.changeStatus();
 

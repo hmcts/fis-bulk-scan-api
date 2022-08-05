@@ -84,5 +84,22 @@ public final class BulkScanPrlConstants {
     public static final String PROHIBITED_STEPS_ORDER_DESCRIPTION = "prohibitedStepsOrder";
     public static final String CHILD_ARRANGEMENTS_ORDER_DESCRIPTION = "childArrangementsOrder";
 
+    public static final String URGENT_OR_WITHOUT_HEARING = "urgent_or_withoutHearing";
+    public static final String WITHOUT_NOTICE_FRUSTRATE_THE_ORDER =
+            "withoutNotice_frustrateTheOrder";
+    public static final String WITHOUT_NOTICE_FRUSTRATE_THE_ORDER_REASON =
+            "withoutNotice_frustrateTheOrder_reason";
+    public static final String WITHOUT_NOTICE_ABRIDGED_OR_INFORMAL_NOTICE =
+            "withoutNotice_abridged_or_informalNotice";
+    public static final String WITHOUT_NOTICE_ABRIDGED_OR_INFORMAL_NOTICE_REASONS =
+            "withoutNotice_abridged_or_informalNotice_reasons";
+    public static final String ORDER_DIRECTION_SOUGHT = "order_direction_sought";
+    public static final String URGENCY_REASON = "urgency_reason";
+    public static final String APPLICATION_TIMETABLE = "application_timetable";
+    public static final String RESPONDENT_EFFORT = "respondent_effort";
+    public static final String REASON_FOR_CONSIDERATION = "reason_for_consideration";
+    public static final String EITHER_SECTION_6_A_OR_6_B_SHOULD_BE_BE_FILLED_UP_NOT_BOTH =
+            "Either Section 6a or 6b should be be filled up, not both";
+
     private BulkScanPrlConstants() {}
 }
