@@ -1,13 +1,13 @@
 package uk.gov.hmcts.reform.bulkscan.utils;
 
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ASSESSMENT_BY_ADULT_LEARNING_TEAM_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EXEMPTION_TO_ATTEND_MIAM;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FACTORS_AFFECTING_LITIGATION_CAPACITY_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FACTORS_AFFECTING_PERSON_IN_COURT_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.INTERNATIONALELEMENT_JURISDICTIONISSUE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.INTERNATIONAL_OR_FACTORS_AFFECTING_LITIGATION_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.ASSESSMENT_BY_ADULT_LEARNING_TEAM_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.FACTORS_AFFECTING_LITIGATION_CAPACITY_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.FACTORS_AFFECTING_PERSON_IN_COURT_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_JURISDICTIONISSUE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONAL_OR_FACTORS_AFFECTING_LITIGATION_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH_DETAILS;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE_DETAILS;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.NOMIAM_CHILDPROTECTIONCONCERNS_FIELD;

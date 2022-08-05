@@ -90,7 +90,7 @@ uk:
               isCaseUrgent : urgent_or_withoutHearing
               previousOrOngoingProceedings : previous_or_ongoingProceeding
               consentOrder : isConsentOrder
-              habitualResidentINotherState : international_or_factorsAffectingLitigation
+              habitualResidentInOtherState : international_or_factorsAffectingLitigation
               welshLanguageRequirement : welshRequired
               miamTable:
                 claimingExemptionMiam: exemption_to_attend_MIAM
@@ -148,3 +148,14 @@ uk:
                     canYouProvideEmailAddress: respondent2EmailAddressDontKnow
                     isAtAddressLessThan5Years: respondent2LivedAtThisAddressForOverFiveYears
                     addressLivedLessThan5YearsDetails: respondent2AllAddressesForLastFiveYears
+              internationalElementTable:
+                habitualResidentInOtherState: international_or_factorsAffectingLitigation
+                habitualResidentInOtherStateGiveReason: internationalElement_Resident_of_another_state_details
+                jurisdictionIssue: internationalElement_jurisdictionIssue
+                jurisdictionIssueGiveReason: withoutNotice_jurisdictionIssue_details
+                requestToForeignAuthority: internationalElement_request_toCentral_or_Consular_authority
+                requestToForeignAuthorityGiveReason: internationalElement_request_toCentral_or_Consular_authority_details
+              litigationCapacityTable:
+                litigationCapacityFactors: factorAffectingLitigationCapacity
+                litigationCapacityReferrals: assessmentByAdultLearningTeam
+                litigationCapacityOtherFactors: factorsAffectingPersonInCourt

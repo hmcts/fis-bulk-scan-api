@@ -159,7 +159,7 @@
       "personWhoLivesWithChild": "living other details",
       "applicationPermissionRequiredReason": "reason",
       "applicationPermissionRequired": "yes",
-      "habitualResidentINotherState": "yes",
+      "habitualResidentInOtherState": "yes",
       "familyMediatorMiam": null,
       "isCaseUrgent": "yes",
       "claimingExemptionMiam":"yes",
@@ -229,7 +229,20 @@
             "addressLivedLessThan5YearsDetails": "227, Topsfield Parade, N8 8PE"
           }
         }
-      ]
+      ],
+      "internationalElementTable": {
+        "habitualResidentInOtherState": "yes",
+        "habitualResidentInOtherStateGiveReason": null,
+        "jurisdictionIssue": "Yes",
+        "jurisdictionIssueGiveReason": "International jurisdiction big issue",
+        "requestToForeignAuthority": null,
+        "requestToForeignAuthorityGiveReason": null
+      },
+      "litigationCapacityTable": {
+        "litigationCapacityFactors": "Factors affecting litigation capacity",
+        "litigationCapacityReferrals": "Assessment by adult learning team",
+        "litigationCapacityOtherFactors": "Factors affecting person in court"
+      }
     }
   },
   "warnings": []

@@ -84,5 +84,23 @@ public final class BulkScanPrlConstants {
     public static final String PROHIBITED_STEPS_ORDER_DESCRIPTION = "prohibitedStepsOrder";
     public static final String CHILD_ARRANGEMENTS_ORDER_DESCRIPTION = "childArrangementsOrder";
 
+    public static final String INTERNATIONAL_OR_FACTORS_AFFECTING_LITIGATION_FIELD =
+            "international_or_factorsAffectingLitigation";
+
+    // C100 form section 8 & 9 validation fields
+    public static final String ASSESSMENT_BY_ADULT_LEARNING_TEAM_FIELD =
+            "assessmentByAdultLearningTeam";
+    public static final String FACTORS_AFFECTING_LITIGATION_CAPACITY_FIELD =
+            "factorAffectingLitigationCapacity";
+    public static final String FACTORS_AFFECTING_PERSON_IN_COURT_FIELD =
+            "factorsAffectingPersonInCourt";
+    public static final String INTERNATIONALELEMENT_JURISDICTIONISSUE =
+            "internationalElement_jurisdictionIssue";
+    public static final String INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH =
+            "internationalElement_request_toCentral_or_Consular_authority";
+    public static final String INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE =
+            "internationalElement_Resident_of_another_state";
+    // END C100 form sections 8 & 9 validation fields
+
     private BulkScanPrlConstants() {}
 }

@@ -1,14 +1,7 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ADDRESS_NOT_LIVED_FOR_FIVE_YEARS_MESSAGE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ASSESSMENT_BY_ADULT_LEARNING_TEAM_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FACTORS_AFFECTING_LITIGATION_CAPACITY_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FACTORS_AFFECTING_PERSON_IN_COURT_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.GROUP_DEPENDENCY_MESSAGE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.INTERNATIONALELEMENT_JURISDICTIONISSUE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.INTERNATIONAL_OR_FACTORS_AFFECTING_LITIGATION_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NO;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT1ALLADDRESSESFORLASTFIVEYEARS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT1LIVEDATTHISADDRESSFOROVERFIVEYEARS;
@@ -18,11 +11,19 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDEN
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_TWO;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.WILDCARD_DEPENDENT_INPUT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.ASSESSMENT_BY_ADULT_LEARNING_TEAM_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.FACTORS_AFFECTING_LITIGATION_CAPACITY_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.FACTORS_AFFECTING_PERSON_IN_COURT_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_JURISDICTIONISSUE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONAL_OR_FACTORS_AFFECTING_LITIGATION_FIELD;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Predicate;
 import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,11 +39,12 @@ public class BulkScanDependencyValidationService {
 
     @SuppressWarnings("Summary")
     /**
-     * Records dependency validation warnings for group fields
+     * This method records dependency validation warnings for group fields.
      *
      * @param ocrDataFieldsMap HashMap of all fields and respective values in the bulkscan request
      * @param formType type of forms e.g. C100, A58...
-     * @return list of warnings for all group fields violating form requirements
+     * @return list of warnings for all dependent fields violating group validation on form
+     *     requirements
      */
     public List<String> getDependencyWarnings(
             Map<String, String> ocrDataFieldsMap, FormType formType) {
@@ -62,25 +64,11 @@ public class BulkScanDependencyValidationService {
                                                                                 .getGroupFieldName())))
                                 .filter(
                                         eachConfig ->
-                                                eachConfig.getDependentFields().stream()
-                                                                .filter(
-                                                                        eachDepField ->
-                                                                                eachConfig
-                                                                                                .getDependentFieldValue()
-                                                                                                .equalsIgnoreCase(
-                                                                                                        ocrDataFieldsMap
-                                                                                                                .get(
-                                                                                                                        eachDepField))
-                                                                                        || WILDCARD_DEPENDENT_INPUT
-                                                                                                        .equalsIgnoreCase(
-                                                                                                                eachConfig
-                                                                                                                        .getDependentFieldValue())
-                                                                                                && StringUtils
-                                                                                                        .hasText(
-                                                                                                                ocrDataFieldsMap
-                                                                                                                        .get(
-                                                                                                                                eachDepField)))
-                                                                .count()
+                                                filterDependentFields(
+                                                                eachConfig.getDependentFields(),
+                                                                isDependentFieldValid(
+                                                                        eachConfig,
+                                                                        ocrDataFieldsMap))
                                                         < Integer.valueOf(
                                                                 eachConfig.getRequiredFieldCount()))
                                 .collect(Collectors.toUnmodifiableList());
@@ -100,6 +88,23 @@ public class BulkScanDependencyValidationService {
         }
 
         return Collections.emptyList();
+    }
+
+    public static long filterDependentFields(
+            List<String> dependentFields, Predicate<String> predicate) {
+        return dependentFields.stream().filter(predicate).count();
+    }
+
+    private Predicate<String> isDependentFieldValid(
+            BulkScanDependencyValidationConfigManager.GroupDependencyConfig eachConfig,
+            Map<String, String> ocrDataFieldsMap) {
+        return eachDepField ->
+                eachConfig
+                                .getDependentFieldValue()
+                                .equalsIgnoreCase(ocrDataFieldsMap.get(eachDepField))
+                        || WILDCARD_DEPENDENT_INPUT.equalsIgnoreCase(
+                                        eachConfig.getDependentFieldValue())
+                                && StringUtils.hasText(ocrDataFieldsMap.get(eachDepField));
     }
 
     /**
@@ -194,21 +199,22 @@ public class BulkScanDependencyValidationService {
         }
 
         if (!lbFieldsValid) {
-            String lsDependentFields =
-                    INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH
-                            + ","
-                            + INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE
-                            + ","
-                            + INTERNATIONALELEMENT_JURISDICTIONISSUE
-                            + " (value should be "
-                            + YES
-                            + "); "
-                            + INTERNATIONALELEMENT_JURISDICTIONISSUE
-                            + ","
-                            + INTERNATIONALELEMENT_JURISDICTIONISSUE
-                            + ","
-                            + INTERNATIONALELEMENT_JURISDICTIONISSUE
-                            + " (value should be empty)";
+            StringBuilder lsDependentFields = new StringBuilder(300);
+            lsDependentFields
+                    .append(INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH)
+                    .append(',')
+                    .append(INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE)
+                    .append(',')
+                    .append(INTERNATIONALELEMENT_JURISDICTIONISSUE)
+                    .append(" (value should be ")
+                    .append(YES)
+                    .append("); ")
+                    .append(FACTORS_AFFECTING_LITIGATION_CAPACITY_FIELD)
+                    .append(',')
+                    .append(FACTORS_AFFECTING_PERSON_IN_COURT_FIELD)
+                    .append(',')
+                    .append(ASSESSMENT_BY_ADULT_LEARNING_TEAM_FIELD)
+                    .append(" (value should not be empty)");
 
             items.add(
                     String.format(

@@ -603,6 +603,30 @@
     {
       "name": "respondent2AllAddressesForLastFiveYears",
       "value": "227, Topsfield Parade, N8 8PE"
+    },
+    {
+      "name": "internationalElement_Resident_of_another_state",
+      "value": "No"
+    },
+    {
+      "name": "internationalElement_jurisdictionIssue",
+      "value": "Yes"
+    },
+    {
+      "name": "withoutNotice_jurisdictionIssue_details",
+      "value": "International jurisdiction big issue"
+    },
+    {
+      "name": "factorAffectingLitigationCapacity",
+      "value": "Factors affecting litigation capacity"
+    },
+    {
+      "name": "assessmentByAdultLearningTeam",
+      "value": "Assessment by adult learning team"
+    },
+    {
+      "name": "factorsAffectingPersonInCourt",
+      "value": "Factors affecting person in court"
     }
   ],
   "form_type": "C100"
