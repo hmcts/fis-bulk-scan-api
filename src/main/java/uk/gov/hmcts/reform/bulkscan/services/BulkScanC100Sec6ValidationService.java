@@ -4,6 +4,7 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MISSING_FIELD_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.APPLICATION_TIMETABLE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.EITHER_SECTION_6_A_OR_6_B_SHOULD_BE_BE_FILLED_UP_NOT_BOTH;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.NEITHER_6A_NOR_6B_HAS_BEEN_FILLED_UP;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.ORDER_DIRECTION_SOUGHT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.REASON_FOR_CONSIDERATION;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.RESPONDENT_EFFORT;
@@ -49,6 +50,8 @@ public class BulkScanC100Sec6ValidationService implements BulkScanSectionValidat
             List<String> section6bNonEmpty = getSection6bNonEmptyFields(ocrDataFieldsMap);
             if (!section6aNonEmpty.isEmpty() && !section6bNonEmpty.isEmpty()) {
                 errorItemList.add(EITHER_SECTION_6_A_OR_6_B_SHOULD_BE_BE_FILLED_UP_NOT_BOTH);
+            } else if (section6aNonEmpty.isEmpty() && section6bNonEmpty.isEmpty()) {
+                errorItemList.add(NEITHER_6A_NOR_6B_HAS_BEEN_FILLED_UP);
             } else if (!section6aNonEmpty.isEmpty()) {
                 validateSection6a(ocrDataFieldsMap, errorItemList);
             } else if (!section6bNonEmpty.isEmpty()) {

@@ -100,6 +100,8 @@ public final class BulkScanPrlConstants {
     public static final String REASON_FOR_CONSIDERATION = "reason_for_consideration";
     public static final String EITHER_SECTION_6_A_OR_6_B_SHOULD_BE_BE_FILLED_UP_NOT_BOTH =
             "Either Section 6a or 6b should be be filled up, not both";
+    public static final String NEITHER_6A_NOR_6B_HAS_BEEN_FILLED_UP =
+            "Neither 6a nor 6b has been filled up";
 
     private BulkScanPrlConstants() {}
 }
