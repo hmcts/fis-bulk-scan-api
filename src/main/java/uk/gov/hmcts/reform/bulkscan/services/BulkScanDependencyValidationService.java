@@ -34,10 +34,10 @@ import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
 
 @Service
 public class BulkScanDependencyValidationService {
+    private static final char COMMA_C = ',';
 
     @Autowired BulkScanDependencyValidationConfigManager configManager;
 
-    @SuppressWarnings("Summary")
     /**
      * This method records dependency validation warnings for group fields.
      *
@@ -202,17 +202,17 @@ public class BulkScanDependencyValidationService {
             StringBuilder lsDependentFields = new StringBuilder(300);
             lsDependentFields
                     .append(INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH)
-                    .append(',')
+                    .append(COMMA_C)
                     .append(INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE)
-                    .append(',')
+                    .append(COMMA_C)
                     .append(INTERNATIONALELEMENT_JURISDICTIONISSUE)
                     .append(" (value should be ")
                     .append(YES)
                     .append("); ")
                     .append(FACTORS_AFFECTING_LITIGATION_CAPACITY_FIELD)
-                    .append(',')
+                    .append(COMMA_C)
                     .append(FACTORS_AFFECTING_PERSON_IN_COURT_FIELD)
-                    .append(',')
+                    .append(COMMA_C)
                     .append(ASSESSMENT_BY_ADULT_LEARNING_TEAM_FIELD)
                     .append(" (value should not be empty)");
 
