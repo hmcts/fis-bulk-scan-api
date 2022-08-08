@@ -189,6 +189,19 @@ uk:
               - solicitor_reference
               - solicitor_fee_account_No
               - solicitor_email_address
+              - section1RelatingToChildCompleted
+              - section2Section3Section4RelatingToMediationCompleted
+              - section5Section6RelatingToApplicationReasonCompleted
+              - section7RelatingToOtherCourtFullyCompleted
+              - section8Section9Section10FactorsAffectingProceedingsCompleted
+              - section11RelatingToApplicantCompleted
+              - sections12Section13Section14RelatingToRespondentAndOthersNoticeCompleted
+              - section16RelatingToTruthStatementCompleted
+              - printFullName
+              - applicantSolicitorsFirmName
+              - applicantAndApplicantsolicitorSignedDate
+              - positioNorOfficeHeld
+              - courtFee
             regexValidationFields:
               dateFields:
                 fieldNames:

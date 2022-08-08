@@ -4,13 +4,6 @@
     "event_id": "create-case-privatelaw-bs",
     "case_data": {
       "miamOtherGroundsChecklist": "miamOtherGroundsChecklistEnum_Value_9",
-      "otherProceedingsDetailsTable": [
-        {
-          "value": {
-            "previousOrOngoingProceedings": "yes"
-          }
-        }
-      ],
       "applicants": [
         {
           "value": {
@@ -75,19 +68,10 @@
         "prohibitedStepsOrder",
         "specificIssueOrder"
       ],
-      "miamUrgencyReasonChecklist": [
-        "miamUrgencyReasonChecklistEnum_Value_1",
-        "miamUrgencyReasonChecklistEnum_Value_2",
-        "miamUrgencyReasonChecklistEnum_Value_3",
-        "miamUrgencyReasonChecklistEnum_Value_4",
-        "miamUrgencyReasonChecklistEnum_Value_5",
-        "miamUrgencyReasonChecklistEnum_Value_6",
-        "miamUrgencyReasonChecklistEnum_Value_7"
-      ],
+      "checklistSection16Completed": "yes",
       "otherProceedingsTable": {
         "previousOrOngoingProceedings": "yes"
       },
-      "briefDetailsOnTheApplication": "briefDetails",
       "scannedDocuments": [
         {
           "value": {
@@ -150,56 +134,19 @@
           }
         }
       ],
-      "hearingUrgencyTable": {
-        "isCaseUrgent": "yes"
-      },
-      "personWhoLivesWithChild": "living other details",
+      "agreedBy": "Burns, Burns and Burns",
+      "checklistSection8910Completed": "yes",
       "applicationPermissionRequired": "yes",
       "habitualResidentINotherState": "yes",
       "parentalResponsibilityDetails": "parentResponsibility",
       "familyMediatorMiam": null,
-      "isCaseUrgent": "yes",
-      "typeOfApplicationTable": {
-        "applicationPermissionRequired": "yes"
-      },
       "miamPreviousAttendanceChecklist": "miamPreviousAttendanceChecklistEnum_Value_4",
       "childrenKNownToLocalAuthorityTextArea": "socialWorker",
-      "miamDomesticViolenceChecklist": [
-        "miamDomesticViolenceChecklistEnum_Value_1",
-        "miamDomesticViolenceChecklistEnum_Value_2",
-        "miamDomesticViolenceChecklistEnum_Value_3",
-        "miamDomesticViolenceChecklistEnum_Value_4",
-        "miamDomesticViolenceChecklistEnum_Value_5",
-        "miamDomesticViolenceChecklistEnum_Value_6",
-        "miamDomesticViolenceChecklistEnum_Value_7",
-        "miamDomesticViolenceChecklistEnum_Value_8",
-        "miamDomesticViolenceChecklistEnum_Value_9",
-        "miamDomesticViolenceChecklistEnum_Value_10",
-        "miamDomesticViolenceChecklistEnum_Value_11",
-        "miamDomesticViolenceChecklistEnum_Value_12",
-        "miamDomesticViolenceChecklistEnum_Value_13",
-        "miamDomesticViolenceChecklistEnum_Value_15",
-        "miamDomesticViolenceChecklistEnum_Value_16",
-        "miamDomesticViolenceChecklistEnum_Value_17",
-        "miamDomesticViolenceChecklistEnum_Value_18",
-        "miamDomesticViolenceChecklistEnum_Value_19",
-        "miamDomesticViolenceChecklistEnum_Value_20",
-        "miamDomesticViolenceChecklistEnum_Value_21",
-        "miamDomesticViolenceChecklistEnum_Value_22"
-      ],
-      "childrenParentsName": "parentsName",
-      "previousOrOngoingProceedings": "yes",
       "applicantAttendedMiam": null,
       "miamChildProtectionConcernList": [
         "MIAMChildProtectionConcernChecklistEnum_value_1",
         "MIAMChildProtectionConcernChecklistEnum_value_2"
       ],
-      "childrenSubjectOfChildProtectionPlan": "protectionplan",
-      "miamTable": {
-        "claimingExemptionMiam": "yes",
-        "familyMediatorMiam": null,
-        "applicantAttendedMiam": null
-      },
       "childrenKNownToLocalAuthority": "Yes",
       "respondents": [
         {
@@ -245,7 +192,6 @@
           }
         }
       ],
-      "havePreviousParentingPlan": "parentingplan",
       "allegationsOfHarmOverviewTable": {
         "allegationsOfHarmDomesticAbuseYesNo": "yes",
         "allegationsOfHarmChildAbductionYesNo": "yes",
@@ -258,7 +204,74 @@
       "childLiveWith": "Applicant",
       "consentOrder": "yes",
       "claimingExemptionMiam": "yes",
+      "otherProceedingsDetailsTable": [
+        {
+          "value": {
+            "previousOrOngoingProceedings": "yes"
+          }
+        }
+      ],
+      "miamUrgencyReasonChecklist": [
+        "miamUrgencyReasonChecklistEnum_Value_1",
+        "miamUrgencyReasonChecklistEnum_Value_2",
+        "miamUrgencyReasonChecklistEnum_Value_3",
+        "miamUrgencyReasonChecklistEnum_Value_4",
+        "miamUrgencyReasonChecklistEnum_Value_5",
+        "miamUrgencyReasonChecklistEnum_Value_6",
+        "miamUrgencyReasonChecklistEnum_Value_7"
+      ],
+      "checklistSection11Completed": "yes",
+      "briefDetailsOnTheApplication": "briefDetails",
+      "positionOrOfficeHeld": "Manager",
+      "checklistSection121314Completed": "yes",
+      "hearingUrgencyTable": {
+        "isCaseUrgent": "yes"
+      },
+      "personWhoLivesWithChild": "living other details",
+      "isCaseUrgent": "yes",
+      "checklistSection234Completed": "yes",
+      "typeOfApplicationTable": {
+        "applicationPermissionRequired": "yes"
+      },
+      "miamDomesticViolenceChecklist": [
+        "miamDomesticViolenceChecklistEnum_Value_1",
+        "miamDomesticViolenceChecklistEnum_Value_2",
+        "miamDomesticViolenceChecklistEnum_Value_3",
+        "miamDomesticViolenceChecklistEnum_Value_4",
+        "miamDomesticViolenceChecklistEnum_Value_5",
+        "miamDomesticViolenceChecklistEnum_Value_6",
+        "miamDomesticViolenceChecklistEnum_Value_7",
+        "miamDomesticViolenceChecklistEnum_Value_8",
+        "miamDomesticViolenceChecklistEnum_Value_9",
+        "miamDomesticViolenceChecklistEnum_Value_10",
+        "miamDomesticViolenceChecklistEnum_Value_11",
+        "miamDomesticViolenceChecklistEnum_Value_12",
+        "miamDomesticViolenceChecklistEnum_Value_13",
+        "miamDomesticViolenceChecklistEnum_Value_15",
+        "miamDomesticViolenceChecklistEnum_Value_16",
+        "miamDomesticViolenceChecklistEnum_Value_17",
+        "miamDomesticViolenceChecklistEnum_Value_18",
+        "miamDomesticViolenceChecklistEnum_Value_19",
+        "miamDomesticViolenceChecklistEnum_Value_20",
+        "miamDomesticViolenceChecklistEnum_Value_21",
+        "miamDomesticViolenceChecklistEnum_Value_22"
+      ],
+      "childrenParentsName": "parentsName",
+      "previousOrOngoingProceedings": "yes",
+      "SignedDate": "08/08/21",
+      "checklistSection56Completed": "yes",
+      "childrenSubjectOfChildProtectionPlan": "protectionplan",
+      "miamTable": {
+        "claimingExemptionMiam": "yes",
+        "familyMediatorMiam": null,
+        "applicantAttendedMiam": null
+      },
+      "courtFee": "1245",
+      "checklistSection1Completed": "yes",
+      "havePreviousParentingPlan": "parentingplan",
+      "checklistSection7Completed": "yes",
       "welshLanguageRequirement": "yes",
+      "printFullName": "Ronny Drew",
       "childParentsNameCollection": "parentsNameColl"
     }
   },
