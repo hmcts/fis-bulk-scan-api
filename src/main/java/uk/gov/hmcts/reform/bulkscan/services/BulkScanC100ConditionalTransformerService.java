@@ -11,6 +11,7 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.SCAN_DOCU
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.CHILD_ARRANGEMENTS_ORDER_DESCRIPTION;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.CHILD_ARRANGEMENT_ORDER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.HEARING_URGENCY_TABLE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.MIAM_DOMESTIC_VIOLENCE_CHECKLIST;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.MIAM_EXEMPTIONS_CHECKLIST;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.MIAM_URGENCY_REASON_CHECKLIST;
@@ -53,11 +54,15 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.NO_MIA
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.ORDER_APPLIED_FOR;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.PROHIBITED_STEPS_ORDER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.PROHIBITED_STEPS_ORDER_DESCRIPTION;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.SET_OUT_REASONS_BELOW;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.SPECIAL_ISSUE_ORDER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.SPECIFIC_ISSUE_ORDER_DESCRIPTION;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.URGENCY_REASON;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.WITHOUT_NOTICE_ABRIDGED_OR_INFORMAL_NOTICE_REASONS;
 import static uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper.transformScanDocuments;
 
 import com.microsoft.applicationinsights.boot.dependencies.apachecommons.lang3.StringUtils;
+import com.microsoft.applicationinsights.core.dependencies.google.gson.internal.LinkedTreeMap;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -74,7 +79,6 @@ import uk.gov.hmcts.reform.bulkscan.enums.MiamUrgencyReasonChecklistEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.PermissionRequiredEnum;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
 
-@SuppressWarnings({"PMD.ExcessiveImports"})
 @Component
 public class BulkScanC100ConditionalTransformerService {
 
@@ -97,6 +101,30 @@ public class BulkScanC100ConditionalTransformerService {
         populatedMap.put(
                 MIAM_URGENCY_REASON_CHECKLIST, transformMiamUrgencyReasonChecklist(inputFieldsMap));
         populatedMap.put(ORDER_APPLIED_FOR, transformOrderAppliedFor(inputFieldsMap));
+        setOutReasonsBelow(populatedMap, inputFieldsMap);
+    }
+
+    @SuppressWarnings("unchecked")
+    private void setOutReasonsBelow(
+            Map<String, Object> populatedMap, Map<String, String> inputFieldsMap) {
+        Optional<Object> hearingUrgencyTableOptional =
+                Optional.ofNullable(populatedMap.get(HEARING_URGENCY_TABLE));
+        if (hearingUrgencyTableOptional.isPresent()) {
+            LinkedTreeMap<String, String> hearingUrgencyTable =
+                    (LinkedTreeMap<String, String>) hearingUrgencyTableOptional.get();
+            if (hearingUrgencyTable.containsKey(SET_OUT_REASONS_BELOW)
+                    && !org.apache.commons.lang3.StringUtils.isEmpty(
+                            inputFieldsMap.get(URGENCY_REASON))) {
+                hearingUrgencyTable.put(SET_OUT_REASONS_BELOW, inputFieldsMap.get(URGENCY_REASON));
+            } else if (hearingUrgencyTable.containsKey(SET_OUT_REASONS_BELOW)
+                    && !org.apache.commons.lang3.StringUtils.isEmpty(
+                            inputFieldsMap.get(
+                                    WITHOUT_NOTICE_ABRIDGED_OR_INFORMAL_NOTICE_REASONS))) {
+                hearingUrgencyTable.put(
+                        SET_OUT_REASONS_BELOW,
+                        inputFieldsMap.get(WITHOUT_NOTICE_ABRIDGED_OR_INFORMAL_NOTICE_REASONS));
+            }
+        }
     }
 
     /**

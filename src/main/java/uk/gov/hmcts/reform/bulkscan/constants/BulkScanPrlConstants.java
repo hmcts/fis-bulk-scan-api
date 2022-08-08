@@ -102,6 +102,8 @@ public final class BulkScanPrlConstants {
             "Either Section 6a or 6b should be be filled up, not both";
     public static final String NEITHER_6A_NOR_6B_HAS_BEEN_FILLED_UP =
             "Neither 6a nor 6b has been filled up";
+    public static final String HEARING_URGENCY_TABLE = "hearingUrgencyTable";
+    public static final String SET_OUT_REASONS_BELOW = "setOutReasonsBelow";
 
     private BulkScanPrlConstants() {}
 }
