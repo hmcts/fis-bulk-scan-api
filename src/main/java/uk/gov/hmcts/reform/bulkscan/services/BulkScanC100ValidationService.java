@@ -202,13 +202,14 @@ public class BulkScanC100ValidationService {
         return null != ocrDataFields
                 ? ocrDataFields.stream()
                         .collect(
-                                Collectors.toMap(
-                                        ocrDataField -> ocrDataField.getName(),
-                                        ocrDataField ->
-                                                ocrDataField.getValue() == null
-                                                        ? org.apache.commons.lang3.StringUtils.EMPTY
-                                                        : ocrDataField.getValue()))
+                                Collectors.toMap(OcrDataField::getName, this::getOcrDataFieldValue))
                 : null;
+    }
+
+    private String getOcrDataFieldValue(OcrDataField ocrDataField) {
+        return ocrDataField.getValue() == null
+                ? org.apache.commons.lang3.StringUtils.EMPTY
+                : ocrDataField.getValue();
     }
 
     public BulkScanValidationResponse validateApplicantAddressFiveYears(
