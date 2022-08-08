@@ -150,9 +150,7 @@
           }
         }
       ],
-      "hearingUrgencyTable": {
-        "isCaseUrgent": "yes"
-      "hearingUrgencyTable": {
+      "hearingUrgencyTable":{
         "isCaseUrgent":"yes",
         "setOutReasonsBelow":"Set out the reasons for urgency",
         "effortsMadeWithRespondents":"What efforts have you made to put each respondent on notice of the application?",
