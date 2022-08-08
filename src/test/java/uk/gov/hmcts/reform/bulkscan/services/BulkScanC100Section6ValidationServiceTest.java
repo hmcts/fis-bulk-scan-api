@@ -26,11 +26,26 @@ class BulkScanC100Section6ValidationServiceTest {
     private static final String C100_SECTION6B_ERROR_VALIDATION_REQUEST_PATH =
             "classpath:request/bulk-scan-c100-section6b-error-validate-input.json";
 
+    private static final String C100_SECTION_6A_VALIDATION_REQUEST_PATH =
+            "classpath:request/bulk-scan-c100-section6a-validate-input.json";
+
     private static final String C100_SECTION_6B_VALIDATION_REQUEST_PATH =
             "classpath:request/bulk-scan-c100-section6b-validate-input.json";
     @Autowired BulkScanC100Service bulkScanValidationService;
 
     private final ObjectMapper mapper = new ObjectMapper();
+
+    @Test
+    @DisplayName("C100 section 6a validation success.")
+    void testC100Section6aValidationSuccess() throws IOException {
+        BulkScanValidationRequest bulkScanValidationRequest =
+                mapper.readValue(
+                        readFileFrom(C100_SECTION_6A_VALIDATION_REQUEST_PATH),
+                        BulkScanValidationRequest.class);
+        BulkScanValidationResponse res =
+                bulkScanValidationService.validate(bulkScanValidationRequest);
+        assertEquals(Status.SUCCESS, res.status);
+    }
 
     @Test
     @DisplayName("C100 section 6b validation success.")
