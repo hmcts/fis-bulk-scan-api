@@ -178,6 +178,17 @@ uk:
               - respondent2EmailAddressDontKnow
               - respondent2LivedAtThisAddressForOverFiveYears
               - respondent2AllAddressesForLastFiveYears
+              - doYouHaveSolicitor
+              - your_solicitor_name
+              - solicitor_firm_name
+              - solicitor_address
+              - solicitor_postcode
+              - solicitor_telephone_number
+              - solicitor_fax_number
+              - solicitor_dx_number
+              - solicitor_reference
+              - solicitor_fee_account_No
+              - solicitor_email_address
               - order_direction_sought
               - urgency_reason
               - application_timetable
