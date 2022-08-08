@@ -22,6 +22,8 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NO;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PERMISSION_REQUIRED_REASON;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.XOR_CONDITIONAL_FIELDS_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.getOtherProceedingFields;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.getTypeOfOrderEnumFields;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.ATTENDED_MIAM;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.EXEMPTION_TO_ATTEND_MIAM;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.EXISTING_CASE_ON_EMERGENCY_PROTECTION_CARE_OR_SUPERVISION_ORDER;
@@ -34,6 +36,7 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
+import uk.gov.hmcts.reform.bulkscan.config.BulkScanFormValidationConfigManager;
 import uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
@@ -261,5 +264,44 @@ public class BulkScanC100ValidationService {
             }
         }
         return bulkScanValidationResponse;
+    }
+
+    public List<String> validateOtherProceedingFields(
+            Map<String, String> inputFieldMap,
+            BulkScanFormValidationConfigManager.ValidationConfig validationConfig) {
+        List<String> errors = new ArrayList<>();
+        if (YES.equalsIgnoreCase(
+                inputFieldMap.get("existingCase_onEmergencyProtection_Care_or_supervisioNorder"))) {
+            List<String> mandatoryListFields =
+                    getOtherProceedingFields().stream()
+                            .filter(
+                                    eachField ->
+                                            org.apache.commons.lang3.StringUtils.isEmpty(
+                                                    inputFieldMap.get(eachField)))
+                            .collect(Collectors.toUnmodifiableList());
+            if (mandatoryListFields.size() > 0) {
+                errors.add(
+                        String.format(
+                                MANDATORY_ERROR_MESSAGE,
+                                org.apache.commons.lang3.StringUtils.join(
+                                        mandatoryListFields, ",")));
+            }
+
+            boolean typeOfOrderSelected =
+                    getTypeOfOrderEnumFields().stream()
+                            .anyMatch(
+                                    eachField ->
+                                            !org.apache.commons.lang3.StringUtils.isEmpty(
+                                                    inputFieldMap.get(eachField)));
+            if (!typeOfOrderSelected) {
+                errors.add(
+                        String.format(
+                                XOR_CONDITIONAL_FIELDS_MESSAGE,
+                                org.apache.commons.lang3.StringUtils.join(
+                                        getTypeOfOrderEnumFields(), ",")));
+            }
+        }
+
+        return errors;
     }
 }

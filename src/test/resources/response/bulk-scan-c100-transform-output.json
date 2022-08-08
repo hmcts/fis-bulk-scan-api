@@ -4,10 +4,16 @@
     "event_id":"create-case-privatelaw-bs",
     "case_data":{
       "miamOtherGroundsChecklist":"miamOtherGroundsChecklistEnum_Value_9",
-      "otherProceedingsDetailsTable":[
+      "otherProceedingsDetailsTable": [
         {
-          "value":{
-            "previousOrOngoingProceedings":"yes"
+          "value": {
+            "previousOrOngoingProceedings": "yes",
+            "caseNumber": "1234567890",
+            "dateOrYear": "22-01-2020",
+            "nameOfCourt": "court name",
+            "nameOfChildrenInvolved": "child1, child2",
+            "nameAndOffice": "case name and office name",
+            "typeOfOrder": "Emergency Protection Order"
           }
         }
       ],

@@ -1,16 +1,19 @@
 package uk.gov.hmcts.reform.bulkscan.constants;
 
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import org.apache.commons.lang3.tuple.Pair;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanFormValidationConfigManager;
+import uk.gov.hmcts.reform.bulkscan.enums.TypeOfOrderEnum;
 
 public final class BulkScanConstants {
 
     public static final String YES = "Yes";
     public static final String NO = "No";
+    public static final String VALUE = "value";
 
     public static final String MANDATORY_ATTENDED_MIAM_MESSAGE =
             "%s : value is no, " + "and you cannot make this application";
@@ -226,6 +229,31 @@ public final class BulkScanConstants {
     public static final String RESPONDENT2ALLADDRESSESFORLASTFIVEYEARS =
             "respondent2AllAddressesForLastFiveYears";
 
+    // C100 Other Proceeding Fields.
+    public static final String OTHER_PROCEEDING_AVAILABLE =
+            "existingCase_onEmergencyProtection_Care_or_supervisioNorder";
+    public static final String OTHER_PROCEEDING_NAME_OF_CHILDREN = "other_case_name_of_children";
+    public static final String OTHER_PROCEEDING_CASE_NUMBER = "other_case_case_number";
+    public static final String OTHER_PROCEEDING_DATE_OF_YEAR = "other_case_date_or_year";
+    public static final String OTHER_PROCEEDING_NAME_AND_OFFICE = "other_case_name_and_office";
+    public static final String OTHER_PROCEEDING_TYPE_OF_ORDER_1 =
+            "other_case_emergency_protection_order";
+    public static final String OTHER_PROCEEDING_TYPE_OF_ORDER_2 = "other_case_supervision_order";
+    public static final String OTHER_PROCEEDING_TYPE_OF_ORDER_3 = "other_case_care_order";
+    public static final String OTHER_PROCEEDING_TYPE_OF_ORDER_4 = "other_case_childAbduction";
+    public static final String OTHER_PROCEEDING_TYPE_OF_ORDER_5 =
+            "other_case_proceeding_for_NonMolestatioNorder";
+    public static final String OTHER_PROCEEDING_TYPE_OF_ORDER_6 =
+            "other_case_proceeding_for_contact_or_resident_order";
+    public static final String OTHER_PROCEEDING_TYPE_OF_ORDER_7 =
+            "other_case_contact_or_residentOrder_withAdoptioNorder";
+    public static final String OTHER_PROCEEDING_TYPE_OF_ORDER_8 =
+            "other_case_childMaintenanceOrder";
+    public static final String OTHER_PROCEEDING_TYPE_OF_ORDER_9 =
+            "other_case_childArrangementOrder";
+    public static final String TYPE_OF_ORDER = "typeOfOrder";
+    public static final String OTHER_PROCEEDINGS_DETAILS_TABLE = "otherProceedingsDetailsTable";
+
     // END C100 form section 12 validation fields
 
     // A58
@@ -379,6 +407,56 @@ public final class BulkScanConstants {
         }
 
         return null;
+    }
+
+    public static Map<String, String> getTypeOfOrderEnumMapping() {
+        Map<String, String> map = new HashMap<>();
+        map.put(
+                OTHER_PROCEEDING_TYPE_OF_ORDER_1,
+                TypeOfOrderEnum.emergencyProtectionOrder.getDisplayedValue());
+        map.put(
+                OTHER_PROCEEDING_TYPE_OF_ORDER_2,
+                TypeOfOrderEnum.superviosionOrder.getDisplayedValue());
+        map.put(OTHER_PROCEEDING_TYPE_OF_ORDER_3, TypeOfOrderEnum.careOrder.getDisplayedValue());
+        map.put(
+                OTHER_PROCEEDING_TYPE_OF_ORDER_4,
+                TypeOfOrderEnum.childAbduction.getDisplayedValue());
+        map.put(OTHER_PROCEEDING_TYPE_OF_ORDER_5, TypeOfOrderEnum.otherOrder.getDisplayedValue());
+        map.put(
+                OTHER_PROCEEDING_TYPE_OF_ORDER_6,
+                TypeOfOrderEnum.contactOrResidenceOrder.getDisplayedValue());
+        map.put(
+                OTHER_PROCEEDING_TYPE_OF_ORDER_7,
+                TypeOfOrderEnum.contactOrResidenceOrderWithAdoption.getDisplayedValue());
+        map.put(
+                OTHER_PROCEEDING_TYPE_OF_ORDER_8,
+                TypeOfOrderEnum.orderRelatingToChildMaintainance.getDisplayedValue());
+        map.put(
+                OTHER_PROCEEDING_TYPE_OF_ORDER_9,
+                TypeOfOrderEnum.childArrangementsOrder.getDisplayedValue());
+
+        return map;
+    }
+
+    public static List<String> getOtherProceedingFields() {
+        return Arrays.asList(
+                OTHER_PROCEEDING_CASE_NUMBER,
+                OTHER_PROCEEDING_NAME_OF_CHILDREN,
+                OTHER_PROCEEDING_NAME_AND_OFFICE,
+                OTHER_PROCEEDING_DATE_OF_YEAR);
+    }
+
+    public static List<String> getTypeOfOrderEnumFields() {
+        return Arrays.asList(
+                OTHER_PROCEEDING_TYPE_OF_ORDER_1,
+                OTHER_PROCEEDING_TYPE_OF_ORDER_2,
+                OTHER_PROCEEDING_TYPE_OF_ORDER_3,
+                OTHER_PROCEEDING_TYPE_OF_ORDER_4,
+                OTHER_PROCEEDING_TYPE_OF_ORDER_5,
+                OTHER_PROCEEDING_TYPE_OF_ORDER_6,
+                OTHER_PROCEEDING_TYPE_OF_ORDER_7,
+                OTHER_PROCEEDING_TYPE_OF_ORDER_8,
+                OTHER_PROCEEDING_TYPE_OF_ORDER_9);
     }
 
     private BulkScanConstants() {}
