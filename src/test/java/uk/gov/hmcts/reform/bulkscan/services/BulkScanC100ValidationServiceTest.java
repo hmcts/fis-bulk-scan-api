@@ -11,12 +11,12 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.FACTOR
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.FACTORS_AFFECTING_PERSON_IN_COURT_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_JURISDICTIONISSUE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH_DETAILS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE_DETAILS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONAL_OR_FACTORS_AFFECTING_LITIGATION_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.WITHOUTNOTICE_JURISDICTIONISSUE_DETAILS;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.EMPTY_STRING;
-import static uk.gov.hmcts.reform.bulkscan.utils.Constants.INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH_DETAILS;
-import static uk.gov.hmcts.reform.bulkscan.utils.Constants.INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE_DETAILS;
-import static uk.gov.hmcts.reform.bulkscan.utils.Constants.WITHOUTNOTICE_JURISDICTIONISSUE_DETAILS;
 import static uk.gov.hmcts.reform.bulkscan.utils.TestDataC100Util.POST_CODE;
 
 import java.util.ArrayList;
@@ -46,11 +46,9 @@ class BulkScanC100ValidationServiceTest {
     private static final String INTERNATIONAL_FACTORS_AFFECTING_LITIGATION_WARNING =
             "Group Dependency Field (international_or_factorsAffectingLitigation) has dependency"
                 + " validation warning. Must contain at least 1 of the fields "
-                + "[internationalElement_request_toCentral_or_Consular_authority,"
-                + "internationalElement_Resident_of_another_state,internationalElement_jurisdictionIssue"
-                + " (value should be Yes);"
-                + " factorAffectingLitigationCapacity,factorsAffectingPersonInCourt,assessmentByAdultLearningTeam"
-                + " (value should not be empty)].";
+                + "[internationalElement_Resident_of_another_state,internationalElement_jurisdictionIssue,"
+                + "internationalElement_request_toCentral_or_Consular_authority,factorAffectingLitigationCapacity,"
+                + "assessmentByAdultLearningTeam,factorsAffectingPersonInCourt].";
 
     private static final String INTERNATIONAL_JURISDICTION_WARNING_MESSAGE =
             "Group Dependency Field (internationalElement_jurisdictionIssue) has dependency"
@@ -285,11 +283,7 @@ class BulkScanC100ValidationServiceTest {
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
-        assertEquals(Status.WARNINGS, res.status);
-        assertTrue(
-                res.getWarnings()
-                        .items
-                        .contains(INTERNATIONAL_FACTORS_AFFECTING_LITIGATION_WARNING));
+        assertEquals(Status.SUCCESS, res.status);
     }
 
     @Test
@@ -384,10 +378,10 @@ class BulkScanC100ValidationServiceTest {
 
     @Test
     @DisplayName(
-            "Should generate warning for checkbox ticked with 'Yes' when a requesthas been made or"
-                    + "should a request be made to a Central Authority or other competent "
-                    + "authority in a foreign state or a consular authority in England and Wales"
-                    + "on sections 8 of application form but no details were given.")
+            "Should generate warning for checkbox ticked with 'Yes' when a request has been made or"
+                + " should a request be made to a Central Authority or other competent authority in"
+                + " a foreign state or a consular authority in England and Waleson sections 8 of"
+                + " application form but no details were given.")
     void testC100InternationalElementRequestCentralConsularWithoutDetailsWarning() {
         List<OcrDataField> c100GetRequestCentralConsularWarningData = new ArrayList<>();
         c100GetRequestCentralConsularWarningData.addAll(TestDataC100Util.getData());

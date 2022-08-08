@@ -11,10 +11,6 @@ public final class Constants {
     public static final String APPLICANT_1_LAST_NAME = "applicant1_lastName";
     public static final String EMPTY_STRING = "";
 
-    public static final String INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH_DETAILS =
-            "internationalElement_request_toCentral_or_Consular_authority_details";
-    public static final String INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE_DETAILS =
-            "internationalElement_Resident_of_another_state_details";
     public static final String NOMIAM_CHILDPROTECTIONCONCERNS_FIELD =
             "NoMIAM_childProtectionConcerns";
     public static final String NOMIAM_DOMESTICVIOLENCE_FIELD = "NoMIAM_domesticViolence";
@@ -28,8 +24,6 @@ public final class Constants {
     public static final String TICK_BOX_NO = "No";
     public static final String TICK_BOX_TRUE = "true";
     public static final String TICK_BOX_YES = "Yes";
-    public static final String WITHOUTNOTICE_JURISDICTIONISSUE_DETAILS =
-            "withoutNotice_jurisdictionIssue_details";
 
     private Constants() {}
 }

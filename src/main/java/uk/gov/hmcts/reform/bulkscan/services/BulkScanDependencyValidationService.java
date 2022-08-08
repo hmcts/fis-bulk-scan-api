@@ -10,14 +10,6 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDEN
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_ONE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_TWO;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.WILDCARD_DEPENDENT_INPUT;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.ASSESSMENT_BY_ADULT_LEARNING_TEAM_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.FACTORS_AFFECTING_LITIGATION_CAPACITY_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.FACTORS_AFFECTING_PERSON_IN_COURT_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_JURISDICTIONISSUE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONAL_OR_FACTORS_AFFECTING_LITIGATION_FIELD;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -34,8 +26,6 @@ import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
 
 @Service
 public class BulkScanDependencyValidationService {
-    private static final char COMMA_C = ',';
-
     @Autowired BulkScanDependencyValidationConfigManager configManager;
 
     /**
@@ -150,79 +140,6 @@ public class BulkScanDependencyValidationService {
             }
         }
 
-        if (ocrDataFieldsMap != null) {
-            items.addAll(validateInternationalFactors(ocrDataFieldsMap));
-        }
-
-        return items;
-    }
-
-    private List<String> validateInternationalFactors(Map<String, String> ocrDataFieldsMap) {
-
-        List<String> items = new ArrayList<>();
-
-        boolean lbFieldsValid = false;
-
-        if (ocrDataFieldsMap.containsKey(INTERNATIONAL_OR_FACTORS_AFFECTING_LITIGATION_FIELD)
-                && ocrDataFieldsMap
-                        .get(INTERNATIONAL_OR_FACTORS_AFFECTING_LITIGATION_FIELD)
-                        .equalsIgnoreCase(YES)) {
-            if (ocrDataFieldsMap.containsKey(FACTORS_AFFECTING_LITIGATION_CAPACITY_FIELD)
-                            && StringUtils.hasText(
-                                    ocrDataFieldsMap.get(
-                                            FACTORS_AFFECTING_LITIGATION_CAPACITY_FIELD))
-                    || ocrDataFieldsMap.containsKey(ASSESSMENT_BY_ADULT_LEARNING_TEAM_FIELD)
-                            && StringUtils.hasText(
-                                    ocrDataFieldsMap.get(ASSESSMENT_BY_ADULT_LEARNING_TEAM_FIELD))
-                    || ocrDataFieldsMap.containsKey(FACTORS_AFFECTING_PERSON_IN_COURT_FIELD)
-                            && StringUtils.hasText(
-                                    ocrDataFieldsMap.get(
-                                            FACTORS_AFFECTING_PERSON_IN_COURT_FIELD))) {
-                lbFieldsValid = true;
-            }
-
-            if (ocrDataFieldsMap.containsKey(INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE)
-                            && ocrDataFieldsMap
-                                    .get(INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE)
-                                    .equalsIgnoreCase(YES)
-                    || ocrDataFieldsMap.containsKey(
-                                    INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH)
-                            && ocrDataFieldsMap
-                                    .get(INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH)
-                                    .equalsIgnoreCase(YES)
-                    || ocrDataFieldsMap.containsKey(INTERNATIONALELEMENT_JURISDICTIONISSUE)
-                            && ocrDataFieldsMap
-                                    .get(INTERNATIONALELEMENT_JURISDICTIONISSUE)
-                                    .equalsIgnoreCase(YES)) {
-                lbFieldsValid = true;
-            }
-        }
-
-        if (!lbFieldsValid) {
-            StringBuilder lsDependentFields = new StringBuilder(300);
-            lsDependentFields
-                    .append(INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH)
-                    .append(COMMA_C)
-                    .append(INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE)
-                    .append(COMMA_C)
-                    .append(INTERNATIONALELEMENT_JURISDICTIONISSUE)
-                    .append(" (value should be ")
-                    .append(YES)
-                    .append("); ")
-                    .append(FACTORS_AFFECTING_LITIGATION_CAPACITY_FIELD)
-                    .append(COMMA_C)
-                    .append(FACTORS_AFFECTING_PERSON_IN_COURT_FIELD)
-                    .append(COMMA_C)
-                    .append(ASSESSMENT_BY_ADULT_LEARNING_TEAM_FIELD)
-                    .append(" (value should not be empty)");
-
-            items.add(
-                    String.format(
-                            GROUP_DEPENDENCY_MESSAGE,
-                            INTERNATIONAL_OR_FACTORS_AFFECTING_LITIGATION_FIELD,
-                            1,
-                            lsDependentFields));
-        }
         return items;
     }
 

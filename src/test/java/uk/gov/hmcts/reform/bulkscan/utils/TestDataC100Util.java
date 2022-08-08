@@ -6,10 +6,11 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.FACTOR
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.FACTORS_AFFECTING_PERSON_IN_COURT_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_JURISDICTIONISSUE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH_DETAILS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE_DETAILS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONAL_OR_FACTORS_AFFECTING_LITIGATION_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.utils.Constants.INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH_DETAILS;
-import static uk.gov.hmcts.reform.bulkscan.utils.Constants.INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE_DETAILS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.WITHOUTNOTICE_JURISDICTIONISSUE_DETAILS;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.NOMIAM_CHILDPROTECTIONCONCERNS_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.NOMIAM_DOMESTICVIOLENCE_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.NOMIAM_DVE_ARRESTEDFORSIMILAROFFENCE_FIELD;
@@ -20,7 +21,6 @@ import static uk.gov.hmcts.reform.bulkscan.utils.Constants.TICK_BOX_FALSE;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.TICK_BOX_NO;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.TICK_BOX_TRUE;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.TICK_BOX_YES;
-import static uk.gov.hmcts.reform.bulkscan.utils.Constants.WITHOUTNOTICE_JURISDICTIONISSUE_DETAILS;
 
 import java.util.ArrayList;
 import java.util.List;

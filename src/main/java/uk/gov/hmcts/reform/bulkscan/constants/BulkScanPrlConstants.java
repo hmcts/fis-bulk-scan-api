@@ -100,6 +100,12 @@ public final class BulkScanPrlConstants {
             "internationalElement_request_toCentral_or_Consular_authority";
     public static final String INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE =
             "internationalElement_Resident_of_another_state";
+    public static final String INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE_DETAILS =
+            "internationalElement_Resident_of_another_state_details";
+    public static final String INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH_DETAILS =
+            "internationalElement_request_toCentral_or_Consular_authority_details";
+    public static final String WITHOUTNOTICE_JURISDICTIONISSUE_DETAILS =
+            "withoutNotice_jurisdictionIssue_details";
     // END C100 form sections 8 & 9 validation fields
 
     private BulkScanPrlConstants() {}
