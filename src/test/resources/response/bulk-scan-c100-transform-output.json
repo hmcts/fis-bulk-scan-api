@@ -68,6 +68,7 @@
         "prohibitedStepsOrder",
         "specificIssueOrder"
       ],
+      "checklistSection8To10Completed":"yes",
       "checklistSection16Completed":"yes",
       "otherProceedingsTable":{
         "previousOrOngoingProceedings":"yes"
@@ -75,6 +76,7 @@
       "scannedDocuments":[
 
       ],
+      "checklistSection2To4Completed":"yes",
       "miamExemptionsChecklist":[
         "domesticViolence",
         "childProtectionConcern",
@@ -129,7 +131,6 @@
         }
       ],
       "agreedBy":"Burns, Burns and Burns",
-      "checklistSection8910Completed":"yes",
       "applicationPermissionRequired":"yes",
       "habitualResidentINotherState":"yes",
       "parentalResponsibilityDetails":"parentResponsibility",
@@ -197,6 +198,7 @@
       "childrenOfSameParent":"Yes",
       "childLiveWith":"Applicant",
       "consentOrder":"yes",
+      "checklistSection12To14Completed":"yes",
       "claimingExemptionMiam":"yes",
       "typeOfChildArrangementsOrder":"true",
       "otherProceedingsDetailsTable":[
@@ -218,13 +220,11 @@
       "checklistSection11Completed":"yes",
       "briefDetailsOnTheApplication":"briefDetails",
       "positionOrOfficeHeld":"Manager",
-      "checklistSection121314Completed":"yes",
       "hearingUrgencyTable":{
         "isCaseUrgent":"yes"
       },
       "personWhoLivesWithChild":"living other details",
       "isCaseUrgent":"yes",
-      "checklistSection234Completed":"yes",
       "typeOfApplicationTable":{
         "applicationPermissionRequired":"yes"
       },
