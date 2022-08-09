@@ -110,7 +110,7 @@ import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.OTHER_PAR
 import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.RELATIONSHIP_FATHER;
 import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.RELATIONSHIP_OTHER;
 
-import java.util.LinkedHashMap;
+import com.microsoft.applicationinsights.core.dependencies.google.gson.internal.LinkedTreeMap;
 import java.util.Map;
 import java.util.Optional;
 import org.apache.commons.lang3.BooleanUtils;
@@ -247,7 +247,7 @@ public class BulkScanA58ConditionalTransformerService {
         Optional<Object> maintanenceOrderOptional =
                 Optional.ofNullable(populatedMap.get(MAINTANENCE_ORDER));
         if (maintanenceOrderOptional.isPresent()) {
-            LinkedHashMap maintanenceOrder = (LinkedHashMap) populatedMap.get(MAINTANENCE_ORDER);
+            LinkedTreeMap maintanenceOrder = (LinkedTreeMap) populatedMap.get(MAINTANENCE_ORDER);
             Optional<String> childCourtAndDateOfOrderOptional =
                     Optional.ofNullable(inputFieldsMap.get(CHILD_COURT_AND_DATE_OF_ORDER));
             childCourtAndDateOfOrderOptional.ifPresent(

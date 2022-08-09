@@ -238,7 +238,7 @@
     },
     {
       "name":"applicant1LivedAtThisAddressForOverFiveYears",
-      "value":"Yes"
+      "value":"yes"
     },
     {
       "name":"applicant1AllAddressesForLastFiveYears",

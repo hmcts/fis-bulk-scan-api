@@ -105,8 +105,8 @@
       "value":"johnnyj@hotmail.uk"
     },
     {
-      "name":"hasApplicant1LivedAtThisAddressForOverFiveYears",
-      "value":"Yes"
+      "name":"applicant1LivedAtThisAddressForOverFiveYears",
+      "value":"yes"
     },
     {
       "name":"applicant1AllAddressesForLastFiveYears",
@@ -542,8 +542,8 @@
       "value": "Factors affecting person in court"
     },
     {
-    "name":"doYouHaveSolicitor",
-    "value":"yes"
+      "name":"doYouHaveSolicitor",
+      "value":"yes"
     },
     {
       "name":"your_solicitor_name",
@@ -582,8 +582,8 @@
       "value":"9876567984"
     },
     {
-      "name": "solicitor_email_address",
-      "value": "FBurnsBBB@gmail.com"
+      "name":"solicitor_email_address",
+      "value":"FBurnsBBB@gmail.com"
     }
   ]
 }

@@ -629,8 +629,8 @@
       "value": "Factors affecting person in court"
     },
     {
-    "name":"doYouHaveSolicitor",
-    "value":"yes"
+      "name":"doYouHaveSolicitor",
+      "value":"yes"
     },
     {
       "name":"your_solicitor_name",
