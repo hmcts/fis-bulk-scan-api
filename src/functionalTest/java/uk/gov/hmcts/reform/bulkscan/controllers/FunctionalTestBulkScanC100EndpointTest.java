@@ -14,7 +14,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.http.HttpStatus;
 
-public class BulkScanC100EndpointTest {
+public class FunctionalTestBulkScanC100EndpointTest {
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
     private static final String AUTH_HEADER = "serviceauthorization";
