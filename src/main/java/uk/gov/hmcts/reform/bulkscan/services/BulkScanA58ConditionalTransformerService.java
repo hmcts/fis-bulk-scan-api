@@ -169,40 +169,48 @@ public class BulkScanA58ConditionalTransformerService {
 
     @SuppressWarnings("unchecked")
     private void buildadopAgencyOrLAs(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
+        LinkedTreeMap linkedTreeMapOne = new LinkedTreeMap();
+        LinkedTreeMap childOne = new LinkedTreeMap();
+        childOne.put("adopAgencyOrLaName", inputFieldsMap.get("child_laName"));
+        childOne.put("adopAgencyOrLaaddress", inputFieldsMap.get("child_laAddress"));
+        childOne.put("adopAgencyOrLaContactName", inputFieldsMap.get("child_laContactName"));
+        childOne.put("adopAgencyOrLaPhoneNumber", inputFieldsMap.get("child_laTelephoneNo"));
+        childOne.put("LAorAdoptionAgencyCategory", "Notify Local Authority intention of Adoption");
+        linkedTreeMapOne.put("value", childOne);
+
         LinkedTreeMap linkedTreeMapTwo = new LinkedTreeMap();
         LinkedTreeMap childTwo = new LinkedTreeMap();
-        //child_adoptionDate
-        //child_adoptionAgencyName
-        //child_adoptionAgencyAddress
-        //child_adoptionAgencyContactName
-        //child_adoptionAgencyTelephoneNo
         childTwo.put("adopAgencyOrLaName", inputFieldsMap.get("child_adoptionAgencyName"));
         childTwo.put("adopAgencyOrLaaddress", inputFieldsMap.get("child_adoptionAgencyAddress"));
         childTwo.put("adopAgencyOrLaContactName", inputFieldsMap.get("child_adoptionAgencyContactName"));
         childTwo.put("adopAgencyOrLaPhoneNumber", inputFieldsMap.get("child_adoptionAgencyTelephoneNo"));
+        childTwo.put("LAorAdoptionAgencyCategory", "Child placed for the purpose of Adoption");
         linkedTreeMapTwo.put("value", childTwo);
 
-        LinkedTreeMap linkedTreeMapOne = new LinkedTreeMap();
-        LinkedTreeMap childone = new LinkedTreeMap();
-        //1) if child_adoptionAgencyName != null
-        //   adopAgencyOrLAs.adopAgencyOrLaName = child_laName
-        //2) if child_adoptionAgencyAddress != null
-        //   adopAgencyOrLAs.adopAgencyOrLaaddress = child_laAddress
-        //3) if child_adoptionAgencyContactName != null
-        //   adopAgencyOrLAs.adopAgencyOrLaContactName = child_laContactName
-        //4) if child_adoptionAgencyTelephoneNo != null
-        //   adopAgencyOrLAs.adopAgencyOrLaPhoneNumber = child_laTelephoneNo
-        //5) if child_laEmail != null
-        //   adopAgencyOrLAs.adopAgencyOrLaContactEmail = child_laEmail
-        childone.put("adopAgencyOrLaName", inputFieldsMap.get("child_laName"));
-        childone.put("adopAgencyOrLaaddress", inputFieldsMap.get("child_laAddress"));
-        childone.put("adopAgencyOrLaContactName", inputFieldsMap.get("child_laContactName"));
-        childone.put("adopAgencyOrLaPhoneNumber", inputFieldsMap.get("child_laTelephoneNo"));
-        linkedTreeMapOne.put("value", childone);
+        //1) If child_isAdoptionAgencyInvolved != null and child_isAdoptionAgencyInvolved == true
+        //   isAdoptionAgencyInvolved = child_isAdoptionAgencyInvolved
+        //else if child_isAdoptionAgencyDetailsAvailable == true then
+        //     if child_adoptionAgencyName != null
+        //        adopAgencyOrLAs.adopAgencyOrLaName = child_adoptionAgencyName
+        //    if child_adoptionAgencyAddress != null
+        //       adopAgencyOrLAs.adopAgencyOrLaaddress = child_adoptionAgencyAddress
+        //    if child_adoptionAgencyContactName != null
+        //      adopAgencyOrLAs.adopAgencyOrLaContactName = child_adoptionAgencyContactName
+        //    if child_adoptionAgencyTelephoneNo != null
+        //       adopAgencyOrLAs.adopAgencyOrLaPhoneNumber = child_adoptionAgencyTelephoneNo
+        LinkedTreeMap linkedTreeMapThree = new LinkedTreeMap();
+        LinkedTreeMap childThree = new LinkedTreeMap();
+        childThree.put("adopAgencyOrLaName", inputFieldsMap.get("child_adoptionAgencyName"));
+        childThree.put("adopAgencyOrLaaddress", inputFieldsMap.get("child_adoptionAgencyAddress"));
+        childThree.put("adopAgencyOrLaContactName", inputFieldsMap.get("child_adoptionAgencyContactName"));
+        childThree.put("adopAgencyOrLaPhoneNumber", inputFieldsMap.get("child_adoptionAgencyTelephoneNo"));
+        childThree.put("LAorAdoptionAgencyCategory", "Child placed for the purpose of Adoption");
+        linkedTreeMapThree.put("value", childThree);
 
         ArrayList adopAgencyOrLAsArrayList = new ArrayList();
         adopAgencyOrLAsArrayList.add(linkedTreeMapOne);
         adopAgencyOrLAsArrayList.add(linkedTreeMapTwo);
+        adopAgencyOrLAsArrayList.add(linkedTreeMapThree);
 
         populatedMap.put("adopAgencyOrLAs", adopAgencyOrLAsArrayList);
     }
