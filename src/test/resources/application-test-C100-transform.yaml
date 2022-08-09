@@ -175,5 +175,5 @@ uk:
               printFullName: printFullName
               agreedBy: applicantSolicitorsFirmName
               SignedDate: applicantAndApplicantsolicitorSignedDate
-              positionOrOfficeHeld: positioNorOfficeHeld
+              positionOrOfficeHeld: position_or_OfficeHeld
               courtFee: courtFee

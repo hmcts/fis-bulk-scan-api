@@ -200,7 +200,7 @@ uk:
               - printFullName
               - applicantSolicitorsFirmName
               - applicantAndApplicantsolicitorSignedDate
-              - positioNorOfficeHeld
+              - position_or_OfficeHeld
               - courtFee
             regexValidationFields:
               dateFields:
