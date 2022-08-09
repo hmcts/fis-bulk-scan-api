@@ -111,6 +111,8 @@ import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.RELATIONS
 import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.RELATIONSHIP_OTHER;
 
 import com.microsoft.applicationinsights.core.dependencies.google.gson.internal.LinkedTreeMap;
+
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Optional;
 import org.apache.commons.lang3.BooleanUtils;
@@ -162,6 +164,47 @@ public class BulkScanA58ConditionalTransformerService {
         buildChildMaintanenceOrder(inputFieldsMap, populatedMap);
         buildChildProceedingDetails(inputFieldsMap, populatedMap);
         buildChildProceedingDetailsWithRelation(inputFieldsMap, populatedMap);
+        buildadopAgencyOrLAs(inputFieldsMap, populatedMap);
+    }
+
+    @SuppressWarnings("unchecked")
+    private void buildadopAgencyOrLAs(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
+        LinkedTreeMap linkedTreeMapTwo = new LinkedTreeMap();
+        LinkedTreeMap childTwo = new LinkedTreeMap();
+        //child_adoptionDate
+        //child_adoptionAgencyName
+        //child_adoptionAgencyAddress
+        //child_adoptionAgencyContactName
+        //child_adoptionAgencyTelephoneNo
+        childTwo.put("adopAgencyOrLaName", inputFieldsMap.get("child_adoptionAgencyName"));
+        childTwo.put("adopAgencyOrLaaddress", inputFieldsMap.get("child_adoptionAgencyAddress"));
+        childTwo.put("adopAgencyOrLaContactName", inputFieldsMap.get("child_adoptionAgencyContactName"));
+        childTwo.put("adopAgencyOrLaPhoneNumber", inputFieldsMap.get("child_adoptionAgencyTelephoneNo"));
+        linkedTreeMapTwo.put("value", childTwo);
+
+        LinkedTreeMap linkedTreeMapOne = new LinkedTreeMap();
+        LinkedTreeMap childone = new LinkedTreeMap();
+        //1) if child_adoptionAgencyName != null
+        //   adopAgencyOrLAs.adopAgencyOrLaName = child_laName
+        //2) if child_adoptionAgencyAddress != null
+        //   adopAgencyOrLAs.adopAgencyOrLaaddress = child_laAddress
+        //3) if child_adoptionAgencyContactName != null
+        //   adopAgencyOrLAs.adopAgencyOrLaContactName = child_laContactName
+        //4) if child_adoptionAgencyTelephoneNo != null
+        //   adopAgencyOrLAs.adopAgencyOrLaPhoneNumber = child_laTelephoneNo
+        //5) if child_laEmail != null
+        //   adopAgencyOrLAs.adopAgencyOrLaContactEmail = child_laEmail
+        childone.put("adopAgencyOrLaName", inputFieldsMap.get("child_laName"));
+        childone.put("adopAgencyOrLaaddress", inputFieldsMap.get("child_laAddress"));
+        childone.put("adopAgencyOrLaContactName", inputFieldsMap.get("child_laContactName"));
+        childone.put("adopAgencyOrLaPhoneNumber", inputFieldsMap.get("child_laTelephoneNo"));
+        linkedTreeMapOne.put("value", childone);
+
+        ArrayList adopAgencyOrLAsArrayList = new ArrayList();
+        adopAgencyOrLAsArrayList.add(linkedTreeMapOne);
+        adopAgencyOrLAsArrayList.add(linkedTreeMapTwo);
+
+        populatedMap.put("adopAgencyOrLAs", adopAgencyOrLAsArrayList);
     }
 
     public void buildCourtInformation(
