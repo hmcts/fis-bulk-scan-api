@@ -69,56 +69,13 @@
             "addressLivedLessThan5YearsDetails":"Baker St"
           }
         }
-      ],      "otherProceedingsDetailsTable": [
-        {
-          "value": {
-            "previousOrOngoingProceedings": "yes"
-          }
-        }
       ],
-      "miamOtherGroundsChecklist": "miamOtherGroundsChecklistEnum_Value_9",
-      "miamPreviousAttendanceChecklist": "miamPreviousAttendanceChecklistEnum_Value_4",
-      "miamExemptionsChecklist": [
-        "domesticViolence",
-        "childProtectionConcern",
-        "urgency",
-        "previousMIAMattendance",
-        "other"
-      ],
-      "miamDomesticViolenceChecklist": [
-        "miamDomesticViolenceChecklistEnum_Value_1",
-        "miamDomesticViolenceChecklistEnum_Value_2",
-        "miamDomesticViolenceChecklistEnum_Value_3",
-        "miamDomesticViolenceChecklistEnum_Value_4",
-        "miamDomesticViolenceChecklistEnum_Value_5",
-        "miamDomesticViolenceChecklistEnum_Value_6",
-        "miamDomesticViolenceChecklistEnum_Value_7",
-        "miamDomesticViolenceChecklistEnum_Value_8",
-        "miamDomesticViolenceChecklistEnum_Value_9",
-        "miamDomesticViolenceChecklistEnum_Value_10",
-        "miamDomesticViolenceChecklistEnum_Value_11",
-        "miamDomesticViolenceChecklistEnum_Value_12",
-        "miamDomesticViolenceChecklistEnum_Value_13",
-        "miamDomesticViolenceChecklistEnum_Value_15",
-        "miamDomesticViolenceChecklistEnum_Value_16",
-        "miamDomesticViolenceChecklistEnum_Value_17",
-        "miamDomesticViolenceChecklistEnum_Value_18",
-        "miamDomesticViolenceChecklistEnum_Value_19",
-        "miamDomesticViolenceChecklistEnum_Value_20",
-        "miamDomesticViolenceChecklistEnum_Value_21",
-        "miamDomesticViolenceChecklistEnum_Value_22"
-      ],
-      "briefDetailsOnTheApplication": "briefDetails",
-      "childrenKNownToLocalAuthority": "Yes",
-      "havePreviousParentingPlan": "parentingplan",
-      "otherProceedingsTable": {
-        "previousOrOngoingProceedings": "yes"
-      },
       "ordersApplyingFor":[
         "childArrangementsOrder",
         "prohibitedStepsOrder",
         "specificIssueOrder"
       ],
+      "habitualResidentInOtherState":"yes",
       "miamUrgencyReasonChecklist":[
         "miamUrgencyReasonChecklistEnum_Value_1",
         "miamUrgencyReasonChecklistEnum_Value_2",
@@ -132,9 +89,7 @@
         "previousOrOngoingProceedings":"yes"
       },
       "briefDetailsOnTheApplication":"briefDetails",
-      "scannedDocuments":[
-
-      ],
+      "scannedDocuments":[],
       "miamExemptionsChecklist":[
         "domesticViolence",
         "childProtectionConcern",
@@ -191,10 +146,12 @@
       "hearingUrgencyTable":{
         "isCaseUrgent":"yes"
       },
-      "applicationPermissionRequiredReason": "reason",
-      "habitualResidentInOtherState": "yes",
-      "claimingExemptionMiam":"yes",
       "personWhoLivesWithChild":"living other details",
+      "litigationCapacityTable":{
+        "litigationCapacityFactors":"Factors affecting litigation capacity",
+        "litigationCapacityReferrals":"Assessment by adult learning team",
+        "litigationCapacityOtherFactors":"Factors affecting person in court"
+      },
       "applicationPermissionRequired":"yes",
       "parentalResponsibilityDetails":"parentResponsibility",
       "familyMediatorMiam":null,
@@ -229,6 +186,14 @@
       ],
       "childrenParentsName":"parentsName",
       "previousOrOngoingProceedings":"yes",
+      "internationalElementTable":{
+        "habitualResidentInOtherState":"yes",
+        "habitualResidentInOtherStateGiveReason":null,
+        "jurisdictionIssue":"Yes",
+        "jurisdictionIssueGiveReason":"International jurisdiction big issue",
+        "requestToForeignAuthority":null,
+        "requestToForeignAuthorityGiveReason":null
+      },
       "applicantAttendedMiam":null,
       "miamChildProtectionConcernList":[
         "MIAMChildProtectionConcernChecklistEnum_value_1",
@@ -285,19 +250,6 @@
           }
         }
       ],
-      "internationalElementTable": {
-        "habitualResidentInOtherState": "yes",
-        "habitualResidentInOtherStateGiveReason": null,
-        "jurisdictionIssue": "Yes",
-        "jurisdictionIssueGiveReason": "International jurisdiction big issue",
-        "requestToForeignAuthority": null,
-        "requestToForeignAuthorityGiveReason": null
-      },
-      "litigationCapacityTable": {
-        "litigationCapacityFactors": "Factors affecting litigation capacity",
-        "litigationCapacityReferrals": "Assessment by adult learning team",
-        "litigationCapacityOtherFactors": "Factors affecting person in court"
-      }
       "havePreviousParentingPlan":"parentingplan",
       "allegationsOfHarmOverviewTable":{
         "allegationsOfHarmDomesticAbuseYesNo":"yes",
@@ -312,11 +264,10 @@
       "consentOrder":"yes",
       "claimingExemptionMiam":"yes",
       "welshLanguageRequirement":"yes",
-      "typeOfChildArrangementsOrder":"true",
-      "childParentsNameCollection":"parentsNameColl"
+      "childParentsNameCollection":"parentsNameColl",
+      "typeOfChildArrangementsOrder": "true"
     }
   },
   "warnings":[
-
   ]
 }
