@@ -21,14 +21,20 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDEN
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT1LIVEDATTHISADDRESSFOROVERFIVEYEARS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT2ALLADDRESSESFORLASTFIVEYEARS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT2LIVEDATTHISADDRESSFOROVERFIVEYEARS;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_ONE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_TWO;
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.EMPTY_STRING;
+import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.EXEMPTION_TO_ATTEND_MIAM_DEPENDENCY_WARNING;
+import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.NOMIAM_CHILDPROTECTIONCONCERNS_DEPENDENCY_WARNING;
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.NOMIAM_CHILDPROTECTIONCONCERNS_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.NOMIAM_DOMESTICVIOLENCE_DEPENDENCY_WARNING;
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.NOMIAM_DOMESTICVIOLENCE_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.NOMIAM_OTHERREASONS_DEPENDENCY_WARNING;
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.NOMIAM_OTHERREASONS_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.NOMIAM_PREVIOUSATTENDANCE_DEPENDENCY_WARNING;
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.NOMIAM_PREVIOUSATTENDANCE_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.NOMIAM_URGENCY_DEPENDENCY_WARNING;
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.NOMIAM_URGENCY_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.RESPONDENT_ONE_NOT_LIVED_IN_ADDRESS_FOR_FIVE_YEARS;
+import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.RESPONDENT_TWO_NOT_LIVED_IN_ADDRESS_FOR_FIVE_YEARS;
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.TICK_BOX_TRUE;
 import static uk.gov.hmcts.reform.bulkscan.utils.TestDataC100Util.POST_CODE;
 import static uk.gov.hmcts.reform.bulkscan.utils.TestResourceUtil.readFileFrom;
@@ -61,59 +67,6 @@ import uk.gov.hmcts.reform.bulkscan.utils.TestDataC100Util;
 @SpringBootTest
 @ActiveProfiles("test")
 class BulkScanC100ServiceTest {
-    private static final String EXEMPTION_TO_ATTEND_MIAM_DEPENDENCY_WARNING =
-            "Group Dependency Field (exemption_to_attend_MIAM) has dependency validation warning."
-                    + " Must contain at least 1 of the fields"
-                    + " [NoMIAM_domesticViolence,NoMIAM_childProtectionConcerns,"
-                    + "NoMIAM_Urgency,NoMIAM_PreviousAttendance,NoMIAM_otherReasons].";
-    private static final String NOMIAM_CHILDPROTECTIONCONCERNS_DEPENDENCY_WARNING =
-            "Group Dependency Field (NoMIAM_childProtectionConcerns) has dependency validation"
-                    + " warning. Must contain at least 1 of the fields"
-                    + " [NoMIAM_subjectOfEnquiries_byLocalAuthority,"
-                    + "NoMIAM_subjectOfCPP_byLocalAuthority].";
-    private static final String NOMIAM_PREVIOUSATTENDANCE_DEPENDENCY_WARNING =
-            "Group Dependency Field (NoMIAM_PreviousAttendance) has dependency validation warning. "
-                    + "Must contain at least 1 of the fields [NoMIAM_PreviousAttendanceReason].";
-    private static final String NOMIAM_OTHERREASONS_DEPENDENCY_WARNING =
-            "Group Dependency Field (NoMIAM_otherReasons) has dependency validation warning. "
-                    + "Must contain at least 1 of the fields [NoMIAM_otherExceptions].";
-    private static final String NOMIAM_URGENCY_DEPENDENCY_WARNING =
-            "Group Dependency Field (NoMIAM_Urgency) has dependency validation warning. Must"
-                + " contain at least 1 of the fields"
-                + " [NoMIAM_urgency_risk_to_life_liberty_or_safety,"
-                + "NoMIAM_urgency_riskOfHarm,NoMIAM_urgency_risk_to_unlawfulRemoval,"
-                + "NoMIAM_urgency_risk_to_miscarriageOfJustice,NoMIAM_urgency_unreasonablehardship,"
-                + "NoMIAM_urgency_irretrievableProblem,NoMIAM_urgency_conflictWithOtherStateCourts].";
-    private static final String NOMIAM_DOMESTICVIOLENCE_DEPENDENCY_WARNING =
-            "Group Dependency Field (NoMIAM_domesticViolence) has dependency validation warning."
-                + " Must contain at least 1 of the fields [NoMIAM_DVE_arrestedForSimilarOffence,"
-                + "NoMIAM_DVE_relevantPoliceCaution,NoMIAM_DVE_relevantCriminalProceeding,NoMIAM_DVE_relevantConviction,"
-                + "NoMIAM_DVE_courtOrder,NoMIAM_DVE_protectionNotice,NoMIAM_DVE_protectiveInjunction,"
-                + "NoMIAM_DVE_NoCrossUndertakingGiven,NoMIAM_DVE_copyOfFactFinding,NoMIAM_DVE_expertEvidenceReport,"
-                + "NoMIAM_DVE_healthProfessionalReport,NoMIAM_DVE_ReferralHealthProfessionalReport,"
-                + "NoMIAM_DVE_memberOf_MultiAgencyRiskAssessmentConferrance_letter,NoMIAM_DVE_domesticViolenceAdvisor,"
-                + "NoMIAM_DVE_independentSexualViolenceAdvisor_Letter,NoMIAM_DVE_officerEmployed_localAuthority_letter,"
-                + "NoMIAM_DVE_domesticViolenceSupportCharity_letter,"
-                + "NoMIAM_DVE_domesticViolenceSupportCharity_refuge_letter,"
-                + "NoMIAM_DVE_publicAuthority_confirmationLetter,NoMIAM_DVE_secretaryOfState_letter,"
-                + "NoMIAM_DVE_evidenceFinancialMatters].";
-
-    private static final String RESPONDENT_ONE_NOT_LIVED_IN_ADDRESS_FOR_FIVE_YEARS =
-            "("
-                    + RESPONDENT_ONE
-                    + ") has not lived at the current address "
-                    + "for more than 5 years. Previous address(es) field ("
-                    + RESPONDENT1ALLADDRESSESFORLASTFIVEYEARS
-                    + ") should not be empty or null.";
-
-    private static final String RESPONDENT_TWO_NOT_LIVED_IN_ADDRESS_FOR_FIVE_YEARS =
-            "("
-                    + RESPONDENT_TWO
-                    + ") has not lived at the current address "
-                    + "for more than 5 years. Previous address(es) field ("
-                    + RESPONDENT2ALLADDRESSESFORLASTFIVEYEARS
-                    + ") should not be empty or null.";
-
     private final ObjectMapper mapper = new ObjectMapper();
 
     private static final String C100_VALIDATION_REQUEST_PATH =
