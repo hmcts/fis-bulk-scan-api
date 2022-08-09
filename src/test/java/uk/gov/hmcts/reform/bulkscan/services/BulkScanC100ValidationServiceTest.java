@@ -16,7 +16,11 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERN
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE_DETAILS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONAL_OR_FACTORS_AFFECTING_LITIGATION_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.WITHOUTNOTICE_JURISDICTIONISSUE_DETAILS;
-import static uk.gov.hmcts.reform.bulkscan.utils.Constants.EMPTY_STRING;
+import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.EMPTY_STRING;
+import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH_WARNING_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE_WARNING_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.INTERNATIONAL_FACTORS_AFFECTING_LITIGATION_WARNING;
+import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.INTERNATIONAL_JURISDICTION_WARNING_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.utils.TestDataC100Util.POST_CODE;
 
 import java.util.ArrayList;
@@ -43,27 +47,6 @@ import uk.gov.hmcts.reform.bulkscan.utils.TestDataC100Util;
 @SpringBootTest
 @ActiveProfiles("test")
 class BulkScanC100ValidationServiceTest {
-    private static final String INTERNATIONAL_FACTORS_AFFECTING_LITIGATION_WARNING =
-            "Group Dependency Field (international_or_factorsAffectingLitigation) has dependency"
-                + " validation warning. Must contain at least 1 of the fields "
-                + "[internationalElement_Resident_of_another_state,internationalElement_jurisdictionIssue,"
-                + "internationalElement_request_toCentral_or_Consular_authority,factorAffectingLitigationCapacity,"
-                + "assessmentByAdultLearningTeam,factorsAffectingPersonInCourt].";
-
-    private static final String INTERNATIONAL_JURISDICTION_WARNING_MESSAGE =
-            "Group Dependency Field (internationalElement_jurisdictionIssue) has dependency"
-                    + " validation warning. Must contain at least 1 of the fields"
-                    + " [withoutNotice_jurisdictionIssue_details].";
-
-    private static final String INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE_WARNING_MESSAGE =
-            "Group Dependency Field (internationalElement_Resident_of_another_state) has dependency"
-                    + " validation warning. Must contain at least 1 of the fields"
-                    + " [internationalElement_Resident_of_another_state_details].";
-    private static final String INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH_WARNING_MESSAGE =
-            "Group Dependency Field (internationalElement_request_toCentral_or_Consular_authority)"
-                    + " has dependency validation warning. Must contain at least 1 of the fields"
-                    + " [internationalElement_request_toCentral_or_Consular_authority_details].";
-
     @Autowired BulkScanC100ValidationService bulkScanC100ValidationService;
 
     @Autowired BulkScanC100Service bulkScanValidationService;

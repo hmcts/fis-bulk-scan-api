@@ -249,7 +249,22 @@
         "litigationCapacityFactors": "Factors affecting litigation capacity",
         "litigationCapacityReferrals": "Assessment by adult learning team",
         "litigationCapacityOtherFactors": "Factors affecting person in court"
-      }
+      },
+      "havePreviousParentingPlan": "parentingplan",
+      "allegationsOfHarmOverviewTable": {
+        "allegationsOfHarmDomesticAbuseYesNo": "yes",
+        "allegationsOfHarmChildAbductionYesNo": "yes",
+        "allegationsOfHarmChildAbuseYesNo": "yes",
+        "allegationsOfHarmSubstanceAbuseYesNo": "yes",
+        "allegationsOfHarmOtherConcernsYesNo": "yes"
+      },
+      "applicationPermissionRequiredReason": "reason",
+      "childrenOfSameParent": "Yes",
+      "childLiveWith": "Applicant",
+      "consentOrder": "yes",
+      "claimingExemptionMiam": "yes",
+      "welshLanguageRequirement": "yes",
+      "childParentsNameCollection": "parentsNameColl"
     }
   },
   "warnings": []

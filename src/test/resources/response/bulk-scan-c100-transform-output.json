@@ -47,7 +47,6 @@
         }
       ],
       "miamOtherGroundsChecklist": "miamOtherGroundsChecklistEnum_Value_9",
-      "parentalResponsibilityDetails": "parentResponsibility",
       "miamPreviousAttendanceChecklist": "miamPreviousAttendanceChecklistEnum_Value_4",
       "miamExemptionsChecklist": [
         "domesticViolence",
@@ -156,13 +155,14 @@
       "hearingUrgencyTable": {
         "isCaseUrgent": "yes"
       },
-      "personWhoLivesWithChild": "living other details",
       "applicationPermissionRequiredReason": "reason",
       "applicationPermissionRequired": "yes",
       "habitualResidentInOtherState": "yes",
       "familyMediatorMiam": null,
       "isCaseUrgent": "yes",
       "claimingExemptionMiam":"yes",
+      "personWhoLivesWithChild":"living other details",
+      "parentalResponsibilityDetails":"parentResponsibility",
       "typeOfApplicationTable": {
         "applicationPermissionRequired": "yes"
       },
