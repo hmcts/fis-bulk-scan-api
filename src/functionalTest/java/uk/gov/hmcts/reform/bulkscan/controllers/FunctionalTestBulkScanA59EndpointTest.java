@@ -13,7 +13,7 @@ import org.junit.Test;
 import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.http.HttpStatus;
 
-public class BulkScanA59EndpointTest {
+public class FunctionalTestBulkScanA59EndpointTest {
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
     private static final String AUTH_HEADER = "serviceauthorization";
