@@ -90,7 +90,6 @@ uk:
                 agreementDate: child_maintanenceAgreementDate
               dateChildMovedIn: child_liveAtHomeFrom
               hasAnotherAdopAgencyOrLA: child_isAdoptedByAgency
-              adoptionDate: child_adoptionDate
           A58_STEP_PARENT:
             caseFields:
               CASE_TYPE_ID: A58
