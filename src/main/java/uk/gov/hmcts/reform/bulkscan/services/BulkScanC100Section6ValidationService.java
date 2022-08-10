@@ -52,27 +52,27 @@ public class BulkScanC100Section6ValidationService implements BulkScanSectionVal
             List<String> section6aNonEmpty = getSection6aNonEmptyFields(ocrDataFieldsMap);
             List<String> section6bNonEmpty = getSection6bNonEmptyFields(ocrDataFieldsMap);
             if (!section6aNonEmpty.isEmpty() && !section6bNonEmpty.isEmpty()) {
-                errorItemList.add(EITHER_SECTION_6_A_OR_6_B_SHOULD_BE_BE_FILLED_UP_NOT_BOTH);
+                warningItemList.add(EITHER_SECTION_6_A_OR_6_B_SHOULD_BE_BE_FILLED_UP_NOT_BOTH);
             } else if (section6aNonEmpty.isEmpty() && section6bNonEmpty.isEmpty()) {
-                errorItemList.add(NEITHER_6A_NOR_6B_HAS_BEEN_FILLED_UP);
+                warningItemList.add(NEITHER_6A_NOR_6B_HAS_BEEN_FILLED_UP);
             } else if (!section6aNonEmpty.isEmpty()) {
                 validateSection6a(ocrDataFieldsMap, errorItemList);
             } else if (section6bNonEmpty.size() == 1
                     && StringUtils.isEmpty(ocrDataFieldsMap.get(section6bNonEmpty.get(0)))) {
                 warningItemList.add(SECTION_6_B_WITHOUT_NOTICE_HEARING_DETAILS_IS_MISSING);
             } else if (!section6bNonEmpty.isEmpty()) {
-                validateSection6b(ocrDataFieldsMap, errorItemList);
+                validateSection6b(ocrDataFieldsMap, warningItemList);
             }
         }
     }
 
     private void validateSection6b(
-            Map<String, String> ocrDataFieldsMap, List<String> errorItemList) {
+            Map<String, String> ocrDataFieldsMap, List<String> warningItemList) {
         if (ocrDataFieldsMap.containsKey(WITHOUT_NOTICE_FRUSTRATE_THE_ORDER)
                 && BooleanUtils.YES.equalsIgnoreCase(
                         ocrDataFieldsMap.get(WITHOUT_NOTICE_FRUSTRATE_THE_ORDER))
                 && !ocrDataFieldsMap.containsKey(WITHOUT_NOTICE_FRUSTRATE_THE_ORDER_REASON)) {
-            errorItemList.add(
+            warningItemList.add(
                     String.format(
                             MISSING_FIELD_MESSAGE, WITHOUT_NOTICE_FRUSTRATE_THE_ORDER_REASON));
         } else if (ocrDataFieldsMap.containsKey(WITHOUT_NOTICE_FRUSTRATE_THE_ORDER)
@@ -80,7 +80,7 @@ public class BulkScanC100Section6ValidationService implements BulkScanSectionVal
                         ocrDataFieldsMap.get(WITHOUT_NOTICE_FRUSTRATE_THE_ORDER))
                 && StringUtils.isEmpty(
                         ocrDataFieldsMap.get(WITHOUT_NOTICE_FRUSTRATE_THE_ORDER_REASON))) {
-            errorItemList.add(
+            warningItemList.add(
                     String.format(
                             MANDATORY_ERROR_MESSAGE, WITHOUT_NOTICE_FRUSTRATE_THE_ORDER_REASON));
         }
@@ -90,7 +90,7 @@ public class BulkScanC100Section6ValidationService implements BulkScanSectionVal
                         ocrDataFieldsMap.get(WITHOUT_NOTICE_ABRIDGED_OR_INFORMAL_NOTICE))
                 && !ocrDataFieldsMap.containsKey(
                         WITHOUT_NOTICE_ABRIDGED_OR_INFORMAL_NOTICE_REASONS)) {
-            errorItemList.add(
+            warningItemList.add(
                     String.format(
                             MISSING_FIELD_MESSAGE,
                             WITHOUT_NOTICE_ABRIDGED_OR_INFORMAL_NOTICE_REASONS));
@@ -99,7 +99,7 @@ public class BulkScanC100Section6ValidationService implements BulkScanSectionVal
                         ocrDataFieldsMap.get(WITHOUT_NOTICE_ABRIDGED_OR_INFORMAL_NOTICE))
                 && StringUtils.isEmpty(
                         ocrDataFieldsMap.get(WITHOUT_NOTICE_ABRIDGED_OR_INFORMAL_NOTICE_REASONS))) {
-            errorItemList.add(
+            warningItemList.add(
                     String.format(
                             MANDATORY_ERROR_MESSAGE,
                             WITHOUT_NOTICE_ABRIDGED_OR_INFORMAL_NOTICE_REASONS));

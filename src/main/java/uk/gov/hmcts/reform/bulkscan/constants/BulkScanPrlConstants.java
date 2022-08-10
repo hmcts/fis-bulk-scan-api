@@ -123,13 +123,14 @@ public final class BulkScanPrlConstants {
     public static final String RESPONDENT_EFFORT = "respondent_effort";
     public static final String REASON_FOR_CONSIDERATION = "reason_for_consideration";
     public static final String EITHER_SECTION_6_A_OR_6_B_SHOULD_BE_BE_FILLED_UP_NOT_BOTH =
-            "Either Section 6a or 6b should be be filled up, not both";
+            "Either Section 6a (Urgent hearing) or 6b (Without notice hearing) should be be filled"
+                    + " up, not both.";
     public static final String NEITHER_6A_NOR_6B_HAS_BEEN_FILLED_UP =
-            "Neither 6a nor 6b has been filled up";
+            "Neither Section 6a (Urgent hearing) or 6b (Without notice hearing) has been filled up.";
     public static final String HEARING_URGENCY_TABLE = "hearingUrgencyTable";
     public static final String SET_OUT_REASONS_BELOW = "setOutReasonsBelow";
     public static final String SECTION_6_B_WITHOUT_NOTICE_HEARING_DETAILS_IS_MISSING =
-            "Section 6b Without notice hearing details is missing";
+            "Section 6b (Without notice hearing) details is missing.";
 
     private BulkScanPrlConstants() {}
 }

@@ -75,7 +75,7 @@ class BulkScanC100Section6ValidationServiceTest {
                         BulkScanValidationRequest.class);
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
-        assertEquals(Status.ERRORS, res.status);
+        assertEquals(Status.WARNINGS, res.status);
     }
 
     @Test
