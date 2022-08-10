@@ -17,7 +17,7 @@ public final class PrlTestConstants {
     public static final String NOMIAM_DVE_ARRESTEDFORSIMILAROFFENCE_FIELD =
             "NoMIAM_DVE_arrestedForSimilarOffence";
     public static final String NOMIAM_URGENCY_FIELD = "NoMIAM_Urgency";
-    public static final String NOMIAM_PREVIOUSATTENDANCE_FIELD = "NoMIAM_PreviousAttendance";
+    public static final String NOMIAM_PREVIOUSATTENDENCE_FIELD = "NoMIAM_PreviousAttendence";
     public static final String NOMIAM_OTHERREASONS_FIELD = "NoMIAM_otherReasons";
     public static final String POST_CODE = "TW3 1NN";
     public static final String TICK_BOX_FALSE = "false";
@@ -33,48 +33,23 @@ public final class PrlTestConstants {
             "respondent2AllAddressesForLastFiveYears";
 
     public static final String INTERNATIONAL_FACTORS_AFFECTING_LITIGATION_WARNING =
-            "Group Dependency Field (international_or_factorsAffectingLitigation) has dependency"
-                + " validation warning. Must contain at least 1 of the fields "
-                + "[internationalElement_Resident_of_another_state,internationalElement_jurisdictionIssue,"
-                + "internationalElement_request_toCentral_or_Consular_authority,factorAffectingLitigationCapacity,"
-                + "assessmentByAdultLearningTeam,factorsAffectingPersonInCourt].";
+            "Some details are missing in the following section - [Cases with an international"
+                + " element (8) and; Factors affecting ability to participate in proceedings (9)].";
 
     public static final String EXEMPTION_TO_ATTEND_MIAM_DEPENDENCY_WARNING =
-            "Group Dependency Field (exemption_to_attend_MIAM) has dependency validation warning."
-                    + " Must contain at least 1 of the fields"
-                    + " [NoMIAM_domesticViolence,NoMIAM_childProtectionConcerns,"
-                    + "NoMIAM_Urgency,NoMIAM_PreviousAttendance,NoMIAM_otherReasons].";
+            "Some details are missing in the following section - [Applicant claims exemption(s)"
+                    + " from attendance at a MIAM].";
     public static final String NOMIAM_CHILDPROTECTIONCONCERNS_DEPENDENCY_WARNING =
-            "Group Dependency Field (NoMIAM_childProtectionConcerns) has dependency validation"
-                    + " warning. Must contain at least 1 of the fields"
-                    + " [NoMIAM_subjectOfEnquiries_byLocalAuthority,"
-                    + "NoMIAM_subjectOfCPP_byLocalAuthority].";
-    public static final String NOMIAM_PREVIOUSATTENDANCE_DEPENDENCY_WARNING =
-            "Group Dependency Field (NoMIAM_PreviousAttendance) has dependency validation warning. "
-                    + "Must contain at least 1 of the fields [NoMIAM_PreviousAttendanceReason].";
+            "Some details are missing in the following section - [Child protection concerns].";
+    public static final String NOMIAM_PREVIOUSATTENDENCE_DEPENDENCY_WARNING =
+            "Some details are missing in the following section - [Previous MIAM attendance or MIAM"
+                    + " exemption].";
     public static final String NOMIAM_OTHERREASONS_DEPENDENCY_WARNING =
-            "Group Dependency Field (NoMIAM_otherReasons) has dependency validation warning. "
-                    + "Must contain at least 1 of the fields [NoMIAM_otherExceptions].";
+            "Some details are missing in the following section - [Other exemptions].";
     public static final String NOMIAM_URGENCY_DEPENDENCY_WARNING =
-            "Group Dependency Field (NoMIAM_Urgency) has dependency validation warning. Must"
-                + " contain at least 1 of the fields"
-                + " [NoMIAM_urgency_risk_to_life_liberty_or_safety,"
-                + "NoMIAM_urgency_riskOfHarm,NoMIAM_urgency_risk_to_unlawfulRemoval,"
-                + "NoMIAM_urgency_risk_to_miscarriageOfJustice,NoMIAM_urgency_unreasonablehardship,"
-                + "NoMIAM_urgency_irretrievableProblem,NoMIAM_urgency_conflictWithOtherStateCourts].";
+            "Some details are missing in the following section - [Urgency].";
     public static final String NOMIAM_DOMESTICVIOLENCE_DEPENDENCY_WARNING =
-            "Group Dependency Field (NoMIAM_domesticViolence) has dependency validation warning."
-                + " Must contain at least 1 of the fields [NoMIAM_DVE_arrestedForSimilarOffence,"
-                + "NoMIAM_DVE_relevantPoliceCaution,NoMIAM_DVE_relevantCriminalProceeding,NoMIAM_DVE_relevantConviction,"
-                + "NoMIAM_DVE_courtOrder,NoMIAM_DVE_protectionNotice,NoMIAM_DVE_protectiveInjunction,"
-                + "NoMIAM_DVE_NoCrossUndertakingGiven,NoMIAM_DVE_copyOfFactFinding,NoMIAM_DVE_expertEvidenceReport,"
-                + "NoMIAM_DVE_healthProfessionalReport,NoMIAM_DVE_ReferralHealthProfessionalReport,"
-                + "NoMIAM_DVE_memberOf_MultiAgencyRiskAssessmentConferrance_letter,NoMIAM_DVE_domesticViolenceAdvisor,"
-                + "NoMIAM_DVE_independentSexualViolenceAdvisor_Letter,NoMIAM_DVE_officerEmployed_localAuthority_letter,"
-                + "NoMIAM_DVE_domesticViolenceSupportCharity_letter,"
-                + "NoMIAM_DVE_domesticViolenceSupportCharity_refuge_letter,"
-                + "NoMIAM_DVE_publicAuthority_confirmationLetter,NoMIAM_DVE_secretaryOfState_letter,"
-                + "NoMIAM_DVE_evidenceFinancialMatters].";
+            "Some details are missing in the following section - [Child protection concerns].";
 
     public static final String RESPONDENT_ONE_NOT_LIVED_IN_ADDRESS_FOR_FIVE_YEARS =
             "("

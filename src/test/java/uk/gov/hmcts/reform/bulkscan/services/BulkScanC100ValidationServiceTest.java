@@ -12,11 +12,9 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.FACTOR
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_JURISDICTIONISSUE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH_DETAILS;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH_WARNING_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE_DETAILS;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE_WARNING_MESSAGE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONAL_JURISDICTION_WARNING_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_WARNING_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONAL_OR_FACTORS_AFFECTING_LITIGATION_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.WITHOUTNOTICE_JURISDICTIONISSUE_DETAILS;
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.EMPTY_STRING;
@@ -310,10 +308,7 @@ class BulkScanC100ValidationServiceTest {
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
         assertEquals(Status.WARNINGS, res.status);
-        assertTrue(
-                res.getWarnings()
-                        .items
-                        .contains(INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE_WARNING_MESSAGE));
+        assertTrue(res.getWarnings().items.contains(INTERNATIONALELEMENT_WARNING_MESSAGE));
     }
 
     @Test
@@ -356,7 +351,7 @@ class BulkScanC100ValidationServiceTest {
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
         assertEquals(Status.WARNINGS, res.status);
-        assertTrue(res.getWarnings().items.contains(INTERNATIONAL_JURISDICTION_WARNING_MESSAGE));
+        assertTrue(res.getWarnings().items.contains(INTERNATIONALELEMENT_WARNING_MESSAGE));
     }
 
     @Test
@@ -482,11 +477,7 @@ class BulkScanC100ValidationServiceTest {
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
         assertEquals(Status.WARNINGS, res.status);
-        assertTrue(
-                res.getWarnings()
-                        .items
-                        .contains(
-                                INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH_WARNING_MESSAGE));
+        assertTrue(res.getWarnings().items.contains(INTERNATIONALELEMENT_WARNING_MESSAGE));
     }
 
     public List<OcrDataField> getRequestData() {

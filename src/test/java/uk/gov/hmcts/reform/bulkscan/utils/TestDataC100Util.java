@@ -15,7 +15,7 @@ import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.NOMIAM_CHILDPR
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.NOMIAM_DOMESTICVIOLENCE_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.NOMIAM_DVE_ARRESTEDFORSIMILAROFFENCE_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.NOMIAM_OTHERREASONS_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.NOMIAM_PREVIOUSATTENDANCE_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.NOMIAM_PREVIOUSATTENDENCE_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.NOMIAM_URGENCY_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.TICK_BOX_FALSE;
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.TICK_BOX_NO;
@@ -469,7 +469,7 @@ public final class TestDataC100Util {
         fieldList.add(ocrNoMiamUrgencyField);
 
         OcrDataField ocrNoMiamPreviousAttendanceField = new OcrDataField();
-        ocrNoMiamPreviousAttendanceField.setName(NOMIAM_PREVIOUSATTENDANCE_FIELD);
+        ocrNoMiamPreviousAttendanceField.setName(NOMIAM_PREVIOUSATTENDENCE_FIELD);
         ocrNoMiamPreviousAttendanceField.setValue(TICK_BOX_FALSE);
         fieldList.add(ocrNoMiamPreviousAttendanceField);
 
@@ -505,7 +505,7 @@ public final class TestDataC100Util {
         fieldList.add(ocrNoMiamUrgencyField);
 
         OcrDataField ocrNoMiamPreviousAttendanceField = new OcrDataField();
-        ocrNoMiamPreviousAttendanceField.setName(NOMIAM_PREVIOUSATTENDANCE_FIELD);
+        ocrNoMiamPreviousAttendanceField.setName(NOMIAM_PREVIOUSATTENDENCE_FIELD);
         ocrNoMiamPreviousAttendanceField.setValue(TICK_BOX_FALSE);
         fieldList.add(ocrNoMiamPreviousAttendanceField);
 
@@ -541,7 +541,7 @@ public final class TestDataC100Util {
         fieldList.add(ocrNoMiamUrgencyField);
 
         OcrDataField ocrNoMiamPreviousAttendanceField = new OcrDataField();
-        ocrNoMiamPreviousAttendanceField.setName(NOMIAM_PREVIOUSATTENDANCE_FIELD);
+        ocrNoMiamPreviousAttendanceField.setName(NOMIAM_PREVIOUSATTENDENCE_FIELD);
         ocrNoMiamPreviousAttendanceField.setValue(TICK_BOX_TRUE);
         fieldList.add(ocrNoMiamPreviousAttendanceField);
 
@@ -582,7 +582,7 @@ public final class TestDataC100Util {
         fieldList.add(ocrNoMiamUrgencyField);
 
         OcrDataField ocrNoMiamPreviousAttendanceField = new OcrDataField();
-        ocrNoMiamPreviousAttendanceField.setName(NOMIAM_PREVIOUSATTENDANCE_FIELD);
+        ocrNoMiamPreviousAttendanceField.setName(NOMIAM_PREVIOUSATTENDENCE_FIELD);
         ocrNoMiamPreviousAttendanceField.setValue(TICK_BOX_FALSE);
         fieldList.add(ocrNoMiamPreviousAttendanceField);
 
@@ -633,12 +633,12 @@ public final class TestDataC100Util {
         fieldList.add(ocrNoMiamUrgencyRiskOfHarmField);
 
         OcrDataField ocrNoMiamPreviousAttendanceField = new OcrDataField();
-        ocrNoMiamPreviousAttendanceField.setName(NOMIAM_PREVIOUSATTENDANCE_FIELD);
+        ocrNoMiamPreviousAttendanceField.setName(NOMIAM_PREVIOUSATTENDENCE_FIELD);
         ocrNoMiamPreviousAttendanceField.setValue(TICK_BOX_TRUE);
         fieldList.add(ocrNoMiamPreviousAttendanceField);
 
         OcrDataField ocrNoMiamPreviousAttendanceReasonField = new OcrDataField();
-        ocrNoMiamPreviousAttendanceReasonField.setName("NoMIAM_PreviousAttendanceReason");
+        ocrNoMiamPreviousAttendanceReasonField.setName("NoMIAM_PreviousAttendenceReason");
         ocrNoMiamPreviousAttendanceReasonField.setValue(TICK_BOX_YES);
         fieldList.add(ocrNoMiamPreviousAttendanceReasonField);
 

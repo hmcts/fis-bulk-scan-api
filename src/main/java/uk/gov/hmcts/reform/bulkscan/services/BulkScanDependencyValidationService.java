@@ -14,11 +14,9 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_JURISDICTIONISSUE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH_DETAILS;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH_WARNING_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE_DETAILS;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE_WARNING_MESSAGE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONAL_JURISDICTION_WARNING_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_WARNING_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONAL_OR_FACTORS_AFFECTING_LITIGATION_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.WITHOUTNOTICE_JURISDICTIONISSUE_DETAILS;
 
@@ -79,12 +77,7 @@ public class BulkScanDependencyValidationService {
                     .map(
                             eachConfig ->
                                     String.format(
-                                            GROUP_DEPENDENCY_MESSAGE,
-                                            eachConfig.getGroupFieldName(),
-                                            eachConfig.getRequiredFieldCount(),
-                                            eachConfig.getDependentFields().stream()
-                                                    .map(String::valueOf)
-                                                    .collect(Collectors.joining(","))))
+                                            GROUP_DEPENDENCY_MESSAGE, eachConfig.getSectionName()))
                     .collect(Collectors.toUnmodifiableList());
         }
 
@@ -163,29 +156,22 @@ public class BulkScanDependencyValidationService {
 
         // section 8
         if (ocrDataFieldsMap.containsKey(INTERNATIONAL_OR_FACTORS_AFFECTING_LITIGATION_FIELD)
-                && ocrDataFieldsMap
-                        .get(INTERNATIONAL_OR_FACTORS_AFFECTING_LITIGATION_FIELD)
-                        .equalsIgnoreCase(YES)) {
-            if (!isFieldDetailValid(
-                    INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE,
-                    INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE_DETAILS,
-                    ocrDataFieldsMap)) {
-                items.add(INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE_WARNING_MESSAGE);
-            }
-
-            if (!isFieldDetailValid(
-                    INTERNATIONALELEMENT_JURISDICTIONISSUE,
-                    WITHOUTNOTICE_JURISDICTIONISSUE_DETAILS,
-                    ocrDataFieldsMap)) {
-                items.add(INTERNATIONAL_JURISDICTION_WARNING_MESSAGE);
-            }
-
-            if (!isFieldDetailValid(
-                    INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH,
-                    INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH_DETAILS,
-                    ocrDataFieldsMap)) {
-                items.add(INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH_WARNING_MESSAGE);
-            }
+                        && ocrDataFieldsMap
+                                .get(INTERNATIONAL_OR_FACTORS_AFFECTING_LITIGATION_FIELD)
+                                .equalsIgnoreCase(YES)
+                        && !isFieldDetailValid(
+                                INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE,
+                                INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE_DETAILS,
+                                ocrDataFieldsMap)
+                || !isFieldDetailValid(
+                        INTERNATIONALELEMENT_JURISDICTIONISSUE,
+                        WITHOUTNOTICE_JURISDICTIONISSUE_DETAILS,
+                        ocrDataFieldsMap)
+                || !isFieldDetailValid(
+                        INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH,
+                        INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH_DETAILS,
+                        ocrDataFieldsMap)) {
+            items.add(INTERNATIONALELEMENT_WARNING_MESSAGE);
         }
 
         return items;
@@ -198,8 +184,7 @@ public class BulkScanDependencyValidationService {
         if (ocrDataFieldMap.containsKey(fieldCheckBox)
                 && ocrDataFieldMap.get(fieldCheckBox).equalsIgnoreCase(YES)
                 && (ocrDataFieldMap.get(fieldDetails) == null
-                        || ocrDataFieldMap.containsKey(fieldDetails)
-                                && !StringUtils.hasText(ocrDataFieldMap.get(fieldDetails)))) {
+                        || !StringUtils.hasText(ocrDataFieldMap.get(fieldDetails)))) {
             lbFieldValid = false;
         }
 

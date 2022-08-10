@@ -29,8 +29,8 @@ import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.NOMIAM_DOMESTI
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.NOMIAM_DOMESTICVIOLENCE_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.NOMIAM_OTHERREASONS_DEPENDENCY_WARNING;
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.NOMIAM_OTHERREASONS_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.NOMIAM_PREVIOUSATTENDANCE_DEPENDENCY_WARNING;
-import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.NOMIAM_PREVIOUSATTENDANCE_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.NOMIAM_PREVIOUSATTENDENCE_DEPENDENCY_WARNING;
+import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.NOMIAM_PREVIOUSATTENDENCE_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.NOMIAM_URGENCY_DEPENDENCY_WARNING;
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.NOMIAM_URGENCY_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.RESPONDENT_ONE_NOT_LIVED_IN_ADDRESS_FOR_FIVE_YEARS;
@@ -380,7 +380,7 @@ class BulkScanC100ServiceTest {
 
     @Test
     @DisplayName(
-            "Should generate warnings on [NoMIAM_PreviousAttendanceReason] checked but without"
+            "Should generate warnings on [NoMIAM_PreviousAttendenceReason] checked but without"
                     + " dependent Part 3d field(s)")
     void testC100NoMiamPreviousAttendanceReasonWarning() {
         List<OcrDataField> c100GetDomesticViolenceWarningData = new ArrayList<>();
@@ -399,7 +399,7 @@ class BulkScanC100ServiceTest {
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
         assertEquals(Status.WARNINGS, res.status);
-        assertTrue(res.getWarnings().items.contains(NOMIAM_PREVIOUSATTENDANCE_DEPENDENCY_WARNING));
+        assertTrue(res.getWarnings().items.contains(NOMIAM_PREVIOUSATTENDENCE_DEPENDENCY_WARNING));
     }
 
     @Test
@@ -590,13 +590,13 @@ class BulkScanC100ServiceTest {
 
     @Test
     @DisplayName(
-            "Should generate SUCCESS status with NoMIAM_PreviousAttendance field in bulkscan"
+            "Should generate SUCCESS status with NoMIAM_PreviousAttendence field in bulkscan"
                     + " request")
     void testC100NoMiamPreviousAttendanceSuccessData() {
         List<OcrDataField> c100GetDomesticViolenceWarningData = new ArrayList<>();
         c100GetDomesticViolenceWarningData.addAll(TestDataC100Util.getData());
         OcrDataField previousAttendanceReason = new OcrDataField();
-        previousAttendanceReason.setName("NoMIAM_PreviousAttendanceReason");
+        previousAttendanceReason.setName("NoMIAM_PreviousAttendenceReason");
         previousAttendanceReason.setValue("Yes");
 
         c100GetDomesticViolenceWarningData.add(previousAttendanceReason);
@@ -610,7 +610,7 @@ class BulkScanC100ServiceTest {
         bulkScanValidationRequest.getOcrdatafields().stream()
                 .filter(
                         eachField ->
-                                NOMIAM_PREVIOUSATTENDANCE_FIELD.equalsIgnoreCase(
+                                NOMIAM_PREVIOUSATTENDENCE_FIELD.equalsIgnoreCase(
                                         eachField.getName()))
                 .forEach(field -> field.setValue(TICK_BOX_TRUE));
 
@@ -622,13 +622,13 @@ class BulkScanC100ServiceTest {
                 bulkScanValidationRequest.getOcrdatafields().stream()
                         .filter(
                                 eachField ->
-                                        "NoMIAM_PreviousAttendance"
+                                        "NoMIAM_PreviousAttendence"
                                                 .equalsIgnoreCase(eachField.getName()))
                         .findAny()
                         .orElse(null)
                         .getValue());
         assertEquals(Status.SUCCESS, res.status);
-        assertFalse(res.getWarnings().items.contains(NOMIAM_PREVIOUSATTENDANCE_DEPENDENCY_WARNING));
+        assertFalse(res.getWarnings().items.contains(NOMIAM_PREVIOUSATTENDENCE_DEPENDENCY_WARNING));
     }
 
     @Test

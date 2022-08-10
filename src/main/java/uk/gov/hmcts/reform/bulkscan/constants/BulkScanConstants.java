@@ -31,8 +31,7 @@ public final class BulkScanConstants {
             "The following fields are not configured " + "with our system: [%s] ";
 
     public static final String GROUP_DEPENDENCY_MESSAGE =
-            "Group Dependency Field (%s) has "
-                    + "dependency validation warning. Must contain at least %s of the fields [%s].";
+            "Some details are missing in the following section - [%s].";
 
     public static final String XOR_CONDITIONAL_FIELDS_MESSAGE =
             "one field must be present out of %s";
