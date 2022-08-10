@@ -104,6 +104,8 @@ public final class BulkScanPrlConstants {
             "Neither 6a nor 6b has been filled up";
     public static final String HEARING_URGENCY_TABLE = "hearingUrgencyTable";
     public static final String SET_OUT_REASONS_BELOW = "setOutReasonsBelow";
+    public static final String SECTION_6_B_WITHOUT_NOTICE_HEARING_DETAILS_IS_MISSING =
+            "Section 6b Without notice hearing details is missing";
 
     private BulkScanPrlConstants() {}
 }

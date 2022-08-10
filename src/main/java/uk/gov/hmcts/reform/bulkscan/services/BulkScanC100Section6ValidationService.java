@@ -8,6 +8,7 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.NEITHE
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.ORDER_DIRECTION_SOUGHT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.REASON_FOR_CONSIDERATION;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.RESPONDENT_EFFORT;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.SECTION_6_B_WITHOUT_NOTICE_HEARING_DETAILS_IS_MISSING;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.URGENCY_REASON;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.URGENT_OR_WITHOUT_HEARING;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.WITHOUT_NOTICE_ABRIDGED_OR_INFORMAL_NOTICE;
@@ -41,6 +42,8 @@ public class BulkScanC100Section6ValidationService implements BulkScanSectionVal
         Map<String, String> ocrDataFieldsMap =
                 this.getOcrDataFieldAsMap(bulkScanValidationRequest.getOcrdatafields());
         List<String> errorItemList = bulkScanValidationResponse.getErrors().getItems();
+        List<String> warningItemList = bulkScanValidationResponse.getWarnings().getItems();
+
         if (null != ocrDataFieldsMap
                 && !ocrDataFieldsMap.isEmpty()
                 && ocrDataFieldsMap.containsKey(URGENT_OR_WITHOUT_HEARING)
@@ -54,6 +57,9 @@ public class BulkScanC100Section6ValidationService implements BulkScanSectionVal
                 errorItemList.add(NEITHER_6A_NOR_6B_HAS_BEEN_FILLED_UP);
             } else if (!section6aNonEmpty.isEmpty()) {
                 validateSection6a(ocrDataFieldsMap, errorItemList);
+            } else if (section6bNonEmpty.size() == 1
+                    && StringUtils.isEmpty(ocrDataFieldsMap.get(section6bNonEmpty.get(0)))) {
+                warningItemList.add(SECTION_6_B_WITHOUT_NOTICE_HEARING_DETAILS_IS_MISSING);
             } else if (!section6bNonEmpty.isEmpty()) {
                 validateSection6b(ocrDataFieldsMap, errorItemList);
             }
