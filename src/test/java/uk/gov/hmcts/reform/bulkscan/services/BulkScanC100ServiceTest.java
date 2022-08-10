@@ -21,6 +21,9 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDEN
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT1LIVEDATTHISADDRESSFOROVERFIVEYEARS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT2ALLADDRESSESFORLASTFIVEYEARS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT2LIVEDATTHISADDRESSFOROVERFIVEYEARS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDINGS_DETAILS_TABLE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDING_CASE_NUMBER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDING_TYPE_OF_ORDER_1;
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.EMPTY_STRING;
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.EXEMPTION_TO_ATTEND_MIAM_DEPENDENCY_WARNING;
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.NOMIAM_CHILDPROTECTIONCONCERNS_DEPENDENCY_WARNING;
@@ -36,7 +39,6 @@ import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.NOMIAM_URGENCY
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.RESPONDENT_ONE_NOT_LIVED_IN_ADDRESS_FOR_FIVE_YEARS;
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.RESPONDENT_TWO_NOT_LIVED_IN_ADDRESS_FOR_FIVE_YEARS;
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.TICK_BOX_TRUE;
-
 import static uk.gov.hmcts.reform.bulkscan.utils.TestDataC100Util.POST_CODE;
 import static uk.gov.hmcts.reform.bulkscan.utils.TestResourceUtil.readFileFrom;
 
@@ -756,11 +758,6 @@ class BulkScanC100ServiceTest {
         BulkScanTransformationResponse bulkScanTransformationResponse =
                 bulkScanValidationService.transform(mock(BulkScanTransformationRequest.class));
         assertNotNull(bulkScanTransformationResponse);
-    }
-
-    private Map<String, String> getOcrFieldsMap(BulkScanValidationRequest bulkRequest) {
-        return bulkRequest.getOcrdatafields().stream()
-                .collect(Collectors.toMap(OcrDataField::getName, OcrDataField::getValue));
     }
 
     @Test
