@@ -106,6 +106,24 @@ public final class BulkScanPrlConstants {
             "internationalElement_request_toCentral_or_Consular_authority_details";
     public static final String WITHOUTNOTICE_JURISDICTIONISSUE_DETAILS =
             "withoutNotice_jurisdictionIssue_details";
+    public static final String INTERNATIONAL_JURISDICTION_WARNING_MESSAGE =
+            "There has been an indication of an issue as to jurisdiction in this case but no"
+                    + " details were given. [withoutNotice_jurisdictionIssue_details should not be"
+                    + " empty].";
+
+    public static final String INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE_WARNING_MESSAGE =
+            "There has been an indication that a child, parent or potentially significant adult in"
+                + " the child’s life may be habitually resident in another state but no details"
+                + " were given. [internationalElement_Resident_of_another_state_details should not"
+                + " be empty].";
+
+    public static final String INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH_WARNING_MESSAGE =
+            "There has been an indication that request been made or should a request be made to a"
+                + " Central Authority or other competent authority in a foreign state or a consular"
+                + " authority in England and Wales but no details were given."
+                + " [internationalElement_request_toCentral_or_Consular_authority_details] should"
+                + " not be empty.";
+
     // END C100 form sections 8 & 9 validation fields
 
     private BulkScanPrlConstants() {}

@@ -12,15 +12,15 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.FACTOR
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_JURISDICTIONISSUE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH_DETAILS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH_WARNING_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE_DETAILS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE_WARNING_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONAL_JURISDICTION_WARNING_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONAL_OR_FACTORS_AFFECTING_LITIGATION_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.WITHOUTNOTICE_JURISDICTIONISSUE_DETAILS;
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.EMPTY_STRING;
-import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH_WARNING_MESSAGE;
-import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE_WARNING_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.INTERNATIONAL_FACTORS_AFFECTING_LITIGATION_WARNING;
-import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.INTERNATIONAL_JURISDICTION_WARNING_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.utils.TestDataC100Util.POST_CODE;
 
 import java.util.ArrayList;
@@ -357,6 +357,88 @@ class BulkScanC100ValidationServiceTest {
 
         assertEquals(Status.WARNINGS, res.status);
         assertTrue(res.getWarnings().items.contains(INTERNATIONAL_JURISDICTION_WARNING_MESSAGE));
+    }
+
+    @Test
+    @DisplayName(
+            "Should generate success for checkbox ticked with 'No' when there is no any reason to"
+                    + " believe that there may be an issue as to jurisdiction in this case but some"
+                    + " details were given")
+    void testC100InternationalElementJurisdictionIssueWithDetailsButNoCheckboxNoWarning() {
+        List<OcrDataField> c100GetJurisdictionIssueWarningData = new ArrayList<>();
+        c100GetJurisdictionIssueWarningData.addAll(TestDataC100Util.getData());
+
+        when(postcodeLookupService.isValidPostCode(POST_CODE, null)).thenReturn(true);
+        BulkScanValidationRequest bulkScanValidationRequest =
+                BulkScanValidationRequest.builder()
+                        .ocrdatafields(c100GetJurisdictionIssueWarningData)
+                        .build();
+
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                INTERNATIONAL_OR_FACTORS_AFFECTING_LITIGATION_FIELD
+                                        .equalsIgnoreCase(eachField.getName()))
+                .forEach(field -> field.setValue(YES));
+
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                INTERNATIONALELEMENT_JURISDICTIONISSUE.equalsIgnoreCase(
+                                        eachField.getName()))
+                .forEach(field -> field.setValue(NO));
+
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                WITHOUTNOTICE_JURISDICTIONISSUE_DETAILS.equalsIgnoreCase(
+                                        eachField.getName()))
+                .forEach(field -> field.setValue(EMPTY_STRING));
+
+        BulkScanValidationResponse res =
+                bulkScanValidationService.validate(bulkScanValidationRequest);
+
+        assertEquals(Status.SUCCESS, res.status);
+    }
+
+    @Test
+    @DisplayName(
+            "Should generate success for checkbox unchecked at all but some details were given")
+    void testC100InternationalElementJurisdictionIssueWithDetailsButCheckBoxUncheckedNoWarning() {
+        List<OcrDataField> c100GetJurisdictionIssueWarningData = new ArrayList<>();
+        c100GetJurisdictionIssueWarningData.addAll(TestDataC100Util.getData());
+
+        when(postcodeLookupService.isValidPostCode(POST_CODE, null)).thenReturn(true);
+        BulkScanValidationRequest bulkScanValidationRequest =
+                BulkScanValidationRequest.builder()
+                        .ocrdatafields(c100GetJurisdictionIssueWarningData)
+                        .build();
+
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                INTERNATIONAL_OR_FACTORS_AFFECTING_LITIGATION_FIELD
+                                        .equalsIgnoreCase(eachField.getName()))
+                .forEach(field -> field.setValue(YES));
+
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                INTERNATIONALELEMENT_JURISDICTIONISSUE.equalsIgnoreCase(
+                                        eachField.getName()))
+                .forEach(field -> field.setValue(NO));
+
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                WITHOUTNOTICE_JURISDICTIONISSUE_DETAILS.equalsIgnoreCase(
+                                        eachField.getName()))
+                .forEach(field -> field.setValue(EMPTY_STRING));
+
+        BulkScanValidationResponse res =
+                bulkScanValidationService.validate(bulkScanValidationRequest);
+
+        assertEquals(Status.SUCCESS, res.status);
     }
 
     @Test

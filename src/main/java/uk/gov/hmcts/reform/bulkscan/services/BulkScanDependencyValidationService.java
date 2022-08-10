@@ -10,6 +10,17 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDEN
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_ONE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_TWO;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.WILDCARD_DEPENDENT_INPUT;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_JURISDICTIONISSUE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH_DETAILS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH_WARNING_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE_DETAILS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE_WARNING_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONAL_JURISDICTION_WARNING_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONAL_OR_FACTORS_AFFECTING_LITIGATION_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.WITHOUTNOTICE_JURISDICTIONISSUE_DETAILS;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -139,8 +150,60 @@ public class BulkScanDependencyValidationService {
                                 RESPONDENT2ALLADDRESSESFORLASTFIVEYEARS));
             }
         }
+        if (ocrDataFieldsMap != null) {
+            items.addAll(validateInternationalFactors(ocrDataFieldsMap));
+        }
 
         return items;
+    }
+
+    private List<String> validateInternationalFactors(Map<String, String> ocrDataFieldsMap) {
+
+        List<String> items = new ArrayList<>();
+
+        // section 8
+        if (ocrDataFieldsMap.containsKey(INTERNATIONAL_OR_FACTORS_AFFECTING_LITIGATION_FIELD)
+                && ocrDataFieldsMap
+                        .get(INTERNATIONAL_OR_FACTORS_AFFECTING_LITIGATION_FIELD)
+                        .equalsIgnoreCase(YES)) {
+            if (!isFieldDetailValid(
+                    INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE,
+                    INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE_DETAILS,
+                    ocrDataFieldsMap)) {
+                items.add(INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE_WARNING_MESSAGE);
+            }
+
+            if (!isFieldDetailValid(
+                    INTERNATIONALELEMENT_JURISDICTIONISSUE,
+                    WITHOUTNOTICE_JURISDICTIONISSUE_DETAILS,
+                    ocrDataFieldsMap)) {
+                items.add(INTERNATIONAL_JURISDICTION_WARNING_MESSAGE);
+            }
+
+            if (!isFieldDetailValid(
+                    INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH,
+                    INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH_DETAILS,
+                    ocrDataFieldsMap)) {
+                items.add(INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH_WARNING_MESSAGE);
+            }
+        }
+
+        return items;
+    }
+
+    private boolean isFieldDetailValid(
+            String fieldCheckBox, String fieldDetails, Map<String, String> ocrDataFieldMap) {
+        boolean lbFieldValid = true;
+
+        if (ocrDataFieldMap.containsKey(fieldCheckBox)
+                && ocrDataFieldMap.get(fieldCheckBox).equalsIgnoreCase(YES)
+                && (ocrDataFieldMap.get(fieldDetails) == null
+                        || ocrDataFieldMap.containsKey(fieldDetails)
+                                && !StringUtils.hasText(ocrDataFieldMap.get(fieldDetails)))) {
+            lbFieldValid = false;
+        }
+
+        return lbFieldValid;
     }
 
     private Map<String, String> getOcrDataFieldsMap(List<OcrDataField> ocrDataFields) {

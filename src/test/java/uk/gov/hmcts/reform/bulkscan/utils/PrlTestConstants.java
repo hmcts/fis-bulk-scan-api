@@ -39,20 +39,6 @@ public final class PrlTestConstants {
                 + "internationalElement_request_toCentral_or_Consular_authority,factorAffectingLitigationCapacity,"
                 + "assessmentByAdultLearningTeam,factorsAffectingPersonInCourt].";
 
-    public static final String INTERNATIONAL_JURISDICTION_WARNING_MESSAGE =
-            "Group Dependency Field (internationalElement_jurisdictionIssue) has dependency"
-                    + " validation warning. Must contain at least 1 of the fields"
-                    + " [withoutNotice_jurisdictionIssue_details].";
-
-    public static final String INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE_WARNING_MESSAGE =
-            "Group Dependency Field (internationalElement_Resident_of_another_state) has dependency"
-                    + " validation warning. Must contain at least 1 of the fields"
-                    + " [internationalElement_Resident_of_another_state_details].";
-    public static final String INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH_WARNING_MESSAGE =
-            "Group Dependency Field (internationalElement_request_toCentral_or_Consular_authority)"
-                    + " has dependency validation warning. Must contain at least 1 of the fields"
-                    + " [internationalElement_request_toCentral_or_Consular_authority_details].";
-
     public static final String EXEMPTION_TO_ATTEND_MIAM_DEPENDENCY_WARNING =
             "Group Dependency Field (exemption_to_attend_MIAM) has dependency validation warning."
                     + " Must contain at least 1 of the fields"
