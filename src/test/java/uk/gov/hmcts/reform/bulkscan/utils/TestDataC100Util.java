@@ -1,16 +1,26 @@
 package uk.gov.hmcts.reform.bulkscan.utils;
 
-import static uk.gov.hmcts.reform.bulkscan.utils.Constants.EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.utils.Constants.NOMIAM_CHILDPROTECTIONCONCERNS_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.utils.Constants.NOMIAM_DOMESTICVIOLENCE_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.utils.Constants.NOMIAM_DVE_ARRESTEDFORSIMILAROFFENCE_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.utils.Constants.NOMIAM_OTHERREASONS_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.utils.Constants.NOMIAM_PREVIOUSATTENDANCE_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.utils.Constants.NOMIAM_URGENCY_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.utils.Constants.TICK_BOX_FALSE;
-import static uk.gov.hmcts.reform.bulkscan.utils.Constants.TICK_BOX_NO;
-import static uk.gov.hmcts.reform.bulkscan.utils.Constants.TICK_BOX_TRUE;
-import static uk.gov.hmcts.reform.bulkscan.utils.Constants.TICK_BOX_YES;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EXEMPTION_TO_ATTEND_MIAM;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.ASSESSMENT_BY_ADULT_LEARNING_TEAM_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.FACTORS_AFFECTING_LITIGATION_CAPACITY_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.FACTORS_AFFECTING_PERSON_IN_COURT_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_JURISDICTIONISSUE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH_DETAILS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE_DETAILS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONAL_OR_FACTORS_AFFECTING_LITIGATION_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.WITHOUTNOTICE_JURISDICTIONISSUE_DETAILS;
+import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.NOMIAM_CHILDPROTECTIONCONCERNS_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.NOMIAM_DOMESTICVIOLENCE_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.NOMIAM_DVE_ARRESTEDFORSIMILAROFFENCE_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.NOMIAM_OTHERREASONS_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.NOMIAM_PREVIOUSATTENDENCE_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.NOMIAM_URGENCY_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.TICK_BOX_FALSE;
+import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.TICK_BOX_NO;
+import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.TICK_BOX_TRUE;
+import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.TICK_BOX_YES;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,6 +36,7 @@ public final class TestDataC100Util {
 
         fieldList.addAll(getAllNamesRelationSuccessData());
         fieldList.addAll(getExemptionToAttendMiamSuccessData());
+        fieldList.addAll(getLitigationCapacityGroupSuccessData());
 
         return fieldList;
     }
@@ -438,7 +449,7 @@ public final class TestDataC100Util {
         List<OcrDataField> fieldList = new ArrayList<>();
 
         OcrDataField ocrExemptionToAttendMiamField = new OcrDataField();
-        ocrExemptionToAttendMiamField.setName(EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD);
+        ocrExemptionToAttendMiamField.setName(EXEMPTION_TO_ATTEND_MIAM);
         ocrExemptionToAttendMiamField.setValue(TICK_BOX_YES);
         fieldList.add(ocrExemptionToAttendMiamField);
 
@@ -458,7 +469,7 @@ public final class TestDataC100Util {
         fieldList.add(ocrNoMiamUrgencyField);
 
         OcrDataField ocrNoMiamPreviousAttendanceField = new OcrDataField();
-        ocrNoMiamPreviousAttendanceField.setName(NOMIAM_PREVIOUSATTENDANCE_FIELD);
+        ocrNoMiamPreviousAttendanceField.setName(NOMIAM_PREVIOUSATTENDENCE_FIELD);
         ocrNoMiamPreviousAttendanceField.setValue(TICK_BOX_FALSE);
         fieldList.add(ocrNoMiamPreviousAttendanceField);
 
@@ -474,7 +485,7 @@ public final class TestDataC100Util {
         List<OcrDataField> fieldList = new ArrayList<>();
 
         OcrDataField ocrExemptionToAttendMiamField = new OcrDataField();
-        ocrExemptionToAttendMiamField.setName(EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD);
+        ocrExemptionToAttendMiamField.setName(EXEMPTION_TO_ATTEND_MIAM);
         ocrExemptionToAttendMiamField.setValue(TICK_BOX_YES);
         fieldList.add(ocrExemptionToAttendMiamField);
 
@@ -494,7 +505,7 @@ public final class TestDataC100Util {
         fieldList.add(ocrNoMiamUrgencyField);
 
         OcrDataField ocrNoMiamPreviousAttendanceField = new OcrDataField();
-        ocrNoMiamPreviousAttendanceField.setName(NOMIAM_PREVIOUSATTENDANCE_FIELD);
+        ocrNoMiamPreviousAttendanceField.setName(NOMIAM_PREVIOUSATTENDENCE_FIELD);
         ocrNoMiamPreviousAttendanceField.setValue(TICK_BOX_FALSE);
         fieldList.add(ocrNoMiamPreviousAttendanceField);
 
@@ -510,7 +521,7 @@ public final class TestDataC100Util {
         List<OcrDataField> fieldList = new ArrayList<>();
 
         OcrDataField ocrExemptionToAttendMiamField = new OcrDataField();
-        ocrExemptionToAttendMiamField.setName(EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD);
+        ocrExemptionToAttendMiamField.setName(EXEMPTION_TO_ATTEND_MIAM);
         ocrExemptionToAttendMiamField.setValue(TICK_BOX_YES);
         fieldList.add(ocrExemptionToAttendMiamField);
 
@@ -530,7 +541,7 @@ public final class TestDataC100Util {
         fieldList.add(ocrNoMiamUrgencyField);
 
         OcrDataField ocrNoMiamPreviousAttendanceField = new OcrDataField();
-        ocrNoMiamPreviousAttendanceField.setName(NOMIAM_PREVIOUSATTENDANCE_FIELD);
+        ocrNoMiamPreviousAttendanceField.setName(NOMIAM_PREVIOUSATTENDENCE_FIELD);
         ocrNoMiamPreviousAttendanceField.setValue(TICK_BOX_TRUE);
         fieldList.add(ocrNoMiamPreviousAttendanceField);
 
@@ -546,7 +557,7 @@ public final class TestDataC100Util {
         List<OcrDataField> fieldList = new ArrayList<>();
 
         OcrDataField ocrExemptionToAttendMiamField = new OcrDataField();
-        ocrExemptionToAttendMiamField.setName(EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD);
+        ocrExemptionToAttendMiamField.setName(EXEMPTION_TO_ATTEND_MIAM);
         ocrExemptionToAttendMiamField.setValue(TICK_BOX_YES);
         fieldList.add(ocrExemptionToAttendMiamField);
 
@@ -571,7 +582,7 @@ public final class TestDataC100Util {
         fieldList.add(ocrNoMiamUrgencyField);
 
         OcrDataField ocrNoMiamPreviousAttendanceField = new OcrDataField();
-        ocrNoMiamPreviousAttendanceField.setName(NOMIAM_PREVIOUSATTENDANCE_FIELD);
+        ocrNoMiamPreviousAttendanceField.setName(NOMIAM_PREVIOUSATTENDENCE_FIELD);
         ocrNoMiamPreviousAttendanceField.setValue(TICK_BOX_FALSE);
         fieldList.add(ocrNoMiamPreviousAttendanceField);
 
@@ -587,7 +598,7 @@ public final class TestDataC100Util {
         List<OcrDataField> fieldList = new ArrayList<>();
 
         OcrDataField ocrExemptionToAttendMiamField = new OcrDataField();
-        ocrExemptionToAttendMiamField.setName(EXEMPTION_TO_ATTEND_MIAM_GROUP_FIELD);
+        ocrExemptionToAttendMiamField.setName(EXEMPTION_TO_ATTEND_MIAM);
         ocrExemptionToAttendMiamField.setValue(TICK_BOX_YES);
         fieldList.add(ocrExemptionToAttendMiamField);
 
@@ -622,12 +633,12 @@ public final class TestDataC100Util {
         fieldList.add(ocrNoMiamUrgencyRiskOfHarmField);
 
         OcrDataField ocrNoMiamPreviousAttendanceField = new OcrDataField();
-        ocrNoMiamPreviousAttendanceField.setName(NOMIAM_PREVIOUSATTENDANCE_FIELD);
+        ocrNoMiamPreviousAttendanceField.setName(NOMIAM_PREVIOUSATTENDENCE_FIELD);
         ocrNoMiamPreviousAttendanceField.setValue(TICK_BOX_TRUE);
         fieldList.add(ocrNoMiamPreviousAttendanceField);
 
         OcrDataField ocrNoMiamPreviousAttendanceReasonField = new OcrDataField();
-        ocrNoMiamPreviousAttendanceReasonField.setName("NoMIAM_PreviousAttendanceReason");
+        ocrNoMiamPreviousAttendanceReasonField.setName("NoMIAM_PreviousAttendenceReason");
         ocrNoMiamPreviousAttendanceReasonField.setValue(TICK_BOX_YES);
         fieldList.add(ocrNoMiamPreviousAttendanceReasonField);
 
@@ -826,6 +837,68 @@ public final class TestDataC100Util {
                 "respondent2AllAddressesForLastFiveYears");
         ocrrespondent2AllAddressesForLastFiveYears.setValue("227, Topsfield Parade, N8 8PE");
         fieldList.add(ocrrespondent2AllAddressesForLastFiveYears);
+
+        return fieldList;
+    }
+
+    public static List<OcrDataField> getLitigationCapacityGroupSuccessData() {
+        List<OcrDataField> fieldList = new ArrayList<>();
+
+        OcrDataField ocrFactorsAffectingLitigationField = new OcrDataField();
+        ocrFactorsAffectingLitigationField.setName(
+                INTERNATIONAL_OR_FACTORS_AFFECTING_LITIGATION_FIELD);
+        ocrFactorsAffectingLitigationField.setValue(TICK_BOX_YES);
+        fieldList.add(ocrFactorsAffectingLitigationField);
+
+        OcrDataField ocrInternationalJurisdictionField = new OcrDataField();
+        ocrInternationalJurisdictionField.setName(INTERNATIONALELEMENT_JURISDICTIONISSUE);
+        ocrInternationalJurisdictionField.setValue(TICK_BOX_YES);
+        fieldList.add(ocrInternationalJurisdictionField);
+
+        OcrDataField ocrInternationalJurisdictionDetails = new OcrDataField();
+        ocrInternationalJurisdictionDetails.setName(WITHOUTNOTICE_JURISDICTIONISSUE_DETAILS);
+        ocrInternationalJurisdictionDetails.setValue("International jurisdiction big issue");
+        fieldList.add(ocrInternationalJurisdictionDetails);
+
+        OcrDataField ocrResidentOfAnotherStateField = new OcrDataField();
+        ocrResidentOfAnotherStateField.setName(INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE);
+        ocrResidentOfAnotherStateField.setValue(TICK_BOX_NO);
+        fieldList.add(ocrResidentOfAnotherStateField);
+
+        OcrDataField ocrResidentOfAnotherStateDetails = new OcrDataField();
+        ocrResidentOfAnotherStateDetails.setName(
+                INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE_DETAILS);
+        ocrResidentOfAnotherStateDetails.setValue("");
+        fieldList.add(ocrResidentOfAnotherStateDetails);
+
+        OcrDataField ocrRequestCentralConsularAuthField = new OcrDataField();
+        ocrRequestCentralConsularAuthField.setName(
+                INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH);
+        ocrRequestCentralConsularAuthField.setValue("");
+        fieldList.add(ocrRequestCentralConsularAuthField);
+
+        OcrDataField ocrRequestCentralConsularAuthDetails = new OcrDataField();
+        ocrRequestCentralConsularAuthDetails.setName(
+                INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH_DETAILS);
+        ocrRequestCentralConsularAuthDetails.setValue("");
+        fieldList.add(ocrRequestCentralConsularAuthDetails);
+
+        OcrDataField ocrFactorsAffectingLitigationCapacityField = new OcrDataField();
+        ocrFactorsAffectingLitigationCapacityField.setName(
+                FACTORS_AFFECTING_LITIGATION_CAPACITY_FIELD);
+        ocrFactorsAffectingLitigationCapacityField.setValue(
+                "Factors affecting litigation capacity");
+        fieldList.add(ocrFactorsAffectingLitigationCapacityField);
+
+        OcrDataField ocrAssessmentByAdultLearningTeamField = new OcrDataField();
+        ocrAssessmentByAdultLearningTeamField.setName(ASSESSMENT_BY_ADULT_LEARNING_TEAM_FIELD);
+        ocrAssessmentByAdultLearningTeamField.setValue("Assessment by adult learning team");
+        fieldList.add(ocrAssessmentByAdultLearningTeamField);
+
+        OcrDataField ocrFfactorsAffectingPersonInCourtField = new OcrDataField();
+        ocrFfactorsAffectingPersonInCourtField.setName(FACTORS_AFFECTING_PERSON_IN_COURT_FIELD);
+        ocrFfactorsAffectingPersonInCourtField.setValue("Factors affecting person in court");
+        fieldList.add(ocrFfactorsAffectingPersonInCourtField);
 
         return fieldList;
     }
