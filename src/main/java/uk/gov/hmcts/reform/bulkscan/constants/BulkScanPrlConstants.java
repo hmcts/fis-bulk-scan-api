@@ -4,7 +4,7 @@ package uk.gov.hmcts.reform.bulkscan.constants;
 public final class BulkScanPrlConstants {
 
     public static final String MIAM_EXEMPTIONS_CHECKLIST = "miamExemptionsChecklist";
-    public static final String NO_MIAM_DOMESTIC_VIOLANCE = "NoMIAM_domesticViolance";
+    public static final String NO_MIAM_DOMESTIC_VIOLENCE = "NoMIAM_domesticViolence";
     public static final String NO_MIAM_CHILD_PROTECTION_CONCERNS = "NoMIAM_childProtectionConcerns";
     public static final String NO_MIAM_URGENCY = "NoMIAM_Urgency";
     public static final String NO_MIAM_PREVIOUS_ATTENDENCE = "NoMIAM_PreviousAttendence";
