@@ -8,7 +8,10 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIV
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVING_WITH_RESPONDENT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PERMISSION_REQUIRED;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.SCAN_DOCUMENTS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.VALUE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.getTypeOfOrderEnumFields;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.getTypeOfOrderEnumMapping;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.CHILD_ARRANGEMENTS_ORDER_DESCRIPTION;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.CHILD_ARRANGEMENT_ORDER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.MIAM_DOMESTIC_VIOLENCE_CHECKLIST;
@@ -51,13 +54,16 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.NO_MIA
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.NO_MIAM_URGENCY_RISK_TO_UNLAWFUL_REMOVAL;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.NO_MIAM_URGENCY_UNREASONABLEHARDSHIP;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.ORDER_APPLIED_FOR;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDINGS_DETAILS_TABLE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.PROHIBITED_STEPS_ORDER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.PROHIBITED_STEPS_ORDER_DESCRIPTION;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.SPECIAL_ISSUE_ORDER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.SPECIFIC_ISSUE_ORDER_DESCRIPTION;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.TYPE_OF_ORDER;
 import static uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper.transformScanDocuments;
 
 import com.microsoft.applicationinsights.boot.dependencies.apachecommons.lang3.StringUtils;
+import com.microsoft.applicationinsights.core.dependencies.google.gson.internal.LinkedTreeMap;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -74,7 +80,7 @@ import uk.gov.hmcts.reform.bulkscan.enums.MiamUrgencyReasonChecklistEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.PermissionRequiredEnum;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
 
-@SuppressWarnings({"PMD.ExcessiveImports"})
+@SuppressWarnings({"PMD.ExcessiveImports", "unchecked"})
 @Component
 public class BulkScanC100ConditionalTransformerService {
 
@@ -97,6 +103,13 @@ public class BulkScanC100ConditionalTransformerService {
         populatedMap.put(
                 MIAM_URGENCY_REASON_CHECKLIST, transformMiamUrgencyReasonChecklist(inputFieldsMap));
         populatedMap.put(ORDER_APPLIED_FOR, transformOrderAppliedFor(inputFieldsMap));
+
+        List<LinkedTreeMap> list = (List) populatedMap.get(OTHER_PROCEEDINGS_DETAILS_TABLE);
+        LinkedTreeMap innerValue = list.get(0);
+        LinkedTreeMap values = (LinkedTreeMap) innerValue.get(VALUE);
+        values.put(TYPE_OF_ORDER, transformTypeOfOrder(inputFieldsMap));
+
+        populatedMap.put(OTHER_PROCEEDINGS_DETAILS_TABLE, list);
     }
 
     /**
@@ -360,5 +373,23 @@ public class BulkScanC100ConditionalTransformerService {
             return PermissionRequiredEnum.noNowSought.getDisplayedValue();
         }
         return StringUtils.EMPTY;
+    }
+
+    /**
+     * C100 form Above fields of Section 7.
+     *
+     * @param inputFieldsMap All input key-value pair from transformation request.
+     * @return list of values for typeoforder field in the transformation output.
+     */
+    private String transformTypeOfOrder(Map<String, String> inputFieldsMap) {
+        Optional<String> typeOfOrderField =
+                getTypeOfOrderEnumFields().stream()
+                        .filter(eachField -> YES.equalsIgnoreCase(inputFieldsMap.get(eachField)))
+                        .findFirst();
+
+        if (typeOfOrderField.isPresent()) {
+            return getTypeOfOrderEnumMapping().get(typeOfOrderField.get());
+        }
+        return null;
     }
 }
