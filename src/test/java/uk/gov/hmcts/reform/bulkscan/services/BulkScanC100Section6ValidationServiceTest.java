@@ -20,8 +20,11 @@ import uk.gov.hmcts.reform.bulkscan.model.Status;
 @SpringBootTest
 @ActiveProfiles("test")
 class BulkScanC100Section6ValidationServiceTest {
-    private static final String C100_SECTION6A_ERROR_VALIDATION_REQUEST_PATH =
-            "classpath:request/bulk-scan-c100-section6b-error-validate-input.json";
+    private static final String C100_SECTION6A_MANDATORY_FIELD_VALUE_MISSING_ERROR_VALIDATION_REQUEST_PATH =
+            "classpath:request/bulk-scan-c100-section6a-mandatory-value-error-validate-input.json";
+
+    private static final String C100_SECTION6A_MANDATORY_FIELD_MISSING_ERROR_VALIDATION_REQUEST_PATH =
+        "classpath:request/bulk-scan-c100-section6a-mandatory-field-missing-error-validate-input.json";
 
     private static final String C100_SECTION6B_ERROR_VALIDATION_REQUEST_PATH =
             "classpath:request/bulk-scan-c100-section6b-error-validate-input.json";
@@ -77,13 +80,27 @@ class BulkScanC100Section6ValidationServiceTest {
     @DisplayName(
             "Test a sample successful C100 section 6a application validation error with full"
                     + " details.")
-    void testC100Section6aError() throws IOException {
+    void testC100Section6aMandoryFieldValueMissingError() throws IOException {
         BulkScanValidationRequest bulkScanValidationRequest =
                 mapper.readValue(
-                        readFileFrom(C100_SECTION6A_ERROR_VALIDATION_REQUEST_PATH),
+                        readFileFrom(C100_SECTION6A_MANDATORY_FIELD_VALUE_MISSING_ERROR_VALIDATION_REQUEST_PATH),
                         BulkScanValidationRequest.class);
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
+        assertEquals(Status.ERRORS, res.status);
+    }
+
+    @Test
+    @DisplayName(
+        "Test a sample successful C100 section 6a application validation error with full"
+            + " details.")
+    void testC100Section6aMandoryFieldMissingError() throws IOException {
+        BulkScanValidationRequest bulkScanValidationRequest =
+            mapper.readValue(
+                readFileFrom(C100_SECTION6A_MANDATORY_FIELD_MISSING_ERROR_VALIDATION_REQUEST_PATH),
+                BulkScanValidationRequest.class);
+        BulkScanValidationResponse res =
+            bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
     }
 }

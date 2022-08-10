@@ -504,13 +504,6 @@
     {
       "name": "urgent_or_withoutHearing",
       "value": "Yes"
-    },{
-      "name": "urgent_or_withoutHearing",
-      "value": "Yes"
-    },
-    {
-      "name": "order_direction_sought",
-      "value": ""
     },
     {
       "name": "application_timetable",
