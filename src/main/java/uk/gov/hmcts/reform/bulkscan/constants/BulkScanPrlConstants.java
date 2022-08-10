@@ -112,5 +112,30 @@ public final class BulkScanPrlConstants {
 
     // END C100 form sections 8 & 9 validation fields
 
+    // C100 Other Proceeding Fields.
+    public static final String OTHER_PROCEEDING_AVAILABLE =
+            "existingCase_onEmergencyProtection_Care_or_supervisioNorder";
+    public static final String OTHER_PROCEEDING_NAME_OF_CHILDREN = "other_case_name_of_children";
+    public static final String OTHER_PROCEEDING_CASE_NUMBER = "other_case_case_number";
+    public static final String OTHER_PROCEEDING_DATE_OF_YEAR = "other_case_date_or_year";
+    public static final String OTHER_PROCEEDING_NAME_AND_OFFICE = "other_case_name_and_office";
+    public static final String OTHER_PROCEEDING_TYPE_OF_ORDER_1 =
+            "other_case_emergency_protection_order";
+    public static final String OTHER_PROCEEDING_TYPE_OF_ORDER_2 = "other_case_supervision_order";
+    public static final String OTHER_PROCEEDING_TYPE_OF_ORDER_3 = "other_case_care_order";
+    public static final String OTHER_PROCEEDING_TYPE_OF_ORDER_4 = "other_case_childAbduction";
+    public static final String OTHER_PROCEEDING_TYPE_OF_ORDER_5 =
+            "other_case_proceeding_for_NonMolestatioNorder";
+    public static final String OTHER_PROCEEDING_TYPE_OF_ORDER_6 =
+            "other_case_proceeding_for_contact_or_resident_order";
+    public static final String OTHER_PROCEEDING_TYPE_OF_ORDER_7 =
+            "other_case_contact_or_residentOrder_withAdoptioNorder";
+    public static final String OTHER_PROCEEDING_TYPE_OF_ORDER_8 =
+            "other_case_childMaintenanceOrder";
+    public static final String OTHER_PROCEEDING_TYPE_OF_ORDER_9 =
+            "other_case_childArrangementOrder";
+    public static final String TYPE_OF_ORDER = "typeOfOrder";
+    public static final String OTHER_PROCEEDINGS_DETAILS_TABLE = "otherProceedingsDetailsTable";
+
     private BulkScanPrlConstants() {}
 }

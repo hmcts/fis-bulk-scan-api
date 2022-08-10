@@ -45,6 +45,8 @@ public class BulkScanC100Service implements BulkScanService {
     public BulkScanValidationResponse validate(BulkScanValidationRequest bulkRequest) {
         // Validating the Fields..
         Map<String, String> inputFieldMap = getOcrDataFieldAsMap(bulkRequest.getOcrdatafields());
+        BulkScanFormValidationConfigManager.ValidationConfig validationConfig =
+                configManager.getValidationConfig(FormType.C100);
 
         BulkScanValidationResponse response =
                 bulkScanValidationHelper.validateMandatoryAndOptionalFields(
@@ -53,6 +55,10 @@ public class BulkScanC100Service implements BulkScanService {
         response.addErrors(bulkScanC100ValidationService.doChildRelatedValidation(inputFieldMap));
         response.addErrors(
                 bulkScanC100ValidationService.doPermissionRelatedFieldValidation(inputFieldMap));
+
+        response.addErrors(
+                bulkScanC100ValidationService.validateOtherProceedingFields(
+                        inputFieldMap, validationConfig));
 
         response.addWarning(
                 dependencyValidationService.getDependencyWarnings(inputFieldMap, FormType.C100));

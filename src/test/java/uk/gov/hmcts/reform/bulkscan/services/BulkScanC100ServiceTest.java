@@ -36,6 +36,7 @@ import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.NOMIAM_URGENCY
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.RESPONDENT_ONE_NOT_LIVED_IN_ADDRESS_FOR_FIVE_YEARS;
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.RESPONDENT_TWO_NOT_LIVED_IN_ADDRESS_FOR_FIVE_YEARS;
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.TICK_BOX_TRUE;
+
 import static uk.gov.hmcts.reform.bulkscan.utils.TestDataC100Util.POST_CODE;
 import static uk.gov.hmcts.reform.bulkscan.utils.TestResourceUtil.readFileFrom;
 
@@ -755,5 +756,82 @@ class BulkScanC100ServiceTest {
         BulkScanTransformationResponse bulkScanTransformationResponse =
                 bulkScanValidationService.transform(mock(BulkScanTransformationRequest.class));
         assertNotNull(bulkScanTransformationResponse);
+    }
+
+    private Map<String, String> getOcrFieldsMap(BulkScanValidationRequest bulkRequest) {
+        return bulkRequest.getOcrdatafields().stream()
+                .collect(Collectors.toMap(OcrDataField::getName, OcrDataField::getValue));
+    }
+
+    @Test
+    @DisplayName("C100 validation with type of order.")
+    void testC100ValidationErrorWithOtherProceedings() throws IOException {
+        BulkScanValidationRequest bulkScanValidationRequest =
+                mapper.readValue(
+                        readFileFrom(C100_VALIDATION_REQUEST_PATH),
+                        BulkScanValidationRequest.class);
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                OTHER_PROCEEDING_TYPE_OF_ORDER_1.equalsIgnoreCase(
+                                        eachField.getName()))
+                .forEach(field -> field.setValue(""));
+        BulkScanValidationResponse res =
+                bulkScanValidationService.validate(bulkScanValidationRequest);
+        assertEquals(Status.ERRORS, res.status);
+        assertEquals(
+                "one field must be present out of other_case_emergency_protection_order,"
+                    + "other_case_supervision_order,other_case_care_order,other_case_childAbduction,"
+                    + "other_case_proceeding_for_NonMolestatioNorder,"
+                    + "other_case_proceeding_for_contact_or_resident_order,"
+                    + "other_case_contact_or_residentOrder_withAdoptioNorder,"
+                    + "other_case_childMaintenanceOrder,other_case_childArrangementOrder",
+                res.getErrors().getItems().get(0));
+    }
+
+    @Test
+    @DisplayName("C100 validation with mandatory fields.")
+    void testC100ValidationErrorWithOtherProceedingsMandatoryFields() throws IOException {
+        BulkScanValidationRequest bulkScanValidationRequest =
+                mapper.readValue(
+                        readFileFrom(C100_VALIDATION_REQUEST_PATH),
+                        BulkScanValidationRequest.class);
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                OTHER_PROCEEDING_CASE_NUMBER.equalsIgnoreCase(eachField.getName()))
+                .forEach(field -> field.setValue(""));
+        BulkScanValidationResponse res =
+                bulkScanValidationService.validate(bulkScanValidationRequest);
+        assertEquals(Status.ERRORS, res.status);
+        assertEquals(
+                "other_case_case_number should not be null or empty",
+                res.getErrors().getItems().get(0));
+    }
+
+    @Test
+    @DisplayName("C100 transform with other proceedings.")
+    void testC100TransformWithOtherProceedings() throws IOException, JSONException {
+        BulkScanTransformationRequest bulkScanTransformationRequest =
+                mapper.readValue(
+                        readFileFrom(C100_TRANSFORM_REQUEST_PATH),
+                        BulkScanTransformationRequest.class);
+
+        bulkScanTransformationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                OTHER_PROCEEDING_TYPE_OF_ORDER_1.equalsIgnoreCase(
+                                        eachField.getName()))
+                .forEach(field -> field.setValue(""));
+
+        BulkScanTransformationResponse res =
+                bulkScanValidationService.transform(bulkScanTransformationRequest);
+        assertEquals(
+                ((List)
+                                res.getCaseCreationDetails()
+                                        .getCaseData()
+                                        .get(OTHER_PROCEEDINGS_DETAILS_TABLE))
+                        .size(),
+                1);
     }
 }
