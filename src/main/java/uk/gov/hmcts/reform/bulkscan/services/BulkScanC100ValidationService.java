@@ -42,7 +42,7 @@ import uk.gov.hmcts.reform.bulkscan.model.Status;
 /** This class will custom validation methods related to. C100 form custom validation */
 @SuppressWarnings("PMD")
 @Service
-public class BulkScanC100ValidationService {
+public class BulkScanC100ValidationService extends BulkScanC100OtherSectionValidationService {
 
     /**
      * This method will validate C100 form, section 2. data.

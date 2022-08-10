@@ -1,16 +1,33 @@
 package uk.gov.hmcts.reform.bulkscan.constants;
 
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDING_CASE_NUMBER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDING_DATE_OF_YEAR;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDING_NAME_AND_OFFICE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDING_NAME_OF_CHILDREN;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDING_TYPE_OF_ORDER_1;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDING_TYPE_OF_ORDER_2;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDING_TYPE_OF_ORDER_3;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDING_TYPE_OF_ORDER_4;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDING_TYPE_OF_ORDER_5;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDING_TYPE_OF_ORDER_6;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDING_TYPE_OF_ORDER_7;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDING_TYPE_OF_ORDER_8;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDING_TYPE_OF_ORDER_9;
+
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import org.apache.commons.lang3.tuple.Pair;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanFormValidationConfigManager;
+import uk.gov.hmcts.reform.bulkscan.enums.TypeOfOrderEnum;
 
 public final class BulkScanConstants {
 
     public static final String YES = "Yes";
     public static final String NO = "No";
+    public static final String VALUE = "value";
 
     public static final String MANDATORY_ATTENDED_MIAM_MESSAGE =
             "%s : value is no, " + "and you cannot make this application";
@@ -379,6 +396,56 @@ public final class BulkScanConstants {
         }
 
         return null;
+    }
+
+    public static Map<String, String> getTypeOfOrderEnumMapping() {
+        Map<String, String> map = new HashMap<>();
+        map.put(
+                OTHER_PROCEEDING_TYPE_OF_ORDER_1,
+                TypeOfOrderEnum.emergencyProtectionOrder.getDisplayedValue());
+        map.put(
+                OTHER_PROCEEDING_TYPE_OF_ORDER_2,
+                TypeOfOrderEnum.superviosionOrder.getDisplayedValue());
+        map.put(OTHER_PROCEEDING_TYPE_OF_ORDER_3, TypeOfOrderEnum.careOrder.getDisplayedValue());
+        map.put(
+                OTHER_PROCEEDING_TYPE_OF_ORDER_4,
+                TypeOfOrderEnum.childAbduction.getDisplayedValue());
+        map.put(OTHER_PROCEEDING_TYPE_OF_ORDER_5, TypeOfOrderEnum.otherOrder.getDisplayedValue());
+        map.put(
+                OTHER_PROCEEDING_TYPE_OF_ORDER_6,
+                TypeOfOrderEnum.contactOrResidenceOrder.getDisplayedValue());
+        map.put(
+                OTHER_PROCEEDING_TYPE_OF_ORDER_7,
+                TypeOfOrderEnum.contactOrResidenceOrderWithAdoption.getDisplayedValue());
+        map.put(
+                OTHER_PROCEEDING_TYPE_OF_ORDER_8,
+                TypeOfOrderEnum.orderRelatingToChildMaintainance.getDisplayedValue());
+        map.put(
+                OTHER_PROCEEDING_TYPE_OF_ORDER_9,
+                TypeOfOrderEnum.childArrangementsOrder.getDisplayedValue());
+
+        return map;
+    }
+
+    public static List<String> getOtherProceedingFields() {
+        return Arrays.asList(
+                OTHER_PROCEEDING_CASE_NUMBER,
+                OTHER_PROCEEDING_NAME_OF_CHILDREN,
+                OTHER_PROCEEDING_NAME_AND_OFFICE,
+                OTHER_PROCEEDING_DATE_OF_YEAR);
+    }
+
+    public static List<String> getTypeOfOrderEnumFields() {
+        return Arrays.asList(
+                OTHER_PROCEEDING_TYPE_OF_ORDER_1,
+                OTHER_PROCEEDING_TYPE_OF_ORDER_2,
+                OTHER_PROCEEDING_TYPE_OF_ORDER_3,
+                OTHER_PROCEEDING_TYPE_OF_ORDER_4,
+                OTHER_PROCEEDING_TYPE_OF_ORDER_5,
+                OTHER_PROCEEDING_TYPE_OF_ORDER_6,
+                OTHER_PROCEEDING_TYPE_OF_ORDER_7,
+                OTHER_PROCEEDING_TYPE_OF_ORDER_8,
+                OTHER_PROCEEDING_TYPE_OF_ORDER_9);
     }
 
     private BulkScanConstants() {}
