@@ -62,6 +62,7 @@ import uk.gov.hmcts.reform.bulkscan.utils.TestDataC100Util;
 @SpringBootTest
 @ActiveProfiles("test")
 class BulkScanC100ServiceTest {
+
     private static final String EXEMPTION_TO_ATTEND_MIAM_DEPENDENCY_WARNING =
             "Group Dependency Field (exemption_to_attend_MIAM) has dependency validation warning."
                     + " Must contain at least 1 of the fields"

@@ -259,14 +259,14 @@
       "childrenParentsName": "parentsName",
       "previousOrOngoingProceedings": "yes",
       "SignedDate": "08/08/21",
-      "checklistSection56Completed": "yes",
+      "checklistSection5To6Completed": "yes",
       "childrenSubjectOfChildProtectionPlan": "protectionplan",
       "miamTable": {
         "claimingExemptionMiam": "yes",
         "familyMediatorMiam": null,
         "applicantAttendedMiam": null
       },
-      "courtFee": "1245",
+      "courtFeeConsent": "1245",
       "checklistSection1Completed": "yes",
       "havePreviousParentingPlan": "parentingplan",
       "checklistSection7Completed": "yes",

@@ -201,7 +201,7 @@ uk:
               - applicantSolicitorsFirmName
               - applicantAndApplicantsolicitorSignedDate
               - position_or_OfficeHeld
-              - courtFee
+              - courtFeeConsent
             regexValidationFields:
               dateFields:
                 fieldNames:

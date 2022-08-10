@@ -166,7 +166,7 @@ uk:
                     addressLivedLessThan5YearsDetails: respondent2AllAddressesForLastFiveYears
               checklistSection1Completed: section1RelatingToChildCompleted
               checklistSection2To4Completed: section2Section3Section4RelatingToMediationCompleted
-              checklistSection5&6Completed: section5Section6RelatingToApplicationReasonCompleted
+              checklistSection5To6Completed: section5Section6RelatingToApplicationReasonCompleted
               checklistSection7Completed: section7RelatingToOtherCourtFullyCompleted
               checklistSection8To10Completed: section8Section9Section10FactorsAffectingProceedingsCompleted
               checklistSection11Completed: section11RelatingToApplicantCompleted
@@ -176,4 +176,4 @@ uk:
               agreedBy: applicantSolicitorsFirmName
               SignedDate: applicantAndApplicantsolicitorSignedDate
               positionOrOfficeHeld: position_or_OfficeHeld
-              courtFee: courtFee
+              courtFeeConsent: courtFeeConsent
