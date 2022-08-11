@@ -1,7 +1,7 @@
 package uk.gov.hmcts.reform.bulkscan.utils;
 
-import static uk.gov.hmcts.reform.bulkscan.utils.Constants.RESOURCE_CHARSET_UTF8;
-import static uk.gov.hmcts.reform.bulkscan.utils.Constants.TEST_RESOURCE_NOT_FOUND;
+import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.RESOURCE_CHARSET_UTF8;
+import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.TEST_RESOURCE_NOT_FOUND;
 
 import java.io.File;
 import java.io.FileNotFoundException;

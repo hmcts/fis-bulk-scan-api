@@ -6,7 +6,7 @@ import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
 import static uk.gov.hmcts.reform.bulkscan.model.FormType.C100;
 import static uk.gov.hmcts.reform.bulkscan.model.FormType.FL401;
 import static uk.gov.hmcts.reform.bulkscan.model.FormType.FL403;
-import static uk.gov.hmcts.reform.bulkscan.utils.Constants.S2S_TOKEN;
+import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.S2S_TOKEN;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

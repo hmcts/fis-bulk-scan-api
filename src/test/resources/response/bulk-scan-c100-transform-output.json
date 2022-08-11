@@ -81,6 +81,7 @@
         "prohibitedStepsOrder",
         "specificIssueOrder"
       ],
+      "habitualResidentInOtherState":"yes",
       "miamUrgencyReasonChecklist":[
         "miamUrgencyReasonChecklistEnum_Value_1",
         "miamUrgencyReasonChecklistEnum_Value_2",
@@ -94,9 +95,7 @@
         "previousOrOngoingProceedings":"yes"
       },
       "briefDetailsOnTheApplication":"briefDetails",
-      "scannedDocuments":[
-
-      ],
+      "scannedDocuments":[],
       "miamExemptionsChecklist":[
         "domesticViolence",
         "childProtectionConcern",
@@ -154,8 +153,12 @@
         "isCaseUrgent":"yes"
       },
       "personWhoLivesWithChild":"living other details",
+      "litigationCapacityTable":{
+        "litigationCapacityFactors":"Factors affecting litigation capacity",
+        "litigationCapacityReferrals":"Assessment by adult learning team",
+        "litigationCapacityOtherFactors":"Factors affecting person in court"
+      },
       "applicationPermissionRequired":"yes",
-      "habitualResidentINotherState":"yes",
       "parentalResponsibilityDetails":"parentResponsibility",
       "familyMediatorMiam":null,
       "isCaseUrgent":"yes",
@@ -189,6 +192,14 @@
       ],
       "childrenParentsName":"parentsName",
       "previousOrOngoingProceedings":"yes",
+      "internationalElementTable":{
+        "habitualResidentInOtherState":"yes",
+        "habitualResidentInOtherStateGiveReason":null,
+        "jurisdictionIssue":"Yes",
+        "jurisdictionIssueGiveReason":"International jurisdiction big issue",
+        "requestToForeignAuthority":null,
+        "requestToForeignAuthorityGiveReason":null
+      },
       "applicantAttendedMiam":null,
       "miamChildProtectionConcernList":[
         "MIAMChildProtectionConcernChecklistEnum_value_1",
@@ -259,11 +270,10 @@
       "consentOrder":"yes",
       "claimingExemptionMiam":"yes",
       "welshLanguageRequirement":"yes",
-      "typeOfChildArrangementsOrder":"true",
-      "childParentsNameCollection":"parentsNameColl"
+      "childParentsNameCollection":"parentsNameColl",
+      "typeOfChildArrangementsOrder": "true"
     }
   },
   "warnings":[
-
   ]
 }

@@ -9,12 +9,13 @@ uk:
                 - NoMIAM_domesticViolence
                 - NoMIAM_childProtectionConcerns
                 - NoMIAM_Urgency
-                - NoMIAM_PreviousAttendance
+                - NoMIAM_PreviousAttendence
                 - NoMIAM_otherReasons
               dependentFieldValue: "True"
               groupFieldName: exemption_to_attend_MIAM
               groupValidationValue: "Yes"
               requiredFieldCount: 1
+              sectionName: "Applicant claims exemption(s) from attendance at a MIAM"
             - NoMIAM_domesticViolence:
               dependentFields:
                 - NoMIAM_DVE_arrestedForSimilarOffence
@@ -42,6 +43,7 @@ uk:
               groupFieldName: NoMIAM_domesticViolence
               groupValidationValue: "True"
               requiredFieldCount: 1
+              sectionName: "Domestic violence  evidence"
             - groupNoMIAMChildProtectionConcerns:
               dependentFields:
                 - NoMIAM_subjectOfEnquiries_byLocalAuthority
@@ -50,6 +52,7 @@ uk:
               groupFieldName: NoMIAM_childProtectionConcerns
               groupValidationValue: "True"
               requiredFieldCount: 1
+              sectionName: "Child protection concerns"
             - groupNoMIAMUrgency:
               dependentFields:
                 - NoMIAM_urgency_risk_to_life_liberty_or_safety
@@ -63,13 +66,15 @@ uk:
               groupFieldName: NoMIAM_Urgency
               groupValidationValue: "True"
               requiredFieldCount: 1
-            - groupNoMIAMPreviousAttendance:
+              sectionName: "Urgency"
+            - groupNoMIAMPreviousAttendence:
               dependentFields:
-                - NoMIAM_PreviousAttendanceReason
+                - NoMIAM_PreviousAttendenceReason
               dependentFieldValue: "Yes"
-              groupFieldName: NoMIAM_PreviousAttendance
+              groupFieldName: NoMIAM_PreviousAttendence
               groupValidationValue: "True"
               requiredFieldCount: 1
+              sectionName: "Previous MIAM attendance or MIAM exemption"
             - groupNoMIAMOtherReasons:
               dependentFields:
                 - NoMIAM_otherExceptions
@@ -77,3 +82,17 @@ uk:
               groupFieldName: NoMIAM_otherReasons
               groupValidationValue: "True"
               requiredFieldCount: 1
+              sectionName: "Other exemptions"
+            - groupInternationalFactorsAffectingLitigationCheckbox:
+              dependentFields:
+                - internationalElement_Resident_of_another_state
+                - internationalElement_jurisdictionIssue
+                - internationalElement_request_toCentral_or_Consular_authority
+                - factorAffectingLitigationCapacity
+                - assessmentByAdultLearningTeam
+                - factorsAffectingPersonInCourt
+              dependentFieldValue: "*"
+              groupFieldName: international_or_factorsAffectingLitigation
+              groupValidationValue: "Yes"
+              requiredFieldCount: 1
+              sectionName: "Cases with an international element (8) and; Factors affecting ability to participate in proceedings (9)"
