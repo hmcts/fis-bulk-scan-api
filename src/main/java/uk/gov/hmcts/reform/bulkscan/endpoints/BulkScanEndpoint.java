@@ -2,6 +2,7 @@ package uk.gov.hmcts.reform.bulkscan.endpoints;
 
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
+import static org.slf4j.LoggerFactory.getLogger;
 import static org.springframework.http.ResponseEntity.ok;
 
 import io.swagger.annotations.Api;
@@ -10,6 +11,7 @@ import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import java.util.Objects;
 import org.apache.commons.lang3.EnumUtils;
+import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -39,7 +41,7 @@ import uk.gov.hmcts.reform.bulkscan.services.postcode.PostcodeLookupService;
         produces = MediaType.APPLICATION_JSON_VALUE)
 @Api(value = "/", description = "Standard  API")
 public class BulkScanEndpoint {
-
+    private static final Logger logger = getLogger(BulkScanEndpoint.class);
     public static final String SERVICEAUTHORIZATION = "serviceauthorization";
     public static final String CONTENT_TYPE = "content-type";
 
@@ -50,12 +52,9 @@ public class BulkScanEndpoint {
     @ApiOperation(value = "", notes = " ")
     @ApiResponses(
             value = {
-                @ApiResponse(code = 200, message = "success"),
+                @ApiResponse(code = 200, message = "Validation executed successfully"),
                 @ApiResponse(code = 401, message = "Provided S2S token is missing or invalid"),
-                @ApiResponse(
-                        code = 403,
-                        message = "S2S token is not authorized to use the service"),
-                @ApiResponse(code = 404, message = "Form name not found")
+                @ApiResponse(code = 403, message = "S2S token is not authorized to use the service")
             })
     public ResponseEntity<?> validateOcrData(
             @RequestHeader(SERVICEAUTHORIZATION) String s2sToken,
@@ -64,6 +63,7 @@ public class BulkScanEndpoint {
             @RequestBody final BulkScanValidationRequest bulkScanValidationRequest) {
 
         if (formType == null || !EnumUtils.isValidEnum(FormType.class, formType)) {
+            logger.error("Invalid form type {} received when validating bulk scan", formType);
             return ok().body(validateFormType(formType));
         }
         FormType formTypeEnum = FormType.valueOf(formType);
