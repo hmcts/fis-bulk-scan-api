@@ -161,8 +161,17 @@
         }
       ],
       "agreedBy": "Burns, Burns and Burns",
-      "hearingUrgencyTable": {
-        "isCaseUrgent": "yes"
+      "hearingUrgencyTable":{
+        "isCaseUrgent":"yes",
+        "setOutReasonsBelow":"Set out the reasons for urgency",
+        "effortsMadeWithRespondents":"What efforts have you made to put each respondent on notice of the application?",
+        "doYouRequireAHearingWithReducedNotice":null,
+        "doYouNeedAWithoutNoticeHearing":null,
+        "caseUrgencyTimeAndReason":"8/day",
+        "reasonsForApplicationWithoutNotice":null,
+        "setOutOrderDirectionSought":"Set out the order(s)/directions sought",
+        "doYouRequireAWithoutNoticeHearing":null,
+        "setWithoutNoticeHearing":null
       },
       "personWhoLivesWithChild":"living other details",
       "litigationCapacityTable":{

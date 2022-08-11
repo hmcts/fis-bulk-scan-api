@@ -16,23 +16,12 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
-import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.skyscreamer.jsonassert.JSONAssert;
-import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.TestPropertySource;
-import org.springframework.test.context.junit4.SpringRunner;
 
-@Slf4j
-@SpringBootTest
-@RunWith(SpringRunner.class)
-@ContextConfiguration
-@TestPropertySource("classpath:application.yaml")
 public class BulkScanA60EndpointTest {
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 

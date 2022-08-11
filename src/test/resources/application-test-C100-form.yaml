@@ -225,6 +225,15 @@ uk:
               - applicantAndApplicantsolicitorSignedDate
               - position_or_OfficeHeld
               - courtFeeConsent
+              - order_direction_sought
+              - urgency_reason
+              - application_timetable
+              - respondent_effort
+              - reason_for_consideration
+              - withoutNotice_abridged_or_informalNotice
+              - withoutNotice_abridged_or_informalNotice_reasons
+              - withoutNotice_frustrateTheOrder
+              - withoutNotice_frustrateTheOrder_reason
             regexValidationFields:
               dateFields:
                 fieldNames:
