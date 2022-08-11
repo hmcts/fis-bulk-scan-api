@@ -21,6 +21,7 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT2_SOT_MONTH;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT2_SOT_YEAR;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT2_STATEMENT_OF_TRUTH_DATE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANTS_DOMICILE_STATUS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANTS_NON_DOMICILE_STATUS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_APPLYING_ALONE_NATURAL_PARENT_DIED;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_APPLYING_ALONE_NATURAL_PARENT_NOT_FOUND;
@@ -131,6 +132,7 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PLACEMENT
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PLACEMENT_ORDER_DATE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PLACEMENT_ORDER_ID;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PLACEMENT_ORDER_TYPE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PROCEEDING_DETAILS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_REQUIRE_INTERPRETER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_REQUIRE_INTERPRETER_CCD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.SLASH_DELIMITER;
@@ -148,7 +150,6 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.WELSH_PRE
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.WELSH_SPOKEN_IN_COURT_REQUIRED;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.WITNESS_WELSH_LANGUAGE_PREFERENCE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.WITNESS_WELSH_LANGUAGE_PREFERENCE_CCD;
-import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.APPLICANTS_DOMICILE_STATUS;
 import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.APPLICANT_MARITAL_STATUS;
 import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.APPLICANT_RELATION_TO_CHILD;
 import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.FATHER;
@@ -156,17 +157,19 @@ import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.OTHER_PAR
 import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.OTHER_PARENT_RELATIONSHIP_TO_CHILD;
 import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.RELATIONSHIP_FATHER;
 import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.RELATIONSHIP_OTHER;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PROCEEDING_DETAILS;
+import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.APPLICANTS_DOMICILE_STATUS_KEY;
 
 import com.microsoft.applicationinsights.core.dependencies.google.gson.internal.LinkedTreeMap;
-
-import java.util.*;
-
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 import uk.gov.hmcts.reform.bulkscan.enums.MaritalStatusEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.RelationToChildEnum;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 // Divided this class to multiple classes based on formtype and remove suppress warning
 @SuppressWarnings({"PMD.GodClass", "PMD.ExcessiveImports"})
@@ -175,7 +178,7 @@ public class BulkScanA58ConditionalTransformerService {
 
     public void conditionalTransform(
             Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
-        populatedMap.put(APPLICANTS_DOMICILE_STATUS, getDomicileStatus(inputFieldsMap));
+        populatedMap.put(APPLICANTS_DOMICILE_STATUS_KEY, getDomicileStatus(inputFieldsMap));
         populatedMap.put(APPLICANT_RELATION_TO_CHILD, getAplicantRelationToChild(inputFieldsMap));
 
         // Marital status should be read if relation to child is null.
@@ -210,10 +213,9 @@ public class BulkScanA58ConditionalTransformerService {
         buildChildMaintanenceOrder(inputFieldsMap, populatedMap);
         buildChildProceedingDetails(inputFieldsMap, populatedMap);
         buildChildProceedingDetailsWithRelation(inputFieldsMap, populatedMap);
-        //buildadopAgencyOrLAs(inputFieldsMap, populatedMap);
+        // buildadopAgencyOrLAs(inputFieldsMap, populatedMap);
         populatedMap.put(PROCEEDING_DETAILS, buildProceedingDetails(inputFieldsMap, populatedMap));
-        populatedMap.put(
-            ADOP_AGENCY_OR_L_AS, buildadopAgencyOrLAs(inputFieldsMap, populatedMap));
+        populatedMap.put(ADOP_AGENCY_OR_L_AS, buildadopAgencyOrLAs(inputFieldsMap, populatedMap));
     }
 
     @SuppressWarnings("unchecked")
@@ -221,19 +223,23 @@ public class BulkScanA58ConditionalTransformerService {
             Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
         final List<LinkedTreeMap> adoptAgencyOrLaasArrayList = new ArrayList();
         buildChildProcesingDetails(inputFieldsMap, populatedMap, adoptAgencyOrLaasArrayList);
-        buildChildProcessingDetailsWithRelationship(inputFieldsMap, populatedMap, adoptAgencyOrLaasArrayList);
+        buildChildProcessingDetailsWithRelationship(
+                inputFieldsMap, populatedMap, adoptAgencyOrLaasArrayList);
         return adoptAgencyOrLaasArrayList;
     }
 
     @SuppressWarnings("unchecked")
-    private void buildChildProcessingDetailsWithRelationship(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap, List<LinkedTreeMap> adoptAgencyOrLaasArrayList) {
+    private void buildChildProcessingDetailsWithRelationship(
+            Map<String, String> inputFieldsMap,
+            Map<String, Object> populatedMap,
+            List<LinkedTreeMap> adoptAgencyOrLaasArrayList) {
         if (!StringUtils.isEmpty(inputFieldsMap.get(CHILD_NO_PROCEEDING_DETAILS_WITH_RELATION))
                 && TRUE.equalsIgnoreCase(
-            inputFieldsMap.get(CHILD_NO_PROCEEDING_DETAILS_WITH_RELATION))) {
+                        inputFieldsMap.get(CHILD_NO_PROCEEDING_DETAILS_WITH_RELATION))) {
             populatedMap.put(HAS_PROCEEDING_DETAILS_WITH_RELATION, BooleanUtils.NO);
         } else if (!StringUtils.isEmpty(inputFieldsMap.get(CHILD_PROCEEDING_DETAILS_WITH_RELATION))
                 && TRUE.equalsIgnoreCase(
-            inputFieldsMap.get(CHILD_PROCEEDING_DETAILS_WITH_RELATION))) {
+                        inputFieldsMap.get(CHILD_PROCEEDING_DETAILS_WITH_RELATION))) {
             populatedMap.put(HAS_PROCEEDING_DETAILS_WITH_RELATION, BooleanUtils.YES);
             final LinkedTreeMap<String, LinkedTreeMap> linkedTreeMapTwo = new LinkedTreeMap();
             final LinkedTreeMap<String, String> childTwo = new LinkedTreeMap();
@@ -245,15 +251,18 @@ public class BulkScanA58ConditionalTransformerService {
             linkedTreeMapTwo.put(VALUE, childTwo);
             adoptAgencyOrLaasArrayList.add(linkedTreeMapTwo);
         } else if (!StringUtils.isEmpty(
-            inputFieldsMap.get(CHILD_DONT_KNOW_PROCEEDING_DETAILS_WITH_RELATION))
+                        inputFieldsMap.get(CHILD_DONT_KNOW_PROCEEDING_DETAILS_WITH_RELATION))
                 && TRUE.equalsIgnoreCase(
-            inputFieldsMap.get(CHILD_DONT_KNOW_PROCEEDING_DETAILS_WITH_RELATION))) {
+                        inputFieldsMap.get(CHILD_DONT_KNOW_PROCEEDING_DETAILS_WITH_RELATION))) {
             populatedMap.put(HAS_PROCEEDING_DETAILS_WITH_RELATION, DONT_KNOW);
         }
     }
 
     @SuppressWarnings("unchecked")
-    private void buildChildProcesingDetails(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap, List<LinkedTreeMap> adoptAgencyOrLaasArrayList) {
+    private void buildChildProcesingDetails(
+            Map<String, String> inputFieldsMap,
+            Map<String, Object> populatedMap,
+            List<LinkedTreeMap> adoptAgencyOrLaasArrayList) {
         if (!StringUtils.isEmpty(inputFieldsMap.get(CHILD_NO_PROCEEDING_DETAILS))
                 && TRUE.equalsIgnoreCase(inputFieldsMap.get(CHILD_NO_PROCEEDING_DETAILS))) {
             populatedMap.put(HAS_PROCEEDING_DETAILS, BooleanUtils.NO);
@@ -280,38 +289,42 @@ public class BulkScanA58ConditionalTransformerService {
         buildChildPlacedAdoptionAgency(inputFieldsMap, populatedMap, adoptAgencyOrLaasArrayList);
         buildAdoptionAgencyDeatils(inputFieldsMap, populatedMap, adoptAgencyOrLaasArrayList);
         buildAgencyOrLocalAuthority(inputFieldsMap, adoptAgencyOrLaasArrayList);
-        buildChildLocalAuthorityOrParentalResponsibily(inputFieldsMap, populatedMap, adoptAgencyOrLaasArrayList);
+        buildChildLocalAuthorityOrParentalResponsibily(
+                inputFieldsMap, populatedMap, adoptAgencyOrLaasArrayList);
         return adoptAgencyOrLaasArrayList;
     }
 
     @SuppressWarnings("unchecked")
-    private void buildChildLocalAuthorityOrParentalResponsibily(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap, List<LinkedTreeMap> adoptAgencyOrLaasArrayList) {
+    private void buildChildLocalAuthorityOrParentalResponsibily(
+            Map<String, String> inputFieldsMap,
+            Map<String, Object> populatedMap,
+            List<LinkedTreeMap> adoptAgencyOrLaasArrayList) {
         if (!StringUtils.isEmpty(inputFieldsMap.get(CHILD_NO_LA_OR_PARENTAL_RESPONSIBILITY))
                 && TRUE.equalsIgnoreCase(
-            inputFieldsMap.get(CHILD_NO_LA_OR_PARENTAL_RESPONSIBILITY))) {
+                        inputFieldsMap.get(CHILD_NO_LA_OR_PARENTAL_RESPONSIBILITY))) {
             populatedMap.put(LA_OR_PARENTAL_RESPONSIBILITY, BooleanUtils.YES);
         } else if (!StringUtils.isEmpty(inputFieldsMap.get(CHILD_NO_LA_OR_PARENTAL_RESPONSIBILITY))
                 && FALSE.equalsIgnoreCase(
-            inputFieldsMap.get(CHILD_NO_LA_OR_PARENTAL_RESPONSIBILITY))) {
+                        inputFieldsMap.get(CHILD_NO_LA_OR_PARENTAL_RESPONSIBILITY))) {
             populatedMap.put(LA_OR_PARENTAL_RESPONSIBILITY, BooleanUtils.NO);
         } else if (!StringUtils.isEmpty(
-            inputFieldsMap.get(CHILD_LA_OR_PARENTAL_RESPONSIBILITY_DETAILS))
+                        inputFieldsMap.get(CHILD_LA_OR_PARENTAL_RESPONSIBILITY_DETAILS))
                 && TRUE.equalsIgnoreCase(
-            inputFieldsMap.get(CHILD_LA_OR_PARENTAL_RESPONSIBILITY_DETAILS))) {
+                        inputFieldsMap.get(CHILD_LA_OR_PARENTAL_RESPONSIBILITY_DETAILS))) {
             final LinkedTreeMap<String, LinkedTreeMap> linkedTreeMapFour = new LinkedTreeMap();
             final LinkedTreeMap<String, String> childFour = new LinkedTreeMap();
             childFour.put(ADOP_AGENCY_OR_LA_NAME, inputFieldsMap.get(CHILD_LA_OR_PARENTAL_NAME));
             childFour.put(
-                ADOP_AGENCY_OR_LAADDRESS, inputFieldsMap.get(CHILD_LA_OR_PARENTAL_ADDRESS));
+                    ADOP_AGENCY_OR_LAADDRESS, inputFieldsMap.get(CHILD_LA_OR_PARENTAL_ADDRESS));
             childFour.put(
-                ADOP_AGENCY_OR_LA_CONTACT_NAME,
-                inputFieldsMap.get(CHILD_LA_OR_PARENTAL_CONTACT_NAME));
+                    ADOP_AGENCY_OR_LA_CONTACT_NAME,
+                    inputFieldsMap.get(CHILD_LA_OR_PARENTAL_CONTACT_NAME));
             childFour.put(
-                ADOP_AGENCY_OR_LA_PHONE_NUMBER,
-                inputFieldsMap.get(CHILD_LA_OR_PARENTAL_TELEPHONE_NO));
+                    ADOP_AGENCY_OR_LA_PHONE_NUMBER,
+                    inputFieldsMap.get(CHILD_LA_OR_PARENTAL_TELEPHONE_NO));
             childFour.put(
-                ADOP_AGENCY_OR_LA_CONTACT_EMAIL,
-                inputFieldsMap.get(CHILD_LA_OR_PARENTAL_EMAIL));
+                    ADOP_AGENCY_OR_LA_CONTACT_EMAIL,
+                    inputFieldsMap.get(CHILD_LA_OR_PARENTAL_EMAIL));
             childFour.put(
                     L_AOR_ADOPTION_AGENCY_CATEGORY,
                     LOCAL_AUTHORITY_HAS_PARENTAL_RESPONSIBILITY_OF_THE_CHILD);
@@ -321,7 +334,8 @@ public class BulkScanA58ConditionalTransformerService {
     }
 
     @SuppressWarnings("unchecked")
-    private void buildAgencyOrLocalAuthority(Map<String, String> inputFieldsMap, List<LinkedTreeMap> adoptAgencyOrLaasArrayList) {
+    private void buildAgencyOrLocalAuthority(
+            Map<String, String> inputFieldsMap, List<LinkedTreeMap> adoptAgencyOrLaasArrayList) {
         final LinkedTreeMap<String, LinkedTreeMap> linkedTreeMapOne = new LinkedTreeMap();
         final LinkedTreeMap<String, String> childOne = new LinkedTreeMap();
         childOne.put(ADOP_AGENCY_OR_LA_NAME, inputFieldsMap.get(CHILD_LA_NAME));
@@ -334,27 +348,30 @@ public class BulkScanA58ConditionalTransformerService {
     }
 
     @SuppressWarnings("unchecked")
-    private void buildAdoptionAgencyDeatils(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap, List<LinkedTreeMap> adoptAgencyOrLaasArrayList) {
+    private void buildAdoptionAgencyDeatils(
+            Map<String, String> inputFieldsMap,
+            Map<String, Object> populatedMap,
+            List<LinkedTreeMap> adoptAgencyOrLaasArrayList) {
         if (!StringUtils.isEmpty(inputFieldsMap.get(CHILD_IS_ADOPTION_AGENCY_INVOLVED))
                 && TRUE.equalsIgnoreCase(inputFieldsMap.get(CHILD_IS_ADOPTION_AGENCY_INVOLVED))) {
             populatedMap.put(
-                "isAdoptionAgencyInvolved",
-                inputFieldsMap.get(CHILD_IS_ADOPTION_AGENCY_INVOLVED));
+                    "isAdoptionAgencyInvolved",
+                    inputFieldsMap.get(CHILD_IS_ADOPTION_AGENCY_INVOLVED));
         } else if (!StringUtils.isEmpty(
-            inputFieldsMap.get(CHILD_IS_ADOPTION_AGENCY_DETAILS_AVAILABLE))
+                        inputFieldsMap.get(CHILD_IS_ADOPTION_AGENCY_DETAILS_AVAILABLE))
                 && TRUE.equalsIgnoreCase(
-            inputFieldsMap.get(CHILD_IS_ADOPTION_AGENCY_DETAILS_AVAILABLE))) {
+                        inputFieldsMap.get(CHILD_IS_ADOPTION_AGENCY_DETAILS_AVAILABLE))) {
             final LinkedTreeMap<String, LinkedTreeMap> linkedTreeMapThree = new LinkedTreeMap();
             final LinkedTreeMap<String, String> childThree = new LinkedTreeMap();
             childThree.put(ADOP_AGENCY_OR_LA_NAME, inputFieldsMap.get(CHILD_ADOPTION_AGENCY_NAME));
             childThree.put(
-                ADOP_AGENCY_OR_LAADDRESS, inputFieldsMap.get(CHILD_ADOPTION_AGENCY_ADDRESS));
+                    ADOP_AGENCY_OR_LAADDRESS, inputFieldsMap.get(CHILD_ADOPTION_AGENCY_ADDRESS));
             childThree.put(
-                ADOP_AGENCY_OR_LA_CONTACT_NAME,
-                inputFieldsMap.get(CHILD_ADOPTION_AGENCY_CONTACT_NAME));
+                    ADOP_AGENCY_OR_LA_CONTACT_NAME,
+                    inputFieldsMap.get(CHILD_ADOPTION_AGENCY_CONTACT_NAME));
             childThree.put(
-                ADOP_AGENCY_OR_LA_PHONE_NUMBER,
-                inputFieldsMap.get(CHILD_ADOPTION_AGENCY_TELEPHONE_NO));
+                    ADOP_AGENCY_OR_LA_PHONE_NUMBER,
+                    inputFieldsMap.get(CHILD_ADOPTION_AGENCY_TELEPHONE_NO));
             childThree.put(L_AOR_ADOPTION_AGENCY_CATEGORY, INVOLVED_IN_THE_PLACING_OF_THE_CHILD);
             linkedTreeMapThree.put(VALUE, childThree);
             adoptAgencyOrLaasArrayList.add(linkedTreeMapThree);
@@ -362,7 +379,10 @@ public class BulkScanA58ConditionalTransformerService {
     }
 
     @SuppressWarnings("unchecked")
-    private void buildChildPlacedAdoptionAgency(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap, List<LinkedTreeMap> adoptAgencyOrLaasArrayList) {
+    private void buildChildPlacedAdoptionAgency(
+            Map<String, String> inputFieldsMap,
+            Map<String, Object> populatedMap,
+            List<LinkedTreeMap> adoptAgencyOrLaasArrayList) {
         if (!StringUtils.isEmpty(inputFieldsMap.get(CHILD_PLACED_ADOPTION_DATE))) {
             populatedMap.put(ADOPTION_DATE, inputFieldsMap.get(CHILD_PLACED_ADOPTION_DATE));
         }
@@ -370,13 +390,13 @@ public class BulkScanA58ConditionalTransformerService {
         final LinkedTreeMap<String, String> childTwo = new LinkedTreeMap();
         childTwo.put(ADOP_AGENCY_OR_LA_NAME, inputFieldsMap.get(CHILD_PLACED_ADOPTION_AGENCY_NAME));
         childTwo.put(
-            ADOP_AGENCY_OR_LAADDRESS, inputFieldsMap.get(CHILD_PLACED_ADOPTION_AGENCY_ADDRESS));
+                ADOP_AGENCY_OR_LAADDRESS, inputFieldsMap.get(CHILD_PLACED_ADOPTION_AGENCY_ADDRESS));
         childTwo.put(
-            ADOP_AGENCY_OR_LA_CONTACT_NAME,
-            inputFieldsMap.get(CHILD_PLACED_ADOPTION_AGENCY_CONTACT_NAME));
+                ADOP_AGENCY_OR_LA_CONTACT_NAME,
+                inputFieldsMap.get(CHILD_PLACED_ADOPTION_AGENCY_CONTACT_NAME));
         childTwo.put(
-            ADOP_AGENCY_OR_LA_PHONE_NUMBER,
-            inputFieldsMap.get(CHILD_PLACED_ADOPTION_AGENCY_TELEPHONE_NO));
+                ADOP_AGENCY_OR_LA_PHONE_NUMBER,
+                inputFieldsMap.get(CHILD_PLACED_ADOPTION_AGENCY_TELEPHONE_NO));
         childTwo.put(L_AOR_ADOPTION_AGENCY_CATEGORY, CHILD_PLACED_FOR_THE_PURPOSE_OF_ADOPTION);
         linkedTreeMapTwo.put(VALUE, childTwo);
         adoptAgencyOrLaasArrayList.add(linkedTreeMapTwo);

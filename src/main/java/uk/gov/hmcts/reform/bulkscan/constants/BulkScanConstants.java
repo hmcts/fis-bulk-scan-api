@@ -313,7 +313,7 @@ public final class BulkScanConstants {
             "About other orders or proceedings that affect the child";
     public static final String CHILD_TYPE_OF_ORDER_RELATION = "child_typeOfOrderRelation";
     public static final String CHILD_DATE_OF_ORDER_RELATION = "child_dateOfOrderRelation";
-    public static final String CHILD_NAME_OF_COURT_RELATION = " child_nameOfCourtRelation";
+    public static final String CHILD_NAME_OF_COURT_RELATION = "child_nameOfCourtRelation";
     public static final String CHILD_CASE_NUMBER_RELATION = "child_caseNumberRelation";
     public static final String CASES_CONCERNING_A_RELATED_CHILD =
             "Cases concerning a related child";
