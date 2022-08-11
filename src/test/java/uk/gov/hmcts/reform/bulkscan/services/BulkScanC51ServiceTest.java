@@ -6,8 +6,8 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_MOBILE_TELEPHONE_NUMBER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_ERROR_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MISSING_FIELD_MESSAGE;
-import static uk.gov.hmcts.reform.bulkscan.utils.Constants.APPLICANT_1_FIRST_NAME;
-import static uk.gov.hmcts.reform.bulkscan.utils.Constants.APPLICANT_1_LAST_NAME;
+import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.APPLICANT_1_FIRST_NAME;
+import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.APPLICANT_1_LAST_NAME;
 import static uk.gov.hmcts.reform.bulkscan.utils.TestResourceUtil.readFileFrom;
 
 import com.fasterxml.jackson.databind.ObjectMapper;

@@ -20,7 +20,7 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.MIAM_E
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.MIAM_URGENCY_REASON_CHECKLIST;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.NO_MIAM_CHILD_PROTECTION_CONCERNS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.NO_MIAM_CHILD_PROTECTION_CONCERNS_CHECKLIST;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.NO_MIAM_DOMESTIC_VIOLANCE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.NO_MIAM_DOMESTIC_VIOLENCE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.NO_MIAM_DVE_ARRESTED_FOR_SIMILAR_OFFENCE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.NO_MIAM_DVE_COPY_OF_FACT_FINDING;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.NO_MIAM_DVE_COURT_ORDER;
@@ -246,7 +246,7 @@ public class BulkScanC100ConditionalTransformerService {
     private List<MiamExemptionsChecklistEnum> transformMiamExemptionsChecklist(
             Map<String, String> inputFieldsMap) {
         List<MiamExemptionsChecklistEnum> miamExemptionsChecklist = new ArrayList<>();
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_DOMESTIC_VIOLANCE))) {
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_DOMESTIC_VIOLENCE))) {
             miamExemptionsChecklist.add(MiamExemptionsChecklistEnum.domesticViolence);
         }
 
