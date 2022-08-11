@@ -212,6 +212,19 @@ uk:
               - other_case_contact_or_residentOrder_withAdoptioNorder
               - other_case_childMaintenanceOrder
               - other_case_childArrangementOrder
+              - section1RelatingToChildCompleted
+              - section2Section3Section4RelatingToMediationCompleted
+              - section5Section6RelatingToApplicationReasonCompleted
+              - section7RelatingToOtherCourtFullyCompleted
+              - section8Section9Section10FactorsAffectingProceedingsCompleted
+              - section11RelatingToApplicantCompleted
+              - sections12Section13Section14RelatingToRespondentAndOthersNoticeCompleted
+              - section16RelatingToTruthStatementCompleted
+              - printFullName
+              - applicantSolicitorsFirmName
+              - applicantAndApplicantsolicitorSignedDate
+              - position_or_OfficeHeld
+              - courtFeeConsent
               - order_direction_sought
               - urgency_reason
               - application_timetable

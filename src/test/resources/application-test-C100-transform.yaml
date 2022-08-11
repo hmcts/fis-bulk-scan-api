@@ -189,3 +189,16 @@ uk:
                 litigationCapacityFactors: factorAffectingLitigationCapacity
                 litigationCapacityReferrals: assessmentByAdultLearningTeam
                 litigationCapacityOtherFactors: factorsAffectingPersonInCourt
+              checklistSection1Completed: section1RelatingToChildCompleted
+              checklistSection2To4Completed: section2Section3Section4RelatingToMediationCompleted
+              checklistSection5To6Completed: section5Section6RelatingToApplicationReasonCompleted
+              checklistSection7Completed: section7RelatingToOtherCourtFullyCompleted
+              checklistSection8To10Completed: section8Section9Section10FactorsAffectingProceedingsCompleted
+              checklistSection11Completed: section11RelatingToApplicantCompleted
+              checklistSection12To14Completed: sections12Section13Section14RelatingToRespondentAndOthersNoticeCompleted
+              checklistSection16Completed: section16RelatingToTruthStatementCompleted
+              printFullName: printFullName
+              agreedBy: applicantSolicitorsFirmName
+              SignedDate: applicantAndApplicantsolicitorSignedDate
+              positionOrOfficeHeld: position_or_OfficeHeld
+              courtFeeConsent: courtFeeConsent
