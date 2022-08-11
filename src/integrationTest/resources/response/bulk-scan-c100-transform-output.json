@@ -83,7 +83,8 @@
       ],
       "checklistSection8To10Completed": "yes",
       "checklistSection16Completed": "yes",
-      "miamUrgencyReasonChecklist": [
+      "habitualResidentInOtherState":"yes",
+      "miamUrgencyReasonChecklist":[
         "miamUrgencyReasonChecklistEnum_Value_1",
         "miamUrgencyReasonChecklistEnum_Value_2",
         "miamUrgencyReasonChecklistEnum_Value_3",
@@ -163,14 +164,18 @@
       "hearingUrgencyTable": {
         "isCaseUrgent": "yes"
       },
-      "personWhoLivesWithChild": "living other details",
-      "applicationPermissionRequired": "yes",
-      "habitualResidentINotherState": "yes",
-      "parentalResponsibilityDetails": "parentResponsibility",
-      "familyMediatorMiam": null,
-      "isCaseUrgent": "yes",
-      "typeOfApplicationTable": {
-        "applicationPermissionRequired": "yes"
+      "personWhoLivesWithChild":"living other details",
+      "litigationCapacityTable":{
+        "litigationCapacityFactors":"Factors affecting litigation capacity",
+        "litigationCapacityReferrals":"Assessment by adult learning team",
+        "litigationCapacityOtherFactors":"Factors affecting person in court"
+      },
+      "applicationPermissionRequired":"yes",
+      "parentalResponsibilityDetails":"parentResponsibility",
+      "familyMediatorMiam":null,
+      "isCaseUrgent":"yes",
+      "typeOfApplicationTable":{
+        "applicationPermissionRequired":"yes"
       },
       "miamPreviousAttendanceChecklist": "miamPreviousAttendanceChecklistEnum_Value_4",
       "childrenKNownToLocalAuthorityTextArea": "socialWorker",
@@ -197,10 +202,18 @@
         "miamDomesticViolenceChecklistEnum_Value_21",
         "miamDomesticViolenceChecklistEnum_Value_22"
       ],
-      "childrenParentsName": "parentsName",
-      "previousOrOngoingProceedings": "yes",
-      "applicantAttendedMiam": null,
-      "miamChildProtectionConcernList": [
+      "childrenParentsName":"parentsName",
+      "previousOrOngoingProceedings":"yes",
+      "internationalElementTable":{
+        "habitualResidentInOtherState":"yes",
+        "habitualResidentInOtherStateGiveReason":null,
+        "jurisdictionIssue":"Yes",
+        "jurisdictionIssueGiveReason":"International jurisdiction big issue",
+        "requestToForeignAuthority":null,
+        "requestToForeignAuthorityGiveReason":null
+      },
+      "applicantAttendedMiam":null,
+      "miamChildProtectionConcernList":[
         "MIAMChildProtectionConcernChecklistEnum_value_1",
         "MIAMChildProtectionConcernChecklistEnum_value_2"
       ],

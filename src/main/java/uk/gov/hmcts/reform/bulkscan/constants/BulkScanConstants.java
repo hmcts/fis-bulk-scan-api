@@ -27,6 +27,8 @@ public final class BulkScanConstants {
 
     public static final String YES = "Yes";
     public static final String NO = "No";
+    public static final String WILDCARD_DEPENDENT_INPUT = "*";
+
     public static final String VALUE = "value";
 
     public static final String MANDATORY_ATTENDED_MIAM_MESSAGE =
@@ -47,8 +49,7 @@ public final class BulkScanConstants {
             "The following fields are not configured " + "with our system: [%s] ";
 
     public static final String GROUP_DEPENDENCY_MESSAGE =
-            "Group Dependency Field (%s) has "
-                    + "dependency validation warning. Must contain at least %s of the fields [%s].";
+            "Some details are missing in the following section - [%s].";
 
     public static final String XOR_CONDITIONAL_FIELDS_MESSAGE =
             "one field must be present out of %s";
@@ -229,6 +230,10 @@ public final class BulkScanConstants {
     public static final String ADDRESS_NOT_LIVED_FOR_FIVE_YEARS_MESSAGE =
             "(%s) has not lived at the current address for more than 5 years. Previous address(es)"
                     + " field (%s) should not be empty or null.";
+    public static final String PARENT_FIELD_VIOLATION_SHOULD_BE_EMPTY =
+            "Parent field violation - dependent field (%s) should be empty as it requires parent "
+                    + "field (%s) having value (%s).";
+
     // END C100 form section 2 validation fields
 
     // C100 form section 12 validation fields

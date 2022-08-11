@@ -104,7 +104,7 @@ uk:
               - NoMIAM_domesticViolence
               - NoMIAM_childProtectionConcerns
               - NoMIAM_Urgency
-              - NoMIAM_PreviousAttendance
+              - NoMIAM_PreviousAttendence
               - NoMIAM_otherReasons
               - NoMIAM_DVE_arrestedForSimilarOffence
               - NoMIAM_DVE_relevantPoliceCaution
@@ -142,7 +142,7 @@ uk:
               - NoMIAM_urgency_unreasonablehardship
               - NoMIAM_urgency_irretrievableProblem
               - NoMIAM_urgency_conflictWithOtherStateCourts
-              - NoMIAM_PreviousAttendanceReason
+              - NoMIAM_PreviousAttendenceReason
               - parentalResponsibilityDetails
               - respondent1FirstName
               - respondent1LastName
@@ -178,6 +178,15 @@ uk:
               - respondent2EmailAddressDontKnow
               - respondent2LivedAtThisAddressForOverFiveYears
               - respondent2AllAddressesForLastFiveYears
+              - internationalElement_Resident_of_another_state
+              - internationalElement_Resident_of_another_state_details
+              - internationalElement_jurisdictionIssue
+              - withoutNotice_jurisdictionIssue_details
+              - internationalElement_request_toCentral_or_Consular_authority
+              - internationalElement_request_toCentral_or_Consular_authority_details
+              - factorAffectingLitigationCapacity
+              - assessmentByAdultLearningTeam
+              - factorsAffectingPersonInCourt
               - doYouHaveSolicitor
               - your_solicitor_name
               - solicitor_firm_name
