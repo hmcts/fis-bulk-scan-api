@@ -156,11 +156,12 @@ import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.OTHER_PAR
 import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.OTHER_PARENT_RELATIONSHIP_TO_CHILD;
 import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.RELATIONSHIP_FATHER;
 import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.RELATIONSHIP_OTHER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PROCEEDING_DETAILS;
 
 import com.microsoft.applicationinsights.core.dependencies.google.gson.internal.LinkedTreeMap;
-import java.util.ArrayList;
-import java.util.Map;
-import java.util.Optional;
+
+import java.util.*;
+
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
@@ -209,14 +210,50 @@ public class BulkScanA58ConditionalTransformerService {
         buildChildMaintanenceOrder(inputFieldsMap, populatedMap);
         buildChildProceedingDetails(inputFieldsMap, populatedMap);
         buildChildProceedingDetailsWithRelation(inputFieldsMap, populatedMap);
-        buildadopAgencyOrLAs(inputFieldsMap, populatedMap);
-        buildProceedingDetails(inputFieldsMap, populatedMap);
+        //buildadopAgencyOrLAs(inputFieldsMap, populatedMap);
+        populatedMap.put(PROCEEDING_DETAILS, buildProceedingDetails(inputFieldsMap, populatedMap));
+        populatedMap.put(
+            ADOP_AGENCY_OR_L_AS, buildadopAgencyOrLAs(inputFieldsMap, populatedMap));
     }
 
     @SuppressWarnings("unchecked")
-    private void buildProceedingDetails(
+    private List<LinkedTreeMap> buildProceedingDetails(
             Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
-        final ArrayList adoptAgencyOrLaasArrayList = new ArrayList();
+        final List<LinkedTreeMap> adoptAgencyOrLaasArrayList = new ArrayList();
+        buildChildProcesingDetails(inputFieldsMap, populatedMap, adoptAgencyOrLaasArrayList);
+        buildChildProcessingDetailsWithRelationship(inputFieldsMap, populatedMap, adoptAgencyOrLaasArrayList);
+        return adoptAgencyOrLaasArrayList;
+    }
+
+    @SuppressWarnings("unchecked")
+    private void buildChildProcessingDetailsWithRelationship(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap, List<LinkedTreeMap> adoptAgencyOrLaasArrayList) {
+        if (!StringUtils.isEmpty(inputFieldsMap.get(CHILD_NO_PROCEEDING_DETAILS_WITH_RELATION))
+                && TRUE.equalsIgnoreCase(
+            inputFieldsMap.get(CHILD_NO_PROCEEDING_DETAILS_WITH_RELATION))) {
+            populatedMap.put(HAS_PROCEEDING_DETAILS_WITH_RELATION, BooleanUtils.NO);
+        } else if (!StringUtils.isEmpty(inputFieldsMap.get(CHILD_PROCEEDING_DETAILS_WITH_RELATION))
+                && TRUE.equalsIgnoreCase(
+            inputFieldsMap.get(CHILD_PROCEEDING_DETAILS_WITH_RELATION))) {
+            populatedMap.put(HAS_PROCEEDING_DETAILS_WITH_RELATION, BooleanUtils.YES);
+            final LinkedTreeMap<String, LinkedTreeMap> linkedTreeMapTwo = new LinkedTreeMap();
+            final LinkedTreeMap<String, String> childTwo = new LinkedTreeMap();
+            childTwo.put(TYPE_OF_ORDER, inputFieldsMap.get(CHILD_TYPE_OF_ORDER_RELATION));
+            childTwo.put(DATE_OF_ORDER, inputFieldsMap.get(CHILD_DATE_OF_ORDER_RELATION));
+            childTwo.put(NAME_OF_COURT, inputFieldsMap.get(CHILD_NAME_OF_COURT_RELATION));
+            childTwo.put(CASE_NUMBER, inputFieldsMap.get(CHILD_CASE_NUMBER_RELATION));
+            childTwo.put(CASE_TYPE_CATEGORY, CASES_CONCERNING_A_RELATED_CHILD);
+            linkedTreeMapTwo.put(VALUE, childTwo);
+            adoptAgencyOrLaasArrayList.add(linkedTreeMapTwo);
+        } else if (!StringUtils.isEmpty(
+            inputFieldsMap.get(CHILD_DONT_KNOW_PROCEEDING_DETAILS_WITH_RELATION))
+                && TRUE.equalsIgnoreCase(
+            inputFieldsMap.get(CHILD_DONT_KNOW_PROCEEDING_DETAILS_WITH_RELATION))) {
+            populatedMap.put(HAS_PROCEEDING_DETAILS_WITH_RELATION, DONT_KNOW);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    private void buildChildProcesingDetails(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap, List<LinkedTreeMap> adoptAgencyOrLaasArrayList) {
         if (!StringUtils.isEmpty(inputFieldsMap.get(CHILD_NO_PROCEEDING_DETAILS))
                 && TRUE.equalsIgnoreCase(inputFieldsMap.get(CHILD_NO_PROCEEDING_DETAILS))) {
             populatedMap.put(HAS_PROCEEDING_DETAILS, BooleanUtils.NO);
@@ -234,82 +271,57 @@ public class BulkScanA58ConditionalTransformerService {
             linkedTreeMapOne.put(VALUE, childOne);
             adoptAgencyOrLaasArrayList.add(linkedTreeMapOne);
         }
-
-        if (!StringUtils.isEmpty(inputFieldsMap.get(CHILD_NO_PROCEEDING_DETAILS_WITH_RELATION))
-                && TRUE.equalsIgnoreCase(
-                        inputFieldsMap.get(CHILD_NO_PROCEEDING_DETAILS_WITH_RELATION))) {
-            populatedMap.put(HAS_PROCEEDING_DETAILS_WITH_RELATION, BooleanUtils.NO);
-        } else if (!StringUtils.isEmpty(inputFieldsMap.get(CHILD_PROCEEDING_DETAILS_WITH_RELATION))
-                && TRUE.equalsIgnoreCase(
-                        inputFieldsMap.get(CHILD_PROCEEDING_DETAILS_WITH_RELATION))) {
-            populatedMap.put(HAS_PROCEEDING_DETAILS_WITH_RELATION, BooleanUtils.YES);
-            final LinkedTreeMap<String, LinkedTreeMap> linkedTreeMapTwo = new LinkedTreeMap();
-            final LinkedTreeMap<String, String> childTwo = new LinkedTreeMap();
-            childTwo.put(TYPE_OF_ORDER, inputFieldsMap.get(CHILD_TYPE_OF_ORDER_RELATION));
-            childTwo.put(DATE_OF_ORDER, inputFieldsMap.get(CHILD_DATE_OF_ORDER_RELATION));
-            childTwo.put(NAME_OF_COURT, inputFieldsMap.get(CHILD_NAME_OF_COURT_RELATION));
-            childTwo.put(CASE_NUMBER, inputFieldsMap.get(CHILD_CASE_NUMBER_RELATION));
-            childTwo.put(CASE_TYPE_CATEGORY, CASES_CONCERNING_A_RELATED_CHILD);
-            linkedTreeMapTwo.put(VALUE, childTwo);
-            adoptAgencyOrLaasArrayList.add(linkedTreeMapTwo);
-        } else if (!StringUtils.isEmpty(
-                        inputFieldsMap.get(CHILD_DONT_KNOW_PROCEEDING_DETAILS_WITH_RELATION))
-                && TRUE.equalsIgnoreCase(
-                        inputFieldsMap.get(CHILD_DONT_KNOW_PROCEEDING_DETAILS_WITH_RELATION))) {
-            populatedMap.put(HAS_PROCEEDING_DETAILS_WITH_RELATION, DONT_KNOW);
-        }
-
-        populatedMap.put(ADOP_AGENCY_OR_L_AS, adoptAgencyOrLaasArrayList);
     }
 
     @SuppressWarnings("unchecked")
-    private void buildadopAgencyOrLAs(
+    private List buildadopAgencyOrLAs(
             Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
-        final ArrayList adoptAgencyOrLaasArrayList = new ArrayList();
+        final List<LinkedTreeMap> adoptAgencyOrLaasArrayList = new ArrayList();
+        buildChildPlacedAdoptionAgency(inputFieldsMap, populatedMap, adoptAgencyOrLaasArrayList);
+        buildAdoptionAgencyDeatils(inputFieldsMap, populatedMap, adoptAgencyOrLaasArrayList);
+        buildAgencyOrLocalAuthority(inputFieldsMap, adoptAgencyOrLaasArrayList);
+        buildChildLocalAuthorityOrParentalResponsibily(inputFieldsMap, populatedMap, adoptAgencyOrLaasArrayList);
+        return adoptAgencyOrLaasArrayList;
+    }
 
-        if (!StringUtils.isEmpty(inputFieldsMap.get(CHILD_PLACED_ADOPTION_DATE))) {
-            populatedMap.put(ADOPTION_DATE, inputFieldsMap.get(CHILD_PLACED_ADOPTION_DATE));
-        }
-        final LinkedTreeMap<String, LinkedTreeMap> linkedTreeMapTwo = new LinkedTreeMap();
-        final LinkedTreeMap<String, String> childTwo = new LinkedTreeMap();
-        childTwo.put(ADOP_AGENCY_OR_LA_NAME, inputFieldsMap.get(CHILD_PLACED_ADOPTION_AGENCY_NAME));
-        childTwo.put(
-                ADOP_AGENCY_OR_LAADDRESS, inputFieldsMap.get(CHILD_PLACED_ADOPTION_AGENCY_ADDRESS));
-        childTwo.put(
-                ADOP_AGENCY_OR_LA_CONTACT_NAME,
-                inputFieldsMap.get(CHILD_PLACED_ADOPTION_AGENCY_CONTACT_NAME));
-        childTwo.put(
-                ADOP_AGENCY_OR_LA_PHONE_NUMBER,
-                inputFieldsMap.get(CHILD_PLACED_ADOPTION_AGENCY_TELEPHONE_NO));
-        childTwo.put(L_AOR_ADOPTION_AGENCY_CATEGORY, CHILD_PLACED_FOR_THE_PURPOSE_OF_ADOPTION);
-        linkedTreeMapTwo.put(VALUE, childTwo);
-        adoptAgencyOrLaasArrayList.add(linkedTreeMapTwo);
-
-        if (!StringUtils.isEmpty(inputFieldsMap.get(CHILD_IS_ADOPTION_AGENCY_INVOLVED))
-                && TRUE.equalsIgnoreCase(inputFieldsMap.get(CHILD_IS_ADOPTION_AGENCY_INVOLVED))) {
-            populatedMap.put(
-                    "isAdoptionAgencyInvolved",
-                    inputFieldsMap.get(CHILD_IS_ADOPTION_AGENCY_INVOLVED));
-        } else if (!StringUtils.isEmpty(
-                        inputFieldsMap.get(CHILD_IS_ADOPTION_AGENCY_DETAILS_AVAILABLE))
+    @SuppressWarnings("unchecked")
+    private void buildChildLocalAuthorityOrParentalResponsibily(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap, List<LinkedTreeMap> adoptAgencyOrLaasArrayList) {
+        if (!StringUtils.isEmpty(inputFieldsMap.get(CHILD_NO_LA_OR_PARENTAL_RESPONSIBILITY))
                 && TRUE.equalsIgnoreCase(
-                        inputFieldsMap.get(CHILD_IS_ADOPTION_AGENCY_DETAILS_AVAILABLE))) {
-            final LinkedTreeMap<String, LinkedTreeMap> linkedTreeMapThree = new LinkedTreeMap();
-            final LinkedTreeMap<String, String> childThree = new LinkedTreeMap();
-            childThree.put(ADOP_AGENCY_OR_LA_NAME, inputFieldsMap.get(CHILD_ADOPTION_AGENCY_NAME));
-            childThree.put(
-                    ADOP_AGENCY_OR_LAADDRESS, inputFieldsMap.get(CHILD_ADOPTION_AGENCY_ADDRESS));
-            childThree.put(
-                    ADOP_AGENCY_OR_LA_CONTACT_NAME,
-                    inputFieldsMap.get(CHILD_ADOPTION_AGENCY_CONTACT_NAME));
-            childThree.put(
-                    ADOP_AGENCY_OR_LA_PHONE_NUMBER,
-                    inputFieldsMap.get(CHILD_ADOPTION_AGENCY_TELEPHONE_NO));
-            childThree.put(L_AOR_ADOPTION_AGENCY_CATEGORY, INVOLVED_IN_THE_PLACING_OF_THE_CHILD);
-            linkedTreeMapThree.put(VALUE, childThree);
-            adoptAgencyOrLaasArrayList.add(linkedTreeMapThree);
+            inputFieldsMap.get(CHILD_NO_LA_OR_PARENTAL_RESPONSIBILITY))) {
+            populatedMap.put(LA_OR_PARENTAL_RESPONSIBILITY, BooleanUtils.YES);
+        } else if (!StringUtils.isEmpty(inputFieldsMap.get(CHILD_NO_LA_OR_PARENTAL_RESPONSIBILITY))
+                && FALSE.equalsIgnoreCase(
+            inputFieldsMap.get(CHILD_NO_LA_OR_PARENTAL_RESPONSIBILITY))) {
+            populatedMap.put(LA_OR_PARENTAL_RESPONSIBILITY, BooleanUtils.NO);
+        } else if (!StringUtils.isEmpty(
+            inputFieldsMap.get(CHILD_LA_OR_PARENTAL_RESPONSIBILITY_DETAILS))
+                && TRUE.equalsIgnoreCase(
+            inputFieldsMap.get(CHILD_LA_OR_PARENTAL_RESPONSIBILITY_DETAILS))) {
+            final LinkedTreeMap<String, LinkedTreeMap> linkedTreeMapFour = new LinkedTreeMap();
+            final LinkedTreeMap<String, String> childFour = new LinkedTreeMap();
+            childFour.put(ADOP_AGENCY_OR_LA_NAME, inputFieldsMap.get(CHILD_LA_OR_PARENTAL_NAME));
+            childFour.put(
+                ADOP_AGENCY_OR_LAADDRESS, inputFieldsMap.get(CHILD_LA_OR_PARENTAL_ADDRESS));
+            childFour.put(
+                ADOP_AGENCY_OR_LA_CONTACT_NAME,
+                inputFieldsMap.get(CHILD_LA_OR_PARENTAL_CONTACT_NAME));
+            childFour.put(
+                ADOP_AGENCY_OR_LA_PHONE_NUMBER,
+                inputFieldsMap.get(CHILD_LA_OR_PARENTAL_TELEPHONE_NO));
+            childFour.put(
+                ADOP_AGENCY_OR_LA_CONTACT_EMAIL,
+                inputFieldsMap.get(CHILD_LA_OR_PARENTAL_EMAIL));
+            childFour.put(
+                    L_AOR_ADOPTION_AGENCY_CATEGORY,
+                    LOCAL_AUTHORITY_HAS_PARENTAL_RESPONSIBILITY_OF_THE_CHILD);
+            linkedTreeMapFour.put(VALUE, childFour);
+            adoptAgencyOrLaasArrayList.add(linkedTreeMapFour);
         }
+    }
 
+    @SuppressWarnings("unchecked")
+    private void buildAgencyOrLocalAuthority(Map<String, String> inputFieldsMap, List<LinkedTreeMap> adoptAgencyOrLaasArrayList) {
         final LinkedTreeMap<String, LinkedTreeMap> linkedTreeMapOne = new LinkedTreeMap();
         final LinkedTreeMap<String, String> childOne = new LinkedTreeMap();
         childOne.put(ADOP_AGENCY_OR_LA_NAME, inputFieldsMap.get(CHILD_LA_NAME));
@@ -319,41 +331,55 @@ public class BulkScanA58ConditionalTransformerService {
         childOne.put(L_AOR_ADOPTION_AGENCY_CATEGORY, NOTIFY_LOCAL_AUTHORITY_INTENTION_OF_ADOPTION);
         linkedTreeMapOne.put(VALUE, childOne);
         adoptAgencyOrLaasArrayList.add(linkedTreeMapOne);
+    }
 
-        if (!StringUtils.isEmpty(inputFieldsMap.get(CHILD_NO_LA_OR_PARENTAL_RESPONSIBILITY))
-                && TRUE.equalsIgnoreCase(
-                        inputFieldsMap.get(CHILD_NO_LA_OR_PARENTAL_RESPONSIBILITY))) {
-            populatedMap.put(LA_OR_PARENTAL_RESPONSIBILITY, BooleanUtils.YES);
-        } else if (!StringUtils.isEmpty(inputFieldsMap.get(CHILD_NO_LA_OR_PARENTAL_RESPONSIBILITY))
-                && FALSE.equalsIgnoreCase(
-                        inputFieldsMap.get(CHILD_NO_LA_OR_PARENTAL_RESPONSIBILITY))) {
-            populatedMap.put(LA_OR_PARENTAL_RESPONSIBILITY, BooleanUtils.NO);
+    @SuppressWarnings("unchecked")
+    private void buildAdoptionAgencyDeatils(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap, List<LinkedTreeMap> adoptAgencyOrLaasArrayList) {
+        if (!StringUtils.isEmpty(inputFieldsMap.get(CHILD_IS_ADOPTION_AGENCY_INVOLVED))
+                && TRUE.equalsIgnoreCase(inputFieldsMap.get(CHILD_IS_ADOPTION_AGENCY_INVOLVED))) {
+            populatedMap.put(
+                "isAdoptionAgencyInvolved",
+                inputFieldsMap.get(CHILD_IS_ADOPTION_AGENCY_INVOLVED));
         } else if (!StringUtils.isEmpty(
-                        inputFieldsMap.get(CHILD_LA_OR_PARENTAL_RESPONSIBILITY_DETAILS))
+            inputFieldsMap.get(CHILD_IS_ADOPTION_AGENCY_DETAILS_AVAILABLE))
                 && TRUE.equalsIgnoreCase(
-                        inputFieldsMap.get(CHILD_LA_OR_PARENTAL_RESPONSIBILITY_DETAILS))) {
-            final LinkedTreeMap<String, LinkedTreeMap> linkedTreeMapFour = new LinkedTreeMap();
-            final LinkedTreeMap<String, String> childFour = new LinkedTreeMap();
-            childFour.put(ADOP_AGENCY_OR_LA_NAME, inputFieldsMap.get(CHILD_LA_OR_PARENTAL_NAME));
-            childFour.put(
-                    ADOP_AGENCY_OR_LAADDRESS, inputFieldsMap.get(CHILD_LA_OR_PARENTAL_ADDRESS));
-            childFour.put(
-                    ADOP_AGENCY_OR_LA_CONTACT_NAME,
-                    inputFieldsMap.get(CHILD_LA_OR_PARENTAL_CONTACT_NAME));
-            childFour.put(
-                    ADOP_AGENCY_OR_LA_PHONE_NUMBER,
-                    inputFieldsMap.get(CHILD_LA_OR_PARENTAL_TELEPHONE_NO));
-            childFour.put(
-                    ADOP_AGENCY_OR_LA_CONTACT_EMAIL,
-                    inputFieldsMap.get(CHILD_LA_OR_PARENTAL_EMAIL));
-            childFour.put(
-                    L_AOR_ADOPTION_AGENCY_CATEGORY,
-                    LOCAL_AUTHORITY_HAS_PARENTAL_RESPONSIBILITY_OF_THE_CHILD);
-            linkedTreeMapFour.put(VALUE, childFour);
-            adoptAgencyOrLaasArrayList.add(linkedTreeMapFour);
+            inputFieldsMap.get(CHILD_IS_ADOPTION_AGENCY_DETAILS_AVAILABLE))) {
+            final LinkedTreeMap<String, LinkedTreeMap> linkedTreeMapThree = new LinkedTreeMap();
+            final LinkedTreeMap<String, String> childThree = new LinkedTreeMap();
+            childThree.put(ADOP_AGENCY_OR_LA_NAME, inputFieldsMap.get(CHILD_ADOPTION_AGENCY_NAME));
+            childThree.put(
+                ADOP_AGENCY_OR_LAADDRESS, inputFieldsMap.get(CHILD_ADOPTION_AGENCY_ADDRESS));
+            childThree.put(
+                ADOP_AGENCY_OR_LA_CONTACT_NAME,
+                inputFieldsMap.get(CHILD_ADOPTION_AGENCY_CONTACT_NAME));
+            childThree.put(
+                ADOP_AGENCY_OR_LA_PHONE_NUMBER,
+                inputFieldsMap.get(CHILD_ADOPTION_AGENCY_TELEPHONE_NO));
+            childThree.put(L_AOR_ADOPTION_AGENCY_CATEGORY, INVOLVED_IN_THE_PLACING_OF_THE_CHILD);
+            linkedTreeMapThree.put(VALUE, childThree);
+            adoptAgencyOrLaasArrayList.add(linkedTreeMapThree);
         }
+    }
 
-        populatedMap.put(ADOP_AGENCY_OR_L_AS, adoptAgencyOrLaasArrayList);
+    @SuppressWarnings("unchecked")
+    private void buildChildPlacedAdoptionAgency(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap, List<LinkedTreeMap> adoptAgencyOrLaasArrayList) {
+        if (!StringUtils.isEmpty(inputFieldsMap.get(CHILD_PLACED_ADOPTION_DATE))) {
+            populatedMap.put(ADOPTION_DATE, inputFieldsMap.get(CHILD_PLACED_ADOPTION_DATE));
+        }
+        final LinkedTreeMap<String, LinkedTreeMap> linkedTreeMapTwo = new LinkedTreeMap();
+        final LinkedTreeMap<String, String> childTwo = new LinkedTreeMap();
+        childTwo.put(ADOP_AGENCY_OR_LA_NAME, inputFieldsMap.get(CHILD_PLACED_ADOPTION_AGENCY_NAME));
+        childTwo.put(
+            ADOP_AGENCY_OR_LAADDRESS, inputFieldsMap.get(CHILD_PLACED_ADOPTION_AGENCY_ADDRESS));
+        childTwo.put(
+            ADOP_AGENCY_OR_LA_CONTACT_NAME,
+            inputFieldsMap.get(CHILD_PLACED_ADOPTION_AGENCY_CONTACT_NAME));
+        childTwo.put(
+            ADOP_AGENCY_OR_LA_PHONE_NUMBER,
+            inputFieldsMap.get(CHILD_PLACED_ADOPTION_AGENCY_TELEPHONE_NO));
+        childTwo.put(L_AOR_ADOPTION_AGENCY_CATEGORY, CHILD_PLACED_FOR_THE_PURPOSE_OF_ADOPTION);
+        linkedTreeMapTwo.put(VALUE, childTwo);
+        adoptAgencyOrLaasArrayList.add(linkedTreeMapTwo);
     }
 
     public void buildCourtInformation(

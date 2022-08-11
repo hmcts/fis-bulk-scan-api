@@ -235,6 +235,58 @@
     {
       "name": "child_placmentOrderByEnglandAndWalesDateOfOrder",
       "value": "asdfsdf"
+    },
+    {
+      "name": "child_placedAdoptionDate",
+      "value": "01/01/2022"
+    },
+    {
+      "name": "child_placedAdoptionAgencyName",
+      "value": "HMCTS"
+    },
+    {
+      "name": "child_placedAdoptionAgencyAddress",
+      "value": "London"
+    },
+    {
+      "name": "child_placedAdoptionAgencyContactName",
+      "value": "HMCTS contact"
+    },
+    {
+      "name": "child_placedAdoptionAgencyTelephoneNo",
+      "value": "07070707007"
+    },
+    {
+      "name": "child_isAdoptionAgencyDetailsAvailable",
+      "value": "true"
+    },
+    {
+      "name": "child_adoptionAgencyName",
+      "value": "child_adoptionAgencyName"
+    },
+    {
+      "name": "child_adoptionAgencyAddress",
+      "value": "child_adoptionAgencyAddress"
+    },
+    {
+      "name": "child_adoptionAgencyContactName",
+      "value": "child_adoptionAgencyTelephoneNo"
+    },
+    {
+      "name": "child_laName",
+      "value": ""
+    },
+    {
+      "name": "child_laAddress",
+      "value": "child_laAddress"
+    },
+    {
+      "name": "child_laTelephoneNo",
+      "value": "child_laTelephoneNo"
+    },
+    {
+      "name": "child_laEmail",
+      "value": "child_laEmail"
     }
   ],
   "form_type": "A58"
