@@ -81,6 +81,8 @@
         "prohibitedStepsOrder",
         "specificIssueOrder"
       ],
+      "checklistSection8To10Completed": "yes",
+      "checklistSection16Completed": "yes",
       "miamUrgencyReasonChecklist": [
         "miamUrgencyReasonChecklistEnum_Value_1",
         "miamUrgencyReasonChecklistEnum_Value_2",
@@ -103,6 +105,7 @@
           }
         }
       ],
+      "checklistSection2To4Completed": "yes",
       "miamExemptionsChecklist": [
         "domesticViolence",
         "childProtectionConcern",
@@ -156,6 +159,7 @@
           }
         }
       ],
+      "agreedBy": "Burns, Burns and Burns",
       "hearingUrgencyTable": {
         "isCaseUrgent": "yes"
       },
@@ -272,11 +276,20 @@
         "allegationsOfHarmSubstanceAbuseYesNo": "yes",
         "allegationsOfHarmOtherConcernsYesNo": "yes"
       },
+      "checklistSection11Completed": "yes",
+      "positionOrOfficeHeld": "Manager",
+      "SignedDate": "08/08/21",
       "applicationPermissionRequiredReason": "reason",
       "childrenOfSameParent": "Yes",
       "childLiveWith": "Applicant",
       "consentOrder": "yes",
+      "checklistSection12To14Completed": "yes",
+      "checklistSection5To6Completed": "yes",
       "claimingExemptionMiam": "yes",
+      "courtFeeConsent": "yes",
+      "printFullName": "Ronny Drew",
+      "checklistSection7Completed": "yes",
+      "checklistSection1Completed": "yes",
       "welshLanguageRequirement": "yes",
       "childParentsNameCollection": "parentsNameColl"
     }
