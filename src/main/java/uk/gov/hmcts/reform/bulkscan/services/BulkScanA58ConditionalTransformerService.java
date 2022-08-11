@@ -3,6 +3,14 @@ package uk.gov.hmcts.reform.bulkscan.services;
 import static com.microsoft.applicationinsights.core.dependencies.apachecommons.lang3.StringUtils.isNotEmpty;
 import static org.apache.commons.lang3.BooleanUtils.FALSE;
 import static org.apache.commons.lang3.BooleanUtils.TRUE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ABOUT_OTHER_ORDERS_OR_PROCEEDINGS_THAT_AFFECT_THE_CHILD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ADOPTION_DATE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ADOP_AGENCY_OR_LAADDRESS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ADOP_AGENCY_OR_LA_CONTACT_EMAIL;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ADOP_AGENCY_OR_LA_CONTACT_NAME;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ADOP_AGENCY_OR_LA_NAME;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ADOP_AGENCY_OR_LA_PHONE_NUMBER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ADOP_AGENCY_OR_L_AS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ANY_OTHER_ORDERS_AVAILABLE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT1_SOT_DAY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT1_SOT_MONTH;
@@ -29,7 +37,18 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_RELATION_TO_CHILD_NON_CIVIL_PARTNER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_REQUIRE_INTERPRETER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_REQUIRE_INTERPRETER_CCD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CASES_CONCERNING_A_RELATED_CHILD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CASE_NUMBER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CASE_TYPE_CATEGORY;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_ADOPTION_AGENCY_ADDRESS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_ADOPTION_AGENCY_CONTACT_NAME;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_ADOPTION_AGENCY_NAME;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_ADOPTION_AGENCY_TELEPHONE_NO;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_CASE_NUMBER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_CASE_NUMBER_RELATION;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_COURT_AND_DATE_OF_ORDER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_DATE_OF_ORDER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_DATE_OF_ORDER_RELATION;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_DONT_KNOW_PROCEEDING_DETAILS_WITH_RELATION;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_FREEING_ORDER_BY_ENGLAND_AND_WALES_CASE_NUMBER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_FREEING_ORDER_BY_ENGLAND_AND_WALES_COURT;
@@ -41,7 +60,21 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_FRE
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_FREEING_ORDER_BY_NORTHERN_IRELAND_COURT_NAME;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_FREEING_ORDER_BY_NORTHERN_IRELAND_DATE_OF_ORDER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_FREEING_ORDER_BY_NORTHERN_IRELAND_TYPE_OF_ORDER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_IS_ADOPTION_AGENCY_DETAILS_AVAILABLE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_IS_ADOPTION_AGENCY_INVOLVED;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LA_ADDRESS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LA_CONTACT_NAME;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LA_NAME;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LA_OR_PARENTAL_ADDRESS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LA_OR_PARENTAL_CONTACT_NAME;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LA_OR_PARENTAL_EMAIL;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LA_OR_PARENTAL_NAME;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LA_OR_PARENTAL_RESPONSIBILITY_DETAILS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LA_OR_PARENTAL_TELEPHONE_NO;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LA_TELEPHONE_NO;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_MAINTANENCE_ORDER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_NAME_OF_COURT;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_NAME_OF_COURT_RELATION;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_NO_LA_OR_PARENTAL_RESPONSIBILITY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_NO_MAINTANENCE_ORDER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_NO_ORDER_AVAILABLE;
@@ -52,6 +85,12 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_PER
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_PERMANENCE_ORDER_BY_SCOTLAND_COURT_NAME;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_PERMANENCE_ORDER_BY_SCOTLAND_DATE_OF_ORDER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_PERMANENCE_ORDER_BY_SCOTLAND_TYPE_OF_ORDER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_PLACED_ADOPTION_AGENCY_ADDRESS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_PLACED_ADOPTION_AGENCY_CONTACT_NAME;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_PLACED_ADOPTION_AGENCY_NAME;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_PLACED_ADOPTION_AGENCY_TELEPHONE_NO;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_PLACED_ADOPTION_DATE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_PLACED_FOR_THE_PURPOSE_OF_ADOPTION;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_PLACEMENT_ORDER_BY_ENGLAND_AND_WALES_COURT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_PLACMENT_ORDER_BY_ENGLAND_AND_WALES_CASE_NUMBER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_PLACMENT_ORDER_BY_ENGLAND_AND_WALES_COURT_NAME;
@@ -59,6 +98,8 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_PLA
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_PLACMENT_ORDER_BY_ENGLAND_AND_WALES_TYPE_OF_ORDER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_PROCEEDING_DETAILS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_PROCEEDING_DETAILS_WITH_RELATION;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_TYPE_OF_ORDER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_TYPE_OF_ORDER_RELATION;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_WELSH_LANGUAGE_PREFERENCE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_WELSH_LANGUAGE_PREFERENCE_CCD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.COURT_INTERPRETER_ASSISTANCE_LANGUAGE;
@@ -73,9 +114,13 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FREEING_O
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.HAS_MAINTANENCE_ORDER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.HAS_PROCEEDING_DETAILS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.HAS_PROCEEDING_DETAILS_WITH_RELATION;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.INVOLVED_IN_THE_PLACING_OF_THE_CHILD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.LA_OR_PARENTAL_RESPONSIBILITY;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.LOCAL_AUTHORITY_HAS_PARENTAL_RESPONSIBILITY_OF_THE_CHILD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.L_AOR_ADOPTION_AGENCY_CATEGORY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MAINTANENCE_ORDER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NAME_OF_COURT;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NOTIFY_LOCAL_AUTHORITY_INTENTION_OF_ADOPTION;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.OTHER_PARTY_NAME;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.OTHER_PARTY_NAME_CCD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.OTHER_PARTY_REQUIRE_INTERPRETER;
@@ -92,6 +137,8 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.SLASH_DEL
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.SPECIAL_ASSISTANCE_FACILITIES;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.SPECIAL_ASSISTANCE_FACILITIES_CCD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.SPECIAL_ASSISTANCE_FACILITIES_REQUIRED;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.TYPE_OF_ORDER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.VALUE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.WELSH_PREFERENCE_CHILD_NAME;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.WELSH_PREFERENCE_CHILD_NAME_CCD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.WELSH_PREFERENCE_PARTY_NAME;
@@ -111,14 +158,12 @@ import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.RELATIONS
 import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.RELATIONSHIP_OTHER;
 
 import com.microsoft.applicationinsights.core.dependencies.google.gson.internal.LinkedTreeMap;
-
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Optional;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
-import uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants;
 import uk.gov.hmcts.reform.bulkscan.enums.MaritalStatusEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.RelationToChildEnum;
 
@@ -168,119 +213,147 @@ public class BulkScanA58ConditionalTransformerService {
         buildProceedingDetails(inputFieldsMap, populatedMap);
     }
 
-    private void buildProceedingDetails(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
-        String child_noProceedingDetails = inputFieldsMap.get("child_noProceedingDetails");
-        String child_proceedingDetails = inputFieldsMap.get("child_proceedingDetails");
-        if(!StringUtils.isEmpty(child_noProceedingDetails)
-            && TRUE.equalsIgnoreCase(child_noProceedingDetails)) {
-            populatedMap.put("hasProceedingDetails", BooleanUtils.NO);
-        } else if(!StringUtils.isEmpty(child_proceedingDetails)
-            && TRUE.equalsIgnoreCase(child_proceedingDetails)) {
-            populatedMap.put("hasProceedingDetails", BooleanUtils.YES);
+    @SuppressWarnings("unchecked")
+    private void buildProceedingDetails(
+            Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
+        final ArrayList adoptAgencyOrLaasArrayList = new ArrayList();
+        if (!StringUtils.isEmpty(inputFieldsMap.get(CHILD_NO_PROCEEDING_DETAILS))
+                && TRUE.equalsIgnoreCase(inputFieldsMap.get(CHILD_NO_PROCEEDING_DETAILS))) {
+            populatedMap.put(HAS_PROCEEDING_DETAILS, BooleanUtils.NO);
+        } else if (!StringUtils.isEmpty(inputFieldsMap.get(CHILD_PROCEEDING_DETAILS))
+                && TRUE.equalsIgnoreCase(inputFieldsMap.get(CHILD_PROCEEDING_DETAILS))) {
+            populatedMap.put(HAS_PROCEEDING_DETAILS, BooleanUtils.YES);
+            final LinkedTreeMap<String, LinkedTreeMap> linkedTreeMapOne = new LinkedTreeMap<>();
+            final LinkedTreeMap<String, String> childOne = new LinkedTreeMap();
+            childOne.put(TYPE_OF_ORDER, inputFieldsMap.get(CHILD_TYPE_OF_ORDER));
+            childOne.put(DATE_OF_ORDER, inputFieldsMap.get(CHILD_DATE_OF_ORDER));
+            childOne.put(NAME_OF_COURT, inputFieldsMap.get(CHILD_NAME_OF_COURT));
+            childOne.put(CASE_NUMBER, inputFieldsMap.get(CHILD_CASE_NUMBER));
+            childOne.put(
+                    CASE_TYPE_CATEGORY, ABOUT_OTHER_ORDERS_OR_PROCEEDINGS_THAT_AFFECT_THE_CHILD);
+            linkedTreeMapOne.put(VALUE, childOne);
+            adoptAgencyOrLaasArrayList.add(linkedTreeMapOne);
         }
 
-        LinkedTreeMap<String, LinkedTreeMap> linkedTreeMapOne = new LinkedTreeMap<>();
-        LinkedTreeMap<String, String> childOne = new LinkedTreeMap();
-        childOne.put("typeOfOrder", inputFieldsMap.get("child_typeOfOrder"));
-        childOne.put("dateOfOrder", inputFieldsMap.get("child_dateOfOrder"));
-        childOne.put("nameOfCourt", inputFieldsMap.get(" child_nameOfCourt"));
-        childOne.put("caseNumber", inputFieldsMap.get("child_caseNumber"));
-        childOne.put("caseTypeCategory ", "About other orders or proceedings that affect the child");
-        linkedTreeMapOne.put("value", childOne);
-
-        String child_noProceedingDetailsWithRelation = inputFieldsMap.get("child_noProceedingDetailsWithRelation");
-        String child_proceedingDetailsWithRelation = inputFieldsMap.get("child_proceedingDetailsWithRelation");
-        String child_dontKnowProceedingDetailsWithRelation = inputFieldsMap.get("child_dontKnowProceedingDetailsWithRelation");
-        if(!StringUtils.isEmpty(child_noProceedingDetailsWithRelation)
-            && TRUE.equalsIgnoreCase(child_noProceedingDetailsWithRelation)) {
-            populatedMap.put("hasProceedingDetailsWithRelation", BooleanUtils.NO);
-        } else if(!StringUtils.isEmpty(child_proceedingDetailsWithRelation)
-            && TRUE.equalsIgnoreCase(child_proceedingDetailsWithRelation)) {
-            populatedMap.put("hasProceedingDetailsWithRelation", BooleanUtils.YES);
-        } else if(!StringUtils.isEmpty(child_dontKnowProceedingDetailsWithRelation)
-            && TRUE.equalsIgnoreCase(child_dontKnowProceedingDetailsWithRelation)) {
-            populatedMap.put("hasProceedingDetailsWithRelation", "DontKnow");
+        if (!StringUtils.isEmpty(inputFieldsMap.get(CHILD_NO_PROCEEDING_DETAILS_WITH_RELATION))
+                && TRUE.equalsIgnoreCase(
+                        inputFieldsMap.get(CHILD_NO_PROCEEDING_DETAILS_WITH_RELATION))) {
+            populatedMap.put(HAS_PROCEEDING_DETAILS_WITH_RELATION, BooleanUtils.NO);
+        } else if (!StringUtils.isEmpty(inputFieldsMap.get(CHILD_PROCEEDING_DETAILS_WITH_RELATION))
+                && TRUE.equalsIgnoreCase(
+                        inputFieldsMap.get(CHILD_PROCEEDING_DETAILS_WITH_RELATION))) {
+            populatedMap.put(HAS_PROCEEDING_DETAILS_WITH_RELATION, BooleanUtils.YES);
+            final LinkedTreeMap<String, LinkedTreeMap> linkedTreeMapTwo = new LinkedTreeMap();
+            final LinkedTreeMap<String, String> childTwo = new LinkedTreeMap();
+            childTwo.put(TYPE_OF_ORDER, inputFieldsMap.get(CHILD_TYPE_OF_ORDER_RELATION));
+            childTwo.put(DATE_OF_ORDER, inputFieldsMap.get(CHILD_DATE_OF_ORDER_RELATION));
+            childTwo.put(NAME_OF_COURT, inputFieldsMap.get(CHILD_NAME_OF_COURT_RELATION));
+            childTwo.put(CASE_NUMBER, inputFieldsMap.get(CHILD_CASE_NUMBER_RELATION));
+            childTwo.put(CASE_TYPE_CATEGORY, CASES_CONCERNING_A_RELATED_CHILD);
+            linkedTreeMapTwo.put(VALUE, childTwo);
+            adoptAgencyOrLaasArrayList.add(linkedTreeMapTwo);
+        } else if (!StringUtils.isEmpty(
+                        inputFieldsMap.get(CHILD_DONT_KNOW_PROCEEDING_DETAILS_WITH_RELATION))
+                && TRUE.equalsIgnoreCase(
+                        inputFieldsMap.get(CHILD_DONT_KNOW_PROCEEDING_DETAILS_WITH_RELATION))) {
+            populatedMap.put(HAS_PROCEEDING_DETAILS_WITH_RELATION, DONT_KNOW);
         }
-        populatedMap.put("hasProceedingDetailsWithRelation", inputFieldsMap.get("hasProceedingDetails"));
 
-        LinkedTreeMap<String, LinkedTreeMap> linkedTreeMapTwo = new LinkedTreeMap();
-        LinkedTreeMap<String, String> childTwo = new LinkedTreeMap();
-        childTwo.put("typeOfOrder", inputFieldsMap.get("child_typeOfOrderRelation"));
-        childTwo.put("dateOfOrder", inputFieldsMap.get("child_dateOfOrderRelation"));
-        childTwo.put("nameOfCourt", inputFieldsMap.get(" child_nameOfCourtRelation"));
-        childTwo.put("caseNumber", inputFieldsMap.get("child_caseNumberRelation"));
-        childTwo.put("caseTypeCategory ", "Cases concerning a related child");
-        linkedTreeMapTwo.put("value", childTwo);
-
-        ArrayList adoptAgencyOrLAAsArrayList = new ArrayList();
-        adoptAgencyOrLAAsArrayList.add(linkedTreeMapOne);
-        adoptAgencyOrLAAsArrayList.add(linkedTreeMapTwo);
-
-        populatedMap.put("adopAgencyOrLAs", adoptAgencyOrLAAsArrayList);
+        populatedMap.put(ADOP_AGENCY_OR_L_AS, adoptAgencyOrLaasArrayList);
     }
 
     @SuppressWarnings("unchecked")
-    private void buildadopAgencyOrLAs(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
-        if(!StringUtils.isEmpty(inputFieldsMap.get("child_placedAdoptionDate"))) {
-            populatedMap.put("adoptionDate", inputFieldsMap.get("child_placedAdoptionDate"));
+    private void buildadopAgencyOrLAs(
+            Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
+        final ArrayList adoptAgencyOrLaasArrayList = new ArrayList();
+
+        if (!StringUtils.isEmpty(inputFieldsMap.get(CHILD_PLACED_ADOPTION_DATE))) {
+            populatedMap.put(ADOPTION_DATE, inputFieldsMap.get(CHILD_PLACED_ADOPTION_DATE));
         }
-        LinkedTreeMap<String, LinkedTreeMap> linkedTreeMapTwo = new LinkedTreeMap();
-        LinkedTreeMap<String, String> childTwo = new LinkedTreeMap();
-        childTwo.put("adopAgencyOrLaName", inputFieldsMap.get("child_placedAdoptionAgencyName"));
-        childTwo.put("adopAgencyOrLaaddress", inputFieldsMap.get("child_placedAdoptionAgencyAddress"));
-        childTwo.put("adopAgencyOrLaContactName", inputFieldsMap.get("child_placedAdoptionAgencyContactName"));
-        childTwo.put("adopAgencyOrLaPhoneNumber", inputFieldsMap.get("child_placedAdoptionAgencyTelephoneNo"));
-        childTwo.put("LAorAdoptionAgencyCategory", "Involved in the placing of the child");
-        linkedTreeMapTwo.put("value", childTwo);
+        final LinkedTreeMap<String, LinkedTreeMap> linkedTreeMapTwo = new LinkedTreeMap();
+        final LinkedTreeMap<String, String> childTwo = new LinkedTreeMap();
+        childTwo.put(ADOP_AGENCY_OR_LA_NAME, inputFieldsMap.get(CHILD_PLACED_ADOPTION_AGENCY_NAME));
+        childTwo.put(
+                ADOP_AGENCY_OR_LAADDRESS, inputFieldsMap.get(CHILD_PLACED_ADOPTION_AGENCY_ADDRESS));
+        childTwo.put(
+                ADOP_AGENCY_OR_LA_CONTACT_NAME,
+                inputFieldsMap.get(CHILD_PLACED_ADOPTION_AGENCY_CONTACT_NAME));
+        childTwo.put(
+                ADOP_AGENCY_OR_LA_PHONE_NUMBER,
+                inputFieldsMap.get(CHILD_PLACED_ADOPTION_AGENCY_TELEPHONE_NO));
+        childTwo.put(L_AOR_ADOPTION_AGENCY_CATEGORY, CHILD_PLACED_FOR_THE_PURPOSE_OF_ADOPTION);
+        linkedTreeMapTwo.put(VALUE, childTwo);
+        adoptAgencyOrLaasArrayList.add(linkedTreeMapTwo);
 
-        if(!StringUtils.isEmpty("child_isAdoptionAgencyInvolved")
-            && TRUE.equalsIgnoreCase("child_isAdoptionAgencyInvolved")) {
-            populatedMap.put("isAdoptionAgencyInvolved", inputFieldsMap.get("child_isAdoptionAgencyInvolved"));
+        if (!StringUtils.isEmpty(inputFieldsMap.get(CHILD_IS_ADOPTION_AGENCY_INVOLVED))
+                && TRUE.equalsIgnoreCase(inputFieldsMap.get(CHILD_IS_ADOPTION_AGENCY_INVOLVED))) {
+            populatedMap.put(
+                    "isAdoptionAgencyInvolved",
+                    inputFieldsMap.get(CHILD_IS_ADOPTION_AGENCY_INVOLVED));
+        } else if (!StringUtils.isEmpty(
+                        inputFieldsMap.get(CHILD_IS_ADOPTION_AGENCY_DETAILS_AVAILABLE))
+                && TRUE.equalsIgnoreCase(
+                        inputFieldsMap.get(CHILD_IS_ADOPTION_AGENCY_DETAILS_AVAILABLE))) {
+            final LinkedTreeMap<String, LinkedTreeMap> linkedTreeMapThree = new LinkedTreeMap();
+            final LinkedTreeMap<String, String> childThree = new LinkedTreeMap();
+            childThree.put(ADOP_AGENCY_OR_LA_NAME, inputFieldsMap.get(CHILD_ADOPTION_AGENCY_NAME));
+            childThree.put(
+                    ADOP_AGENCY_OR_LAADDRESS, inputFieldsMap.get(CHILD_ADOPTION_AGENCY_ADDRESS));
+            childThree.put(
+                    ADOP_AGENCY_OR_LA_CONTACT_NAME,
+                    inputFieldsMap.get(CHILD_ADOPTION_AGENCY_CONTACT_NAME));
+            childThree.put(
+                    ADOP_AGENCY_OR_LA_PHONE_NUMBER,
+                    inputFieldsMap.get(CHILD_ADOPTION_AGENCY_TELEPHONE_NO));
+            childThree.put(L_AOR_ADOPTION_AGENCY_CATEGORY, INVOLVED_IN_THE_PLACING_OF_THE_CHILD);
+            linkedTreeMapThree.put(VALUE, childThree);
+            adoptAgencyOrLaasArrayList.add(linkedTreeMapThree);
         }
-        populatedMap.put("hasProceedingDetailsWithRelation", inputFieldsMap.get("hasProceedingDetails"));
-        LinkedTreeMap<String, LinkedTreeMap> linkedTreeMapThree = new LinkedTreeMap();
-        LinkedTreeMap<String, String> childThree = new LinkedTreeMap();
-        childThree.put("adopAgencyOrLaName", inputFieldsMap.get("child_adoptionAgencyName"));
-        childThree.put("adopAgencyOrLaaddress", inputFieldsMap.get("child_adoptionAgencyAddress"));
-        childThree.put("adopAgencyOrLaContactName", inputFieldsMap.get("child_adoptionAgencyContactName"));
-        childThree.put("adopAgencyOrLaPhoneNumber", inputFieldsMap.get("child_adoptionAgencyTelephoneNo"));
-        childThree.put("LAorAdoptionAgencyCategory", "Involved in the placing of the child");
-        linkedTreeMapThree.put("value", childThree);
 
-        LinkedTreeMap<String, LinkedTreeMap> linkedTreeMapOne = new LinkedTreeMap();
-        LinkedTreeMap<String, String> childOne = new LinkedTreeMap();
-        childOne.put("adopAgencyOrLaName", inputFieldsMap.get("child_laName"));
-        childOne.put("adopAgencyOrLaaddress", inputFieldsMap.get("child_laAddress"));
-        childOne.put("adopAgencyOrLaContactName", inputFieldsMap.get("child_laContactName"));
-        childOne.put("adopAgencyOrLaPhoneNumber", inputFieldsMap.get("child_laTelephoneNo"));
-        childOne.put("LAorAdoptionAgencyCategory", "Notify Local Authority intention of Adoption");
-        linkedTreeMapOne.put("value", childOne);
+        final LinkedTreeMap<String, LinkedTreeMap> linkedTreeMapOne = new LinkedTreeMap();
+        final LinkedTreeMap<String, String> childOne = new LinkedTreeMap();
+        childOne.put(ADOP_AGENCY_OR_LA_NAME, inputFieldsMap.get(CHILD_LA_NAME));
+        childOne.put(ADOP_AGENCY_OR_LAADDRESS, inputFieldsMap.get(CHILD_LA_ADDRESS));
+        childOne.put(ADOP_AGENCY_OR_LA_CONTACT_NAME, inputFieldsMap.get(CHILD_LA_CONTACT_NAME));
+        childOne.put(ADOP_AGENCY_OR_LA_PHONE_NUMBER, inputFieldsMap.get(CHILD_LA_TELEPHONE_NO));
+        childOne.put(L_AOR_ADOPTION_AGENCY_CATEGORY, NOTIFY_LOCAL_AUTHORITY_INTENTION_OF_ADOPTION);
+        linkedTreeMapOne.put(VALUE, childOne);
+        adoptAgencyOrLaasArrayList.add(linkedTreeMapOne);
 
-        if(!StringUtils.isEmpty("child_noLaOrParentalResponsibility")
-            && TRUE.equalsIgnoreCase("child_noLaOrParentalResponsibility")) {
-            populatedMap.put("laOrParentalResponsibility", BooleanUtils.YES);
-        } else if(!StringUtils.isEmpty("child_noLaOrParentalResponsibility")
-            && FALSE.equalsIgnoreCase("child_noLaOrParentalResponsibility")) {
-            populatedMap.put("laOrParentalResponsibility", BooleanUtils.NO);
+        if (!StringUtils.isEmpty(inputFieldsMap.get(CHILD_NO_LA_OR_PARENTAL_RESPONSIBILITY))
+                && TRUE.equalsIgnoreCase(
+                        inputFieldsMap.get(CHILD_NO_LA_OR_PARENTAL_RESPONSIBILITY))) {
+            populatedMap.put(LA_OR_PARENTAL_RESPONSIBILITY, BooleanUtils.YES);
+        } else if (!StringUtils.isEmpty(inputFieldsMap.get(CHILD_NO_LA_OR_PARENTAL_RESPONSIBILITY))
+                && FALSE.equalsIgnoreCase(
+                        inputFieldsMap.get(CHILD_NO_LA_OR_PARENTAL_RESPONSIBILITY))) {
+            populatedMap.put(LA_OR_PARENTAL_RESPONSIBILITY, BooleanUtils.NO);
+        } else if (!StringUtils.isEmpty(
+                        inputFieldsMap.get(CHILD_LA_OR_PARENTAL_RESPONSIBILITY_DETAILS))
+                && TRUE.equalsIgnoreCase(
+                        inputFieldsMap.get(CHILD_LA_OR_PARENTAL_RESPONSIBILITY_DETAILS))) {
+            final LinkedTreeMap<String, LinkedTreeMap> linkedTreeMapFour = new LinkedTreeMap();
+            final LinkedTreeMap<String, String> childFour = new LinkedTreeMap();
+            childFour.put(ADOP_AGENCY_OR_LA_NAME, inputFieldsMap.get(CHILD_LA_OR_PARENTAL_NAME));
+            childFour.put(
+                    ADOP_AGENCY_OR_LAADDRESS, inputFieldsMap.get(CHILD_LA_OR_PARENTAL_ADDRESS));
+            childFour.put(
+                    ADOP_AGENCY_OR_LA_CONTACT_NAME,
+                    inputFieldsMap.get(CHILD_LA_OR_PARENTAL_CONTACT_NAME));
+            childFour.put(
+                    ADOP_AGENCY_OR_LA_PHONE_NUMBER,
+                    inputFieldsMap.get(CHILD_LA_OR_PARENTAL_TELEPHONE_NO));
+            childFour.put(
+                    ADOP_AGENCY_OR_LA_CONTACT_EMAIL,
+                    inputFieldsMap.get(CHILD_LA_OR_PARENTAL_EMAIL));
+            childFour.put(
+                    L_AOR_ADOPTION_AGENCY_CATEGORY,
+                    LOCAL_AUTHORITY_HAS_PARENTAL_RESPONSIBILITY_OF_THE_CHILD);
+            linkedTreeMapFour.put(VALUE, childFour);
+            adoptAgencyOrLaasArrayList.add(linkedTreeMapFour);
         }
 
-        LinkedTreeMap<String, LinkedTreeMap> linkedTreeMapFour = new LinkedTreeMap();
-        LinkedTreeMap<String, String> childFour = new LinkedTreeMap();
-        childFour.put("adopAgencyOrLaName", inputFieldsMap.get("child_laOrParentalName"));
-        childFour.put("adopAgencyOrLaaddress", inputFieldsMap.get("child_laOrParentalAddress"));
-        childFour.put("adopAgencyOrLaContactName", inputFieldsMap.get("child_laOrParentalContactName"));
-        childFour.put("adopAgencyOrLaPhoneNumber", inputFieldsMap.get("child_laOrParentalTelephoneNo"));
-        childFour.put("adopAgencyOrLaContactEmail ", inputFieldsMap.get("child_laOrParentalEmail"));
-        childFour.put("LAorAdoptionAgencyCategory", "Local Authority has parental responsibility of the Child");
-        linkedTreeMapFour.put("value", childFour);
-
-        ArrayList adoptAgencyOrLAAsArrayList = new ArrayList();
-        adoptAgencyOrLAAsArrayList.add(linkedTreeMapOne);
-        adoptAgencyOrLAAsArrayList.add(linkedTreeMapTwo);
-        adoptAgencyOrLAAsArrayList.add(linkedTreeMapThree);
-        adoptAgencyOrLAAsArrayList.add(linkedTreeMapFour);
-
-        populatedMap.put("adopAgencyOrLAs", adoptAgencyOrLAAsArrayList);
+        populatedMap.put(ADOP_AGENCY_OR_L_AS, adoptAgencyOrLaasArrayList);
     }
 
     public void buildCourtInformation(
@@ -461,8 +534,7 @@ public class BulkScanA58ConditionalTransformerService {
     }
 
     private String getDomicileStatus(Map<String, String> inputFieldsMap) {
-        if (TRUE.equalsIgnoreCase(
-                inputFieldsMap.get(BulkScanConstants.APPLICANTS_DOMICILE_STATUS))) {
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(APPLICANTS_DOMICILE_STATUS))) {
             return "true";
         }
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(APPLICANTS_NON_DOMICILE_STATUS))) {
