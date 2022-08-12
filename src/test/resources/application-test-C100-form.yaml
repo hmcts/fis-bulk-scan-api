@@ -212,6 +212,38 @@ uk:
               - other_case_contact_or_residentOrder_withAdoptioNorder
               - other_case_childMaintenanceOrder
               - other_case_childArrangementOrder
+              - otherPeople1FirstName
+              - otherPeople1LastName
+              - otherPeople1PreviousName
+              - otherPeople1Gender
+              - otherPeople1DateOfBirth
+              - otherPeople1DateOfBirthDontKnow
+              - otherPeople1Address
+              - otherPeople1AddressPostcode
+              - otherPeople1AddressDontKnow
+              - otherPeople1RelationshipToChild
+              - otherPeople2FirstName
+              - otherPeople2LastName
+              - otherPeople2PreviousName
+              - otherPeople2Gender
+              - otherPeople2DateOfBirth
+              - otherPeople2DateOfBirthDontKnow
+              - otherPeople2Address
+              - otherPeople2AddressPostcode
+              - otherPeople2AddressDontKnow
+              - otherPeople2RelationshipToChild
+              - otherChildren1FullName
+              - otherChildren1DateOfBirth
+              - otherChildren1DateOfBirthDontKnow
+              - otherChildren1Gender
+              - otherChildren1RelationshipToApplicants
+              - otherChildren1RelationshipToRespondents
+              - otherChildren2FullName
+              - otherChildren2DateOfBirth
+              - otherChildren2Gender
+              - otherChildren2DateOfBirthDontKnow
+              - otherChildren2RelationshipToApplicants
+              - otherChildren2RelationshipToRespondents
               - section1RelatingToChildCompleted
               - section2Section3Section4RelatingToMediationCompleted
               - section5Section6RelatingToApplicationReasonCompleted
@@ -243,6 +275,10 @@ uk:
                   - child4_dateOfBirth
                   - respondent1DateOfBirth
                   - respondent2DateOfBirth
+                  - otherPeople1DateOfBirth
+                  - otherPeople2DateOfBirth
+                  - otherChildren1DateOfBirth
+                  - otherChildren2DateOfBirth
                 regex: dd/MM/yyyy
               emailFields:
                 fieldNames:
