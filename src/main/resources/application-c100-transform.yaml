@@ -107,6 +107,7 @@ uk:
               previousOrOngoingProceedings : previous_or_ongoingProceeding
               consentOrder : isConsentOrder
               welshLanguageRequirement : welshRequired
+
               miamTable:
                 claimingExemptionMiam: exemption_to_attend_MIAM
                 familyMediatorMiam: familyMember_Intimation_on_No_MIAM
@@ -120,7 +121,16 @@ uk:
               typeOfApplicationTable :
                 applicationPermissionRequired : askingPermissionForApplication
               hearingUrgencyTable:
-                isCaseUrgent : urgent_or_withoutHearing
+                isCaseUrgent: urgent_or_withoutHearing
+                setOutReasonsBelow: null
+                effortsMadeWithRespondents: respondent_effort
+                doYouRequireAHearingWithReducedNotice: withoutNotice_abridged_or_informalNotice
+                doYouNeedAWithoutNoticeHearing: withoutNotice_abridged_or_informalNotice
+                caseUrgencyTimeAndReason: application_timetable
+                reasonsForApplicationWithoutNotice: reason_for_consideration
+                setOutOrderDirectionSought: order_direction_sought
+                doYouRequireAWithoutNoticeHearing: withoutNotice_frustrateTheOrder
+                setWithoutNoticeHearing: withoutNotice_frustrateTheOrder_reason
               otherProceedingsTable :
                 previousOrOngoingProceedings : previous_or_ongoingProceeding
               otherProceedingsDetailsTable:
@@ -215,3 +225,16 @@ uk:
                     Gender: otherChildren2Gender
                     RelationshipToApplicants: otherChildren2RelationshipToApplicants
                     RelationshipToRespondents: otherChildren2RelationshipToRespondents
+              checklistSection1Completed: section1RelatingToChildCompleted
+              checklistSection2To4Completed: section2Section3Section4RelatingToMediationCompleted
+              checklistSection5To6Completed: section5Section6RelatingToApplicationReasonCompleted
+              checklistSection7Completed: section7RelatingToOtherCourtFullyCompleted
+              checklistSection8To10Completed: section8Section9Section10FactorsAffectingProceedingsCompleted
+              checklistSection11Completed: section11RelatingToApplicantCompleted
+              checklistSection12To14Completed: sections12Section13Section14RelatingToRespondentAndOthersNoticeCompleted
+              checklistSection16Completed: section16RelatingToTruthStatementCompleted
+              printFullName: printFullName
+              agreedBy: applicantSolicitorsFirmName
+              SignedDate: applicantAndApplicantsolicitorSignedDate
+              positionOrOfficeHeld: position_or_OfficeHeld
+              courtFeeConsent: courtFeeConsent

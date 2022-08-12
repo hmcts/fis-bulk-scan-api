@@ -768,6 +768,22 @@
     {
       "name": "otherChildren2RelationshipToRespondents",
       "value": ""
+    },
+    {
+      "name": "order_direction_sought",
+      "value": "Yes"
+    },
+    {
+      "name": "urgency_reason",
+      "value": "Yes"
+    },
+    {
+      "name": "application_timetable",
+      "value": "Yes"
+    },
+    {
+      "name": "respondent_effort",
+      "value": "Yes"
     }
   ]
 }
