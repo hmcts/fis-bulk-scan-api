@@ -150,6 +150,7 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.WELSH_PRE
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.WELSH_SPOKEN_IN_COURT_REQUIRED;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.WITNESS_WELSH_LANGUAGE_PREFERENCE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.WITNESS_WELSH_LANGUAGE_PREFERENCE_CCD;
+import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.APPLICANTS_DOMICILE_STATUS_KEY;
 import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.APPLICANT_MARITAL_STATUS;
 import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.APPLICANT_RELATION_TO_CHILD;
 import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.FATHER;
@@ -157,22 +158,20 @@ import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.OTHER_PAR
 import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.OTHER_PARENT_RELATIONSHIP_TO_CHILD;
 import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.RELATIONSHIP_FATHER;
 import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.RELATIONSHIP_OTHER;
-import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.APPLICANTS_DOMICILE_STATUS_KEY;
 
 import com.microsoft.applicationinsights.core.dependencies.google.gson.internal.LinkedTreeMap;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 import uk.gov.hmcts.reform.bulkscan.enums.MaritalStatusEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.RelationToChildEnum;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
-
 // Divided this class to multiple classes based on formtype and remove suppress warning
-@SuppressWarnings({"PMD.GodClass", "PMD.ExcessiveImports"})
+@SuppressWarnings({"PMD.GodClass", "PMD.ExcessiveImports", "PMD.CyclomaticComplexity"})
 @Component
 public class BulkScanA58ConditionalTransformerService {
 
@@ -213,7 +212,6 @@ public class BulkScanA58ConditionalTransformerService {
         buildChildMaintanenceOrder(inputFieldsMap, populatedMap);
         buildChildProceedingDetails(inputFieldsMap, populatedMap);
         buildChildProceedingDetailsWithRelation(inputFieldsMap, populatedMap);
-        // buildadopAgencyOrLAs(inputFieldsMap, populatedMap);
         populatedMap.put(PROCEEDING_DETAILS, buildProceedingDetails(inputFieldsMap, populatedMap));
         populatedMap.put(ADOP_AGENCY_OR_L_AS, buildadopAgencyOrLAs(inputFieldsMap, populatedMap));
     }
