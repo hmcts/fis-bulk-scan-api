@@ -251,19 +251,15 @@
           }
         }
       ],
-      "internationalElementTable": {
-        "habitualResidentInOtherState": "yes",
-        "habitualResidentInOtherStateGiveReason": null,
-        "jurisdictionIssue": "Yes",
-        "jurisdictionIssueGiveReason": "International jurisdiction big issue",
-        "requestToForeignAuthority": null,
-        "requestToForeignAuthorityGiveReason": null
-      },
-      "litigationCapacityTable": {
-        "litigationCapacityFactors": "Factors affecting litigation capacity",
-        "litigationCapacityReferrals": "Assessment by adult learning team",
-        "litigationCapacityOtherFactors": "Factors affecting person in court"
-      },
+      "habitualResidentInOtherState": "yes",
+      "habitualResidentInOtherStateGiveReason": null,
+      "jurisdictionIssue": "Yes",
+      "jurisdictionIssueGiveReason": "International jurisdiction big issue",
+      "requestToForeignAuthority": null,
+      "requestToForeignAuthorityGiveReason": null,
+      "litigationCapacityFactors": "Factors affecting litigation capacity",
+      "litigationCapacityReferrals": "Assessment by adult learning team",
+      "litigationCapacityOtherFactors": "Factors affecting person in court",
       "havePreviousParentingPlan": "parentingplan",
       "allegationsOfHarmOverviewTable": {
         "allegationsOfHarmDomesticAbuseYesNo": "yes",
@@ -278,7 +274,59 @@
       "consentOrder": "yes",
       "claimingExemptionMiam": "yes",
       "welshLanguageRequirement": "yes",
-      "childParentsNameCollection": "parentsNameColl"
+      "childParentsNameCollection": "parentsNameColl",
+      "otherPeople":[
+        {
+          "value":{
+            "firstName":"Owolabi",
+            "lastName":"Moses",
+            "previousName":null,
+            "gender":"Male",
+            "dateOfBirth":"20/02/2002",
+            "isDateOfBirthUnknown":null,
+            "AddressLine1":"239 London Street",
+            "PostCode":"SW8 2EX",
+            "isCurrentAddressKnown":null,
+            "relationshipToChild":"Step Father"
+          }
+        },
+        {
+          "value":{
+            "firstName":"Fausat",
+            "lastName":"Adeyemi",
+            "previousName":null,
+            "gender":"Female",
+            "dateOfBirth":"21/02/2002",
+            "isDateOfBirthUnknown":null,
+            "AddressLine1":"240 London Street",
+            "PostCode":"SW8 2EX",
+            "isCurrentAddressKnown":null,
+            "relationshipToChild":"Step Mother"
+          }
+        }
+      ],
+      "otherChildren":[
+        {
+          "value":{
+            "fullName":"Raymond King",
+            "DateOfBirth":"22/02/2002",
+            "DateOfBirthDontKnow":null,
+            "Gender":"Male",
+            "RelationshipToApplicants":"Cousin",
+            "RelationshipToRespondents":null
+          }
+        },
+        {
+          "value":{
+            "fullName":"Rachel Queen",
+            "DateOfBirth":"23/02/2002",
+            "DateOfBirthDontKnow":null,
+            "Gender":"Female",
+            "RelationshipToApplicants":"Cousin",
+            "RelationshipToRespondents":null
+          }
+        }
+      ]
     }
   },
   "warnings": []

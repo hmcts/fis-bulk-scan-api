@@ -108,7 +108,7 @@ public final class BulkScanPrlConstants {
             "withoutNotice_jurisdictionIssue_details";
     public static final String INTERNATIONALELEMENT_WARNING_MESSAGE =
             "Some details are missing in the following section - [Cases with an international"
-                    + " element] details should not be empty with Yes (checkbox).";
+                    + " element]. Details should not be empty with checkbox (Yes).";
 
     // END C100 form sections 8 & 9 validation fields
 
