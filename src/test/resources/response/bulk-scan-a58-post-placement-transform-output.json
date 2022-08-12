@@ -10,23 +10,23 @@
       "scannedDocuments":[
 
       ],
-      "maintanenceOrder": {
-        "name": "murshad",
-        "address": "london",
-        "nameOfCourt": "HMCTSCourt",
-        "dateOfOrder": "01/01/2000",
-        "agreementDate": "01/01/2001"
+      "maintanenceOrder":{
+        "name":"murshad",
+        "address":"london",
+        "nameOfCourt":"HMCTSCourt",
+        "dateOfOrder":"01/01/2000",
+        "agreementDate":"01/01/2001"
       },
       "courtpreferredDates":"11/10/2022,21/10/2022",
       "applicantMaritalStatus":"",
       "birthFatherOccupation":null,
-      "children": {
-        "gender": "male",
-        "dateOfBirth": "31/12/1985",
-        "approximateDateOfBirth": null,
-        "placeAndCountry": null,
-        "nationality": "german",
-        "isMarried": "yes"
+      "children":{
+        "gender":"male",
+        "dateOfBirth":"31/12/1985",
+        "approximateDateOfBirth":null,
+        "placeAndCountry":null,
+        "nationality":"german",
+        "isMarried":"yes"
       },
       "applicantRequireInterpreter":"Yes",
       "applicant2FirstName":"applicant2firstName",
@@ -68,7 +68,7 @@
       "guardianFirstName":null,
       "applicant2DateOfBirth":null,
       "birthFatherFirstName":null,
-      "applicantsDomicileStatus":"",
+      "applicantsDomicileStatus":null,
       "applicantRelationToChildFatherPartner":null,
       "applicant1SignStatementOfTruth":"true",
       "dateChildMovedIn":"01/01/2012",
@@ -78,6 +78,7 @@
       "birthMotherAddress":"testBirthMotherAddress",
       "childrenAdoptionPaymentDetails":null,
       "hasMaintanenceOrder":"yes",
+      "applicants_domicile_status":"",
       "guardianLastName":null,
       "welshSpokenInCourtRequired":"Yes",
       "applicant1LegalRepFirm":null,
