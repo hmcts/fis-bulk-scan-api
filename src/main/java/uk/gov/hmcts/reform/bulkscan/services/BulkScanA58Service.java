@@ -67,7 +67,7 @@ public class BulkScanA58Service implements BulkScanService {
     public static final String RELATIONSHIP_OTHER = "child_relationship_other";
     public static final String FATHER = "Father";
     public static final String OTHER_PARENT = "Other parent";
-    public static final String APPLICANTS_DOMICILE_STATUS = "applicantsDomicileStatus";
+    public static final String APPLICANTS_DOMICILE_STATUS_KEY = "applicantsDomicileStatus";
     public static final String APPLICANT_RELATION_TO_CHILD = "applicantRelationToChild";
     public static final String APPLICANT_MARITAL_STATUS = "applicantMaritalStatus";
 
