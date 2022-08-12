@@ -326,7 +326,6 @@ public final class BulkScanConstants {
     public static final String TYPE_OF_ORDER = "typeOfOrder";
     public static final String CASE_NUMBER = "caseNumber";
     public static final String CASE_TYPE_CATEGORY = "caseTypeCategory ";
-    public static final String VALUE = "value";
     public static final String CHILD_TYPE_OF_ORDER = "child_typeOfOrder";
     public static final String CHILD_DATE_OF_ORDER = "child_dateOfOrder";
     public static final String CHILD_NAME_OF_COURT = "child_nameOfCourt";
