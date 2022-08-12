@@ -39,7 +39,8 @@ class BulkScanA58PostPlacementServiceTest {
 
     private static final String A58_POST_PLACEMENT_TRANSFORM_RESPONSE_PATH =
             "classpath:response/bulk-scan-a58-post-placement-transform-output.json";
-
+    private static final String A58_POST_PLACEMENT_2_TRANSFORM_RESPONSE_PATH =
+            "classpath:response/bulk-scan-a58-post-placement-2-transform-output.json";
     private static final String A58_POST_PLACEMENT_REQUEST_PATH =
             "classpath:request/bulk-scan-a58-post-placement-input.json";
     private static final String A58_POST_PLACEMENT_WARNING_REQUEST_PATH =
@@ -50,6 +51,8 @@ class BulkScanA58PostPlacementServiceTest {
             "classpath:request/bulk-scan-a58-post-placement-error-field-input.json";
     private static final String A58_POST_PLACEMENT_TRANSFORM_REQUEST_PATH =
             "classpath:request/bulk-scan-a58-post-placement-transform-input.json";
+    private static final String A58_POST_PLACEMENT_TRANSFORM_REQUEST_2_PATH =
+            "classpath:request/bulk-scan-a58-post-placement-2-transform-input.json";
 
     @Spy @Autowired BulkScanA58Service bulkScanValidationService;
 
@@ -121,6 +124,23 @@ class BulkScanA58PostPlacementServiceTest {
 
         JSONAssert.assertEquals(
                 readFileFrom(A58_POST_PLACEMENT_TRANSFORM_RESPONSE_PATH),
+                mapper.writeValueAsString(res),
+                true);
+    }
+
+    @Test
+    @DisplayName("A58 post placement form transform scenario 2")
+    void testA58PostPlacement2ApplicationTransformSuccess() throws IOException, JSONException {
+        BulkScanTransformationRequest bulkScanTransformationRequest =
+                mapper.readValue(
+                        readFileFrom(A58_POST_PLACEMENT_TRANSFORM_REQUEST_2_PATH),
+                        BulkScanTransformationRequest.class);
+
+        BulkScanTransformationResponse res =
+                bulkScanValidationService.transform(bulkScanTransformationRequest);
+
+        JSONAssert.assertEquals(
+                readFileFrom(A58_POST_PLACEMENT_2_TRANSFORM_RESPONSE_PATH),
                 mapper.writeValueAsString(res),
                 true);
     }

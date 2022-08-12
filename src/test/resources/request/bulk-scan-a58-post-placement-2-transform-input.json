@@ -230,7 +230,7 @@
     },
     {
       "name": "child_placmentOrderByEnglandAndWalesDateOfOrder",
-      "value": "01/01/2022"
+      "value": "asdfsdf"
     },
     {
       "name": "child_placedAdoptionDate",
@@ -293,69 +293,16 @@
       "value": "yaseen@hmcts.net"
     },
     {
-      "name": "child_LaOrParentalResponsibilityDetails",
+      "name": "child_noLaOrParentalResponsibility",
       "value": "true"
     },
     {
-      "name": "child_laOrParentalName",
-      "value": "kamal"
-    },
-    {
-      "name": "child_laOrParentalAddress",
-      "value": "London"
-    },
-    {
-      "name": "child_laOrParentalContactName",
-      "value": "Jamal"
-    },
-    {
-      "name": "child_laOrParentalTelephoneNo",
-      "value": "07777777777"
-    },
-    {
-      "name": "child_laOrParentalEmail",
-      "value": "murshad@hmcts.net"
-    },
-    {
-      "name": "child_proceedingDetails",
+      "name": "child_noProceedingDetails",
       "value": "true"
     },
     {
-      "name": "child_typeOfOrder",
-      "value": "child"
-    },
-    {
-      "name": "child_dateOfOrder",
-      "value": "01/01/2022"
-    },
-    {
-      "name": "child_nameOfCourt",
-      "value": "London City Court"
-    },
-    {
-      "name": "child_caseNumber",
-      "value": "0980980980980980"
-    },
-    {
-      "name": "child_proceedingDetailsWithRelation",
+      "name": "child_noProceedingDetailsWithRelation",
       "value": "true"
-    },
-    {
-      "name": "child_typeOfOrderRelation",
-      "value": "children"
-    },
-    {
-      "name": "child_dateOfOrderRelation",
-      "value": "01/01/2022"
-    },
-    {
-      "name": "child_nameOfCourtRelation",
-      "value": "London Court"
-    }
-  ,
-    {
-      "name": "child_caseNumberRelation",
-      "value": "353453245"
     },
     {
       "name": "applicants_domicile_status",

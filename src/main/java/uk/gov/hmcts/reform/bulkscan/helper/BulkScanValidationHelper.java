@@ -296,8 +296,9 @@ public class BulkScanValidationHelper {
                         .collect(Collectors.toUnmodifiableList());
         List<String> ocrList =
                 ocrDatafields.stream()
-                    .filter(ocrDataField -> ocrDataField.getName()!=null)
-                    .map(eachKey -> eachKey.getName()).collect(toList());
+                        .filter(ocrDataField -> ocrDataField.getName() != null)
+                        .map(eachKey -> eachKey.getName())
+                        .collect(toList());
         return ocrList.stream()
                 .filter(element -> !configuredFieldsList.contains(element))
                 .collect(toList());
