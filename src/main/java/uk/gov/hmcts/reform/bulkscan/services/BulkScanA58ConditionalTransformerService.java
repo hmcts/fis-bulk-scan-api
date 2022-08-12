@@ -13,17 +13,20 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT2_SOT_MONTH;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT2_SOT_YEAR;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT2_STATEMENT_OF_TRUTH_DATE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANTS_DOMICILE_STATUS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANTS_NON_DOMICILE_STATUS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_APPLYING_ALONE_NATURAL_PARENT_DIED;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_APPLYING_ALONE_NATURAL_PARENT_NOT_FOUND;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_APPLYING_ALONE_NO_OTHER_PARENT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_APPLYING_ALONE_OTHER_PARENT_EXCLUSION_JUSTIFIED;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_MARITAL_STATUS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_MARITAL_STATUS_DIVORCED;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_MARITAL_STATUS_MARRIED_SPOUSE_INCAPABLE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_MARITAL_STATUS_MARRIED_SPOUSE_NOTFOUND;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_MARITAL_STATUS_MARRIED_SPOUSE_SEPARATED;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_MARITAL_STATUS_SINGLE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_MARITAL_STATUS_WIDOW;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_RELATION_TO_CHILD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_RELATION_TO_CHILD_FATHER_PARTNER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_RELATION_TO_CHILD_MOTHER_PARTNER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_RELATION_TO_CHILD_NON_CIVIL_PARTNER;
@@ -66,6 +69,7 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.COURT_INT
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.COURT_INTERPRETER_ASSISTANCE_REQUIRED;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DATE_OF_ORDER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DONT_KNOW;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FATHER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FREEING_ORDER_COURT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FREEING_ORDER_DATE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FREEING_ORDER_ID;
@@ -76,6 +80,8 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.HAS_PROCE
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.LA_OR_PARENTAL_RESPONSIBILITY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MAINTANENCE_ORDER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NAME_OF_COURT;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.OTHER_PARENT;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.OTHER_PARENT_RELATIONSHIP_TO_CHILD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.OTHER_PARTY_NAME;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.OTHER_PARTY_NAME_CCD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.OTHER_PARTY_REQUIRE_INTERPRETER;
@@ -86,6 +92,8 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PLACEMENT
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PLACEMENT_ORDER_DATE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PLACEMENT_ORDER_ID;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PLACEMENT_ORDER_TYPE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RELATIONSHIP_FATHER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RELATIONSHIP_OTHER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_REQUIRE_INTERPRETER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_REQUIRE_INTERPRETER_CCD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.SLASH_DELIMITER;
@@ -101,14 +109,6 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.WELSH_PRE
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.WELSH_SPOKEN_IN_COURT_REQUIRED;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.WITNESS_WELSH_LANGUAGE_PREFERENCE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.WITNESS_WELSH_LANGUAGE_PREFERENCE_CCD;
-import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.APPLICANTS_DOMICILE_STATUS;
-import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.APPLICANT_MARITAL_STATUS;
-import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.APPLICANT_RELATION_TO_CHILD;
-import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.FATHER;
-import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.OTHER_PARENT;
-import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.OTHER_PARENT_RELATIONSHIP_TO_CHILD;
-import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.RELATIONSHIP_FATHER;
-import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.RELATIONSHIP_OTHER;
 
 import com.microsoft.applicationinsights.core.dependencies.google.gson.internal.LinkedTreeMap;
 import java.util.Map;
@@ -116,7 +116,6 @@ import java.util.Optional;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
-import uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants;
 import uk.gov.hmcts.reform.bulkscan.enums.MaritalStatusEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.RelationToChildEnum;
 
@@ -342,8 +341,7 @@ public class BulkScanA58ConditionalTransformerService {
     }
 
     private String getDomicileStatus(Map<String, String> inputFieldsMap) {
-        if (TRUE.equalsIgnoreCase(
-                inputFieldsMap.get(BulkScanConstants.APPLICANTS_DOMICILE_STATUS))) {
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(APPLICANTS_DOMICILE_STATUS))) {
             return "true";
         }
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(APPLICANTS_NON_DOMICILE_STATUS))) {
