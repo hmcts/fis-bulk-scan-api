@@ -140,6 +140,7 @@
       "agreedBy": "Burns, Burns and Burns",
       "jurisdictionIssue": "Yes",
       "applicationPermissionRequired": "yes",
+      "mediatorCertifiesApplicantAttendMIAM": "The prospective applicant and respondent(s) have each attended a separate MIAM.",
       "parentalResponsibilityDetails": "parentResponsibility",
       "familyMediatorMiam": null,
       "miamPreviousAttendanceChecklist": "miamPreviousAttendanceChecklistEnum_Value_4",
@@ -195,6 +196,7 @@
           }
         }
       ],
+      "mediatorCertifiesDisputeResolutionNotProceeding": "",
       "requestToForeignAuthorityGiveReason": null,
       "allegationsOfHarmOverviewTable": {
         "allegationsOfHarmDomesticAbuseYesNo": "yes",
@@ -207,8 +209,10 @@
       "childrenOfSameParent": "Yes",
       "childLiveWith": "Applicant",
       "consentOrder": "yes",
+      "familyMediatorServiceName": "family mediation service name",
       "checklistSection12To14Completed": "yes",
       "claimingExemptionMiam": "yes",
+      "authorizedFamilyMediatorDate": "01/01/2022",
       "typeOfChildArrangementsOrder": "true",
       "otherProceedingsDetailsTable": [
         {
@@ -223,6 +227,7 @@
           }
         }
       ],
+      "authorizedFamilyMediatorAddress": "1, test address AB15 2TY",
       "miamUrgencyReasonChecklist": [
         "miamUrgencyReasonChecklistEnum_Value_1",
         "miamUrgencyReasonChecklistEnum_Value_2",
@@ -248,6 +253,7 @@
         "setWithoutNoticeHearing": null
       },
       "personWhoLivesWithChild": "living other details",
+      "soleTraderName": "tet teradder",
       "jurisdictionIssueGiveReason": "International jurisdiction big issue",
       "litigationCapacityOtherFactors": "Factors affecting person in court",
       "otherPeopleInTheCaseTable": [
@@ -280,6 +286,8 @@
           }
         }
       ],
+      "mediatorRegistrationNumber": "9999999999",
+      "mediatorCertifiesMiamExemption": "The applicant has attended a MIAM alone and \r\n• the applicant does not wish to start or continue mediation; or \r\n• the mediator has determined that mediation is unsuitable; or \r\n• the respondent did not wish to attend a MIAM",
       "requestToForeignAuthority": null,
       "checklistSection5To6Completed": "yes",
       "otherChildrenNotInTheCaseTable": [

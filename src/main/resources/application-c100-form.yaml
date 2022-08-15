@@ -266,6 +266,20 @@ uk:
               - withoutNotice_abridged_or_informalNotice_reasons
               - withoutNotice_frustrateTheOrder
               - withoutNotice_frustrateTheOrder_reason
+              - mediationNotSuitable_NoneOfTheRespondentsWillingToAttendMIAM
+              - mediationNotSuitable_NoneOfTheRespondentsFailedToAttendMIAMWithoutGoodReason
+              - mediationNotSuitable_forResolvingTheDispute
+              - applicantOnly_AttendedMIAMTogether
+              - applicantAndRespondentParty_AttendedMIAMSeparately
+              - respondentPartyArranged_ToAttendMIAMSeparately
+              - mediationNotProceeding_applicationAttendedMIAMAlone
+              - mediationNotProceeding_applicantsAndRespondentsAttendedMIAM
+              - mediationNotProceeding_hasStartedButBrokenWithSomeIssue
+              - fmc_RegistrationNumber
+              - family_Mediation_ServiceName
+              - sole_TraderName
+              - authorizedFamilyMediator_address
+              - authorizedFamilyMediator_date
             regexValidationFields:
               dateFields:
                 fieldNames:

@@ -1,12 +1,26 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
 import static org.apache.commons.lang3.BooleanUtils.TRUE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_AND_RESPONDENT_PARTY_ATTENDED_MIAM_SEPARATELY;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_ONLY_ATTENDED_MIAM;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_ONLY_ATTENDED_MIAM_TOGETHER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICATION_PERMISSION_REQUIRED;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVE_WITH_KEY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVING_WITH_APPLICANT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVING_WITH_OTHERS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVING_WITH_RESPONDENT;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EMPTY;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MEDIATION_NOT_PROCEEDING_APPLICANTS_AND_RESPONDENTS_ATTENDED_MIAM;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MEDIATION_NOT_PROCEEDING_APPLICANT_ATTENDED_MIAM_ALONE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MEDIATION_NOT_PROCEEDING_HASSTARTED_BUT_BROKEN_WITH_SOMEISSUE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MEDIATION_NOT_SUITABLE_FOR_RESOLVING_THE_DISPUTE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MEDIATION_NOT_SUITABLE_NONEOFTHERESPONDENTS_FAILED_TO_ATTEND_MIAM_WITHOUT_GOOD_REASON;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MEDIATION_NOT_SUITABLE_NONEOFTHERESPONDENTS_WILLING_TO_ATTEND_MIAM;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MEDIATOR_CERTIFIES_APPLICANT_ATTEND_MIAM;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MEDIATOR_CERTIFIES_DISPUTE_RESOLUTION_NOT_PROCEEDING;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MEDIATOR_CERTIFIES_MIAM_EXEMPTION;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PERMISSION_REQUIRED;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_PARTY_ARRANGED_TO_ATTEND_MIAM_SEPARATELY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.SCAN_DOCUMENTS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.VALUE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES;
@@ -77,6 +91,7 @@ import java.util.stream.Collectors;
 import org.apache.commons.lang3.BooleanUtils;
 import org.springframework.stereotype.Component;
 import uk.gov.hmcts.reform.bulkscan.enums.ChildLiveWithEnum;
+import uk.gov.hmcts.reform.bulkscan.enums.GroupMediatorCertifiesEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.MiamChildProtectionConcernChecklistEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.MiamDomesticViolenceChecklistEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.MiamExemptionsChecklistEnum;
@@ -84,7 +99,7 @@ import uk.gov.hmcts.reform.bulkscan.enums.MiamUrgencyReasonChecklistEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.PermissionRequiredEnum;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
 
-@SuppressWarnings({"PMD.ExcessiveImports", "unchecked"})
+@SuppressWarnings({"PMD.ExcessiveImports", "unchecked", "PMD.GodClass"})
 @Component
 public class BulkScanC100ConditionalTransformerService {
 
@@ -115,6 +130,18 @@ public class BulkScanC100ConditionalTransformerService {
 
         populatedMap.put(OTHER_PROCEEDINGS_DETAILS_TABLE, list);
         setOutReasonsBelow(populatedMap, inputFieldsMap);
+
+        populatedMap.put(
+                MEDIATOR_CERTIFIES_MIAM_EXEMPTION,
+                transformMediatorCertifiesMiamExemption(inputFieldsMap));
+
+        populatedMap.put(
+                MEDIATOR_CERTIFIES_APPLICANT_ATTEND_MIAM,
+                transformMediatorCertifiesApplicantAttendMiam(inputFieldsMap));
+
+        populatedMap.put(
+                MEDIATOR_CERTIFIES_DISPUTE_RESOLUTION_NOT_PROCEEDING,
+                transformMediatorCertifiesDisputeResolutionNotProceeding(inputFieldsMap));
     }
 
     @SuppressWarnings("unchecked")
@@ -419,5 +446,89 @@ public class BulkScanC100ConditionalTransformerService {
             return getTypeOfOrderEnumMapping().get(typeOfOrderField.get());
         }
         return null;
+    }
+
+    /**
+     * C100 form Above fields of Section 4a.
+     *
+     * @param inputFieldsMap All input key-value pair from transformation request.
+     * @return Mediator Certifies MIAM exemption field in the transformation output.
+     */
+    private String transformMediatorCertifiesMiamExemption(Map<String, String> inputFieldsMap) {
+
+        if (TRUE.equalsIgnoreCase(
+                inputFieldsMap.get(
+                        MEDIATION_NOT_SUITABLE_NONEOFTHERESPONDENTS_WILLING_TO_ATTEND_MIAM))) {
+            return GroupMediatorCertifiesEnum
+                    .MEDIATION_NOT_PROCEEDING_APPLICATION_ATTENDED_MIAM_ALONE
+                    .getDescription();
+        } else if (TRUE.equals(
+                inputFieldsMap.get(
+                        MEDIATION_NOT_SUITABLE_NONEOFTHERESPONDENTS_FAILED_TO_ATTEND_MIAM_WITHOUT_GOOD_REASON))) {
+            return GroupMediatorCertifiesEnum
+                    .MEDIATION_NOT_SUITABLE_NONEOFTHERESPONDENTS_FAILED_TO_ATTEND_MIAM_WITHOUT_GOOD_REASON
+                    .getDescription();
+        } else if (TRUE.equals(
+                inputFieldsMap.get(MEDIATION_NOT_SUITABLE_FOR_RESOLVING_THE_DISPUTE))) {
+            return GroupMediatorCertifiesEnum.MEDIATION_NOT_SUITABLE_FOR_RESOLVING_THE_DISPUTE
+                    .getDescription();
+        }
+        return EMPTY;
+    }
+
+    /**
+     * C100 form Above fields of Section 4b part 1.
+     *
+     * @param inputFieldsMap All input key-value pair from transformation request.
+     * @return Mediator Certifies Applicant attend MIAM field in the transformation output.
+     */
+    private String transformMediatorCertifiesApplicantAttendMiam(
+            Map<String, String> inputFieldsMap) {
+
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(APPLICANT_ONLY_ATTENDED_MIAM))) {
+            return GroupMediatorCertifiesEnum.APPLICANT_ONLY_ATTENDED_MIAM.getDescription();
+        } else if (TRUE.equals(inputFieldsMap.get(APPLICANT_ONLY_ATTENDED_MIAM_TOGETHER))) {
+            return GroupMediatorCertifiesEnum.APPLICANT_AND_RESPONDENT_ATTENDED_MIAM_TOGETHER
+                    .getDescription();
+        } else if (TRUE.equals(
+                inputFieldsMap.get(APPLICANT_AND_RESPONDENT_PARTY_ATTENDED_MIAM_SEPARATELY))) {
+            return GroupMediatorCertifiesEnum
+                    .APPLICANT_AND_RESPONDENT_PARTY_ATTENDED_MIAM_SEPARATELY
+                    .getDescription();
+        } else if (TRUE.equals(
+                inputFieldsMap.get(RESPONDENT_PARTY_ARRANGED_TO_ATTEND_MIAM_SEPARATELY))) {
+            return GroupMediatorCertifiesEnum.RESPONDENT_PARTY_ARRANGED_TO_ATTEND_MIAM_SEPARATELY
+                    .getDescription();
+        }
+        return EMPTY;
+    }
+
+    /**
+     * C100 form Above fields of Section 4b part 2.
+     *
+     * @param inputFieldsMap All input key-value pair from transformation request.
+     * @return Mediator Certifies Applicant attend MIAM field in the transformation output.
+     */
+    private String transformMediatorCertifiesDisputeResolutionNotProceeding(
+            Map<String, String> inputFieldsMap) {
+
+        if (TRUE.equalsIgnoreCase(
+                inputFieldsMap.get(MEDIATION_NOT_PROCEEDING_APPLICANT_ATTENDED_MIAM_ALONE))) {
+            return GroupMediatorCertifiesEnum
+                    .MEDIATION_NOT_PROCEEDING_APPLICATION_ATTENDED_MIAM_ALONE
+                    .getDescription();
+        } else if (TRUE.equals(
+                inputFieldsMap.get(
+                        MEDIATION_NOT_PROCEEDING_APPLICANTS_AND_RESPONDENTS_ATTENDED_MIAM))) {
+            return GroupMediatorCertifiesEnum
+                    .MEDIATION_NOT_PROCEEDING_APPLICANTS_AND_RESPONDENTS_ATTENDED_MIAM
+                    .getDescription();
+        } else if (TRUE.equals(
+                inputFieldsMap.get(
+                        MEDIATION_NOT_PROCEEDING_HASSTARTED_BUT_BROKEN_WITH_SOMEISSUE))) {
+            return GroupMediatorCertifiesEnum.MEDIATION_NOT_PROCEEDING_BROKEN_DOWN_UNRESOLVED
+                    .getDescription();
+        }
+        return EMPTY;
     }
 }

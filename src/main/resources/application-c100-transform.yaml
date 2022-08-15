@@ -238,3 +238,8 @@ uk:
               SignedDate: applicantAndApplicantsolicitorSignedDate
               positionOrOfficeHeld: position_or_OfficeHeld
               courtFeeConsent: courtFeeConsent
+              mediatorRegistrationNumber: fmc_RegistrationNumber
+              familyMediatorServiceName: family_Mediation_ServiceName
+              soleTraderName: sole_TraderName
+              authorizedFamilyMediatorAddress: authorizedFamilyMediator_address
+              authorizedFamilyMediatorDate: authorizedFamilyMediator_date
