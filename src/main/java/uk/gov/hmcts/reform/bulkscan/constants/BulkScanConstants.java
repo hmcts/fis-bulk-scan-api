@@ -383,6 +383,8 @@ public final class BulkScanConstants {
     public static final String ADOP_AGENCY_OR_LA_CONTACT_EMAIL = "adopAgencyOrLaContactEmail ";
     public static final String ADOPTION_DATE = "adoptionDate";
     public static final String PROCEEDING_DETAILS = "proceedingDetails";
+    public static final String IS_ADOPTION_AGENCY_INVOLVED = "isAdoptionAgencyInvolved";
+
     // End of A58
 
     private static Map<String, String> getErrorMessageMap() {
