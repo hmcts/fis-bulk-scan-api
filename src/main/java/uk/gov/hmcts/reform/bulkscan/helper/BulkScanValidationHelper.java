@@ -34,6 +34,7 @@ import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.tuple.Pair;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanFormValidationConfigManager;
 import uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
@@ -170,7 +171,15 @@ public class BulkScanValidationHelper {
         List<String> postCodeErrorMessages = new ArrayList<>(Collections.emptyList());
         Map<String, String> ocrDataFieldsMap =
                 ocrDataFields.stream()
-                        .collect(Collectors.toMap(OcrDataField::getName, OcrDataField::getValue));
+                        .filter(ocrDataField -> StringUtils.hasText(ocrDataField.getName()))
+                        .collect(
+                                Collectors.toMap(
+                                        OcrDataField::getName,
+                                        each ->
+                                                StringUtils.hasText(each.getValue())
+                                                        ? each.getValue()
+                                                        : org.apache.commons.lang3.StringUtils
+                                                                .EMPTY));
         List<String> pairs = pair.getKey();
         pairs.forEach(
                 eachPair -> {

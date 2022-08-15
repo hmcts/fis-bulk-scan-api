@@ -45,7 +45,7 @@ class BulkScanEndpointTest {
         when(postcodeLookupService.isValidPostCode("TW3 1NN", null)).thenReturn(true);
         ResponseEntity<?> response =
                 bulkScanEndpoint.validateOcrData(
-                        S2S_TOKEN, CONTENT_TYPE, C100, bulkScanValidationRequest);
+                        S2S_TOKEN, CONTENT_TYPE, C100.toString(), bulkScanValidationRequest);
         assertEquals(response.getStatusCode(), HttpStatus.OK);
     }
 
@@ -55,7 +55,7 @@ class BulkScanEndpointTest {
                 BulkScanValidationRequest.builder().ocrdatafields(TestDataUtil.getData()).build();
         ResponseEntity<?> response =
                 bulkScanEndpoint.validateOcrData(
-                        S2S_TOKEN, CONTENT_TYPE, FL401, bulkScanValidationRequest);
+                        S2S_TOKEN, CONTENT_TYPE, FL401.toString(), bulkScanValidationRequest);
         assertEquals(response.getStatusCode(), HttpStatus.OK);
     }
 
@@ -65,7 +65,7 @@ class BulkScanEndpointTest {
                 BulkScanValidationRequest.builder().ocrdatafields(TestDataUtil.getData()).build();
         ResponseEntity<?> response =
                 bulkScanEndpoint.validateOcrData(
-                        S2S_TOKEN, CONTENT_TYPE, FL403, bulkScanValidationRequest);
+                        S2S_TOKEN, CONTENT_TYPE, FL403.toString(), bulkScanValidationRequest);
         assertEquals(response.getStatusCode(), HttpStatus.OK);
     }
 

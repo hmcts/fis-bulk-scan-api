@@ -25,6 +25,7 @@ To Apply formating code or resolve checkSytle issues execute the following comma
 
 ```bash
 ./gradlew spotlessApply
+```
 
 ### Running the application
 

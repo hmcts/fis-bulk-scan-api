@@ -344,11 +344,11 @@
       "name":"child4_localAuthority_or_socialWorker",
       "value":"socialWorker"
     },
-
     {
       "name":"permissionRequired",
       "value":"Yes"
     },
+
     {
       "name":"permissionRequiredReason",
       "value":"reason"
@@ -642,184 +642,8 @@
       "value": ""
     },
     {
-      "name": "applicantRequiresWelsh",
+      "name": "urgent_or_withoutHearing",
       "value": "Yes"
-    },
-    {
-      "name": "applicantRequiresInterpreter",
-      "value": "Yes"
-    },
-    {
-      "name": "applicantRequiresInterpreter_intermediaryRequired",
-      "value": "Yes"
-    },
-    {
-      "name": "requiredSpecialAssistanceOrFacilities",
-      "value": "Yes"
-    },
-    {
-      "name": "applicantRequiresInterpreter_applicant",
-      "value": "Yes"
-    },
-    {
-      "name": "applicantRequiresInterpreter_respondent",
-      "value": "Yes"
-    },
-    {
-      "name": "applicantRequiresInterpreter_otherParty",
-      "value": "No"
-    },
-    {
-      "name": "applicantRequiresInterpreter_otherParty_details",
-      "value": "Details"
-    },
-    {
-      "name": "applicantRequiresInterpreter_otherParty_dialect",
-      "value": "dialect"
-    },
-    {
-      "name": "applicantRequiresInterpreter_intermediaryRequired_details",
-      "value": "intermediary details"
-    },
-    {
-      "name": "requiredSpecialAssistanceOrFacilities_details",
-      "value": "facility details"
-    },
-    {
-      "name": "requiredSpecialArrangementDetails",
-      "value": "special arragement details"
-    },
-    {
-      "name": "nameOfPartyWhoNeedsWelsh",
-      "value": "child1 [Yes Yes Yes];child2 [No Yes Yes];"
-},
-{
-      "name": "otherPeople1FirstName",
-      "value": "Owolabi"
-    },
-    {
-      "name": "otherPeople1LastName",
-      "value": "Moses"
-    },
-    {
-      "name": "otherPeople1PreviousName",
-      "value": ""
-    },
-    {
-      "name": "otherPeople1Gender",
-      "value": "Male"
-    },
-    {
-      "name": "otherPeople1DateOfBirth",
-      "value": "20/02/2002"
-    },
-    {
-      "name": "otherPeople1DateOfBirthDontKnow",
-      "value": ""
-    },
-    {
-      "name": "otherPeople1Address",
-      "value": "239 London Street"
-    },
-    {
-      "name": "otherPeople1AddressPostcode",
-      "value": "SW8 2EX"
-    },
-    {
-      "name": "otherPeople1AddressDontKnow",
-      "value": ""
-    },
-    {
-      "name": "otherPeople1RelationshipToChild",
-      "value": "Step Father"
-    },
-    {
-      "name": "otherPeople2FirstName",
-      "value": "Fausat"
-    },
-    {
-      "name": "otherPeople2LastName",
-      "value": "Adeyemi"
-    },
-    {
-      "name": "otherPeople2PreviousName",
-      "value": ""
-    },
-    {
-      "name": "otherPeople2Gender",
-      "value": "Female"
-    },
-    {
-      "name": "otherPeople2DateOfBirth",
-      "value": "21/02/2002"
-    },
-    {
-      "name": "otherPeople2DateOfBirthDontKnow",
-      "value": ""
-    },
-    {
-      "name": "otherPeople2Address",
-      "value": "240 London Street"
-    },
-    {
-      "name": "otherPeople2AddressPostcode",
-      "value": "SW8 2EX"
-    },
-    {
-      "name": "otherPeople2AddressDontKnow",
-      "value": ""
-    },
-    {
-      "name": "otherPeople2RelationshipToChild",
-      "value": "Step Mother"
-    },
-    {
-      "name": "otherChildren1FullName",
-      "value": "Raymond King"
-    },
-    {
-      "name": "otherChildren1DateOfBirth",
-      "value": "22/02/2002"
-    },
-    {
-      "name": "otherChildren1DateOfBirthDontKnow",
-      "value": ""
-    },
-    {
-      "name": "otherChildren1Gender",
-      "value": "Male"
-    },
-    {
-      "name": "otherChildren1RelationshipToApplicants",
-      "value": "Cousin"
-    },
-    {
-      "name": "otherChildren1RelationshipToRespondents",
-      "value": ""
-    },
-    {
-      "name": "otherChildren2FullName",
-      "value": "Rachel Queen"
-    },
-    {
-      "name": "otherChildren2DateOfBirth",
-      "value": "23/02/2002"
-    },
-    {
-      "name": "otherChildren2DateOfBirthDontKnow",
-      "value": ""
-    },
-    {
-      "name": "otherChildren2Gender",
-      "value": "Female"
-    },
-    {
-      "name": "otherChildren2RelationshipToApplicants",
-      "value": "Cousin"
-    },
-    {
-      "name": "otherChildren2RelationshipToRespondents",
-      "value": ""
     },
     {
       "name": "order_direction_sought",
@@ -837,6 +661,5 @@
       "name": "respondent_effort",
       "value": "Yes"
     }
-
   ]
 }
