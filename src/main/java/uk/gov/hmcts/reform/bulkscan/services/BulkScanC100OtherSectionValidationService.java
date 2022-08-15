@@ -65,10 +65,12 @@ public class BulkScanC100OtherSectionValidationService {
 
     public List<String> validateAttendingTheHearing(Map<String, String> inputFieldMap) {
         List<String> errors = new ArrayList<>();
-        if (YES.equalsIgnoreCase(APPLICANT_REQUIRES_INTERPRETER)) {
-            if (StringUtils.isEmpty(APPLICANT_REQUIRES_INTERPRETER_APPLICANT)
-                    && StringUtils.isEmpty(APPLICANT_REQUIRES_INTERPRETER_RESPONDENT)
-                    && StringUtils.isEmpty(APPLICANT_REQUIRES_INTERPRETER_OTHER_PARTY)) {
+        if (YES.equalsIgnoreCase(inputFieldMap.get(APPLICANT_REQUIRES_INTERPRETER))) {
+            if (StringUtils.isEmpty(inputFieldMap.get(APPLICANT_REQUIRES_INTERPRETER_APPLICANT))
+                    && StringUtils.isEmpty(
+                            inputFieldMap.get(APPLICANT_REQUIRES_INTERPRETER_RESPONDENT))
+                    && StringUtils.isEmpty(
+                            inputFieldMap.get(APPLICANT_REQUIRES_INTERPRETER_OTHER_PARTY))) {
                 errors.add(
                         String.format(
                                 XOR_CONDITIONAL_FIELDS_MESSAGE,

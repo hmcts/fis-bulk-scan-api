@@ -21,6 +21,9 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDEN
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT1LIVEDATTHISADDRESSFOROVERFIVEYEARS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT2ALLADDRESSESFORLASTFIVEYEARS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT2LIVEDATTHISADDRESSFOROVERFIVEYEARS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.APPLICANT_REQUIRES_INTERPRETER_APPLICANT;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.APPLICANT_REQUIRES_INTERPRETER_OTHER_PARTY;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.APPLICANT_REQUIRES_INTERPRETER_RESPONDENT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDINGS_DETAILS_TABLE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDING_CASE_NUMBER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDING_TYPE_OF_ORDER_1;
@@ -831,5 +834,27 @@ class BulkScanC100ServiceTest {
                                         .get(OTHER_PROCEEDINGS_DETAILS_TABLE))
                         .size(),
                 1);
+    }
+
+    @Test
+    @DisplayName("C100 validation with Attend the hearing.")
+    void testC100ValidationErrorWithAttendTheHearing() throws IOException {
+        BulkScanValidationRequest bulkScanValidationRequest =
+                mapper.readValue(
+                        readFileFrom(C100_VALIDATION_REQUEST_PATH),
+                        BulkScanValidationRequest.class);
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                APPLICANT_REQUIRES_INTERPRETER_APPLICANT.equalsIgnoreCase(
+                                                eachField.getName())
+                                        || APPLICANT_REQUIRES_INTERPRETER_RESPONDENT
+                                                .equalsIgnoreCase(eachField.getName())
+                                        || APPLICANT_REQUIRES_INTERPRETER_OTHER_PARTY
+                                                .equalsIgnoreCase(eachField.getName()))
+                .forEach(field -> field.setValue(EMPTY_STRING));
+        BulkScanValidationResponse res =
+                bulkScanValidationService.validate(bulkScanValidationRequest);
+        assertEquals(Status.ERRORS, res.status);
     }
 }
