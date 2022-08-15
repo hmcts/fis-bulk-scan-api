@@ -120,24 +120,16 @@ public class BulkScanC100ConditionalTransformerService {
     @SuppressWarnings("unchecked")
     private void setOutReasonsBelow(
             Map<String, Object> populatedMap, Map<String, String> inputFieldsMap) {
-        Optional<Object> hearingUrgencyTableOptional =
-                Optional.ofNullable(populatedMap.get(HEARING_URGENCY_TABLE));
-        if (hearingUrgencyTableOptional.isPresent()) {
-            LinkedTreeMap<String, String> hearingUrgencyTable =
-                    (LinkedTreeMap<String, String>) hearingUrgencyTableOptional.get();
-            if (hearingUrgencyTable.containsKey(SET_OUT_REASONS_BELOW)
-                    && !org.apache.commons.lang3.StringUtils.isEmpty(
+            if (!org.apache.commons.lang3.StringUtils.isEmpty(
                             inputFieldsMap.get(URGENCY_REASON))) {
-                hearingUrgencyTable.put(SET_OUT_REASONS_BELOW, inputFieldsMap.get(URGENCY_REASON));
-            } else if (hearingUrgencyTable.containsKey(SET_OUT_REASONS_BELOW)
-                    && !org.apache.commons.lang3.StringUtils.isEmpty(
+                populatedMap.put(SET_OUT_REASONS_BELOW, inputFieldsMap.get(URGENCY_REASON));
+            } else if (!org.apache.commons.lang3.StringUtils.isEmpty(
                             inputFieldsMap.get(
                                     WITHOUT_NOTICE_ABRIDGED_OR_INFORMAL_NOTICE_REASONS))) {
-                hearingUrgencyTable.put(
+                populatedMap.put(
                         SET_OUT_REASONS_BELOW,
                         inputFieldsMap.get(WITHOUT_NOTICE_ABRIDGED_OR_INFORMAL_NOTICE_REASONS));
             }
-        }
     }
 
     /**

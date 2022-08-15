@@ -63,6 +63,7 @@
           }
         }
       ],
+      "setOutReasonsBelow":"Set out the reasons for urgency",
       "ordersApplyingFor":[
         "childArrangementsOrder",
         "prohibitedStepsOrder",
@@ -132,6 +133,7 @@
         }
       ],
       "agreedBy":"Burns, Burns and Burns",
+      "effortsMadeWithRespondents":"What efforts have you made to put each respondent on notice of the application?",
       "litigationCapacityTable":{
         "litigationCapacityFactors":"Factors affecting litigation capacity",
         "litigationCapacityReferrals":"Assessment by adult learning team",
@@ -199,12 +201,14 @@
         "allegationsOfHarmSubstanceAbuseYesNo":"yes",
         "allegationsOfHarmOtherConcernsYesNo":"yes"
       },
+      "setOutOrderDirectionSought":"Set out the order(s)/directions sought",
       "applicationPermissionRequiredReason":"reason",
       "childrenOfSameParent":"Yes",
       "childLiveWith":"Applicant",
       "consentOrder":"yes",
       "checklistSection12To14Completed":"yes",
       "claimingExemptionMiam":"yes",
+      "reasonsForApplicationWithoutNotice":null,
       "typeOfChildArrangementsOrder":"true",
       "otherProceedingsDetailsTable":[
         {
@@ -219,6 +223,7 @@
           }
         }
       ],
+      "doYouNeedAWithoutNoticeHearing":null,
       "miamUrgencyReasonChecklist":[
         "miamUrgencyReasonChecklistEnum_Value_1",
         "miamUrgencyReasonChecklistEnum_Value_2",
@@ -231,19 +236,11 @@
       "checklistSection11Completed":"yes",
       "briefDetailsOnTheApplication":"briefDetails",
       "positionOrOfficeHeld":"Manager",
-      "hearingUrgencyTable":{
-        "isCaseUrgent":"yes",
-        "setOutReasonsBelow":"Set out the reasons for urgency",
-        "effortsMadeWithRespondents":"What efforts have you made to put each respondent on notice of the application?",
-        "doYouRequireAHearingWithReducedNotice":null,
-        "doYouNeedAWithoutNoticeHearing":null,
-        "caseUrgencyTimeAndReason":"8/day",
-        "reasonsForApplicationWithoutNotice":null,
-        "setOutOrderDirectionSought":"Set out the order(s)/directions sought",
-        "doYouRequireAWithoutNoticeHearing":null,
-        "setWithoutNoticeHearing":null
-      },
+      "setWithoutNoticeHearing":null,
+      "doYouRequireAWithoutNoticeHearing":null,
       "personWhoLivesWithChild":"living other details",
+      "doYouRequireAHearingWithReducedNotice":null,
+      "caseUrgencyTimeAndReason":"8/day",
       "checklistSection5To6Completed":"yes",
       "courtFeeConsent":"yes",
       "isCaseUrgent":"yes",

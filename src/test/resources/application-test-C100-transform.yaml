@@ -120,17 +120,15 @@ uk:
                 allegationsOfHarmOtherConcernsYesNo: otherSafety_or_welfareAbuse
               typeOfApplicationTable :
                 applicationPermissionRequired : askingPermissionForApplication
-              hearingUrgencyTable:
-                isCaseUrgent: urgent_or_withoutHearing
-                setOutReasonsBelow: urgency_reason
-                effortsMadeWithRespondents: respondent_effort
-                doYouRequireAHearingWithReducedNotice: withoutNotice_abridged_or_informalNotice
-                doYouNeedAWithoutNoticeHearing: withoutNotice_abridged_or_informalNotice
-                caseUrgencyTimeAndReason: application_timetable
-                reasonsForApplicationWithoutNotice: reason_for_consideration
-                setOutOrderDirectionSought: order_direction_sought
-                doYouRequireAWithoutNoticeHearing: withoutNotice_frustrateTheOrder
-                setWithoutNoticeHearing: withoutNotice_frustrateTheOrder_reason
+              setOutReasonsBelow: urgency_reason
+              effortsMadeWithRespondents: respondent_effort
+              doYouRequireAHearingWithReducedNotice: withoutNotice_abridged_or_informalNotice
+              doYouNeedAWithoutNoticeHearing: withoutNotice_abridged_or_informalNotice
+              caseUrgencyTimeAndReason: application_timetable
+              reasonsForApplicationWithoutNotice: reason_for_consideration
+              setOutOrderDirectionSought: order_direction_sought
+              doYouRequireAWithoutNoticeHearing: withoutNotice_frustrateTheOrder
+              setWithoutNoticeHearing: withoutNotice_frustrateTheOrder_reason
               otherProceedingsTable :
                 previousOrOngoingProceedings : previous_or_ongoingProceeding
               otherProceedingsDetailsTable:

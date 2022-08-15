@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanFormValidationConfigManager;
@@ -88,7 +90,10 @@ public class BulkScanC100Service implements BulkScanService {
 
         Map<String, String> inputFieldsMap =
                 inputFieldsList.stream()
-                        .collect(Collectors.toMap(OcrDataField::getName, OcrDataField::getValue));
+                    .filter(ocrDataField -> StringUtils.isNotEmpty(ocrDataField.getName()))
+                        .collect(Collectors.toMap(ocrDataField -> ocrDataField.getName(),
+                                                  this::getValue
+                        ));
 
         Map<String, Object> populatedMap =
                 (Map<String, Object>)
@@ -112,5 +117,9 @@ public class BulkScanC100Service implements BulkScanService {
                                 .caseData(populatedMap)
                                 .build())
                 .build();
+    }
+
+    private String getValue(OcrDataField ocrDataField) {
+        return org.springframework.util.StringUtils.hasText(ocrDataField.getValue()) ? ocrDataField.getValue() : StringUtils.EMPTY;
     }
 }

@@ -53,10 +53,6 @@
       "value": "Yes"
     },
     {
-      "name": "NoMIAM_PreviousAttendanceReason",
-      "value": "Yes"
-    },
-    {
       "name": "NoMIAM_otherExceptions",
       "value": "Yes"
     },
