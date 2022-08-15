@@ -52,7 +52,6 @@ uk:
                     email: applicant2EmailAddress
                     isAtAddressLessThan5Years: hasApplicant2LivedAtThisAddressForOverFiveYears
                     addressLivedLessThan5YearsDetails: applicant2AllAddressesForLastFiveYears
-              typeOfChildArrangementsOrder: childArrangement_order
               children:
                 - value:
                     firstName: child1_firstName
@@ -108,6 +107,7 @@ uk:
               consentOrder : isConsentOrder
               habitualResidentInOtherState : international_or_factorsAffectingLitigation
               welshLanguageRequirement : welshRequired
+
               miamTable:
                 claimingExemptionMiam: exemption_to_attend_MIAM
                 familyMediatorMiam: familyMember_Intimation_on_No_MIAM
@@ -124,9 +124,9 @@ uk:
                 isCaseUrgent : urgent_or_withoutHearing
               otherProceedingsTable :
                 previousOrOngoingProceedings : previous_or_ongoingProceeding
-              otherProceedingsDetailsTable:
+              otherProceedingsDetailsTable :
                 - value:
-                    previousOrOngoingProceedings: previous_or_ongoingProceeding
+                    previousOrOngoingProceedings : previous_or_ongoingProceeding
                     caseNumber: other_case_case_number
                     dateOrYear: other_case_date_or_year
                     nameOfCourt: other_case_name_of_court
@@ -180,3 +180,13 @@ uk:
                 litigationCapacityFactors: factorAffectingLitigationCapacity
                 litigationCapacityReferrals: assessmentByAdultLearningTeam
                 litigationCapacityOtherFactors: factorsAffectingPersonInCourt
+              isWelshNeeded: applicantRequiresWelsh
+              isInterpreterNeeded: applicantRequiresInterpreter
+              interpreterNeeds:
+                - value:
+                    language: applicantRequiresInterpreter_otherParty_dialect
+                    otherAssistance: applicantRequiresInterpreter_otherParty_details
+              isIntermediaryNeeded: applicantRequiresInterpreter_intermediaryRequired
+              isSpecialArrangementsRequired: requiredSpecialAssistanceOrFacilities
+              reasonsForIntermediary: applicantRequiresInterpreter_intermediaryRequired_details
+              specialArrangementsRequired: requiredSpecialAssistanceOrFacilities_details

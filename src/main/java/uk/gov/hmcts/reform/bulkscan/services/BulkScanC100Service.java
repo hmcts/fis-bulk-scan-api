@@ -72,6 +72,9 @@ public class BulkScanC100Service implements BulkScanService {
         bulkScanC100ValidationService.validateApplicantAddressFiveYears(
                 bulkRequest.getOcrdatafields(), response);
 
+        response.addErrors(
+                bulkScanC100ValidationService.validateAttendingTheHearing(inputFieldMap));
+
         response.changeStatus();
 
         return response;

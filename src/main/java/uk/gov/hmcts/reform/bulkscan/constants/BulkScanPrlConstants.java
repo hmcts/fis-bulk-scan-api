@@ -1,5 +1,9 @@
 package uk.gov.hmcts.reform.bulkscan.constants;
 
+import java.util.HashMap;
+import java.util.Map;
+import uk.gov.hmcts.reform.bulkscan.enums.PartyEnum;
+
 /** All private law form case types constants (Edge cases plus c100). */
 public final class BulkScanPrlConstants {
 
@@ -136,6 +140,32 @@ public final class BulkScanPrlConstants {
             "other_case_childArrangementOrder";
     public static final String TYPE_OF_ORDER = "typeOfOrder";
     public static final String OTHER_PROCEEDINGS_DETAILS_TABLE = "otherProceedingsDetailsTable";
+
+    // C100 Attending the hearing
+    public static final String APPLICANT_REQUIRES_INTERPRETER = "applicantRequiresInterpreter";
+    public static final String APPLICANT_REQUIRES_INTERPRETER_APPLICANT =
+            "applicantRequiresInterpreter_applicant";
+    public static final String APPLICANT_REQUIRES_INTERPRETER_RESPONDENT =
+            "applicantRequiresInterpreter_respondent";
+    public static final String APPLICANT_REQUIRES_INTERPRETER_OTHER_PARTY =
+            "applicantRequiresInterpreter_otherParty";
+    public static final String WELSH_NEEDS = "nameOfPartyWhoNeedsWelsh";
+    public static final String WELSH_NEEDS_CCD = "welshNeeds";
+    public static final String WHO_WELSH_NEEDS = "whoNeedsWelsh";
+    public static final String SPOKEN_WRITTEN_BOTH = "spokenOrWritten";
+    public static final String INTERPRETER_NEEDS = "interpreterNeeds";
+    public static final String PARTY_ENUM = "party";
+
+    public static Map<String, String> getInterpreterEnum() {
+        Map<String, String> map = new HashMap<>();
+        map.put(APPLICANT_REQUIRES_INTERPRETER_APPLICANT, PartyEnum.applicant.getDisplayedValue());
+        map.put(
+                APPLICANT_REQUIRES_INTERPRETER_RESPONDENT,
+                PartyEnum.respondent.getDisplayedValue());
+        map.put(APPLICANT_REQUIRES_INTERPRETER_OTHER_PARTY, PartyEnum.other.getDisplayedValue());
+
+        return map;
+    }
 
     private BulkScanPrlConstants() {}
 }

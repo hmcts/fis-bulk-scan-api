@@ -1,10 +1,10 @@
 {
-  "case_creation_details":{
-    "case_type_id":"PRLAPPS",
-    "event_id":"create-case-privatelaw-bs",
-    "case_data":{
-      "miamOtherGroundsChecklist":"miamOtherGroundsChecklistEnum_Value_9",
-      "otherProceedingsDetailsTable":[
+  "case_creation_details": {
+    "case_type_id": "PRLAPPS",
+    "event_id": "create-case-privatelaw-bs",
+    "case_data": {
+      "miamOtherGroundsChecklist": "miamOtherGroundsChecklistEnum_Value_9",
+      "otherProceedingsDetailsTable": [
         {
           "value": {
             "previousOrOngoingProceedings": "yes",
@@ -17,72 +17,86 @@
           }
         }
       ],
-      "applicants":[
+      "applicants": [
         {
-          "value":{
-            "firstName":"John",
-            "lastName":"Peters",
-            "previousName":"Winters",
-            "gender":"Male",
-            "dateOfBirth":"02/09/87",
-            "placeOfBirth":"Surrey",
-            "AddressLine1":"Hackney",
-            "PostCode":"w34fgt",
-            "landline":"7876540984",
-            "phoneNumber":"8766540984",
-            "email":"johnnyj@hotmail.uk",
-            "isAtAddressLessThan5Years":null,
-            "addressLivedLessThan5YearsDetails":"Hackney",
-            "doTheyHaveLegalRepresentation":"yes",
-            "representativeFirstName":"Frank Burns",
-            "solicitorOrg":[
+          "value": {
+            "firstName": "John",
+            "lastName": "Peters",
+            "previousName": "Winters",
+            "gender": "Male",
+            "dateOfBirth": "02/09/87",
+            "placeOfBirth": "Surrey",
+            "AddressLine1": "Hackney",
+            "PostCode": "w34fgt",
+            "landline": "7876540984",
+            "phoneNumber": "8766540984",
+            "email": "johnnyj@hotmail.uk",
+            "isAtAddressLessThan5Years": null,
+            "addressLivedLessThan5YearsDetails": "Hackney",
+            "doTheyHaveLegalRepresentation": "yes",
+            "representativeFirstName": "Frank Burns",
+            "solicitorOrg": [
               {
-                "value":{
-                  "OrganisationName":"Burns, Burns and Burns"
+                "value": {
+                  "OrganisationName": "Burns, Burns and Burns"
                 }
               }
             ],
-            "solicitorAddress":[
+            "solicitorAddress": [
               {
-                "value":{
-                  "AddressLine1":"Richmond",
-                  "PostCode":"W93qb"
+                "value": {
+                  "AddressLine1": "Richmond",
+                  "PostCode": "W93qb"
                 }
               }
             ],
-            "solicitorTelephone":"7876567984",
-            "solicitorFaxNumber":"8766509984",
-            "dxNumber":"8766509984",
-            "solicitorReference":"IO908765",
-            "solicitorFeeAccount":"9876567984",
-            "solicitorEmail":"FBurnsBBB@gmail.com"
+            "solicitorTelephone": "7876567984",
+            "solicitorFaxNumber": "8766509984",
+            "dxNumber": "8766509984",
+            "solicitorReference": "IO908765",
+            "solicitorFeeAccount": "9876567984",
+            "solicitorEmail": "FBurnsBBB@gmail.com"
           }
         },
         {
-          "value":{
-            "firstName":"Wendy",
-            "lastName":"Chan",
-            "previousName":"Walters",
-            "gender":"Female",
-            "dateOfBirth":"03/09/45",
-            "placeOfBirth":"Colchester",
-            "AddressLine1":"London",
-            "PostCode":"w12ghw",
-            "landline":"7347678354",
-            "phoneNumber":"3476785563",
-            "email":"wendy@hotmail.uk",
-            "isAtAddressLessThan5Years":null,
-            "addressLivedLessThan5YearsDetails":"Baker St"
+          "value": {
+            "firstName": "Wendy",
+            "lastName": "Chan",
+            "previousName": "Walters",
+            "gender": "Female",
+            "dateOfBirth": "03/09/45",
+            "placeOfBirth": "Colchester",
+            "AddressLine1": "London",
+            "PostCode": "w12ghw",
+            "landline": "7347678354",
+            "phoneNumber": "3476785563",
+            "email": "wendy@hotmail.uk",
+            "isAtAddressLessThan5Years": null,
+            "addressLivedLessThan5YearsDetails": "Baker St"
           }
         }
       ],
-      "ordersApplyingFor":[
+      "ordersApplyingFor": [
         "childArrangementsOrder",
         "prohibitedStepsOrder",
         "specificIssueOrder"
       ],
-      "habitualResidentInOtherState":"yes",
-      "miamUrgencyReasonChecklist":[
+      "habitualResidentInOtherState": "yes",
+      "interpreterNeeds": [
+        {
+          "value": {
+            "language": "dialect",
+            "otherAssistance": "Details",
+            "party": [
+              "Applicant",
+              "Respondent"
+            ]
+          }
+        }
+      ],
+      "specialArrangementsRequired": "facility details",
+      "isInterpreterNeeded": "Yes",
+      "miamUrgencyReasonChecklist": [
         "miamUrgencyReasonChecklistEnum_Value_1",
         "miamUrgencyReasonChecklistEnum_Value_2",
         "miamUrgencyReasonChecklistEnum_Value_3",
@@ -91,91 +105,89 @@
         "miamUrgencyReasonChecklistEnum_Value_6",
         "miamUrgencyReasonChecklistEnum_Value_7"
       ],
-      "otherProceedingsTable":{
-        "previousOrOngoingProceedings":"yes"
+      "otherProceedingsTable": {
+        "previousOrOngoingProceedings": "yes"
       },
-      "briefDetailsOnTheApplication":"briefDetails",
-      "scannedDocuments":[
-        {
-          "value":{
-            "document_url":"http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c",
-            "document_filename":"test.pdf",
-            "document_binary_url":"http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
-          }
-        }
+      "isIntermediaryNeeded": "Yes",
+      "briefDetailsOnTheApplication": "briefDetails",
+      "scannedDocuments": [
+
       ],
-      "miamExemptionsChecklist":[
+      "miamExemptionsChecklist": [
         "domesticViolence",
         "childProtectionConcern",
         "urgency",
         "previousMIAMattendance",
         "other"
       ],
-      "children":[
+      "children": [
         {
-          "value":{
-            "firstName":"firstName",
-            "lastName":"LastName",
-            "dateOfBirth":"02/02/2020",
-            "gender":"Male",
-            "orderAppliedFor":"orderAppliedFor",
-            "applicantsRelationshipToChild":"applicant",
-            "respondentsRelationshipToChild":"respondent"
+          "value": {
+            "firstName": "firstName",
+            "lastName": "LastName",
+            "dateOfBirth": "02/02/2020",
+            "gender": "Male",
+            "orderAppliedFor": "orderAppliedFor",
+            "applicantsRelationshipToChild": "applicant",
+            "respondentsRelationshipToChild": "respondent"
           }
         },
         {
-          "value":{
-            "firstName":"child2firstName",
-            "lastName":"child2LastName",
-            "dateOfBirth":"02/02/2020",
-            "gender":"Male",
-            "orderAppliedFor":"child2orderAppliedFor",
-            "applicantsRelationshipToChild":"applicant",
-            "respondentsRelationshipToChild":"respondent"
+          "value": {
+            "firstName": "child2firstName",
+            "lastName": "child2LastName",
+            "dateOfBirth": "02/02/2020",
+            "gender": "Male",
+            "orderAppliedFor": "child2orderAppliedFor",
+            "applicantsRelationshipToChild": "applicant",
+            "respondentsRelationshipToChild": "respondent"
           }
         },
         {
-          "value":{
-            "firstName":"child3firstName",
-            "lastName":"child3LastName",
-            "dateOfBirth":"02/02/2020",
-            "gender":"Male",
-            "orderAppliedFor":"child3orderAppliedFor",
-            "applicantsRelationshipToChild":"applicant",
-            "respondentsRelationshipToChild":"respondent"
+          "value": {
+            "firstName": "child3firstName",
+            "lastName": "child3LastName",
+            "dateOfBirth": "02/02/2020",
+            "gender": "Male",
+            "orderAppliedFor": "child3orderAppliedFor",
+            "applicantsRelationshipToChild": "applicant",
+            "respondentsRelationshipToChild": "respondent"
           }
         },
         {
-          "value":{
-            "firstName":"child4firstName",
-            "lastName":"child4LastName",
-            "dateOfBirth":"02/02/2020",
-            "gender":"Male",
-            "orderAppliedFor":"child3orderAppliedFor",
-            "applicantsRelationshipToChild":"applicant",
-            "respondentsRelationshipToChild":"respondent"
+          "value": {
+            "firstName": "child4firstName",
+            "lastName": "child4LastName",
+            "dateOfBirth": "02/02/2020",
+            "gender": "Male",
+            "orderAppliedFor": "child3orderAppliedFor",
+            "applicantsRelationshipToChild": "applicant",
+            "respondentsRelationshipToChild": "respondent"
           }
         }
       ],
-      "hearingUrgencyTable":{
-        "isCaseUrgent":"yes"
+      "hearingUrgencyTable": {
+        "isCaseUrgent": "yes"
       },
-      "personWhoLivesWithChild":"living other details",
-      "litigationCapacityTable":{
-        "litigationCapacityFactors":"Factors affecting litigation capacity",
-        "litigationCapacityReferrals":"Assessment by adult learning team",
-        "litigationCapacityOtherFactors":"Factors affecting person in court"
+      "personWhoLivesWithChild": "living other details",
+      "isWelshNeeded": "Yes",
+      "litigationCapacityTable": {
+        "litigationCapacityFactors": "Factors affecting litigation capacity",
+        "litigationCapacityReferrals": "Assessment by adult learning team",
+        "litigationCapacityOtherFactors": "Factors affecting person in court"
       },
-      "applicationPermissionRequired":"yes",
-      "parentalResponsibilityDetails":"parentResponsibility",
-      "familyMediatorMiam":null,
-      "isCaseUrgent":"yes",
-      "typeOfApplicationTable":{
-        "applicationPermissionRequired":"yes"
+      "applicationPermissionRequired": "yes",
+      "reasonsForIntermediary": "intermediary details",
+      "parentalResponsibilityDetails": "parentResponsibility",
+      "familyMediatorMiam": null,
+      "isCaseUrgent": "yes",
+      "typeOfApplicationTable": {
+        "applicationPermissionRequired": "yes"
       },
-      "miamPreviousAttendanceChecklist":"miamPreviousAttendanceChecklistEnum_Value_4",
-      "childrenKNownToLocalAuthorityTextArea":"socialWorker",
-      "miamDomesticViolenceChecklist":[
+      "miamPreviousAttendanceChecklist": "miamPreviousAttendanceChecklistEnum_Value_4",
+      "childrenKNownToLocalAuthorityTextArea": "socialWorker",
+      "isSpecialArrangementsRequired": "Yes",
+      "miamDomesticViolenceChecklist": [
         "miamDomesticViolenceChecklistEnum_Value_1",
         "miamDomesticViolenceChecklistEnum_Value_2",
         "miamDomesticViolenceChecklistEnum_Value_3",
@@ -198,89 +210,120 @@
         "miamDomesticViolenceChecklistEnum_Value_21",
         "miamDomesticViolenceChecklistEnum_Value_22"
       ],
-      "childrenParentsName":"parentsName",
-      "previousOrOngoingProceedings":"yes",
-      "internationalElementTable":{
-        "habitualResidentInOtherState":"yes",
-        "habitualResidentInOtherStateGiveReason":null,
-        "jurisdictionIssue":"Yes",
-        "jurisdictionIssueGiveReason":"International jurisdiction big issue",
-        "requestToForeignAuthority":null,
-        "requestToForeignAuthorityGiveReason":null
+      "childrenParentsName": "parentsName",
+      "previousOrOngoingProceedings": "yes",
+      "internationalElementTable": {
+        "habitualResidentInOtherState": "yes",
+        "habitualResidentInOtherStateGiveReason": null,
+        "jurisdictionIssue": "Yes",
+        "jurisdictionIssueGiveReason": "International jurisdiction big issue",
+        "requestToForeignAuthority": null,
+        "requestToForeignAuthorityGiveReason": null
       },
-      "applicantAttendedMiam":null,
-      "miamChildProtectionConcernList":[
-        "MIAMChildProtectionConcernChecklistEnum_value_1",
-        "MIAMChildProtectionConcernChecklistEnum_value_2"
-      ],
-      "childrenSubjectOfChildProtectionPlan":"protectionplan",
-      "miamTable":{
-        "claimingExemptionMiam":"yes",
-        "familyMediatorMiam":null,
-        "applicantAttendedMiam":null
-      },
-      "childrenKNownToLocalAuthority":"Yes",
-      "respondents":[
+      "scannedDocuments": [
         {
-          "value":{
-            "firstName":"Robert",
-            "lastName":"Zane",
-            "previousName":null,
-            "gender":"male",
-            "dateOfBirth":"20/02/2002",
-            "isDateOfBirthUnknown":null,
-            "placeOfBirth":"London",
-            "AddressLine1":"123, Topsfield Parade",
-            "PostCode":"N8 8PE",
-            "isAddressUnknown":null,
-            "landline":"+442083332222",
-            "phoneNumber":"+447999444444",
-            "canYouProvidePhoneNumber":null,
-            "email":"test@test.com",
-            "canYouProvideEmailAddress":null,
-            "isAtAddressLessThan5Years":"No",
-            "addressLivedLessThan5YearsDetails":"225, Topsfield Parade, N8 8PE"
-          }
-        },
-        {
-          "value":{
-            "firstName":"Rachel",
-            "lastName":"Brandl",
-            "previousName":null,
-            "gender":"female",
-            "dateOfBirth":"21/02/2002",
-            "isDateOfBirthUnknown":null,
-            "placeOfBirth":"London",
-            "AddressLine1":"124, Topsfield Parade",
-            "PostCode":"N8 8PE",
-            "isAddressUnknown":null,
-            "landline":"+442081112222",
-            "phoneNumber":"+447999666666",
-            "canYouProvidePhoneNumber":null,
-            "email":"test@test.com",
-            "canYouProvideEmailAddress":null,
-            "isAtAddressLessThan5Years":"No",
-            "addressLivedLessThan5YearsDetails":"227, Topsfield Parade, N8 8PE"
+          "value": {
+            "document_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c",
+            "document_filename": "test.pdf",
+            "document_binary_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
           }
         }
       ],
-      "havePreviousParentingPlan":"parentingplan",
-      "allegationsOfHarmOverviewTable":{
-        "allegationsOfHarmDomesticAbuseYesNo":"yes",
-        "allegationsOfHarmChildAbductionYesNo":"yes",
-        "allegationsOfHarmChildAbuseYesNo":"yes",
-        "allegationsOfHarmSubstanceAbuseYesNo":"yes",
-        "allegationsOfHarmOtherConcernsYesNo":"yes"
+      "welshNeeds": [
+        {
+          "value": {
+            "whoNeedsWelsh": "child1 ",
+            "spokenOrWritten": [
+              "Will need to speak Welsh",
+              "Will need to read and write in Welsh",
+              "Both"
+            ]
+          }
+        },
+        {
+          "value": {
+            "whoNeedsWelsh": "child2 ",
+            "spokenOrWritten": [
+              "Will need to read and write in Welsh",
+              "Both"
+            ]
+          }
+        }
+      ],
+      "applicantAttendedMiam": null,
+      "miamChildProtectionConcernList": [
+        "MIAMChildProtectionConcernChecklistEnum_value_1",
+        "MIAMChildProtectionConcernChecklistEnum_value_2"
+      ],
+      "childrenSubjectOfChildProtectionPlan": "protectionplan",
+      "miamTable": {
+        "claimingExemptionMiam": "yes",
+        "familyMediatorMiam": null,
+        "applicantAttendedMiam": null
       },
-      "applicationPermissionRequiredReason":"reason",
-      "childrenOfSameParent":"Yes",
-      "childLiveWith":"Applicant",
-      "consentOrder":"yes",
-      "claimingExemptionMiam":"yes",
-      "welshLanguageRequirement":"yes",
-      "childParentsNameCollection":"parentsNameColl"
+      "childrenKNownToLocalAuthority": "Yes",
+      "respondents": [
+        {
+          "value": {
+            "firstName": "Robert",
+            "lastName": "Zane",
+            "previousName": null,
+            "gender": "male",
+            "dateOfBirth": "20/02/2002",
+            "isDateOfBirthUnknown": null,
+            "placeOfBirth": "London",
+            "AddressLine1": "123, Topsfield Parade",
+            "PostCode": "N8 8PE",
+            "isAddressUnknown": null,
+            "landline": "+442083332222",
+            "phoneNumber": "+447999444444",
+            "canYouProvidePhoneNumber": null,
+            "email": "test@test.com",
+            "canYouProvideEmailAddress": null,
+            "isAtAddressLessThan5Years": "No",
+            "addressLivedLessThan5YearsDetails": "225, Topsfield Parade, N8 8PE"
+          }
+        },
+        {
+          "value": {
+            "firstName": "Rachel",
+            "lastName": "Brandl",
+            "previousName": null,
+            "gender": "female",
+            "dateOfBirth": "21/02/2002",
+            "isDateOfBirthUnknown": null,
+            "placeOfBirth": "London",
+            "AddressLine1": "124, Topsfield Parade",
+            "PostCode": "N8 8PE",
+            "isAddressUnknown": null,
+            "landline": "+442081112222",
+            "phoneNumber": "+447999666666",
+            "canYouProvidePhoneNumber": null,
+            "email": "test@test.com",
+            "canYouProvideEmailAddress": null,
+            "isAtAddressLessThan5Years": "No",
+            "addressLivedLessThan5YearsDetails": "227, Topsfield Parade, N8 8PE"
+          }
+        }
+      ],
+      "havePreviousParentingPlan": "parentingplan",
+      "allegationsOfHarmOverviewTable": {
+        "allegationsOfHarmDomesticAbuseYesNo": "yes",
+        "allegationsOfHarmChildAbductionYesNo": "yes",
+        "allegationsOfHarmChildAbuseYesNo": "yes",
+        "allegationsOfHarmSubstanceAbuseYesNo": "yes",
+        "allegationsOfHarmOtherConcernsYesNo": "yes"
+      },
+      "applicationPermissionRequiredReason": "reason",
+      "childrenOfSameParent": "Yes",
+      "childLiveWith": "Applicant",
+      "consentOrder": "yes",
+      "claimingExemptionMiam": "yes",
+      "welshLanguageRequirement": "yes",
+      "childParentsNameCollection": "parentsNameColl"
     }
   },
-  "warnings":[
+  "warnings": [
+
   ]
 }

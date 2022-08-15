@@ -19,6 +19,10 @@ uk:
               - childrenServicesAuthority
               - children_of_same_parent
               - subject_to_childProtectionPlan
+              - applicantRequiresWelsh
+              - applicantRequiresInterpreter
+              - applicantRequiresInterpreter_intermediaryRequired
+              - requiredSpecialAssistanceOrFacilities
             optionalFields:
               - applicant1Gender
               - applicant1PreviousNames
@@ -212,6 +216,15 @@ uk:
               - other_case_contact_or_residentOrder_withAdoptioNorder
               - other_case_childMaintenanceOrder
               - other_case_childArrangementOrder
+              - applicantRequiresInterpreter_applicant
+              - applicantRequiresInterpreter_respondent
+              - applicantRequiresInterpreter_otherParty
+              - applicantRequiresInterpreter_otherParty_details
+              - applicantRequiresInterpreter_otherParty_dialect
+              - applicantRequiresInterpreter_intermediaryRequired_details
+              - requiredSpecialAssistanceOrFacilities_details
+              - requiredSpecialArrangementDetails
+              - nameOfPartyWhoNeedsWelsh
             regexValidationFields:
               dateFields:
                 fieldNames:

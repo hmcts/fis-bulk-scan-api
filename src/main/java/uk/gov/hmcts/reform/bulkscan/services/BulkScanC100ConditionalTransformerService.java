@@ -12,8 +12,12 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.VALUE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.getTypeOfOrderEnumFields;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.getTypeOfOrderEnumMapping;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.APPLICANT_REQUIRES_INTERPRETER_APPLICANT;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.APPLICANT_REQUIRES_INTERPRETER_OTHER_PARTY;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.APPLICANT_REQUIRES_INTERPRETER_RESPONDENT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.CHILD_ARRANGEMENTS_ORDER_DESCRIPTION;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.CHILD_ARRANGEMENT_ORDER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERPRETER_NEEDS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.MIAM_DOMESTIC_VIOLENCE_CHECKLIST;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.MIAM_EXEMPTIONS_CHECKLIST;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.MIAM_URGENCY_REASON_CHECKLIST;
@@ -55,11 +59,16 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.NO_MIA
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.NO_MIAM_URGENCY_UNREASONABLEHARDSHIP;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.ORDER_APPLIED_FOR;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDINGS_DETAILS_TABLE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.PARTY_ENUM;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.PROHIBITED_STEPS_ORDER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.PROHIBITED_STEPS_ORDER_DESCRIPTION;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.SPECIAL_ISSUE_ORDER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.SPECIFIC_ISSUE_ORDER_DESCRIPTION;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.SPOKEN_WRITTEN_BOTH;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.TYPE_OF_ORDER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.WELSH_NEEDS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.WELSH_NEEDS_CCD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.WHO_WELSH_NEEDS;
 import static uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper.transformScanDocuments;
 
 import com.microsoft.applicationinsights.boot.dependencies.apachecommons.lang3.StringUtils;
@@ -77,10 +86,12 @@ import uk.gov.hmcts.reform.bulkscan.enums.MiamChildProtectionConcernChecklistEnu
 import uk.gov.hmcts.reform.bulkscan.enums.MiamDomesticViolenceChecklistEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.MiamExemptionsChecklistEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.MiamUrgencyReasonChecklistEnum;
+import uk.gov.hmcts.reform.bulkscan.enums.PartyEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.PermissionRequiredEnum;
+import uk.gov.hmcts.reform.bulkscan.enums.SpokenOrWrittenWelshEnum;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
 
-@SuppressWarnings({"PMD.ExcessiveImports", "unchecked"})
+@SuppressWarnings({"PMD", "unchecked"})
 @Component
 public class BulkScanC100ConditionalTransformerService {
 
@@ -110,6 +121,35 @@ public class BulkScanC100ConditionalTransformerService {
         values.put(TYPE_OF_ORDER, transformTypeOfOrder(inputFieldsMap));
 
         populatedMap.put(OTHER_PROCEEDINGS_DETAILS_TABLE, list);
+
+        // C100 Attending the hearing fields transform
+        populatedMap.put(WELSH_NEEDS_CCD, populateWelshNeeds(inputFieldsMap));
+
+        List<LinkedTreeMap> interpreterNeeds = (List) populatedMap.get(INTERPRETER_NEEDS);
+        LinkedTreeMap innerinterpreterValue = interpreterNeeds.get(0);
+        LinkedTreeMap interpreterValues = (LinkedTreeMap) innerinterpreterValue.get(VALUE);
+        interpreterValues.put(PARTY_ENUM, transformParty(inputFieldsMap));
+    }
+
+    /**
+     * C100 form Interpreter needs party enum.
+     *
+     * @param inputFieldsMap All input key-value pair from transformation request.
+     * @return list of values for party field in the transformation output.
+     */
+    private List<String> transformParty(Map<String, String> inputFieldsMap) {
+        List<String> partyDetails = new ArrayList<>();
+        if (YES.equalsIgnoreCase(inputFieldsMap.get(APPLICANT_REQUIRES_INTERPRETER_APPLICANT))) {
+            partyDetails.add(PartyEnum.applicant.getDisplayedValue());
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get(APPLICANT_REQUIRES_INTERPRETER_RESPONDENT))) {
+            partyDetails.add(PartyEnum.respondent.getDisplayedValue());
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get(APPLICANT_REQUIRES_INTERPRETER_OTHER_PARTY))) {
+            partyDetails.add(PartyEnum.other.getDisplayedValue());
+        }
+
+        return partyDetails;
     }
 
     /**
@@ -391,5 +431,48 @@ public class BulkScanC100ConditionalTransformerService {
             return getTypeOfOrderEnumMapping().get(typeOfOrderField.get());
         }
         return null;
+    }
+
+    /**
+     * C100 form fields of Section 10.
+     *
+     * @param inputFieldsMap All input key-value pair from transformation request.
+     * @return list of values for welshneeds field in the transformation output.
+     */
+    private List<LinkedTreeMap> populateWelshNeeds(Map<String, String> inputFieldsMap) {
+        List<LinkedTreeMap> list = new ArrayList<>();
+        String welshNeeds = inputFieldsMap.get(WELSH_NEEDS);
+        // child1 Yes no no;child2 No Yes Yes;
+        String[] splittedArr = org.apache.commons.lang3.StringUtils.split(welshNeeds, ";");
+        if (splittedArr != null) {
+            for (String eachStr : splittedArr) {
+                LinkedTreeMap<String, Object> linkedTreeMap = new LinkedTreeMap<>();
+                List<String> enums = new ArrayList<>();
+                String childName = eachStr.substring(0, eachStr.indexOf("["));
+                String spokenEnum =
+                        eachStr.substring(eachStr.indexOf("[") + 1, eachStr.lastIndexOf("]"));
+                String[] spokenOrWrittenOrBoth = spokenEnum.split(" ");
+                // 0 - Spoken , 1- Written, 2- Both
+                if (spokenOrWrittenOrBoth.length > 0) {
+                    if (YES.equalsIgnoreCase(spokenOrWrittenOrBoth[0])) {
+                        enums.add(SpokenOrWrittenWelshEnum.spoken.getDisplayedValue());
+                    }
+                    if (YES.equalsIgnoreCase(spokenOrWrittenOrBoth[1])) {
+                        enums.add(SpokenOrWrittenWelshEnum.written.getDisplayedValue());
+                    }
+                    if (YES.equalsIgnoreCase(spokenOrWrittenOrBoth[2])) {
+                        enums.add(SpokenOrWrittenWelshEnum.both.getDisplayedValue());
+                    }
+                }
+                linkedTreeMap.put(WHO_WELSH_NEEDS, childName);
+                linkedTreeMap.put(SPOKEN_WRITTEN_BOTH, enums);
+
+                LinkedTreeMap<String, Object> valueLinkMap = new LinkedTreeMap<>();
+                valueLinkMap.put(VALUE, linkedTreeMap);
+                list.add(valueLinkMap);
+            }
+        }
+
+        return list;
     }
 }

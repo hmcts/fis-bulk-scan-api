@@ -96,3 +96,36 @@ uk:
               groupValidationValue: "Yes"
               requiredFieldCount: 1
               sectionName: "Cases with an international element (8) and; Factors affecting ability to participate in proceedings (9)"
+            - groupWelshRequired:
+              dependentFields:
+                - nameOfPartyWhoNeedsWelsh
+              dependentFieldValue: "*"
+              groupFieldName: applicantRequiresWelsh
+              groupValidationValue: "Yes"
+              requiredFieldCount: 1
+              sectionName: "Welsh Required"
+            - groupInterpreterRequired:
+              dependentFields:
+                - applicantRequiresInterpreter_otherParty_dialect
+              dependentFieldValue: "*"
+              groupFieldName: applicantRequiresInterpreter
+              groupValidationValue: "Yes"
+              requiredFieldCount: 1
+              sectionName: "Interpreter Required"
+            - groupIntermediaryRequired:
+              dependentFields:
+                - applicantRequiresInterpreter_intermediaryRequired_details
+              dependentFieldValue: "*"
+              groupFieldName: applicantRequiresInterpreter_intermediaryRequired
+              groupValidationValue: "Yes"
+              requiredFieldCount: 1
+              sectionName: "Intermediary Required"
+            - groupSpecialArrangementsRequired:
+              dependentFields:
+                - requiredSpecialAssistanceOrFacilities_details
+                - requiredSpecialArrangementDetails
+              dependentFieldValue: "*"
+              groupFieldName: requiredSpecialAssistanceOrFacilities
+              groupValidationValue: "Yes"
+              requiredFieldCount: 1
+              sectionName: "Special Arrangements Required"

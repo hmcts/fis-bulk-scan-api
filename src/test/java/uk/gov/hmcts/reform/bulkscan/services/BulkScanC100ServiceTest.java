@@ -289,6 +289,7 @@ class BulkScanC100ServiceTest {
         List<OcrDataField> c100GetExemptionWarningData = new ArrayList<>();
         c100GetExemptionWarningData.addAll(TestDataC100Util.getAllNamesRelationSuccessData());
         c100GetExemptionWarningData.addAll(TestDataC100Util.getExemptionToAttendWarningData());
+        c100GetExemptionWarningData.addAll(TestDataC100Util.getC100AttendTheHearingData());
         BulkScanValidationRequest bulkScanValidationRequest =
                 BulkScanValidationRequest.builder()
                         .ocrdatafields(c100GetExemptionWarningData)

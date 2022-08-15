@@ -81,6 +81,21 @@
         "prohibitedStepsOrder",
         "specificIssueOrder"
       ],
+      "habitualResidentInOtherState": "yes",
+      "interpreterNeeds": [
+        {
+          "value": {
+            "language": "dialect",
+            "otherAssistance": "Details",
+            "party": [
+              "Applicant",
+              "Respondent"
+            ]
+          }
+        }
+      ],
+      "specialArrangementsRequired": "facility details",
+      "isInterpreterNeeded": "Yes",
       "miamUrgencyReasonChecklist": [
         "miamUrgencyReasonChecklistEnum_Value_1",
         "miamUrgencyReasonChecklistEnum_Value_2",
@@ -93,15 +108,10 @@
       "otherProceedingsTable": {
         "previousOrOngoingProceedings": "yes"
       },
+      "isIntermediaryNeeded": "Yes",
       "briefDetailsOnTheApplication": "briefDetails",
       "scannedDocuments": [
-        {
-          "value": {
-            "document_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c",
-            "document_filename": "test.pdf",
-            "document_binary_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
-          }
-        }
+
       ],
       "miamExemptionsChecklist": [
         "domesticViolence",
@@ -160,8 +170,14 @@
         "isCaseUrgent": "yes"
       },
       "personWhoLivesWithChild": "living other details",
+      "isWelshNeeded": "Yes",
+      "litigationCapacityTable": {
+        "litigationCapacityFactors": "Factors affecting litigation capacity",
+        "litigationCapacityReferrals": "Assessment by adult learning team",
+        "litigationCapacityOtherFactors": "Factors affecting person in court"
+      },
       "applicationPermissionRequired": "yes",
-      "habitualResidentInOtherState": "yes",
+      "reasonsForIntermediary": "intermediary details",
       "parentalResponsibilityDetails": "parentResponsibility",
       "familyMediatorMiam": null,
       "isCaseUrgent": "yes",
@@ -170,6 +186,7 @@
       },
       "miamPreviousAttendanceChecklist": "miamPreviousAttendanceChecklistEnum_Value_4",
       "childrenKNownToLocalAuthorityTextArea": "socialWorker",
+      "isSpecialArrangementsRequired": "Yes",
       "miamDomesticViolenceChecklist": [
         "miamDomesticViolenceChecklistEnum_Value_1",
         "miamDomesticViolenceChecklistEnum_Value_2",
@@ -195,6 +212,35 @@
       ],
       "childrenParentsName": "parentsName",
       "previousOrOngoingProceedings": "yes",
+      "internationalElementTable": {
+        "habitualResidentInOtherState": "yes",
+        "habitualResidentInOtherStateGiveReason": null,
+        "jurisdictionIssue": "Yes",
+        "jurisdictionIssueGiveReason": "International jurisdiction big issue",
+        "requestToForeignAuthority": null,
+        "requestToForeignAuthorityGiveReason": null
+      },
+      "welshNeeds": [
+        {
+          "value": {
+            "whoNeedsWelsh": "child1 ",
+            "spokenOrWritten": [
+              "Will need to speak Welsh",
+              "Will need to read and write in Welsh",
+              "Both"
+            ]
+          }
+        },
+        {
+          "value": {
+            "whoNeedsWelsh": "child2 ",
+            "spokenOrWritten": [
+              "Will need to read and write in Welsh",
+              "Both"
+            ]
+          }
+        }
+      ],
       "applicantAttendedMiam": null,
       "miamChildProtectionConcernList": [
         "MIAMChildProtectionConcernChecklistEnum_value_1",
@@ -251,19 +297,6 @@
           }
         }
       ],
-      "internationalElementTable": {
-        "habitualResidentInOtherState": "yes",
-        "habitualResidentInOtherStateGiveReason": null,
-        "jurisdictionIssue": "Yes",
-        "jurisdictionIssueGiveReason": "International jurisdiction big issue",
-        "requestToForeignAuthority": null,
-        "requestToForeignAuthorityGiveReason": null
-      },
-      "litigationCapacityTable": {
-        "litigationCapacityFactors": "Factors affecting litigation capacity",
-        "litigationCapacityReferrals": "Assessment by adult learning team",
-        "litigationCapacityOtherFactors": "Factors affecting person in court"
-      },
       "havePreviousParentingPlan": "parentingplan",
       "allegationsOfHarmOverviewTable": {
         "allegationsOfHarmDomesticAbuseYesNo": "yes",
@@ -281,5 +314,7 @@
       "childParentsNameCollection": "parentsNameColl"
     }
   },
-  "warnings": []
+  "warnings": [
+
+  ]
 }
