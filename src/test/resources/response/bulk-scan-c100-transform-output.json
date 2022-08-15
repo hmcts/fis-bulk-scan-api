@@ -69,39 +69,12 @@
         "specificIssueOrder"
       ],
       "habitualResidentInOtherState": "yes",
-      "interpreterNeeds": [
-        {
-          "value": {
-            "language": "dialect",
-            "otherAssistance": "Details",
-            "party": [
-              "Applicant",
-              "Respondent"
-            ]
-          }
-        }
-      ],
-      "specialArrangementsRequired": "facility details",
-      "isInterpreterNeeded": "Yes",
-      "miamUrgencyReasonChecklist": [
-        "miamUrgencyReasonChecklistEnum_Value_1",
-        "miamUrgencyReasonChecklistEnum_Value_2",
-        "miamUrgencyReasonChecklistEnum_Value_3",
-        "miamUrgencyReasonChecklistEnum_Value_4",
-        "miamUrgencyReasonChecklistEnum_Value_5",
-        "miamUrgencyReasonChecklistEnum_Value_6",
-        "miamUrgencyReasonChecklistEnum_Value_7"
-      ],
-      "otherProceedingsTable": {
-        "previousOrOngoingProceedings": "yes"
-      },
-      "isIntermediaryNeeded": "Yes",
-      "briefDetailsOnTheApplication": "briefDetails",
       "checklistSection8To10Completed": "yes",
       "checklistSection16Completed": "yes",
       "otherProceedingsTable": {
         "previousOrOngoingProceedings": "yes"
       },
+      "isIntermediaryNeeded": "Yes",
       "scannedDocuments": [
 
       ],
@@ -159,59 +132,21 @@
           }
         }
       ],
-      "hearingUrgencyTable": {
-        "isCaseUrgent": "yes"
-      },
-      "personWhoLivesWithChild": "living other details",
+      "agreedBy": "Burns, Burns and Burns",
       "isWelshNeeded": "Yes",
       "litigationCapacityTable": {
         "litigationCapacityFactors": "Factors affecting litigation capacity",
         "litigationCapacityReferrals": "Assessment by adult learning team",
         "litigationCapacityOtherFactors": "Factors affecting person in court"
       },
-      "applicationPermissionRequired": "yes",
-      "reasonsForIntermediary": "intermediary details",
-      "agreedBy": "Burns, Burns and Burns",
       "jurisdictionIssue": "Yes",
       "applicationPermissionRequired": "yes",
+      "reasonsForIntermediary": "intermediary details",
       "parentalResponsibilityDetails": "parentResponsibility",
       "familyMediatorMiam": null,
       "miamPreviousAttendanceChecklist": "miamPreviousAttendanceChecklistEnum_Value_4",
       "childrenKNownToLocalAuthorityTextArea": "socialWorker",
       "isSpecialArrangementsRequired": "Yes",
-      "miamDomesticViolenceChecklist": [
-        "miamDomesticViolenceChecklistEnum_Value_1",
-        "miamDomesticViolenceChecklistEnum_Value_2",
-        "miamDomesticViolenceChecklistEnum_Value_3",
-        "miamDomesticViolenceChecklistEnum_Value_4",
-        "miamDomesticViolenceChecklistEnum_Value_5",
-        "miamDomesticViolenceChecklistEnum_Value_6",
-        "miamDomesticViolenceChecklistEnum_Value_7",
-        "miamDomesticViolenceChecklistEnum_Value_8",
-        "miamDomesticViolenceChecklistEnum_Value_9",
-        "miamDomesticViolenceChecklistEnum_Value_10",
-        "miamDomesticViolenceChecklistEnum_Value_11",
-        "miamDomesticViolenceChecklistEnum_Value_12",
-        "miamDomesticViolenceChecklistEnum_Value_13",
-        "miamDomesticViolenceChecklistEnum_Value_15",
-        "miamDomesticViolenceChecklistEnum_Value_16",
-        "miamDomesticViolenceChecklistEnum_Value_17",
-        "miamDomesticViolenceChecklistEnum_Value_18",
-        "miamDomesticViolenceChecklistEnum_Value_19",
-        "miamDomesticViolenceChecklistEnum_Value_20",
-        "miamDomesticViolenceChecklistEnum_Value_21",
-        "miamDomesticViolenceChecklistEnum_Value_22"
-      ],
-      "childrenParentsName": "parentsName",
-      "previousOrOngoingProceedings": "yes",
-      "internationalElementTable": {
-        "habitualResidentInOtherState": "yes",
-        "habitualResidentInOtherStateGiveReason": null,
-        "jurisdictionIssue": "Yes",
-        "jurisdictionIssueGiveReason": "International jurisdiction big issue",
-        "requestToForeignAuthority": null,
-        "requestToForeignAuthorityGiveReason": null
-      },
       "welshNeeds": [
         {
           "value": {
@@ -284,7 +219,6 @@
           }
         }
       ],
-      "havePreviousParentingPlan": "parentingplan",
       "requestToForeignAuthorityGiveReason": null,
       "allegationsOfHarmOverviewTable": {
         "allegationsOfHarmDomesticAbuseYesNo": "yes",
@@ -299,7 +233,6 @@
       "consentOrder": "yes",
       "checklistSection12To14Completed": "yes",
       "claimingExemptionMiam": "yes",
-      "typeOfChildArrangementsOrder": "true",
       "otherProceedingsDetailsTable": [
         {
           "value": {
@@ -313,6 +246,20 @@
           }
         }
       ],
+      "interpreterNeeds": [
+        {
+          "value": {
+            "language": "dialect",
+            "otherAssistance": "Details",
+            "party": [
+              "Applicant",
+              "Respondent"
+            ]
+          }
+        }
+      ],
+      "specialArrangementsRequired": "facility details",
+      "isInterpreterNeeded": "Yes",
       "miamUrgencyReasonChecklist": [
         "miamUrgencyReasonChecklistEnum_Value_1",
         "miamUrgencyReasonChecklistEnum_Value_2",
@@ -424,6 +371,14 @@
       ],
       "childrenParentsName": "parentsName",
       "previousOrOngoingProceedings": "yes",
+      "internationalElementTable": {
+        "habitualResidentInOtherState": "yes",
+        "habitualResidentInOtherStateGiveReason": null,
+        "jurisdictionIssue": "Yes",
+        "jurisdictionIssueGiveReason": "International jurisdiction big issue",
+        "requestToForeignAuthority": null,
+        "requestToForeignAuthorityGiveReason": null
+      },
       "SignedDate": "08/08/21",
       "childrenSubjectOfChildProtectionPlan": "protectionplan",
       "miamTable": {
@@ -441,5 +396,7 @@
       "habitualResidentInOtherStateGiveReason": null
     }
   },
-  "warnings": []
+  "warnings": [
+
+  ]
 }

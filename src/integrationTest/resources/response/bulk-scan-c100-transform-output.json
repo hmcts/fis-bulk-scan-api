@@ -4,19 +4,6 @@
     "event_id": "create-case-privatelaw-bs",
     "case_data": {
       "miamOtherGroundsChecklist": "miamOtherGroundsChecklistEnum_Value_9",
-      "otherProceedingsDetailsTable": [
-        {
-          "value": {
-            "previousOrOngoingProceedings": "yes",
-            "caseNumber": "1234567890",
-            "dateOrYear": "22-01-2020",
-            "nameOfCourt": "court name",
-            "nameOfChildrenInvolved": "child1, child2",
-            "nameAndOffice": "case name and office name",
-            "typeOfOrder": "Emergency Protection Order"
-          }
-        }
-      ],
       "applicants": [
         {
           "value": {
@@ -82,50 +69,14 @@
         "specificIssueOrder"
       ],
       "habitualResidentInOtherState": "yes",
-      "interpreterNeeds": [
-        {
-          "value": {
-            "language": "dialect",
-            "otherAssistance": "Details",
-            "party": [
-              "Applicant",
-              "Respondent"
-            ]
-          }
-        }
-      ],
-      "specialArrangementsRequired": "facility details",
-      "isInterpreterNeeded": "Yes",
-      "miamUrgencyReasonChecklist": [
-        "miamUrgencyReasonChecklistEnum_Value_1",
-        "miamUrgencyReasonChecklistEnum_Value_2",
-        "miamUrgencyReasonChecklistEnum_Value_3",
-        "miamUrgencyReasonChecklistEnum_Value_4",
-        "miamUrgencyReasonChecklistEnum_Value_5",
-        "miamUrgencyReasonChecklistEnum_Value_6",
-        "miamUrgencyReasonChecklistEnum_Value_7"
-      ],
-      "otherProceedingsTable": {
-        "previousOrOngoingProceedings": "yes"
-      },
-      "isIntermediaryNeeded": "Yes",
-      "briefDetailsOnTheApplication": "briefDetails",
-      "scannedDocuments": [
-
-      ],
       "checklistSection8To10Completed": "yes",
       "checklistSection16Completed": "yes",
       "otherProceedingsTable": {
         "previousOrOngoingProceedings": "yes"
       },
+      "isIntermediaryNeeded": "Yes",
       "scannedDocuments": [
-        {
-          "value": {
-            "document_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c",
-            "document_filename": "test.pdf",
-            "document_binary_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
-          }
-        }
+
       ],
       "checklistSection2To4Completed": "yes",
       "miamExemptionsChecklist": [
@@ -143,13 +94,6 @@
             "dateOfBirth": "02/02/2020",
             "gender": "Male",
             "orderAppliedFor": "orderAppliedFor",
-        {
-          "value": {
-            "firstName": "firstName",
-            "lastName": "LastName",
-            "dateOfBirth": "02/02/2020",
-            "gender": "Male",
-            "orderAppliedFor": "orderAppliedFor",
             "applicantsRelationshipToChild": "applicant",
             "respondentsRelationshipToChild": "respondent"
           }
@@ -167,11 +111,6 @@
         },
         {
           "value": {
-            "firstName": "child2firstName",
-            "lastName": "child2LastName",
-            "dateOfBirth": "02/02/2020",
-            "gender": "Male",
-            "orderAppliedFor": "child2orderAppliedFor",
             "firstName": "child3firstName",
             "lastName": "child3LastName",
             "dateOfBirth": "02/02/2020",
@@ -194,12 +133,41 @@
         }
       ],
       "agreedBy": "Burns, Burns and Burns",
+      "isWelshNeeded": "Yes",
+      "litigationCapacityTable": {
+        "litigationCapacityFactors": "Factors affecting litigation capacity",
+        "litigationCapacityReferrals": "Assessment by adult learning team",
+        "litigationCapacityOtherFactors": "Factors affecting person in court"
+      },
       "jurisdictionIssue": "Yes",
       "applicationPermissionRequired": "yes",
+      "reasonsForIntermediary": "intermediary details",
       "parentalResponsibilityDetails": "parentResponsibility",
       "familyMediatorMiam": null,
       "miamPreviousAttendanceChecklist": "miamPreviousAttendanceChecklistEnum_Value_4",
       "childrenKNownToLocalAuthorityTextArea": "socialWorker",
+      "isSpecialArrangementsRequired": "Yes",
+      "welshNeeds": [
+        {
+          "value": {
+            "whoNeedsWelsh": "child1 ",
+            "spokenOrWritten": [
+              "Will need to speak Welsh",
+              "Will need to read and write in Welsh",
+              "Both"
+            ]
+          }
+        },
+        {
+          "value": {
+            "whoNeedsWelsh": "child2 ",
+            "spokenOrWritten": [
+              "Will need to read and write in Welsh",
+              "Both"
+            ]
+          }
+        }
+      ],
       "applicantAttendedMiam": null,
       "miamChildProtectionConcernList": [
         "MIAMChildProtectionConcernChecklistEnum_value_1",
@@ -231,30 +199,6 @@
         },
         {
           "value": {
-            "firstName": "child4firstName",
-            "lastName": "child4LastName",
-            "dateOfBirth": "02/02/2020",
-            "gender": "Male",
-            "orderAppliedFor": "child3orderAppliedFor",
-            "applicantsRelationshipToChild": "applicant",
-            "respondentsRelationshipToChild": "respondent"
-          }
-        }
-      ],
-      "hearingUrgencyTable": {
-        "isCaseUrgent": "yes"
-      },
-      "personWhoLivesWithChild": "living other details",
-      "isWelshNeeded": "Yes",
-      "litigationCapacityTable": {
-        "litigationCapacityFactors": "Factors affecting litigation capacity",
-        "litigationCapacityReferrals": "Assessment by adult learning team",
-        "litigationCapacityOtherFactors": "Factors affecting person in court"
-      },
-      "applicationPermissionRequired": "yes",
-      "reasonsForIntermediary": "intermediary details",
-      "parentalResponsibilityDetails": "parentResponsibility",
-      "familyMediatorMiam": null,
             "firstName": "Rachel",
             "lastName": "Brandl",
             "previousName": null,
@@ -289,7 +233,6 @@
       "consentOrder": "yes",
       "checklistSection12To14Completed": "yes",
       "claimingExemptionMiam": "yes",
-      "typeOfChildArrangementsOrder": "true",
       "otherProceedingsDetailsTable": [
         {
           "value": {
@@ -303,6 +246,29 @@
           }
         }
       ],
+      "scannedDocuments": [
+        {
+          "value": {
+            "document_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c",
+            "document_filename": "test.pdf",
+            "document_binary_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
+          }
+        }
+      ],
+      "interpreterNeeds": [
+        {
+          "value": {
+            "language": "dialect",
+            "otherAssistance": "Details",
+            "party": [
+              "Applicant",
+              "Respondent"
+            ]
+          }
+        }
+      ],
+      "specialArrangementsRequired": "facility details",
+      "isInterpreterNeeded": "Yes",
       "miamUrgencyReasonChecklist": [
         "miamUrgencyReasonChecklistEnum_Value_1",
         "miamUrgencyReasonChecklistEnum_Value_2",
@@ -389,9 +355,6 @@
       "typeOfApplicationTable": {
         "applicationPermissionRequired": "yes"
       },
-      "miamPreviousAttendanceChecklist": "miamPreviousAttendanceChecklistEnum_Value_4",
-      "childrenKNownToLocalAuthorityTextArea": "socialWorker",
-      "isSpecialArrangementsRequired": "Yes",
       "miamDomesticViolenceChecklist": [
         "miamDomesticViolenceChecklistEnum_Value_1",
         "miamDomesticViolenceChecklistEnum_Value_2",
@@ -425,41 +388,6 @@
         "requestToForeignAuthority": null,
         "requestToForeignAuthorityGiveReason": null
       },
-      "scannedDocuments": [
-        {
-          "value": {
-            "document_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c",
-            "document_filename": "test.pdf",
-            "document_binary_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
-          }
-        }
-      ],
-      "welshNeeds": [
-        {
-          "value": {
-            "whoNeedsWelsh": "child1 ",
-            "spokenOrWritten": [
-              "Will need to speak Welsh",
-              "Will need to read and write in Welsh",
-              "Both"
-            ]
-          }
-        },
-        {
-          "value": {
-            "whoNeedsWelsh": "child2 ",
-            "spokenOrWritten": [
-              "Will need to read and write in Welsh",
-              "Both"
-            ]
-          }
-        }
-      ],
-      "applicantAttendedMiam": null,
-      "miamChildProtectionConcernList": [
-        "MIAMChildProtectionConcernChecklistEnum_value_1",
-        "MIAMChildProtectionConcernChecklistEnum_value_2"
-      ],
       "SignedDate": "08/08/21",
       "childrenSubjectOfChildProtectionPlan": "protectionplan",
       "miamTable": {
@@ -467,70 +395,17 @@
         "familyMediatorMiam": null,
         "applicantAttendedMiam": null
       },
-      "childrenKNownToLocalAuthority": "Yes",
-      "respondents": [
-        {
-          "value": {
-            "firstName": "Robert",
-            "lastName": "Zane",
-            "previousName": null,
-            "gender": "male",
-            "dateOfBirth": "20/02/2002",
-            "isDateOfBirthUnknown": null,
-            "placeOfBirth": "London",
-            "AddressLine1": "123, Topsfield Parade",
-            "PostCode": "N8 8PE",
-            "isAddressUnknown": null,
-            "landline": "+442083332222",
-            "phoneNumber": "+447999444444",
-            "canYouProvidePhoneNumber": null,
-            "email": "test@test.com",
-            "canYouProvideEmailAddress": null,
-            "isAtAddressLessThan5Years": "No",
-            "addressLivedLessThan5YearsDetails": "225, Topsfield Parade, N8 8PE"
-          }
-        },
-        {
-          "value": {
-            "firstName": "Rachel",
-            "lastName": "Brandl",
-            "previousName": null,
-            "gender": "female",
-            "dateOfBirth": "21/02/2002",
-            "isDateOfBirthUnknown": null,
-            "placeOfBirth": "London",
-            "AddressLine1": "124, Topsfield Parade",
-            "PostCode": "N8 8PE",
-            "isAddressUnknown": null,
-            "landline": "+442081112222",
-            "phoneNumber": "+447999666666",
-            "canYouProvidePhoneNumber": null,
-            "email": "test@test.com",
-            "canYouProvideEmailAddress": null,
-            "isAtAddressLessThan5Years": "No",
-            "addressLivedLessThan5YearsDetails": "227, Topsfield Parade, N8 8PE"
-          }
-        }
-      ],
+      "checklistSection1Completed": "yes",
       "havePreviousParentingPlan": "parentingplan",
-      "allegationsOfHarmOverviewTable": {
-        "allegationsOfHarmDomesticAbuseYesNo": "yes",
-        "allegationsOfHarmChildAbductionYesNo": "yes",
-        "allegationsOfHarmChildAbuseYesNo": "yes",
-        "allegationsOfHarmSubstanceAbuseYesNo": "yes",
-        "allegationsOfHarmOtherConcernsYesNo": "yes"
-      },
-      "applicationPermissionRequiredReason": "reason",
-      "childrenOfSameParent": "Yes",
-      "childLiveWith": "Applicant",
-      "consentOrder": "yes",
-      "claimingExemptionMiam": "yes",
+      "checklistSection7Completed": "yes",
+      "litigationCapacityFactors": "Factors affecting litigation capacity",
       "welshLanguageRequirement": "yes",
-      "childParentsNameCollection": "parentsNameColl"
+      "printFullName": "Ronny Drew",
+      "childParentsNameCollection": "parentsNameColl",
+      "habitualResidentInOtherStateGiveReason": null
     }
   },
   "warnings": [
 
   ]
 }
-   

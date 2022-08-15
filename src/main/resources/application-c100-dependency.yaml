@@ -95,7 +95,7 @@ uk:
               groupFieldName: international_or_factorsAffectingLitigation
               groupValidationValue: "Yes"
               requiredFieldCount: 1
-              sectionName: "Cases with an international element (8) and; Factors affecting ability to participate in proceedings (9)"
+              sectionName: "8 - Cases with an international element; 9 - Factors affecting ability to participate in proceedings"
             - groupWelshRequired:
               dependentFields:
                 - nameOfPartyWhoNeedsWelsh

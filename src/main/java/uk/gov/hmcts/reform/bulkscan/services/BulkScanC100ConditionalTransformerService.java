@@ -17,8 +17,8 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.APPLIC
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.APPLICANT_REQUIRES_INTERPRETER_RESPONDENT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.CHILD_ARRANGEMENTS_ORDER_DESCRIPTION;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.CHILD_ARRANGEMENT_ORDER;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERPRETER_NEEDS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.HEARING_URGENCY_TABLE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERPRETER_NEEDS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.MIAM_DOMESTIC_VIOLENCE_CHECKLIST;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.MIAM_EXEMPTIONS_CHECKLIST;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.MIAM_URGENCY_REASON_CHECKLIST;
@@ -68,10 +68,10 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.SPECIA
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.SPECIFIC_ISSUE_ORDER_DESCRIPTION;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.SPOKEN_WRITTEN_BOTH;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.TYPE_OF_ORDER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.URGENCY_REASON;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.WELSH_NEEDS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.WELSH_NEEDS_CCD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.WHO_WELSH_NEEDS;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.URGENCY_REASON;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.WITHOUT_NOTICE_ABRIDGED_OR_INFORMAL_NOTICE_REASONS;
 import static uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper.transformScanDocuments;
 
@@ -133,7 +133,7 @@ public class BulkScanC100ConditionalTransformerService {
         LinkedTreeMap innerinterpreterValue = interpreterNeeds.get(0);
         LinkedTreeMap interpreterValues = (LinkedTreeMap) innerinterpreterValue.get(VALUE);
         interpreterValues.put(PARTY_ENUM, transformParty(inputFieldsMap));
-        
+
         setOutReasonsBelow(populatedMap, inputFieldsMap);
     }
 
@@ -156,7 +156,6 @@ public class BulkScanC100ConditionalTransformerService {
         }
 
         return partyDetails;
-        
     }
 
     @SuppressWarnings("unchecked")
