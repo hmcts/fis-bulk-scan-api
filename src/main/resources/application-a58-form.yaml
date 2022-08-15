@@ -132,6 +132,8 @@ uk:
                 fieldNames:
                   - applicant1_telephoneNumber
                   - applicant2_telephoneNumber
+                  - solicitor_telephoneNumber
+                  - solicitor_faxNumber
                 regex: ^(?:0|\+?44)(?:\d\s?){9,10}$
           A58_STEP_PARENT:
             mandatoryFields:

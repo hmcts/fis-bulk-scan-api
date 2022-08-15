@@ -105,6 +105,12 @@ public class BulkScanA58Service implements BulkScanService {
                         bulkRequest.getOcrdatafields(),
                         configManager.getValidationConfig(formType));
 
+        Map<MessageTypeEnum, List<String>> groupErrorsAndWarningsHashMap =
+            bulkScanGroupHandler.handle(formType, bulkRequest.getOcrdatafields());
+        BulkScanGroupValidatorUtil.updateGroupErrorsAndWarnings(
+            bulkScanValidationResponse, groupErrorsAndWarningsHashMap);
+        BulkScanGroupValidatorUtil.updateGroupMissingFields(bulkScanValidationResponse, formType);
+
         if (formType.equals(A58) && isNotEmpty(inputFieldsMap.get(APPLICANT2_FIRSTNAME))) {
             List<String> errorList =
                     getApplicant2ErrorList(inputFieldsMap, bulkScanValidationResponse);
@@ -113,11 +119,6 @@ public class BulkScanA58Service implements BulkScanService {
                     .errors(Errors.builder().items(errorList).build())
                     .build();
         }
-        Map<MessageTypeEnum, List<String>> groupErrorsAndWarningsHashMap =
-                bulkScanGroupHandler.handle(formType, bulkRequest.getOcrdatafields());
-        BulkScanGroupValidatorUtil.updateGroupErrorsAndWarnings(
-                bulkScanValidationResponse, groupErrorsAndWarningsHashMap);
-        BulkScanGroupValidatorUtil.updateGroupMissingFields(bulkScanValidationResponse, formType);
         return bulkScanValidationResponse;
     }
 
