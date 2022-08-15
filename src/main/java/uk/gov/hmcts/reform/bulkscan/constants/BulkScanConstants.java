@@ -49,7 +49,7 @@ public final class BulkScanConstants {
             "The following fields are not configured " + "with our system: [%s] ";
 
     public static final String GROUP_DEPENDENCY_MESSAGE =
-            "Some details are missing in the following section - [%s].";
+            "Some details are missing in the following section: %s.";
 
     public static final String XOR_CONDITIONAL_FIELDS_MESSAGE =
             "one field must be present out of %s";

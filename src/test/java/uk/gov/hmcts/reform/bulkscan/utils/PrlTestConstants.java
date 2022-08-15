@@ -33,23 +33,22 @@ public final class PrlTestConstants {
             "respondent2AllAddressesForLastFiveYears";
 
     public static final String INTERNATIONAL_FACTORS_AFFECTING_LITIGATION_WARNING =
-            "Some details are missing in the following section - [Cases with an international"
-                + " element (8) and; Factors affecting ability to participate in proceedings (9)].";
-
+            "Some details are missing in the following section: 8 - Cases with an international"
+                    + " element; 9 - Factors affecting ability to participate in proceedings.";
     public static final String EXEMPTION_TO_ATTEND_MIAM_DEPENDENCY_WARNING =
-            "Some details are missing in the following section - [Applicant claims exemption(s)"
-                    + " from attendance at a MIAM].";
+            "Some details are missing in the following section: 2b - Applicant claiming exemption "
+                    + "from the requirement to attend a MIAM.";
     public static final String NOMIAM_CHILDPROTECTIONCONCERNS_DEPENDENCY_WARNING =
-            "Some details are missing in the following section - [Child protection concerns].";
+            "Some details are missing in the following section: 3b - Child protection concerns.";
     public static final String NOMIAM_PREVIOUSATTENDENCE_DEPENDENCY_WARNING =
-            "Some details are missing in the following section - [Previous MIAM attendance or MIAM"
-                    + " exemption].";
+            "Some details are missing in the following section: 3d - Previous MIAM attendance or"
+                    + " MIAM exemption.";
     public static final String NOMIAM_OTHERREASONS_DEPENDENCY_WARNING =
-            "Some details are missing in the following section - [Other exemptions].";
+            "Some details are missing in the following section: 3e - Other exemptions.";
     public static final String NOMIAM_URGENCY_DEPENDENCY_WARNING =
-            "Some details are missing in the following section - [Urgency].";
+            "Some details are missing in the following section: 3c - Urgency.";
     public static final String NOMIAM_DOMESTICVIOLENCE_DEPENDENCY_WARNING =
-            "Some details are missing in the following section - [Child protection concerns].";
+            "Some details are missing in the following section: 3a - Domestic violence evidence.";
 
     public static final String RESPONDENT_ONE_NOT_LIVED_IN_ADDRESS_FOR_FIVE_YEARS =
             "("
