@@ -272,7 +272,7 @@ uk:
               - applicantOnly_AttendedMIAMTogether
               - applicantAndRespondentParty_AttendedMIAMSeparately
               - respondentPartyArranged_ToAttendMIAMSeparately
-              - mediationNotProceeding_applicationAttendedMIAMAlone
+              - mediationNotProceeding_applicantAttendedMIAMAlone
               - mediationNotProceeding_applicantsAndRespondentsAttendedMIAM
               - mediationNotProceeding_hasStartedButBrokenWithSomeIssue
               - fmc_RegistrationNumber
