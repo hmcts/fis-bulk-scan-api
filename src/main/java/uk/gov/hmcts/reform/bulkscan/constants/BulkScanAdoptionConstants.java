@@ -95,7 +95,7 @@ public final class BulkScanAdoptionConstants {
     public static final String ADOP_AGENCY_OR_LAADDRESS = "adopAgencyOrLaaddress";
     public static final String ADOP_AGENCY_OR_LA_CONTACT_NAME = "adopAgencyOrLaContactName";
     public static final String ADOP_AGENCY_OR_LA_PHONE_NUMBER = "adopAgencyOrLaPhoneNumber";
-    public static final String L_AOR_ADOPTION_AGENCY_CATEGORY = "LAorAdoptionAgencyCategory";
+    public static final String L_AOR_ADOPTION_AGENCY_CATEGORY = "laorAdoptionAgencyCategory";
     public static final String CHILD_PLACED_ADOPTION_AGENCY_NAME = "child_placedAdoptionAgencyName";
     public static final String CHILD_PLACED_ADOPTION_AGENCY_ADDRESS =
             "child_placedAdoptionAgencyAddress";

@@ -80,7 +80,7 @@
             "adopAgencyOrLaaddress":"London",
             "adopAgencyOrLaContactName":"HMCTS contact",
             "adopAgencyOrLaPhoneNumber":"07070707007",
-            "LAorAdoptionAgencyCategory":"Child placed for the purpose of Adoption"
+            "laorAdoptionAgencyCategory":"Child placed for the purpose of Adoption"
           }
         },
         {
@@ -89,7 +89,7 @@
             "adopAgencyOrLaaddress":"London",
             "adopAgencyOrLaContactName":"ahmad",
             "adopAgencyOrLaPhoneNumber":"0676767676767",
-            "LAorAdoptionAgencyCategory":"Involved in the placing of the child"
+            "laorAdoptionAgencyCategory":"Involved in the placing of the child"
           }
         },
         {
@@ -98,7 +98,7 @@
             "adopAgencyOrLaaddress":"London",
             "adopAgencyOrLaContactName":"Yaseen contact",
             "adopAgencyOrLaPhoneNumber":"09999999999",
-            "LAorAdoptionAgencyCategory":"Notify Local Authority intention of Adoption"
+            "laorAdoptionAgencyCategory":"Notify Local Authority intention of Adoption"
           }
         },
         {
@@ -108,7 +108,7 @@
             "adopAgencyOrLaContactName":"Jamal",
             "adopAgencyOrLaPhoneNumber":"07777777777",
             "adopAgencyOrLaContactEmail ":"murshad@hmcts.net",
-            "LAorAdoptionAgencyCategory":"Local Authority has parental responsibility of the Child"
+            "laorAdoptionAgencyCategory":"Local Authority has parental responsibility of the Child"
           }
         }
       ],
