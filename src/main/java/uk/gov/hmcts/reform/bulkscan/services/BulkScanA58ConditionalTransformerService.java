@@ -77,6 +77,7 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanAdoptionConstants.C
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanAdoptionConstants.CHILD_TYPE_OF_ORDER_RELATION;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanAdoptionConstants.DATE_OF_ORDER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanAdoptionConstants.DONT_KNOW;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanAdoptionConstants.FREEING_ORDERS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanAdoptionConstants.FREEING_ORDER_COURT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanAdoptionConstants.FREEING_ORDER_DATE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanAdoptionConstants.FREEING_ORDER_ID;
@@ -92,6 +93,7 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanAdoptionConstants.L
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanAdoptionConstants.MAINTANENCE_ORDER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanAdoptionConstants.NAME_OF_COURT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanAdoptionConstants.NOTIFY_LOCAL_AUTHORITY_INTENTION_OF_ADOPTION;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanAdoptionConstants.PLACEMENT_ORDERS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanAdoptionConstants.PLACEMENT_ORDER_COURT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanAdoptionConstants.PLACEMENT_ORDER_DATE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanAdoptionConstants.PLACEMENT_ORDER_ID;
@@ -208,19 +210,170 @@ public class BulkScanA58ConditionalTransformerService {
         buildWelshSpokenPreferences(inputFieldsMap, populatedMap);
         buildInterpreterRequiredFields(inputFieldsMap, populatedMap);
         buildSpecialAssistanceRequiredFields(inputFieldsMap, populatedMap);
-        buildCourtInformation(inputFieldsMap, populatedMap);
         buildChildNoLaOrParentalResponsibility(inputFieldsMap, populatedMap);
         buildChildMaintanenceOrder(inputFieldsMap, populatedMap);
         buildChildProceedingDetails(inputFieldsMap, populatedMap);
         buildChildProceedingDetailsWithRelation(inputFieldsMap, populatedMap);
         populatedMap.put(PROCEEDING_DETAILS, buildProceedingDetails(inputFieldsMap, populatedMap));
         populatedMap.put(ADOP_AGENCY_OR_L_AS, buildadopAgencyOrLAs(inputFieldsMap, populatedMap));
+        populatedMap.put(PLACEMENT_ORDERS, buildPlacementOrder(inputFieldsMap, populatedMap));
+        populatedMap.put(FREEING_ORDERS, buildFreeingOrders(inputFieldsMap, populatedMap));
+        populatedMap.put(ANY_OTHER_ORDERS_AVAILABLE, buildAnyOtherOrdersAvailable(inputFieldsMap));
+    }
+
+    private String buildAnyOtherOrdersAvailable(Map<String, String> inputFieldsMap) {
+        if (!StringUtils.isEmpty(inputFieldsMap.get(CHILD_NO_ORDER_AVAILABLE))
+                && TRUE.equalsIgnoreCase(inputFieldsMap.get(CHILD_NO_ORDER_AVAILABLE))) {
+            return BooleanUtils.YES;
+        } else {
+            return BooleanUtils.NO;
+        }
+    }
+
+    private List<LinkedTreeMap<String, LinkedTreeMap<String, String>>> buildFreeingOrders(
+            Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
+        List<LinkedTreeMap<String, LinkedTreeMap<String, String>>> freeingOrderArrayList =
+                new ArrayList<>();
+        buildFreeingOrderByEnglandAndWalesCourt(
+                inputFieldsMap, populatedMap, freeingOrderArrayList);
+        buildFreeingOrderByNorthernIrelandCourt(
+                inputFieldsMap, populatedMap, freeingOrderArrayList);
+        return freeingOrderArrayList;
     }
 
     @SuppressWarnings("unchecked")
-    private List<LinkedTreeMap> buildProceedingDetails(
+    private void buildFreeingOrderByNorthernIrelandCourt(
+            Map<String, String> inputFieldsMap,
+            Map<String, Object> populatedMap,
+            List<LinkedTreeMap<String, LinkedTreeMap<String, String>>> freeingOrderArrayList) {
+        if (!StringUtils.isEmpty(inputFieldsMap.get(CHILD_FREEING_ORDER_BY_NORTHERN_IRELAND_COURT))
+                && TRUE.equalsIgnoreCase(
+                        inputFieldsMap.get(CHILD_FREEING_ORDER_BY_NORTHERN_IRELAND_COURT))) {
+            populatedMap.put(HAS_PROCEEDING_DETAILS, BooleanUtils.YES);
+            final LinkedTreeMap<String, LinkedTreeMap<String, String>> linkedTreeMap =
+                    new LinkedTreeMap<>();
+            final LinkedTreeMap<String, String> valueLinkedTreeMap = new LinkedTreeMap();
+            valueLinkedTreeMap.put(
+                    FREEING_ORDER_COURT,
+                    inputFieldsMap.get(CHILD_FREEING_ORDER_BY_NORTHERN_IRELAND_COURT_NAME));
+            valueLinkedTreeMap.put(
+                    FREEING_ORDER_ID,
+                    inputFieldsMap.get(CHILD_FREEING_ORDER_BY_NORTHERN_IRELAND_CASE_NUMBER));
+            valueLinkedTreeMap.put(
+                    FREEING_ORDER_TYPE,
+                    inputFieldsMap.get(CHILD_FREEING_ORDER_BY_NORTHERN_IRELAND_TYPE_OF_ORDER));
+            valueLinkedTreeMap.put(
+                    FREEING_ORDER_DATE,
+                    inputFieldsMap.get(CHILD_FREEING_ORDER_BY_NORTHERN_IRELAND_DATE_OF_ORDER));
+            linkedTreeMap.put(VALUE, valueLinkedTreeMap);
+            freeingOrderArrayList.add(linkedTreeMap);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    private void buildFreeingOrderByEnglandAndWalesCourt(
+            Map<String, String> inputFieldsMap,
+            Map<String, Object> populatedMap,
+            List<LinkedTreeMap<String, LinkedTreeMap<String, String>>> freeingOrderArrayList) {
+        if (!StringUtils.isEmpty(inputFieldsMap.get(CHILD_FREEING_ORDER_BY_ENGLAND_AND_WALES_COURT))
+                && TRUE.equalsIgnoreCase(
+                        inputFieldsMap.get(CHILD_FREEING_ORDER_BY_ENGLAND_AND_WALES_COURT))) {
+            populatedMap.put(HAS_PROCEEDING_DETAILS, BooleanUtils.YES);
+            final LinkedTreeMap<String, LinkedTreeMap<String, String>> linkedTreeMap =
+                    new LinkedTreeMap<>();
+            final LinkedTreeMap<String, String> valueLinkedTreeMap = new LinkedTreeMap();
+            valueLinkedTreeMap.put(
+                    FREEING_ORDER_COURT,
+                    inputFieldsMap.get(CHILD_FREEING_ORDER_BY_ENGLAND_AND_WALES_COURT_NAME));
+            valueLinkedTreeMap.put(
+                    FREEING_ORDER_ID,
+                    inputFieldsMap.get(CHILD_FREEING_ORDER_BY_ENGLAND_AND_WALES_CASE_NUMBER));
+            valueLinkedTreeMap.put(
+                    FREEING_ORDER_TYPE,
+                    inputFieldsMap.get(CHILD_FREEING_ORDER_BY_ENGLAND_AND_WALES_TYPE_OF_ORDER));
+            valueLinkedTreeMap.put(
+                    FREEING_ORDER_DATE,
+                    inputFieldsMap.get(CHILD_FREEING_ORDER_BY_ENGLAND_AND_WALES_DATE_OF_ORDER));
+            linkedTreeMap.put(VALUE, valueLinkedTreeMap);
+            freeingOrderArrayList.add(linkedTreeMap);
+        }
+    }
+
+    private List<LinkedTreeMap<String, LinkedTreeMap<String, String>>> buildPlacementOrder(
             Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
-        final List<LinkedTreeMap> adoptAgencyOrLaasArrayList = new ArrayList();
+        List<LinkedTreeMap<String, LinkedTreeMap<String, String>>> placementOrderArrayList =
+                new ArrayList<>();
+        buildPlacementOrderByEnglandAndWalesCourt(
+                inputFieldsMap, populatedMap, placementOrderArrayList);
+        buildPlacementOrderByScotlandCourtName(
+                inputFieldsMap, populatedMap, placementOrderArrayList);
+        return placementOrderArrayList;
+    }
+
+    @SuppressWarnings("unchecked")
+    private void buildPlacementOrderByScotlandCourtName(
+            Map<String, String> inputFieldsMap,
+            Map<String, Object> populatedMap,
+            List<LinkedTreeMap<String, LinkedTreeMap<String, String>>> adoptAgencyOrLaasArrayList) {
+        if (!StringUtils.isEmpty(inputFieldsMap.get(CHILD_PERMANENCE_ORDER_BY_SCOTLAND_COURT))
+                && TRUE.equalsIgnoreCase(
+                        inputFieldsMap.get(CHILD_PERMANENCE_ORDER_BY_SCOTLAND_COURT))) {
+            populatedMap.put(HAS_PROCEEDING_DETAILS, BooleanUtils.YES);
+            final LinkedTreeMap<String, LinkedTreeMap<String, String>> linkedTreeMap =
+                    new LinkedTreeMap<>();
+            final LinkedTreeMap<String, String> valueLinkedTreeMap = new LinkedTreeMap();
+            valueLinkedTreeMap.put(
+                    PLACEMENT_ORDER_COURT,
+                    inputFieldsMap.get(CHILD_PERMANENCE_ORDER_BY_SCOTLAND_COURT_NAME));
+            valueLinkedTreeMap.put(
+                    PLACEMENT_ORDER_ID,
+                    inputFieldsMap.get(CHILD_PERMANENCE_ORDER_BY_SCOTLAND_CASE_NUMBER));
+            valueLinkedTreeMap.put(
+                    PLACEMENT_ORDER_TYPE,
+                    inputFieldsMap.get(CHILD_PERMANENCE_ORDER_BY_SCOTLAND_TYPE_OF_ORDER));
+            valueLinkedTreeMap.put(
+                    PLACEMENT_ORDER_DATE,
+                    inputFieldsMap.get(CHILD_PERMANENCE_ORDER_BY_SCOTLAND_DATE_OF_ORDER));
+            linkedTreeMap.put(VALUE, valueLinkedTreeMap);
+            adoptAgencyOrLaasArrayList.add(linkedTreeMap);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    private void buildPlacementOrderByEnglandAndWalesCourt(
+            Map<String, String> inputFieldsMap,
+            Map<String, Object> populatedMap,
+            List<LinkedTreeMap<String, LinkedTreeMap<String, String>>> adoptAgencyOrLaasArrayList) {
+        if (!StringUtils.isEmpty(
+                        inputFieldsMap.get(CHILD_PLACEMENT_ORDER_BY_ENGLAND_AND_WALES_COURT))
+                && TRUE.equalsIgnoreCase(
+                        inputFieldsMap.get(CHILD_PLACEMENT_ORDER_BY_ENGLAND_AND_WALES_COURT))) {
+            populatedMap.put(HAS_PROCEEDING_DETAILS, BooleanUtils.YES);
+            final LinkedTreeMap<String, LinkedTreeMap<String, String>> linkedTreeMap =
+                    new LinkedTreeMap<>();
+            final LinkedTreeMap<String, String> valueLinkedTreeMap = new LinkedTreeMap();
+            valueLinkedTreeMap.put(
+                    PLACEMENT_ORDER_COURT,
+                    inputFieldsMap.get(CHILD_PLACMENT_ORDER_BY_ENGLAND_AND_WALES_COURT_NAME));
+            valueLinkedTreeMap.put(
+                    PLACEMENT_ORDER_ID,
+                    inputFieldsMap.get(CHILD_PLACMENT_ORDER_BY_ENGLAND_AND_WALES_CASE_NUMBER));
+            valueLinkedTreeMap.put(
+                    PLACEMENT_ORDER_TYPE,
+                    inputFieldsMap.get(CHILD_PLACMENT_ORDER_BY_ENGLAND_AND_WALES_TYPE_OF_ORDER));
+            valueLinkedTreeMap.put(
+                    PLACEMENT_ORDER_DATE,
+                    inputFieldsMap.get(CHILD_PLACMENT_ORDER_BY_ENGLAND_AND_WALES_DATE_OF_ORDER));
+            linkedTreeMap.put(VALUE, valueLinkedTreeMap);
+            adoptAgencyOrLaasArrayList.add(linkedTreeMap);
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    private List<LinkedTreeMap<String, LinkedTreeMap<String, String>>> buildProceedingDetails(
+            Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
+        final List<LinkedTreeMap<String, LinkedTreeMap<String, String>>>
+                adoptAgencyOrLaasArrayList = new ArrayList();
         buildChildProcesingDetails(inputFieldsMap, populatedMap, adoptAgencyOrLaasArrayList);
         buildChildProcessingDetailsWithRelationship(
                 inputFieldsMap, populatedMap, adoptAgencyOrLaasArrayList);
@@ -231,7 +384,7 @@ public class BulkScanA58ConditionalTransformerService {
     private void buildChildProcessingDetailsWithRelationship(
             Map<String, String> inputFieldsMap,
             Map<String, Object> populatedMap,
-            List<LinkedTreeMap> adoptAgencyOrLaasArrayList) {
+            List<LinkedTreeMap<String, LinkedTreeMap<String, String>>> adoptAgencyOrLaasArrayList) {
         if (!StringUtils.isEmpty(inputFieldsMap.get(CHILD_NO_PROCEEDING_DETAILS_WITH_RELATION))
                 && TRUE.equalsIgnoreCase(
                         inputFieldsMap.get(CHILD_NO_PROCEEDING_DETAILS_WITH_RELATION))) {
@@ -240,7 +393,8 @@ public class BulkScanA58ConditionalTransformerService {
                 && TRUE.equalsIgnoreCase(
                         inputFieldsMap.get(CHILD_PROCEEDING_DETAILS_WITH_RELATION))) {
             populatedMap.put(HAS_PROCEEDING_DETAILS_WITH_RELATION, BooleanUtils.YES);
-            final LinkedTreeMap<String, LinkedTreeMap> linkedTreeMap = new LinkedTreeMap();
+            final LinkedTreeMap<String, LinkedTreeMap<String, String>> linkedTreeMap =
+                    new LinkedTreeMap();
             final LinkedTreeMap<String, String> valuesLinkedTreeMap = new LinkedTreeMap();
             valuesLinkedTreeMap.put(
                     TYPE_OF_ORDER, inputFieldsMap.get(CHILD_TYPE_OF_ORDER_RELATION));
@@ -264,14 +418,15 @@ public class BulkScanA58ConditionalTransformerService {
     private void buildChildProcesingDetails(
             Map<String, String> inputFieldsMap,
             Map<String, Object> populatedMap,
-            List<LinkedTreeMap> adoptAgencyOrLaasArrayList) {
+            List<LinkedTreeMap<String, LinkedTreeMap<String, String>>> adoptAgencyOrLaasArrayList) {
         if (!StringUtils.isEmpty(inputFieldsMap.get(CHILD_NO_PROCEEDING_DETAILS))
                 && TRUE.equalsIgnoreCase(inputFieldsMap.get(CHILD_NO_PROCEEDING_DETAILS))) {
             populatedMap.put(HAS_PROCEEDING_DETAILS, BooleanUtils.NO);
         } else if (!StringUtils.isEmpty(inputFieldsMap.get(CHILD_PROCEEDING_DETAILS))
                 && TRUE.equalsIgnoreCase(inputFieldsMap.get(CHILD_PROCEEDING_DETAILS))) {
             populatedMap.put(HAS_PROCEEDING_DETAILS, BooleanUtils.YES);
-            final LinkedTreeMap<String, LinkedTreeMap> linkedTreeMap = new LinkedTreeMap<>();
+            final LinkedTreeMap<String, LinkedTreeMap<String, String>> linkedTreeMap =
+                    new LinkedTreeMap<>();
             final LinkedTreeMap<String, String> valueLinkedTreeMap = new LinkedTreeMap();
             valueLinkedTreeMap.put(TYPE_OF_ORDER, inputFieldsMap.get(CHILD_TYPE_OF_ORDER));
             valueLinkedTreeMap.put(DATE_OF_ORDER, inputFieldsMap.get(CHILD_DATE_OF_ORDER));
@@ -285,9 +440,10 @@ public class BulkScanA58ConditionalTransformerService {
     }
 
     @SuppressWarnings("unchecked")
-    private List buildadopAgencyOrLAs(
+    private List<LinkedTreeMap<String, LinkedTreeMap<String, String>>> buildadopAgencyOrLAs(
             Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
-        final List<LinkedTreeMap> adoptAgencyOrLaasArrayList = new ArrayList();
+        final List<LinkedTreeMap<String, LinkedTreeMap<String, String>>>
+                adoptAgencyOrLaasArrayList = new ArrayList();
         buildChildPlacedAdoptionAgency(inputFieldsMap, populatedMap, adoptAgencyOrLaasArrayList);
         buildAdoptionAgencyDeatils(inputFieldsMap, populatedMap, adoptAgencyOrLaasArrayList);
         buildAgencyOrLocalAuthority(inputFieldsMap, adoptAgencyOrLaasArrayList);
@@ -300,7 +456,7 @@ public class BulkScanA58ConditionalTransformerService {
     private void buildChildLocalAuthorityOrParentalResponsibily(
             Map<String, String> inputFieldsMap,
             Map<String, Object> populatedMap,
-            List<LinkedTreeMap> adoptAgencyOrLaasArrayList) {
+            List<LinkedTreeMap<String, LinkedTreeMap<String, String>>> adoptAgencyOrLaasArrayList) {
         if (!StringUtils.isEmpty(inputFieldsMap.get(CHILD_NO_LA_OR_PARENTAL_RESPONSIBILITY))
                 && TRUE.equalsIgnoreCase(
                         inputFieldsMap.get(CHILD_NO_LA_OR_PARENTAL_RESPONSIBILITY))) {
@@ -313,7 +469,8 @@ public class BulkScanA58ConditionalTransformerService {
                         inputFieldsMap.get(CHILD_LA_OR_PARENTAL_RESPONSIBILITY_DETAILS))
                 && TRUE.equalsIgnoreCase(
                         inputFieldsMap.get(CHILD_LA_OR_PARENTAL_RESPONSIBILITY_DETAILS))) {
-            final LinkedTreeMap<String, LinkedTreeMap> linkedTreeMap = new LinkedTreeMap();
+            final LinkedTreeMap<String, LinkedTreeMap<String, String>> linkedTreeMap =
+                    new LinkedTreeMap();
             final LinkedTreeMap<String, String> valuesLinkedTreeMap = new LinkedTreeMap();
             valuesLinkedTreeMap.put(
                     ADOP_AGENCY_OR_LA_NAME, inputFieldsMap.get(CHILD_LA_OR_PARENTAL_NAME));
@@ -338,8 +495,10 @@ public class BulkScanA58ConditionalTransformerService {
 
     @SuppressWarnings("unchecked")
     private void buildAgencyOrLocalAuthority(
-            Map<String, String> inputFieldsMap, List<LinkedTreeMap> adoptAgencyOrLaasArrayList) {
-        final LinkedTreeMap<String, LinkedTreeMap> linkedTreeMap = new LinkedTreeMap();
+            Map<String, String> inputFieldsMap,
+            List<LinkedTreeMap<String, LinkedTreeMap<String, String>>> adoptAgencyOrLaasArrayList) {
+        final LinkedTreeMap<String, LinkedTreeMap<String, String>> linkedTreeMap =
+                new LinkedTreeMap();
         final LinkedTreeMap<String, String> valuesLinkedTreeMap = new LinkedTreeMap();
         valuesLinkedTreeMap.put(ADOP_AGENCY_OR_LA_NAME, inputFieldsMap.get(CHILD_LA_NAME));
         valuesLinkedTreeMap.put(ADOP_AGENCY_OR_LAADDRESS, inputFieldsMap.get(CHILD_LA_ADDRESS));
@@ -357,7 +516,7 @@ public class BulkScanA58ConditionalTransformerService {
     private void buildAdoptionAgencyDeatils(
             Map<String, String> inputFieldsMap,
             Map<String, Object> populatedMap,
-            List<LinkedTreeMap> adoptAgencyOrLaasArrayList) {
+            List<LinkedTreeMap<String, LinkedTreeMap<String, String>>> adoptAgencyOrLaasArrayList) {
         if (!StringUtils.isEmpty(inputFieldsMap.get(CHILD_IS_ADOPTION_AGENCY_INVOLVED))
                 && TRUE.equalsIgnoreCase(inputFieldsMap.get(CHILD_IS_ADOPTION_AGENCY_INVOLVED))) {
             populatedMap.put(
@@ -367,7 +526,8 @@ public class BulkScanA58ConditionalTransformerService {
                         inputFieldsMap.get(CHILD_IS_ADOPTION_AGENCY_DETAILS_AVAILABLE))
                 && TRUE.equalsIgnoreCase(
                         inputFieldsMap.get(CHILD_IS_ADOPTION_AGENCY_DETAILS_AVAILABLE))) {
-            final LinkedTreeMap<String, LinkedTreeMap> linkedTreeMap = new LinkedTreeMap();
+            final LinkedTreeMap<String, LinkedTreeMap<String, String>> linkedTreeMap =
+                    new LinkedTreeMap();
             final LinkedTreeMap<String, String> valuesLinkedTreeMap = new LinkedTreeMap();
             valuesLinkedTreeMap.put(
                     ADOP_AGENCY_OR_LA_NAME, inputFieldsMap.get(CHILD_ADOPTION_AGENCY_NAME));
@@ -390,11 +550,12 @@ public class BulkScanA58ConditionalTransformerService {
     private void buildChildPlacedAdoptionAgency(
             Map<String, String> inputFieldsMap,
             Map<String, Object> populatedMap,
-            List<LinkedTreeMap> adoptAgencyOrLaasArrayList) {
+            List<LinkedTreeMap<String, LinkedTreeMap<String, String>>> adoptAgencyOrLaasArrayList) {
         if (!StringUtils.isEmpty(inputFieldsMap.get(CHILD_PLACED_ADOPTION_DATE))) {
             populatedMap.put(ADOPTION_DATE, inputFieldsMap.get(CHILD_PLACED_ADOPTION_DATE));
         }
-        final LinkedTreeMap<String, LinkedTreeMap> linkedTreeMap = new LinkedTreeMap();
+        final LinkedTreeMap<String, LinkedTreeMap<String, String>> linkedTreeMap =
+                new LinkedTreeMap();
         final LinkedTreeMap<String, String> valuesLinkedTreeMap = new LinkedTreeMap();
         valuesLinkedTreeMap.put(
                 ADOP_AGENCY_OR_LA_NAME, inputFieldsMap.get(CHILD_PLACED_ADOPTION_AGENCY_NAME));
@@ -410,71 +571,6 @@ public class BulkScanA58ConditionalTransformerService {
                 L_AOR_ADOPTION_AGENCY_CATEGORY, CHILD_PLACED_FOR_THE_PURPOSE_OF_ADOPTION);
         linkedTreeMap.put(VALUE, valuesLinkedTreeMap);
         adoptAgencyOrLaasArrayList.add(linkedTreeMap);
-    }
-
-    public void buildCourtInformation(
-            Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
-        if (TRUE.equalsIgnoreCase(
-                inputFieldsMap.get(CHILD_PLACEMENT_ORDER_BY_ENGLAND_AND_WALES_COURT))) {
-            populatedMap.put(
-                    PLACEMENT_ORDER_COURT,
-                    inputFieldsMap.get(CHILD_PLACMENT_ORDER_BY_ENGLAND_AND_WALES_COURT_NAME));
-            populatedMap.put(
-                    PLACEMENT_ORDER_ID,
-                    inputFieldsMap.get(CHILD_PLACMENT_ORDER_BY_ENGLAND_AND_WALES_CASE_NUMBER));
-            populatedMap.put(
-                    PLACEMENT_ORDER_TYPE,
-                    inputFieldsMap.get(CHILD_PLACMENT_ORDER_BY_ENGLAND_AND_WALES_TYPE_OF_ORDER));
-            populatedMap.put(
-                    PLACEMENT_ORDER_DATE,
-                    inputFieldsMap.get(CHILD_PLACMENT_ORDER_BY_ENGLAND_AND_WALES_DATE_OF_ORDER));
-        } else if (TRUE.equalsIgnoreCase(
-                inputFieldsMap.get(CHILD_FREEING_ORDER_BY_ENGLAND_AND_WALES_COURT))) {
-            populatedMap.put(
-                    FREEING_ORDER_COURT,
-                    inputFieldsMap.get(CHILD_FREEING_ORDER_BY_ENGLAND_AND_WALES_COURT_NAME));
-            populatedMap.put(
-                    FREEING_ORDER_ID,
-                    inputFieldsMap.get(CHILD_FREEING_ORDER_BY_ENGLAND_AND_WALES_CASE_NUMBER));
-            populatedMap.put(
-                    FREEING_ORDER_TYPE,
-                    inputFieldsMap.get(CHILD_FREEING_ORDER_BY_ENGLAND_AND_WALES_TYPE_OF_ORDER));
-            populatedMap.put(
-                    FREEING_ORDER_DATE,
-                    inputFieldsMap.get(CHILD_FREEING_ORDER_BY_ENGLAND_AND_WALES_DATE_OF_ORDER));
-        } else if (TRUE.equalsIgnoreCase(
-                inputFieldsMap.get(CHILD_FREEING_ORDER_BY_NORTHERN_IRELAND_COURT))) {
-            populatedMap.put(
-                    FREEING_ORDER_COURT,
-                    inputFieldsMap.get(CHILD_FREEING_ORDER_BY_NORTHERN_IRELAND_COURT_NAME));
-            populatedMap.put(
-                    FREEING_ORDER_ID,
-                    inputFieldsMap.get(CHILD_FREEING_ORDER_BY_NORTHERN_IRELAND_CASE_NUMBER));
-            populatedMap.put(
-                    FREEING_ORDER_TYPE,
-                    inputFieldsMap.get(CHILD_FREEING_ORDER_BY_NORTHERN_IRELAND_TYPE_OF_ORDER));
-            populatedMap.put(
-                    FREEING_ORDER_DATE,
-                    inputFieldsMap.get(CHILD_FREEING_ORDER_BY_NORTHERN_IRELAND_DATE_OF_ORDER));
-        } else if (TRUE.equalsIgnoreCase(
-                inputFieldsMap.get(CHILD_PERMANENCE_ORDER_BY_SCOTLAND_COURT))) {
-            populatedMap.put(
-                    FREEING_ORDER_COURT,
-                    inputFieldsMap.get(CHILD_PERMANENCE_ORDER_BY_SCOTLAND_COURT_NAME));
-            populatedMap.put(
-                    FREEING_ORDER_ID,
-                    inputFieldsMap.get(CHILD_PERMANENCE_ORDER_BY_SCOTLAND_CASE_NUMBER));
-            populatedMap.put(
-                    FREEING_ORDER_TYPE,
-                    inputFieldsMap.get(CHILD_PERMANENCE_ORDER_BY_SCOTLAND_TYPE_OF_ORDER));
-            populatedMap.put(
-                    FREEING_ORDER_DATE,
-                    inputFieldsMap.get(CHILD_PERMANENCE_ORDER_BY_SCOTLAND_DATE_OF_ORDER));
-        } else if (TRUE.equalsIgnoreCase(inputFieldsMap.get(CHILD_NO_ORDER_AVAILABLE))) {
-            populatedMap.put(ANY_OTHER_ORDERS_AVAILABLE, BooleanUtils.YES);
-        } else if (FALSE.equalsIgnoreCase(inputFieldsMap.get(CHILD_NO_ORDER_AVAILABLE))) {
-            populatedMap.put(ANY_OTHER_ORDERS_AVAILABLE, BooleanUtils.NO);
-        }
     }
 
     public void buildChildNoLaOrParentalResponsibility(

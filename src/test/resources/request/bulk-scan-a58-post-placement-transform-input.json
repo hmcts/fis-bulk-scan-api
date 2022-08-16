@@ -213,26 +213,6 @@
       "value": "true"
     },
     {
-      "name": "child_placementOrderByEnglandAndWalesCourt",
-      "value": "true"
-    },
-    {
-      "name": "child_placmentOrderByEnglandAndWalesCourtName",
-      "value": "HMCTS"
-    },
-    {
-      "name": "child_placmentOrderByEnglandAndWalesCaseNumber",
-      "value": "123456"
-    },
-    {
-      "name": "child_placmentOrderByEnglandAndWalesTypeOfOrder",
-      "value": "Case"
-    },
-    {
-      "name": "child_placmentOrderByEnglandAndWalesDateOfOrder",
-      "value": "01/01/2022"
-    },
-    {
       "name": "child_placedAdoptionDate",
       "value": "01/01/2022"
     },
@@ -359,6 +339,28 @@
     },
     {
       "name": "applicants_domicile_status",
+      "value": "353453245"
+    },
+
+
+    {
+      "name": "child_freeingOrderByNorthernIrelandCourt",
+      "value": "true"
+    },
+    {
+      "name": "child_freeingOrderByNorthernIrelandCourtName",
+      "value": "Northern Ireland Court Name"
+    },
+    {
+      "name": "child_freeingOrderByNorthernIrelandCaseNumber",
+      "value": "Northern Ireland Case Number"
+    },
+    {
+      "name": "child_freeingOrderByNorthernIrelandTypeOfOrder",
+      "value": "353453245"
+    },
+    {
+      "name": "child_freeingOrderByNorthernIrelandDateOfOrder",
       "value": "353453245"
     }
   ],

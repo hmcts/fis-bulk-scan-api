@@ -135,7 +135,9 @@ public final class BulkScanAdoptionConstants {
     public static final String ADOPTION_DATE = "adoptionDate";
     public static final String PROCEEDING_DETAILS = "proceedingDetails";
     public static final String IS_ADOPTION_AGENCY_INVOLVED = "isAdoptionAgencyInvolved";
-
+    public static final String PLACEMENT_ORDERS = "placementOrders";
+    public static final String FREEING_ORDERS = "freeingOrders";
     // End of A58
+
     private BulkScanAdoptionConstants() {}
 }

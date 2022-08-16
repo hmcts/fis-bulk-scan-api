@@ -10,25 +10,28 @@
       "scannedDocuments":[
 
       ],
-      "maintanenceOrder": {
-        "name": "murshad",
-        "address": "london",
-        "nameOfCourt": "HMCTSCourt",
-        "dateOfOrder": "01/01/2000",
-        "agreementDate": "01/01/2001"
+      "maintanenceOrder":{
+        "name":"murshad",
+        "address":"london",
+        "nameOfCourt":"HMCTSCourt",
+        "dateOfOrder":"01/01/2000",
+        "agreementDate":"01/01/2001"
       },
       "courtpreferredDates":"11/10/2022,21/10/2022",
       "applicantMaritalStatus":"",
       "birthFatherOccupation":null,
-      "children": {
-        "gender": "male",
-        "dateOfBirth": "31/12/1985",
-        "approximateDateOfBirth": null,
-        "placeAndCountry": null,
-        "nationality": "german",
-        "isMarried": "yes"
+      "children":{
+        "gender":"male",
+        "dateOfBirth":"31/12/1985",
+        "approximateDateOfBirth":null,
+        "placeAndCountry":null,
+        "nationality":"german",
+        "isMarried":"yes"
       },
       "applicantRequireInterpreter":"Yes",
+      "placementOrders":[
+
+      ],
       "applicant2FirstName":"applicant2firstName",
       "birthMotherFirstName":"testBirthMotherFirstName",
       "applicant2StatementOfTruth":null,
@@ -51,7 +54,6 @@
         "solicitorFeeAccountNumber":null
       },
       "applicant1FirstName":"firstName",
-      "placementOrderDate":"01/01/2022",
       "hasProceedingDetails":"yes",
       "childWelshLanguagePreference":"Both",
       "applicant1TelephoneNumber":"447405878672",
@@ -68,6 +70,16 @@
       "guardianFirstName":null,
       "applicant2DateOfBirth":null,
       "birthFatherFirstName":null,
+      "freeingOrders":[
+        {
+          "value":{
+            "freeingOrderCourt":"Northern Ireland Court Name",
+            "freeingOrderId":"Northern Ireland Case Number",
+            "freeingOrderType":"353453245",
+            "freeingOrderDate":"353453245"
+          }
+        }
+      ],
       "applicantsDomicileStatus":"",
       "applicantRelationToChildFatherPartner":null,
       "applicant1SignStatementOfTruth":"true",
@@ -145,11 +157,9 @@
       "birthFatherAddress":null,
       "applicant2LegalRepFirm":null,
       "hasProceedingDetailsWithRelation":"yes",
-      "placementOrderId":"123456",
       "welshPreferenceWitnessName":"witnessName",
       "adoptionDate":"01/01/2022",
       "applicant1StatementOfTruth":"true",
-      "placementOrderType":"Case",
       "applicant2LastName":null,
       "childrenHealthReportDate":null,
       "applicant1Nationality":null,
@@ -165,10 +175,10 @@
       "parentalResponsibilityOrder":null,
       "welshPreferenceChildName":"childName",
       "courtInterpreterAssistanceRequired":"Yes",
+      "anyOtherOrdersAvailable":"no",
       "guardianAddress":null,
       "applicant2Occupation":null,
       "applicant1LegalRepPosition":null,
-      "placementOrderCourt":"HMCTS",
       "birthMotherOccupation":"testBirthMotherOccupation",
       "applicant2SotFullName":null,
       "applicant2LegalRepSignature":null,

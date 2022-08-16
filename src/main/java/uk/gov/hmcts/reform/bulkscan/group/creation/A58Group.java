@@ -442,35 +442,35 @@ public class A58Group implements Group {
     private PhoneNumberField getChildPlacedAdoptionAgencyTelephoneNo() {
         return PhoneNumberField.builder()
                 .name("child_placedAdoptionAgencyTelephoneNo")
-                .fieldRequiredType(FieldRequiredTypeEnum.MANDATORY)
+                .fieldRequiredType(FieldRequiredTypeEnum.OPTIONAL)
                 .build();
     }
 
     private TextField getChildPlacedAdoptionAgencyContactName() {
         return TextField.builder()
                 .name("child_placedAdoptionAgencyContactName")
-                .fieldRequiredType(FieldRequiredTypeEnum.MANDATORY)
+                .fieldRequiredType(FieldRequiredTypeEnum.OPTIONAL)
                 .build();
     }
 
     private TextField getChildPlacedAdoptionAgencyAddress() {
         return TextField.builder()
                 .name("child_placedAdoptionAgencyAddress")
-                .fieldRequiredType(FieldRequiredTypeEnum.MANDATORY)
+                .fieldRequiredType(FieldRequiredTypeEnum.OPTIONAL)
                 .build();
     }
 
     private TextField getChildPlacedAdoptionAgencyName() {
         return TextField.builder()
                 .name("child_placedAdoptionAgencyName")
-                .fieldRequiredType(FieldRequiredTypeEnum.MANDATORY)
+                .fieldRequiredType(FieldRequiredTypeEnum.OPTIONAL)
                 .build();
     }
 
     private DateField getChildPlacedAdoptionDate() {
         return DateField.builder()
                 .name("child_placedAdoptionDate")
-                .fieldRequiredType(FieldRequiredTypeEnum.MANDATORY)
+                .fieldRequiredType(FieldRequiredTypeEnum.OPTIONAL)
                 .build();
     }
 

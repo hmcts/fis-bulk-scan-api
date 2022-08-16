@@ -35,6 +35,16 @@
         "isMarried":"yes"
       },
       "applicantRequireInterpreter":"Yes",
+      "placementOrders":[
+        {
+          "value":{
+            "placementOrderCourt":"HMCTS",
+            "placementOrderId":"123456",
+            "placementOrderType":"Case",
+            "placementOrderDate":"01/01/2022"
+          }
+        }
+      ],
       "applicant2FirstName":null,
       "birthMotherFirstName":"motherFirstName",
       "applicant2StatementOfTruth":null,
@@ -57,7 +67,6 @@
         "solicitorFeeAccountNumber":"12345667899"
       },
       "applicant1FirstName":"Test First Name",
-      "placementOrderDate":"01/01/2022",
       "hasProceedingDetails":"yes",
       "childWelshLanguagePreference":"Both",
       "applicant1TelephoneNumber":"+447438766833",
@@ -73,6 +82,9 @@
       "guardianFirstName":"guardianFirstName",
       "applicant2DateOfBirth":null,
       "birthFatherFirstName":"Address1 London",
+      "freeingOrders":[
+
+      ],
       "applicantsDomicileStatus":"true",
       "applicantRelationToChildFatherPartner":"",
       "applicant1SignStatementOfTruth":"true",
@@ -150,11 +162,9 @@
       "birthFatherAddress":"Address1 London",
       "applicant2LegalRepFirm":null,
       "hasProceedingDetailsWithRelation":"yes",
-      "placementOrderId":"123456",
       "welshPreferenceWitnessName":"witnessName",
       "adoptionDate":"01/01/2022",
       "applicant1StatementOfTruth":"true",
-      "placementOrderType":"Case",
       "applicant2LastName":null,
       "childrenHealthReportDate":null,
       "applicant1Nationality":"British",
@@ -170,10 +180,10 @@
       "parentalResponsibilityOrder":"Yes",
       "welshPreferenceChildName":"childName",
       "courtInterpreterAssistanceRequired":"Yes",
+      "anyOtherOrdersAvailable":"no",
       "guardianAddress":"Address1 London",
       "applicant2Occupation":null,
       "applicant1LegalRepPosition":null,
-      "placementOrderCourt":"HMCTS",
       "birthMotherOccupation":"motherOccupation",
       "applicant2SotFullName":null,
       "applicant2LegalRepSignature":null,
