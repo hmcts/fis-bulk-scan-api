@@ -183,8 +183,7 @@ public class BulkScanDependencyValidationService {
 
         if (ocrDataFieldMap.containsKey(fieldCheckBox)
                 && ocrDataFieldMap.get(fieldCheckBox).equalsIgnoreCase(YES)
-                && (ocrDataFieldMap.get(fieldDetails) == null
-                        || !StringUtils.hasText(ocrDataFieldMap.get(fieldDetails)))) {
+                && !StringUtils.hasText(ocrDataFieldMap.get(fieldDetails))) {
             lbFieldValid = false;
         }
 
