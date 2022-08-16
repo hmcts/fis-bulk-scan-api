@@ -87,6 +87,12 @@ class BulkScanC100ServiceTest {
     private static final String C100_TRANSFORM_SECTION4_SCENARIO1_RESPONSE_PATH =
             "classpath:response/bulk-scan-c100-section4-scenario1-transform-output.json";
 
+    private static final String C100_TRANSFORM_SECTION4_SCENARIO2_REQUEST_PATH =
+            "classpath:request/bulk-scan-c100-section4-secenario-2-transform-input.json";
+
+    private static final String C100_TRANSFORM_SECTION4_SCENARIO2_RESPONSE_PATH =
+            "classpath:response/bulk-scan-c100-section4-scenario2-transform-output.json";
+
     @Autowired BulkScanC100Service bulkScanValidationService;
 
     @MockBean PostcodeLookupService postcodeLookupService;
@@ -850,6 +856,22 @@ class BulkScanC100ServiceTest {
                 bulkScanValidationService.transform(bulkScanTransformationRequest);
         JSONAssert.assertEquals(
                 readFileFrom(C100_TRANSFORM_SECTION4_SCENARIO1_RESPONSE_PATH),
+                mapper.writeValueAsString(res),
+                true);
+    }
+
+    @Test
+    @DisplayName("C100 transform success section 4 - scenario 2.")
+    void testC100TransformSuccessSection4Scenario2() throws IOException, JSONException {
+        BulkScanTransformationRequest bulkScanTransformationRequest =
+                mapper.readValue(
+                        readFileFrom(C100_TRANSFORM_SECTION4_SCENARIO2_REQUEST_PATH),
+                        BulkScanTransformationRequest.class);
+
+        BulkScanTransformationResponse res =
+                bulkScanValidationService.transform(bulkScanTransformationRequest);
+        JSONAssert.assertEquals(
+                readFileFrom(C100_TRANSFORM_SECTION4_SCENARIO2_RESPONSE_PATH),
                 mapper.writeValueAsString(res),
                 true);
     }
