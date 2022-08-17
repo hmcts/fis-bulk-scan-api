@@ -180,6 +180,35 @@ public final class BulkScanPrlConstants {
     public static final String INTERPRETER_NEEDS = "interpreterNeeds";
     public static final String PARTY_ENUM = "party";
 
+    // C100 - section 4 starts
+    public static final String MEDIATOR_CERTIFIES_MIAM_EXEMPTION = "mediatorCertifiesMiamExemption";
+    public static final String MEDIATION_NOT_SUITABLE_NONEOFTHERESPONDENTS_WILLING_TO_ATTEND_MIAM =
+            "mediationNotSuitable_NoneOfTheRespondentsWillingToAttendMIAM";
+    public static final String
+            MEDIATION_NOT_SUITABLE_NONEOFTHERESPONDENTS_FAILED_TO_ATTEND_MIAM_WITHOUT_GOOD_REASON =
+                    "mediationNotSuitable_NoneOfTheRespondentsFailedToAttendMIAMWithoutGoodReason";
+    public static final String MEDIATION_NOT_SUITABLE_FOR_RESOLVING_THE_DISPUTE =
+            "mediationNotSuitable_forResolvingTheDispute";
+    public static final String MEDIATOR_CERTIFIES_APPLICANT_ATTEND_MIAM =
+            "mediatorCertifiesApplicantAttendMIAM";
+    public static final String APPLICANT_ONLY_ATTENDED_MIAM = "applicantOnly_AttendedMIAM";
+    public static final String APPLICANT_ONLY_ATTENDED_MIAM_TOGETHER =
+            "applicantOnly_AttendedMIAMTogether";
+    public static final String APPLICANT_AND_RESPONDENT_PARTY_ATTENDED_MIAM_SEPARATELY =
+            "applicantAndRespondentParty_AttendedMIAMSeparately";
+    public static final String RESPONDENT_PARTY_ARRANGED_TO_ATTEND_MIAM_SEPARATELY =
+            "respondentPartyArranged_ToAttendMIAMSeparately";
+    public static final String MEDIATOR_CERTIFIES_DISPUTE_RESOLUTION_NOT_PROCEEDING =
+            "mediatorCertifiesDisputeResolutionNotProceeding";
+    public static final String MEDIATION_NOT_PROCEEDING_APPLICANT_ATTENDED_MIAM_ALONE =
+            "mediationNotProceeding_applicantAttendedMIAMAlone";
+    public static final String MEDIATION_NOT_PROCEEDING_APPLICANTS_AND_RESPONDENTS_ATTENDED_MIAM =
+            "mediationNotProceeding_applicantsAndRespondentsAttendedMIAM";
+    public static final String MEDIATION_NOT_PROCEEDING_HASSTARTED_BUT_BROKEN_WITH_SOMEISSUE =
+            "mediationNotProceeding_hasStartedButBrokenWithSomeIssue";
+
+    // // C100 - section 4 ENDS
+
     public static Map<String, String> getInterpreterEnum() {
         Map<String, String> map = new HashMap<>();
         map.put(APPLICANT_REQUIRES_INTERPRETER_APPLICANT, PartyEnum.applicant.getDisplayedValue());

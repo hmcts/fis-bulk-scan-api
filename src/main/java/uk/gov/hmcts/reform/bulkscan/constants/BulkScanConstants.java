@@ -323,7 +323,19 @@ public final class BulkScanConstants {
     public static final String CHILD_DONT_KNOW_PROCEEDING_DETAILS_WITH_RELATION =
             "child_dontKnowProceedingDetailsWithRelation";
     public static final String DONT_KNOW = "DontKnow";
+
+    public static final String STEP_PARENT_ADOPTION = "Step Parent";
+    public static final String OTHER_PARENT_RELATIONSHIP_TO_CHILD =
+            "otherParentRelationshipToChild";
+    public static final String RELATIONSHIP_FATHER = "child_relationship_father";
+    public static final String RELATIONSHIP_OTHER = "child_relationship_other";
+    public static final String FATHER = "Father";
+    public static final String OTHER_PARENT = "Other parent";
+    public static final String APPLICANT_RELATION_TO_CHILD = "applicantRelationToChild";
+    public static final String APPLICANT_MARITAL_STATUS = "applicantMaritalStatus";
     // End of A58
+
+    public static final String EMPTY = "";
 
     private static Map<String, String> getErrorMessageMap() {
         return Map.of(

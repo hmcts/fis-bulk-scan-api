@@ -74,7 +74,7 @@
       "otherProceedingsTable": {
         "previousOrOngoingProceedings": "yes"
       },
-      "isIntermediaryNeeded": "Yes",
+      "isIntermediaryNeeded": null,
       "scannedDocuments": [
 
       ],
@@ -133,36 +133,18 @@
         }
       ],
       "agreedBy": "Burns, Burns and Burns",
-      "isWelshNeeded": "Yes",
+      "isWelshNeeded": null,
       "jurisdictionIssue": "Yes",
       "applicationPermissionRequired": "yes",
-      "reasonsForIntermediary": "intermediary details",
-      "mediatorCertifiesApplicantAttendMIAM": "The prospective applicant and respondent(s) have each attended a separate MIAM.",
+      "reasonsForIntermediary": null,
+      "mediatorCertifiesApplicantAttendMIAM": "The prospective applicant and respondent party(s) attended the MIAM together.",
       "parentalResponsibilityDetails": "parentResponsibility",
       "familyMediatorMiam": null,
       "miamPreviousAttendanceChecklist": "miamPreviousAttendanceChecklistEnum_Value_4",
       "childrenKNownToLocalAuthorityTextArea": "socialWorker",
-      "isSpecialArrangementsRequired": "Yes",
+      "isSpecialArrangementsRequired": null,
       "welshNeeds": [
-        {
-          "value": {
-            "whoNeedsWelsh": "child1 ",
-            "spokenOrWritten": [
-              "Will need to speak Welsh",
-              "Will need to read and write in Welsh",
-              "Both"
-            ]
-          }
-        },
-        {
-          "value": {
-            "whoNeedsWelsh": "child2 ",
-            "spokenOrWritten": [
-              "Will need to read and write in Welsh",
-              "Both"
-            ]
-          }
-        }
+
       ],
       "applicantAttendedMiam": null,
       "miamChildProtectionConcernList": [
@@ -215,7 +197,7 @@
           }
         }
       ],
-      "mediatorCertifiesDisputeResolutionNotProceeding": "",
+      "mediatorCertifiesDisputeResolutionNotProceeding": "Mediation has started, but has: \r\n• broken down; or \r\n• concluded with some or all issues unresolved",
       "requestToForeignAuthorityGiveReason": null,
       "allegationsOfHarmOverviewTable": {
         "allegationsOfHarmDomesticAbuseYesNo": "yes",
@@ -246,21 +228,20 @@
           }
         }
       ],
+      "authorizedFamilyMediatorAddress": "1, test address AB15 2TY",
       "interpreterNeeds": [
         {
           "value": {
-            "language": "dialect",
-            "otherAssistance": "Details",
+            "language": null,
+            "otherAssistance": null,
             "party": [
-              "Applicant",
-              "Respondent"
+
             ]
           }
         }
       ],
-      "specialArrangementsRequired": "facility details",
-      "isInterpreterNeeded": "Yes",
-      "authorizedFamilyMediatorAddress": "1, test address AB15 2TY",
+      "specialArrangementsRequired": null,
+      "isInterpreterNeeded": null,
       "miamUrgencyReasonChecklist": [
         "miamUrgencyReasonChecklistEnum_Value_1",
         "miamUrgencyReasonChecklistEnum_Value_2",
@@ -320,7 +301,7 @@
         }
       ],
       "mediatorRegistrationNumber": "9999999999",
-      "mediatorCertifiesMiamExemption": "The applicant has attended a MIAM alone and \r\n• the applicant does not wish to start or continue mediation; or \r\n• the mediator has determined that mediation is unsuitable; or \r\n• the respondent did not wish to attend a MIAM",
+      "mediatorCertifiesMiamExemption": "mediation is otherwise not suitable as a means of resolving the dispute.",
       "requestToForeignAuthority": null,
       "checklistSection5To6Completed": "yes",
       "otherChildrenNotInTheCaseTable": [
@@ -392,5 +373,7 @@
       "habitualResidentInOtherStateGiveReason": null
     }
   },
-  "warnings": []
+  "warnings": [
+
+  ]
 }

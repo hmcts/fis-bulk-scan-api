@@ -3,16 +3,6 @@
     "case_type_id":"A60",
     "event_id":"create-case-adop-bs",
     "case_data":{
-      "applicant":[
-        {
-          "value":{
-            "applicant1FirstName":"applicant1_firstName",
-            "applicant1LastName":"applicant1_lastName",
-            "applicant1Address":"123 test street, London",
-            "applicant1TelephoneNumber":"09999999990"
-          }
-        }
-      ],
       "scannedDocuments":[
         {
           "value":{
@@ -21,9 +11,28 @@
             "document_binary_url":"http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
           }
         }
+      ],
+      "applicant":[
+        {
+          "value":{
+            "applicantFirstName":"applicant1_firstName",
+            "applicantLastName":"applicant1_lastName",
+            "applicantAddress":"123 test street, London",
+            "applicantTelephoneNumber":"09999999990"
+          }
+        },
+        {
+          "value":{
+            "applicantFirstName":null,
+            "applicantLastName":null,
+            "applicantAddress":null,
+            "applicantTelephoneNumber":null
+          }
+        }
       ]
     }
   },
   "warnings":[
+
   ]
 }

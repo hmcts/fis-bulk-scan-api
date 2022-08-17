@@ -129,3 +129,42 @@ uk:
               groupValidationValue: "Yes"
               requiredFieldCount: 1
               sectionName: "Special Arrangements Required"
+            - groupMediatorCertifiesMIAMExemption:
+              dependentFields:
+                - mediationNotSuitable_NoneOfTheRespondentsWillingToAttendMIAM
+                - mediationNotSuitable_NoneOfTheRespondentsFailedToAttendMIAMWithoutGoodReason
+                - mediationNotSuitable_forResolvingTheDispute
+              dependentFieldValue: "true"
+              groupFieldName: familyMember_Intimation_on_No_MIAM
+              groupValidationValue: "Yes"
+              requiredFieldCount: 1
+            - groupMediatorCertifiesAttendedMIAM:
+              dependentFields:
+                - applicantOnly_AttendedMIAMTogether
+                - applicantAndRespondentParty_AttendedMIAMSeparately
+                - respondentPartyArranged_ToAttendMIAMSeparately
+              dependentFieldValue: "true"
+              groupFieldName: attended_MIAM
+              groupValidationValue: "Yes"
+              requiredFieldCount: 1
+            - groupMediatorCertifiesDisputeResolutionNotProceeding:
+              dependentFields:
+                - mediationNotProceeding_applicantAttendedMIAMAlone
+                - mediationNotProceeding_applicantsAndRespondentsAttendedMIAM
+                - mediationNotProceeding_hasStartedButBrokenWithSomeIssue
+              dependentFieldValue: "true"
+              groupFieldName: attended_MIAM
+              groupValidationValue: "Yes"
+              requiredFieldCount: 1
+            - groupMediatorCertifiesMIAMTable:
+              dependentFields:
+                - fmc_RegistrationNumber
+                - family_Mediation_ServiceName
+                - sole_TraderName
+                - authorizedFamilyMediator_address
+                - authorizedFamilyMediator_date
+              dependentFieldValue: "*"
+              groupFieldName: attended_MIAM
+              groupValidationValue: "Yes"
+              requiredFieldCount: 5
+

@@ -248,3 +248,8 @@ uk:
               isSpecialArrangementsRequired: requiredSpecialAssistanceOrFacilities
               reasonsForIntermediary: applicantRequiresInterpreter_intermediaryRequired_details
               specialArrangementsRequired: requiredSpecialAssistanceOrFacilities_details
+              mediatorRegistrationNumber: fmc_RegistrationNumber
+              familyMediatorServiceName: family_Mediation_ServiceName
+              soleTraderName: sole_TraderName
+              authorizedFamilyMediatorAddress: authorizedFamilyMediator_address
+              authorizedFamilyMediatorDate: authorizedFamilyMediator_date
