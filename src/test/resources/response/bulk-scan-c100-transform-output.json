@@ -74,7 +74,10 @@
       "otherProceedingsTable": {
         "previousOrOngoingProceedings": "yes"
       },
-      "scannedDocuments": [],
+      "isIntermediaryNeeded": "Yes",
+      "scannedDocuments": [
+
+      ],
       "checklistSection2To4Completed": "yes",
       "miamExemptionsChecklist": [
         "domesticViolence",
@@ -130,13 +133,37 @@
         }
       ],
       "agreedBy": "Burns, Burns and Burns",
+      "isWelshNeeded": "Yes",
       "jurisdictionIssue": "Yes",
       "applicationPermissionRequired": "yes",
+      "reasonsForIntermediary": "intermediary details",
       "mediatorCertifiesApplicantAttendMIAM": "The prospective applicant and respondent(s) have each attended a separate MIAM.",
       "parentalResponsibilityDetails": "parentResponsibility",
       "familyMediatorMiam": null,
       "miamPreviousAttendanceChecklist": "miamPreviousAttendanceChecklistEnum_Value_4",
       "childrenKNownToLocalAuthorityTextArea": "socialWorker",
+      "isSpecialArrangementsRequired": "Yes",
+      "welshNeeds": [
+        {
+          "value": {
+            "whoNeedsWelsh": "child1 ",
+            "spokenOrWritten": [
+              "Will need to speak Welsh",
+              "Will need to read and write in Welsh",
+              "Both"
+            ]
+          }
+        },
+        {
+          "value": {
+            "whoNeedsWelsh": "child2 ",
+            "spokenOrWritten": [
+              "Will need to read and write in Welsh",
+              "Both"
+            ]
+          }
+        }
+      ],
       "applicantAttendedMiam": null,
       "miamChildProtectionConcernList": [
         "MIAMChildProtectionConcernChecklistEnum_value_1",
@@ -219,6 +246,20 @@
           }
         }
       ],
+      "interpreterNeeds": [
+        {
+          "value": {
+            "language": "dialect",
+            "otherAssistance": "Details",
+            "party": [
+              "Applicant",
+              "Respondent"
+            ]
+          }
+        }
+      ],
+      "specialArrangementsRequired": "facility details",
+      "isInterpreterNeeded": "Yes",
       "authorizedFamilyMediatorAddress": "1, test address AB15 2TY",
       "miamUrgencyReasonChecklist": [
         "miamUrgencyReasonChecklistEnum_Value_1",

@@ -1,6 +1,7 @@
 package uk.gov.hmcts.reform.bulkscan.utils;
 
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EXEMPTION_TO_ATTEND_MIAM;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NO;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.ASSESSMENT_BY_ADULT_LEARNING_TEAM_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.FACTORS_AFFECTING_LITIGATION_CAPACITY_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.FACTORS_AFFECTING_PERSON_IN_COURT_FIELD;
@@ -37,6 +38,7 @@ public final class TestDataC100Util {
         fieldList.addAll(getAllNamesRelationSuccessData());
         fieldList.addAll(getExemptionToAttendMiamSuccessData());
         fieldList.addAll(getLitigationCapacityGroupSuccessData());
+        fieldList.addAll(getC100AttendTheHearingData());
 
         return fieldList;
     }
@@ -46,6 +48,38 @@ public final class TestDataC100Util {
 
         fieldList.addAll(getAllNamesRelationWarningData());
         fieldList.addAll(getExemptionToAttendMiamSuccessData());
+
+        return fieldList;
+    }
+
+    public static List<OcrDataField> getC100AttendTheHearingData() {
+        List<OcrDataField> fieldList = new ArrayList<>();
+
+        OcrDataField ocrDataPreviousOrOngoingProceedingField = new OcrDataField();
+        ocrDataPreviousOrOngoingProceedingField.setName("applicantRequiresWelsh");
+        ocrDataPreviousOrOngoingProceedingField.setValue(NO);
+        fieldList.add(ocrDataPreviousOrOngoingProceedingField);
+
+        OcrDataField ocrDataExistingCaseEmergencyProtectionField = new OcrDataField();
+        ocrDataExistingCaseEmergencyProtectionField.setName("applicantRequiresInterpreter");
+        ocrDataExistingCaseEmergencyProtectionField.setValue(NO);
+        fieldList.add(ocrDataExistingCaseEmergencyProtectionField);
+
+        OcrDataField ocrDataFamilyMemberIntimationField = new OcrDataField();
+        ocrDataFamilyMemberIntimationField.setName(
+                "applicantRequiresInterpreter_intermediaryRequired");
+        ocrDataFamilyMemberIntimationField.setValue(NO);
+        fieldList.add(ocrDataFamilyMemberIntimationField);
+
+        OcrDataField ocrDataAttendedMiamField = new OcrDataField();
+        ocrDataAttendedMiamField.setName("requiredSpecialAssistanceOrFacilities");
+        ocrDataAttendedMiamField.setValue(NO);
+        fieldList.add(ocrDataAttendedMiamField);
+
+        OcrDataField ocrDataField4 = new OcrDataField();
+        ocrDataField4.setName("applicantRequiresInterpreter_applicant");
+        ocrDataField4.setValue(NO);
+        fieldList.add(ocrDataField4);
 
         return fieldList;
     }
@@ -549,6 +583,8 @@ public final class TestDataC100Util {
         ocrNoMiamotherReasonsField.setName(NOMIAM_OTHERREASONS_FIELD);
         ocrNoMiamotherReasonsField.setValue(TICK_BOX_TRUE);
         fieldList.add(ocrNoMiamotherReasonsField);
+
+        fieldList.addAll(getC100AttendTheHearingData());
 
         return fieldList;
     }

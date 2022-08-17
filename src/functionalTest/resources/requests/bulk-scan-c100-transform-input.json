@@ -733,6 +733,58 @@
       "value": ""
     },
     {
+      "name": "applicantRequiresWelsh",
+      "value": "Yes"
+    },
+    {
+      "name": "applicantRequiresInterpreter",
+      "value": "Yes"
+    },
+    {
+      "name": "applicantRequiresInterpreter_intermediaryRequired",
+      "value": "Yes"
+    },
+    {
+      "name": "requiredSpecialAssistanceOrFacilities",
+      "value": "Yes"
+    },
+    {
+      "name": "applicantRequiresInterpreter_applicant",
+      "value": "Yes"
+    },
+    {
+      "name": "applicantRequiresInterpreter_respondent",
+      "value": "Yes"
+    },
+    {
+      "name": "applicantRequiresInterpreter_otherParty",
+      "value": "No"
+    },
+    {
+      "name": "applicantRequiresInterpreter_otherParty_details",
+      "value": "Details"
+    },
+    {
+      "name": "applicantRequiresInterpreter_otherParty_dialect",
+      "value": "dialect"
+    },
+    {
+      "name": "applicantRequiresInterpreter_intermediaryRequired_details",
+      "value": "intermediary details"
+    },
+    {
+      "name": "requiredSpecialAssistanceOrFacilities_details",
+      "value": "facility details"
+    },
+    {
+      "name": "requiredSpecialArrangementDetails",
+      "value": "special arragement details"
+    },
+    {
+      "name": "nameOfPartyWhoNeedsWelsh",
+      "value": "child1 [Yes Yes Yes];child2 [No Yes Yes];"
+    },
+    {
       "name":"section1RelatingToChildCompleted",
       "value":"yes"
     },

@@ -238,6 +238,16 @@ uk:
               SignedDate: applicantAndApplicantsolicitorSignedDate
               positionOrOfficeHeld: position_or_OfficeHeld
               courtFeeConsent: courtFeeConsent
+              isWelshNeeded: applicantRequiresWelsh
+              isInterpreterNeeded: applicantRequiresInterpreter
+              interpreterNeeds:
+                - value:
+                    language: applicantRequiresInterpreter_otherParty_dialect
+                    otherAssistance: applicantRequiresInterpreter_otherParty_details
+              isIntermediaryNeeded: applicantRequiresInterpreter_intermediaryRequired
+              isSpecialArrangementsRequired: requiredSpecialAssistanceOrFacilities
+              reasonsForIntermediary: applicantRequiresInterpreter_intermediaryRequired_details
+              specialArrangementsRequired: requiredSpecialAssistanceOrFacilities_details
               mediatorRegistrationNumber: fmc_RegistrationNumber
               familyMediatorServiceName: family_Mediation_ServiceName
               soleTraderName: sole_TraderName

@@ -74,14 +74,9 @@
       "otherProceedingsTable": {
         "previousOrOngoingProceedings": "yes"
       },
+      "isIntermediaryNeeded": "Yes",
       "scannedDocuments": [
-        {
-          "value": {
-            "document_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c",
-            "document_filename": "test.pdf",
-            "document_binary_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
-          }
-        }
+
       ],
       "checklistSection2To4Completed": "yes",
       "miamExemptionsChecklist": [
@@ -138,13 +133,42 @@
         }
       ],
       "agreedBy": "Burns, Burns and Burns",
+      "isWelshNeeded": "Yes",
+      "litigationCapacityTable": {
+        "litigationCapacityFactors": "Factors affecting litigation capacity",
+        "litigationCapacityReferrals": "Assessment by adult learning team",
+        "litigationCapacityOtherFactors": "Factors affecting person in court"
+      },
       "jurisdictionIssue": "Yes",
       "applicationPermissionRequired": "yes",
+      "reasonsForIntermediary": "intermediary details",
       "mediatorCertifiesApplicantAttendMIAM": "The prospective applicant and respondent(s) have each attended a separate MIAM.",
       "parentalResponsibilityDetails": "parentResponsibility",
       "familyMediatorMiam": null,
       "miamPreviousAttendanceChecklist": "miamPreviousAttendanceChecklistEnum_Value_4",
       "childrenKNownToLocalAuthorityTextArea": "socialWorker",
+      "isSpecialArrangementsRequired": "Yes",
+      "welshNeeds": [
+        {
+          "value": {
+            "whoNeedsWelsh": "child1 ",
+            "spokenOrWritten": [
+              "Will need to speak Welsh",
+              "Will need to read and write in Welsh",
+              "Both"
+            ]
+          }
+        },
+        {
+          "value": {
+            "whoNeedsWelsh": "child2 ",
+            "spokenOrWritten": [
+              "Will need to read and write in Welsh",
+              "Both"
+            ]
+          }
+        }
+      ],
       "applicantAttendedMiam": null,
       "miamChildProtectionConcernList": [
         "MIAMChildProtectionConcernChecklistEnum_value_1",
@@ -227,6 +251,20 @@
           }
         }
       ],
+      "interpreterNeeds": [
+        {
+          "value": {
+            "language": "dialect",
+            "otherAssistance": "Details",
+            "party": [
+              "Applicant",
+              "Respondent"
+            ]
+          }
+        }
+      ],
+      "specialArrangementsRequired": "facility details",
+      "isInterpreterNeeded": "Yes",
       "authorizedFamilyMediatorAddress": "1, test address AB15 2TY",
       "miamUrgencyReasonChecklist": [
         "miamUrgencyReasonChecklistEnum_Value_1",
@@ -342,6 +380,14 @@
       ],
       "childrenParentsName": "parentsName",
       "previousOrOngoingProceedings": "yes",
+      "internationalElementTable": {
+        "habitualResidentInOtherState": "yes",
+        "habitualResidentInOtherStateGiveReason": null,
+        "jurisdictionIssue": "Yes",
+        "jurisdictionIssueGiveReason": "International jurisdiction big issue",
+        "requestToForeignAuthority": null,
+        "requestToForeignAuthorityGiveReason": null
+      },
       "SignedDate": "08/08/21",
       "childrenSubjectOfChildProtectionPlan": "protectionplan",
       "miamTable": {

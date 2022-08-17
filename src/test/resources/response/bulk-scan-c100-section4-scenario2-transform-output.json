@@ -74,7 +74,10 @@
       "otherProceedingsTable": {
         "previousOrOngoingProceedings": "yes"
       },
-      "scannedDocuments": [],
+      "isIntermediaryNeeded": null,
+      "scannedDocuments": [
+
+      ],
       "checklistSection2To4Completed": "yes",
       "miamExemptionsChecklist": [
         "domesticViolence",
@@ -130,13 +133,19 @@
         }
       ],
       "agreedBy": "Burns, Burns and Burns",
+      "isWelshNeeded": null,
       "jurisdictionIssue": "Yes",
       "applicationPermissionRequired": "yes",
+      "reasonsForIntermediary": null,
       "mediatorCertifiesApplicantAttendMIAM": "The prospective applicant and respondent party(s) attended the MIAM together.",
       "parentalResponsibilityDetails": "parentResponsibility",
       "familyMediatorMiam": null,
       "miamPreviousAttendanceChecklist": "miamPreviousAttendanceChecklistEnum_Value_4",
       "childrenKNownToLocalAuthorityTextArea": "socialWorker",
+      "isSpecialArrangementsRequired": null,
+      "welshNeeds": [
+
+      ],
       "applicantAttendedMiam": null,
       "miamChildProtectionConcernList": [
         "MIAMChildProtectionConcernChecklistEnum_value_1",
@@ -220,6 +229,19 @@
         }
       ],
       "authorizedFamilyMediatorAddress": "1, test address AB15 2TY",
+      "interpreterNeeds": [
+        {
+          "value": {
+            "language": null,
+            "otherAssistance": null,
+            "party": [
+
+            ]
+          }
+        }
+      ],
+      "specialArrangementsRequired": null,
+      "isInterpreterNeeded": null,
       "miamUrgencyReasonChecklist": [
         "miamUrgencyReasonChecklistEnum_Value_1",
         "miamUrgencyReasonChecklistEnum_Value_2",
@@ -351,5 +373,7 @@
       "habitualResidentInOtherStateGiveReason": null
     }
   },
-  "warnings": []
+  "warnings": [
+
+  ]
 }

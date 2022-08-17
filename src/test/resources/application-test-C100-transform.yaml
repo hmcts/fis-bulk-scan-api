@@ -107,6 +107,7 @@ uk:
               previousOrOngoingProceedings : previous_or_ongoingProceeding
               consentOrder : isConsentOrder
               welshLanguageRequirement : welshRequired
+
               miamTable:
                 claimingExemptionMiam: exemption_to_attend_MIAM
                 familyMediatorMiam: familyMember_Intimation_on_No_MIAM
@@ -121,7 +122,7 @@ uk:
                 applicationPermissionRequired : askingPermissionForApplication
               hearingUrgencyTable:
                 isCaseUrgent: urgent_or_withoutHearing
-                setOutReasonsBelow: urgency_reason
+                setOutReasonsBelow: null
                 effortsMadeWithRespondents: respondent_effort
                 doYouRequireAHearingWithReducedNotice: withoutNotice_abridged_or_informalNotice
                 doYouNeedAWithoutNoticeHearing: withoutNotice_abridged_or_informalNotice
@@ -237,6 +238,16 @@ uk:
               SignedDate: applicantAndApplicantsolicitorSignedDate
               positionOrOfficeHeld: position_or_OfficeHeld
               courtFeeConsent: courtFeeConsent
+              isWelshNeeded: applicantRequiresWelsh
+              isInterpreterNeeded: applicantRequiresInterpreter
+              interpreterNeeds:
+                - value:
+                    language: applicantRequiresInterpreter_otherParty_dialect
+                    otherAssistance: applicantRequiresInterpreter_otherParty_details
+              isIntermediaryNeeded: applicantRequiresInterpreter_intermediaryRequired
+              isSpecialArrangementsRequired: requiredSpecialAssistanceOrFacilities
+              reasonsForIntermediary: applicantRequiresInterpreter_intermediaryRequired_details
+              specialArrangementsRequired: requiredSpecialAssistanceOrFacilities_details
               mediatorRegistrationNumber: fmc_RegistrationNumber
               familyMediatorServiceName: family_Mediation_ServiceName
               soleTraderName: sole_TraderName

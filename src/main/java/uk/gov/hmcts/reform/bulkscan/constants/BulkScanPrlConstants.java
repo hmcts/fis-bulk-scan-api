@@ -1,5 +1,9 @@
 package uk.gov.hmcts.reform.bulkscan.constants;
 
+import java.util.HashMap;
+import java.util.Map;
+import uk.gov.hmcts.reform.bulkscan.enums.PartyEnum;
+
 /** All private law form case types constants (Edge cases plus c100). */
 public final class BulkScanPrlConstants {
 
@@ -161,6 +165,21 @@ public final class BulkScanPrlConstants {
     public static final String SECTION_6_B_WITHOUT_NOTICE_HEARING_DETAILS_IS_MISSING =
             "Section 6b (Without notice hearing) details is missing.";
 
+    // C100 Attending the hearing
+    public static final String APPLICANT_REQUIRES_INTERPRETER = "applicantRequiresInterpreter";
+    public static final String APPLICANT_REQUIRES_INTERPRETER_APPLICANT =
+            "applicantRequiresInterpreter_applicant";
+    public static final String APPLICANT_REQUIRES_INTERPRETER_RESPONDENT =
+            "applicantRequiresInterpreter_respondent";
+    public static final String APPLICANT_REQUIRES_INTERPRETER_OTHER_PARTY =
+            "applicantRequiresInterpreter_otherParty";
+    public static final String WELSH_NEEDS = "nameOfPartyWhoNeedsWelsh";
+    public static final String WELSH_NEEDS_CCD = "welshNeeds";
+    public static final String WHO_WELSH_NEEDS = "whoNeedsWelsh";
+    public static final String SPOKEN_WRITTEN_BOTH = "spokenOrWritten";
+    public static final String INTERPRETER_NEEDS = "interpreterNeeds";
+    public static final String PARTY_ENUM = "party";
+
     // C100 - section 4 starts
     public static final String MEDIATOR_CERTIFIES_MIAM_EXEMPTION = "mediatorCertifiesMiamExemption";
     public static final String MEDIATION_NOT_SUITABLE_NONEOFTHERESPONDENTS_WILLING_TO_ATTEND_MIAM =
@@ -189,6 +208,17 @@ public final class BulkScanPrlConstants {
             "mediationNotProceeding_hasStartedButBrokenWithSomeIssue";
 
     // // C100 - section 4 ENDS
+
+    public static Map<String, String> getInterpreterEnum() {
+        Map<String, String> map = new HashMap<>();
+        map.put(APPLICANT_REQUIRES_INTERPRETER_APPLICANT, PartyEnum.applicant.getDisplayedValue());
+        map.put(
+                APPLICANT_REQUIRES_INTERPRETER_RESPONDENT,
+                PartyEnum.respondent.getDisplayedValue());
+        map.put(APPLICANT_REQUIRES_INTERPRETER_OTHER_PARTY, PartyEnum.other.getDisplayedValue());
+
+        return map;
+    }
 
     private BulkScanPrlConstants() {}
 }
