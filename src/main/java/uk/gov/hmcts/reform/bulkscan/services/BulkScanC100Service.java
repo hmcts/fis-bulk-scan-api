@@ -77,6 +77,9 @@ public class BulkScanC100Service implements BulkScanService {
                 bulkRequest.getOcrdatafields(), response);
         bulkScanC100Section6ValidationService.validate(bulkRequest, response);
 
+        response.addErrors(
+                bulkScanC100ValidationService.validateAttendingTheHearing(inputFieldMap));
+
         response.changeStatus();
 
         return response;

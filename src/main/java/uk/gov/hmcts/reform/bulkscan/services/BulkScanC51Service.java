@@ -148,7 +148,7 @@ public class BulkScanC51Service implements BulkScanService {
                                 inputFieldsMap);
 
         populatedMap.put(
-                BulkScanA58Service.SCAN_DOCUMENTS,
+                BulkScanConstants.SCAN_DOCUMENTS,
                 transformScanDocuments(bulkScanTransformationRequest));
 
         Map<String, String> caseTypeAndEventId =

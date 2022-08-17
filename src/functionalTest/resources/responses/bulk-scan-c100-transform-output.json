@@ -4,19 +4,6 @@
     "event_id": "create-case-privatelaw-bs",
     "case_data": {
       "miamOtherGroundsChecklist": "miamOtherGroundsChecklistEnum_Value_9",
-      "otherProceedingsDetailsTable": [
-        {
-          "value": {
-            "previousOrOngoingProceedings": "yes",
-            "caseNumber": "1234567890",
-            "dateOrYear": "22-01-2020",
-            "nameOfCourt": "court name",
-            "nameOfChildrenInvolved": "child1, child2",
-            "nameAndOffice": "case name and office name",
-            "typeOfOrder": "Emergency Protection Order"
-          }
-        }
-      ],
       "applicants": [
         {
           "value": {
@@ -81,29 +68,15 @@
         "prohibitedStepsOrder",
         "specificIssueOrder"
       ],
+      "habitualResidentInOtherState": "yes",
       "checklistSection8To10Completed": "yes",
       "checklistSection16Completed": "yes",
-      "miamUrgencyReasonChecklist": [
-        "miamUrgencyReasonChecklistEnum_Value_1",
-        "miamUrgencyReasonChecklistEnum_Value_2",
-        "miamUrgencyReasonChecklistEnum_Value_3",
-        "miamUrgencyReasonChecklistEnum_Value_4",
-        "miamUrgencyReasonChecklistEnum_Value_5",
-        "miamUrgencyReasonChecklistEnum_Value_6",
-        "miamUrgencyReasonChecklistEnum_Value_7"
-      ],
       "otherProceedingsTable": {
         "previousOrOngoingProceedings": "yes"
       },
-      "briefDetailsOnTheApplication": "briefDetails",
+      "isIntermediaryNeeded": "Yes",
       "scannedDocuments": [
-        {
-          "value": {
-            "document_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c",
-            "document_filename": "test.pdf",
-            "document_binary_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
-          }
-        }
+
       ],
       "checklistSection2To4Completed": "yes",
       "miamExemptionsChecklist": [
@@ -160,6 +133,13 @@
         }
       ],
       "agreedBy": "Burns, Burns and Burns",
+      "isWelshNeeded": "Yes",
+      "litigationCapacityTable": {
+        "litigationCapacityFactors": "Factors affecting litigation capacity",
+        "litigationCapacityReferrals": "Assessment by adult learning team",
+        "litigationCapacityOtherFactors": "Factors affecting person in court"
+      },
+      "jurisdictionIssue": "Yes",
       "setOutReasonsBelow":"Set out the reasons for urgency",
       "effortsMadeWithRespondents":"What efforts have you made to put each respondent on notice of the application?",
       "doYouRequireAHearingWithReducedNotice":null,
@@ -171,51 +151,40 @@
       "setWithoutNoticeHearing":null,
       "personWhoLivesWithChild": "living other details",
       "applicationPermissionRequired": "yes",
-      "habitualResidentInOtherState": "yes",
+      "reasonsForIntermediary": "intermediary details",
+      "mediatorCertifiesApplicantAttendMIAM": "The prospective applicant and respondent(s) have each attended a separate MIAM.",
       "parentalResponsibilityDetails": "parentResponsibility",
       "familyMediatorMiam": null,
-      "isCaseUrgent": "yes",
-      "typeOfApplicationTable": {
-        "applicationPermissionRequired": "yes"
-      },
       "miamPreviousAttendanceChecklist": "miamPreviousAttendanceChecklistEnum_Value_4",
       "childrenKNownToLocalAuthorityTextArea": "socialWorker",
-      "miamDomesticViolenceChecklist": [
-        "miamDomesticViolenceChecklistEnum_Value_1",
-        "miamDomesticViolenceChecklistEnum_Value_2",
-        "miamDomesticViolenceChecklistEnum_Value_3",
-        "miamDomesticViolenceChecklistEnum_Value_4",
-        "miamDomesticViolenceChecklistEnum_Value_5",
-        "miamDomesticViolenceChecklistEnum_Value_6",
-        "miamDomesticViolenceChecklistEnum_Value_7",
-        "miamDomesticViolenceChecklistEnum_Value_8",
-        "miamDomesticViolenceChecklistEnum_Value_9",
-        "miamDomesticViolenceChecklistEnum_Value_10",
-        "miamDomesticViolenceChecklistEnum_Value_11",
-        "miamDomesticViolenceChecklistEnum_Value_12",
-        "miamDomesticViolenceChecklistEnum_Value_13",
-        "miamDomesticViolenceChecklistEnum_Value_15",
-        "miamDomesticViolenceChecklistEnum_Value_16",
-        "miamDomesticViolenceChecklistEnum_Value_17",
-        "miamDomesticViolenceChecklistEnum_Value_18",
-        "miamDomesticViolenceChecklistEnum_Value_19",
-        "miamDomesticViolenceChecklistEnum_Value_20",
-        "miamDomesticViolenceChecklistEnum_Value_21",
-        "miamDomesticViolenceChecklistEnum_Value_22"
+      "isSpecialArrangementsRequired": "Yes",
+      "welshNeeds": [
+        {
+          "value": {
+            "whoNeedsWelsh": "child1 ",
+            "spokenOrWritten": [
+              "Will need to speak Welsh",
+              "Will need to read and write in Welsh",
+              "Both"
+            ]
+          }
+        },
+        {
+          "value": {
+            "whoNeedsWelsh": "child2 ",
+            "spokenOrWritten": [
+              "Will need to read and write in Welsh",
+              "Both"
+            ]
+          }
+        }
       ],
-      "childrenParentsName": "parentsName",
-      "previousOrOngoingProceedings": "yes",
       "applicantAttendedMiam": null,
       "miamChildProtectionConcernList": [
         "MIAMChildProtectionConcernChecklistEnum_value_1",
         "MIAMChildProtectionConcernChecklistEnum_value_2"
       ],
-      "childrenSubjectOfChildProtectionPlan": "protectionplan",
-      "miamTable": {
-        "claimingExemptionMiam": "yes",
-        "familyMediatorMiam": null,
-        "applicantAttendedMiam": null
-      },
+      "litigationCapacityReferrals": "Assessment by adult learning team",
       "childrenKNownToLocalAuthority": "Yes",
       "respondents": [
         {
@@ -261,6 +230,166 @@
           }
         }
       ],
+      "mediatorCertifiesDisputeResolutionNotProceeding": "",
+      "requestToForeignAuthorityGiveReason": null,
+      "allegationsOfHarmOverviewTable": {
+        "allegationsOfHarmDomesticAbuseYesNo": "yes",
+        "allegationsOfHarmChildAbductionYesNo": "yes",
+        "allegationsOfHarmChildAbuseYesNo": "yes",
+        "allegationsOfHarmSubstanceAbuseYesNo": "yes",
+        "allegationsOfHarmOtherConcernsYesNo": "yes"
+      },
+      "applicationPermissionRequiredReason": "reason",
+      "childrenOfSameParent": "Yes",
+      "childLiveWith": "Applicant",
+      "consentOrder": "yes",
+      "familyMediatorServiceName": "family mediation service name",
+      "checklistSection12To14Completed": "yes",
+      "claimingExemptionMiam": "yes",
+      "authorizedFamilyMediatorDate": "01/01/2022",
+      "typeOfChildArrangementsOrder": "true",
+      "otherProceedingsDetailsTable": [
+        {
+          "value": {
+            "previousOrOngoingProceedings": "yes",
+            "caseNumber": "1234567890",
+            "dateOrYear": "22-01-2020",
+            "nameOfCourt": "court name",
+            "nameOfChildrenInvolved": "child1, child2",
+            "nameAndOffice": "case name and office name",
+            "typeOfOrder": "Emergency Protection Order"
+          }
+        }
+      ],
+      "interpreterNeeds": [
+        {
+          "value": {
+            "language": "dialect",
+            "otherAssistance": "Details",
+            "party": [
+              "Applicant",
+              "Respondent"
+            ]
+          }
+        }
+      ],
+      "specialArrangementsRequired": "facility details",
+      "isInterpreterNeeded": "Yes",
+      "authorizedFamilyMediatorAddress": "1, test address AB15 2TY",
+      "miamUrgencyReasonChecklist": [
+        "miamUrgencyReasonChecklistEnum_Value_1",
+        "miamUrgencyReasonChecklistEnum_Value_2",
+        "miamUrgencyReasonChecklistEnum_Value_3",
+        "miamUrgencyReasonChecklistEnum_Value_4",
+        "miamUrgencyReasonChecklistEnum_Value_5",
+        "miamUrgencyReasonChecklistEnum_Value_6",
+        "miamUrgencyReasonChecklistEnum_Value_7"
+      ],
+      "checklistSection11Completed": "yes",
+      "briefDetailsOnTheApplication": "briefDetails",
+      "positionOrOfficeHeld": "Manager",
+      "hearingUrgencyTable": {
+        "isCaseUrgent": "yes",
+        "setOutReasonsBelow": "Set out the reasons for urgency",
+        "effortsMadeWithRespondents": "What efforts have you made to put each respondent on notice of the application?",
+        "doYouRequireAHearingWithReducedNotice": null,
+        "doYouNeedAWithoutNoticeHearing": null,
+        "caseUrgencyTimeAndReason": "8/day",
+        "reasonsForApplicationWithoutNotice": null,
+        "setOutOrderDirectionSought": "Set out the order(s)/directions sought",
+        "doYouRequireAWithoutNoticeHearing": null,
+        "setWithoutNoticeHearing": null
+      },
+      "personWhoLivesWithChild": "living other details",
+      "soleTraderName": "tet teradder",
+      "jurisdictionIssueGiveReason": "International jurisdiction big issue",
+      "litigationCapacityOtherFactors": "Factors affecting person in court",
+      "otherPeopleInTheCaseTable": [
+        {
+          "value": {
+            "firstName": "Owolabi",
+            "lastName": "Moses",
+            "previousName": "",
+            "gender": "Male",
+            "dateOfBirth": "20/02/2002",
+            "isDateOfBirthKnown": "",
+            "AddressLine1": "239 London Street",
+            "PostCode": null,
+            "isCurrentAddressKnown": "",
+            "relationshipToChild": null
+          }
+        },
+        {
+          "value": {
+            "firstName": "Fausat",
+            "lastName": "Adeyemi",
+            "previousName": "",
+            "gender": "Female",
+            "dateOfBirth": "21/02/2002",
+            "isDateOfBirthKnown": "",
+            "AddressLine1": "240 London Street",
+            "PostCode": null,
+            "isCurrentAddressKnown": "",
+            "relationshipToChild": null
+          }
+        }
+      ],
+      "mediatorRegistrationNumber": "9999999999",
+      "mediatorCertifiesMiamExemption": "The applicant has attended a MIAM alone and \r\n• the applicant does not wish to start or continue mediation; or \r\n• the mediator has determined that mediation is unsuitable; or \r\n• the respondent did not wish to attend a MIAM",
+      "requestToForeignAuthority": null,
+      "checklistSection5To6Completed": "yes",
+      "otherChildrenNotInTheCaseTable": [
+        {
+          "value": {
+            "fullName": "Raymond King",
+            "DateOfBirth": "22/02/2002",
+            "DateOfBirthDontKnow": "",
+            "Gender": "Male",
+            "RelationshipToApplicants": "Cousin",
+            "RelationshipToRespondents": ""
+          }
+        },
+        {
+          "value": {
+            "fullName": "Rachel Queen",
+            "DateOfBirth": "23/02/2002",
+            "DateOfBirthDontKnow": "",
+            "Gender": "Female",
+            "RelationshipToApplicants": "Cousin",
+            "RelationshipToRespondents": ""
+          }
+        }
+      ],
+      "courtFeeConsent": "yes",
+      "isCaseUrgent": "yes",
+      "typeOfApplicationTable": {
+        "applicationPermissionRequired": "yes"
+      },
+      "miamDomesticViolenceChecklist": [
+        "miamDomesticViolenceChecklistEnum_Value_1",
+        "miamDomesticViolenceChecklistEnum_Value_2",
+        "miamDomesticViolenceChecklistEnum_Value_3",
+        "miamDomesticViolenceChecklistEnum_Value_4",
+        "miamDomesticViolenceChecklistEnum_Value_5",
+        "miamDomesticViolenceChecklistEnum_Value_6",
+        "miamDomesticViolenceChecklistEnum_Value_7",
+        "miamDomesticViolenceChecklistEnum_Value_8",
+        "miamDomesticViolenceChecklistEnum_Value_9",
+        "miamDomesticViolenceChecklistEnum_Value_10",
+        "miamDomesticViolenceChecklistEnum_Value_11",
+        "miamDomesticViolenceChecklistEnum_Value_12",
+        "miamDomesticViolenceChecklistEnum_Value_13",
+        "miamDomesticViolenceChecklistEnum_Value_15",
+        "miamDomesticViolenceChecklistEnum_Value_16",
+        "miamDomesticViolenceChecklistEnum_Value_17",
+        "miamDomesticViolenceChecklistEnum_Value_18",
+        "miamDomesticViolenceChecklistEnum_Value_19",
+        "miamDomesticViolenceChecklistEnum_Value_20",
+        "miamDomesticViolenceChecklistEnum_Value_21",
+        "miamDomesticViolenceChecklistEnum_Value_22"
+      ],
+      "childrenParentsName": "parentsName",
+      "previousOrOngoingProceedings": "yes",
       "internationalElementTable": {
         "habitualResidentInOtherState": "yes",
         "habitualResidentInOtherStateGiveReason": null,
@@ -269,35 +398,21 @@
         "requestToForeignAuthority": null,
         "requestToForeignAuthorityGiveReason": null
       },
-      "litigationCapacityTable": {
-        "litigationCapacityFactors": "Factors affecting litigation capacity",
-        "litigationCapacityReferrals": "Assessment by adult learning team",
-        "litigationCapacityOtherFactors": "Factors affecting person in court"
-      },
-      "havePreviousParentingPlan": "parentingplan",
-      "allegationsOfHarmOverviewTable": {
-        "allegationsOfHarmDomesticAbuseYesNo": "yes",
-        "allegationsOfHarmChildAbductionYesNo": "yes",
-        "allegationsOfHarmChildAbuseYesNo": "yes",
-        "allegationsOfHarmSubstanceAbuseYesNo": "yes",
-        "allegationsOfHarmOtherConcernsYesNo": "yes"
-      },
-      "checklistSection11Completed": "yes",
-      "positionOrOfficeHeld": "Manager",
       "SignedDate": "08/08/21",
-      "applicationPermissionRequiredReason": "reason",
-      "childrenOfSameParent": "Yes",
-      "childLiveWith": "Applicant",
-      "consentOrder": "yes",
-      "checklistSection12To14Completed": "yes",
-      "checklistSection5To6Completed": "yes",
-      "claimingExemptionMiam": "yes",
-      "courtFeeConsent": "yes",
-      "printFullName": "Ronny Drew",
-      "checklistSection7Completed": "yes",
+      "childrenSubjectOfChildProtectionPlan": "protectionplan",
+      "miamTable": {
+        "claimingExemptionMiam": "yes",
+        "familyMediatorMiam": null,
+        "applicantAttendedMiam": null
+      },
       "checklistSection1Completed": "yes",
+      "havePreviousParentingPlan": "parentingplan",
+      "checklistSection7Completed": "yes",
+      "litigationCapacityFactors": "Factors affecting litigation capacity",
       "welshLanguageRequirement": "yes",
-      "childParentsNameCollection": "parentsNameColl"
+      "printFullName": "Ronny Drew",
+      "childParentsNameCollection": "parentsNameColl",
+      "habitualResidentInOtherStateGiveReason": null
     }
   },
   "warnings": []

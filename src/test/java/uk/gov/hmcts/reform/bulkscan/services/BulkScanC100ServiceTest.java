@@ -21,6 +21,9 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDEN
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT1LIVEDATTHISADDRESSFOROVERFIVEYEARS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT2ALLADDRESSESFORLASTFIVEYEARS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT2LIVEDATTHISADDRESSFOROVERFIVEYEARS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.APPLICANT_REQUIRES_INTERPRETER_APPLICANT;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.APPLICANT_REQUIRES_INTERPRETER_OTHER_PARTY;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.APPLICANT_REQUIRES_INTERPRETER_RESPONDENT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDINGS_DETAILS_TABLE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDING_CASE_NUMBER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDING_TYPE_OF_ORDER_1;
@@ -80,6 +83,18 @@ class BulkScanC100ServiceTest {
 
     private static final String C100_TRANSFORM_RESPONSE_PATH =
             "classpath:response/bulk-scan-c100-transform-output.json";
+
+    private static final String C100_TRANSFORM_SECTION4_SCENARIO1_REQUEST_PATH =
+            "classpath:request/bulk-scan-c100-section4-secenario-1-transform-input.json";
+
+    private static final String C100_TRANSFORM_SECTION4_SCENARIO1_RESPONSE_PATH =
+            "classpath:response/bulk-scan-c100-section4-scenario1-transform-output.json";
+
+    private static final String C100_TRANSFORM_SECTION4_SCENARIO2_REQUEST_PATH =
+            "classpath:request/bulk-scan-c100-section4-secenario-2-transform-input.json";
+
+    private static final String C100_TRANSFORM_SECTION4_SCENARIO2_RESPONSE_PATH =
+            "classpath:response/bulk-scan-c100-section4-scenario2-transform-output.json";
 
     @Autowired BulkScanC100Service bulkScanValidationService;
 
@@ -289,6 +304,7 @@ class BulkScanC100ServiceTest {
         List<OcrDataField> c100GetExemptionWarningData = new ArrayList<>();
         c100GetExemptionWarningData.addAll(TestDataC100Util.getAllNamesRelationSuccessData());
         c100GetExemptionWarningData.addAll(TestDataC100Util.getExemptionToAttendWarningData());
+        c100GetExemptionWarningData.addAll(TestDataC100Util.getC100AttendTheHearingData());
         BulkScanValidationRequest bulkScanValidationRequest =
                 BulkScanValidationRequest.builder()
                         .ocrdatafields(c100GetExemptionWarningData)
@@ -830,5 +846,59 @@ class BulkScanC100ServiceTest {
                                         .get(OTHER_PROCEEDINGS_DETAILS_TABLE))
                         .size(),
                 1);
+    }
+
+    @Test
+    @DisplayName("C100 validation with Attend the hearing.")
+    void testC100ValidationErrorWithAttendTheHearing() throws IOException {
+        BulkScanValidationRequest bulkScanValidationRequest =
+                mapper.readValue(
+                        readFileFrom(C100_VALIDATION_REQUEST_PATH),
+                        BulkScanValidationRequest.class);
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                APPLICANT_REQUIRES_INTERPRETER_APPLICANT.equalsIgnoreCase(
+                                                eachField.getName())
+                                        || APPLICANT_REQUIRES_INTERPRETER_RESPONDENT
+                                                .equalsIgnoreCase(eachField.getName())
+                                        || APPLICANT_REQUIRES_INTERPRETER_OTHER_PARTY
+                                                .equalsIgnoreCase(eachField.getName()))
+                .forEach(field -> field.setValue(EMPTY_STRING));
+        BulkScanValidationResponse res =
+                bulkScanValidationService.validate(bulkScanValidationRequest);
+        assertEquals(Status.ERRORS, res.status);
+    }
+
+    @Test
+    @DisplayName("C100 transform success section 4 - scenario 1.")
+    void testC100TransformSuccessSection4Scenario1() throws IOException, JSONException {
+        BulkScanTransformationRequest bulkScanTransformationRequest =
+                mapper.readValue(
+                        readFileFrom(C100_TRANSFORM_SECTION4_SCENARIO1_REQUEST_PATH),
+                        BulkScanTransformationRequest.class);
+
+        BulkScanTransformationResponse res =
+                bulkScanValidationService.transform(bulkScanTransformationRequest);
+        JSONAssert.assertEquals(
+                readFileFrom(C100_TRANSFORM_SECTION4_SCENARIO1_RESPONSE_PATH),
+                mapper.writeValueAsString(res),
+                true);
+    }
+
+    @Test
+    @DisplayName("C100 transform success section 4 - scenario 2.")
+    void testC100TransformSuccessSection4Scenario2() throws IOException, JSONException {
+        BulkScanTransformationRequest bulkScanTransformationRequest =
+                mapper.readValue(
+                        readFileFrom(C100_TRANSFORM_SECTION4_SCENARIO2_REQUEST_PATH),
+                        BulkScanTransformationRequest.class);
+
+        BulkScanTransformationResponse res =
+                bulkScanValidationService.transform(bulkScanTransformationRequest);
+        JSONAssert.assertEquals(
+                readFileFrom(C100_TRANSFORM_SECTION4_SCENARIO2_RESPONSE_PATH),
+                mapper.writeValueAsString(res),
+                true);
     }
 }
