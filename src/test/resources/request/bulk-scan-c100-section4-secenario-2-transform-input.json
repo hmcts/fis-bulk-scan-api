@@ -929,11 +929,15 @@
       "value": "What efforts have you made to put each respondent on notice of the application?"
     },
     {
-      "name": "mediationNotSuitable_NoneOfTheRespondentsWillingToAttendMIAM",
+      "name": "mediationNotSuitable_forResolvingTheDispute",
       "value": "true"
     },
     {
-      "name": "applicantAndRespondentParty_AttendedMIAMSeparately",
+      "name": "applicantOnly_AttendedMIAMTogether",
+      "value": "true"
+    },
+    {
+      "name": "mediationNotProceeding_hasStartedButBrokenWithSomeIssue",
       "value": "true"
     },
     {

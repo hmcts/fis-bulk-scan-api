@@ -335,6 +335,8 @@ public final class BulkScanConstants {
     public static final String APPLICANT_MARITAL_STATUS = "applicantMaritalStatus";
     // End of A58
 
+    public static final String EMPTY = "";
+
     private static Map<String, String> getErrorMessageMap() {
         return Map.of(
                 MANDATORY_KEY,

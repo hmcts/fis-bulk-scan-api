@@ -74,15 +74,7 @@
       "otherProceedingsTable": {
         "previousOrOngoingProceedings": "yes"
       },
-      "scannedDocuments": [
-        {
-          "value": {
-            "document_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c",
-            "document_filename": "test.pdf",
-            "document_binary_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
-          }
-        }
-      ],
+      "scannedDocuments": [],
       "checklistSection2To4Completed": "yes",
       "miamExemptionsChecklist": [
         "domesticViolence",
@@ -140,7 +132,7 @@
       "agreedBy": "Burns, Burns and Burns",
       "jurisdictionIssue": "Yes",
       "applicationPermissionRequired": "yes",
-      "mediatorCertifiesApplicantAttendMIAM": "The prospective applicant and respondent(s) have each attended a separate MIAM.",
+      "mediatorCertifiesApplicantAttendMIAM": "The prospective applicant and respondent party(s) attended the MIAM together.",
       "parentalResponsibilityDetails": "parentResponsibility",
       "familyMediatorMiam": null,
       "miamPreviousAttendanceChecklist": "miamPreviousAttendanceChecklistEnum_Value_4",
@@ -196,7 +188,7 @@
           }
         }
       ],
-      "mediatorCertifiesDisputeResolutionNotProceeding": "",
+      "mediatorCertifiesDisputeResolutionNotProceeding": "Mediation has started, but has: \r\n• broken down; or \r\n• concluded with some or all issues unresolved",
       "requestToForeignAuthorityGiveReason": null,
       "allegationsOfHarmOverviewTable": {
         "allegationsOfHarmDomesticAbuseYesNo": "yes",
@@ -287,7 +279,7 @@
         }
       ],
       "mediatorRegistrationNumber": "9999999999",
-      "mediatorCertifiesMiamExemption": "The applicant has attended a MIAM alone and \r\n• the applicant does not wish to start or continue mediation; or \r\n• the mediator has determined that mediation is unsuitable; or \r\n• the respondent did not wish to attend a MIAM",
+      "mediatorCertifiesMiamExemption": "mediation is otherwise not suitable as a means of resolving the dispute.",
       "requestToForeignAuthority": null,
       "checklistSection5To6Completed": "yes",
       "otherChildrenNotInTheCaseTable": [
