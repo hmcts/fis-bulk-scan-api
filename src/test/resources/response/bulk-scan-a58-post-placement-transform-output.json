@@ -29,6 +29,9 @@
         "isMarried":"yes"
       },
       "applicantRequireInterpreter":"Yes",
+      "placementOrders":[
+
+      ],
       "applicant2FirstName":"applicant2firstName",
       "birthMotherFirstName":"testBirthMotherFirstName",
       "applicant2StatementOfTruth":null,
@@ -51,8 +54,7 @@
         "solicitorFeeAccountNumber":null
       },
       "applicant1FirstName":"firstName",
-      "placementOrderDate":"asdfsdf",
-      "hasProceedingDetails":"no",
+      "hasProceedingDetails":"yes",
       "childWelshLanguagePreference":"Both",
       "applicant1TelephoneNumber":"447405878672",
       "birthFatherLastName":null,
@@ -68,29 +70,96 @@
       "guardianFirstName":null,
       "applicant2DateOfBirth":null,
       "birthFatherFirstName":null,
-      "applicantsDomicileStatus":null,
+      "freeingOrders":[
+        {
+          "value":{
+            "freeingOrderCourt":"Northern Ireland Court Name",
+            "freeingOrderId":"Northern Ireland Case Number",
+            "freeingOrderType":"353453245",
+            "freeingOrderDate":"353453245"
+          }
+        }
+      ],
+      "applicantsDomicileStatus":"",
       "applicantRelationToChildFatherPartner":null,
       "applicant1SignStatementOfTruth":"true",
       "dateChildMovedIn":"01/01/2012",
       "applicant1LegalRepSignature":"true",
+      "adopAgencyOrLAs":[
+        {
+          "value":{
+            "adopAgencyOrLaName":"HMCTS",
+            "adopAgencyOrLaaddress":"London",
+            "adopAgencyOrLaContactName":"HMCTS contact",
+            "adopAgencyOrLaPhoneNumber":"07070707007",
+            "laorAdoptionAgencyCategory":"Child placed for the purpose of Adoption"
+          }
+        },
+        {
+          "value":{
+            "adopAgencyOrLaName":"abdullah",
+            "adopAgencyOrLaaddress":"London",
+            "adopAgencyOrLaContactName":"ahmad",
+            "adopAgencyOrLaPhoneNumber":"0676767676767",
+            "laorAdoptionAgencyCategory":"Involved in the placing of the child"
+          }
+        },
+        {
+          "value":{
+            "adopAgencyOrLaName":"yaseen",
+            "adopAgencyOrLaaddress":"London",
+            "adopAgencyOrLaContactName":"Yaseen contact",
+            "adopAgencyOrLaPhoneNumber":"09999999999",
+            "laorAdoptionAgencyCategory":"Notify Local Authority intention of Adoption"
+          }
+        },
+        {
+          "value":{
+            "adopAgencyOrLaName":"kamal",
+            "adopAgencyOrLaaddress":"London",
+            "adopAgencyOrLaContactName":"Jamal",
+            "adopAgencyOrLaPhoneNumber":"07777777777",
+            "adopAgencyOrLaContactEmail ":"murshad@hmcts.net",
+            "laorAdoptionAgencyCategory":"Local Authority has parental responsibility of the Child"
+          }
+        }
+      ],
       "applicant2Nationality":null,
       "applicant2LegalRepPosition":null,
       "birthMotherAddress":"testBirthMotherAddress",
       "childrenAdoptionPaymentDetails":null,
       "hasMaintanenceOrder":"yes",
-      "applicants_domicile_status":"",
       "guardianLastName":null,
       "welshSpokenInCourtRequired":"Yes",
       "applicant1LegalRepFirm":null,
+      "proceedingDetails":[
+        {
+          "value":{
+            "typeOfOrder":"child",
+            "dateOfOrder":"01/01/2022",
+            "nameOfCourt":"London City Court",
+            "caseNumber":"0980980980980980",
+            "caseTypeCategory ":"About other orders or proceedings that affect the child"
+          }
+        },
+        {
+          "value":{
+            "typeOfOrder":"children",
+            "dateOfOrder":"01/01/2022",
+            "nameOfCourt":"London Court",
+            "caseNumber":"353453245",
+            "caseTypeCategory ":"Cases concerning a related child"
+          }
+        }
+      ],
       "applicant1Address":"123 test street, London",
       "applicant2Address":null,
       "birthFatherAddress":null,
       "applicant2LegalRepFirm":null,
-      "hasProceedingDetailsWithRelation":"DontKnow",
-      "placementOrderId":"123456",
+      "hasProceedingDetailsWithRelation":"yes",
       "welshPreferenceWitnessName":"witnessName",
+      "adoptionDate":"01/01/2022",
       "applicant1StatementOfTruth":"true",
-      "placementOrderType":"Case",
       "applicant2LastName":null,
       "childrenHealthReportDate":null,
       "applicant1Nationality":null,
@@ -106,10 +175,10 @@
       "parentalResponsibilityOrder":null,
       "welshPreferenceChildName":"childName",
       "courtInterpreterAssistanceRequired":"Yes",
+      "anyOtherOrdersAvailable":"no",
       "guardianAddress":null,
       "applicant2Occupation":null,
       "applicant1LegalRepPosition":null,
-      "placementOrderCourt":"HMCTS",
       "birthMotherOccupation":"testBirthMotherOccupation",
       "applicant2SotFullName":null,
       "applicant2LegalRepSignature":null,
