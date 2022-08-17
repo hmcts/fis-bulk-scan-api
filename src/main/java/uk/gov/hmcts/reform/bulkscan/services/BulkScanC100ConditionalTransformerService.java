@@ -21,7 +21,6 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.APPLIC
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.APPLICANT_REQUIRES_INTERPRETER_RESPONDENT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.CHILD_ARRANGEMENTS_ORDER_DESCRIPTION;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.CHILD_ARRANGEMENT_ORDER;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.HEARING_URGENCY_TABLE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERPRETER_NEEDS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.MEDIATION_NOT_PROCEEDING_APPLICANTS_AND_RESPONDENTS_ATTENDED_MIAM;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.MEDIATION_NOT_PROCEEDING_APPLICANT_ATTENDED_MIAM_ALONE;
@@ -188,16 +187,14 @@ public class BulkScanC100ConditionalTransformerService {
     @SuppressWarnings("unchecked")
     private void setOutReasonsBelow(
             Map<String, Object> populatedMap, Map<String, String> inputFieldsMap) {
-            if (!org.apache.commons.lang3.StringUtils.isEmpty(
-                            inputFieldsMap.get(URGENCY_REASON))) {
-                populatedMap.put(SET_OUT_REASONS_BELOW, inputFieldsMap.get(URGENCY_REASON));
-            } else if (!org.apache.commons.lang3.StringUtils.isEmpty(
-                            inputFieldsMap.get(
-                                    WITHOUT_NOTICE_ABRIDGED_OR_INFORMAL_NOTICE_REASONS))) {
-                populatedMap.put(
-                        SET_OUT_REASONS_BELOW,
-                        inputFieldsMap.get(WITHOUT_NOTICE_ABRIDGED_OR_INFORMAL_NOTICE_REASONS));
-            }
+        if (!org.apache.commons.lang3.StringUtils.isEmpty(inputFieldsMap.get(URGENCY_REASON))) {
+            populatedMap.put(SET_OUT_REASONS_BELOW, inputFieldsMap.get(URGENCY_REASON));
+        } else if (!org.apache.commons.lang3.StringUtils.isEmpty(
+                inputFieldsMap.get(WITHOUT_NOTICE_ABRIDGED_OR_INFORMAL_NOTICE_REASONS))) {
+            populatedMap.put(
+                    SET_OUT_REASONS_BELOW,
+                    inputFieldsMap.get(WITHOUT_NOTICE_ABRIDGED_OR_INFORMAL_NOTICE_REASONS));
+        }
     }
 
     /**

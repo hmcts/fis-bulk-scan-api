@@ -95,9 +95,9 @@ public class BulkScanA58Service implements BulkScanService {
                         configManager.getValidationConfig(formType));
 
         Map<MessageTypeEnum, List<String>> groupErrorsAndWarningsHashMap =
-            bulkScanGroupHandler.handle(formType, bulkRequest.getOcrdatafields());
+                bulkScanGroupHandler.handle(formType, bulkRequest.getOcrdatafields());
         BulkScanGroupValidatorUtil.updateGroupErrorsAndWarnings(
-            bulkScanValidationResponse, groupErrorsAndWarningsHashMap);
+                bulkScanValidationResponse, groupErrorsAndWarningsHashMap);
         BulkScanGroupValidatorUtil.updateGroupMissingFields(bulkScanValidationResponse, formType);
 
         if (formType.equals(A58) && isNotEmpty(inputFieldsMap.get(APPLICANT2_FIRSTNAME))) {

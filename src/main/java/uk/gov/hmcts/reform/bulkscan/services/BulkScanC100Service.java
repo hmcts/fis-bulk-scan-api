@@ -7,7 +7,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
-
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -93,10 +92,10 @@ public class BulkScanC100Service implements BulkScanService {
 
         Map<String, String> inputFieldsMap =
                 inputFieldsList.stream()
-                    .filter(ocrDataField -> StringUtils.isNotEmpty(ocrDataField.getName()))
-                        .collect(Collectors.toMap(ocrDataField -> ocrDataField.getName(),
-                                                  this::getValue
-                        ));
+                        .filter(ocrDataField -> StringUtils.isNotEmpty(ocrDataField.getName()))
+                        .collect(
+                                Collectors.toMap(
+                                        ocrDataField -> ocrDataField.getName(), this::getValue));
 
         Map<String, Object> populatedMap =
                 (Map<String, Object>)
@@ -123,6 +122,8 @@ public class BulkScanC100Service implements BulkScanService {
     }
 
     private String getValue(OcrDataField ocrDataField) {
-        return org.springframework.util.StringUtils.hasText(ocrDataField.getValue()) ? ocrDataField.getValue() : StringUtils.EMPTY;
+        return org.springframework.util.StringUtils.hasText(ocrDataField.getValue())
+                ? ocrDataField.getValue()
+                : StringUtils.EMPTY;
     }
 }

@@ -63,6 +63,7 @@
           }
         }
       ],
+      "setOutReasonsBelow": "Set out the reasons for urgency",
       "ordersApplyingFor": [
         "childArrangementsOrder",
         "prohibitedStepsOrder",
@@ -76,7 +77,13 @@
       },
       "isIntermediaryNeeded": "Yes",
       "scannedDocuments": [
-
+        {
+          "value": {
+            "document_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c",
+            "document_filename": "test.pdf",
+            "document_binary_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
+          }
+        }
       ],
       "checklistSection2To4Completed": "yes",
       "miamExemptionsChecklist": [
@@ -133,10 +140,12 @@
         }
       ],
       "agreedBy": "Burns, Burns and Burns",
+      "effortsMadeWithRespondents": "What efforts have you made to put each respondent on notice of the application?",
       "isWelshNeeded": "Yes",
       "jurisdictionIssue": "Yes",
       "applicationPermissionRequired": "yes",
       "reasonsForIntermediary": "intermediary details",
+      "mediatorCertifiesApplicantAttendMIAM": "The prospective applicant and respondent(s) have each attended a separate MIAM.",
       "parentalResponsibilityDetails": "parentResponsibility",
       "familyMediatorMiam": null,
       "miamPreviousAttendanceChecklist": "miamPreviousAttendanceChecklistEnum_Value_4",
@@ -214,6 +223,7 @@
           }
         }
       ],
+      "mediatorCertifiesDisputeResolutionNotProceeding": "",
       "requestToForeignAuthorityGiveReason": null,
       "allegationsOfHarmOverviewTable": {
         "allegationsOfHarmDomesticAbuseYesNo": "yes",
@@ -222,12 +232,17 @@
         "allegationsOfHarmSubstanceAbuseYesNo": "yes",
         "allegationsOfHarmOtherConcernsYesNo": "yes"
       },
+      "setOutOrderDirectionSought": "Set out the order(s)/directions sought",
       "applicationPermissionRequiredReason": "reason",
       "childrenOfSameParent": "Yes",
       "childLiveWith": "Applicant",
       "consentOrder": "yes",
+      "familyMediatorServiceName": "family mediation service name",
       "checklistSection12To14Completed": "yes",
       "claimingExemptionMiam": "yes",
+      "reasonsForApplicationWithoutNotice": null,
+      "authorizedFamilyMediatorDate": "01/01/2022",
+      "typeOfChildArrangementsOrder": "true",
       "otherProceedingsDetailsTable": [
         {
           "value": {
@@ -241,15 +256,7 @@
           }
         }
       ],
-      "scannedDocuments": [
-        {
-          "value": {
-            "document_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c",
-            "document_filename": "test.pdf",
-            "document_binary_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
-          }
-        }
-      ],
+      "authorizedFamilyMediatorAddress": "1, test address AB15 2TY",
       "interpreterNeeds": [
         {
           "value": {
@@ -263,6 +270,7 @@
         }
       ],
       "specialArrangementsRequired": "facility details",
+      "doYouNeedAWithoutNoticeHearing": null,
       "isInterpreterNeeded": "Yes",
       "miamUrgencyReasonChecklist": [
         "miamUrgencyReasonChecklistEnum_Value_1",
@@ -276,20 +284,13 @@
       "checklistSection11Completed": "yes",
       "briefDetailsOnTheApplication": "briefDetails",
       "positionOrOfficeHeld": "Manager",
-      "hearingUrgencyTable": {
-        "isCaseUrgent": "yes",
-        "setOutReasonsBelow": "Set out the reasons for urgency",
-        "effortsMadeWithRespondents": "What efforts have you made to put each respondent on notice of the application?",
-        "doYouRequireAHearingWithReducedNotice": null,
-        "doYouNeedAWithoutNoticeHearing": null,
-        "caseUrgencyTimeAndReason": "8/day",
-        "reasonsForApplicationWithoutNotice": null,
-        "setOutOrderDirectionSought": "Set out the order(s)/directions sought",
-        "doYouRequireAWithoutNoticeHearing": null,
-        "setWithoutNoticeHearing": null
-      },
+      "setWithoutNoticeHearing": null,
+      "doYouRequireAWithoutNoticeHearing": null,
       "personWhoLivesWithChild": "living other details",
+      "soleTraderName": "tet teradder",
+      "doYouRequireAHearingWithReducedNotice": null,
       "jurisdictionIssueGiveReason": "International jurisdiction big issue",
+      "caseUrgencyTimeAndReason": "8/day",
       "litigationCapacityOtherFactors": "Factors affecting person in court",
       "otherPeopleInTheCaseTable": [
         {
@@ -321,6 +322,8 @@
           }
         }
       ],
+      "mediatorRegistrationNumber": "9999999999",
+      "mediatorCertifiesMiamExemption": "The applicant has attended a MIAM alone and \r\n• the applicant does not wish to start or continue mediation; or \r\n• the mediator has determined that mediation is unsuitable; or \r\n• the respondent did not wish to attend a MIAM",
       "requestToForeignAuthority": null,
       "checklistSection5To6Completed": "yes",
       "otherChildrenNotInTheCaseTable": [
@@ -392,7 +395,5 @@
       "habitualResidentInOtherStateGiveReason": null
     }
   },
-  "warnings": [
-
-  ]
+  "warnings": []
 }
