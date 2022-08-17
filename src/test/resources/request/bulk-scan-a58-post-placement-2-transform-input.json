@@ -307,6 +307,34 @@
     {
       "name": "applicants_domicile_status",
       "value": "353453245"
+    },
+    {
+      "name": "child_noOrderAvailable",
+      "value": "true"
+    },
+    {
+      "name": "child_freeingOrderByEnglandAndWalesCourt",
+      "value": "true"
+    },
+    {
+      "name": "hasProceedingDetails",
+      "value": "details"
+    },
+    {
+      "name": "freeingOrderCourt",
+      "value": "Court"
+    },
+    {
+      "name": "freeingOrderId",
+      "value": "Order id"
+    },
+    {
+      "name": "freeingOrderType",
+      "value": "Order type"
+    },
+    {
+      "name": "freeingOrderDate",
+      "value": "01/01/2022"
     }
   ],
   "form_type": "A58"

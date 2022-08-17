@@ -79,7 +79,14 @@
       "applicant2DateOfBirth":null,
       "birthFatherFirstName":null,
       "freeingOrders":[
-
+        {
+          "value":{
+            "freeingOrderCourt":null,
+            "freeingOrderId":null,
+            "freeingOrderType":null,
+            "freeingOrderDate":null
+          }
+        }
       ],
       "applicantsDomicileStatus":"",
       "applicantRelationToChildFatherPartner":null,
@@ -149,7 +156,7 @@
       "parentalResponsibilityOrder":null,
       "welshPreferenceChildName":"childName",
       "courtInterpreterAssistanceRequired":"Yes",
-      "anyOtherOrdersAvailable":"no",
+      "anyOtherOrdersAvailable":"yes",
       "guardianAddress":null,
       "applicant2Occupation":null,
       "applicant1LegalRepPosition":null,
@@ -159,7 +166,5 @@
       "otherPartyName":"otherPartyName"
     }
   },
-  "warnings":[
-    "The following fields are not configured with our system: [child_noProceedingDetailsWithRelation] "
-  ]
+  "warnings":[]
 }
