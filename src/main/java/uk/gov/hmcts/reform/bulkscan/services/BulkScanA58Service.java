@@ -25,6 +25,8 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.COURT_CON
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.COURT_CONSENT_PARENT_LACK_CAPACITY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.COURT_CONSENT_PARENT_NOT_FOUND;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EVENT_ID;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.SCAN_DOCUMENTS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.STEP_PARENT_ADOPTION;
 import static uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper.transformScanDocuments;
 import static uk.gov.hmcts.reform.bulkscan.model.FormType.A58;
 import static uk.gov.hmcts.reform.bulkscan.model.FormType.A58_RELINQUISHED_ADOPTION;
@@ -57,19 +59,6 @@ import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
 @Service
 @SuppressWarnings({"PMD.ExcessiveImports", "PMD.GodClass"})
 public class BulkScanA58Service implements BulkScanService {
-
-    public static final String STEP_PARENT_ADOPTION = "Step Parent";
-
-    public static final String SCAN_DOCUMENTS = "scannedDocuments";
-    public static final String OTHER_PARENT_RELATIONSHIP_TO_CHILD =
-            "otherParentRelationshipToChild";
-    public static final String RELATIONSHIP_FATHER = "child_relationship_father";
-    public static final String RELATIONSHIP_OTHER = "child_relationship_other";
-    public static final String FATHER = "Father";
-    public static final String OTHER_PARENT = "Other parent";
-    public static final String APPLICANTS_DOMICILE_STATUS_KEY = "applicantsDomicileStatus";
-    public static final String APPLICANT_RELATION_TO_CHILD = "applicantRelationToChild";
-    public static final String APPLICANT_MARITAL_STATUS = "applicantMaritalStatus";
 
     @Autowired BulkScanFormValidationConfigManager configManager;
 
@@ -149,7 +138,6 @@ public class BulkScanA58Service implements BulkScanService {
                                                 .getTransformationConfig(formType)
                                                 .getCaseDataFields()),
                                 inputFieldsMap);
-
         // For A58 formtype we need to set some fields based on the Or Condition...
         if (formType.equals(A58)) {
             bulkScanA58ConditionalTransformerService.conditionalTransform(

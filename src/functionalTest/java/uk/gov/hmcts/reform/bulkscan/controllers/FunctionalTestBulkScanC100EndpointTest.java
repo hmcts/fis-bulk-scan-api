@@ -24,6 +24,9 @@ public class FunctionalTestBulkScanC100EndpointTest {
             "classpath:responses/bulk-scan-c100-validation-output.json";
     private static final String C100_VALIDATION_SECTION6B_INPUT_PATH =
             "classpath:requests/bulk-scan-c100-section6b-validate-input.json";
+
+    private static final String C100_VALIDATION_SECTION6B_WARNING_OUTPUT_PATH =
+            "classpath:responses/bulk-scan-c100-section6b-warning-validate-output.json";
     private static final String C100_VALIDATION_SECTION6B_ERROR_INPUT_PATH =
             "classpath:requests/bulk-scan-c100-section6b-error-validate-input.json";
     private static final String C100_VALIDATION_SECTION6B_ERROR_OUTPUT_PATH =
@@ -78,7 +81,8 @@ public class FunctionalTestBulkScanC100EndpointTest {
     public void shouldValidateC100Section6bBulkScanRequest() throws Exception {
         String bulkScanValidationRequest = readFileFrom(C100_VALIDATION_SECTION6B_INPUT_PATH);
 
-        String bulkScanValidationResponse = readFileFrom(C100_VALIDATION_OUTPUT_PATH);
+        String bulkScanValidationResponse =
+                readFileFrom(C100_VALIDATION_SECTION6B_WARNING_OUTPUT_PATH);
 
         Response response =
                 request.header(AUTH_HEADER, AUTH_HEADER)

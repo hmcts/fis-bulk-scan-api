@@ -1,6 +1,7 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT2_SOT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_ERROR_MESSAGE;
@@ -400,9 +401,8 @@ class BulkScanA58PostPlacementServiceTest {
 
         BulkScanTransformationResponse res =
                 bulkScanValidationService.transform(bulkScanTransformationRequest);
-        assertEquals(
-                "false",
-                res.getCaseCreationDetails().getCaseData().get("applicantsDomicileStatus"));
+        assertNotEquals(
+                "true", res.getCaseCreationDetails().getCaseData().get("applicantsDomicileStatus"));
     }
 
     private List<OcrDataField> getOcrDataFields(String key, String value) {

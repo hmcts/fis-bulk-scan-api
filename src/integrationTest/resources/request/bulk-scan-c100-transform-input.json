@@ -927,8 +927,35 @@
     {
       "name": "respondent_effort",
       "value": "What efforts have you made to put each respondent on notice of the application?"
+    },
+    {
+      "name": "mediationNotSuitable_NoneOfTheRespondentsWillingToAttendMIAM",
+      "value": "true"
+    },
+    {
+      "name": "applicantAndRespondentParty_AttendedMIAMSeparately",
+      "value": "true"
+    },
+    {
+      "name": "fmc_RegistrationNumber",
+      "value": "9999999999"
+    },
+    {
+      "name": "sole_TraderName",
+      "value": "tet teradder"
+    },
+    {
+      "name": "authorizedFamilyMediator_address",
+      "value": "1, test address AB15 2TY"
+    },
+    {
+      "name": "authorizedFamilyMediator_date",
+      "value": "01/01/2022"
+    },
+    {
+      "name": "family_Mediation_ServiceName",
+      "value": "family mediation service name"
     }
-
   ],
   "scanned_documents": [
     {

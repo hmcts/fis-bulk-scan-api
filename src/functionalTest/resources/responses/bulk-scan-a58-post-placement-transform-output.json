@@ -122,6 +122,7 @@
       "birthMotherAddress":"motherAddress",
       "childrenAdoptionPaymentDetails":null,
       "hasMaintanenceOrder":"yes",
+      "applicants_domicile_status":"true",
       "guardianLastName":"guardianLastName",
       "welshSpokenInCourtRequired":"Yes",
       "applicant1LegalRepFirm":null,
