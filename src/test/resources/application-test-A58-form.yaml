@@ -109,6 +109,33 @@ uk:
               - court_interpreter_assistance_language
               - special_assistance_facilities_required
               - special_assistance_facilities
+              - child_noProceedingDetailsWithRelation
+              - hasProceedingDetails
+              - freeingOrderCourt
+              - freeingOrderId
+              - freeingOrderType
+              - freeingOrderDate
+              - child_placementOrderByEnglandAndWalesCourt
+              - child_placmentOrderByEnglandAndWalesCourtName
+              - child_placmentOrderByEnglandAndWalesCaseNumber
+              - child_placmentOrderByEnglandAndWalesTypeOfOrder
+              - child_placmentOrderByEnglandAndWalesDateOfOrder
+              - child_freeingOrderByEnglandAndWalesCourt
+              - child_freeingOrderByEnglandAndWalesCourtName
+              - child_freeingOrderByEnglandAndWalesCaseNumber
+              - child_freeingOrderByEnglandAndWalesTypeOfOrder
+              - child_freeingOrderByEnglandAndWalesDateOfOrder
+              - child_freeingOrderByNorthernIrelandCourt
+              - child_freeingOrderByNorthernIrelandCourtName
+              - child_freeingOrderByNorthernIrelandCaseNumber
+              - child_freeingOrderByNorthernIrelandTypeOfOrder
+              - child_freeingOrderByNorthernIrelandDateOfOrder
+              - child_permanenceOrderByScotlandCourt
+              - child_permanenceOrderByScotlandCourtName
+              - child_permanenceOrderByScotlandCaseNumber
+              - child_permanenceOrderByScotlandTypeOfOrder
+              - child_permanenceOrderByScotlandDateOfOrder
+              - child_noOrderAvaialble
             regexValidationFields:
               dateFields:
                 fieldNames:
