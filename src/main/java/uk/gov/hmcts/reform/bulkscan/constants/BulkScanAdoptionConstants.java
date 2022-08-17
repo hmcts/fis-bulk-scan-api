@@ -137,6 +137,7 @@ public final class BulkScanAdoptionConstants {
     public static final String IS_ADOPTION_AGENCY_INVOLVED = "isAdoptionAgencyInvolved";
     public static final String PLACEMENT_ORDERS = "placementOrders";
     public static final String FREEING_ORDERS = "freeingOrders";
+    public static final String APPLICANTS_DOMICILE_STATUS_KEY = "applicantsDomicileStatus";
     // End of A58
 
     private BulkScanAdoptionConstants() {}

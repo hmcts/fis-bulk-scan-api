@@ -12,6 +12,7 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanAdoptionConstants.A
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanAdoptionConstants.ADOP_AGENCY_OR_LA_PHONE_NUMBER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanAdoptionConstants.ADOP_AGENCY_OR_L_AS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanAdoptionConstants.ANY_OTHER_ORDERS_AVAILABLE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanAdoptionConstants.APPLICANTS_DOMICILE_STATUS_KEY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanAdoptionConstants.CASES_CONCERNING_A_RELATED_CHILD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanAdoptionConstants.CASE_NUMBER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanAdoptionConstants.CASE_TYPE_CATEGORY;
@@ -133,19 +134,7 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_WEL
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.COURT_INTERPRETER_ASSISTANCE_LANGUAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.COURT_INTERPRETER_ASSISTANCE_LANGUAGE_CCD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.COURT_INTERPRETER_ASSISTANCE_REQUIRED;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DATE_OF_ORDER;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DONT_KNOW;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FATHER;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FREEING_ORDER_COURT;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FREEING_ORDER_DATE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FREEING_ORDER_ID;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FREEING_ORDER_TYPE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.HAS_MAINTANENCE_ORDER;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.HAS_PROCEEDING_DETAILS;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.HAS_PROCEEDING_DETAILS_WITH_RELATION;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.LA_OR_PARENTAL_RESPONSIBILITY;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MAINTANENCE_ORDER;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NAME_OF_COURT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.OTHER_PARENT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.OTHER_PARENT_RELATIONSHIP_TO_CHILD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.OTHER_PARTY_NAME;
@@ -154,10 +143,6 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.OTHER_PAR
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.OTHER_PARTY_REQUIRE_INTERPRETER_CCD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PARTY_WELSH_LANGUAGE_PREFERENCE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PARTY_WELSH_LANGUAGE_PREFERENCE_CCD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PLACEMENT_ORDER_COURT;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PLACEMENT_ORDER_DATE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PLACEMENT_ORDER_ID;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PLACEMENT_ORDER_TYPE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RELATIONSHIP_FATHER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RELATIONSHIP_OTHER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_REQUIRE_INTERPRETER;
@@ -176,14 +161,6 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.WELSH_PRE
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.WELSH_SPOKEN_IN_COURT_REQUIRED;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.WITNESS_WELSH_LANGUAGE_PREFERENCE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.WITNESS_WELSH_LANGUAGE_PREFERENCE_CCD;
-import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.APPLICANTS_DOMICILE_STATUS_KEY;
-import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.APPLICANT_MARITAL_STATUS;
-import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.APPLICANT_RELATION_TO_CHILD;
-import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.FATHER;
-import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.OTHER_PARENT;
-import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.OTHER_PARENT_RELATIONSHIP_TO_CHILD;
-import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.RELATIONSHIP_FATHER;
-import static uk.gov.hmcts.reform.bulkscan.services.BulkScanA58Service.RELATIONSHIP_OTHER;
 
 import com.microsoft.applicationinsights.core.dependencies.google.gson.internal.LinkedTreeMap;
 import java.util.ArrayList;

@@ -54,7 +54,6 @@
         "solicitorFeeAccountNumber":null
       },
       "applicant1FirstName":"firstName",
-      "placementOrderDate":"asdfsdf",
       "hasProceedingDetails":"yes",
       "childWelshLanguagePreference":"Both",
       "applicant1TelephoneNumber":"447405878672",
@@ -130,7 +129,6 @@
       "birthMotherAddress":"testBirthMotherAddress",
       "childrenAdoptionPaymentDetails":null,
       "hasMaintanenceOrder":"yes",
-      "applicants_domicile_status":"",
       "guardianLastName":null,
       "welshSpokenInCourtRequired":"Yes",
       "applicant1LegalRepFirm":null,
@@ -181,7 +179,6 @@
       "guardianAddress":null,
       "applicant2Occupation":null,
       "applicant1LegalRepPosition":null,
-      "placementOrderCourt":"HMCTS",
       "birthMotherOccupation":"testBirthMotherOccupation",
       "applicant2SotFullName":null,
       "applicant2LegalRepSignature":null,
