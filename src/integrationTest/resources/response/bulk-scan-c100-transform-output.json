@@ -134,11 +134,6 @@
       ],
       "agreedBy": "Burns, Burns and Burns",
       "isWelshNeeded": "Yes",
-      "litigationCapacityTable": {
-        "litigationCapacityFactors": "Factors affecting litigation capacity",
-        "litigationCapacityReferrals": "Assessment by adult learning team",
-        "litigationCapacityOtherFactors": "Factors affecting person in court"
-      },
       "jurisdictionIssue": "Yes",
       "applicationPermissionRequired": "yes",
       "reasonsForIntermediary": "intermediary details",
@@ -380,14 +375,6 @@
       ],
       "childrenParentsName": "parentsName",
       "previousOrOngoingProceedings": "yes",
-      "internationalElementTable": {
-        "habitualResidentInOtherState": "yes",
-        "habitualResidentInOtherStateGiveReason": null,
-        "jurisdictionIssue": "Yes",
-        "jurisdictionIssueGiveReason": "International jurisdiction big issue",
-        "requestToForeignAuthority": null,
-        "requestToForeignAuthorityGiveReason": null
-      },
       "SignedDate": "08/08/21",
       "childrenSubjectOfChildProtectionPlan": "protectionplan",
       "miamTable": {
