@@ -40,6 +40,7 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanAdoptionConstants.C
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanAdoptionConstants.CHILD_IS_ADOPTION_AGENCY_INVOLVED;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanAdoptionConstants.CHILD_LA_ADDRESS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanAdoptionConstants.CHILD_LA_CONTACT_NAME;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanAdoptionConstants.CHILD_LA_EMAIL;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanAdoptionConstants.CHILD_LA_NAME;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanAdoptionConstants.CHILD_LA_OR_PARENTAL_ADDRESS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanAdoptionConstants.CHILD_LA_OR_PARENTAL_CONTACT_NAME;
@@ -506,6 +507,8 @@ public class BulkScanA58ConditionalTransformerService {
                 ADOP_AGENCY_OR_LA_CONTACT_NAME, inputFieldsMap.get(CHILD_LA_CONTACT_NAME));
         valuesLinkedTreeMap.put(
                 ADOP_AGENCY_OR_LA_PHONE_NUMBER, inputFieldsMap.get(CHILD_LA_TELEPHONE_NO));
+        valuesLinkedTreeMap.put(
+                ADOP_AGENCY_OR_LA_CONTACT_EMAIL, inputFieldsMap.get(CHILD_LA_EMAIL));
         valuesLinkedTreeMap.put(
                 L_AOR_ADOPTION_AGENCY_CATEGORY, NOTIFY_LOCAL_AUTHORITY_INTENTION_OF_ADOPTION);
         linkedTreeMap.put(VALUE, valuesLinkedTreeMap);
