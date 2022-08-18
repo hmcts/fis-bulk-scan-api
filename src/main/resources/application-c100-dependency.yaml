@@ -141,6 +141,7 @@ uk:
               sectionName: "4a - Mediator Certifies MIAM Exemption"
             - groupMediatorCertifiesAttendedMIAM:
               dependentFields:
+                - applicantOnly_AttendedMIAM
                 - applicantOnly_AttendedMIAMTogether
                 - applicantAndRespondentParty_AttendedMIAMSeparately
                 - respondentPartyArranged_ToAttendMIAMSeparately
