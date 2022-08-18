@@ -140,6 +140,7 @@ uk:
               requiredFieldCount: 1
             - groupMediatorCertifiesAttendedMIAM:
               dependentFields:
+                - applicantOnly_AttendedMIAM
                 - applicantOnly_AttendedMIAMTogether
                 - applicantAndRespondentParty_AttendedMIAMSeparately
                 - respondentPartyArranged_ToAttendMIAMSeparately

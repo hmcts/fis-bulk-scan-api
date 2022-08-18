@@ -282,6 +282,7 @@ uk:
               - mediationNotSuitable_NoneOfTheRespondentsWillingToAttendMIAM
               - mediationNotSuitable_NoneOfTheRespondentsFailedToAttendMIAMWithoutGoodReason
               - mediationNotSuitable_forResolvingTheDispute
+              - applicantOnly_AttendedMIAM
               - applicantOnly_AttendedMIAMTogether
               - applicantAndRespondentParty_AttendedMIAMSeparately
               - respondentPartyArranged_ToAttendMIAMSeparately
