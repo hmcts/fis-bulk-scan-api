@@ -9,11 +9,15 @@ import static uk.gov.hmcts.reform.bulkscan.model.FormType.FL403;
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.S2S_TOKEN;
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
+import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+import uk.gov.hmcts.reform.bulkscan.auth.AuthService;
 import uk.gov.hmcts.reform.bulkscan.endpoints.BulkScanEndpoint;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
@@ -22,11 +26,16 @@ import uk.gov.hmcts.reform.bulkscan.services.postcode.PostcodeLookupService;
 import uk.gov.hmcts.reform.bulkscan.utils.TestDataUtil;
 
 @SpringBootTest
+@ExtendWith(MockitoExtension.class)
+@ExtendWith(SpringExtension.class)
 class BulkScanEndpointTest {
 
     @InjectMocks private BulkScanEndpoint bulkScanEndpoint;
 
     @MockBean PostcodeLookupService postcodeLookupService;
+
+    @MockBean
+    AuthService authService;
 
     @Test
     void testC100ValidationUnknownFormType() throws Exception {
