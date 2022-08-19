@@ -10,9 +10,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import uk.gov.hmcts.reform.authorisation.validators.AuthTokenValidator;
 import uk.gov.hmcts.reform.bulkscan.exception.ForbiddenException;
 import uk.gov.hmcts.reform.bulkscan.exception.UnauthorizedException;
-
-
-
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -31,17 +28,10 @@ class AuthServiceTest {
 
     @Test
     void authenticateNullException() {
-//        Throwable exception = assertThrows(UnauthorizedException.class, () -> authService.authenticate(null));
-//        assertEquals("Missing ServiceAuthorization header", exception.getMessage());
-
-//        Assertions.assertEquals(authTokenValidator, null);
-
         Assertions.assertThrows(UnauthorizedException.class, () -> {
             authService.authenticate(null);
         });
     }
-    //authService=uk.gov.hmcts.reform.bulkscan.auth.AuthService@3ce443f9
-    //no-authTokenValidator
 
     @Test
     void authenticateSuccess() {
@@ -62,4 +52,5 @@ class AuthServiceTest {
             authService.assertIsAllowedToHandleService(null);
         });
     }
+
 }

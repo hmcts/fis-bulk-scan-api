@@ -13,8 +13,7 @@ public class S2sClient {
     @Value("${idam.s2s-auth.url}")
     private String testURL;
 
-    @Autowired
-    private AuthTokenGenerator authTokenGenerator;
+    @Autowired private AuthTokenGenerator authTokenGenerator;
 
     public String serviceAuthTokenGenerator() {
 
