@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.test.context.TestPropertySource;
 import uk.gov.hmcts.reform.authorisation.generators.AuthTokenGenerator;
 
-@TestPropertySource("classpath:application-e2e.yaml")
+@TestPropertySource(locations = "classpath:application_e2e.yaml")
 @Service
 public class S2sClient {
 
@@ -17,7 +17,7 @@ public class S2sClient {
     private AuthTokenGenerator authTokenGenerator;
 
     public String serviceAuthTokenGenerator() {
-        System.out.println(testURL);
+
         return authTokenGenerator.generate();
     }
 }

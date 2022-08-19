@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import uk.gov.hmcts.reform.bulkscan.auth.AuthService;
 import uk.gov.hmcts.reform.bulkscan.factory.BulkScanServiceFactory;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
@@ -47,6 +48,9 @@ public class BulkScanEndpoint {
 
     @Autowired PostcodeLookupService postcodeLookupService;
 
+    @Autowired
+    AuthService authService;
+
     @PostMapping(value = "forms/{form-type}/validate-ocr")
     @ResponseStatus(HttpStatus.OK)
     @ApiOperation(value = "", notes = " ")
@@ -66,6 +70,11 @@ public class BulkScanEndpoint {
             logger.error("Invalid form type {} received when validating bulk scan", formType);
             return ok().body(validateFormType(formType));
         }
+        String serviceName = authService.authenticate(s2sToken);
+        logger.info("Request received to validate ocr data from service {}", serviceName);
+
+        authService.assertIsAllowedToHandleService(serviceName);
+
         FormType formTypeEnum = FormType.valueOf(formType);
 
         BulkScanValidationResponse bulkScanResponse =
@@ -105,6 +114,11 @@ public class BulkScanEndpoint {
             @RequestHeader(SERVICEAUTHORIZATION) String s2sToken,
             @RequestHeader(CONTENT_TYPE) String contentType,
             @RequestBody final BulkScanTransformationRequest bulkScanTransformationRequest) {
+
+        String serviceName = authService.authenticate(s2sToken);
+        logger.info("Request received to validate ocr data from service {}", serviceName);
+
+        authService.assertIsAllowedToHandleService(serviceName);
 
         BulkScanTransformationResponse bulkScanTransformationResponse =
                 Objects.requireNonNull(

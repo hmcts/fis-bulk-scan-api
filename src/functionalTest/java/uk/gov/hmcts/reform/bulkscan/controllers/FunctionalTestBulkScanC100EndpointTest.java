@@ -24,7 +24,7 @@ import uk.gov.hmcts.reform.bulkscan.client.S2sClient;
 @SpringBootTest
 @RunWith(SpringRunner.class)
 @ContextConfiguration
-@TestPropertySource("classpath:application-e2e.yaml")
+@TestPropertySource(locations = "classpath:application_e2e.yaml")
 public class FunctionalTestBulkScanC100EndpointTest {
 
     @Autowired

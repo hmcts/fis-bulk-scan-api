@@ -56,3 +56,6 @@ postcodelookup:
   api:
     url: https://api.os.uk/search/places/v1
     key: ${POST_CODE_LOOKUP_KEY:REPLACE_ME}
+
+allowed-services : fis_cos_api,fis_bulk_scan_api,bulk_scan_processor,bulk_scan_orchestrator  # comma separated list of service names
+
