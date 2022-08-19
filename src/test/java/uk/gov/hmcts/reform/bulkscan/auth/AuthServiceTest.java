@@ -35,9 +35,8 @@ class AuthServiceTest {
 
     @Test
     void authenticateSuccess() {
-        when(authService.authenticate("Fis_cos_api")).thenReturn("Fis_cos_api");
-        //when authService authenticate called
-        //then return "Fis_cos_api"
+        when(mockAuthTokenValidator.getServiceName("Fis_cos_api")).thenReturn("Fis_cos_api");
+
         Assertions.assertEquals("Fis_cos_api", authService.authenticate("Fis_cos_api"));
     }
 
