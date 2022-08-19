@@ -1,30 +1,65 @@
 package uk.gov.hmcts.reform.bulkscan.auth;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mock;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import uk.gov.hmcts.reform.authorisation.validators.AuthTokenValidator;
+import uk.gov.hmcts.reform.bulkscan.exception.ForbiddenException;
+import uk.gov.hmcts.reform.bulkscan.exception.UnauthorizedException;
 
-import static org.junit.jupiter.api.Assertions.*;
 
+
+import static org.mockito.Mockito.when;
+
+@ExtendWith(MockitoExtension.class)
+@ExtendWith(SpringExtension.class)
 class AuthServiceTest {
 
-    @Mock AuthTokenValidator authTokenValidator;
+    @MockBean
+    AuthTokenValidator mockAuthTokenValidator;
+
     AuthService authService = null;
 
     @BeforeEach
     void setUp() {
-        authService = new AuthService( authTokenValidator , "Fis_cos_api,fis_bulk_scn_api");
-        
+        authService = new AuthService( mockAuthTokenValidator , "Fis_cos_api, fis_bulk_scn_api");
     }
 
     @Test
-    void authenticate() {
+    void authenticateNullException() {
+//        Throwable exception = assertThrows(UnauthorizedException.class, () -> authService.authenticate(null));
+//        assertEquals("Missing ServiceAuthorization header", exception.getMessage());
 
+//        Assertions.assertEquals(authTokenValidator, null);
+
+        Assertions.assertThrows(UnauthorizedException.class, () -> {
+            authService.authenticate(null);
+        });
+    }
+    //authService=uk.gov.hmcts.reform.bulkscan.auth.AuthService@3ce443f9
+    //no-authTokenValidator
+
+    @Test
+    void authenticateSuccess() {
+        when(authService.authenticate("Fis_cos_api")).thenReturn("Fis_cos_api");
+        //when authService authenticate called
+        //then return "Fis_cos_api"
+        Assertions.assertEquals("Fis_cos_api", authService.authenticate("Fis_cos_api"));
     }
 
     @Test
-    void assertIsAllowedToHandleService() {
+    void assertIsAllowedToHandleServiceSuccess() {
+        authService.assertIsAllowedToHandleService("Fis_cos_api");
+    }
 
+    @Test
+    void assertIsAllowedToHandleServiceException() {
+        Assertions.assertThrows(ForbiddenException.class, () -> {
+            authService.assertIsAllowedToHandleService(null);
+        });
     }
 }
