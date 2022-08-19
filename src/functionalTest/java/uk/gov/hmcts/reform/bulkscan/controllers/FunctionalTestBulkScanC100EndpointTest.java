@@ -27,8 +27,7 @@ import uk.gov.hmcts.reform.bulkscan.client.S2sClient;
 @TestPropertySource(locations = "classpath:application_e2e.yaml")
 public class FunctionalTestBulkScanC100EndpointTest {
 
-    @Autowired
-    S2sClient s2sClient;
+    @Autowired S2sClient s2sClient;
 
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 

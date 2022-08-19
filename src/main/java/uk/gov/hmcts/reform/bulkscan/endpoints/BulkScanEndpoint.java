@@ -48,8 +48,7 @@ public class BulkScanEndpoint {
 
     @Autowired PostcodeLookupService postcodeLookupService;
 
-    @Autowired
-    AuthService authService;
+    @Autowired AuthService authService;
 
     @PostMapping(value = "forms/{form-type}/validate-ocr")
     @ResponseStatus(HttpStatus.OK)
