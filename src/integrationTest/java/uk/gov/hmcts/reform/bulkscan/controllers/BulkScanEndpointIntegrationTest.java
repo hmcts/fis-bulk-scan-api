@@ -41,7 +41,6 @@ class BulkScanEndpointIntegrationTest {
     @Autowired S2sClient s2sClient;
 
     @Autowired private transient MockMvc mockMvc;
-
     private static final String FL401_VALIDATION_REQUEST_PATH =
             "classpath:request/bulk-scan-fl401-validation-input.json";
     private static final String FL403_VALIDATION_REQUEST_PATH =
