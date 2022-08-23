@@ -34,8 +34,7 @@ class BulkScanEndpointTest {
 
     @MockBean PostcodeLookupService postcodeLookupService;
 
-    @MockBean
-    AuthService authService;
+    @MockBean AuthService authService;
 
     @Test
     void testC100ValidationUnknownFormType() throws Exception {

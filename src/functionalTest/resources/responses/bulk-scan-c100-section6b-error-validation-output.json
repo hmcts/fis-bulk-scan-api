@@ -1,8 +1,7 @@
 {
-  "status":"WARNINGS",
+  "status":"ERRORS",
   "warnings":{
     "items":[
-      "The following fields are not configured with our system: [NoMIAM_PreviousAttendanceReason] ",
       "Some details are missing in the following section: 3d - Previous MIAM attendance or MIAM exemption.",
       "withoutNotice_frustrateTheOrder_reason is missing",
       "withoutNotice_abridged_or_informalNotice_reasons is missing"
@@ -10,7 +9,10 @@
   },
   "errors":{
     "items":[
-
+      "applicantRequiresWelsh is missing",
+      "applicantRequiresInterpreter is missing",
+      "applicantRequiresInterpreter_intermediaryRequired is missing",
+      "requiredSpecialAssistanceOrFacilities is missing"
     ]
   }
 }

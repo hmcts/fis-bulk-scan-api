@@ -50,16 +50,16 @@ public class FunctionalTestBulkScanC100EndpointTest {
     private static final String C100_TRANSFORM_OUTPUT_PATH =
             "classpath:responses/bulk-scan-c100-transform-output.json";
 
-    private static final String C100_PAGE_1_WARNING_VALIDATION_INPUT_PATH =
+    private static final String C100_WARNING_VALIDATION_INPUT_PATH =
             "classpath:requests/bulk-scan-c100-warning-validation-input.json";
 
-    private static final String C100_PAGE_1_WARNING_VALIDATION_OUTPUT_PATH =
+    private static final String C100_WARNING_VALIDATION_OUTPUT_PATH =
             "classpath:responses/bulk-scan-c100-warning-validation-output.json";
 
-    private static final String C100_PAGE_1_ERROR_VALIDATION_INPUT_PATH =
+    private static final String C100_ERROR_VALIDATION_INPUT_PATH =
             "classpath:requests/bulk-scan-c100-error-validation-input.json";
 
-    private static final String C100_PAGE_1_ERROR_VALIDATION_OUTPUT_PATH =
+    private static final String C100_ERROR_VALIDATION_OUTPUT_PATH =
             "classpath:responses/bulk-scan-c100-error-validation-output.json";
 
     private final String targetInstance =
@@ -100,7 +100,7 @@ public class FunctionalTestBulkScanC100EndpointTest {
                 readFileFrom(C100_VALIDATION_SECTION6B_WARNING_OUTPUT_PATH);
 
         Response response =
-                request.header(AUTH_HEADER, AUTH_HEADER)
+                request.header(AUTH_HEADER, s2sClient.serviceAuthTokenGenerator())
                         .body(bulkScanValidationRequest)
                         .when()
                         .contentType("application/json")
@@ -119,7 +119,7 @@ public class FunctionalTestBulkScanC100EndpointTest {
                 readFileFrom(C100_VALIDATION_SECTION6B_ERROR_OUTPUT_PATH);
 
         Response response =
-                request.header(AUTH_HEADER, AUTH_HEADER)
+                request.header(AUTH_HEADER, s2sClient.serviceAuthTokenGenerator())
                         .body(bulkScanValidationRequest)
                         .when()
                         .contentType("application/json")
@@ -137,7 +137,7 @@ public class FunctionalTestBulkScanC100EndpointTest {
         String bulkScanTransformResponse = readFileFrom(C100_TRANSFORM_OUTPUT_PATH);
 
         Response response =
-                request.header(AUTH_HEADER, AUTH_HEADER)
+                request.header(AUTH_HEADER, s2sClient.serviceAuthTokenGenerator())
                         .body(bulkScanTransformRequest)
                         .when()
                         .contentType("application/json")
@@ -151,12 +151,12 @@ public class FunctionalTestBulkScanC100EndpointTest {
     @Test
     @DisplayName("Validating errors for mandatory fields and unknown field for c100")
     public void shouldValidateC100ErrorBulkScanRequest() throws Exception {
-        String bulkScanValidationRequest = readFileFrom(C100_PAGE_1_ERROR_VALIDATION_INPUT_PATH);
+        String bulkScanValidationRequest = readFileFrom(C100_ERROR_VALIDATION_INPUT_PATH);
 
-        String bulkScanValidationResponse = readFileFrom(C100_PAGE_1_ERROR_VALIDATION_OUTPUT_PATH);
+        String bulkScanValidationResponse = readFileFrom(C100_ERROR_VALIDATION_OUTPUT_PATH);
 
         Response response =
-                request.header(AUTH_HEADER, AUTH_HEADER)
+                request.header(AUTH_HEADER, s2sClient.serviceAuthTokenGenerator())
                         .body(bulkScanValidationRequest)
                         .when()
                         .contentType("application/json")
@@ -170,13 +170,12 @@ public class FunctionalTestBulkScanC100EndpointTest {
     @Test
     @DisplayName("Validating warnings for mandatory fields and unknown field for c100")
     public void shouldValidateC100WarningBulkScanRequest() throws Exception {
-        String bulkScanValidationRequest = readFileFrom(C100_PAGE_1_WARNING_VALIDATION_INPUT_PATH);
+        String bulkScanValidationRequest = readFileFrom(C100_WARNING_VALIDATION_INPUT_PATH);
 
-        String bulkScanValidationResponse =
-                readFileFrom(C100_PAGE_1_WARNING_VALIDATION_OUTPUT_PATH);
+        String bulkScanValidationResponse = readFileFrom(C100_WARNING_VALIDATION_OUTPUT_PATH);
 
         Response response =
-                request.header(AUTH_HEADER, AUTH_HEADER)
+                request.header(AUTH_HEADER, s2sClient.serviceAuthTokenGenerator())
                         .body(bulkScanValidationRequest)
                         .when()
                         .contentType("application/json")

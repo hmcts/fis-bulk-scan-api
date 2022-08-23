@@ -1,5 +1,7 @@
 package uk.gov.hmcts.reform.bulkscan.auth;
 
+import static org.mockito.Mockito.when;
+
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -10,27 +12,27 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import uk.gov.hmcts.reform.authorisation.validators.AuthTokenValidator;
 import uk.gov.hmcts.reform.bulkscan.exception.ForbiddenException;
 import uk.gov.hmcts.reform.bulkscan.exception.UnauthorizedException;
-import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
 @ExtendWith(SpringExtension.class)
 class AuthServiceTest {
 
-    @MockBean
-    AuthTokenValidator mockAuthTokenValidator;
+    @MockBean AuthTokenValidator mockAuthTokenValidator;
 
-    AuthService authService = null;
+    AuthService authService;
 
     @BeforeEach
     void setUp() {
-        authService = new AuthService( mockAuthTokenValidator , "Fis_cos_api, fis_bulk_scn_api");
+        authService = new AuthService(mockAuthTokenValidator, "Fis_cos_api, fis_bulk_scn_api");
     }
 
     @Test
     void authenticateNullException() {
-        Assertions.assertThrows(UnauthorizedException.class, () -> {
-            authService.authenticate(null);
-        });
+        Assertions.assertThrows(
+                UnauthorizedException.class,
+                () -> {
+                    authService.authenticate(null);
+                });
     }
 
     @Test
@@ -47,9 +49,10 @@ class AuthServiceTest {
 
     @Test
     void assertIsAllowedToHandleServiceException() {
-        Assertions.assertThrows(ForbiddenException.class, () -> {
-            authService.assertIsAllowedToHandleService(null);
-        });
+        Assertions.assertThrows(
+                ForbiddenException.class,
+                () -> {
+                    authService.assertIsAllowedToHandleService(null);
+                });
     }
-
 }

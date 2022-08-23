@@ -338,6 +338,22 @@
     {
       "name":"solicitor_email_address",
       "value":"FBurnsBBB@gmail.com"
+    },
+    {
+      "name": "applicantRequiresWelsh",
+      "value": "Yes"
+    },
+    {
+      "name": "applicantRequiresInterpreter",
+      "value": "No"
+    },
+    {
+      "name": "applicantRequiresInterpreter_intermediaryRequired",
+      "value": "No"
+    },
+    {
+      "name": "requiredSpecialAssistanceOrFacilities",
+      "value": "No"
     }
   ]
 }

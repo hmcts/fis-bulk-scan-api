@@ -1,7 +1,6 @@
 package uk.gov.hmcts.reform.bulkscan.client;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.util.StringUtils;
@@ -10,9 +9,6 @@ import uk.gov.hmcts.reform.authorisation.generators.AuthTokenGenerator;
 @TestPropertySource(locations = "classpath:application_e2e.yaml")
 @Service
 public class S2sClient {
-
-    @Value("${idam.s2s-auth.url}")
-    private String testUrl;
 
     private String s2sToken;
 

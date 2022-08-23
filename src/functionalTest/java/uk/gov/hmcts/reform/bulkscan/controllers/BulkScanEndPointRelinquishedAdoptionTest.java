@@ -11,10 +11,23 @@ import org.apache.commons.lang3.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
+import org.junit.runner.RunWith;
 import org.skyscreamer.jsonassert.JSONAssert;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.junit4.SpringRunner;
+import uk.gov.hmcts.reform.bulkscan.client.S2sClient;
 
+@SpringBootTest
+@RunWith(SpringRunner.class)
+@ContextConfiguration
+@TestPropertySource(locations = "classpath:application_e2e.yaml")
 public class BulkScanEndPointRelinquishedAdoptionTest {
+
+    @Autowired S2sClient s2sClient;
 
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
@@ -59,7 +72,7 @@ public class BulkScanEndPointRelinquishedAdoptionTest {
                 readFileFrom(A58_RELINQUISHED_ADOPTION_VALIDATION_OUTPUT_PATH);
 
         Response response =
-                request.header(AUTH_HEADER, AUTH_HEADER)
+                request.header(AUTH_HEADER, s2sClient.serviceAuthTokenGenerator())
                         .body(bulkScanValidationRequest)
                         .when()
                         .contentType("application/json")
@@ -80,7 +93,7 @@ public class BulkScanEndPointRelinquishedAdoptionTest {
                 readFileFrom(A58_RELINQUISHED_ADOPTION_TRANSFORM_OUTPUT_PATH);
 
         Response response =
-                request.header(AUTH_HEADER, AUTH_HEADER)
+                request.header(AUTH_HEADER, s2sClient.serviceAuthTokenGenerator())
                         .body(bulkScanTransformRequest)
                         .when()
                         .contentType("application/json")
@@ -102,7 +115,7 @@ public class BulkScanEndPointRelinquishedAdoptionTest {
                 readFileFrom(A58_RELINQUISHED_ADOPTION_VALIDATION_ERROR_OUTPUT_PATH);
 
         Response response =
-                request.header(AUTH_HEADER, AUTH_HEADER)
+                request.header(AUTH_HEADER, s2sClient.serviceAuthTokenGenerator())
                         .body(bulkScanValidationRequest)
                         .when()
                         .contentType("application/json")
