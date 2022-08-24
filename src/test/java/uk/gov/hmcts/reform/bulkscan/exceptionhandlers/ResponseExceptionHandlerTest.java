@@ -1,6 +1,6 @@
 package uk.gov.hmcts.reform.bulkscan.exceptionhandlers;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 import com.sun.jdi.InternalException;
 import org.junit.jupiter.api.BeforeEach;
