@@ -10,10 +10,23 @@ import io.restassured.specification.RequestSpecification;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.skyscreamer.jsonassert.JSONAssert;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.HttpStatus;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.context.junit4.SpringRunner;
+import uk.gov.hmcts.reform.bulkscan.client.S2sClient;
 
+@SpringBootTest
+@RunWith(SpringRunner.class)
+@ContextConfiguration
+@TestPropertySource(locations = "classpath:application_e2e.yaml")
 public class FunctionalTestBulkScanA59EndpointTest {
+
+    @Autowired S2sClient s2sClient;
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
     private static final String AUTH_HEADER = "serviceauthorization";
@@ -48,7 +61,7 @@ public class FunctionalTestBulkScanA59EndpointTest {
         String bulkScanValidationResponse = readFileFrom(A59_VALIDATION_OUTPUT_PATH);
 
         Response response =
-                request.header(AUTH_HEADER, AUTH_HEADER)
+                request.header(AUTH_HEADER, s2sClient.serviceAuthTokenGenerator())
                         .body(bulkScanValidationRequest)
                         .when()
                         .contentType("application/json")
@@ -66,7 +79,7 @@ public class FunctionalTestBulkScanA59EndpointTest {
         String bulkScanValidationResponse = readFileFrom(A59_VALIDATION_ERROR_OUTPUT_PATH);
 
         Response response =
-                request.header(AUTH_HEADER, AUTH_HEADER)
+                request.header(AUTH_HEADER, s2sClient.serviceAuthTokenGenerator())
                         .body(bulkScanValidationRequest)
                         .when()
                         .contentType("application/json")
@@ -84,7 +97,7 @@ public class FunctionalTestBulkScanA59EndpointTest {
         String bulkScanTransformResponse = readFileFrom(A59_TRANSFORM_OUTPUT_PATH);
 
         Response response =
-                request.header(AUTH_HEADER, AUTH_HEADER)
+                request.header(AUTH_HEADER, s2sClient.serviceAuthTokenGenerator())
                         .body(bulkScanTransformRequest)
                         .when()
                         .contentType("application/json")

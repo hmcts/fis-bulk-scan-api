@@ -1,14 +1,12 @@
 {
-  "status":"WARNINGS",
-  "warnings":{
-    "items":[
-      "The following fields are not configured with our system: [NoMIAM_PreviousAttendanceReason] ",
-      "Some details are missing in the following section: 3d - Previous MIAM attendance or MIAM exemption."
+  "status": "WARNINGS",
+  "warnings": {
+    "items": [
+      "Some details are missing in the following section: 3d - Previous MIAM attendance or MIAM exemption.",
+      "Some details are missing in the following section: Welsh Required."
     ]
   },
-  "errors":{
-    "items":[
-
-    ]
+  "errors": {
+    "items": []
   }
 }

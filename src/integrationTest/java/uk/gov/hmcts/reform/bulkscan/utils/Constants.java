@@ -21,6 +21,8 @@ public final class Constants {
 
     public static final String WELCOME_BULK_SCAN_API_MESSAGE =
             "Welcome to fis-bulk-scan-api-latest-24-May";
+    public static final String BEARER = "Bearer ";
+    public static final String SERVICE_AUTH_TOKEN = BEARER + "TEST_SERVICE_AUTH";
 
     private Constants() {}
 }
