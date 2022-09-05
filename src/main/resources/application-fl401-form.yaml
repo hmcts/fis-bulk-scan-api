@@ -9,6 +9,8 @@ uk:
               - applicant_lastName
               - applicant_address
               - telephone_number
+              - orderApplyingFor
+              - orderWithout_GivingNotice
             optionalFields:
               - respondentFirstName
               - respondentLastName
@@ -22,6 +24,11 @@ uk:
               - respondent_Address_Postcode
               - respondent_PhoneNumber
               - respondent_Email
+              - orderWithoutGivingNoticeReason
+              - orderWithoutGivingNotice_moreReason
+              - respondentBailConditions
+              - respondent_BailConditionsEndDate
+              - situationCourtToKnow
             regexValidationFields:
               dateFields:
                 fieldNames:

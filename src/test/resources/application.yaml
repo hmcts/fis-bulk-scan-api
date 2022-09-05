@@ -41,7 +41,8 @@ spring:
       - test-a59-transform
       - test-a60-transform
       - test-C51-transform
-      - fl401-transform
+      - test-fl401-transform
+      - test-fl401-dependency
 
 azure:
   application-insights:
