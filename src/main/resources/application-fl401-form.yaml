@@ -9,8 +9,14 @@ uk:
                 - appellant_lastName
                 - appellant_address
                 - telephone_number
+                - orderApplyingFor
+                - orderWithout_GivingNotice
             optionalFields:
-              -
+              - orderWithoutGivingNoticeReason
+              - orderWithoutGivingNotice_moreReason
+              - respondentBailConditions
+              - respondent_BailConditionsEndDate
+              - situationCourtToKnow
             regexValidationFields:
               dateFields:
                 fieldNames:

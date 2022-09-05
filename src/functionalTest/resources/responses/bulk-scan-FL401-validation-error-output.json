@@ -1,0 +1,14 @@
+{
+  "status": "ERRORS",
+  "warnings": {
+    "items": [
+      "Some details are missing in the following section: 1.6 - When do the bail conditions end?."
+    ]
+  },
+  "errors": {
+    "items": [
+      "orderApplyingFor is missing",
+      "orderWithout_GivingNotice is missing"
+    ]
+  }
+}
