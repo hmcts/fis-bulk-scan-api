@@ -1,0 +1,16 @@
+{
+  "status": "ERRORS",
+  "warnings": {
+    "items": [
+      "The following fields are not configured with our system: [applicant1_dateOfBirth] "
+    ]
+  },
+  "errors": {
+    "items": [
+      "appellant_firstName is missing",
+      "appellant_lastName is missing",
+      "appellant_address is missing",
+      "telephone_number is missing"
+    ]
+  }
+}

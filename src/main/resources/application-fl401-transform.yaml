@@ -1,0 +1,35 @@
+uk:
+  gov:
+    hmcts:
+      transform:
+        caseTypeofApplication:
+          FL401:
+            caseFields:
+              CASE_TYPE_ID: FL401
+              EVENT_ID: create-case-adop-bs
+            caseDataFields:
+              appellant:
+                #CCD Values for appellant may not be correct
+                firstName: appellant_firstName
+                lastName: appellant_lastName
+                address: appellant_address
+                phoneNumber: telephone_number
+              fl401RespondentTable:
+                firstName: respondentFirstName
+                lastName: respondentLastName
+                respondentPreviousNames: previousName
+                dateOfBirth: respondentDoB
+                liveWithApplicant: respondent_LiveWithApplicant
+                AddressLine1: respondent_Address_BuildingAndStreet
+                AddressLine2: respondent_Address_SecondLine
+                PostTown: respondent_Address_TownOrCity
+                County: respondent_Address_County
+                PostCode: respondent_Address_Postcode
+                phoneNumber: respondent_PhoneNumber
+                email: respondent_Email
+
+
+
+
+
+

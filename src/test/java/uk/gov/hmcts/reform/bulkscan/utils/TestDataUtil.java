@@ -93,6 +93,37 @@ public final class TestDataUtil {
         return fieldList;
     }
 
+    //
+    public static List<OcrDataField> getFL401Data() {
+        List<OcrDataField> fieldList = new ArrayList<>();
+        OcrDataField ocrDataFirstNameField = new OcrDataField();
+        ocrDataFirstNameField.setName("appellant_firstName");
+        ocrDataFirstNameField.setValue(FIRST_NAME);
+        fieldList.add(ocrDataFirstNameField);
+
+        OcrDataField ocrDataLastNameField = new OcrDataField();
+        ocrDataLastNameField.setName("appellant_lastName");
+        ocrDataLastNameField.setValue("LastName");
+        fieldList.add(ocrDataLastNameField);
+
+        OcrDataField ocrTelephoneNumberField = new OcrDataField();
+        ocrTelephoneNumberField.setName("telephone_number");
+        ocrTelephoneNumberField.setValue("+447405878672");
+        fieldList.add(ocrTelephoneNumberField);
+
+        OcrDataField ocrAddressField = new OcrDataField();
+        ocrAddressField.setName("appellant_address");
+        ocrAddressField.setValue("123 test street, London");
+        fieldList.add(ocrAddressField);
+
+        OcrDataField ocrRespondentFirstNameField = new OcrDataField();
+        ocrRespondentFirstNameField.setName("respondentFirstName");
+        ocrRespondentFirstNameField.setValue("Jimmy");
+        fieldList.add(ocrRespondentFirstNameField);
+
+        return fieldList;
+    }
+
     public static List<OcrDataField> getErrorData() {
         OcrDataField ocrDataFirstNameField = new OcrDataField();
         ocrDataFirstNameField.setName("appellant_firstName");
@@ -102,24 +133,19 @@ public final class TestDataUtil {
         ocrDataLastNameField.setName("appellant_lastName");
         ocrDataLastNameField.setValue("");
 
-        OcrDataField ocrDataEmergencyProtectionOrder = new OcrDataField();
-        ocrDataEmergencyProtectionOrder.setName("emergency_protection_order");
-        ocrDataEmergencyProtectionOrder.setValue("");
+        OcrDataField ocrTelephoneNumberField = new OcrDataField();
+        ocrTelephoneNumberField.setName("telephone_number");
+        ocrTelephoneNumberField.setValue("+447405878672");
 
         OcrDataField ocrDataAddressField = new OcrDataField();
         ocrDataAddressField.setName("appellant_address");
         ocrDataAddressField.setValue("Address1 London");
 
-        OcrDataField ocrNumericField = new OcrDataField();
-        ocrNumericField.setName("appellant_case_number");
-        ocrNumericField.setValue("1311231231");
-
         return Arrays.asList(
+                ocrTelephoneNumberField,
                 ocrDataAddressField,
                 ocrDataFirstNameField,
-                ocrDataEmergencyProtectionOrder,
-                ocrDataLastNameField,
-                ocrNumericField);
+                ocrDataLastNameField);
     }
 
     public static List<OcrDataField> getDateErrorData() {
@@ -294,6 +320,29 @@ public final class TestDataUtil {
         ocrApplicantRelationToChildField.setName("applicant_relationToChild_father_partner");
         ocrApplicantRelationToChildField.setValue("false");
         fieldList.add(ocrApplicantRelationToChildField);
+
+        return fieldList;
+    }
+
+    public static List<OcrDataField> getFL401TransformData() {
+        List<OcrDataField> fieldList = new ArrayList<>();
+        OcrDataField ocrDataFirstNameField = new OcrDataField();
+        ocrDataFirstNameField.setName("applicant1_firstName");
+        ocrDataFirstNameField.setValue(FIRST_NAME);
+        fieldList.add(ocrDataFirstNameField);
+
+        OcrDataField ocrDataLastNameField = new OcrDataField();
+        ocrDataLastNameField.setName("applicant1_lastName");
+        ocrDataLastNameField.setValue("LastName");
+        fieldList.add(ocrDataLastNameField);
+
+        OcrDataField ocrTelephoneNumberField = new OcrDataField();
+        ocrTelephoneNumberField.setName("telephone_number");
+        ocrTelephoneNumberField.setValue("+447405878672");
+
+        OcrDataField ocrDataAddressField = new OcrDataField();
+        ocrDataAddressField.setName("appellant_address");
+        ocrDataAddressField.setValue("Address1 London");
 
         return fieldList;
     }

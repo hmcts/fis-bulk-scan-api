@@ -2,16 +2,18 @@ package uk.gov.hmcts.reform.bulkscan.services;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
-import static org.mockito.Mockito.mock;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DATE_FORMAT_MESSAGE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EMAIL_FORMAT_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_ERROR_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MISSING_FIELD_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.utils.TestResourceUtil.readFileFrom;
 
-import org.junit.jupiter.api.Assertions;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import java.io.IOException;
+import org.json.JSONException;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Spy;
+import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
@@ -30,10 +32,36 @@ class BulkScanFL401ServiceTest {
 
     @Spy @Autowired BulkScanFL401Service bulkScanService;
 
+    private final ObjectMapper mapper = new ObjectMapper();
+
+    @Autowired BulkScanFL401Service bulkScanValidationService;
+
+    private static final String FL401_TRANSFORM_REQUEST_PATH =
+            "classpath:request/bulk-scan-fl401-transform-input.json";
+
+    private static final String FL401_TRANSFORM_RESPONSE_PATH =
+            "classpath:response/bulk-scan-fl401-transform-output.json";
+
+    @Test
+    @DisplayName("FL401 transform success.")
+    void testFL401TransformSuccess() throws IOException, JSONException {
+        BulkScanTransformationRequest bulkScanTransformationRequest =
+                mapper.readValue(
+                        readFileFrom(FL401_TRANSFORM_REQUEST_PATH),
+                        BulkScanTransformationRequest.class);
+
+        BulkScanTransformationResponse res =
+                bulkScanValidationService.transform(bulkScanTransformationRequest);
+        JSONAssert.assertEquals(
+                readFileFrom(FL401_TRANSFORM_RESPONSE_PATH), mapper.writeValueAsString(res), true);
+    }
+
     @Test
     void testFL401Success() {
         BulkScanValidationRequest bulkScanValidationRequest =
-                BulkScanValidationRequest.builder().ocrdatafields(TestDataUtil.getData()).build();
+                BulkScanValidationRequest.builder()
+                        .ocrdatafields(TestDataUtil.getFL401Data())
+                        .build();
         BulkScanValidationResponse res = bulkScanService.validate(bulkScanValidationRequest);
         assertEquals(Status.SUCCESS, res.status);
     }
@@ -53,34 +81,6 @@ class BulkScanFL401ServiceTest {
     }
 
     @Test
-    void testFL401DateErrorWhileDoingValidation() {
-        BulkScanValidationRequest bulkScanValidationRequest =
-                BulkScanValidationRequest.builder()
-                        .ocrdatafields(TestDataUtil.getDateErrorData())
-                        .build();
-        BulkScanValidationResponse res = bulkScanService.validate(bulkScanValidationRequest);
-        assertEquals(Status.WARNINGS, res.status);
-        assertTrue(
-                res.getWarnings()
-                        .items
-                        .contains(String.format(DATE_FORMAT_MESSAGE, "appellant_dateOfBirth")));
-    }
-
-    @Test
-    void testFL401EmailErrorWhileDoingValidation() {
-        BulkScanValidationRequest bulkScanValidationRequest =
-                BulkScanValidationRequest.builder()
-                        .ocrdatafields(TestDataUtil.getEmailErrorData())
-                        .build();
-        BulkScanValidationResponse res = bulkScanService.validate(bulkScanValidationRequest);
-        assertEquals(Status.WARNINGS, res.status);
-        assertTrue(
-                res.getWarnings()
-                        .items
-                        .contains(String.format(EMAIL_FORMAT_MESSAGE, "appellant_email")));
-    }
-
-    @Test
     void testFL401FieldMissingErrorWhileDoingValidation() {
         BulkScanValidationRequest bulkScanValidationRequest =
                 BulkScanValidationRequest.builder()
@@ -92,12 +92,5 @@ class BulkScanFL401ServiceTest {
                 res.getErrors()
                         .items
                         .contains(String.format(MISSING_FIELD_MESSAGE, "appellant_lastName")));
-    }
-
-    @Test
-    void testTransform() {
-        BulkScanTransformationResponse bulkScanTransformationResponse =
-                bulkScanService.transform(mock(BulkScanTransformationRequest.class));
-        Assertions.assertNull(bulkScanTransformationResponse);
     }
 }
