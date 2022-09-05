@@ -26,8 +26,6 @@ import java.util.stream.Collectors;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.BAIL_CONDITION_END_DATE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CASE_TYPE_ID;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EVENT_ID;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.HYPHEN;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.INT_THREE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NUMERIC_MONTH_PATTERN;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_BAIL_CONDITIONS_ENDDATE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.TEXT_MONTH_PATTERN;
@@ -62,7 +60,11 @@ public class BulkScanFL401Service implements BulkScanService {
         response.addWarning(
                 dependencyValidationService.getDependencyWarnings(inputFieldMap, FL401));
 
-        response.addWarning(validateInputDate(ocrDataFields, RESPONDENT_BAIL_CONDITIONS_ENDDATE, BAIL_CONDITION_END_DATE));
+        response.addWarning(
+                validateInputDate(
+                        ocrDataFields,
+                        RESPONDENT_BAIL_CONDITIONS_ENDDATE,
+                        BAIL_CONDITION_END_DATE));
 
         return response;
     }
@@ -120,7 +122,8 @@ public class BulkScanFL401Service implements BulkScanService {
                 : null;
     }
 
-    private List<String> validateInputDate(List<OcrDataField> ocrDataFields, String fieldName, String message) {
+    private List<String> validateInputDate(
+            List<OcrDataField> ocrDataFields, String fieldName, String message) {
 
         final Map<String, String> ocrDataFieldsMap = getOcrDataFieldsMap(ocrDataFields);
 
@@ -130,34 +133,20 @@ public class BulkScanFL401Service implements BulkScanService {
             if (ocrDataFieldsMap.containsKey(fieldName)) {
                 date = ocrDataFieldsMap.get(fieldName);
 
-                return validateDate(
-                    Objects.requireNonNull(date), message);
+                return validateDate(Objects.requireNonNull(date), message);
             }
-
         }
         return Collections.emptyList();
     }
 
     private List<String> validateDate(String date, String fieldName) {
 
-        String pattern = NUMERIC_MONTH_PATTERN;
+        String pattern = "[" + NUMERIC_MONTH_PATTERN + "][" + TEXT_MONTH_PATTERN + "]";
 
-        final String[] splitDate = date.split(String.valueOf(HYPHEN));
+        final boolean validateDate = DateUtil.validateDate(date, pattern);
 
-        if (splitDate.length == INT_THREE) {
-            final String month = splitDate[1];
-
-            // IF month holds 3 characters then it could Jan, Feb etc.
-            // so check for MMM pattern
-            if (month.length() == INT_THREE) {
-                pattern = TEXT_MONTH_PATTERN;
-            }
-
-            final boolean validateDate = DateUtil.validateDate(date, pattern);
-
-            if (!validateDate) {
-                return List.of(String.format(VALID_DATE_WARNING_MESSAGE, fieldName));
-            }
+        if (!validateDate) {
+            return List.of(String.format(VALID_DATE_WARNING_MESSAGE, fieldName));
         }
         return Collections.emptyList();
     }
