@@ -1,0 +1,11 @@
+{
+  "status": "WARNINGS",
+  "warnings": {
+    "items": [
+      "The following fields are not configured with our system: [appellant_dateOfBirth,appellant_email] "
+    ]
+  },
+  "errors": {
+    "items": []
+  }
+}

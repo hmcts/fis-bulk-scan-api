@@ -2,5 +2,5 @@ idam:
   s2s-auth:
     testurl: ${SERVICE_AUTH_PROVIDER_URL:http://rpe-service-auth-provider-aat.service.core-compute-aat.internal}
     secret: ${S2S_SECRET:Y6OORUQWPMUEM3QH}
-    microservice: fis_cos_api
+    microservice: fis_cos_api,fis_bulk_scan_api
 

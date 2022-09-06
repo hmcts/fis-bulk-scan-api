@@ -5,15 +5,45 @@ uk:
         caseTypeofApplication:
           FL401:
             mandatoryFields:
-                - appellant_firstName
-                - appellant_lastName
+              - appellant_firstName
+              - appellant_lastName
+              - appellant_address
+              - telephone_number
             optionalFields:
-              -
+              - appellant_dateOfBirth
+              - appellant_email
+              - applicantRespondent_Relationship_01
+              - applicantRespondent_Relationship_02
+              - applicantRespondent_Relationship_03
+              - applicantRespondent_Relationship_04
+              - applicantRespondent_Relationship_05
+              - applicantRespondent_Relationship_06
+              - applicantRespondent_Relationship_07
+              - applicantRespondent_Relationship_08
+              - applicantRespondent_Relationship_09
+              - applicantRespondent_Relationship_StartDate
+              - applicantRespondent_Relationship_EndDate
+              - applicantRespondent_PreviousMarried_Date
+              - applicantRespondent_Relationship_10
+              - applicantRespondent_Relationship_11
+              - applicantRespondent_Relationship_12
+              - applicantRespondent_Relationship_13
+              - applicantRespondent_Relationship_14
+              - applicantRespondent_Relationship_15
+              - applicantRespondent_Relationship_16
+              - applicantRespondent_Relationship_17
+              - applicantRespondent_Relationship_18
+              - applicantRespondent_Relationship_19
+              - applicantRespondent_Relationship_20
+              - applicantRespondent_Relationship_21
+              - applicantRespondent_Relationship_22
+              - applicantRespondent_Relationship_23
+              - needForParentalResponsiblity
             regexValidationFields:
               dateFields:
                 fieldNames:
                   - appellant_dateOfBirth
-                regex: dd/mm/yyyy
+                regex: dd/MM/yyyy
               emailFields:
                 fieldNames:
                   - appellant_email
@@ -28,7 +58,7 @@ uk:
                 regex: ^[A-Z]{1,2}[0-9R][0-9A-Z]? [0-9][ABD-HJLNP-UW-Z]{2}$
               phoneNumberFields:
                 fieldNames:
-                  -
+                  - telephone_number
                 regex: ^(?:0|\+?44)(?:\d\s?){9,10}$
               faxNumberFields:
                 fieldNames:

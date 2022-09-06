@@ -337,6 +337,19 @@ public final class BulkScanConstants {
 
     public static final String EMPTY = "";
 
+    public static final int INT_THREE = 3;
+    public static final String RESPONDENT_BAIL_CONDITIONS_ENDDATE =
+            "respondent_BailConditionsEndDate";
+    public static final String BAIL_CONDITION_END_DATE = "bail condition end date";
+    public static final String APPLICANT_RESPONDENT_RELATIONSHIP_DATE =
+            "Applicant respondent relationship %s date";
+    public static final String APPLICANT_RESPONDENT_RELATIONSHIP_NONE_ABOVE =
+            "applicantRespondent_Relationship_09";
+    public static final String VALID_DATE_WARNING_MESSAGE = "Please enter valid date for %s";
+    public static final String NUMERIC_MONTH_PATTERN = "uuuu-M-d";
+    public static final String TEXT_MONTH_PATTERN = "uuuu-MMM-d";
+    public static final char HYPHEN = '-';
+
     private static Map<String, String> getErrorMessageMap() {
         return Map.of(
                 MANDATORY_KEY,

@@ -1,0 +1,9 @@
+uk:
+  gov:
+    hmcts:
+      dependency:
+        fieldGroupDependency:
+          FL401:
+            - groupRelationshipWithRespondent:
+              dependentFields:
+                -

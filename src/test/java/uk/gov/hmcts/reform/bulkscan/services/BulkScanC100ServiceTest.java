@@ -833,9 +833,9 @@ class BulkScanC100ServiceTest {
         bulkScanTransformationRequest.getOcrdatafields().stream()
                 .filter(
                         eachField ->
-                                OTHER_PROCEEDING_TYPE_OF_ORDER_1.equalsIgnoreCase(
-                                        eachField.getName()))
-                .forEach(field -> field.setValue(""));
+                                "applicantRespondent_Relationship_03"
+                                        .equalsIgnoreCase(eachField.getName()))
+                .forEach(field -> field.setValue("Yes"));
 
         BulkScanTransformationResponse res =
                 bulkScanValidationService.transform(bulkScanTransformationRequest);

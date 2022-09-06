@@ -10,7 +10,19 @@
     },
     {
       "name":"appellant_lastName",
-      "value":"LastName"
+      "value":"lastName"
+    },
+    {
+      "name":"appellant_email",
+      "value":"test@test.com"
+    },
+    {
+      "name":"appellant_dateOfBirth",
+      "value":"20-07-1922"
+    },
+    {
+      "name":"telephone_number",
+      "value":"+442088956B47"
     },
     {
       "name": "applicantRespondent_Relationship_01",
@@ -108,6 +120,5 @@
       "name": "needForParentalResponsiblity",
       "value": "Yes"
     }
-  ],
-  "form_type": "FL401"
+  ]
 }

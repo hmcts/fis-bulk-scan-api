@@ -10,7 +10,19 @@
     },
     {
       "name":"appellant_lastName",
-      "value":"LastName"
+      "value":"lastName"
+    },
+    {
+      "name":"appellant_email",
+      "value":"test@test.com"
+    },
+    {
+      "name":"appellant_dateOfBirth",
+      "value":"20-07-1922"
+    },
+    {
+      "name":"telephone_number",
+      "value":"+442088956B47"
     },
     {
       "name": "applicantRespondent_Relationship_01",
@@ -47,6 +59,18 @@
     {
       "name": "applicantRespondent_Relationship_09",
       "value": "No"
+    },
+    {
+      "name": "applicantRespondent_Relationship_StartDate",
+      "value": "2002-Dec-02"
+    },
+    {
+      "name": "applicantRespondent_Relationship_EndDate",
+      "value": "2012-Dec-02"
+    },
+    {
+      "name": "applicantRespondent_PreviousMarried_Date",
+      "value": "2003-12-02"
     },
     {
       "name": "applicantRespondent_Relationship_10",
@@ -108,6 +132,5 @@
       "name": "needForParentalResponsiblity",
       "value": "Yes"
     }
-  ],
-  "form_type": "FL401"
+  ]
 }
