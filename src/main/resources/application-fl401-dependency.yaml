@@ -6,8 +6,10 @@ uk:
           FL401:
             - applyingWithoutGivingNotice:
               dependentFields:
-                - orderWithoutGivingNoticeReason
-              dependentFieldValue: "*"
+                - riskOfSignificantHarm
+                - deterredOrPrevented
+                - deliberatelyEvadingService
+              dependentFieldValue: "Yes"
               groupFieldName: orderWithout_GivingNotice
               groupValidationValue: "Yes"
               requiredFieldCount: 1

@@ -32,9 +32,9 @@ uk:
                           PostCode: respondent_Address_Postcode
               applicationTypeDetails:
                 typesOfApplication: orderApplyingFor
-                withoutNoticeOrderTable:
-                  orderWithoutGivingNotice: orderWithout_GivingNotice
-                  reasonForOrderWithoutGivingNotice: orderWithoutGivingNoticeReason
-                  anyOtherDtailsForWithoutNoticeOrder: orderWithoutGivingNotice_moreReason
-                  isRespondentAlreadyInBailCondition: respondentBailConditions
-                  furtherDetails: situationCourtToKnow
+              withoutNoticeOrderTable:
+                orderWithoutGivingNotice: orderWithout_GivingNotice
+                anyOtherDtailsForWithoutNoticeOrder: orderWithoutGivingNotice_moreReason
+                isRespondentAlreadyInBailCondition: respondentBailConditions
+                bailConditionEndDate: respondent_BailConditionsEndDate
+                furtherDetails: situationCourtToKnow

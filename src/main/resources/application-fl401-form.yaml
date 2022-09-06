@@ -25,6 +25,9 @@ uk:
               - respondent_PhoneNumber
               - respondent_Email
               - orderWithoutGivingNoticeReason
+              - riskOfSignificantHarm
+              - deterredOrPrevented
+              - deliberatelyEvadingService
               - orderWithoutGivingNotice_moreReason
               - respondentBailConditions
               - respondent_BailConditionsEndDate

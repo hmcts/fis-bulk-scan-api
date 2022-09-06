@@ -50,6 +50,9 @@ public class BulkScanFL401Service implements BulkScanService {
 
     @Autowired BulkScanTransformConfigManager transformConfigManager;
 
+    @Autowired
+    BulkScanFL401ConditionalTransformerService bulkScanFL401ConditionalTransformerService;
+
     @Override
     public BulkScanValidationResponse validate(
             BulkScanValidationRequest bulkScanValidationRequest) {
@@ -108,6 +111,9 @@ public class BulkScanFL401Service implements BulkScanService {
 
         Map<String, String> caseTypeAndEventId =
                 transformConfigManager.getTransformationConfig(formType).getCaseFields();
+
+        bulkScanFL401ConditionalTransformerService.transform(
+            populatedMap, inputFieldsMap, bulkScanTransformationRequest);
 
         BulkScanTransformationResponse.BulkScanTransformationResponseBuilder builder =
                 BulkScanTransformationResponse.builder()
