@@ -8,11 +8,11 @@ uk:
               CASE_TYPE_ID: FL401
               EVENT_ID: create-case-adop-bs
             caseDataFields:
-              appellant:
+              applicant:
                 #CCD Values for appellant may not be correct
-                firstName: appellant_firstName
-                lastName: appellant_lastName
-                address: appellant_address
+                firstName: applicant_firstName
+                lastName: applicant_lastName
+                address: applicant_address
                 phoneNumber: telephone_number
               fl401RespondentTable:
                 firstName: respondentFirstName

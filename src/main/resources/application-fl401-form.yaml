@@ -5,9 +5,9 @@ uk:
         caseTypeofApplication:
           FL401:
             mandatoryFields:
-              - appellant_firstName
-              - appellant_lastName
-              - appellant_address
+              - applicant_firstName
+              - applicant_lastName
+              - applicant_address
               - telephone_number
             optionalFields:
               - respondentFirstName

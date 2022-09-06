@@ -1,15 +1,15 @@
 {
   "ocr_data_fields":[
     {
-      "name":"appellant_firstName",
+      "name":"applicant_firstName",
       "value":"Johnny"
     },
     {
-      "name":"appellant_lastName",
+      "name":"applicant_lastName",
       "value":"Boy"
     },
     {
-      "name":"appellant_address",
+      "name":"applicant_address",
       "value":"JohnTown"
     },
     {

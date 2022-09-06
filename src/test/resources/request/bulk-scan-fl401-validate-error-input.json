@@ -5,22 +5,6 @@
       "value":"01/01/1994"
     },
     {
-      "name":"applicant_firstName",
-      "value":"Johnny"
-    },
-    {
-      "name":"applicant_lastName",
-      "value":"Boy"
-    },
-    {
-      "name":"applicant_address",
-      "value":"JohnTown"
-    },
-    {
-      "name":"telephone_number",
-      "value":"0908776545"
-    },
-    {
       "name":"respondentFirstName",
       "value":"John"
     },

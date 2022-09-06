@@ -3,7 +3,7 @@
     "case_type_id": "FL401",
     "event_id": "create-case-adop-bs",
     "case_data": {
-      "appellant": {
+      "applicant": {
         "firstName": "Johnny",
         "lastName": "Boy",
         "address": "JohnTown",

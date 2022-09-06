@@ -93,7 +93,7 @@ public class BulkScanFL401EndpointTest {
 
     @Test
     @DisplayName("Validating errors for mandatory fields and unknown field for fl401")
-    public void shouldValidateC100ErrorBulkScanRequest() throws Exception {
+    public void shouldValidateFL401ErrorBulkScanRequest() throws Exception {
         String bulkScanValidationRequest = readFileFrom(FL401_VALIDATION_ERROR_INPUT_PATH);
 
         String bulkScanValidationResponse = readFileFrom(FL401_VALIDATION_ERROR_OUTPUT_PATH);
@@ -112,7 +112,7 @@ public class BulkScanFL401EndpointTest {
 
     @Test
     @DisplayName("Validating warnings for mandatory fields and unknown field for fl401")
-    public void shouldValidateC100WarningBulkScanRequest() throws Exception {
+    public void shouldValidateFL401WarningBulkScanRequest() throws Exception {
         String bulkScanValidationRequest = readFileFrom(FL401_VALIDATION_WARNING_INPUT_PATH);
 
         String bulkScanValidationResponse = readFileFrom(FL401_VALIDATION_WARNING_OUTPUT_PATH);
