@@ -14,7 +14,7 @@ public enum OrderWithouGivingNoticeReasonEnum {
             "it is likely that I will be deterred or prevented from pursuing the application "
                     + "if an order is not made immediately"),
 
-    DELIBERATELY_EVADING_SERVICE(
+    DELIBERATELYEVADING_SERVICE(
             "I believe that the respondent is aware of the proceedings but is deliberately evading"
                     + " service and that I or a relevant child will be seriously prejudiced by the"
                     + " delay in effecting substituted service");

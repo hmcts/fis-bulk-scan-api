@@ -12,7 +12,9 @@ uk:
                 - orderApplyingFor
                 - orderWithout_GivingNotice
             optionalFields:
-              - orderWithoutGivingNoticeReason
+              - riskOfSignificantHarm
+              - deterredOrPrevented
+              - deliberatelyEvadingService
               - orderWithoutGivingNotice_moreReason
               - respondentBailConditions
               - respondent_BailConditionsEndDate

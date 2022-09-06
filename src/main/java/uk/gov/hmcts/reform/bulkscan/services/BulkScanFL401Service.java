@@ -1,10 +1,26 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
+import static java.util.Objects.nonNull;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.BAIL_CONDITION_END_DATE_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CASE_TYPE_ID;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EVENT_ID;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_BAIL_CONDITIONS_ENDDATE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.TEXT_AND_NUMERIC_MONTH_PATTERN;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.VALID_DATE_WARNING_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.model.FormType.FL401;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.stream.Collectors;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanFormValidationConfigManager;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanTransformConfigManager;
+import uk.gov.hmcts.reform.bulkscan.group.util.BulkScanGroupValidatorUtil;
 import uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper;
 import uk.gov.hmcts.reform.bulkscan.helper.BulkScanValidationHelper;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
@@ -15,22 +31,6 @@ import uk.gov.hmcts.reform.bulkscan.model.CaseCreationDetails;
 import uk.gov.hmcts.reform.bulkscan.model.FormType;
 import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
 import uk.gov.hmcts.reform.bulkscan.utils.DateUtil;
-
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.stream.Collectors;
-
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.BAIL_CONDITION_END_DATE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CASE_TYPE_ID;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EVENT_ID;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NUMERIC_MONTH_PATTERN;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_BAIL_CONDITIONS_ENDDATE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.TEXT_MONTH_PATTERN;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.VALID_DATE_WARNING_MESSAGE;
-import static uk.gov.hmcts.reform.bulkscan.model.FormType.FL401;
 
 @NoArgsConstructor
 @Service
@@ -43,6 +43,9 @@ public class BulkScanFL401Service implements BulkScanService {
     @Autowired BulkScanDependencyValidationService dependencyValidationService;
 
     @Autowired BulkScanTransformConfigManager transformConfigManager;
+
+    @Autowired
+    BulkScanFL401ConditionalTransformerService bulkScanFL401ConditionalTransformerService;
 
     @Override
     public BulkScanValidationResponse validate(
@@ -64,7 +67,7 @@ public class BulkScanFL401Service implements BulkScanService {
                 validateInputDate(
                         ocrDataFields,
                         RESPONDENT_BAIL_CONDITIONS_ENDDATE,
-                        BAIL_CONDITION_END_DATE));
+                        BAIL_CONDITION_END_DATE_MESSAGE));
 
         return response;
     }
@@ -103,6 +106,9 @@ public class BulkScanFL401Service implements BulkScanService {
                                                 .getCaseDataFields()),
                                 inputFieldsMap);
 
+        bulkScanFL401ConditionalTransformerService.transform(
+                populatedMap, inputFieldsMap, bulkScanTransformationRequest);
+
         BulkScanTransformationResponse.BulkScanTransformationResponseBuilder builder =
                 BulkScanTransformationResponse.builder()
                         .caseCreationDetails(
@@ -111,6 +117,16 @@ public class BulkScanFL401Service implements BulkScanService {
                                         .eventId(caseTypeAndEventId.get(EVENT_ID))
                                         .caseData(populatedMap)
                                         .build());
+
+        if (nonNull(validationConfig)) {
+            unknownFieldsList =
+                    bulkScanValidationHelper.findUnknownFields(
+                            inputFieldsList,
+                            validationConfig.getMandatoryFields(),
+                            validationConfig.getOptionalFields());
+        }
+        BulkScanGroupValidatorUtil.updateTransformationUnknownFieldsByGroupFields(
+                formType, unknownFieldsList, builder);
 
         return builder.build();
     }
@@ -141,9 +157,7 @@ public class BulkScanFL401Service implements BulkScanService {
 
     private List<String> validateDate(String date, String fieldName) {
 
-        String pattern = "[" + NUMERIC_MONTH_PATTERN + "][" + TEXT_MONTH_PATTERN + "]";
-
-        final boolean validateDate = DateUtil.validateDate(date, pattern);
+        final boolean validateDate = DateUtil.validateDate(date, TEXT_AND_NUMERIC_MONTH_PATTERN);
 
         if (!validateDate) {
             return List.of(String.format(VALID_DATE_WARNING_MESSAGE, fieldName));

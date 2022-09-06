@@ -1,15 +1,5 @@
 package uk.gov.hmcts.reform.bulkscan.constants;
 
-import org.apache.commons.lang3.tuple.Pair;
-import uk.gov.hmcts.reform.bulkscan.config.BulkScanFormValidationConfigManager;
-import uk.gov.hmcts.reform.bulkscan.enums.TypeOfOrderEnum;
-
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDING_CASE_NUMBER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDING_DATE_OF_YEAR;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDING_NAME_AND_OFFICE;
@@ -23,6 +13,15 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDING_TYPE_OF_ORDER_7;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDING_TYPE_OF_ORDER_8;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDING_TYPE_OF_ORDER_9;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import org.apache.commons.lang3.tuple.Pair;
+import uk.gov.hmcts.reform.bulkscan.config.BulkScanFormValidationConfigManager;
+import uk.gov.hmcts.reform.bulkscan.enums.TypeOfOrderEnum;
 
 public final class BulkScanConstants {
 
@@ -341,11 +340,18 @@ public final class BulkScanConstants {
     public static final int INT_THREE = 3;
     public static final String RESPONDENT_BAIL_CONDITIONS_ENDDATE =
             "respondent_BailConditionsEndDate";
-    public static final String BAIL_CONDITION_END_DATE = "bail condition end date";
+    public static final String BAIL_CONDITION_END_DATE_MESSAGE = "bail condition end date";
+    public static final String BAIL_CONDITION_END_DATE = "bailConditionEndDate";
     public static final String VALID_DATE_WARNING_MESSAGE = "Please enter valid date for %s";
-    public static final String NUMERIC_MONTH_PATTERN = "uuuu-M-d";
-    public static final String TEXT_MONTH_PATTERN = "uuuu-MMM-d";
-    public static final char HYPHEN = '-';
+    public static final String TEXT_AND_NUMERIC_MONTH_PATTERN = "uuuu-[M][MM][MMM]-d";
+    public static final String TWO_DIGIT_MONTH_FORMAT = "uuuu-MM-dd";
+    public static final String WITHOUT_NOTICE_ORDER_TABLE = "withoutNoticeOrderTable";
+    public static final String REASON_FOR_ORDER_WITHOUT_GIVING_NOTICE =
+            "reasonForOrderWithoutGivingNotice";
+    public static final String RISK_OF_SIGNIFICANT_HARM = "riskOfSignificantHarm";
+    public static final String DETERREDOR_PREVENTED = "deterredOrPrevented";
+    public static final String DELIVERATELY_EVADING_SERVICE = "deliberatelyEvadingService";
+    public static final String COMMA = ",";
 
     private static Map<String, String> getErrorMessageMap() {
         return Map.of(
