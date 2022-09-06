@@ -3,32 +3,46 @@
     "case_type_id": "FL401",
     "event_id": "create-case-adop-bs",
     "case_data": {
-      "applicant": {
-        "firstName": "Johnny",
-        "lastName": "Boy",
-        "address": "JohnTown",
-        "phoneNumber": "0908776545"
-      },
-      "fl401RespondentTable": {
-        "firstName": "John",
-        "lastName": "Maxwell",
-        "respondentPreviousNames": "previousName",
-        "dateOfBirth": "2022/12/04",
-        "liveWithApplicant": "yes",
-        "AddressLine1": "123 Harley St.",
-        "AddressLine2": "Vox Rd",
-        "PostTown": "Blighty",
-        "County": "UK",
-        "PostCode": "respondent_Address_Postcode",
-        "phoneNumber": "09866534424",
-        "email": "john@gmail.com"
-      },
+      "fl401RespondentTable": [
+        {
+          "value": {
+            "firstName": "John",
+            "lastName": "Maxwell",
+            "respondentPreviousNames": "previousName",
+            "dateOfBirth": "2022/12/04",
+            "liveWithApplicant": "yes",
+            "phoneNumber": "09866534424",
+            "email": "john@gmail.com",
+            "address": [
+              {
+                "value": {
+                  "AddressLine1": "123 Harley St.",
+                  "AddressLine2": "Vox Rd",
+                  "PostTown": "Blighty",
+                  "County": "UK",
+                  "PostCode": "respondent_Address_Postcode"
+                }
+              }
+            ]
+          }
+        }
+      ],
       "scannedDocuments": [
         {
           "value": {
             "document_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c",
             "document_filename": "test.pdf",
             "document_binary_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
+          }
+        }
+      ],
+      "applicant": [
+        {
+          "value": {
+            "firstName": "Johnny",
+            "lastName": "Boy",
+            "address": "JohnTown",
+            "phoneNumber": "0908776545"
           }
         }
       ]
