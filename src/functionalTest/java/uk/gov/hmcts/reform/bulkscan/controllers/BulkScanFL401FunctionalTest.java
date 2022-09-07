@@ -1,5 +1,7 @@
 package uk.gov.hmcts.reform.bulkscan.controllers;
 
+import static uk.gov.hmcts.reform.bulkscan.util.TestResourceUtil.readFileFrom;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import io.restassured.RestAssured;
@@ -18,8 +20,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import uk.gov.hmcts.reform.bulkscan.client.S2sClient;
-
-import static uk.gov.hmcts.reform.bulkscan.util.TestResourceUtil.readFileFrom;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
