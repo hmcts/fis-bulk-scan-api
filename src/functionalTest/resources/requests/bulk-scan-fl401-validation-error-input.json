@@ -1,52 +1,56 @@
 {
   "ocr_data_fields":[
     {
+      "name":"applicant1_dateOfBirth",
+      "value":"01/01/1994"
+    },
+    {
       "name":"respondentFirstName",
-      "value":"murshad"
+      "value":"John"
     },
     {
       "name":"respondentLastName",
-      "value":"haque"
+      "value":"Maxwell"
     },
     {
       "name":"previousName",
-      "value":"haque"
+      "value":"previousName"
     },
     {
       "name":"respondentDoB",
-      "value":"07456575789"
+      "value":"2022/12/04"
     },
     {
       "name":"respondent_LiveWithApplicant",
-      "value":"Address1 London"
+      "value":"yes"
     },
     {
       "name":"respondent_Address_BuildingAndStreet",
-      "value":"mohammed"
+      "value":"123 Harley St."
     },
     {
       "name":"respondent_Address_SecondLine",
-      "value":"haque"
+      "value":"Vox Rd"
     },
     {
       "name":"respondent_Address_TownOrCity",
-      "value":"07456575789"
+      "value":"Blighty"
     },
     {
       "name":"respondent_Address_County",
-      "value":"Address1 London"
+      "value":"UK"
     },
     {
       "name":"respondent_Address_Postcode",
-      "value":"Address1 London"
+      "value":"respondent_Address_Postcode"
     },
     {
       "name":"respondent_PhoneNumber",
-      "value":"Address1 London"
+      "value":"09866534424"
     },
     {
       "name":"respondent_Email",
-      "value":"Address1 London"
+      "value":"john@gmail.com"
     }
   ]
 }

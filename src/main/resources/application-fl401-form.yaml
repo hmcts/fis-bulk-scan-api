@@ -5,12 +5,23 @@ uk:
         caseTypeofApplication:
           FL401:
             mandatoryFields:
-                - appellant_firstName
-                - appellant_lastName
-                - appellant_address
-                - telephone_number
+              - applicant_firstName
+              - applicant_lastName
+              - applicant_address
+              - telephone_number
             optionalFields:
-              -
+              - respondentFirstName
+              - respondentLastName
+              - previousName
+              - respondentDoB
+              - respondent_LiveWithApplicant
+              - respondent_Address_BuildingAndStreet
+              - respondent_Address_SecondLine
+              - respondent_Address_TownOrCity
+              - respondent_Address_County
+              - respondent_Address_Postcode
+              - respondent_PhoneNumber
+              - respondent_Email
             regexValidationFields:
               dateFields:
                 fieldNames:

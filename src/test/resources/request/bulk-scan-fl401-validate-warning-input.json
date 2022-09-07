@@ -1,6 +1,10 @@
 {
   "ocr_data_fields":[
     {
+      "name":"applicant1_dateOfBirth",
+      "value":"01/01/1994"
+    },
+    {
       "name":"applicant_firstName",
       "value":"Johnny"
     },

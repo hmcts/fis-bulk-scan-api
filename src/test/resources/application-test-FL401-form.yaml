@@ -5,15 +5,28 @@ uk:
         caseTypeofApplication:
           FL401:
             mandatoryFields:
-                - appellant_firstName
-                - appellant_lastName
+              - applicant_firstName
+              - applicant_lastName
+              - applicant_address
+              - telephone_number
             optionalFields:
-              -
+              - respondentFirstName
+              - respondentLastName
+              - previousName
+              - respondentDoB
+              - respondent_LiveWithApplicant
+              - respondent_Address_BuildingAndStreet
+              - respondent_Address_SecondLine
+              - respondent_Address_TownOrCity
+              - respondent_Address_County
+              - respondent_Address_Postcode
+              - respondent_PhoneNumber
+              - respondent_Email
             regexValidationFields:
               dateFields:
                 fieldNames:
                   - appellant_dateOfBirth
-                regex: dd/mm/yyyy
+                regex: dd/MM/yyyy
               emailFields:
                 fieldNames:
                   - appellant_email
@@ -28,9 +41,10 @@ uk:
                 regex: ^[A-Z]{1,2}[0-9R][0-9A-Z]? [0-9][ABD-HJLNP-UW-Z]{2}$
               phoneNumberFields:
                 fieldNames:
-                  -
+                  - telephone_number
                 regex: ^(?:0|\+?44)(?:\d\s?){9,10}$
               faxNumberFields:
                 fieldNames:
                   -
                 regex:
+

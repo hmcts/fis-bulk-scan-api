@@ -41,6 +41,7 @@ spring:
       - a59-transform
       - a60-transform
       - c51-transform
+      - fl401-transform
 
 azure:
   application-insights:
