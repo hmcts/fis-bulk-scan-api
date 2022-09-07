@@ -1,13 +1,5 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
-import com.microsoft.applicationinsights.core.dependencies.google.gson.internal.LinkedTreeMap;
-import org.springframework.stereotype.Component;
-import uk.gov.hmcts.reform.bulkscan.enums.OrderWithouGivingNoticeReasonEnum;
-import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
-import uk.gov.hmcts.reform.bulkscan.utils.DateUtil;
-
-import java.util.Map;
-
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.BAIL_CONDITION_END_DATE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.COMMA;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DELIVERATELY_EVADING_SERVICE;
@@ -19,6 +11,13 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.TWO_DIGIT
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.WITHOUT_NOTICE_ORDER_TABLE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES;
 import static uk.gov.hmcts.reform.bulkscan.enums.OrderWithouGivingNoticeReasonEnum.RISKOF_SIGNIFICANT_HARM;
+
+import com.microsoft.applicationinsights.core.dependencies.google.gson.internal.LinkedTreeMap;
+import java.util.Map;
+import org.springframework.stereotype.Component;
+import uk.gov.hmcts.reform.bulkscan.enums.OrderWithouGivingNoticeReasonEnum;
+import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
+import uk.gov.hmcts.reform.bulkscan.utils.DateUtil;
 
 @SuppressWarnings({"PMD", "unchecked"})
 @Component

@@ -1,12 +1,11 @@
 package uk.gov.hmcts.reform.bulkscan.utils;
 
-import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
-import uk.gov.hmcts.reform.bulkscan.model.ScanDocument;
-import uk.gov.hmcts.reform.bulkscan.model.ScannedDocuments;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
+import uk.gov.hmcts.reform.bulkscan.model.ScanDocument;
+import uk.gov.hmcts.reform.bulkscan.model.ScannedDocuments;
 
 public final class TestDataUtil {
 
