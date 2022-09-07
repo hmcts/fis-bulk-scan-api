@@ -1,7 +1,5 @@
 package uk.gov.hmcts.reform.bulkscan.controllers;
 
-import static uk.gov.hmcts.reform.bulkscan.util.TestResourceUtil.readFileFrom;
-
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import io.restassured.RestAssured;
@@ -9,7 +7,6 @@ import io.restassured.response.Response;
 import io.restassured.specification.RequestSpecification;
 import org.apache.commons.lang3.StringUtils;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.runner.RunWith;
@@ -21,6 +18,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.junit4.SpringRunner;
 import uk.gov.hmcts.reform.bulkscan.client.S2sClient;
+
+import static uk.gov.hmcts.reform.bulkscan.util.TestResourceUtil.readFileFrom;
 
 @SpringBootTest
 @RunWith(SpringRunner.class)
@@ -96,7 +95,6 @@ public class BulkScanFL401FunctionalTest {
         JSONAssert.assertEquals(bulkScanValidationResponse, response.getBody().asString(), true);
     }
 
-    @Ignore
     @Test
     @DisplayName("should tranform FL401 incoming request to CCD format ")
     public void shouldTransformFL401BulkScanRequest() throws Exception {
