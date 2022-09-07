@@ -14,11 +14,11 @@ public final class DateUtil {
     public static boolean validateDate(String dateStr, String pattern) {
 
         DateTimeFormatterBuilder dateTimeFormatterBuilder =
-            new DateTimeFormatterBuilder()
-                .parseCaseInsensitive()
-                .append(
-                    DateTimeFormatter.ofPattern(pattern)
-                        .withResolverStyle(ResolverStyle.STRICT));
+                new DateTimeFormatterBuilder()
+                        .parseCaseInsensitive()
+                        .append(
+                                DateTimeFormatter.ofPattern(pattern)
+                                        .withResolverStyle(ResolverStyle.STRICT));
 
         try {
             LocalDate.parse(dateStr, dateTimeFormatterBuilder.toFormatter());
@@ -34,14 +34,14 @@ public final class DateUtil {
         String formattedDate = null;
 
         DateTimeFormatterBuilder dateTimeFormatterBuilder =
-            new DateTimeFormatterBuilder()
-                .parseCaseInsensitive()
-                .append(
-                    DateTimeFormatter.ofPattern(pattern)
-                        .withResolverStyle(ResolverStyle.STRICT));
+                new DateTimeFormatterBuilder()
+                        .parseCaseInsensitive()
+                        .append(
+                                DateTimeFormatter.ofPattern(pattern)
+                                        .withResolverStyle(ResolverStyle.STRICT));
         try {
             final LocalDate localDate =
-                LocalDate.parse(dateStr, dateTimeFormatterBuilder.toFormatter());
+                    LocalDate.parse(dateStr, dateTimeFormatterBuilder.toFormatter());
             formattedDate = localDate.format(DateTimeFormatter.ofPattern(formatPattern));
         } catch (DateTimeParseException e) {
             log.error("Date {} is in invalid", dateStr);
