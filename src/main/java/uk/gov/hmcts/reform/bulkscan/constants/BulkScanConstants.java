@@ -1,5 +1,15 @@
 package uk.gov.hmcts.reform.bulkscan.constants;
 
+import org.apache.commons.lang3.tuple.Pair;
+import uk.gov.hmcts.reform.bulkscan.config.BulkScanFormValidationConfigManager;
+import uk.gov.hmcts.reform.bulkscan.enums.TypeOfOrderEnum;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDING_CASE_NUMBER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDING_DATE_OF_YEAR;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDING_NAME_AND_OFFICE;
@@ -13,15 +23,6 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDING_TYPE_OF_ORDER_7;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDING_TYPE_OF_ORDER_8;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDING_TYPE_OF_ORDER_9;
-
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import org.apache.commons.lang3.tuple.Pair;
-import uk.gov.hmcts.reform.bulkscan.config.BulkScanFormValidationConfigManager;
-import uk.gov.hmcts.reform.bulkscan.enums.TypeOfOrderEnum;
 
 public final class BulkScanConstants {
 

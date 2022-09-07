@@ -1,11 +1,12 @@
 package uk.gov.hmcts.reform.bulkscan.utils;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
 import uk.gov.hmcts.reform.bulkscan.model.ScanDocument;
 import uk.gov.hmcts.reform.bulkscan.model.ScannedDocuments;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public final class TestDataUtil {
 
@@ -89,6 +90,11 @@ public final class TestDataUtil {
         ocrAddressField.setName("appellant_address");
         ocrAddressField.setValue("123 test street, London");
         fieldList.add(ocrAddressField);
+
+        OcrDataField bailConditionEndDate = new OcrDataField();
+        bailConditionEndDate.setName("respondent_BailConditionsEndDate");
+        bailConditionEndDate.setValue("2012-feb-02");
+        fieldList.add(bailConditionEndDate);
 
         return fieldList;
     }
