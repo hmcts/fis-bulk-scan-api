@@ -30,6 +30,18 @@ uk:
                           PostTown: respondent_Address_TownOrCity
                           County: respondent_Address_County
                           PostCode: respondent_Address_Postcode
+              attendingTheHearingTable:
+                isInterpreterNeeded: interpreterNeededAtCourt
+                isDisabilityPresent: disabilitySupport_NeededAtCourt
+                adjustmentsRequired: disabilitySupport_details
+                specialMeasureAtCourt: specialMeasureAtCourt_Row1
+              interpreterNeeds :
+                - value:
+                    language: interpreterNeededAtCourt_Language
+                    dialect: interpreterNeededAtCourt_Dialect
+
+
+
 
 
 
