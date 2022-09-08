@@ -12,3 +12,21 @@ uk:
               groupValidationValue: "Yes"
               requiredFieldCount: 1
               sectionName: "4.2 - Relationship Start Date cannot be null"
+            - applyingWithoutGivingNotice:
+              dependentFields:
+                - riskOfSignificantHarm
+                - deterredOrPrevented
+                - deliberatelyEvadingService
+              dependentFieldValue: "Yes"
+              groupFieldName: orderWithout_GivingNotice
+              groupValidationValue: "Yes"
+              requiredFieldCount: 1
+              sectionName: "1.3 - Why do you want to apply without giving notice to the respondent?"
+            - bailCondition:
+              dependentFields:
+                - respondent_BailConditionsEndDate
+              dependentFieldValue: "*"
+              groupFieldName: respondentBailConditions
+              groupValidationValue: "Yes"
+              requiredFieldCount: 1
+              sectionName: "1.6 - When do the bail conditions end?"

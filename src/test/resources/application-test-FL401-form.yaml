@@ -12,8 +12,6 @@ uk:
               - orderApplyingFor
               - orderWithout_GivingNotice
             optionalFields:
-              - appellant_dateOfBirth
-              - appellant_email
               - applicantRespondent_Relationship_01
               - applicantRespondent_Relationship_02
               - applicantRespondent_Relationship_03
@@ -64,11 +62,11 @@ uk:
             regexValidationFields:
               dateFields:
                 fieldNames:
-                  - appellant_dateOfBirth
+                  -
                 regex: dd/MM/yyyy
               emailFields:
                 fieldNames:
-                  - appellant_email
+                  -
                 regex: ^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,6}$
               numericFields:
                 fieldNames:

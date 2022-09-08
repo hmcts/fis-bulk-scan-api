@@ -11,6 +11,7 @@ import static uk.gov.hmcts.reform.bulkscan.utils.Constants.SERVICE_AUTHORIZATION
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.SERVICE_AUTH_TOKEN;
 import static uk.gov.hmcts.reform.bulkscan.utils.TestResourceUtil.readFileFrom;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -30,17 +31,23 @@ import uk.gov.hmcts.reform.authorisation.validators.AuthTokenValidator;
 @ContextConfiguration
 @TestPropertySource(locations = "classpath:application_e2e.yaml")
 class BulkScanFL401EndpointIntegrationTest {
-    //  @Autowired S2sClient s2sClient;
-    @Autowired private transient MockMvc mockMvc;
+
     @MockBean protected AuthTokenValidator authTokenValidator;
+
+    @Autowired private transient MockMvc mockMvc;
+
     private static final String FL401_VALIDATION_REQUEST_PATH =
-            "classpath:request/bulk-scan-fl401-validate-input.json";
+            "classpath:request/bulk-scan-fl401-validation-input.json";
 
     private static final String FL401_TRANSFORM_REQUEST_PATH =
             "classpath:request/bulk-scan-fl401-transform-input.json";
 
     private static final String FL401_TRANSFORM_RESPONSE_PATH =
             "classpath:response/bulk-scan-fl401-transform-output.json";
+    @BeforeEach
+    void beforeEach() {
+        when(authTokenValidator.getServiceName(SERVICE_AUTH_TOKEN)).thenReturn("fis_cos_api");
+    }
 
     @DisplayName("should test validate request case type FL401")
     @Test
@@ -68,5 +75,6 @@ class BulkScanFL401EndpointIntegrationTest {
                                 .content(readFileFrom(FL401_TRANSFORM_REQUEST_PATH)))
                 .andExpect(status().isOk())
                 .andExpect(content().json(readFileFrom(FL401_TRANSFORM_RESPONSE_PATH)));
+                .andReturn();
     }
 }

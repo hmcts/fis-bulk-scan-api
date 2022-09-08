@@ -1,0 +1,28 @@
+{
+  "ocr_data_fields": [
+    {
+      "name": "appellant_firstName",
+      "value": "sfgsfdf"
+    },
+    {
+      "name": "appellant_lastName",
+      "value": "Smith"
+    },
+    {
+      "name": "appellant_address",
+      "value": "Arizona"
+    },
+    {
+      "name": "telephone_number",
+      "value": "01234567891"
+    },
+    {
+      "name": "orderWithoutGivingNoticeReason",
+      "value": "sdf"
+    },
+    {
+      "name": "respondentBailConditions",
+      "value": "Yes"
+    }
+  ]
+}

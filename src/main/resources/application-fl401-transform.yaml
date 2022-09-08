@@ -15,3 +15,33 @@ uk:
                 applicantRelationshipDate: applicantRespondent_PreviousMarried_Date
                 applicantRelationshipOptions: applicantRespondent_Relationship_10
                 needForParentalResponsibility: needForParentalResponsibility
+              applicant:
+                - value:
+                    firstName: applicant_firstName
+                    lastName: applicant_lastName
+                    address: applicant_address
+                    phoneNumber: telephone_number
+              fl401RespondentTable:
+                - value:
+                    firstName: respondentFirstName
+                    lastName: respondentLastName
+                    respondentPreviousNames: previousName
+                    dateOfBirth: respondentDoB
+                    liveWithApplicant: respondent_LiveWithApplicant
+                    phoneNumber: respondent_PhoneNumber
+                    email: respondent_Email
+                    address:
+                      - value:
+                          AddressLine1: respondent_Address_BuildingAndStreet
+                          AddressLine2: respondent_Address_SecondLine
+                          PostTown: respondent_Address_TownOrCity
+                          County: respondent_Address_County
+                          PostCode: respondent_Address_Postcode
+              applicationTypeDetails:
+                typesOfApplication: orderApplyingFor
+              withoutNoticeOrderTable:
+                orderWithoutGivingNotice: orderWithout_GivingNotice
+                anyOtherDtailsForWithoutNoticeOrder: orderWithoutGivingNotice_moreReason
+                isRespondentAlreadyInBailCondition: respondentBailConditions
+                bailConditionEndDate: respondent_BailConditionsEndDate
+                furtherDetails: situationCourtToKnow

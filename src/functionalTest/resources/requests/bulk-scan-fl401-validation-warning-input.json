@@ -1,0 +1,80 @@
+{
+  "ocr_data_fields": [
+    {
+      "name": "applicant1_dateOfBirth",
+      "value": "01/01/1994"
+    },
+    {
+      "name": "applicant_firstName",
+      "value": "Johnny"
+    },
+    {
+      "name": "applicant_lastName",
+      "value": "Boy"
+    },
+    {
+      "name": "applicant_address",
+      "value": "JohnTown"
+    },
+    {
+      "name": "telephone_number",
+      "value": "0908776545"
+    },
+    {
+      "name": "respondentFirstName",
+      "value": "John"
+    },
+    {
+      "name": "respondentLastName",
+      "value": "Maxwell"
+    },
+    {
+      "name": "previousName",
+      "value": "previousName"
+    },
+    {
+      "name": "respondentDoB",
+      "value": "2022/12/04"
+    },
+    {
+      "name": "respondent_LiveWithApplicant",
+      "value": "yes"
+    },
+    {
+      "name": "respondent_Address_BuildingAndStreet",
+      "value": "123 Harley St."
+    },
+    {
+      "name": "respondent_Address_SecondLine",
+      "value": "Vox Rd"
+    },
+    {
+      "name": "respondent_Address_TownOrCity",
+      "value": "Blighty"
+    },
+    {
+      "name": "respondent_Address_County",
+      "value": "UK"
+    },
+    {
+      "name": "respondent_Address_Postcode",
+      "value": "respondent_Address_Postcode"
+    },
+    {
+      "name": "respondent_PhoneNumber",
+      "value": "09866534424"
+    },
+    {
+      "name": "respondent_Email",
+      "value": "john@gmail.com"
+    },
+    {
+      "name": "orderApplyingFor",
+      "value": "01234567891"
+    },
+    {
+      "name": "orderWithout_GivingNotice",
+      "value": "Yes"
+    }
+  ]
+}

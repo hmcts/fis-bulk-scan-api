@@ -1,35 +1,51 @@
 {
   "ocr_data_fields":[
     {
-      "name":"applicant1_firstName",
+      "name":"respondentFirstName",
       "value":"murshad"
     },
     {
-      "name":"applicant1_lastName",
+      "name":"respondentLastName",
       "value":"haque"
     },
     {
-      "name":"applicant1_telephoneNumber",
+      "name":"previousName",
+      "value":"haque"
+    },
+    {
+      "name":"respondentDoB",
       "value":"07456575789"
     },
     {
-      "name":"applicant1_address",
+      "name":"respondent_LiveWithApplicant",
       "value":"Address1 London"
     },
     {
-      "name":"applicant2_firstName",
+      "name":"respondent_Address_BuildingAndStreet",
       "value":"mohammed"
     },
     {
-      "name":"applicant2_lastName",
+      "name":"respondent_Address_SecondLine",
       "value":"haque"
     },
     {
-      "name":"applicant2_telephoneNumber",
+      "name":"respondent_Address_TownOrCity",
       "value":"07456575789"
     },
     {
-      "name":"applicant2_address",
+      "name":"respondent_Address_County",
+      "value":"Address1 London"
+    },
+    {
+      "name":"respondent_Address_Postcode",
+      "value":"Address1 London"
+    },
+    {
+      "name":"respondent_PhoneNumber",
+      "value":"Address1 London"
+    },
+    {
+      "name":"respondent_Email",
       "value":"Address1 London"
     }
   ]

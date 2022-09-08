@@ -12,8 +12,6 @@ uk:
               - orderApplyingFor
               - orderWithout_GivingNotice
             optionalFields:
-              - appellant_dateOfBirth
-              - appellant_email
               - applicantRespondent_Relationship_01
               - applicantRespondent_Relationship_02
               - applicantRespondent_Relationship_03
@@ -61,14 +59,34 @@ uk:
               - respondentBailConditions
               - respondent_BailConditionsEndDate
               - situationCourtToKnow
+              - respondentFirstName
+              - respondentLastName
+              - previousName
+              - respondentDoB
+              - respondent_LiveWithApplicant
+              - respondent_Address_BuildingAndStreet
+              - respondent_Address_SecondLine
+              - respondent_Address_TownOrCity
+              - respondent_Address_County
+              - respondent_Address_Postcode
+              - respondent_PhoneNumber
+              - respondent_Email
+              - orderWithoutGivingNoticeReason
+              - riskOfSignificantHarm
+              - deterredOrPrevented
+              - deliberatelyEvadingService
+              - orderWithoutGivingNotice_moreReason
+              - respondentBailConditions
+              - respondent_BailConditionsEndDate
+              - situationCourtToKnow
             regexValidationFields:
               dateFields:
                 fieldNames:
-                  - appellant_dateOfBirth
+                  -
                 regex: dd/MM/yyyy
               emailFields:
                 fieldNames:
-                  - appellant_email
+                  -
                 regex: ^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,6}$
               numericFields:
                 fieldNames:
@@ -86,3 +104,4 @@ uk:
                 fieldNames:
                   -
                 regex:
+
