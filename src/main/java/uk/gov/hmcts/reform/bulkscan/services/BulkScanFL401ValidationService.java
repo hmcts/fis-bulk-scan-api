@@ -1,9 +1,12 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_RESPONDENT_OTHER_RELATIONSHIP_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_RESPONDENT_RELATIONSHIP_DATE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_RESPONDENT_RELATIONSHIP_FIELDS;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_RESPONDENT_RELATIONSHIP_NONE_ABOVE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_RESPONDENT_RELATIONSHIP_OPTIONS_FIELDS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_PREVIOUS_MARRIED_DATE_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_RELATIONSHIP_END_DATE_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_RELATIONSHIP_START_DATE_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.TEXT_AND_NUMERIC_MONTH_PATTERN;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.VALID_DATE_WARNING_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES;
@@ -24,6 +27,9 @@ import uk.gov.hmcts.reform.bulkscan.utils.DateUtil;
 public class BulkScanFL401ValidationService {
     private static final int NO_APPLICANT_RESPONDENT_RELATIONSHIP_COUNT = 0;
     private static final int EXPECTED_APPLICANT_RESPONDENT_RELATIONSHIP_COUNT = 1;
+    private static final String FIELD_SUMMARY_START = "Start";
+    private static final String FIELD_SUMMARY_END = "End";
+    private static final String FIELD_SUMMARY_PREVIOUS_MARRIED = "Previous Married";
 
     /**
      * This method will validate FL401 form, section 4. data.
@@ -58,9 +64,9 @@ public class BulkScanFL401ValidationService {
                     applicantRespondentRelationshipCounter(
                             ocrPryApplicantRespondentRelationshipFieldsMap));
 
-            if (ocrDataFieldsMap.containsKey(APPLICANT_RESPONDENT_RELATIONSHIP_NONE_ABOVE)
+            if (ocrDataFieldsMap.containsKey(APPLICANT_RESPONDENT_OTHER_RELATIONSHIP_FIELD)
                     && ocrDataFieldsMap
-                            .get(APPLICANT_RESPONDENT_RELATIONSHIP_NONE_ABOVE)
+                            .get(APPLICANT_RESPONDENT_OTHER_RELATIONSHIP_FIELD)
                             .equalsIgnoreCase(YES)) {
 
                 setApplicantRespondentErrorWarningMsg(
@@ -74,21 +80,21 @@ public class BulkScanFL401ValidationService {
                 bulkScanValidationResponse.addErrors(
                         validateInputDate(
                                 ocrDataFieldsMap,
-                                "applicantRespondent_Relationship_StartDate",
+                                RESPONDENT_RELATIONSHIP_START_DATE_FIELD,
                                 APPLICANT_RESPONDENT_RELATIONSHIP_DATE,
-                                "Start"));
+                                FIELD_SUMMARY_START));
                 bulkScanValidationResponse.addWarning(
                         validateInputDate(
                                 ocrDataFieldsMap,
-                                "applicantRespondent_Relationship_EndDate",
+                                RESPONDENT_RELATIONSHIP_END_DATE_FIELD,
                                 APPLICANT_RESPONDENT_RELATIONSHIP_DATE,
-                                "End"));
+                                FIELD_SUMMARY_END));
                 bulkScanValidationResponse.addWarning(
                         validateInputDate(
                                 ocrDataFieldsMap,
-                                "applicantRespondent_PreviousMarried_Date",
+                                RESPONDENT_PREVIOUS_MARRIED_DATE_FIELD,
                                 APPLICANT_RESPONDENT_RELATIONSHIP_DATE,
-                                "Previous Married"));
+                                FIELD_SUMMARY_PREVIOUS_MARRIED));
             }
         }
 
@@ -207,6 +213,7 @@ public class BulkScanFL401ValidationService {
                     String.format(message, fieldSummaryDescr),
                     TEXT_AND_NUMERIC_MONTH_PATTERN);
         }
+
         return Collections.emptyList();
     }
 

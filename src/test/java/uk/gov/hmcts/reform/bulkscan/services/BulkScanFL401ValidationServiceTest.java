@@ -2,6 +2,14 @@ package uk.gov.hmcts.reform.bulkscan.services;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_RESPONDENT_OTHER_RELATIONSHIP_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NO;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_ENGAGED_PROPOSED_CIVIL_RELATIONSHIP_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_MARRIED_CIVIL_RELATIONSHIP_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_PREVIOUS_MARRIED_DATE_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_RELATIONSHIP_END_DATE_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_RELATIONSHIP_START_DATE_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES;
 import static uk.gov.hmcts.reform.bulkscan.utils.TestResourceUtil.readFileFrom;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -73,8 +81,8 @@ class BulkScanFL401ValidationServiceTest {
 
     @Test
     @DisplayName(
-            "FL401 More than one relationship between Applicant and Respondent should give"
-                    + " warning.")
+            "FL401 More than one relationship between Applicant and Respondent should give an"
+                    + " Error.")
     void testFL401NoApplicantRespondentRelationshipError() throws IOException {
         BulkScanValidationRequest bulkScanValidationRequest =
                 mapper.readValue(
@@ -84,8 +92,8 @@ class BulkScanFL401ValidationServiceTest {
         bulkScanValidationRequest.getOcrdatafields().stream()
                 .filter(
                         eachField ->
-                                "applicantRespondent_Relationship_01"
-                                        .equalsIgnoreCase(eachField.getName()))
+                                RESPONDENT_MARRIED_CIVIL_RELATIONSHIP_FIELD.equalsIgnoreCase(
+                                        eachField.getName()))
                 .forEach(field -> field.setValue("No"));
 
         Map<String, String> inputFieldsMap =
@@ -117,7 +125,7 @@ class BulkScanFL401ValidationServiceTest {
         bulkScanValidationRequest.getOcrdatafields().stream()
                 .filter(
                         eachField ->
-                                "applicantRespondent_Relationship_03"
+                                RESPONDENT_ENGAGED_PROPOSED_CIVIL_RELATIONSHIP_FIELD
                                         .equalsIgnoreCase(eachField.getName()))
                 .forEach(field -> field.setValue("Yes"));
 
@@ -152,9 +160,9 @@ class BulkScanFL401ValidationServiceTest {
         bulkScanValidationRequest.getOcrdatafields().stream()
                 .filter(
                         eachField ->
-                                "applicantRespondent_Relationship_09"
-                                        .equalsIgnoreCase(eachField.getName()))
-                .forEach(field -> field.setValue("Yes"));
+                                APPLICANT_RESPONDENT_OTHER_RELATIONSHIP_FIELD.equalsIgnoreCase(
+                                        eachField.getName()))
+                .forEach(field -> field.setValue(YES));
 
         Map<String, String> inputFieldsMap =
                 getOcrDataFieldsMap(bulkScanValidationRequest.getOcrdatafields());
@@ -186,29 +194,29 @@ class BulkScanFL401ValidationServiceTest {
         bulkScanValidationRequest.getOcrdatafields().stream()
                 .filter(
                         eachField ->
-                                "applicantRespondent_Relationship_09"
-                                        .equalsIgnoreCase(eachField.getName()))
-                .forEach(field -> field.setValue("Yes"));
+                                APPLICANT_RESPONDENT_OTHER_RELATIONSHIP_FIELD.equalsIgnoreCase(
+                                        eachField.getName()))
+                .forEach(field -> field.setValue(YES));
 
         bulkScanValidationRequest.getOcrdatafields().stream()
                 .filter(
                         eachField ->
-                                "applicantRespondent_Relationship_StartDate"
-                                        .equalsIgnoreCase(eachField.getName()))
+                                RESPONDENT_RELATIONSHIP_START_DATE_FIELD.equalsIgnoreCase(
+                                        eachField.getName()))
                 .forEach(field -> field.setValue("2022-de-02"));
 
         bulkScanValidationRequest.getOcrdatafields().stream()
                 .filter(
                         eachField ->
-                                "applicantRespondent_Relationship_EndDate"
-                                        .equalsIgnoreCase(eachField.getName()))
+                                RESPONDENT_RELATIONSHIP_END_DATE_FIELD.equalsIgnoreCase(
+                                        eachField.getName()))
                 .forEach(field -> field.setValue("2022-December-02"));
 
         bulkScanValidationRequest.getOcrdatafields().stream()
                 .filter(
                         eachField ->
-                                "applicantRespondent_PreviousMarried_Date"
-                                        .equalsIgnoreCase(eachField.getName()))
+                                RESPONDENT_PREVIOUS_MARRIED_DATE_FIELD.equalsIgnoreCase(
+                                        eachField.getName()))
                 .forEach(field -> field.setValue("2022-Dec-02"));
 
         Map<String, String> inputFieldsMap =
@@ -246,29 +254,29 @@ class BulkScanFL401ValidationServiceTest {
         bulkScanValidationRequest.getOcrdatafields().stream()
                 .filter(
                         eachField ->
-                                "applicantRespondent_Relationship_09"
-                                        .equalsIgnoreCase(eachField.getName()))
-                .forEach(field -> field.setValue("No"));
+                                APPLICANT_RESPONDENT_OTHER_RELATIONSHIP_FIELD.equalsIgnoreCase(
+                                        eachField.getName()))
+                .forEach(field -> field.setValue(NO));
 
         bulkScanValidationRequest.getOcrdatafields().stream()
                 .filter(
                         eachField ->
-                                "applicantRespondent_Relationship_StartDate"
-                                        .equalsIgnoreCase(eachField.getName()))
+                                RESPONDENT_RELATIONSHIP_START_DATE_FIELD.equalsIgnoreCase(
+                                        eachField.getName()))
                 .forEach(field -> field.setValue("2002-dec-02"));
 
         bulkScanValidationRequest.getOcrdatafields().stream()
                 .filter(
                         eachField ->
-                                "applicantRespondent_Relationship_EndDate"
-                                        .equalsIgnoreCase(eachField.getName()))
+                                RESPONDENT_RELATIONSHIP_END_DATE_FIELD.equalsIgnoreCase(
+                                        eachField.getName()))
                 .forEach(field -> field.setValue("2022-Dec-02"));
 
         bulkScanValidationRequest.getOcrdatafields().stream()
                 .filter(
                         eachField ->
-                                "applicantRespondent_PreviousMarried_Date"
-                                        .equalsIgnoreCase(eachField.getName()))
+                                RESPONDENT_PREVIOUS_MARRIED_DATE_FIELD.equalsIgnoreCase(
+                                        eachField.getName()))
                 .forEach(field -> field.setValue("2003-12-02"));
 
         Map<String, String> inputFieldsMap =
