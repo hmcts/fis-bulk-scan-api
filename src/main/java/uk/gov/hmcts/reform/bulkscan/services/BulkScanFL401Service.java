@@ -2,13 +2,13 @@ package uk.gov.hmcts.reform.bulkscan.services;
 
 import static java.util.Objects.nonNull;
 import static org.springframework.util.StringUtils.hasText;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.BAIL_CONDITION_END_DATE_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CASE_TYPE_ID;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EVENT_ID;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_BAIL_CONDITIONS_ENDDATE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.SCAN_DOCUMENTS;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.TEXT_AND_NUMERIC_MONTH_PATTERN;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.VALID_DATE_WARNING_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.BAIL_CONDITION_END_DATE_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.RESPONDENT_BAIL_CONDITIONS_ENDDATE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.TEXT_AND_NUMERIC_MONTH_PATTERN;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.VALID_DATE_WARNING_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper.transformScanDocuments;
 import static uk.gov.hmcts.reform.bulkscan.model.FormType.FL401;
 
@@ -111,8 +111,7 @@ public class BulkScanFL401Service implements BulkScanService {
         Map<String, String> caseTypeAndEventId =
                 transformConfigManager.getTransformationConfig(formType).getCaseFields();
 
-        bulkScanFL401ConditionalTransformerService.transform(
-                populatedMap, inputFieldsMap, bulkScanTransformationRequest);
+        bulkScanFL401ConditionalTransformerService.transform(populatedMap, inputFieldsMap);
 
         BulkScanTransformationResponse.BulkScanTransformationResponseBuilder builder =
                 BulkScanTransformationResponse.builder()
