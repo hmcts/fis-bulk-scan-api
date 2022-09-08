@@ -1,0 +1,87 @@
+uk:
+  gov:
+    hmcts:
+      dependency:
+        fieldGroupDependency:
+          FL401:
+            - occupationOrderGroup:
+              dependentFields:
+                - occupationOrderAddress_BuildingAndStreet
+                - occupationOrderAddress_SecondLine
+                - occupationOrderAddress_TownOrCity
+                - occupationOrderAddress_Postcode
+                - occupationOrderAddress_CurrentOccupant
+                - occupationOrderAddress_CurrentOccupant_Others
+                - occupationOrderAddress_PreviousOccupant
+              dependentFieldValue: "*"
+              groupFieldName: applyingForOccupationOrder
+              groupValidationValue: "Yes"
+              requiredFieldCount: 2
+              sectionName: "To what address do you want the occupation order to apply?"
+            - occupationOrderIntendedOccupantGroup:
+              dependentFields:
+                - occupationOrderAddress_CurrentOccupant_Others
+              dependentFieldValue: "*"
+              groupFieldName: occupationOrderAddress_CurrentOccupant
+              groupValidationValue: "Someone else – please specify"
+              requiredFieldCount: 1
+              sectionName: "Someone else – please specify."
+            - occupationOrderIntendedOccupantGroup:
+              dependentFields:
+                - occupationOrderAddress_IntendedOccupant
+              dependentFieldValue: "*"
+              groupFieldName: occupationOrderAddress_PreviousOccupant
+              groupValidationValue: "No"
+              requiredFieldCount: 1
+              sectionName: "If you answered ‘No’ to question 7.4, did you or the respondent ever intend to live at the address?"
+            - propertySpeciallyAdaptedGroup:
+              dependentFields:
+                - propertySpeciallyAdapted_Details
+              dependentFieldValue: "*"
+              groupFieldName: propertySpeciallyAdapted
+              groupValidationValue: "Yes"
+              requiredFieldCount: 1
+              sectionName: "Please provide details of how the property is specially adapted."
+            - mortgageOnPropertyGroup:
+              dependentFields:
+                - MortgageOnProperty_Person
+                - MortgageOnProperty_Number
+                - MortgageLender_Name
+                - MortgageLender_BuildingAndStreet
+                - MortgageLender_SecondLine
+                - MortgageLender_TownOrCity
+                - MortgageLender_Postcode
+              dependentFieldValue: "*"
+              groupFieldName: MortgageOnProperty
+              groupValidationValue: "Yes"
+              requiredFieldCount: 1
+              sectionName: "Is there a mortgage on the property?"
+            - mortgageOnPropertySomeoneElseGroup:
+              dependentFields:
+                - MortgageOnProperty_Person_Others
+              dependentFieldValue: "*"
+              groupFieldName: MortgageOnProperty_Person
+              groupValidationValue: "Someone else – please specify"
+              requiredFieldCount: 1
+              sectionName: "Someone else – please specify"
+            - propertyRentedGroup:
+              dependentFields:
+                - RentedProperty_Person
+                - LandlordDetails_Name
+                - LandlordDetails_BuildingAndStreet
+                - LandlordDetails_SecondLine
+                - LandlordDetails_TownOrCity
+                - LandlordDetails_Postcode
+              dependentFieldValue: "*"
+              groupFieldName: RentedProperty
+              groupValidationValue: "Yes"
+              requiredFieldCount: 1
+              sectionName: "Who is named on the rental agreement? Please select all that apply"
+            - propertyRentedSomeoneElseGroup:
+              dependentFields:
+                - RentedProperty_Person_Others
+              dependentFieldValue: "*"
+              groupFieldName: RentedProperty
+              groupValidationValue: "Someone else – please specify"
+              requiredFieldCount: 1
+              sectionName: "Someone else – please specify"

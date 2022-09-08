@@ -42,6 +42,7 @@ spring:
       - a60-transform
       - c51-transform
       - fl401-transform
+      - fl401-dependency
 
 azure:
   application-insights:

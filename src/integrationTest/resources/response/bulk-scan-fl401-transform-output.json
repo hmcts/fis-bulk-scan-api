@@ -8,7 +8,7 @@
           "value": {
             "firstName": "John",
             "lastName": "Maxwell",
-            "respondentPreviousNames": "previousName",
+            "previousNames": "respondentPreviousNames",
             "dateOfBirth": "2022/12/04",
             "liveWithApplicant": "yes",
             "phoneNumber": "09866534424",

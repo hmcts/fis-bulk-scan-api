@@ -18,7 +18,7 @@ uk:
                 - value:
                     firstName: respondentFirstName
                     lastName: respondentLastName
-                    respondentPreviousNames: previousName
+                    previousName: respondentPreviousNames
                     dateOfBirth: respondentDoB
                     liveWithApplicant: respondent_LiveWithApplicant
                     phoneNumber: respondent_PhoneNumber

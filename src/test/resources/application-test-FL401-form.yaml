@@ -12,7 +12,7 @@ uk:
             optionalFields:
               - respondentFirstName
               - respondentLastName
-              - previousName
+              - respondentPreviousNames
               - respondentDoB
               - respondent_LiveWithApplicant
               - respondent_Address_BuildingAndStreet
@@ -22,6 +22,55 @@ uk:
               - respondent_Address_Postcode
               - respondent_PhoneNumber
               - respondent_Email
+              - ApplyingForOccupationOrder
+              - occupationOrderAddress_BuildingAndStreet
+              - occupationOrderAddress_SecondLine
+              - occupationOrderAddress_TownOrCity
+              - occupationOrderAddress_County
+              - occupationOrderAddress_Postcode
+              - occupationOrderAddress_CurrentOccupant
+              - occupationOrderAddress_CurrentOccupant_Others
+              - occupationOrderAddress_PreviousOccupant
+              - occupationOrderAddress_IntendedOccupant
+              - childLivesAtAddress_Row1
+              - childLivesAtAddress_Row2
+              - childLivesAtAddress_Row3
+              - childLivesAtAddress_Row4
+              - OtherChildren_Row1
+              - OtherChildren_Row2
+              - OtherChildren_Row3
+              - OtherChildren_Row4
+              - propertySpeciallyAdapted
+              - propertySpeciallyAdapted_Details
+              - MortgageOnProperty
+              - MortgageOnProperty_Person
+              - MortgageOnProperty_Person_Others
+              - MortgageOnProperty_Number
+              - MortgageLender_Name
+              - MortgageLender_BuildingAndStreet
+              - MortgageLender_SecondLine
+              - MortgageLender_TownOrCity
+              - MortgageLender_County
+              - MortgageLender_Postcode
+              - RentedProperty
+              - RentedProperty_Person
+              - RentedProperty_Person_Others
+              - LandlordDetails_Name
+              - LandlordDetails_BuildingAndStreet
+              - LandlordDetails_SecondLine
+              - LandlordDetails_TownOrCity
+              - LandlordDetails_County
+              - LandlordDetails_Postcode
+              - HomeRights
+              - ChangesToLivingSituation_Row1
+              - ChangesToLivingSituation_Row2
+              - ChangesToLivingSituation_Row3
+              - ChangesToLivingSituation_Row4
+              - ChangesToLivingSituation_Row5
+              - ChangesToFamilyHome_Row1
+              - ChangesToFamilyHome_Row2
+              - ChangesToFamilyHome_Row3
+              - CourtToConsider
             regexValidationFields:
               dateFields:
                 fieldNames:
