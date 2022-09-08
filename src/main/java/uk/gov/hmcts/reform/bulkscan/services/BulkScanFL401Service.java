@@ -1,6 +1,7 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
 import static java.util.Objects.nonNull;
+import static org.springframework.util.StringUtils.hasText;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.BAIL_CONDITION_END_DATE_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CASE_TYPE_ID;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EVENT_ID;
@@ -146,7 +147,9 @@ public class BulkScanFL401Service implements BulkScanService {
 
         final Map<String, String> ocrDataFieldsMap = getOcrDataFieldsMap(ocrDataFields);
 
-        if (null != ocrDataFieldsMap && ocrDataFieldsMap.containsKey(fieldName)) {
+        if (null != ocrDataFieldsMap
+                && ocrDataFieldsMap.containsKey(fieldName)
+                && hasText(ocrDataFieldsMap.get(fieldName))) {
             String date = ocrDataFieldsMap.get(fieldName);
 
             return validateDate(Objects.requireNonNull(date), message);
