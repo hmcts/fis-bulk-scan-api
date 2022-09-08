@@ -1,28 +1,20 @@
 {
   "ocr_data_fields":[
     {
-      "name":"appellant_address",
-      "value":"Address1 London"
+      "name":"applicant_firstName",
+      "value":"Johnny"
     },
     {
-      "name":"appellant_firstName",
-      "value":"firstName"
+      "name":"applicant_lastName",
+      "value":"Boy"
     },
     {
-      "name":"appellant_lastName",
-      "value":"lastName"
-    },
-    {
-      "name":"appellant_email",
-      "value":"test@test.com"
-    },
-    {
-      "name":"appellant_dateOfBirth",
-      "value":"20/07/1922"
+      "name":"applicant_address",
+      "value":"JohnTown"
     },
     {
       "name":"telephone_number",
-      "value":"+442088956847"
+      "value":"0908776545"
     },
     {
       "name": "applicantRespondent_Relationship_01",

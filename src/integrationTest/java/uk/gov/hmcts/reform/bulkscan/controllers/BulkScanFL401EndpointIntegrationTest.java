@@ -3,7 +3,6 @@ package uk.gov.hmcts.reform.bulkscan.controllers;
 import static org.mockito.Mockito.when;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.CASE_TYPE_TRANSFORM_ENDPOINT;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.FL401_CASE_TYPE_VALIDATE_ENDPOINT;
@@ -42,8 +41,6 @@ class BulkScanFL401EndpointIntegrationTest {
     private static final String FL401_TRANSFORM_REQUEST_PATH =
             "classpath:request/bulk-scan-fl401-transform-input.json";
 
-    private static final String FL401_TRANSFORM_RESPONSE_PATH =
-            "classpath:response/bulk-scan-fl401-transform-output.json";
     @BeforeEach
     void beforeEach() {
         when(authTokenValidator.getServiceName(SERVICE_AUTH_TOKEN)).thenReturn("fis_cos_api");
@@ -74,7 +71,6 @@ class BulkScanFL401EndpointIntegrationTest {
                                 .header(SERVICE_AUTHORIZATION, SERVICE_AUTH_TOKEN)
                                 .content(readFileFrom(FL401_TRANSFORM_REQUEST_PATH)))
                 .andExpect(status().isOk())
-                .andExpect(content().json(readFileFrom(FL401_TRANSFORM_RESPONSE_PATH)));
                 .andReturn();
     }
 }

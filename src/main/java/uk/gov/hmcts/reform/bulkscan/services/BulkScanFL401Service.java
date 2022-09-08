@@ -10,7 +10,6 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.RESP
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.TEXT_AND_NUMERIC_MONTH_PATTERN;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.VALID_DATE_WARNING_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper.transformScanDocuments;
-import static uk.gov.hmcts.reform.bulkscan.model.FormType.FL401;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -63,23 +62,10 @@ public class BulkScanFL401Service implements BulkScanService {
 
         BulkScanValidationResponse response =
                 bulkScanValidationHelper.validateMandatoryAndOptionalFields(
-                        ocrDataFields, configManager.getValidationConfig(FL401));
+                        ocrDataFields, configManager.getValidationConfig(FormType.FL401));
 
         response.addWarning(
-                dependencyValidationService.getDependencyWarnings(inputFieldMap, FL401));
-
-        return response;
-
-        final List<OcrDataField> ocrDataFields = bulkScanValidationRequest.getOcrdatafields();
-
-        Map<String, String> inputFieldMap = getOcrDataFieldAsMap(ocrDataFields);
-
-        BulkScanValidationResponse response =
-                bulkScanValidationHelper.validateMandatoryAndOptionalFields(
-                        ocrDataFields, configManager.getValidationConfig(FL401));
-
-        response.addWarning(
-                dependencyValidationService.getDependencyWarnings(inputFieldMap, FL401));
+                dependencyValidationService.getDependencyWarnings(inputFieldMap, FormType.FL401));
 
         response.addWarning(
                 validateInputDate(
@@ -124,7 +110,8 @@ public class BulkScanFL401Service implements BulkScanService {
         Map<String, String> caseTypeAndEventId =
                 transformConfigManager.getTransformationConfig(formType).getCaseFields();
 
-        bulkScanFL401ConditionalTransformerService.transform(populatedMap, inputFieldsMap);
+        bulkScanFL401ConditionalTransformerService.transform(
+                populatedMap, inputFieldsMap, bulkScanTransformationRequest);
 
         BulkScanTransformationResponse.BulkScanTransformationResponseBuilder builder =
                 BulkScanTransformationResponse.builder()
