@@ -90,6 +90,11 @@ public final class TestDataUtil {
         ocrAddressField.setValue("123 test street, London");
         fieldList.add(ocrAddressField);
 
+        OcrDataField bailConditionEndDate = new OcrDataField();
+        bailConditionEndDate.setName("respondent_BailConditionsEndDate");
+        bailConditionEndDate.setValue("2012-feb-02");
+        fieldList.add(bailConditionEndDate);
+
         return fieldList;
     }
 

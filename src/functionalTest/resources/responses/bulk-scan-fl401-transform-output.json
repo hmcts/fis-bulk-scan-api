@@ -1,8 +1,11 @@
 {
   "case_creation_details": {
-    "case_type_id": "FL401",
-    "event_id": "create-case-adop-bs",
+    "case_type_id": "PRLAPPS",
+    "event_id": "create-case-privatelaw-bs",
     "case_data": {
+      "applicationTypeDetails": {
+        "typesOfApplication": "01234567891"
+      },
       "fl401RespondentTable": [
         {
           "value": {
@@ -27,6 +30,14 @@
           }
         }
       ],
+      "withoutNoticeOrderTable": {
+        "orderWithoutGivingNotice": "Yes",
+        "anyOtherDtailsForWithoutNoticeOrder": "more reason",
+        "isRespondentAlreadyInBailCondition": "Yes",
+        "bailConditionEndDate": "2021-02-07",
+        "furtherDetails": "XYZ",
+        "reasonForOrderWithoutGivingNotice": "there is risk of significant harm to the applicant or a relevant child, attributable to conduct of the respondent, if the order is not made immediately,it is likely that I will be deterred or prevented from pursuing the application if an order is not made immediately,I believe that the respondent is aware of the proceedings but is deliberately evading service and that I or a relevant child will be seriously prejudiced by the delay in effecting substituted service"
+      },
       "scannedDocuments": [
         {
           "value": {

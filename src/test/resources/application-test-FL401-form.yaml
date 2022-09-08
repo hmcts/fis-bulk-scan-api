@@ -9,10 +9,12 @@ uk:
               - applicant_lastName
               - applicant_address
               - telephone_number
+              - orderApplyingFor
+              - orderWithout_GivingNotice
             optionalFields:
               - respondentFirstName
               - respondentLastName
-              - respondentPreviousNames
+              - previousName
               - respondentDoB
               - respondent_LiveWithApplicant
               - respondent_Address_BuildingAndStreet
@@ -22,6 +24,13 @@ uk:
               - respondent_Address_Postcode
               - respondent_PhoneNumber
               - respondent_Email
+              - riskOfSignificantHarm
+              - deterredOrPrevented
+              - deliberatelyEvadingService
+              - orderWithoutGivingNotice_moreReason
+              - respondentBailConditions
+              - respondent_BailConditionsEndDate
+              - situationCourtToKnow
               - ApplyingForOccupationOrder
               - occupationOrderAddress_BuildingAndStreet
               - occupationOrderAddress_SecondLine

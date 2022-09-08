@@ -10,7 +10,9 @@
       "applicant_firstName is missing",
       "applicant_lastName is missing",
       "applicant_address is missing",
-      "telephone_number is missing"
+      "telephone_number is missing",
+      "orderApplyingFor is missing",
+      "orderWithout_GivingNotice is missing"
     ]
   }
 }
