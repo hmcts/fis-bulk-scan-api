@@ -1,5 +1,5 @@
 {
-  "ocr_data_fields":[
+  "ocr_data_fields": [
     {
       "name":"applicant_firstName",
       "value":"Johnny"
@@ -15,14 +15,6 @@
     {
       "name":"telephone_number",
       "value":"+442088956847"
-    },
-    {
-      "name": "orderApplyingFor",
-      "value": "01234567891"
-    },
-    {
-      "name": "orderWithout_GivingNotice",
-      "value": "No"
     },
     {
       "name": "applicantRespondent_Relationship_01",
@@ -70,7 +62,7 @@
     },
     {
       "name": "applicantRespondent_PreviousMarried_Date",
-      "value": "2003-12-02"
+      "value": "2003-12-2"
     },
     {
       "name": "applicantRespondent_Relationship_10",
@@ -132,5 +124,6 @@
       "name": "needForParentalResponsiblity",
       "value": "Yes"
     }
-  ]
+  ],
+  "form_type": "FL401"
 }

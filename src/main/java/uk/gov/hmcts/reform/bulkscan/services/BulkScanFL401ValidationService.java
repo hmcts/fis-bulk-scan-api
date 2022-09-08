@@ -1,11 +1,10 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_RESPONDENT_RELATIONSHIP_DATE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_RESPONDENT_RELATIONSHIP_FIELDS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_RESPONDENT_RELATIONSHIP_NONE_ABOVE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.HYPHEN;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.INT_THREE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NUMERIC_MONTH_PATTERN;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.TEXT_MONTH_PATTERN;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_RESPONDENT_RELATIONSHIP_OPTIONS_FIELDS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.TEXT_AND_NUMERIC_MONTH_PATTERN;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.VALID_DATE_WARNING_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES;
 
@@ -15,11 +14,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.TreeMap;
-import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
-import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
 import uk.gov.hmcts.reform.bulkscan.model.Status;
 import uk.gov.hmcts.reform.bulkscan.utils.DateUtil;
 
@@ -27,10 +24,6 @@ import uk.gov.hmcts.reform.bulkscan.utils.DateUtil;
 public class BulkScanFL401ValidationService {
     private static final int NO_APPLICANT_RESPONDENT_RELATIONSHIP_COUNT = 0;
     private static final int EXPECTED_APPLICANT_RESPONDENT_RELATIONSHIP_COUNT = 1;
-    private static final String PRIMARY_APPLICANT_RESPONDENT_RELATIONSHIP_REGEX_FIELD =
-            "applicantRespondent_Relationship_0[1-9]";
-    private static final String SECONDARY_APPLICANT_RESPONDENT_RELATIONSHIP_REGEX_FIELD =
-            "applicantRespondent_Relationship_[1,2][0-9,0-3]";
 
     /**
      * This method will validate FL401 form, section 4. data.
@@ -44,15 +37,15 @@ public class BulkScanFL401ValidationService {
             BulkScanValidationResponse bulkScanValidationResponse) {
 
         if (null != ocrDataFieldsMap && !ocrDataFieldsMap.isEmpty()) {
-            Map<String, String> ocrPryApplicantRespondentRelationshipFieldsMap =
-                    getApplicantRespondentRelationshipFieldsMap(
-                            ocrDataFieldsMap,
-                            PRIMARY_APPLICANT_RESPONDENT_RELATIONSHIP_REGEX_FIELD);
-
-            Map<String, String> ocrSecApplicantRespondentRelationshipFieldsMap =
-                    getApplicantRespondentRelationshipFieldsMap(
-                            ocrDataFieldsMap,
-                            SECONDARY_APPLICANT_RESPONDENT_RELATIONSHIP_REGEX_FIELD);
+            final Map<String, String> ocrPryApplicantRespondentRelationshipFieldsMap =
+                    new TreeMap<>(
+                            getApplicantRespondentRelationshipFieldsMap(
+                                    ocrDataFieldsMap, APPLICANT_RESPONDENT_RELATIONSHIP_FIELDS));
+            final Map<String, String> ocrSecApplicantRespondentRelationshipFieldsMap =
+                    new TreeMap<>(
+                            getApplicantRespondentRelationshipFieldsMap(
+                                    ocrDataFieldsMap,
+                                    APPLICANT_RESPONDENT_RELATIONSHIP_OPTIONS_FIELDS));
 
             List<String> warningItems =
                     bulkScanValidationResponse.getWarnings().getItems() == null
@@ -85,9 +78,8 @@ public class BulkScanFL401ValidationService {
                         "4.4",
                         applicantRespondentRelationshipCounter(
                                 ocrSecApplicantRespondentRelationshipFieldsMap));
-            } else {
 
-                bulkScanValidationResponse.addWarning(
+                bulkScanValidationResponse.addErrors(
                         validateInputDate(
                                 ocrDataFieldsMap,
                                 "applicantRespondent_Relationship_StartDate",
@@ -107,6 +99,8 @@ public class BulkScanFL401ValidationService {
                                 "Previous Married"));
             }
         }
+
+        bulkScanValidationResponse.changeStatus();
 
         return bulkScanValidationResponse;
     }
@@ -160,12 +154,12 @@ public class BulkScanFL401ValidationService {
     }
 
     private boolean isValidRelationshipApplicantRespondent(
-            Map<String, String> ocrPryApplicantRespondentFieldsMap,
+            Map<String, String> ocrApplicantRespondentFieldsMap,
             String fieldName,
             String fieldValidationVal) {
 
-        return ocrPryApplicantRespondentFieldsMap.containsKey(fieldName)
-                && ocrPryApplicantRespondentFieldsMap
+        return ocrApplicantRespondentFieldsMap.containsKey(fieldName)
+                && ocrApplicantRespondentFieldsMap
                         .get(fieldName)
                         .equalsIgnoreCase(fieldValidationVal);
     }
@@ -192,7 +186,7 @@ public class BulkScanFL401ValidationService {
     private Map<String, String> getApplicantRespondentRelationshipFieldsMap(
             Map<String, String> ocrDataFields, String relationshipRegexField) {
 
-        Map<String, String> relationshipMap = new TreeMap<>();
+        TreeMap<String, String> relationshipMap = new TreeMap<>();
 
         if (null != ocrDataFields && !ocrDataFields.isEmpty()) {
             for (Map.Entry<String, String> applRespRelationFieldMap : ocrDataFields.entrySet()) {
@@ -212,49 +206,25 @@ public class BulkScanFL401ValidationService {
             String message,
             String fieldSummaryDescr) {
 
-        String dateInput = null;
-
-        if (null != ocrDataFieldsMap && !ocrDataFieldsMap.isEmpty()) {
-            if (ocrDataFieldsMap.containsKey(fieldName)
-                    && StringUtils.hasText(ocrDataFieldsMap.get(fieldName))) {
-                dateInput = ocrDataFieldsMap.get(fieldName);
-
-                return validateDate(
-                        Objects.requireNonNull(dateInput),
-                        String.format(message, fieldSummaryDescr));
-            }
+        if (null != ocrDataFieldsMap
+                && !ocrDataFieldsMap.isEmpty()
+                && ocrDataFieldsMap.containsKey(fieldName)
+                && StringUtils.hasText(ocrDataFieldsMap.get(fieldName))) {
+            return validateDate(
+                    Objects.requireNonNull(ocrDataFieldsMap.get(fieldName)),
+                    String.format(message, fieldSummaryDescr),
+                    TEXT_AND_NUMERIC_MONTH_PATTERN);
         }
         return Collections.emptyList();
     }
 
-    private List<String> validateDate(String dateFieldInput, String fieldName) {
+    private List<String> validateDate(String dateFieldInput, String fieldName, String datePattern) {
 
-        String pattern = NUMERIC_MONTH_PATTERN;
+        final boolean validateDate = DateUtil.validateDate(dateFieldInput, datePattern);
 
-        final String[] splitDate = dateFieldInput.split(String.valueOf(HYPHEN));
-
-        if (splitDate.length == INT_THREE) {
-            final String month = splitDate[1];
-
-            // IF month holds 3 characters then it could Jan, Feb etc.
-            // so check for MMM pattern
-            if (month.length() == INT_THREE) {
-                pattern = TEXT_MONTH_PATTERN;
-            }
-
-            final boolean validateDate = DateUtil.validateDate(dateFieldInput, pattern);
-
-            if (!validateDate) {
-                return List.of(String.format(VALID_DATE_WARNING_MESSAGE, fieldName));
-            }
+        if (!validateDate) {
+            return List.of(String.format(VALID_DATE_WARNING_MESSAGE, fieldName));
         }
         return Collections.emptyList();
-    }
-
-    private Map<String, String> getOcrDataFieldsMap(List<OcrDataField> ocrDataFields) {
-        return null != ocrDataFields
-                ? ocrDataFields.stream()
-                        .collect(Collectors.toMap(OcrDataField::getName, OcrDataField::getValue))
-                : null;
     }
 }

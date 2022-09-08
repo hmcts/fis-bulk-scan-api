@@ -18,11 +18,11 @@
     },
     {
       "name":"appellant_dateOfBirth",
-      "value":"20-07-1922"
+      "value":"20/07/1922"
     },
     {
       "name":"telephone_number",
-      "value":"+442088956B47"
+      "value":"+442088956847"
     },
     {
       "name": "applicantRespondent_Relationship_01",
@@ -59,6 +59,18 @@
     {
       "name": "applicantRespondent_Relationship_09",
       "value": "No"
+    },
+    {
+      "name": "applicantRespondent_Relationship_StartDate",
+      "value": "2002-Dec-02"
+    },
+    {
+      "name": "applicantRespondent_Relationship_EndDate",
+      "value": "2012-Dec-02"
+    },
+    {
+      "name": "applicantRespondent_PreviousMarried_Date",
+      "value": "2003-12-02"
     },
     {
       "name": "applicantRespondent_Relationship_10",

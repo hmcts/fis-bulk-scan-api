@@ -1,0 +1,17 @@
+uk:
+  gov:
+    hmcts:
+      transform:
+        caseTypeofApplication:
+          FL401:
+            caseFields:
+              CASE_TYPE_ID: PRLAPPS
+              EVENT_ID: create-case-privatelaw-bs
+            caseDataFields:
+              relationshipToRespondentTable:
+                applicantRelationship: applicantRespondent_Relationship_01
+                relationshipDateComplexStartDate: applicantRespondent_Relationship_StartDate
+                relationshipDateComplexEndDate: applicantRespondent_Relationship_EndDate
+                applicantRelationshipDate: applicantRespondent_PreviousMarried_Date
+                applicantRelationshipOptions: applicantRespondent_Relationship_10
+                needForParentalResponsibility: needForParentalResponsibility

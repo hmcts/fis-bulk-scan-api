@@ -6,4 +6,9 @@ uk:
           FL401:
             - groupRelationshipWithRespondent:
               dependentFields:
-                -
+                - applicantRespondent_Relationship_StartDate
+              dependentFieldValue: "*"
+              groupFieldName: applicantRespondent_Relationship_09
+              groupValidationValue: "Yes"
+              requiredFieldCount: 1
+              sectionName: "4.2 - Relationship Start Date cannot be null"

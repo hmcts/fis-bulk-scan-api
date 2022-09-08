@@ -172,6 +172,114 @@ class BulkScanFL401ValidationServiceTest {
                                         + " respondent"));
     }
 
+    @Test
+    @DisplayName(
+            "FL401 Non-compliant date formats should give StartDate Error and Warnings for End"
+                    + " Date.")
+    void testFL401NonCompliantDateFormatApplicantRespondentRelationshipStartDateError()
+            throws IOException {
+        BulkScanValidationRequest bulkScanValidationRequest =
+                mapper.readValue(
+                        readFileFrom(FL401_VALIDATION_REQUEST_PATH),
+                        BulkScanValidationRequest.class);
+
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                "applicantRespondent_Relationship_09"
+                                        .equalsIgnoreCase(eachField.getName()))
+                .forEach(field -> field.setValue("Yes"));
+
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                "applicantRespondent_Relationship_StartDate"
+                                        .equalsIgnoreCase(eachField.getName()))
+                .forEach(field -> field.setValue("2022-de-02"));
+
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                "applicantRespondent_Relationship_EndDate"
+                                        .equalsIgnoreCase(eachField.getName()))
+                .forEach(field -> field.setValue("2022-December-02"));
+
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                "applicantRespondent_PreviousMarried_Date"
+                                        .equalsIgnoreCase(eachField.getName()))
+                .forEach(field -> field.setValue("2022-Dec-02"));
+
+        Map<String, String> inputFieldsMap =
+                getOcrDataFieldsMap(bulkScanValidationRequest.getOcrdatafields());
+
+        bulkScanValidationResponse =
+                bulkScanFL401ValidationService.validateApplicantRespondentRelationhip(
+                        inputFieldsMap, bulkScanValidationResponse);
+        assertEquals(Status.ERRORS, bulkScanValidationResponse.status);
+        assertTrue(
+                bulkScanValidationResponse
+                        .getErrors()
+                        .getItems()
+                        .contains(
+                                "Please enter valid date for Applicant respondent relationship"
+                                        + " Start date"));
+        assertTrue(
+                bulkScanValidationResponse
+                        .getWarnings()
+                        .getItems()
+                        .contains(
+                                "Please enter valid date for Applicant respondent relationship End"
+                                        + " date"));
+    }
+
+    @Test
+    @DisplayName("FL401 When 'Non of the above' is chosen then valid dates should generate SUCCESS")
+    void testFL401CompliantDateFormatsForApplicantRespondentRelationshipsGiveSuccess()
+            throws IOException {
+        BulkScanValidationRequest bulkScanValidationRequest =
+                mapper.readValue(
+                        readFileFrom(FL401_VALIDATION_REQUEST_PATH),
+                        BulkScanValidationRequest.class);
+
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                "applicantRespondent_Relationship_09"
+                                        .equalsIgnoreCase(eachField.getName()))
+                .forEach(field -> field.setValue("No"));
+
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                "applicantRespondent_Relationship_StartDate"
+                                        .equalsIgnoreCase(eachField.getName()))
+                .forEach(field -> field.setValue("2002-dec-02"));
+
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                "applicantRespondent_Relationship_EndDate"
+                                        .equalsIgnoreCase(eachField.getName()))
+                .forEach(field -> field.setValue("2022-Dec-02"));
+
+        bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                                "applicantRespondent_PreviousMarried_Date"
+                                        .equalsIgnoreCase(eachField.getName()))
+                .forEach(field -> field.setValue("2003-12-02"));
+
+        Map<String, String> inputFieldsMap =
+                getOcrDataFieldsMap(bulkScanValidationRequest.getOcrdatafields());
+
+        bulkScanValidationResponse =
+                bulkScanFL401ValidationService.validateApplicantRespondentRelationhip(
+                        inputFieldsMap, bulkScanValidationResponse);
+        assertEquals(Status.SUCCESS, bulkScanValidationResponse.status);
+    }
+
     private Map<String, String> getOcrDataFieldsMap(List<OcrDataField> ocrDataFields) {
         return null != ocrDataFields
                 ? ocrDataFields.stream()

@@ -346,9 +346,13 @@ public final class BulkScanConstants {
     public static final String APPLICANT_RESPONDENT_RELATIONSHIP_NONE_ABOVE =
             "applicantRespondent_Relationship_09";
     public static final String VALID_DATE_WARNING_MESSAGE = "Please enter valid date for %s";
-    public static final String NUMERIC_MONTH_PATTERN = "uuuu-M-d";
-    public static final String TEXT_MONTH_PATTERN = "uuuu-MMM-d";
-    public static final char HYPHEN = '-';
+    public static final String TEXT_AND_NUMERIC_MONTH_PATTERN = "uuuu-[M][MM][MMM]-d";
+    public static final String TWO_DIGIT_MONTH_FORMAT = "uuuu-MM-dd";
+
+    public static final String APPLICANT_RESPONDENT_RELATIONSHIP_FIELDS =
+            "applicantRespondent_Relationship_0[1-9]";
+    public static final String APPLICANT_RESPONDENT_RELATIONSHIP_OPTIONS_FIELDS =
+            "applicantRespondent_Relationship_[1,2][0-9,0-3]";
 
     private static Map<String, String> getErrorMessageMap() {
         return Map.of(
