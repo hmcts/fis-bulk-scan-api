@@ -16,6 +16,12 @@ public final class BulkScanFl401Constants {
     public static final String DETERREDOR_PREVENTED = "deterredOrPrevented";
     public static final String DELIVERATELY_EVADING_SERVICE = "deliberatelyEvadingService";
     public static final String COMMA = ",";
-
+    public static final String ATTEND_HEARING_TABLE = "attendingTheHearingTable";
+    public static final String SPECIAL_MEASURE_AT_COURT_ROW_1 = "specialMeasureAtCourt_Row1";
+    public static final String SPECIAL_MEASURE_AT_COURT_ROW_2 = "specialMeasureAtCourt_Row2";
+    public static final String SPECIAL_MEASURE_AT_COURT_ROW_3 = "specialMeasureAtCourt_Row3";
+    public static final String SPECIAL_MEASURE_AT_COURT_ROW_4 = "specialMeasureAtCourt_Row4";
+    public static final String SPECIAL_MEASURE_AT_COURT = "specialMeasureAtCourt";
+    public static final String SPACE = "";
     private BulkScanFl401Constants() {}
 }

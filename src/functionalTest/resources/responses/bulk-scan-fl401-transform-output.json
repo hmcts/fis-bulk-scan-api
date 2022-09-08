@@ -6,6 +6,20 @@
       "applicationTypeDetails": {
         "typesOfApplication": "01234567891"
       },
+      "attendingTheHearingTable": {
+        "isInterpreterNeeded": "Yes",
+        "isDisabilityPresent": "john@gmail.com",
+        "adjustmentsRequired": "john@gmail.com",
+        "specialMeasureAtCourt": "Measure1,Measure2,Measure4,",
+        "interpreterNeeds": [
+          {
+            "value": {
+              "language": "john@gmail.com",
+              "dialect": "john@gmail.com"
+            }
+          }
+        ]
+      },
       "fl401RespondentTable": [
         {
           "value": {

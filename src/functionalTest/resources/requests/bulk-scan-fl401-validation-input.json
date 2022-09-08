@@ -71,6 +71,41 @@
     {
       "name": "orderWithout_GivingNotice",
       "value": "No"
+    },{
+      "name":"interpreterNeededAtCourt",
+      "value":"Yes"
+    },
+    {
+      "name":"interpreterNeededAtCourt_Language",
+      "value":"john@gmail.com"
+    },
+    {
+      "name":"interpreterNeededAtCourt_Dialect",
+      "value":"john@gmail.com"
+    },
+    {
+      "name":"disabilitySupport_NeededAtCourt",
+      "value":"john@gmail.com"
+    },
+    {
+      "name":"disabilitySupport_details",
+      "value":"john@gmail.com"
+    },
+    {
+      "name":"specialMeasureAtCourt_Row1",
+      "value":"john@gmail.com"
+    },
+    {
+      "name":"specialMeasureAtCourt_Row2",
+      "value":"john@gmail.com"
+    },
+    {
+      "name":"specialMeasureAtCourt_Row3",
+      "value":"john@gmail.com"
+    },
+    {
+      "name":"specialMeasureAtCourt_Row4",
+      "value":"john@gmail.com"
     }
   ]
 }
