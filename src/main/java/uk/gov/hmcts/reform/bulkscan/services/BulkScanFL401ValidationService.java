@@ -47,16 +47,8 @@ public class BulkScanFL401ValidationService {
                                     ocrDataFieldsMap,
                                     APPLICANT_RESPONDENT_RELATIONSHIP_OPTIONS_FIELDS));
 
-            List<String> warningItems =
-                    bulkScanValidationResponse.getWarnings().getItems() == null
-                                    || bulkScanValidationResponse.getWarnings().getItems().isEmpty()
-                            ? new ArrayList<>()
-                            : bulkScanValidationResponse.getWarnings().getItems();
-            List<String> errorItems =
-                    bulkScanValidationResponse.getWarnings().getItems() == null
-                                    || bulkScanValidationResponse.getWarnings().getItems().isEmpty()
-                            ? new ArrayList<>()
-                            : bulkScanValidationResponse.getErrors().getItems();
+            List<String> warningItems = new ArrayList<>();
+            List<String> errorItems = new ArrayList<>();
 
             setApplicantRespondentErrorWarningMsg(
                     bulkScanValidationResponse,
@@ -200,7 +192,7 @@ public class BulkScanFL401ValidationService {
         return relationshipMap;
     }
 
-    public List<String> validateInputDate(
+    private List<String> validateInputDate(
             Map<String, String> ocrDataFieldsMap,
             String fieldName,
             String message,

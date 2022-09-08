@@ -48,6 +48,8 @@ public class BulkScanFL401Service implements BulkScanService {
 
     @Autowired BulkScanTransformConfigManager transformConfigManager;
 
+    @Autowired BulkScanFL401ValidationService bulkScanFL401ValidationService;
+
     @Autowired
     BulkScanFL401ConditionalTransformerService bulkScanFL401ConditionalTransformerService;
 
@@ -72,6 +74,11 @@ public class BulkScanFL401Service implements BulkScanService {
                         ocrDataFields,
                         RESPONDENT_BAIL_CONDITIONS_ENDDATE,
                         BAIL_CONDITION_END_DATE_MESSAGE));
+
+        bulkScanFL401ValidationService.validateApplicantRespondentRelationhip(
+                inputFieldMap, response);
+
+        response.changeStatus();
 
         return response;
     }

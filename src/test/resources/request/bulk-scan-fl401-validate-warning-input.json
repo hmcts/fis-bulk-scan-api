@@ -5,6 +5,10 @@
       "value": "01/01/1994"
     },
     {
+      "name": "applicantRespondent_Relationship_01",
+      "value": "Yes"
+    },
+    {
       "name": "applicant_firstName",
       "value": "Johnny"
     },
