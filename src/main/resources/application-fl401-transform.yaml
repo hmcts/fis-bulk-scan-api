@@ -38,3 +38,12 @@ uk:
                 isRespondentAlreadyInBailCondition: respondentBailConditions
                 bailConditionEndDate: respondent_BailConditionsEndDate
                 furtherDetails: situationCourtToKnow
+              attendingTheHearingTable:
+                isInterpreterNeeded: interpreterNeededAtCourt
+                isDisabilityPresent: disabilitySupport_NeededAtCourt
+                adjustmentsRequired: disabilitySupport_details
+                specialMeasureAtCourt: specialMeasureAtCourt_Row1
+                interpreterNeeds:
+                  - value:
+                      language: interpreterNeededAtCourt_Language
+                      dialect: interpreterNeededAtCourt_Dialect
