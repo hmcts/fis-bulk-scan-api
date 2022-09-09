@@ -23,5 +23,6 @@ public final class BulkScanFl401Constants {
     public static final String SPECIAL_MEASURE_AT_COURT_ROW_4 = "specialMeasureAtCourt_Row4";
     public static final String SPECIAL_MEASURE_AT_COURT = "specialMeasureAtCourt";
     public static final String SPACE = "";
+
     private BulkScanFl401Constants() {}
 }

@@ -99,6 +99,37 @@
     {
       "name": "situationCourtToKnow",
       "value": "XYZ"
+    },{
+      "name":"interpreterNeededAtCourt",
+      "value":"Yes"
+    },
+    {
+      "name":"interpreterNeededAtCourt_Language",
+      "value":"john@gmail.com"
+    },
+    {
+      "name":"interpreterNeededAtCourt_Dialect",
+      "value":"john@gmail.com"
+    },
+    {
+      "name":"disabilitySupport_NeededAtCourt",
+      "value":"john@gmail.com"
+    },
+    {
+      "name":"disabilitySupport_details",
+      "value":"john@gmail.com"
+    },
+    {
+      "name":"specialMeasureAtCourt_Row1",
+      "value":"Measure1"
+    },
+    {
+      "name":"specialMeasureAtCourt_Row2",
+      "value":"Measure2"
+    },
+    {
+      "name":"specialMeasureAtCourt_Row4",
+      "value":"Measure4"
     }
   ],
   "scanned_documents": [
