@@ -14,7 +14,7 @@ uk:
             optionalFields:
               - respondentFirstName
               - respondentLastName
-              - previousName
+              - respondentPreviousNames
               - respondentDoB
               - respondent_LiveWithApplicant
               - respondent_Address_BuildingAndStreet
@@ -29,10 +29,12 @@ uk:
               - deterredOrPrevented
               - deliberatelyEvadingService
               - orderWithoutGivingNotice_moreReason
+              -
               - respondentBailConditions
               - respondent_BailConditionsEndDate
               - situationCourtToKnow
-              - ApplyingForOccupationOrder
+              -
+              - applyingForOccupationOrder
               - occupationOrderAddress_BuildingAndStreet
               - occupationOrderAddress_SecondLine
               - occupationOrderAddress_TownOrCity

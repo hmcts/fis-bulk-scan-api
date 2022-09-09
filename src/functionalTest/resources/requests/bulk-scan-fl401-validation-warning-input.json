@@ -21,7 +21,7 @@
       "value":"0908776545"
     },
     {
-      "name":"ApplyingForOccupationOrder",
+      "name":"applyingForOccupationOrder",
       "value":"JohnTown"
     },
     {
@@ -230,7 +230,7 @@
     },
     {
       "name":"respondentDoB",
-      "value":"2022/12/04"
+      "value":"2022-12-04"
     },
     {
       "name":"respondent_LiveWithApplicant",
@@ -266,7 +266,7 @@
     },
     {
       "name": "orderApplyingFor",
-      "value": "01234567891"
+      "value": "Non-molestation order"
     },
     {
       "name": "orderWithout_GivingNotice",
