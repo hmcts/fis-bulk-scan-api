@@ -347,6 +347,19 @@ public final class BulkScanConstants {
             "applicantRespondent_Relationship_0[1-9]";
     public static final String APPLICANT_RESPONDENT_RELATIONSHIP_OPTIONS_FIELDS =
             "applicantRespondent_Relationship_[1,2][0-9,0-3]";
+    public static final String APPLICANT_MUST_HAVE_RELATIONSHIP_MESSAGE =
+            "Section %s - Applicant must have a relationship with the respondent";
+
+    public static final String APPLICANT_HAS_MORETHAN_ONE_RELATIONSHIP_MESSAGE =
+            "Section %s - Applicant has more than one relationship with the respondent";
+
+    public static final String FL401_RELATIONSHIP_TO_RESPONDENT_SECTION = "4.1";
+    public static final String FL401_RESPONDENT_RELATIONSHIP_TO_YOU_SECTION = "4.4";
+    public static final int NO_APPLICANT_RESPONDENT_RELATIONSHIP_COUNT = 0;
+    public static final int EXPECTED_APPLICANT_RESPONDENT_RELATIONSHIP_MINIMUM_COUNT = 1;
+    public static final String FIELD_SUMMARY_START = "Start";
+    public static final String FIELD_SUMMARY_END = "End";
+    public static final String FIELD_SUMMARY_PREVIOUS_MARRIED = "Previous Married";
 
     public static final String RESPONDENT_RELATIONSHIP_START_DATE_FIELD =
             "applicantRespondent_Relationship_StartDate";

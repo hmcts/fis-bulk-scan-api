@@ -1,9 +1,18 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_HAS_MORETHAN_ONE_RELATIONSHIP_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_MUST_HAVE_RELATIONSHIP_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_RESPONDENT_OTHER_RELATIONSHIP_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_RESPONDENT_RELATIONSHIP_DATE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_RESPONDENT_RELATIONSHIP_FIELDS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_RESPONDENT_RELATIONSHIP_OPTIONS_FIELDS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EXPECTED_APPLICANT_RESPONDENT_RELATIONSHIP_MINIMUM_COUNT;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FIELD_SUMMARY_END;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FIELD_SUMMARY_PREVIOUS_MARRIED;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FIELD_SUMMARY_START;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FL401_RELATIONSHIP_TO_RESPONDENT_SECTION;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FL401_RESPONDENT_RELATIONSHIP_TO_YOU_SECTION;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NO_APPLICANT_RESPONDENT_RELATIONSHIP_COUNT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_PREVIOUS_MARRIED_DATE_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_RELATIONSHIP_END_DATE_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_RELATIONSHIP_START_DATE_FIELD;
@@ -25,11 +34,6 @@ import uk.gov.hmcts.reform.bulkscan.utils.DateUtil;
 
 @Service
 public class BulkScanFL401ValidationService {
-    private static final int NO_APPLICANT_RESPONDENT_RELATIONSHIP_COUNT = 0;
-    private static final int EXPECTED_APPLICANT_RESPONDENT_RELATIONSHIP_COUNT = 1;
-    private static final String FIELD_SUMMARY_START = "Start";
-    private static final String FIELD_SUMMARY_END = "End";
-    private static final String FIELD_SUMMARY_PREVIOUS_MARRIED = "Previous Married";
 
     /**
      * This method will validate FL401 form, section 4. data.
@@ -60,7 +64,7 @@ public class BulkScanFL401ValidationService {
                     bulkScanValidationResponse,
                     warningItems,
                     errorItems,
-                    "4.1",
+                    FL401_RELATIONSHIP_TO_RESPONDENT_SECTION,
                     applicantRespondentRelationshipCounter(
                             ocrPryApplicantRespondentRelationshipFieldsMap));
 
@@ -73,24 +77,24 @@ public class BulkScanFL401ValidationService {
                         bulkScanValidationResponse,
                         warningItems,
                         errorItems,
-                        "4.4",
+                        FL401_RESPONDENT_RELATIONSHIP_TO_YOU_SECTION,
                         applicantRespondentRelationshipCounter(
                                 ocrSecApplicantRespondentRelationshipFieldsMap));
 
                 bulkScanValidationResponse.addErrors(
-                        validateInputDate(
+                        validateInputDateWithFieldSummary(
                                 ocrDataFieldsMap,
                                 RESPONDENT_RELATIONSHIP_START_DATE_FIELD,
                                 APPLICANT_RESPONDENT_RELATIONSHIP_DATE,
                                 FIELD_SUMMARY_START));
                 bulkScanValidationResponse.addWarning(
-                        validateInputDate(
+                        validateInputDateWithFieldSummary(
                                 ocrDataFieldsMap,
                                 RESPONDENT_RELATIONSHIP_END_DATE_FIELD,
                                 APPLICANT_RESPONDENT_RELATIONSHIP_DATE,
                                 FIELD_SUMMARY_END));
                 bulkScanValidationResponse.addWarning(
-                        validateInputDate(
+                        validateInputDateWithFieldSummary(
                                 ocrDataFieldsMap,
                                 RESPONDENT_PREVIOUS_MARRIED_DATE_FIELD,
                                 APPLICANT_RESPONDENT_RELATIONSHIP_DATE,
@@ -109,14 +113,11 @@ public class BulkScanFL401ValidationService {
             List<String> errorItems,
             String sectionName,
             int relationshipCounter) {
-        if (relationshipCounter > EXPECTED_APPLICANT_RESPONDENT_RELATIONSHIP_COUNT) {
+        if (relationshipCounter > EXPECTED_APPLICANT_RESPONDENT_RELATIONSHIP_MINIMUM_COUNT) {
             setErrorWarningMsg(
                     bulkScanValidationResponse,
                     warningItems,
-                    String.format(
-                            "Section %s - Applicant has more than one relationship with the"
-                                    + " respondent",
-                            sectionName),
+                    String.format(APPLICANT_HAS_MORETHAN_ONE_RELATIONSHIP_MESSAGE, sectionName),
                     Status.WARNINGS);
         }
 
@@ -124,10 +125,7 @@ public class BulkScanFL401ValidationService {
             setErrorWarningMsg(
                     bulkScanValidationResponse,
                     errorItems,
-                    String.format(
-                            "Section %s - Applicant must have a relationship with the "
-                                    + "respondent",
-                            sectionName),
+                    String.format(APPLICANT_MUST_HAVE_RELATIONSHIP_MESSAGE, sectionName),
                     Status.ERRORS);
         }
     }
@@ -198,7 +196,7 @@ public class BulkScanFL401ValidationService {
         return relationshipMap;
     }
 
-    private List<String> validateInputDate(
+    private List<String> validateInputDateWithFieldSummary(
             Map<String, String> ocrDataFieldsMap,
             String fieldName,
             String message,
