@@ -18,7 +18,7 @@
         "isInterpreterNeeded": "Yes",
         "isDisabilityPresent": "john@gmail.com",
         "adjustmentsRequired": "john@gmail.com",
-        "specialMeasureAtCourt": "Measure1,Measure2,Measure4,",
+        "specialMeasureAtCourt": "Measure1,Measure2,Measure4",
         "interpreterNeeds": [
           {
             "value": {

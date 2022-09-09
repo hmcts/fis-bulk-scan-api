@@ -56,6 +56,7 @@ import com.microsoft.applicationinsights.core.dependencies.google.gson.internal.
 import java.util.Map;
 import java.util.TreeMap;
 import org.springframework.stereotype.Component;
+import uk.gov.hmcts.reform.bulkscan.enums.ApplicantRespondentRelationshipEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.OrderWithouGivingNoticeReasonEnum;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
 import uk.gov.hmcts.reform.bulkscan.utils.DateUtil;
@@ -155,7 +156,7 @@ public class BulkScanFL401ConditionalTransformerService {
         }
 
         populatedMap.put(SCAN_DOCUMENTS, transformScanDocuments(bulkScanTransformationRequest));
-        
+
         LinkedTreeMap attendHearingTableMap =
                 (LinkedTreeMap) populatedMap.get(ATTEND_HEARING_TABLE);
 
@@ -257,46 +258,110 @@ public class BulkScanFL401ConditionalTransformerService {
         TreeMap<String, String> relationshipFieldMap = new TreeMap<>();
 
         relationshipFieldMap.put(
-                RESPONDENT_MARRIED_CIVIL_RELATIONSHIP_FIELD, "Married or in a civil partnership");
+                RESPONDENT_MARRIED_CIVIL_RELATIONSHIP_FIELD,
+                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_01
+                        .getRelationshipDescription());
         relationshipFieldMap.put(
                 RESPONDENT_FORMERLY_MARRIED_CIVIL_RELATIONSHIP_FIELD,
-                "Formerly married or in a civil partnership");
+                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_02
+                        .getRelationshipDescription());
         relationshipFieldMap.put(
                 RESPONDENT_ENGAGED_PROPOSED_CIVIL_RELATIONSHIP_FIELD,
-                "Engaged or proposed civil partnership");
+                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_03
+                        .getRelationshipDescription());
         relationshipFieldMap.put(
                 RESPONDENT_FORMERLY_ENGAGED_PROPOSED_CIVIL_RELATIONSHIP_FIELD,
-                "Formerly engaged or proposed civil partnership");
+                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_04
+                        .getRelationshipDescription());
         relationshipFieldMap.put(
-                RESPONDENT_LIVE_TOGETHER_AS_COUPLE_FIELD, "Live together as a couple");
+                RESPONDENT_LIVE_TOGETHER_AS_COUPLE_FIELD,
+                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_05
+                        .getRelationshipDescription());
         relationshipFieldMap.put(
                 RESPONDENT_FORMERLY_LIVE_TOGETHER_AS_COUPLE_FIELD,
-                "Formerly lived together as a couple");
+                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_06
+                        .getRelationshipDescription());
         relationshipFieldMap.put(
                 RESPONDENT_BOY_GIRL_FRIEND_PARTNER_LIVEWITHME_FIELD,
-                "Boyfriend, girlfriend or partner who does not live with me");
+                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_07
+                        .getRelationshipDescription());
         relationshipFieldMap.put(
                 RESPONDENT_FORMER_BOY_GIRL_FRIEND_PARTNER_LIVEWITHME_FIELD,
-                "Former boyfriend, girlfriend or partner who did not live with me");
+                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_08
+                        .getRelationshipDescription());
         relationshipFieldMap.put(
-                APPLICANT_RESPONDENT_OTHER_RELATIONSHIP_FIELD, "None of the above");
-        relationshipFieldMap.put(APPLICANT_RESPONDENT_FATHER_RELATIONSHIP_FIELD, "Father");
-        relationshipFieldMap.put(APPLICANT_RESPONDENT_MOTHER_RELATIONSHIP_FIELD, "Mother");
-        relationshipFieldMap.put(APPLICANT_RESPONDENT_SON_RELATIONSHIP_FIELD, "Son");
-        relationshipFieldMap.put(APPLICANT_RESPONDENT_DAUGHTER_RELATIONSHIP_FIELD, "Daughter");
-        relationshipFieldMap.put(APPLICANT_RESPONDENT_BROTHER_RELATIONSHIP_FIELD, "Brother");
-        relationshipFieldMap.put(APPLICANT_RESPONDENT_SISTER_RELATIONSHIP_FIELD, "Sister");
+                APPLICANT_RESPONDENT_OTHER_RELATIONSHIP_FIELD,
+                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_09
+                        .getRelationshipDescription());
+
         relationshipFieldMap.put(
-                APPLICANT_RESPONDENT_GRANDFATHER_RELATIONSHIP_FIELD, "Grandfather");
+                APPLICANT_RESPONDENT_FATHER_RELATIONSHIP_FIELD,
+                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_10
+                        .getRelationshipDescription());
+
         relationshipFieldMap.put(
-                APPLICANT_RESPONDENT_GRANDMOTHER_RELATIONSHIP_FIELD, "Grandmother");
-        relationshipFieldMap.put(APPLICANT_RESPONDENT_UNCLE_RELATIONSHIP_FIELD, "Uncle");
-        relationshipFieldMap.put(APPLICANT_RESPONDENT_AUNT_RELATIONSHIP_FIELD, "Aunt");
-        relationshipFieldMap.put(APPLICANT_RESPONDENT_NEPHEW_RELATIONSHIP_FIELD, "Nephew");
-        relationshipFieldMap.put(APPLICANT_RESPONDENT_NIECE_RELATIONSHIP_FIELD, "Niece");
-        relationshipFieldMap.put(APPLICANT_RESPONDENT_COUSIN_RELATIONSHIP_FIELD, "Cousin");
+                APPLICANT_RESPONDENT_MOTHER_RELATIONSHIP_FIELD,
+                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_11
+                        .getRelationshipDescription());
+
         relationshipFieldMap.put(
-                APPLICANT_RESPONDENT_OTHER_SPECIFY_RELATIONSHIP_FIELD, "Other - please specify");
+                APPLICANT_RESPONDENT_SON_RELATIONSHIP_FIELD,
+                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_12
+                        .getRelationshipDescription());
+
+        relationshipFieldMap.put(
+                APPLICANT_RESPONDENT_DAUGHTER_RELATIONSHIP_FIELD,
+                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_13
+                        .getRelationshipDescription());
+
+        relationshipFieldMap.put(
+                APPLICANT_RESPONDENT_BROTHER_RELATIONSHIP_FIELD,
+                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_14
+                        .getRelationshipDescription());
+        relationshipFieldMap.put(
+                APPLICANT_RESPONDENT_SISTER_RELATIONSHIP_FIELD,
+                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_15
+                        .getRelationshipDescription());
+
+        relationshipFieldMap.put(
+                APPLICANT_RESPONDENT_GRANDFATHER_RELATIONSHIP_FIELD,
+                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_16
+                        .getRelationshipDescription());
+
+        relationshipFieldMap.put(
+                APPLICANT_RESPONDENT_GRANDMOTHER_RELATIONSHIP_FIELD,
+                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_17
+                        .getRelationshipDescription());
+
+        relationshipFieldMap.put(
+                APPLICANT_RESPONDENT_UNCLE_RELATIONSHIP_FIELD,
+                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_18
+                        .getRelationshipDescription());
+
+        relationshipFieldMap.put(
+                APPLICANT_RESPONDENT_AUNT_RELATIONSHIP_FIELD,
+                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_19
+                        .getRelationshipDescription());
+
+        relationshipFieldMap.put(
+                APPLICANT_RESPONDENT_NEPHEW_RELATIONSHIP_FIELD,
+                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_20
+                        .getRelationshipDescription());
+
+        relationshipFieldMap.put(
+                APPLICANT_RESPONDENT_NIECE_RELATIONSHIP_FIELD,
+                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_21
+                        .getRelationshipDescription());
+
+        relationshipFieldMap.put(
+                APPLICANT_RESPONDENT_COUSIN_RELATIONSHIP_FIELD,
+                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_22
+                        .getRelationshipDescription());
+
+        relationshipFieldMap.put(
+                APPLICANT_RESPONDENT_OTHER_SPECIFY_RELATIONSHIP_FIELD,
+                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_23
+                        .getRelationshipDescription());
 
         return relationshipFieldMap;
     }

@@ -73,6 +73,9 @@ public class BulkScanFL401ValidationService {
                             .get(APPLICANT_RESPONDENT_OTHER_RELATIONSHIP_FIELD)
                             .equalsIgnoreCase(YES)) {
 
+                warningItems = new ArrayList<>();
+                errorItems = new ArrayList<>();
+
                 setApplicantRespondentErrorWarningMsg(
                         bulkScanValidationResponse,
                         warningItems,
