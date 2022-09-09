@@ -59,6 +59,15 @@ uk:
               - respondentBailConditions
               - respondent_BailConditionsEndDate
               - situationCourtToKnow
+              - interpreterNeededAtCourt
+              - interpreterNeededAtCourt_Language
+              - interpreterNeededAtCourt_Dialect
+              - disabilitySupport_NeededAtCourt
+              - disabilitySupport_details
+              - specialMeasureAtCourt_Row1
+              - specialMeasureAtCourt_Row2
+              - specialMeasureAtCourt_Row3
+              - specialMeasureAtCourt_Row4
             regexValidationFields:
               dateFields:
                 fieldNames:

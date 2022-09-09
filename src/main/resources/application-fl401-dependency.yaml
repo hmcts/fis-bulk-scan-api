@@ -30,3 +30,21 @@ uk:
               groupValidationValue: "Yes"
               requiredFieldCount: 1
               sectionName: "1.6 - When do the bail conditions end?"
+            - goingToCourt:
+              dependentFields:
+                  - disabilitySupport_details
+              dependentFieldValue: "*"
+              groupFieldName: disabilitySupport_NeededAtCourt
+              groupValidationValue: "Yes"
+              requiredFieldCount: 1
+              sectionName: "8 - going To Court"
+            - interpreterNeededAtCourt:
+              dependentFields:
+                - interpreterNeededAtCourt_Language
+                - interpreterNeededAtCourt_Dialect
+              dependentFieldValue: "*"
+              groupFieldName: interpreterNeededAtCourt
+              groupValidationValue: "Yes"
+              requiredFieldCount: 1
+              sectionName: "8 - going To Court"
+
