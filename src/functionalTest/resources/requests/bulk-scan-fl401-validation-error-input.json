@@ -1,28 +1,56 @@
 {
-  "ocr_data_fields": [
+  "ocr_data_fields":[
     {
-      "name": "appellant_firstName",
-      "value": "sfgsfdf"
+      "name":"applicant1_dateOfBirth",
+      "value":"01/01/1994"
     },
     {
-      "name": "appellant_lastName",
-      "value": "Smith"
+      "name":"respondentFirstName",
+      "value":"John"
     },
     {
-      "name": "appellant_address",
-      "value": "Arizona"
+      "name":"respondentLastName",
+      "value":"Maxwell"
     },
     {
-      "name": "telephone_number",
-      "value": "01234567891"
+      "name":"previousName",
+      "value":"previousName"
     },
     {
-      "name": "orderWithoutGivingNoticeReason",
-      "value": "sdf"
+      "name":"respondentDoB",
+      "value":"2022/12/04"
     },
     {
-      "name": "respondentBailConditions",
-      "value": "Yes"
+      "name":"respondent_LiveWithApplicant",
+      "value":"yes"
+    },
+    {
+      "name":"respondent_Address_BuildingAndStreet",
+      "value":"123 Harley St."
+    },
+    {
+      "name":"respondent_Address_SecondLine",
+      "value":"Vox Rd"
+    },
+    {
+      "name":"respondent_Address_TownOrCity",
+      "value":"Blighty"
+    },
+    {
+      "name":"respondent_Address_County",
+      "value":"UK"
+    },
+    {
+      "name":"respondent_Address_Postcode",
+      "value":"respondent_Address_Postcode"
+    },
+    {
+      "name":"respondent_PhoneNumber",
+      "value":"09866534424"
+    },
+    {
+      "name":"respondent_Email",
+      "value":"john@gmail.com"
     }
   ]
 }

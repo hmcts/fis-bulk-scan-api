@@ -39,4 +39,16 @@ uk:
               groupValidationValue: "Yes"
               requiredFieldCount: 1
               sectionName: "8 - going To Court"
-
+            - contactDetails:
+              dependentFields:
+                - applicant_Address_BuildingAndStreet
+                - applicant_Address_TownOrCity
+                - applicant_Address_Postcode
+                - applicant_PhoneNumber
+                - applicant_Email
+                - applicant_PreferToBeContacted
+              dependentFieldValue: "*"
+              groupFieldName: applicantContact_Confidentiality
+              groupValidationValue: "No"
+              requiredFieldCount: 6
+              sectionName: "2 - your details"

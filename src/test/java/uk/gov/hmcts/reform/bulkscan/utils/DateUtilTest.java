@@ -5,37 +5,21 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
-public class DateUtilTest {
-
-    @Test
-    public void testDate() {
-
-        String dateStr = "2023-Feb-28";
-
-        String pattern = "uuuu-MMM-d";
-
-        assertTrue(DateUtil.validateDate(dateStr, pattern));
-    }
+class DateUtilTest {
 
     @Test
-    public void testDateWithNumericMonth() {
+    @ParameterizedTest
+    @CsvSource({
+        "2023-Feb-28,  uuuu-[M][MM][MMM]-d",
+        "2023-02-28, uuuu-[M][MM][MMM]-d",
+        "2023-feb-28,  uuuu-[M][MM][MMM]-d"
+    })
+    void testDateWithDifferentInput(String dateStr, String pattern) {
 
         // Below pattern will accept feb, 01 and 1 as month
-
-        String dateStr = "2023-01-28";
-
-        String pattern = "uuuu-[M][MM][MMM]-d";
-
-        assertTrue(DateUtil.validateDate(dateStr, pattern));
-    }
-
-    @Test
-    public void testDateValidMonthLowerCase() {
-
-        String dateStr = "2023-feb-28";
-
-        String pattern = "uuuu-MMM-d";
 
         assertTrue(DateUtil.validateDate(dateStr, pattern));
     }

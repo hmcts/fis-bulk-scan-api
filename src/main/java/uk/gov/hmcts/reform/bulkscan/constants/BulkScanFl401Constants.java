@@ -23,6 +23,9 @@ public final class BulkScanFl401Constants {
     public static final String SPECIAL_MEASURE_AT_COURT_ROW_4 = "specialMeasureAtCourt_Row4";
     public static final String SPECIAL_MEASURE_AT_COURT = "specialMeasureAtCourt";
     public static final String SPACE = "";
+    public static final String APPLICANT_ADDRESS_POSTCODE = "applicant_Address_Postcode";
+    public static final String APPLICANT_DATE_OF_BIRTH = "applicantDateOfBirth";
+    public static final String APPLICANT_DATE_OF_BIRTH_MESSAGE = "Applicant date of birth";
 
     private BulkScanFl401Constants() {}
 }
