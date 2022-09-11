@@ -12,7 +12,11 @@
       "applicant_address is missing",
       "telephone_number is missing",
       "orderApplyingFor is missing",
-      "orderWithout_GivingNotice is missing"
+      "orderWithout_GivingNotice is missing",
+      "applicantFirstName is missing",
+      "applicantLastName is missing",
+      "applicantDateOfBirth is missing",
+      "applicantContact_Confidentiality is missing"
     ]
   }
 }

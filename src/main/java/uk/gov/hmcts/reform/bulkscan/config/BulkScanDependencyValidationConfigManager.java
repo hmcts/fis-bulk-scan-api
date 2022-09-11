@@ -30,6 +30,7 @@ public class BulkScanDependencyValidationConfigManager {
         String groupValidationValue;
         String requiredFieldCount;
         String sectionName;
+        List<String> postCodeFields;
     }
 
     public List<GroupDependencyConfig> getGroupDependencyValidationConfig(FormType formType) {
