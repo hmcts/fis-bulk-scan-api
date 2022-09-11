@@ -71,6 +71,22 @@
     {
       "name": "orderWithout_GivingNotice",
       "value": "No"
+    },
+    {
+      "name": "applicantFirstName",
+      "value": "testfirstname"
+    },
+    {
+      "name": "applicantLastName",
+      "value": "testLastname"
+    },
+    {
+      "name": "applicantDateOfBirth",
+      "value": "1995-02-25"
+    },
+    {
+      "name": "applicantContact_Confidentiality",
+      "value": "Yes"
     }
   ]
 }

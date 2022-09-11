@@ -16,6 +16,9 @@ public final class BulkScanFl401Constants {
     public static final String DETERREDOR_PREVENTED = "deterredOrPrevented";
     public static final String DELIVERATELY_EVADING_SERVICE = "deliberatelyEvadingService";
     public static final String COMMA = ",";
+    public static final String APPLICANT_ADDRESS_POSTCODE = "applicant_Address_Postcode";
+    public static final String APPLICANT_DATE_OF_BIRTH = "applicantDateOfBirth";
+    public static final String APPLICANT_DATE_OF_BIRTH_MESSAGE = "Applicant date of birth";
 
     private BulkScanFl401Constants() {}
 }

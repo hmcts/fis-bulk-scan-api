@@ -11,6 +11,10 @@ uk:
               - telephone_number
               - orderApplyingFor
               - orderWithout_GivingNotice
+              - applicantFirstName
+              - applicantLastName
+              - applicantDateOfBirth
+              - applicantContact_Confidentiality
             optionalFields:
               - respondentFirstName
               - respondentLastName
@@ -32,6 +36,30 @@ uk:
               - respondentBailConditions
               - respondent_BailConditionsEndDate
               - situationCourtToKnow
+              - applicantPreviousNames
+              - applicantDateOfBirth
+              - applicantContact_Confidentiality
+              - applicant_Address_BuildingAndStreet
+              - applicant_Address_SecondLine
+              - applicant_Address_TownOrCity
+              - applicant_Address_County
+              - applicant_Address_Postcode
+              - applicant_PhoneNumber
+              - applicant_Email
+              - applicant_PreferToBeContacted
+              - applicant_ContactInstructions
+              - applicant_LegalRepresenationNeeded
+              - applicant_SolicitorName
+              - applicant_Solicitor_FirmName
+              - applicant_Solicitor_Address_BuildingAndStreet
+              - applicant_Solicitor_Address_SecondLine
+              - applicant_Solicitor_Address_TownOrCity
+              - applicant_Solicitor_Address_County
+              - applicant_Solicitor_Address_Postcode
+              - applicant_Solicitor_DXNumber
+              - applicant_Solicitor_PhoneNumber
+              - applicant_Solicitor_EmailAddress
+              - applicant_Solicitor_Reference
             regexValidationFields:
               dateFields:
                 fieldNames:
