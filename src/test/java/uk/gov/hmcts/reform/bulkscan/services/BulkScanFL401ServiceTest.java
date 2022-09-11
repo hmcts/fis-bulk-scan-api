@@ -1,7 +1,9 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
-import static uk.gov.hmcts.reform.bulkscan.utils.TestDataC100Util.POST_CODE;
+import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.EMPTY_STRING;
 import static uk.gov.hmcts.reform.bulkscan.utils.TestResourceUtil.readFileFrom;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -14,8 +16,11 @@ import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.HttpStatus;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
+import org.springframework.web.client.HttpClientErrorException;
+import uk.gov.hmcts.reform.bulkscan.exception.PostCodeValidationException;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
@@ -57,7 +62,7 @@ class BulkScanFL401ServiceTest {
     private static final String FL401_VALIDATE_WARNING_RESPONSE_PATH =
             "classpath:response/bulk-scan-fl401-validate-warning-output.json";
 
-    public static final String POST_CODE = "cv2 a4nz";
+    public static final String INVALID_POST_CODE = "cv2 A4nz";
 
     @Test
     @DisplayName("FL401 transform success.")
@@ -107,7 +112,27 @@ class BulkScanFL401ServiceTest {
                         readFileFrom(FL401_VALIDATE_WARNING_REQUEST_PATH),
                         BulkScanValidationRequest.class);
 
-        when(postcodeLookupService.isValidPostCode(POST_CODE, null)).thenReturn(false);
+        when(postcodeLookupService.isValidPostCode(INVALID_POST_CODE, null)).thenReturn(false);
+        BulkScanValidationResponse res =
+                bulkScanValidationService.validate(bulkScanValidationRequest);
+        JSONAssert.assertEquals(
+                readFileFrom(FL401_VALIDATE_WARNING_RESPONSE_PATH),
+                mapper.writeValueAsString(res),
+                true);
+    }
+
+    @Test
+    void testFL401WarningWhileDoingValidationInvalidPostCode() throws IOException, JSONException {
+        BulkScanValidationRequest bulkScanValidationRequest =
+                mapper.readValue(
+                        readFileFrom(FL401_VALIDATE_WARNING_REQUEST_PATH),
+                        BulkScanValidationRequest.class);
+
+        when(postcodeLookupService.isValidPostCode(anyString(), any()))
+                .thenThrow(
+                        new PostCodeValidationException(
+                                EMPTY_STRING,
+                                new HttpClientErrorException(HttpStatus.BAD_REQUEST)));
 
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
