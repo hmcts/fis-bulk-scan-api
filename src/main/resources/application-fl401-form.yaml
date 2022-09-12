@@ -11,6 +11,7 @@ uk:
               - telephone_number
               - orderApplyingFor
               - orderWithout_GivingNotice
+              - applyingFor_NonMolestationOrder
             optionalFields:
               - respondentFirstName
               - respondentLastName
@@ -41,6 +42,21 @@ uk:
               - specialMeasureAtCourt_Row2
               - specialMeasureAtCourt_Row3
               - specialMeasureAtCourt_Row4
+              - stopRespondentFromDoing_1
+              - stopRespondentFromDoing_2
+              - stopRespondentFromDoing_3
+              - stopRespondentFromDoing_4
+              - stopRespondentFromDoing_5
+              - stopRespondentFromDoing_6
+              - stopRespondentFromDoing_7
+              - stopRespondentFromDoing_8
+              - stopRespondentFromDoing_9
+              - stopRespondentFromDoingToChild_1
+              - stopRespondentFromDoingToChild_2
+              - stopRespondentFromDoingToChild_3
+              - stopRespondentFromDoingToChild_4
+              - stopRespondentFromDoingToChild_5
+              - stopRespondentFromDoingToChild_6
             regexValidationFields:
               dateFields:
                 fieldNames:

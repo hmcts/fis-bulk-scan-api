@@ -47,3 +47,7 @@ uk:
                   - value:
                       language: interpreterNeededAtCourt_Language
                       dialect: interpreterNeededAtCourt_Dialect
+              respondentBehaviourTable:
+               applicantWantToStopFromRespondentDoing:
+               applicantWantToStopFromRespondentDoingToChild:
+               otherReasonApplicantWantToStopFromRespondentDoing: stopRespondentFromDoingToChild_6
