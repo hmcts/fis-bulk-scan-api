@@ -4,31 +4,31 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public enum ApplicantRespondentRelationshipEnum {
-    APPLICANT_RESPONDENT_RELATIONSHIP_01("Married or in a civil partnership"),
-    APPLICANT_RESPONDENT_RELATIONSHIP_02("Formerly married or in a civil partnership"),
-    APPLICANT_RESPONDENT_RELATIONSHIP_03("Engaged or proposed civil partnership"),
-    APPLICANT_RESPONDENT_RELATIONSHIP_04("Formerly engaged or proposed civil partnership"),
-    APPLICANT_RESPONDENT_RELATIONSHIP_05("Live together as a couple"),
-    APPLICANT_RESPONDENT_RELATIONSHIP_06("Formerly lived together as a couple"),
-    APPLICANT_RESPONDENT_RELATIONSHIP_07(
+    applicantRespondent_Relationship_01("Married or in a civil partnership"),
+    applicantRespondent_Relationship_02("Formerly married or in a civil partnership"),
+    applicantRespondent_Relationship_03("Engaged or proposed civil partnership"),
+    applicantRespondent_Relationship_04("Formerly engaged or proposed civil partnership"),
+    applicantRespondent_Relationship_05("Live together as a couple"),
+    applicantRespondent_Relationship_06("Formerly lived together as a couple"),
+    applicantRespondent_Relationship_07(
             "Boyfriend, girlfriend or partner who does not live with me"),
-    APPLICANT_RESPONDENT_RELATIONSHIP_08(
+    applicantRespondent_Relationship_08(
             "Former boyfriend, girlfriend or partner who did not live with me"),
-    APPLICANT_RESPONDENT_RELATIONSHIP_09("None of the above"),
-    APPLICANT_RESPONDENT_RELATIONSHIP_10("Father"),
-    APPLICANT_RESPONDENT_RELATIONSHIP_11("Mother"),
-    APPLICANT_RESPONDENT_RELATIONSHIP_12("Son"),
-    APPLICANT_RESPONDENT_RELATIONSHIP_13("Daughter"),
-    APPLICANT_RESPONDENT_RELATIONSHIP_14("Brother"),
-    APPLICANT_RESPONDENT_RELATIONSHIP_15("Sister"),
-    APPLICANT_RESPONDENT_RELATIONSHIP_16("Grandfather"),
-    APPLICANT_RESPONDENT_RELATIONSHIP_17("Grandmother"),
-    APPLICANT_RESPONDENT_RELATIONSHIP_18("Uncle"),
-    APPLICANT_RESPONDENT_RELATIONSHIP_19("Aunt"),
-    APPLICANT_RESPONDENT_RELATIONSHIP_20("Nephew"),
-    APPLICANT_RESPONDENT_RELATIONSHIP_21("Niece"),
-    APPLICANT_RESPONDENT_RELATIONSHIP_22("Cousin"),
-    APPLICANT_RESPONDENT_RELATIONSHIP_23("Other - please specify");
+    applicantRespondent_Relationship_09("None of the above"),
+    applicantRespondent_Relationship_10("Father"),
+    applicantRespondent_Relationship_11("Mother"),
+    applicantRespondent_Relationship_12("Son"),
+    applicantRespondent_Relationship_13("Daughter"),
+    applicantRespondent_Relationship_14("Brother"),
+    applicantRespondent_Relationship_15("Sister"),
+    applicantRespondent_Relationship_16("Grandfather"),
+    applicantRespondent_Relationship_17("Grandmother"),
+    applicantRespondent_Relationship_18("Uncle"),
+    applicantRespondent_Relationship_19("Aunt"),
+    applicantRespondent_Relationship_20("Nephew"),
+    applicantRespondent_Relationship_21("Niece"),
+    applicantRespondent_Relationship_22("Cousin"),
+    applicantRespondent_Relationship_23("Other - please specify");
 
     private final String relationshipDescription;
 

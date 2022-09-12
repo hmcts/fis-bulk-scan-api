@@ -2,23 +2,9 @@ package uk.gov.hmcts.reform.bulkscan.services;
 
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.SCAN_DOCUMENTS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_RESPONDENT_AUNT_RELATIONSHIP_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_RESPONDENT_BROTHER_RELATIONSHIP_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_RESPONDENT_COUSIN_RELATIONSHIP_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_RESPONDENT_DAUGHTER_RELATIONSHIP_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_RESPONDENT_FATHER_RELATIONSHIP_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_RESPONDENT_GRANDFATHER_RELATIONSHIP_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_RESPONDENT_GRANDMOTHER_RELATIONSHIP_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_RESPONDENT_MOTHER_RELATIONSHIP_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_RESPONDENT_NEPHEW_RELATIONSHIP_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_RESPONDENT_NIECE_RELATIONSHIP_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_RESPONDENT_OTHER_RELATIONSHIP_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_RESPONDENT_OTHER_SPECIFY_RELATIONSHIP_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_RESPONDENT_RELATIONSHIP_FIELDS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_RESPONDENT_RELATIONSHIP_OPTIONS_FIELDS;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_RESPONDENT_SISTER_RELATIONSHIP_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_RESPONDENT_SON_RELATIONSHIP_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_RESPONDENT_UNCLE_RELATIONSHIP_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.ATTEND_HEARING_TABLE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.BAIL_CONDITION_END_DATE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.CCD_APPLICANT_RELATIONSHIOP_DATE;
@@ -31,14 +17,6 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.DETE
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.FL401_APPLICANT_RELATIONSHIP;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.FL401_APPLICANT_RELATIONSHIP_OPTIONS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.REASON_FOR_ORDER_WITHOUT_GIVING_NOTICE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.RESPONDENT_BOY_GIRL_FRIEND_PARTNER_LIVEWITHME_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.RESPONDENT_ENGAGED_PROPOSED_CIVIL_RELATIONSHIP_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.RESPONDENT_FORMERLY_ENGAGED_PROPOSED_CIVIL_RELATIONSHIP_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.RESPONDENT_FORMERLY_LIVE_TOGETHER_AS_COUPLE_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.RESPONDENT_FORMERLY_MARRIED_CIVIL_RELATIONSHIP_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.RESPONDENT_FORMER_BOY_GIRL_FRIEND_PARTNER_LIVEWITHME_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.RESPONDENT_LIVE_TOGETHER_AS_COUPLE_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.RESPONDENT_MARRIED_CIVIL_RELATIONSHIP_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.RISK_OF_SIGNIFICANT_HARM;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.SPACE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.SPECIAL_MEASURE_AT_COURT;
@@ -230,139 +208,19 @@ public class BulkScanFL401ConditionalTransformerService {
         }
 
         if (!orderedRelationshipFieldMap.isEmpty()) {
-            Map<String, String> relationshipFieldMap = buildRelationshipDetailMap();
-
             for (Map.Entry<String, String> relationShipField :
                     orderedRelationshipFieldMap.entrySet()) {
                 if (null != relationShipField.getValue()
-                        && relationShipField.getValue().equalsIgnoreCase(YES)) {
-                    return getRelationshipDetail(relationShipField.getKey(), relationshipFieldMap);
+                        && relationShipField.getValue().equalsIgnoreCase(YES)
+                        && ApplicantRespondentRelationshipEnum.getValue(relationShipField.getKey())
+                                        .getRelationshipDescription()
+                                != null) {
+                    return ApplicantRespondentRelationshipEnum.getValue(relationShipField.getKey())
+                            .getRelationshipDescription();
                 }
             }
         }
 
         return null;
-    }
-
-    private String getRelationshipDetail(
-            String relationshipField, Map<String, String> relationshipDetailMap) {
-        for (Map.Entry<String, String> relationship : relationshipDetailMap.entrySet()) {
-            if (relationship.getKey().equalsIgnoreCase(relationshipField)) {
-                return relationship.getValue();
-            }
-        }
-        return null;
-    }
-
-    private TreeMap<String, String> buildRelationshipDetailMap() {
-        TreeMap<String, String> relationshipFieldMap = new TreeMap<>();
-
-        relationshipFieldMap.put(
-                RESPONDENT_MARRIED_CIVIL_RELATIONSHIP_FIELD,
-                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_01
-                        .getRelationshipDescription());
-        relationshipFieldMap.put(
-                RESPONDENT_FORMERLY_MARRIED_CIVIL_RELATIONSHIP_FIELD,
-                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_02
-                        .getRelationshipDescription());
-        relationshipFieldMap.put(
-                RESPONDENT_ENGAGED_PROPOSED_CIVIL_RELATIONSHIP_FIELD,
-                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_03
-                        .getRelationshipDescription());
-        relationshipFieldMap.put(
-                RESPONDENT_FORMERLY_ENGAGED_PROPOSED_CIVIL_RELATIONSHIP_FIELD,
-                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_04
-                        .getRelationshipDescription());
-        relationshipFieldMap.put(
-                RESPONDENT_LIVE_TOGETHER_AS_COUPLE_FIELD,
-                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_05
-                        .getRelationshipDescription());
-        relationshipFieldMap.put(
-                RESPONDENT_FORMERLY_LIVE_TOGETHER_AS_COUPLE_FIELD,
-                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_06
-                        .getRelationshipDescription());
-        relationshipFieldMap.put(
-                RESPONDENT_BOY_GIRL_FRIEND_PARTNER_LIVEWITHME_FIELD,
-                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_07
-                        .getRelationshipDescription());
-        relationshipFieldMap.put(
-                RESPONDENT_FORMER_BOY_GIRL_FRIEND_PARTNER_LIVEWITHME_FIELD,
-                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_08
-                        .getRelationshipDescription());
-        relationshipFieldMap.put(
-                APPLICANT_RESPONDENT_OTHER_RELATIONSHIP_FIELD,
-                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_09
-                        .getRelationshipDescription());
-
-        relationshipFieldMap.put(
-                APPLICANT_RESPONDENT_FATHER_RELATIONSHIP_FIELD,
-                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_10
-                        .getRelationshipDescription());
-
-        relationshipFieldMap.put(
-                APPLICANT_RESPONDENT_MOTHER_RELATIONSHIP_FIELD,
-                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_11
-                        .getRelationshipDescription());
-
-        relationshipFieldMap.put(
-                APPLICANT_RESPONDENT_SON_RELATIONSHIP_FIELD,
-                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_12
-                        .getRelationshipDescription());
-
-        relationshipFieldMap.put(
-                APPLICANT_RESPONDENT_DAUGHTER_RELATIONSHIP_FIELD,
-                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_13
-                        .getRelationshipDescription());
-
-        relationshipFieldMap.put(
-                APPLICANT_RESPONDENT_BROTHER_RELATIONSHIP_FIELD,
-                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_14
-                        .getRelationshipDescription());
-        relationshipFieldMap.put(
-                APPLICANT_RESPONDENT_SISTER_RELATIONSHIP_FIELD,
-                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_15
-                        .getRelationshipDescription());
-
-        relationshipFieldMap.put(
-                APPLICANT_RESPONDENT_GRANDFATHER_RELATIONSHIP_FIELD,
-                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_16
-                        .getRelationshipDescription());
-
-        relationshipFieldMap.put(
-                APPLICANT_RESPONDENT_GRANDMOTHER_RELATIONSHIP_FIELD,
-                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_17
-                        .getRelationshipDescription());
-
-        relationshipFieldMap.put(
-                APPLICANT_RESPONDENT_UNCLE_RELATIONSHIP_FIELD,
-                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_18
-                        .getRelationshipDescription());
-
-        relationshipFieldMap.put(
-                APPLICANT_RESPONDENT_AUNT_RELATIONSHIP_FIELD,
-                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_19
-                        .getRelationshipDescription());
-
-        relationshipFieldMap.put(
-                APPLICANT_RESPONDENT_NEPHEW_RELATIONSHIP_FIELD,
-                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_20
-                        .getRelationshipDescription());
-
-        relationshipFieldMap.put(
-                APPLICANT_RESPONDENT_NIECE_RELATIONSHIP_FIELD,
-                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_21
-                        .getRelationshipDescription());
-
-        relationshipFieldMap.put(
-                APPLICANT_RESPONDENT_COUSIN_RELATIONSHIP_FIELD,
-                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_22
-                        .getRelationshipDescription());
-
-        relationshipFieldMap.put(
-                APPLICANT_RESPONDENT_OTHER_SPECIFY_RELATIONSHIP_FIELD,
-                ApplicantRespondentRelationshipEnum.APPLICANT_RESPONDENT_RELATIONSHIP_23
-                        .getRelationshipDescription());
-
-        return relationshipFieldMap;
     }
 }
