@@ -94,7 +94,7 @@ class BulkScanFL401ValidationServiceTest {
                         eachField ->
                                 RESPONDENT_MARRIED_CIVIL_RELATIONSHIP_FIELD.equalsIgnoreCase(
                                         eachField.getName()))
-                .forEach(field -> field.setValue("No"));
+                .forEach(field -> field.setValue(NO));
 
         Map<String, String> inputFieldsMap =
                 getOcrDataFieldsMap(bulkScanValidationRequest.getOcrdatafields());
@@ -127,7 +127,7 @@ class BulkScanFL401ValidationServiceTest {
                         eachField ->
                                 RESPONDENT_ENGAGED_PROPOSED_CIVIL_RELATIONSHIP_FIELD
                                         .equalsIgnoreCase(eachField.getName()))
-                .forEach(field -> field.setValue("Yes"));
+                .forEach(field -> field.setValue(YES));
 
         Map<String, String> inputFieldsMap =
                 getOcrDataFieldsMap(bulkScanValidationRequest.getOcrdatafields());
