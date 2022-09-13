@@ -45,7 +45,7 @@ class BulkScanEndpointIntegrationTest {
     @MockBean protected AuthTokenValidator authTokenValidator;
     @Autowired private transient MockMvc mockMvc;
     private static final String FL401_VALIDATION_REQUEST_PATH =
-            "classpath:request/bulk-scan-fl401-validate-input.json";
+            "classpath:request/bulk-scan-fl401-validation-input.json";
     private static final String FL403_VALIDATION_REQUEST_PATH =
             "classpath:request/bulk-scan-fl403-validation-input.json";
     private static final String EdgeCase_VALIDATION_REQUEST_PATH =

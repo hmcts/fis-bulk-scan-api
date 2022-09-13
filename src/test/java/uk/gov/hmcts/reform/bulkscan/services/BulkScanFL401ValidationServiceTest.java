@@ -42,7 +42,7 @@ class BulkScanFL401ValidationServiceTest {
     private final ObjectMapper mapper = new ObjectMapper();
 
     private static final String FL401_VALIDATION_REQUEST_PATH =
-            "classpath:request/bulk-scan-fl401-validate-input.json";
+            "classpath:request/bulk-scan-fl401-validation-input.json";
 
     @Autowired BulkScanFL401ValidationService bulkScanFL401ValidationService;
 
