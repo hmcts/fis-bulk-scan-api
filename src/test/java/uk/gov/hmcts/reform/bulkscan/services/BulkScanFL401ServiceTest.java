@@ -34,10 +34,10 @@ class BulkScanFL401ServiceTest {
             "classpath:response/bulk-scan-fl401-transform-output.json";
 
     private static final String FL401_VALIDATE_REQUEST_PATH =
-            "classpath:request/bulk-scan-fl401-validation-input.json";
+            "classpath:request/bulk-scan-fl401-validate-input.json";
 
     private static final String FL401_VALIDATE_RESPONSE_PATH =
-            "classpath:response/bulk-scan-fl401-validation-output.json";
+            "classpath:response/bulk-scan-fl401-validate-output.json";
 
     private static final String FL401_VALIDATE_ERROR_REQUEST_PATH =
             "classpath:request/bulk-scan-fl401-validate-error-input.json";
