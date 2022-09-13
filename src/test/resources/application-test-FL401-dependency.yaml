@@ -27,7 +27,6 @@ uk:
                 - applicant_Address_Postcode
                 - applicant_PhoneNumber
                 - applicant_Email
-                - applicant_PreferToBeContacted
               dependentFieldValue: "*"
               groupFieldName: applicantContact_Confidentiality
               groupValidationValue: "No"
