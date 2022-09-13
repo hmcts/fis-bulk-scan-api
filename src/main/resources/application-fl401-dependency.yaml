@@ -46,9 +46,8 @@ uk:
                 - applicant_Address_Postcode
                 - applicant_PhoneNumber
                 - applicant_Email
-                - applicant_PreferToBeContacted
               dependentFieldValue: "*"
               groupFieldName: applicantContact_Confidentiality
               groupValidationValue: "No"
-              requiredFieldCount: 6
+              requiredFieldCount: 5
               sectionName: "2 - your details"
