@@ -1,7 +1,8 @@
 package uk.gov.hmcts.reform.bulkscan.constants;
 
 public final class BulkScanFl401Constants {
-public static final String APPLYING_FOR_NON_MOLES_STATION_ORDER="ApplyingFor_NonMolestationOrder";
+    public static final String APPLYING_FOR_NON_MOLES_STATION_ORDER =
+            "applyingFor_NonMolestationOrder";
     public static final String RESPONDENT_BAIL_CONDITIONS_ENDDATE =
             "respondent_BailConditionsEndDate";
     public static final String BAIL_CONDITION_END_DATE_MESSAGE = "bail condition end date";
@@ -28,6 +29,10 @@ public static final String APPLYING_FOR_NON_MOLES_STATION_ORDER="ApplyingFor_Non
             "applicantWantToStopFromRespondentDoing";
     public static final String STOP_RESPONDENT_BEHAVIOUR_CHILD_OPTIONS =
             "applicantWantToStopFromRespondentDoingToChild";
+    public static final String OTHERS_STOP_RESPONDENT_BEHAVIOUR_OPTIONS =
+            "otherReasonApplicantWantToStopFromRespondentDoing";
+    public static final String STOP_RESPONDENT_BEHAVIOUR_OPTIONS_6 =
+            "stopRespondentFromDoingToChild_6";
 
     private BulkScanFl401Constants() {}
 }

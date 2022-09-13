@@ -3,6 +3,11 @@
     "case_type_id": "PRLAPPS",
     "event_id": "create-case-privatelaw-bs",
     "case_data": {
+      "respondentBehaviourTable": {
+        "applicantWantToStopFromRespondentDoing": "Being violent towards me or threatening me,Harassing or intimidating me,Causing damage to my home,",
+        "applicantWantToStopFromRespondentDoingToChild": "Being violent towards my children or threatening my children,",
+        "otherReasonApplicantWantToStopFromRespondentDoing": "Yes"
+      },
       "applicationTypeDetails": {
         "typesOfApplication": "01234567891"
       },

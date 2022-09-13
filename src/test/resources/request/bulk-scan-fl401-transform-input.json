@@ -130,7 +130,33 @@
     {
       "name":"specialMeasureAtCourt_Row4",
       "value":"Measure4"
+    },
+    {
+      "name":"applyingFor_NonMolestationOrder",
+      "value":"Yes"
+    },
+
+    {
+      "name":"stopRespondentFromDoing_2",
+      "value":"Yes"
+    },
+    {
+      "name":"stopRespondentFromDoing_6",
+      "value":"Yes"
+    },
+    {
+      "name":"stopRespondentFromDoingToChild_1",
+      "value":"Yes"
+    },
+    {
+      "name":"stopRespondentFromDoingToChild_6",
+      "value":"Yes"
+    },
+    {
+      "name":"stopRespondentFromDoing_1",
+      "value":"Yes"
     }
+
   ],
   "scanned_documents": [
     {

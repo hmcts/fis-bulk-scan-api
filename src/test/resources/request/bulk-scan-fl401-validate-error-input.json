@@ -51,6 +51,18 @@
     {
       "name":"respondent_Email",
       "value":"john@gmail.com"
+    },
+    {
+      "name":"applyingFor_NonMolestationOrder",
+      "value":"Yes"
+    },
+    {
+      "name":"stopRespondentFromDoing_1",
+      "value":"Yes"
+    },
+    {
+      "name":"stopRespondentFromDoingToChild_1",
+      "value":"Yes"
     }
   ]
 }
