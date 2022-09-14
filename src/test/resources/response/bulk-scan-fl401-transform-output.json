@@ -16,6 +16,24 @@
         "applicantWantToStopFromRespondentDoingToChild": "Being violent towards my children or threatening my children,",
         "otherReasonApplicantWantToStopFromRespondentDoing": "Yes"
       },
+      "fl401SolicitorDetailsTable": {
+        "solicitorOrg": {
+          "OrganisationName": "solicitor firm name"
+        },
+        "address": {
+          "addressLine1": "1 abc street",
+          "addressLine2": "line 2",
+          "postTown": "solicitor town city",
+          "county": "test county",
+          "postCode": "ab34 1ab"
+        },
+        "dxNumber": "12243",
+        "solicitorTelephone": "076888887687",
+        "solicitorEmail": "sol email",
+        "solicitorReference": "test sol ref",
+        "representativeFirstName": "solicitot",
+        "representativeLastName": "name"
+      },
       "applicationTypeDetails": {
         "typesOfApplication": "01234567891"
       },
@@ -83,7 +101,28 @@
             "phoneNumber": "0908776545"
           }
         }
-      ]
+      ],
+      "fl401ApplicantTable": {
+        "firstName": "testfirstname",
+        "lastName": "testLastname",
+        "previousName": "no previous name",
+        "dateOfBirth": "2001-03-26",
+        "applicantContactInstructions": "No",
+        "applicantLegalRepresenationNeeded": "No",
+        "isAddressConfidential": "No",
+        "isPhoneNumberConfidential": "No",
+        "isEmailAddressConfidential": "No",
+        "address": {
+          "AddressLine1": "No",
+          "AddressLine2": "applicant second line",
+          "PostTown": "No",
+          "County": "applicant county",
+          "PostCode": "cv2 4nz"
+        },
+        "phoneNumber": "No",
+        "email": "No",
+        "preferToBeContacted": "No"
+      }
     }
   },
   "warnings": []

@@ -27,6 +27,34 @@ public final class BulkScanFl401Constants {
     public static final String APPLICANT_ADDRESS_POSTCODE = "applicant_Address_Postcode";
     public static final String APPLICANT_DATE_OF_BIRTH = "applicantDateOfBirth";
     public static final String APPLICANT_DATE_OF_BIRTH_MESSAGE = "Applicant date of birth";
+    public static final String FL401_APPLICANT_TABLE = "fl401ApplicantTable";
+    public static final String APPLICANT_CONTACT_CONFIDENTIALITY =
+            "applicantContact_Confidentiality";
+    public static final String IS_ADDRESS_CONFIDENTIAL = "isAddressConfidential";
+    public static final String IS_PHONE_NUMBER_CONFIDENTIAL = "isPhoneNumberConfidential";
+    public static final String IS_EMAIL_ADDRESS_CONFIDENTIAL = "isEmailAddressConfidential";
+    public static final String APPLICANT_ADDRESS_BUILDING_AND_STREET =
+            "applicant_Address_BuildingAndStreet";
+    public static final String APPLICANT_ADDRESS_SECOND_LINE = "applicant_Address_SecondLine";
+    public static final String APPLICANT_ADDRESS_TOWN_OR_CITY = "applicant_Address_TownOrCity";
+    public static final String APPLICANT_ADDRESS_COUNTY = "applicant_Address_County";
+    public static final String ADDRESS = "address";
+    public static final String ADDRESS_LINE1 = "AddressLine1";
+    public static final String ADDRESS_LINE2 = "AddressLine2";
+    public static final String POSTTOWN = "PostTown";
+    public static final String COUNTY = "County";
+    public static final String POSTCODE = "PostCode";
+    public static final String APPLICANT_PHONE_NUMBER = "applicant_PhoneNumber";
+    public static final String APPLICANT_EMAIL = "applicant_Email";
+    public static final String APPLICANT_PREFER_TO_BE_CONTACTED = "applicant_PreferToBeContacted";
+    public static final String PHONE_NUMBER = "phoneNumber";
+    public static final String EMAIL = "email";
+    public static final String PREFER_TO_BE_CONTACTED = "preferToBeContacted";
+    public static final String APPLICANT_SOLICITOR_NAME = "applicant_SolicitorName";
+    public static final String REPRESENTATIVE_FIRST_NAME = "representativeFirstName";
+    public static final String REPRESENTATIVE_LAST_NAME = "representativeLastName";
+    public static final String FL401_SOLICITOR_TABLE = "fl401SolicitorDetailsTable";
+    public static final String EMPTY_SPACE = " ";
 
     public static final String APPLICANT_RESPONDENT_RELATIONSHIP_DATE =
             "Applicant respondent relationship %s date";
