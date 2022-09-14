@@ -38,7 +38,6 @@ uk:
                 isRespondentAlreadyInBailCondition: respondentBailConditions
                 bailConditionEndDate: respondent_BailConditionsEndDate
                 furtherDetails: situationCourtToKnow
-
               home:
                 - value:
                     address:

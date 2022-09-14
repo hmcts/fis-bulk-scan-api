@@ -3,6 +3,65 @@
     "case_type_id": "PRLAPPS",
     "event_id": "create-case-privatelaw-bs",
     "case_data": {
+      "doAnyChildrenLiveAtAddress": "yes",
+      "children": [
+        {
+          "value": {
+            "childFullName": "John",
+            "childsAge": "61",
+            "isRespondentResponsibleForChild": "Yes"
+          }
+        },
+        {
+          "value": {
+            "childFullName": "John",
+            "childsAge": "61",
+            "isRespondentResponsibleForChild": "Yes"
+          }
+        },
+        {
+          "value": {
+            "childFullName": "Johnny",
+            "childsAge": "43",
+            "isRespondentResponsibleForChild": "No"
+          }
+        },
+        {
+          "value": {
+            "childFullName": "Jim",
+            "childsAge": "45",
+            "isRespondentResponsibleForChild": "Yes"
+          }
+        },
+        {
+          "value": {
+            "childFullName": "John",
+            "childsAge": "61",
+            "isRespondentResponsibleForChild": "No"
+          }
+        },
+        {
+          "value": {
+            "childFullName": "John",
+            "childsAge": "61",
+            "isRespondentResponsibleForChild": "Yes"
+          }
+        },
+        {
+          "value": {
+            "childFullName": "Johnny",
+            "childsAge": "43",
+            "isRespondentResponsibleForChild": "No"
+          }
+        },
+        {
+          "value": {
+            "childFullName": "Jim",
+            "childsAge": "45",
+            "isRespondentResponsibleForChild": "Yes"
+          }
+        }
+      ],
       "applicationTypeDetails": {
         "typesOfApplication": "01234567891"
       },
@@ -11,7 +70,7 @@
           "value": {
             "firstName": "John",
             "lastName": "Maxwell",
-            "previousName": "previousName",
+            "previousName": "Connor",
             "dateOfBirth": "2022/12/04",
             "liveWithApplicant": "yes",
             "phoneNumber": "09866534424",
@@ -56,8 +115,90 @@
             "phoneNumber": "0908776545"
           }
         }
+      ],
+      "home": [
+        {
+          "value": {
+            "address": [
+              {
+                "value": {
+                  "AddressLine1": "Clark St",
+                  "AddressLine2": "Malbourough",
+                  "PostTown": "KentVille",
+                  "PostCode": "Xjkh",
+                  "County": "JohnsCounty"
+                }
+              }
+            ],
+            "peopleLivingAtThisAddress": "Clark Wells",
+            "textAreaSomethingElse": "MalbouroughsWell",
+            "everLivedAtTheAddress": "Billy Jay",
+            "intendToLiveAtTheAddress": "Bill Rae",
+            "isPropertyAdapted": "Yes",
+            "howIsThePropertyAdapted": "Stairs",
+            "isThereMortgageOnProperty": "Yes",
+            "mortgages": [
+              {
+                "value": {
+                  "mortgageLenderName": "UK Bank",
+                  "address": [
+                    {
+                      "value": {
+                        "AddressLine1": "Bank St",
+                        "AddressLine2": "Hackney",
+                        "PostTown": "London",
+                        "County": "Greater London",
+                        "PostCode": "UKghsf67"
+                      }
+                    }
+                  ],
+                  "mortgageNamedAfter": "Will Smith",
+                  "textAreaSomethingElse": "James Welsh",
+                  "mortgageNumber": "12345"
+                }
+              }
+            ],
+            "isPropertyRented": "Yes",
+            "mortgageNamedAfterList": "UKghsf67",
+            "landlords": {
+              "textAreaSomethingElse": "Will Smith",
+              "landlordName": "Jim Welly",
+              "address": [
+                {
+                  "value": {
+                    "AddressLine1": "12345 St",
+                    "AddressLine2": "French District",
+                    "PostTown": "London",
+                    "County": "Kings County",
+                    "PostCode": "xc34tgh"
+                  }
+                }
+              ]
+            },
+            "doesApplicantHaveHomeRights": "Yes",
+            "livingSituation": [
+              {
+                "value": {
+                  "ableToStayInHome": "Yes",
+                  "restrictFromEnteringHome": "No",
+                  "awayFromHome": "Away",
+                  "limitRespondentInHome": "Limited",
+                  "ableToReturnHome": "Yes"
+                }
+              }
+            ],
+            "familyHome": {
+              "payForRepairs": "Paid",
+              "useHouseholdContents": "Use any",
+              "payOrContributeRent": "460"
+            },
+            "furtherInformation": "More stairs needed"
+          }
+        }
       ]
     }
   },
-  "warnings": []
+  "warnings": [
+    "The following fields are not configured with our system: [doAnyChildrenLiveAtAddress,otherChildren_Row1,otherChildren_Row2,otherChildren_Row3,otherChildren_Row4] "
+  ]
 }

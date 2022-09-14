@@ -17,7 +17,6 @@ import com.microsoft.applicationinsights.core.dependencies.google.gson.internal.
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-
 import org.apache.commons.lang3.BooleanUtils;
 import org.springframework.stereotype.Component;
 import uk.gov.hmcts.reform.bulkscan.enums.OrderWithouGivingNoticeReasonEnum;
@@ -48,24 +47,22 @@ public class BulkScanFL401ConditionalTransformerService {
         populatedMap.put("children", buildTransformChild(populatedMap, inputFieldsMap));
     }
 
-    private List buildTransformChild(Map<String, Object> populatedMap, Map<String, String> inputFieldsMap) {
-
+    private List buildTransformChild(
+            Map<String, Object> populatedMap, Map<String, String> inputFieldsMap) {
         ArrayList<LinkedTreeMap> children = new ArrayList<>();
 
-        String row1 = inputFieldsMap.get("childLivesAtAddress_Row1");
-        String row2 = inputFieldsMap.get("childLivesAtAddress_Row2");
-        String row3 = inputFieldsMap.get("childLivesAtAddress_Row3");
-        String row4 = inputFieldsMap.get("childLivesAtAddress_Row4");
+        final String row1 = inputFieldsMap.get("childLivesAtAddress_Row1");
+        final String row2 = inputFieldsMap.get("childLivesAtAddress_Row2");
+        final String row3 = inputFieldsMap.get("childLivesAtAddress_Row3");
+        final String row4 = inputFieldsMap.get("childLivesAtAddress_Row4");
+        final String otherChildrenRow1 = inputFieldsMap.get("otherChildren_Row1");
+        final String otherChildrenRow2 = inputFieldsMap.get("otherChildren_Row2");
+        final String otherChildrenRow3 = inputFieldsMap.get("otherChildren_Row3");
+        final String otherChildrenRow4 = inputFieldsMap.get("otherChildren_Row4");
 
-        String otherChildrenRow1 = inputFieldsMap.get("otherChildren_Row1");
-        String otherChildrenRow2 = inputFieldsMap.get("otherChildren_Row2");
-        String otherChildrenRow3 = inputFieldsMap.get("otherChildren_Row3");
-        String otherChildrenRow4 = inputFieldsMap.get("otherChildren_Row4");
-
-        if(row1!=null){
+        if (row1 != null) {
             populatedMap.put("doAnyChildrenLiveAtAddress", BooleanUtils.YES);
         }
-
         ArrayList<String> childInput = new ArrayList<>();
         childInput.add(row1);
         childInput.add(row2);
@@ -96,7 +93,8 @@ public class BulkScanFL401ConditionalTransformerService {
 
                 childDetails.put("childFullName", childName);
                 childDetails.put("childsAge", childAge);
-                childDetails.put("isRespondentResponsibleForChild", isRespondentResponsibleForChild);
+                childDetails.put(
+                        "isRespondentResponsibleForChild", isRespondentResponsibleForChild);
 
                 childrenLinkedTreeMap.put(VALUE, childDetails);
 
