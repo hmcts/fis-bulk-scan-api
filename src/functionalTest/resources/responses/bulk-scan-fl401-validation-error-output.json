@@ -2,9 +2,7 @@
   "status": "ERRORS",
   "warnings": {
     "items": [
-      "The following fields are not configured with our system: [applicant1_dateOfBirth] ",
-      "Some details are missing in the following section: 1.6 - When do the bail conditions end?."
-
+      "The following fields are not configured with our system: [applicant1_dateOfBirth] "
     ]
   },
   "errors": {

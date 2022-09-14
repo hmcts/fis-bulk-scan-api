@@ -16,131 +16,8 @@
         "applicantWantToStopFromRespondentDoingToChild": "Being violent towards my children or threatening my children,",
         "otherReasonApplicantWantToStopFromRespondentDoing": "Yes"
       },
-      "fl401SolicitorDetailsTable": {
-        "solicitorOrg": {
-          "OrganisationName": "solicitor firm name"
-        },
-        "address": {
-          "addressLine1": "1 abc street",
-          "addressLine2": "line 2",
-          "postTown": "solicitor town city",
-          "county": "test county",
-          "postCode": "ab34 1ab"
-        },
-        "dxNumber": "12243",
-        "solicitorTelephone": "076888887687",
-        "solicitorEmail": "sol email",
-        "solicitorReference": "test sol ref",
-        "representativeFirstName": "solicitot",
-        "representativeLastName": "name"
-      },
       "applicationTypeDetails": {
         "typesOfApplication": "01234567891"
-      },
-      "attendingTheHearingTable": {
-        "isInterpreterNeeded": "Yes",
-        "isDisabilityPresent": "john@gmail.com",
-        "adjustmentsRequired": "john@gmail.com",
-        "specialMeasureAtCourt": "Measure1,Measure2,Measure4",
-        "interpreterNeeds": [
-          {
-            "value": {
-              "language": "john@gmail.com",
-              "dialect": "john@gmail.com"
-            }
-          }
-        ]
-      },
-      "doAnyChildrenLiveAtAddress": "yes",
-      "children": [
-        {
-          "value": {
-            "childFullName": "John",
-            "childsAge": "61",
-            "isRespondentResponsibleForChild": "Yes"
-          }
-        },
-        {
-          "value": {
-            "childFullName": "John",
-            "childsAge": "61",
-            "isRespondentResponsibleForChild": "Yes"
-          }
-        },
-        {
-          "value": {
-            "childFullName": "Johnny",
-            "childsAge": "43",
-            "isRespondentResponsibleForChild": "No"
-          }
-        },
-        {
-          "value": {
-            "childFullName": "Jim",
-            "childsAge": "45",
-            "isRespondentResponsibleForChild": "Yes"
-          }
-        },
-        {
-          "value": {
-            "childFullName": "John",
-            "childsAge": "61",
-            "isRespondentResponsibleForChild": "No"
-          }
-        },
-        {
-          "value": {
-            "childFullName": "John",
-            "childsAge": "61",
-            "isRespondentResponsibleForChild": "Yes"
-          }
-        },
-        {
-          "value": {
-            "childFullName": "Johnny",
-            "childsAge": "43",
-            "isRespondentResponsibleForChild": "No"
-          }
-        },
-        {
-          "value": {
-            "childFullName": "Jim",
-            "childsAge": "45",
-            "isRespondentResponsibleForChild": "Yes"
-          }
-        }
-      ],
-      "fl401RespondentTable": [
-        {
-          "value": {
-            "firstName": "John",
-            "lastName": "Maxwell",
-            "respondentPreviousNames": "Connor",
-            "dateOfBirth": "2022/12/04",
-            "liveWithApplicant": "yes",
-            "phoneNumber": "09866534424",
-            "email": "john@gmail.com",
-            "address": [
-              {
-                "value": {
-                  "AddressLine1": "123 Harley St.",
-                  "AddressLine2": "Vox Rd",
-                  "PostTown": "Blighty",
-                  "County": "UK",
-                  "PostCode": "respondent_Address_Postcode"
-                }
-              }
-            ]
-          }
-        }
-      ],
-      "withoutNoticeOrderTable": {
-        "orderWithoutGivingNotice": "Yes",
-        "anyOtherDtailsForWithoutNoticeOrder": "more reason",
-        "isRespondentAlreadyInBailCondition": "Yes",
-        "bailConditionEndDate": "2021-02-07",
-        "furtherDetails": "XYZ",
-        "reasonForOrderWithoutGivingNotice": "there is risk of significant harm to the applicant or a relevant child, attributable to conduct of the respondent, if the order is not made immediately,it is likely that I will be deterred or prevented from pursuing the application if an order is not made immediately,I believe that the respondent is aware of the proceedings but is deliberately evading service and that I or a relevant child will be seriously prejudiced by the delay in effecting substituted service"
       },
       "scannedDocuments": [
         {
@@ -261,7 +138,130 @@
             "furtherInformation": "More stairs needed"
           }
         }
-      ]
+      ],
+      "doAnyChildrenLiveAtAddress": "yes",
+      "children": [
+        {
+          "value": {
+            "childFullName": "John",
+            "childsAge": "61",
+            "isRespondentResponsibleForChild": "Yes"
+          }
+        },
+        {
+          "value": {
+            "childFullName": "John",
+            "childsAge": "61",
+            "isRespondentResponsibleForChild": "Yes"
+          }
+        },
+        {
+          "value": {
+            "childFullName": "Johnny",
+            "childsAge": "43",
+            "isRespondentResponsibleForChild": "No"
+          }
+        },
+        {
+          "value": {
+            "childFullName": "Jim",
+            "childsAge": "45",
+            "isRespondentResponsibleForChild": "Yes"
+          }
+        },
+        {
+          "value": {
+            "childFullName": "John",
+            "childsAge": "61",
+            "isRespondentResponsibleForChild": "No"
+          }
+        },
+        {
+          "value": {
+            "childFullName": "John",
+            "childsAge": "61",
+            "isRespondentResponsibleForChild": "Yes"
+          }
+        },
+        {
+          "value": {
+            "childFullName": "Johnny",
+            "childsAge": "43",
+            "isRespondentResponsibleForChild": "No"
+          }
+        },
+        {
+          "value": {
+            "childFullName": "Jim",
+            "childsAge": "45",
+            "isRespondentResponsibleForChild": "Yes"
+          }
+        }
+      ],
+      "fl401SolicitorDetailsTable": {
+        "solicitorOrg": {
+          "OrganisationName": "solicitor firm name"
+        },
+        "address": {
+          "addressLine1": "1 abc street",
+          "addressLine2": "line 2",
+          "postTown": "solicitor town city",
+          "county": "test county",
+          "postCode": "ab34 1ab"
+        },
+        "dxNumber": "12243",
+        "solicitorTelephone": "076888887687",
+        "solicitorEmail": "sol email",
+        "solicitorReference": "test sol ref",
+        "representativeFirstName": "solicitot",
+        "representativeLastName": "name"
+      },
+      "attendingTheHearingTable": {
+        "isInterpreterNeeded": "Yes",
+        "isDisabilityPresent": "john@gmail.com",
+        "adjustmentsRequired": "john@gmail.com",
+        "specialMeasureAtCourt": "Measure1,Measure2,Measure4",
+        "interpreterNeeds": [
+          {
+            "value": {
+              "language": "john@gmail.com",
+              "dialect": "john@gmail.com"
+            }
+          }
+        ]
+      },
+      "fl401RespondentTable": [
+        {
+          "value": {
+            "firstName": "John",
+            "lastName": "Maxwell",
+            "previousName": "Connor",
+            "dateOfBirth": "2022/12/04",
+            "liveWithApplicant": "yes",
+            "phoneNumber": "09866534424",
+            "email": "john@gmail.com",
+            "address": [
+              {
+                "value": {
+                  "AddressLine1": "123 Harley St.",
+                  "AddressLine2": "Vox Rd",
+                  "PostTown": "Blighty",
+                  "County": "UK",
+                  "PostCode": "respondent_Address_Postcode"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "withoutNoticeOrderTable": {
+        "orderWithoutGivingNotice": "Yes",
+        "anyOtherDtailsForWithoutNoticeOrder": "more reason",
+        "isRespondentAlreadyInBailCondition": "Yes",
+        "bailConditionEndDate": "2021-02-07",
+        "furtherDetails": "XYZ",
+        "reasonForOrderWithoutGivingNotice": "there is risk of significant harm to the applicant or a relevant child, attributable to conduct of the respondent, if the order is not made immediately,it is likely that I will be deterred or prevented from pursuing the application if an order is not made immediately,I believe that the respondent is aware of the proceedings but is deliberately evading service and that I or a relevant child will be seriously prejudiced by the delay in effecting substituted service"
+      }
     }
   },
   "warnings": [

@@ -21,28 +21,16 @@
       "value":"2022/12/04"
     },
     {
-      "name": "respondent_LiveWithApplicant",
-      "value": "yes"
+      "name":"respondent_LiveWithApplicant",
+      "value":"yes"
     },
     {
-      "name":"applicant_firstName",
-      "value":"Johnny"
+      "name":"respondent_Address_BuildingAndStreet",
+      "value":"123 Harley St."
     },
     {
-      "name": "respondent_Address_BuildingAndStreet",
-      "value": "123 Harley St."
-    },
-    {
-      "name":"applicant_lastName",
-      "value":"Boy"
-    },
-    {
-      "name": "respondent_Address_SecondLine",
-      "value": "Vox Rd"
-    },
-    {
-      "name":"applicant_address",
-      "value":"JohnTown"
+      "name":"respondent_Address_SecondLine",
+      "value":"Vox Rd"
     },
     {
       "name":"respondent_Address_TownOrCity",
@@ -63,10 +51,6 @@
     {
       "name": "respondent_Email",
       "value": "john@gmail.com"
-    },
-    {
-      "name":"telephone_number",
-      "value":"0908776545"
     },
     {
       "name":"applyingForOccupationOrder",
@@ -265,52 +249,8 @@
       "value":"Johnny"
     },
     {
-      "name":"respondentFirstName",
-      "value":"John"
-    },
-    {
-      "name":"respondentLastName",
-      "value":"Maxwell"
-    },
-    {
       "name":"respondentPreviousNames",
       "value":"previousName"
-    },
-    {
-      "name":"respondentDoB",
-      "value":"2022/12/04"
-    },
-    {
-      "name":"respondent_LiveWithApplicant",
-      "value":"yes"
-    },
-    {
-      "name":"respondent_Address_BuildingAndStreet",
-      "value":"123 Harley St."
-    },
-    {
-      "name":"respondent_Address_SecondLine",
-      "value":"Vox Rd"
-    },
-    {
-      "name":"respondent_Address_TownOrCity",
-      "value":"Blighty"
-    },
-    {
-      "name":"respondent_Address_County",
-      "value":"UK"
-    },
-    {
-      "name":"respondent_Address_Postcode",
-      "value":"respondent_Address_Postcode"
-    },
-    {
-      "name":"respondent_PhoneNumber",
-      "value":"09866534424"
-    },
-    {
-      "name":"respondent_Email",
-      "value":"john@gmail.com"
     },
     {
       "name":"orderWithoutGivingNoticeReason",
@@ -323,10 +263,6 @@
     {
       "name":"deterredOrPrevented",
       "value":"UK"
-    },
-    {
-      "name":"deliberatelyEvadingService",
-      "value":"respondent_Address_Postcode"
     },
     {
       "name":"orderWithoutGivingNotice_moreReason",
@@ -443,10 +379,6 @@
     {
       "name": "needForParentalResponsiblity",
       "value": "Yes"
-    },
-    {
-      "name":"respondentBailConditions",
-      "value":"john@gmail.com"
     },
     {
       "name": "respondent_BailConditionsEndDate",

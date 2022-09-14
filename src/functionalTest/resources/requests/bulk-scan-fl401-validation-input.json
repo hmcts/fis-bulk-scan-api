@@ -538,39 +538,6 @@
     {
       "name":"stopRespondentFromDoingToChild_1",
       "value":"Yes"
-    },
-    {
-      "name":"orderWithoutGivingNoticeReason",
-      "value":"Vox Rd"
-    },
-    {
-      "name":"riskOfSignificantHarm",
-      "value":"Blighty"
-    },
-    {
-      "name":"deterredOrPrevented",
-      "value":"UK"
-    },
-    {
-      "name":"deliberatelyEvadingService",
-      "value":"respondent_Address_Postcode"
-    },
-    {
-      "name":"orderWithoutGivingNotice_moreReason",
-      "value":"09866534424"
-    },
-    {
-      "name":"respondentBailConditions",
-      "value":"john@gmail.com"
-    },
-    {
-      "name": "respondent_BailConditionsEndDate",
-      "value": "2022-03-30"
-    },
-    {
-      "name": "situationCourtToKnow",
-      "value": "No"
     }
-
   ]
 }
