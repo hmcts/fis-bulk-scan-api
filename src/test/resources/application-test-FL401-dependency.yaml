@@ -4,12 +4,23 @@ uk:
       dependency:
         fieldGroupDependency:
           FL401:
+            - groupRelationshipWithRespondent:
+              dependentFields:
+                - applicantRespondent_Relationship_StartDate
+              dependentFieldValue: "*"
+              groupFieldName: applicantRespondent_Relationship_09
+              groupValidationValue: "Yes"
+              requiredFieldCount: 1
+              sectionName: "4.2 - Relationship Start Date cannot be null"
             - applyingWithoutGivingNotice:
               dependentFields:
                 - riskOfSignificantHarm
                 - deterredOrPrevented
                 - deliberatelyEvadingService
               dependentFieldValue: "Yes"
+                - riskOfSignificantHarm
+                - deterredOrPrevented
+                - deliberatelyEvadingService
               groupFieldName: orderWithout_GivingNotice
               groupValidationValue: "Yes"
               requiredFieldCount: 1
@@ -22,6 +33,35 @@ uk:
               groupValidationValue: "Yes"
               requiredFieldCount: 1
               sectionName: "1.6 - When do the bail conditions end?"
+            - goingToCourt:
+              dependentFields:
+                - disabilitySupport_details
+              dependentFieldValue: "*"
+              groupFieldName: disabilitySupport_NeededAtCourt
+              groupValidationValue: "Yes"
+              requiredFieldCount: 1
+              sectionName: "8 - going To Court"
+            - interpreterNeededAtCourt:
+              dependentFields:
+                - interpreterNeededAtCourt_Language
+                - interpreterNeededAtCourt_Dialect
+              dependentFieldValue: "*"
+              groupFieldName: interpreterNeededAtCourt
+              groupValidationValue: "Yes"
+              requiredFieldCount: 1
+              sectionName: "8 - going To Court"
+            - contactDetails:
+              dependentFields:
+                - applicant_Address_BuildingAndStreet
+                - applicant_Address_TownOrCity
+                - applicant_Address_Postcode
+                - applicant_PhoneNumber
+                - applicant_Email
+              dependentFieldValue: "*"
+              groupFieldName: applicantContact_Confidentiality
+              groupValidationValue: "No"
+              requiredFieldCount: 6
+              sectionName: "2 - your details"
             - occupationOrderGroup:
               dependentFields:
                 - occupationOrderAddress_BuildingAndStreet

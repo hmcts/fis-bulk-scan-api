@@ -4,26 +4,38 @@ import static java.util.Objects.nonNull;
 import static org.springframework.util.StringUtils.hasText;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CASE_TYPE_ID;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EVENT_ID;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_ERROR_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.POST_CODE_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.SCAN_DOCUMENTS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_ADDRESS_POSTCODE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_DATE_OF_BIRTH;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_DATE_OF_BIRTH_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.BAIL_CONDITION_END_DATE_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.RESPONDENT_BAIL_CONDITIONS_ENDDATE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.TEXT_AND_NUMERIC_MONTH_PATTERN;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.VALID_DATE_WARNING_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper.transformScanDocuments;
-import static uk.gov.hmcts.reform.bulkscan.model.FormType.FL401;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.stream.Collectors;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.HttpClientErrorException;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanFormValidationConfigManager;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanTransformConfigManager;
+import uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants;
+import uk.gov.hmcts.reform.bulkscan.enums.FL401StopRespondentBehaviourChildEnum;
+import uk.gov.hmcts.reform.bulkscan.enums.FL401StopRespondentEnum;
+import uk.gov.hmcts.reform.bulkscan.exception.PostCodeValidationException;
 import uk.gov.hmcts.reform.bulkscan.group.util.BulkScanGroupValidatorUtil;
 import uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper;
 import uk.gov.hmcts.reform.bulkscan.helper.BulkScanValidationHelper;
@@ -34,6 +46,7 @@ import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.CaseCreationDetails;
 import uk.gov.hmcts.reform.bulkscan.model.FormType;
 import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
+import uk.gov.hmcts.reform.bulkscan.services.postcode.PostcodeLookupService;
 import uk.gov.hmcts.reform.bulkscan.utils.DateUtil;
 
 @NoArgsConstructor
@@ -49,8 +62,12 @@ public class BulkScanFL401Service implements BulkScanService {
 
     @Autowired BulkScanTransformConfigManager transformConfigManager;
 
+    @Autowired BulkScanFL401ValidationService bulkScanFL401ValidationService;
+
     @Autowired
     BulkScanFL401ConditionalTransformerService bulkScanFL401ConditionalTransformerService;
+
+    @Autowired PostcodeLookupService postcodeLookupService;
 
     @Override
     public BulkScanValidationResponse validate(
@@ -63,10 +80,10 @@ public class BulkScanFL401Service implements BulkScanService {
 
         BulkScanValidationResponse response =
                 bulkScanValidationHelper.validateMandatoryAndOptionalFields(
-                        ocrDataFields, configManager.getValidationConfig(FL401));
+                        ocrDataFields, configManager.getValidationConfig(FormType.FL401));
 
         response.addWarning(
-                dependencyValidationService.getDependencyWarnings(inputFieldMap, FL401));
+                dependencyValidationService.getDependencyWarnings(inputFieldMap, FormType.FL401));
 
         response.addWarning(
                 validateInputDate(
@@ -74,12 +91,104 @@ public class BulkScanFL401Service implements BulkScanService {
                         RESPONDENT_BAIL_CONDITIONS_ENDDATE,
                         BAIL_CONDITION_END_DATE_MESSAGE));
 
+        bulkScanFL401ValidationService.validateApplicantRespondentRelationhip(
+                inputFieldMap, response);
+
+        response.addWarning(
+                validateInputDate(
+                        ocrDataFields, APPLICANT_DATE_OF_BIRTH, APPLICANT_DATE_OF_BIRTH_MESSAGE));
+
+        response.addWarning(isValidPostCode(inputFieldMap, APPLICANT_ADDRESS_POSTCODE));
+
+        response.changeStatus();
+
+        response.addWarning(validateRespondentBehaviour(inputFieldMap));
+
         return response;
+    }
+
+    /**
+     * This method will validate given post code field and will return warning if post code is
+     * invalid.
+     *
+     * @param inputFieldMap request input map
+     * @param fieldName field contain postcode
+     * @return warning
+     */
+    private List<String> isValidPostCode(Map<String, String> inputFieldMap, Object fieldName) {
+        if (null != inputFieldMap
+                && inputFieldMap.containsKey(fieldName)
+                && hasText(inputFieldMap.get(fieldName))) {
+
+            try {
+                boolean isValidPostcode =
+                        postcodeLookupService.isValidPostCode(
+                                inputFieldMap.get(APPLICANT_ADDRESS_POSTCODE), null);
+
+                if (!isValidPostcode) {
+                    return List.of(String.format(POST_CODE_MESSAGE, APPLICANT_ADDRESS_POSTCODE));
+                }
+            } catch (PostCodeValidationException e) {
+                // if postocde is wrong then postcode lookup service will throw exception
+                if (e.getCause() instanceof HttpClientErrorException
+                        && ((HttpClientErrorException) e.getCause())
+                                .getStatusCode()
+                                .equals(HttpStatus.BAD_REQUEST)) {
+                    return List.of(String.format(POST_CODE_MESSAGE, APPLICANT_ADDRESS_POSTCODE));
+                }
+            }
+        }
+        return Collections.emptyList();
+    }
+
+    /**
+     * validate the 6. Respondent’s behaviour section in FL401 form
+     *
+     * @param inputFieldMap .
+     * @return validation of warning list.
+     */
+    private List<String> validateRespondentBehaviour(Map<String, String> inputFieldMap) {
+        List<String> warningLst = new ArrayList<>();
+        String applyingOrder =
+                inputFieldMap.get(BulkScanFl401Constants.APPLYING_FOR_NON_MOLES_STATION_ORDER);
+        if (hasText(applyingOrder) && applyingOrder.equalsIgnoreCase(YES)) {
+
+            validateStopRespondedDoing(inputFieldMap, warningLst);
+        }
+
+        return warningLst;
+    }
+
+    private void validateStopRespondedDoing(
+            Map<String, String> inputFieldMap, List<String> warningLst) {
+        boolean stopRespondentFromDoing = false;
+        for (FL401StopRespondentEnum l : EnumSet.allOf(FL401StopRespondentEnum.class)) {
+            String key = l.getKey();
+            if (hasText(inputFieldMap.get(key)) && inputFieldMap.get(key).equalsIgnoreCase(YES)) {
+                stopRespondentFromDoing = true;
+            }
+        }
+        if (!stopRespondentFromDoing) {
+            warningLst.add(
+                    String.format(MANDATORY_ERROR_MESSAGE, "Respondent's behaviour options 6.2 "));
+        }
+        boolean stopRespondentFromDoingToChild = false;
+        for (FL401StopRespondentBehaviourChildEnum l :
+                EnumSet.allOf(FL401StopRespondentBehaviourChildEnum.class)) {
+            String key = l.getKey();
+            if (hasText(inputFieldMap.get(key)) && inputFieldMap.get(key).equalsIgnoreCase(YES)) {
+                stopRespondentFromDoingToChild = true;
+            }
+        }
+        if (!stopRespondentFromDoingToChild) {
+            warningLst.add(
+                    String.format(MANDATORY_ERROR_MESSAGE, "Respondent's behaviour options 6.3"));
+        }
     }
 
     @Override
     public FormType getCaseType() {
-        return FL401;
+        return FormType.FL401;
     }
 
     @Override
@@ -134,17 +243,10 @@ public class BulkScanFL401Service implements BulkScanService {
         return builder.build();
     }
 
-    private Map<String, String> getOcrDataFieldsMap(List<OcrDataField> ocrDataFields) {
-        return null != ocrDataFields
-                ? ocrDataFields.stream()
-                        .collect(Collectors.toMap(OcrDataField::getName, OcrDataField::getValue))
-                : null;
-    }
-
     private List<String> validateInputDate(
             List<OcrDataField> ocrDataFields, String fieldName, String message) {
 
-        final Map<String, String> ocrDataFieldsMap = getOcrDataFieldsMap(ocrDataFields);
+        final Map<String, String> ocrDataFieldsMap = getOcrDataFieldAsMap(ocrDataFields);
 
         if (null != ocrDataFieldsMap
                 && ocrDataFieldsMap.containsKey(fieldName)

@@ -3,6 +3,31 @@
     "case_type_id": "PRLAPPS",
     "event_id": "create-case-privatelaw-bs",
     "case_data": {
+      "relationshipToRespondentTable": {
+        "applicantRelationship": "Married or in a civil partnership",
+        "relationshipDateComplexStartDate": "2002-12-02",
+        "relationshipDateComplexEndDate": "2012-12-02",
+        "applicantRelationshipDate": "2003-12-02",
+        "applicantRelationshipOptions": null,
+        "needForParentalResponsibility": null
+      },
+      "applicationTypeDetails": {
+        "typesOfApplication": "01234567891"
+      },
+      "attendingTheHearingTable": {
+        "isInterpreterNeeded": null,
+        "isDisabilityPresent": null,
+        "adjustmentsRequired": null,
+        "specialMeasureAtCourt": "",
+        "interpreterNeeds": [
+          {
+            "value": {
+              "language": null,
+              "dialect": null
+            }
+          }
+        ]
+      },
       "doAnyChildrenLiveAtAddress": "yes",
       "children": [
         {
@@ -112,7 +137,7 @@
             "firstName": "Johnny",
             "lastName": "Boy",
             "address": "JohnTown",
-            "phoneNumber": "0908776545"
+            "phoneNumber": "+442088956847"
           }
         }
       ],

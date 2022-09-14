@@ -1,5 +1,5 @@
 {
-  "ocr_data_fields":[
+  "ocr_data_fields": [
     {
       "name":"applicant_firstName",
       "value":"Johnny"
@@ -15,6 +15,114 @@
     {
       "name":"telephone_number",
       "value":"0908776545"
+    },
+    {
+      "name": "applicantRespondent_Relationship_01",
+      "value": "Yes"
+    },
+    {
+      "name": "applicantRespondent_Relationship_02",
+      "value": "No"
+    },
+    {
+      "name": "applicantRespondent_Relationship_03",
+      "value": "No"
+    },
+    {
+      "name": "applicantRespondent_Relationship_04",
+      "value": "No"
+    },
+    {
+      "name": "applicantRespondent_Relationship_05",
+      "value": "No"
+    },
+    {
+      "name": "applicantRespondent_Relationship_06",
+      "value": "No"
+    },
+    {
+      "name": "applicantRespondent_Relationship_07",
+      "value": "No"
+    },
+    {
+      "name": "applicantRespondent_Relationship_08",
+      "value": "No"
+    },
+    {
+      "name": "applicantRespondent_Relationship_09",
+      "value": "No"
+    },
+    {
+      "name": "applicantRespondent_Relationship_StartDate",
+      "value": "2002-Dec-02"
+    },
+    {
+      "name": "applicantRespondent_Relationship_EndDate",
+      "value": "2012-Dec-02"
+    },
+    {
+      "name": "applicantRespondent_PreviousMarried_Date",
+      "value": "2003-12-2"
+    },
+    {
+      "name": "applicantRespondent_Relationship_10",
+      "value": "No"
+    },
+    {
+      "name": "applicantRespondent_Relationship_11",
+      "value": "No"
+    },
+    {
+      "name": "applicantRespondent_Relationship_12",
+      "value": "No"
+    },
+    {
+      "name": "applicantRespondent_Relationship_13",
+      "value": "No"
+    },
+    {
+      "name": "applicantRespondent_Relationship_14",
+      "value": "No"
+    },
+    {
+      "name": "applicantRespondent_Relationship_15",
+      "value": "No"
+    },
+    {
+      "name": "applicantRespondent_Relationship_16",
+      "value": "No"
+    },
+    {
+      "name": "applicantRespondent_Relationship_17",
+      "value": "No"
+    },
+    {
+      "name": "applicantRespondent_Relationship_18",
+      "value": "No"
+    },
+    {
+      "name": "applicantRespondent_Relationship_19",
+      "value": "No"
+    },
+    {
+      "name": "applicantRespondent_Relationship_20",
+      "value": "No"
+    },
+    {
+      "name": "applicantRespondent_Relationship_21",
+      "value": "No"
+    },
+    {
+      "name": "applicantRespondent_Relationship_22",
+      "value": "No"
+    },
+    {
+      "name": "applicantRespondent_Relationship_23",
+      "value": "No"
+    },
+    {
+      "name": "needForParentalResponsiblity",
+      "value": "Yes"
     },
     {
       "name":"respondentFirstName",
@@ -99,6 +207,61 @@
     {
       "name": "situationCourtToKnow",
       "value": "XYZ"
+    },
+    {
+      "name":"interpreterNeededAtCourt",
+      "value":"Yes"
+    },
+    {
+      "name":"interpreterNeededAtCourt_Language",
+      "value":"john@gmail.com"
+    },
+    {
+      "name":"interpreterNeededAtCourt_Dialect",
+      "value":"john@gmail.com"
+    },
+    {
+      "name":"disabilitySupport_NeededAtCourt",
+      "value":"john@gmail.com"
+    },
+    {
+      "name":"disabilitySupport_details",
+      "value":"john@gmail.com"
+    },
+    {
+      "name":"specialMeasureAtCourt_Row1",
+      "value":"Measure1"
+    },
+    {
+      "name":"specialMeasureAtCourt_Row2",
+      "value":"Measure2"
+    },
+    {
+      "name":"specialMeasureAtCourt_Row4",
+      "value":"Measure4"
+    },{
+      "name":"applyingFor_NonMolestationOrder",
+      "value":"Yes"
+    },
+    {
+      "name":"stopRespondentFromDoing_2",
+      "value":"Yes"
+    },
+    {
+      "name":"stopRespondentFromDoing_6",
+      "value":"Yes"
+    },
+    {
+      "name":"stopRespondentFromDoingToChild_1",
+      "value":"Yes"
+    },
+    {
+      "name":"stopRespondentFromDoingToChild_6",
+      "value":"Yes"
+    },
+    {
+      "name":"stopRespondentFromDoing_1",
+      "value":"Yes"
     },
     {
       "name": "occupationOrderAddress_BuildingAndStreet",
