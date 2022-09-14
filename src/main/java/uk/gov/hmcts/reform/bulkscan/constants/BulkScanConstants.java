@@ -337,6 +337,11 @@ public final class BulkScanConstants {
 
     public static final String EMPTY = "";
 
+    public static final int INT_THREE = 3;
+    public static final String RESPONDENT_BAIL_CONDITIONS_ENDDATE =
+            "respondent_BailConditionsEndDate";
+    public static final String BAIL_CONDITION_END_DATE = "bail condition end date";
+
     private static Map<String, String> getErrorMessageMap() {
         return Map.of(
                 MANDATORY_KEY,
