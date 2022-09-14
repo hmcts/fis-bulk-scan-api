@@ -4,8 +4,10 @@ import static java.util.Objects.nonNull;
 import static org.springframework.util.StringUtils.hasText;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CASE_TYPE_ID;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EVENT_ID;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_ERROR_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.POST_CODE_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.SCAN_DOCUMENTS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_ADDRESS_POSTCODE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_DATE_OF_BIRTH;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_DATE_OF_BIRTH_MESSAGE;
@@ -15,7 +17,9 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.TEXT
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.VALID_DATE_WARNING_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper.transformScanDocuments;
 
+import java.util.ArrayList;
 import java.util.Collections;
+import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -28,6 +32,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanFormValidationConfigManager;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanTransformConfigManager;
+import uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants;
+import uk.gov.hmcts.reform.bulkscan.enums.FL401StopRespondentBehaviourChildEnum;
+import uk.gov.hmcts.reform.bulkscan.enums.FL401StopRespondentEnum;
 import uk.gov.hmcts.reform.bulkscan.exception.PostCodeValidationException;
 import uk.gov.hmcts.reform.bulkscan.group.util.BulkScanGroupValidatorUtil;
 import uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper;
@@ -95,6 +102,8 @@ public class BulkScanFL401Service implements BulkScanService {
 
         response.changeStatus();
 
+        response.addWarning(validateRespondentBehaviour(inputFieldMap));
+
         return response;
     }
 
@@ -130,6 +139,51 @@ public class BulkScanFL401Service implements BulkScanService {
             }
         }
         return Collections.emptyList();
+    }
+
+    /**
+     * validate the 6. Respondent’s behaviour section in FL401 form
+     *
+     * @param inputFieldMap .
+     * @return validation of warning list.
+     */
+    private List<String> validateRespondentBehaviour(Map<String, String> inputFieldMap) {
+        List<String> warningLst = new ArrayList<>();
+        String applyingOrder =
+                inputFieldMap.get(BulkScanFl401Constants.APPLYING_FOR_NON_MOLES_STATION_ORDER);
+        if (hasText(applyingOrder) && applyingOrder.equalsIgnoreCase(YES)) {
+
+            validateStopRespondedDoing(inputFieldMap, warningLst);
+        }
+
+        return warningLst;
+    }
+
+    private void validateStopRespondedDoing(
+            Map<String, String> inputFieldMap, List<String> warningLst) {
+        boolean stopRespondentFromDoing = false;
+        for (FL401StopRespondentEnum l : EnumSet.allOf(FL401StopRespondentEnum.class)) {
+            String key = l.getKey();
+            if (hasText(inputFieldMap.get(key)) && inputFieldMap.get(key).equalsIgnoreCase(YES)) {
+                stopRespondentFromDoing = true;
+            }
+        }
+        if (!stopRespondentFromDoing) {
+            warningLst.add(
+                    String.format(MANDATORY_ERROR_MESSAGE, "Respondent's behaviour options 6.2 "));
+        }
+        boolean stopRespondentFromDoingToChild = false;
+        for (FL401StopRespondentBehaviourChildEnum l :
+                EnumSet.allOf(FL401StopRespondentBehaviourChildEnum.class)) {
+            String key = l.getKey();
+            if (hasText(inputFieldMap.get(key)) && inputFieldMap.get(key).equalsIgnoreCase(YES)) {
+                stopRespondentFromDoingToChild = true;
+            }
+        }
+        if (!stopRespondentFromDoingToChild) {
+            warningLst.add(
+                    String.format(MANDATORY_ERROR_MESSAGE, "Respondent's behaviour options 6.3"));
+        }
     }
 
     @Override
