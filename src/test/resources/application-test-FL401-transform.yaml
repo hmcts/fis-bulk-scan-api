@@ -65,19 +65,19 @@ uk:
                 dateOfBirth: applicantDateOfBirth
                 applicantContactInstructions: applicant_ContactInstructions
                 applicantLegalRepresenationNeeded: applicant_LegalRepresenationNeeded
-                fl401SolicitorDetailsTable:
-                  solicitorOrg:
-                    OrganisationName: applicant_Solicitor_FirmName
-                  address:
-                    addressLine1: applicant_Solicitor_Address_BuildingAndStreet
-                    addressLine2: applicant_Solicitor_Address_SecondLine
-                    postTown: applicant_Solicitor_Address_TownOrCity
-                    county: applicant_Solicitor_Address_County
-                    postCode: applicant_Solicitor_Address_Postcode
-                  dxNumber: applicant_Solicitor_DXNumber
-                  solicitorTelephone: applicant_Solicitor_PhoneNumber
-                  solicitorEmail: applicant_Solicitor_EmailAddress
-                  solicitorReference: applicant_Solicitor_Reference
+              fl401SolicitorDetailsTable:
+                solicitorOrg:
+                  OrganisationName: applicant_Solicitor_FirmName
+                address:
+                  addressLine1: applicant_Solicitor_Address_BuildingAndStreet
+                  addressLine2: applicant_Solicitor_Address_SecondLine
+                  postTown: applicant_Solicitor_Address_TownOrCity
+                  county: applicant_Solicitor_Address_County
+                  postCode: applicant_Solicitor_Address_Postcode
+                dxNumber: applicant_Solicitor_DXNumber
+                solicitorTelephone: applicant_Solicitor_PhoneNumber
+                solicitorEmail: applicant_Solicitor_EmailAddress
+                solicitorReference: applicant_Solicitor_Reference
 
 
 
