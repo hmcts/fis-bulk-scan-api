@@ -73,7 +73,6 @@ public class BulkScanFL401EndpointTest {
         JSONAssert.assertEquals(bulkScanValidationResponse, response.getBody().asString(), true);
     }
 
-
     @Test
     public void shouldTransformFL401BulkScanRequest() throws Exception {
         String bulkScanTransformRequest = readFileFrom(FL401_TRANSFORM_INPUT_PATH);

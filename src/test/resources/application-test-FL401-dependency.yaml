@@ -18,9 +18,6 @@ uk:
                 - deterredOrPrevented
                 - deliberatelyEvadingService
               dependentFieldValue: "Yes"
-                - riskOfSignificantHarm
-                - deterredOrPrevented
-                - deliberatelyEvadingService
               groupFieldName: orderWithout_GivingNotice
               groupValidationValue: "Yes"
               requiredFieldCount: 1

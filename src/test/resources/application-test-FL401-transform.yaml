@@ -51,13 +51,12 @@ uk:
                 adjustmentsRequired: disabilitySupport_details
                 specialMeasureAtCourt: specialMeasureAtCourt_Row1
                 interpreterNeeds:
-                - value:
-                    language: interpreterNeededAtCourt_Language
-                    dialect: interpreterNeededAtCourt_Dialect
+                  - value:
+                      language: interpreterNeededAtCourt_Language
+                      dialect: interpreterNeededAtCourt_Dialect
               respondentBehaviourTable:
                 applicantWantToStopFromRespondentDoing:
                 applicantWantToStopFromRespondentDoingToChild:
-                otherReasonApplicantWantToStopFromRespondentDoing: stopRespondentFromDoingToChild_6
               fl401ApplicantTable:
                 firstName: applicantFirstName
                 lastName: applicantLastName
