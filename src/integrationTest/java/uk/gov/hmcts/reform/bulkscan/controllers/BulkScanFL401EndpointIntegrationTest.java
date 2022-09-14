@@ -49,6 +49,7 @@ class BulkScanFL401EndpointIntegrationTest {
     @DisplayName("should test validate request case type FL401")
     @Test
     void shouldTestValidationRequestCaseTypeFL401() throws Exception {
+        when(authTokenValidator.getServiceName(SERVICE_AUTH_TOKEN)).thenReturn("fis_bulk_scan_api");
 
         mockMvc.perform(
                         post(FL401_CASE_TYPE_VALIDATE_ENDPOINT)
@@ -62,6 +63,8 @@ class BulkScanFL401EndpointIntegrationTest {
     @DisplayName("should test transform request case type FL401")
     @Test
     void shouldTestTransformRequestCaseTypeFL401() throws Exception {
+        when(authTokenValidator.getServiceName(SERVICE_AUTH_TOKEN)).thenReturn("fis_bulk_scan_api");
+
         mockMvc.perform(
                         post(CASE_TYPE_TRANSFORM_ENDPOINT)
                                 .contentType(APPLICATION_JSON)

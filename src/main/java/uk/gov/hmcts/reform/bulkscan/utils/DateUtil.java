@@ -39,6 +39,7 @@ public final class DateUtil {
                         .append(
                                 DateTimeFormatter.ofPattern(pattern)
                                         .withResolverStyle(ResolverStyle.STRICT));
+
         try {
             final LocalDate localDate =
                     LocalDate.parse(dateStr, dateTimeFormatterBuilder.toFormatter());

@@ -11,8 +11,39 @@ uk:
               - telephone_number
               - orderApplyingFor
               - orderWithout_GivingNotice
+              - applicantFirstName
+              - applicantLastName
+              - applicantDateOfBirth
+              - applicantContact_Confidentiality
               - applyingFor_NonMolestationOrder
             optionalFields:
+              - applicantRespondent_Relationship_01
+              - applicantRespondent_Relationship_02
+              - applicantRespondent_Relationship_03
+              - applicantRespondent_Relationship_04
+              - applicantRespondent_Relationship_05
+              - applicantRespondent_Relationship_06
+              - applicantRespondent_Relationship_07
+              - applicantRespondent_Relationship_08
+              - applicantRespondent_Relationship_09
+              - applicantRespondent_Relationship_StartDate
+              - applicantRespondent_Relationship_EndDate
+              - applicantRespondent_PreviousMarried_Date
+              - applicantRespondent_Relationship_10
+              - applicantRespondent_Relationship_11
+              - applicantRespondent_Relationship_12
+              - applicantRespondent_Relationship_13
+              - applicantRespondent_Relationship_14
+              - applicantRespondent_Relationship_15
+              - applicantRespondent_Relationship_16
+              - applicantRespondent_Relationship_17
+              - applicantRespondent_Relationship_18
+              - applicantRespondent_Relationship_19
+              - applicantRespondent_Relationship_20
+              - applicantRespondent_Relationship_21
+              - applicantRespondent_Relationship_22
+              - applicantRespondent_Relationship_23
+              - needForParentalResponsiblity
               - respondentFirstName
               - respondentLastName
               - previousName
@@ -25,6 +56,7 @@ uk:
               - respondent_Address_Postcode
               - respondent_PhoneNumber
               - respondent_Email
+              - orderWithoutGivingNoticeReason
               - riskOfSignificantHarm
               - deterredOrPrevented
               - deliberatelyEvadingService
@@ -41,6 +73,30 @@ uk:
               - specialMeasureAtCourt_Row2
               - specialMeasureAtCourt_Row3
               - specialMeasureAtCourt_Row4
+              - applicantPreviousNames
+              - applicantDateOfBirth
+              - applicantContact_Confidentiality
+              - applicant_Address_BuildingAndStreet
+              - applicant_Address_SecondLine
+              - applicant_Address_TownOrCity
+              - applicant_Address_County
+              - applicant_Address_Postcode
+              - applicant_PhoneNumber
+              - applicant_Email
+              - applicant_PreferToBeContacted
+              - applicant_ContactInstructions
+              - applicant_LegalRepresenationNeeded
+              - applicant_SolicitorName
+              - applicant_Solicitor_FirmName
+              - applicant_Solicitor_Address_BuildingAndStreet
+              - applicant_Solicitor_Address_SecondLine
+              - applicant_Solicitor_Address_TownOrCity
+              - applicant_Solicitor_Address_County
+              - applicant_Solicitor_Address_Postcode
+              - applicant_Solicitor_DXNumber
+              - applicant_Solicitor_PhoneNumber
+              - applicant_Solicitor_EmailAddress
+              - applicant_Solicitor_Reference
               - stopRespondentFromDoing_1
               - stopRespondentFromDoing_2
               - stopRespondentFromDoing_3
@@ -59,11 +115,11 @@ uk:
             regexValidationFields:
               dateFields:
                 fieldNames:
-                  - appellant_dateOfBirth
+                  -
                 regex: dd/MM/yyyy
               emailFields:
                 fieldNames:
-                  - appellant_email
+                  -
                 regex: ^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,6}$
               numericFields:
                 fieldNames:
@@ -81,4 +137,3 @@ uk:
                 fieldNames:
                   -
                 regex:
-

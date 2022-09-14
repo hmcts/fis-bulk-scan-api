@@ -3,6 +3,14 @@
     "case_type_id": "PRLAPPS",
     "event_id": "create-case-privatelaw-bs",
     "case_data": {
+      "relationshipToRespondentTable": {
+        "applicantRelationship": "Married or in a civil partnership",
+        "relationshipDateComplexStartDate": "2002-12-02",
+        "relationshipDateComplexEndDate": "2012-12-02",
+        "applicantRelationshipDate": "2003-12-02",
+        "applicantRelationshipOptions": null,
+        "needForParentalResponsibility": null
+      },
       "respondentBehaviourTable": {
         "applicantWantToStopFromRespondentDoing": "Being violent towards me or threatening me,Harassing or intimidating me,Causing damage to my home,",
         "applicantWantToStopFromRespondentDoingToChild": "Being violent towards my children or threatening my children,",
