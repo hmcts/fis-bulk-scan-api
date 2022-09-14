@@ -1,6 +1,5 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.SCAN_DOCUMENTS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_RESPONDENT_OTHER_RELATIONSHIP_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_RESPONDENT_RELATIONSHIP_FIELDS;
@@ -28,7 +27,6 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.TEXT
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.TWO_DIGIT_MONTH_FORMAT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.WITHOUT_NOTICE_ORDER_TABLE;
 import static uk.gov.hmcts.reform.bulkscan.enums.OrderWithouGivingNoticeReasonEnum.RISKOF_SIGNIFICANT_HARM;
-import static uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper.transformScanDocuments;
 
 import com.microsoft.applicationinsights.core.dependencies.google.gson.internal.LinkedTreeMap;
 import java.util.Map;
@@ -36,17 +34,13 @@ import java.util.TreeMap;
 import org.springframework.stereotype.Component;
 import uk.gov.hmcts.reform.bulkscan.enums.ApplicantRespondentRelationshipEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.OrderWithouGivingNoticeReasonEnum;
-import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
 import uk.gov.hmcts.reform.bulkscan.utils.DateUtil;
 
 @SuppressWarnings({"PMD", "unchecked"})
 @Component
 public class BulkScanFL401ConditionalTransformerService {
 
-    public void transform(
-            Map<String, Object> populatedMap,
-            Map<String, String> inputFieldsMap,
-            BulkScanTransformationRequest bulkScanTransformationRequest) {
+    public void transform(Map<String, Object> populatedMap, Map<String, String> inputFieldsMap) {
 
         LinkedTreeMap withoutNoticeOrderTableMap =
                 (LinkedTreeMap) populatedMap.get(WITHOUT_NOTICE_ORDER_TABLE);
@@ -132,8 +126,6 @@ public class BulkScanFL401ConditionalTransformerService {
         } else {
             relationshipToRespondentTableMap.put(FL401_APPLICANT_RELATIONSHIP_OPTIONS, null);
         }
-
-        populatedMap.put(SCAN_DOCUMENTS, transformScanDocuments(bulkScanTransformationRequest));
 
         LinkedTreeMap attendHearingTableMap =
                 (LinkedTreeMap) populatedMap.get(ATTEND_HEARING_TABLE);

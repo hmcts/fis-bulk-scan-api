@@ -5,7 +5,8 @@
       "The following fields are not configured with our system: [applicant1_dateOfBirth] ",
       "Some details are missing in the following section: 1.3 - Why do you want to apply without giving notice to the respondent?.",
       "Section 4.1 - Applicant has more than one relationship with the respondent",
-      "Section 4.4 - Applicant has more than one relationship with the respondent"
+      "Section 4.4 - Applicant has more than one relationship with the respondent",
+      "Some details are missing in the following section: 2 - your details."
     ]
   },
   "errors": {

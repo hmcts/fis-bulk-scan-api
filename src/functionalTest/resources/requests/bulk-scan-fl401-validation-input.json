@@ -1,68 +1,68 @@
 {
-  "ocr_data_fields":[
+  "ocr_data_fields": [
     {
-      "name":"applicant_firstName",
-      "value":"Johnny"
+      "name": "applicant_firstName",
+      "value": "Johnny"
     },
     {
-      "name":"applicant_lastName",
-      "value":"Boy"
+      "name": "applicant_lastName",
+      "value": "Boy"
     },
     {
-      "name":"applicant_address",
-      "value":"JohnTown"
+      "name": "applicant_address",
+      "value": "JohnTown"
     },
     {
-      "name":"telephone_number",
-      "value":"0908776545"
+      "name": "telephone_number",
+      "value": "0908776545"
     },
     {
-      "name":"respondentFirstName",
-      "value":"John"
+      "name": "respondentFirstName",
+      "value": "John"
     },
     {
-      "name":"respondentLastName",
-      "value":"Maxwell"
+      "name": "respondentLastName",
+      "value": "Maxwell"
     },
     {
-      "name":"previousName",
-      "value":"previousName"
+      "name": "previousName",
+      "value": "previousName"
     },
     {
-      "name":"respondentDoB",
-      "value":"2022/12/04"
+      "name": "respondentDoB",
+      "value": "2022/12/04"
     },
     {
-      "name":"respondent_LiveWithApplicant",
-      "value":"yes"
+      "name": "respondent_LiveWithApplicant",
+      "value": "yes"
     },
     {
-      "name":"respondent_Address_BuildingAndStreet",
-      "value":"123 Harley St."
+      "name": "respondent_Address_BuildingAndStreet",
+      "value": "123 Harley St."
     },
     {
-      "name":"respondent_Address_SecondLine",
-      "value":"Vox Rd"
+      "name": "respondent_Address_SecondLine",
+      "value": "Vox Rd"
     },
     {
-      "name":"respondent_Address_TownOrCity",
-      "value":"Blighty"
+      "name": "respondent_Address_TownOrCity",
+      "value": "Blighty"
     },
     {
-      "name":"respondent_Address_County",
-      "value":"UK"
+      "name": "respondent_Address_County",
+      "value": "UK"
     },
     {
-      "name":"respondent_Address_Postcode",
-      "value":"respondent_Address_Postcode"
+      "name": "respondent_Address_Postcode",
+      "value": "respondent_Address_Postcode"
     },
     {
-      "name":"respondent_PhoneNumber",
-      "value":"09866534424"
+      "name": "respondent_PhoneNumber",
+      "value": "09866534424"
     },
     {
-      "name":"respondent_Email",
-      "value":"john@gmail.com"
+      "name": "respondent_Email",
+      "value": "john@gmail.com"
     },
     {
       "name": "orderApplyingFor",
@@ -94,11 +94,135 @@
     },
     {
       "name": "respondent_BailConditionsEndDate",
-      "value": "2021-01-07"
+      "value": "2021-feb-07"
     },
     {
       "name": "situationCourtToKnow",
       "value": "XYZ"
+    },
+    {
+      "name":"interpreterNeededAtCourt",
+      "value":"Yes"
+    },
+    {
+      "name":"interpreterNeededAtCourt_Language",
+      "value":"john@gmail.com"
+    },
+    {
+      "name":"interpreterNeededAtCourt_Dialect",
+      "value":"john@gmail.com"
+    },
+    {
+      "name":"disabilitySupport_NeededAtCourt",
+      "value":"john@gmail.com"
+    },
+    {
+      "name":"disabilitySupport_details",
+      "value":"john@gmail.com"
+    },
+    {
+      "name":"specialMeasureAtCourt_Row1",
+      "value":"john@gmail.com"
+    },
+    {
+      "name":"specialMeasureAtCourt_Row2",
+      "value":"john@gmail.com"
+    },
+    {
+      "name":"specialMeasureAtCourt_Row3",
+      "value":"john@gmail.com"
+    },
+    {
+      "name":"specialMeasureAtCourt_Row4",
+      "value":"john@gmail.com"
+    },
+    {
+      "name": "applicantFirstName",
+      "value": "testfirstname"
+    },
+    {
+      "name": "applicantLastName",
+      "value": "testLastname"
+    },
+    {
+      "name": "applicantDateOfBirth",
+      "value": "2001-03-26"
+    },
+    {
+      "name": "applicantContact_Confidentiality",
+      "value": "No"
+    },
+    {
+      "name": "applicant_Address_BuildingAndStreet",
+      "value": "No"
+    },
+    {
+      "name": "applicant_Address_TownOrCity",
+      "value": "No"
+    },
+    {
+      "name": "applicant_Address_Postcode",
+      "value": "cv2 4nz"
+    },
+    {
+      "name": "applicant_PhoneNumber",
+      "value": "Yes"
+    },
+    {
+      "name": "applicant_Email",
+      "value": "No"
+    },
+    {
+      "name": "applicant_PreferToBeContacted",
+      "value": "No"
+    },
+    {
+      "name": "applicant_ContactInstructions",
+      "value": "No"
+    },
+    {
+      "name": "applicant_LegalRepresenationNeeded",
+      "value": "No"
+    },
+    {
+      "name": "applicant_SolicitorName",
+      "value": "solicitot name"
+    },
+    {
+      "name": "applicant_Solicitor_FirmName",
+      "value": "solicitor firm name"
+    },
+    {
+      "name": "applicant_Solicitor_Address_BuildingAndStreet",
+      "value": "1 abc street"
+    },
+    {
+      "name": "applicant_Solicitor_Address_SecondLine",
+      "value": ""
+    },
+    {
+      "name": "applicant_Solicitor_Address_County",
+      "value": ""
+    },
+    {
+      "name": "applicant_Solicitor_Address_Postcode",
+      "value": ""
+    },
+    {
+      "name": "applicant_Solicitor_DXNumber",
+      "value": ""
+    },
+    {
+      "name": "applicant_Solicitor_PhoneNumber",
+      "value": ""
+    },
+    {
+      "name": "applicant_Solicitor_EmailAddress",
+      "value": ""
+    },
+    {
+      "name": "applicant_Solicitor_Reference",
+      "value": ""
     },
     {
       "name": "applicantRespondent_Relationship_01",
