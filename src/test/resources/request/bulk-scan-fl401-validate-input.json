@@ -195,6 +195,17 @@
     {
       "name": "applicantContact_Confidentiality",
       "value": "Yes"
+    },{
+      "name":"applyingFor_NonMolestationOrder",
+      "value":"Yes"
+    },
+    {
+      "name":"stopRespondentFromDoing_1",
+      "value":"Yes"
+    },
+    {
+      "name":"stopRespondentFromDoingToChild_1",
+      "value":"Yes"
     }
   ]
 }

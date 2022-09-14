@@ -15,6 +15,7 @@ uk:
               - applicantLastName
               - applicantDateOfBirth
               - applicantContact_Confidentiality
+              - applyingFor_NonMolestationOrder
             optionalFields:
               - applicantRespondent_Relationship_01
               - applicantRespondent_Relationship_02
@@ -116,6 +117,21 @@ uk:
               - applicant_Solicitor_PhoneNumber
               - applicant_Solicitor_EmailAddress
               - applicant_Solicitor_Reference
+              - stopRespondentFromDoing_1
+              - stopRespondentFromDoing_2
+              - stopRespondentFromDoing_3
+              - stopRespondentFromDoing_4
+              - stopRespondentFromDoing_5
+              - stopRespondentFromDoing_6
+              - stopRespondentFromDoing_7
+              - stopRespondentFromDoing_8
+              - stopRespondentFromDoing_9
+              - stopRespondentFromDoingToChild_1
+              - stopRespondentFromDoingToChild_2
+              - stopRespondentFromDoingToChild_3
+              - stopRespondentFromDoingToChild_4
+              - stopRespondentFromDoingToChild_5
+              - stopRespondentFromDoingToChild_6
             regexValidationFields:
               dateFields:
                 fieldNames:

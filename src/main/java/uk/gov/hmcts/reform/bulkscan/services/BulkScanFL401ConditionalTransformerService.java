@@ -17,6 +17,7 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPL
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_RESPONDENT_OTHER_RELATIONSHIP_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_RESPONDENT_RELATIONSHIP_FIELDS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_RESPONDENT_RELATIONSHIP_OPTIONS_FIELDS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLYING_FOR_NON_MOLES_STATION_ORDER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_SOLICITOR_NAME;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.ATTEND_HEARING_TABLE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.BAIL_CONDITION_END_DATE;
@@ -32,6 +33,7 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.EMAI
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.EMPTY_SPACE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.FL401_APPLICANT_RELATIONSHIP;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.FL401_APPLICANT_RELATIONSHIP_OPTIONS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.OTHERS_STOP_RESPONDENT_BEHAVIOUR_OPTIONS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.FL401_APPLICANT_TABLE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.FL401_SOLICITOR_TABLE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.IS_ADDRESS_CONFIDENTIAL;
@@ -51,16 +53,24 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.SPEC
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.SPECIAL_MEASURE_AT_COURT_ROW_2;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.SPECIAL_MEASURE_AT_COURT_ROW_3;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.SPECIAL_MEASURE_AT_COURT_ROW_4;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.STOP_RESPONDENT_BEHAVIOUR_CHILD_OPTIONS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.STOP_RESPONDENT_BEHAVIOUR_OPTIONS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.STOP_RESPONDENT_BEHAVIOUR_OPTIONS_6;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.STOP_RESPONDENT_BEHAVIOUR_TABLE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.TEXT_AND_NUMERIC_MONTH_PATTERN;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.TWO_DIGIT_MONTH_FORMAT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.WITHOUT_NOTICE_ORDER_TABLE;
 import static uk.gov.hmcts.reform.bulkscan.enums.OrderWithouGivingNoticeReasonEnum.RISKOF_SIGNIFICANT_HARM;
 
 import com.microsoft.applicationinsights.core.dependencies.google.gson.internal.LinkedTreeMap;
+import java.util.EnumSet;
 import java.util.Map;
 import java.util.TreeMap;
 import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
 import uk.gov.hmcts.reform.bulkscan.enums.ApplicantRespondentRelationshipEnum;
+import uk.gov.hmcts.reform.bulkscan.enums.FL401StopRespondentBehaviourChildEnum;
+import uk.gov.hmcts.reform.bulkscan.enums.FL401StopRespondentEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.OrderWithouGivingNoticeReasonEnum;
 import uk.gov.hmcts.reform.bulkscan.utils.DateUtil;
 
@@ -160,6 +170,21 @@ public class BulkScanFL401ConditionalTransformerService {
 
         attendHearingTableMap.put(
                 SPECIAL_MEASURE_AT_COURT, getFormattedSpecialMeasureAtCourt(inputFieldsMap));
+        LinkedTreeMap respondentBehaviourTable =
+                (LinkedTreeMap) populatedMap.get(STOP_RESPONDENT_BEHAVIOUR_TABLE);
+
+        if (StringUtils.hasText(inputFieldsMap.get(APPLYING_FOR_NON_MOLES_STATION_ORDER))
+                && inputFieldsMap.get(APPLYING_FOR_NON_MOLES_STATION_ORDER).equalsIgnoreCase(YES)) {
+            respondentBehaviourTable.put(
+                    STOP_RESPONDENT_BEHAVIOUR_OPTIONS,
+                    getRespondentBehaviourOptions(inputFieldsMap));
+            respondentBehaviourTable.put(
+                    STOP_RESPONDENT_BEHAVIOUR_CHILD_OPTIONS,
+                    getRespondentBehaviourChildOptions(inputFieldsMap));
+            respondentBehaviourTable.put(
+                    OTHERS_STOP_RESPONDENT_BEHAVIOUR_OPTIONS,
+                    inputFieldsMap.get(STOP_RESPONDENT_BEHAVIOUR_OPTIONS_6));
+        }
 
         LinkedTreeMap fl401ApplicantTable = (LinkedTreeMap) populatedMap.get(FL401_APPLICANT_TABLE);
 
@@ -258,6 +283,33 @@ public class BulkScanFL401ConditionalTransformerService {
         }
 
         return null;
+    }
+
+    private String getRespondentBehaviourOptions(Map<String, String> inputFieldsMap) {
+        StringBuilder sb = new StringBuilder();
+        for (FL401StopRespondentEnum l : EnumSet.allOf(FL401StopRespondentEnum.class)) {
+            String key = l.getKey();
+            if (null != inputFieldsMap.get(key) && inputFieldsMap.get(key).equalsIgnoreCase(YES)) {
+
+                sb.append(l.getValue(l.name())).append(COMMA);
+            }
+        }
+
+        return sb.toString();
+    }
+
+    private String getRespondentBehaviourChildOptions(Map<String, String> inputFieldsMap) {
+        StringBuilder sb = new StringBuilder();
+        for (FL401StopRespondentBehaviourChildEnum l :
+                EnumSet.allOf(FL401StopRespondentBehaviourChildEnum.class)) {
+            String key = l.getKey();
+            if (null != inputFieldsMap.get(key) && inputFieldsMap.get(key).equalsIgnoreCase(YES)) {
+
+                sb.append(l.getValue(l.name())).append(COMMA);
+            }
+        }
+
+        return sb.toString();
     }
 
     private void transformApplicantConfidentiality(
