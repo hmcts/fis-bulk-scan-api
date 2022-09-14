@@ -1,11 +1,21 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.SCAN_DOCUMENTS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_RESPONDENT_OTHER_RELATIONSHIP_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_RESPONDENT_RELATIONSHIP_FIELDS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_RESPONDENT_RELATIONSHIP_OPTIONS_FIELDS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.ATTEND_HEARING_TABLE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.BAIL_CONDITION_END_DATE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.CCD_APPLICANT_RELATIONSHIOP_DATE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.CCD_RELATIONSHIP_DATE_COMPLEX_END_DATE_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.CCD_RELATIONSHIP_DATE_COMPLEX_START_DATE_FIELD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.CCD_RELATIONSHIP_TO_RESPONDENT_TABLE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.COMMA;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.DELIVERATELY_EVADING_SERVICE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.DETERREDOR_PREVENTED;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.FL401_APPLICANT_RELATIONSHIP;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.FL401_APPLICANT_RELATIONSHIP_OPTIONS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.REASON_FOR_ORDER_WITHOUT_GIVING_NOTICE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.RISK_OF_SIGNIFICANT_HARM;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.SPACE;
@@ -18,18 +28,25 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.TEXT
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.TWO_DIGIT_MONTH_FORMAT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.WITHOUT_NOTICE_ORDER_TABLE;
 import static uk.gov.hmcts.reform.bulkscan.enums.OrderWithouGivingNoticeReasonEnum.RISKOF_SIGNIFICANT_HARM;
+import static uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper.transformScanDocuments;
 
 import com.microsoft.applicationinsights.core.dependencies.google.gson.internal.LinkedTreeMap;
 import java.util.Map;
+import java.util.TreeMap;
 import org.springframework.stereotype.Component;
+import uk.gov.hmcts.reform.bulkscan.enums.ApplicantRespondentRelationshipEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.OrderWithouGivingNoticeReasonEnum;
+import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
 import uk.gov.hmcts.reform.bulkscan.utils.DateUtil;
 
 @SuppressWarnings({"PMD", "unchecked"})
 @Component
 public class BulkScanFL401ConditionalTransformerService {
 
-    public void transform(Map<String, Object> populatedMap, Map<String, String> inputFieldsMap) {
+    public void transform(
+            Map<String, Object> populatedMap,
+            Map<String, String> inputFieldsMap,
+            BulkScanTransformationRequest bulkScanTransformationRequest) {
 
         LinkedTreeMap withoutNoticeOrderTableMap =
                 (LinkedTreeMap) populatedMap.get(WITHOUT_NOTICE_ORDER_TABLE);
@@ -46,6 +63,77 @@ public class BulkScanFL401ConditionalTransformerService {
         withoutNoticeOrderTableMap.put(
                 REASON_FOR_ORDER_WITHOUT_GIVING_NOTICE,
                 transformReasonForOrderWithoutGivingNotice(inputFieldsMap));
+
+        LinkedTreeMap relationshipToRespondentTableMap =
+                (LinkedTreeMap) populatedMap.get(CCD_RELATIONSHIP_TO_RESPONDENT_TABLE);
+
+        final String relationshipDateComplexStartDate =
+                (String)
+                        relationshipToRespondentTableMap.get(
+                                CCD_RELATIONSHIP_DATE_COMPLEX_START_DATE_FIELD);
+
+        if (null != relationshipDateComplexStartDate
+                && !relationshipDateComplexStartDate.isEmpty()) {
+            relationshipToRespondentTableMap.put(
+                    CCD_RELATIONSHIP_DATE_COMPLEX_START_DATE_FIELD,
+                    DateUtil.transformDate(
+                            relationshipDateComplexStartDate,
+                            TEXT_AND_NUMERIC_MONTH_PATTERN,
+                            TWO_DIGIT_MONTH_FORMAT));
+        }
+        final String relationshipDateComplexEndDate =
+                (String)
+                        relationshipToRespondentTableMap.get(
+                                CCD_RELATIONSHIP_DATE_COMPLEX_END_DATE_FIELD);
+
+        if (null != relationshipDateComplexEndDate && !relationshipDateComplexEndDate.isEmpty()) {
+            relationshipToRespondentTableMap.put(
+                    CCD_RELATIONSHIP_DATE_COMPLEX_END_DATE_FIELD,
+                    DateUtil.transformDate(
+                            relationshipDateComplexEndDate,
+                            TEXT_AND_NUMERIC_MONTH_PATTERN,
+                            TWO_DIGIT_MONTH_FORMAT));
+        }
+        final String applicantRelationshipDate =
+                (String) relationshipToRespondentTableMap.get(CCD_APPLICANT_RELATIONSHIOP_DATE);
+
+        if (null != applicantRelationshipDate && !applicantRelationshipDate.isEmpty()) {
+            relationshipToRespondentTableMap.put(
+                    CCD_APPLICANT_RELATIONSHIOP_DATE,
+                    DateUtil.transformDate(
+                            applicantRelationshipDate,
+                            TEXT_AND_NUMERIC_MONTH_PATTERN,
+                            TWO_DIGIT_MONTH_FORMAT));
+        }
+
+        final String applicantRelationship =
+                (String) relationshipToRespondentTableMap.get(FL401_APPLICANT_RELATIONSHIP);
+
+        if (null != applicantRelationship && !applicantRelationship.isEmpty()) {
+            relationshipToRespondentTableMap.put(
+                    FL401_APPLICANT_RELATIONSHIP,
+                    getApplicantRelationships(
+                            inputFieldsMap, APPLICANT_RESPONDENT_RELATIONSHIP_FIELDS));
+        }
+
+        final String applicantRelationshipOptions =
+                (String) relationshipToRespondentTableMap.get(FL401_APPLICANT_RELATIONSHIP_OPTIONS);
+
+        if (null != applicantRelationshipOptions
+                && !applicantRelationshipOptions.isEmpty()
+                && null != inputFieldsMap.get(APPLICANT_RESPONDENT_OTHER_RELATIONSHIP_FIELD)
+                && inputFieldsMap
+                        .get(APPLICANT_RESPONDENT_OTHER_RELATIONSHIP_FIELD)
+                        .equalsIgnoreCase(YES)) {
+            relationshipToRespondentTableMap.put(
+                    FL401_APPLICANT_RELATIONSHIP_OPTIONS,
+                    getApplicantRelationships(
+                            inputFieldsMap, APPLICANT_RESPONDENT_RELATIONSHIP_OPTIONS_FIELDS));
+        } else {
+            relationshipToRespondentTableMap.put(FL401_APPLICANT_RELATIONSHIP_OPTIONS, null);
+        }
+
+        populatedMap.put(SCAN_DOCUMENTS, transformScanDocuments(bulkScanTransformationRequest));
 
         LinkedTreeMap attendHearingTableMap =
                 (LinkedTreeMap) populatedMap.get(ATTEND_HEARING_TABLE);
@@ -103,5 +191,36 @@ public class BulkScanFL401ConditionalTransformerService {
         }
 
         return orderWithoutGivingNoticeReason.toString();
+    }
+
+    private String getApplicantRelationships(
+            Map<String, String> inputFieldsMap, String relationshipField) {
+        TreeMap<String, String> orderedRelationshipFieldMap = new TreeMap<>();
+
+        if (null == inputFieldsMap || inputFieldsMap.isEmpty()) {
+            return null;
+        }
+
+        for (Map.Entry<String, String> relationship : inputFieldsMap.entrySet()) {
+            if (relationship.getKey().matches(relationshipField)) {
+                orderedRelationshipFieldMap.put(relationship.getKey(), relationship.getValue());
+            }
+        }
+
+        if (!orderedRelationshipFieldMap.isEmpty()) {
+            for (Map.Entry<String, String> relationShipField :
+                    orderedRelationshipFieldMap.entrySet()) {
+                if (null != relationShipField.getValue()
+                        && relationShipField.getValue().equalsIgnoreCase(YES)
+                        && ApplicantRespondentRelationshipEnum.getValue(relationShipField.getKey())
+                                        .getRelationshipDescription()
+                                != null) {
+                    return ApplicantRespondentRelationshipEnum.getValue(relationShipField.getKey())
+                            .getRelationshipDescription();
+                }
+            }
+        }
+
+        return null;
     }
 }

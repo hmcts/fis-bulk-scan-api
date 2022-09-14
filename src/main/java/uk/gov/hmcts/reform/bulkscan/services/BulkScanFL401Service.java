@@ -10,7 +10,6 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.RESP
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.TEXT_AND_NUMERIC_MONTH_PATTERN;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.VALID_DATE_WARNING_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper.transformScanDocuments;
-import static uk.gov.hmcts.reform.bulkscan.model.FormType.FL401;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -49,6 +48,8 @@ public class BulkScanFL401Service implements BulkScanService {
 
     @Autowired BulkScanTransformConfigManager transformConfigManager;
 
+    @Autowired BulkScanFL401ValidationService bulkScanFL401ValidationService;
+
     @Autowired
     BulkScanFL401ConditionalTransformerService bulkScanFL401ConditionalTransformerService;
 
@@ -63,10 +64,10 @@ public class BulkScanFL401Service implements BulkScanService {
 
         BulkScanValidationResponse response =
                 bulkScanValidationHelper.validateMandatoryAndOptionalFields(
-                        ocrDataFields, configManager.getValidationConfig(FL401));
+                        ocrDataFields, configManager.getValidationConfig(FormType.FL401));
 
         response.addWarning(
-                dependencyValidationService.getDependencyWarnings(inputFieldMap, FL401));
+                dependencyValidationService.getDependencyWarnings(inputFieldMap, FormType.FL401));
 
         response.addWarning(
                 validateInputDate(
@@ -74,12 +75,17 @@ public class BulkScanFL401Service implements BulkScanService {
                         RESPONDENT_BAIL_CONDITIONS_ENDDATE,
                         BAIL_CONDITION_END_DATE_MESSAGE));
 
+        bulkScanFL401ValidationService.validateApplicantRespondentRelationhip(
+                inputFieldMap, response);
+
+        response.changeStatus();
+
         return response;
     }
 
     @Override
     public FormType getCaseType() {
-        return FL401;
+        return FormType.FL401;
     }
 
     @Override
@@ -111,7 +117,8 @@ public class BulkScanFL401Service implements BulkScanService {
         Map<String, String> caseTypeAndEventId =
                 transformConfigManager.getTransformationConfig(formType).getCaseFields();
 
-        bulkScanFL401ConditionalTransformerService.transform(populatedMap, inputFieldsMap);
+        bulkScanFL401ConditionalTransformerService.transform(
+                populatedMap, inputFieldsMap, bulkScanTransformationRequest);
 
         BulkScanTransformationResponse.BulkScanTransformationResponseBuilder builder =
                 BulkScanTransformationResponse.builder()

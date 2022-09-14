@@ -12,6 +12,53 @@ uk:
               - orderApplyingFor
               - orderWithout_GivingNotice
             optionalFields:
+              - applicantRespondent_Relationship_01
+              - applicantRespondent_Relationship_02
+              - applicantRespondent_Relationship_03
+              - applicantRespondent_Relationship_04
+              - applicantRespondent_Relationship_05
+              - applicantRespondent_Relationship_06
+              - applicantRespondent_Relationship_07
+              - applicantRespondent_Relationship_08
+              - applicantRespondent_Relationship_09
+              - applicantRespondent_Relationship_StartDate
+              - applicantRespondent_Relationship_EndDate
+              - applicantRespondent_PreviousMarried_Date
+              - applicantRespondent_Relationship_10
+              - applicantRespondent_Relationship_11
+              - applicantRespondent_Relationship_12
+              - applicantRespondent_Relationship_13
+              - applicantRespondent_Relationship_14
+              - applicantRespondent_Relationship_15
+              - applicantRespondent_Relationship_16
+              - applicantRespondent_Relationship_17
+              - applicantRespondent_Relationship_18
+              - applicantRespondent_Relationship_19
+              - applicantRespondent_Relationship_20
+              - applicantRespondent_Relationship_21
+              - applicantRespondent_Relationship_22
+              - applicantRespondent_Relationship_23
+              - needForParentalResponsiblity
+              - respondentFirstName
+              - respondentLastName
+              - previousName
+              - respondentDoB
+              - respondent_LiveWithApplicant
+              - respondent_Address_BuildingAndStreet
+              - respondent_Address_SecondLine
+              - respondent_Address_TownOrCity
+              - respondent_Address_County
+              - respondent_Address_Postcode
+              - respondent_PhoneNumber
+              - respondent_Email
+              - orderWithoutGivingNoticeReason
+              - riskOfSignificantHarm
+              - deterredOrPrevented
+              - deliberatelyEvadingService
+              - orderWithoutGivingNotice_moreReason
+              - respondentBailConditions
+              - respondent_BailConditionsEndDate
+              - situationCourtToKnow
               - respondentFirstName
               - respondentLastName
               - previousName
@@ -44,11 +91,11 @@ uk:
             regexValidationFields:
               dateFields:
                 fieldNames:
-                  - appellant_dateOfBirth
+                  -
                 regex: dd/MM/yyyy
               emailFields:
                 fieldNames:
-                  - appellant_email
+                  -
                 regex: ^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,6}$
               numericFields:
                 fieldNames:
