@@ -344,7 +344,6 @@
       "name":"child4_localAuthority_or_socialWorker",
       "value":"socialWorker"
     },
-
     {
       "name":"permissionRequired",
       "value":"Yes"
