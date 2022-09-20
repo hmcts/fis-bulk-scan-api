@@ -24,15 +24,14 @@ uk:
               applicant2DateOfBirth: applicant2_dateOfBirth
               applicant2Nationality: applicant2_nationality
               applicant2Occupation: applicant2_occupation
-              solicitor:
-                solicitorName: solicitor_name
-                solicitorFirm: solicitor_firmName
-                solicitorAddress: solicitor_address
-                solicitorPhoneNumber: solicitor_telephoneNumber
-                solicitorFaxNumber: solicitor_faxNumber
-                solicitorDxNumber: solicitor_dxNumber
-                solicitorEmail: solicitor_emailAddress
-                solicitorFeeAccountNumber: solicitor_feeAccountNumber
+              solicitorName: solicitor_name
+              solicitorFirm: solicitor_firmName
+              address1: solicitor_address
+              solicitorPhoneNumber: solicitor_telephoneNumber
+              solicitorFaxNumber: solicitor_faxNumber
+              solicitorDxNumber: solicitor_dxNumber
+              solicitorEmail: solicitor_emailAddress
+              solicitorFeeAccountNumber: solicitor_feeAccountNumber
               applicantsDomicileStatus: applicants_domicile_status
               applicantRelationToChildFatherPartner: applicant_relationToChild_father_partner
               birthMotherFirstName: mother_firstName
@@ -58,6 +57,7 @@ uk:
               applicant1SignStatementOfTruth: sole_applicant_or_applicant1_legal_rep_statement_of_truth
               applicant1LegalRepSignature: sole_applicant_or_applicant1_or_legal_rep_signature
               applicant1Signing: sole_applicant_or_applicant1_signing
+              applicant1LegalRepSigning: legal_rep_signing
               applicant1SotFullName: sole_applicant_or_applicant1_or_legal_rep_full_name
               applicant1LegalRepFirm: sole_applicant_or_applicant1_legal_rep_firm
               applicant1LegalRepPosition: sole_applicant_or_applicant1_legal_rep_position
@@ -66,6 +66,7 @@ uk:
               applicant2SignStatementOfTruth: sole_applicant_or_applicant2_legal_rep_statement_of_truth
               applicant2LegalRepSignature: sole_applicant_or_applicant2_or_legal_rep_signature
               applicant2Signing: applicant2_signing
+              applicant2LegalRepSigning: applicant2_legal_rep_signing
               applicant2SotFullName: applicant2_or_legal_rep_full_name
               applicant2LegalRepFirm: applicant2_legal_rep_firm
               applicant2LegalRepPosition: applicant2_legal_rep_position
@@ -76,7 +77,7 @@ uk:
               courtInterpreterAssistanceRequired: court_interpreter_assistance_required
               specialAssistanceFacilitiesRequired: special_assistance_facilities_required
               children:
-                gender: child_gender
+                sexAtBirth: child_gender
                 dateOfBirth: child_dateOfBirth
                 approximateDateOfBirth: child_approximateDateOfBirth
                 placeAndCountry: child_placeAndCoutryOfBirth
