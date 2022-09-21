@@ -1,6 +1,41 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
+import static org.springframework.util.StringUtils.hasText;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_CHILD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_CHILD_RELATIONSHIP;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_FAMILY_TABLE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_RESPONDENT_SHARE_PARENTAL;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICATION_FOR_YOUR_FAMILY;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICATION_FOR_YOU_ONLY;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CASE_NUMBER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILDREN;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_AGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_FULL_NAME;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVE_ADDRESS_ROW_1;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVE_ADDRESS_ROW_2;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVE_ADDRESS_ROW_3;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVE_ADDRESS_ROW_4;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DOB;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DOES_APPLICANT_HAVE_CHILDREN;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DO_CHILDREN_LIVE_ADDRESS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FAM_CHILD_DETAILS_ROW_1;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FAM_CHILD_DETAILS_ROW_2;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FAM_CHILD_DETAILS_ROW_3;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FAM_CHILD_DETAILS_ROW_4;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FL401_OTHER_PROCEEDINGS_TABLE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FULL_NAME;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NAME_OF_COURT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NO;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ONGOING_COURT_PROCEEDING_ROW1;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ONGOING_COURT_PROCEEDING_ROW2;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ONGOING_COURT_PROCEEDING_ROW3;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.OTHER_CHILD_LIVE_ADDRESS_ROW_1;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.OTHER_CHILD_LIVE_ADDRESS_ROW_2;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.OTHER_CHILD_LIVE_ADDRESS_ROW_3;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.OTHER_CHILD_LIVE_ADDRESS_ROW_4;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_CHILD_RELATIONSHIP;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_RESPONSIBLE_FOR_CHILD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.TYPE_OF_CASE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.VALUE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.ADDRESS;
@@ -66,6 +101,7 @@ import static uk.gov.hmcts.reform.bulkscan.enums.OrderWithouGivingNoticeReasonEn
 import com.microsoft.applicationinsights.core.dependencies.google.gson.internal.LinkedTreeMap;
 import java.util.ArrayList;
 import java.util.EnumSet;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
@@ -206,7 +242,11 @@ public class BulkScanFL401ConditionalTransformerService {
                 (LinkedTreeMap) populatedMap.get(FL401_SOLICITOR_TABLE);
         transformSolicitorName(inputFieldsMap, fl401SolicitorDetailsTable);
 
-        populatedMap.put("children", buildTransformChild(populatedMap, inputFieldsMap));
+        populatedMap.put(CHILDREN, buildTransformChild(populatedMap, inputFieldsMap));
+
+        populatedMap.put(APPLICANT_FAMILY_TABLE, transformApplicantChildObjects(inputFieldsMap));
+
+        populatedMap.put(FL401_OTHER_PROCEEDINGS_TABLE,transformOngoingFamilyCourtProceedings(inputFieldsMap));
     }
 
     private String getFormattedSpecialMeasureAtCourt(Map<String, String> inputFieldsMap) {
@@ -226,18 +266,19 @@ public class BulkScanFL401ConditionalTransformerService {
             Map<String, Object> populatedMap, Map<String, String> inputFieldsMap) {
         ArrayList<LinkedTreeMap> children = new ArrayList<>();
 
-        final String row1 = inputFieldsMap.get("childLivesAtAddress_Row1");
-        final String row2 = inputFieldsMap.get("childLivesAtAddress_Row2");
-        final String row3 = inputFieldsMap.get("childLivesAtAddress_Row3");
-        final String row4 = inputFieldsMap.get("childLivesAtAddress_Row4");
-        final String otherChildrenRow1 = inputFieldsMap.get("otherChildren_Row1");
-        final String otherChildrenRow2 = inputFieldsMap.get("otherChildren_Row2");
-        final String otherChildrenRow3 = inputFieldsMap.get("otherChildren_Row3");
-        final String otherChildrenRow4 = inputFieldsMap.get("otherChildren_Row4");
+        final String row1 = inputFieldsMap.get(CHILD_LIVE_ADDRESS_ROW_1);
+        final String row2 = inputFieldsMap.get(CHILD_LIVE_ADDRESS_ROW_2);
+        final String row3 = inputFieldsMap.get(CHILD_LIVE_ADDRESS_ROW_3);
+        final String row4 = inputFieldsMap.get(CHILD_LIVE_ADDRESS_ROW_4);
+        final String otherChildrenRow1 = inputFieldsMap.get(OTHER_CHILD_LIVE_ADDRESS_ROW_1);
+        final String otherChildrenRow2 = inputFieldsMap.get(OTHER_CHILD_LIVE_ADDRESS_ROW_2);
+        final String otherChildrenRow3 = inputFieldsMap.get(OTHER_CHILD_LIVE_ADDRESS_ROW_3);
+        final String otherChildrenRow4 = inputFieldsMap.get(OTHER_CHILD_LIVE_ADDRESS_ROW_4);
 
         if (row1 != null) {
-            populatedMap.put("doAnyChildrenLiveAtAddress", BooleanUtils.YES);
+            populatedMap.put(DO_CHILDREN_LIVE_ADDRESS, BooleanUtils.YES);
         }
+
         ArrayList<String> childInput = new ArrayList<>();
         childInput.add(row1);
         childInput.add(row2);
@@ -266,10 +307,10 @@ public class BulkScanFL401ConditionalTransformerService {
                     isRespondentResponsibleForChild = columnDetails[2];
                 }
 
-                childDetails.put("childFullName", childName);
-                childDetails.put("childsAge", childAge);
+                childDetails.put(CHILD_FULL_NAME, childName);
+                childDetails.put(CHILD_AGE, childAge);
                 childDetails.put(
-                        "isRespondentResponsibleForChild", isRespondentResponsibleForChild);
+                    RESPONDENT_RESPONSIBLE_FOR_CHILD, isRespondentResponsibleForChild);
 
                 childrenLinkedTreeMap.put(VALUE, childDetails);
 
@@ -277,6 +318,120 @@ public class BulkScanFL401ConditionalTransformerService {
             }
         }
         return children;
+    }
+
+    private Map transformApplicantChildObjects(Map<String, String> inputFieldsMap){
+
+        Map<String, Object> applicantChildMap = new HashMap<>();
+        applicantChildMap.put(APPLICANT_CHILD, transformApplicantChild(inputFieldsMap));
+
+        final String row1 = inputFieldsMap.get(APPLICATION_FOR_YOU_ONLY);
+        final String row2 = inputFieldsMap.get(APPLICATION_FOR_YOUR_FAMILY);
+
+        if(hasText(row1) && row1.equalsIgnoreCase(YES)){
+            applicantChildMap.put(DOES_APPLICANT_HAVE_CHILDREN, YES);
+
+        } else if (hasText(row2) && row2.equalsIgnoreCase(YES)) {
+            applicantChildMap.put(DOES_APPLICANT_HAVE_CHILDREN, YES);
+        }
+
+        return applicantChildMap;
+    }
+
+    private List transformApplicantChild(Map<String, String> inputFieldsMap) {
+        ArrayList<LinkedTreeMap> childrenDetails = new ArrayList<>();
+
+        final String row1 = inputFieldsMap.get(FAM_CHILD_DETAILS_ROW_1);
+        final String row2 = inputFieldsMap.get(FAM_CHILD_DETAILS_ROW_2);
+        final String row3 = inputFieldsMap.get(FAM_CHILD_DETAILS_ROW_3);
+        final String row4 = inputFieldsMap.get(FAM_CHILD_DETAILS_ROW_4);
+
+        ArrayList<String> childInput = new ArrayList<>();
+        childInput.add(row1);
+        childInput.add(row2);
+        childInput.add(row3);
+        childInput.add(row4);
+
+        for (String input : childInput) {
+            LinkedTreeMap<String, String> childDetails = new LinkedTreeMap<>();
+
+            final LinkedTreeMap<String, LinkedTreeMap<String, String>> childrenLinkedTreeMap =
+                new LinkedTreeMap();
+
+            if (null != input) {
+                final String[] columnDetails = input.split(",");
+
+                final String childName = columnDetails[0];
+
+                String childDOB = null;
+                String yourRelationshipWithChild = null;
+                String doYouAndRespondentHaveParentalResponsibility = null;
+                String respondentsRelationshipWithChild = null;
+
+                if (columnDetails.length > 4) {
+                    childDOB = columnDetails[1];
+                    yourRelationshipWithChild = columnDetails[2];
+                    doYouAndRespondentHaveParentalResponsibility = columnDetails[3];
+                    respondentsRelationshipWithChild = columnDetails[4];
+                }
+
+                childDetails.put(FULL_NAME, childName);
+                childDetails.put(DOB, childDOB);
+                childDetails.put(APPLICANT_CHILD_RELATIONSHIP, yourRelationshipWithChild);
+                childDetails.put(APPLICANT_RESPONDENT_SHARE_PARENTAL, doYouAndRespondentHaveParentalResponsibility);
+                childDetails.put(RESPONDENT_CHILD_RELATIONSHIP, respondentsRelationshipWithChild);
+
+                childrenLinkedTreeMap.put(VALUE, childDetails);
+
+                childrenDetails.add(childrenLinkedTreeMap);
+
+            }
+        }
+        return childrenDetails;
+    }
+
+    private List transformOngoingFamilyCourtProceedings(Map<String, String> inputFieldsMap) {
+        ArrayList<LinkedTreeMap> familyCourtProceedingsDetails = new ArrayList<>();
+
+        final String row1 = inputFieldsMap.get(ONGOING_COURT_PROCEEDING_ROW1);
+        final String row2 = inputFieldsMap.get(ONGOING_COURT_PROCEEDING_ROW2);
+        final String row3 = inputFieldsMap.get(ONGOING_COURT_PROCEEDING_ROW3);
+
+        ArrayList<String> courtInput = new ArrayList<>();
+        courtInput.add(row1);
+        courtInput.add(row2);
+        courtInput.add(row3);
+
+        for (String input : courtInput) {
+            LinkedTreeMap<String, String> caseDetails = new LinkedTreeMap<>();
+
+            final LinkedTreeMap<String, LinkedTreeMap<String, String>> childrenLinkedTreeMap =
+                new LinkedTreeMap();
+
+            if (null != input) {
+                final String[] columnDetails = input.split(",");
+
+                final String nameOfCourt = columnDetails[0];
+
+                String caseNumber = null;
+                String typeOfCase = null;
+
+                if (columnDetails.length > 2) {
+                    caseNumber = columnDetails[1];
+                    typeOfCase = columnDetails[2];
+                }
+
+                caseDetails.put(NAME_OF_COURT, nameOfCourt);
+                caseDetails.put(CASE_NUMBER, caseNumber);
+                caseDetails.put(TYPE_OF_CASE, typeOfCase);
+
+                childrenLinkedTreeMap.put(VALUE, caseDetails);
+
+                familyCourtProceedingsDetails.add(childrenLinkedTreeMap);
+
+            }
+        }
+        return familyCourtProceedingsDetails;
     }
 
     private String transformReasonForOrderWithoutGivingNotice(Map<String, String> inputFieldsMap) {

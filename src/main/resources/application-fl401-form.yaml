@@ -181,6 +181,17 @@ uk:
               - ChangesToFamilyHome_Row2
               - ChangesToFamilyHome_Row3
               - CourtToConsider
+              #s5 Ronan - putting in all fields for the moment
+              - applicationFor_YouOnly
+              - applicationFor_YourFamily
+              - family_childrenDetails_row1
+              - family_childrenDetails_row2
+              - family_childrenDetails_row3
+              - family_childrenDetails_row4
+              - OngoingFamilyCourtProceeding
+              - OngoingFamilyCourtProceeding_row1
+              - OngoingFamilyCourtProceeding_row2
+              - OngoingFamilyCourtProceeding_row3
             regexValidationFields:
               dateFields:
                 fieldNames:

@@ -141,3 +141,48 @@ uk:
               requiredFieldCount: 1
               sectionName: "Someone else – please specify"
 
+            #s5
+            - yourFamilyGroup: #putting all fields in s5 here for the moment
+              dependentFields:
+                - applicationFor_YouOnly
+                - applicationFor_YourFamily
+                - family_childrenDetails_row1
+                - family_childrenDetails_row2
+                - family_childrenDetails_row3
+                - family_childrenDetails_row4
+                - OngoingFamilyCourtProceeding
+                - OngoingFamilyCourtProceeding_row1
+                - OngoingFamilyCourtProceeding_row2
+                - OngoingFamilyCourtProceeding_row3
+              dependentFieldValue: "*"
+              groupFieldName: needForParentalResponsiblity
+              groupValidationValue: "Yes"
+              requiredFieldCount: 1
+              sectionName: "5 - Who is this application for?"
+
+            #s5.3
+            - yourFamilyGroup: #putting all fields in s5 here for the moment
+              dependentFields:
+                - family_childrenDetails_row1
+                - family_childrenDetails_row2
+                - family_childrenDetails_row3
+                - family_childrenDetails_row4
+                - OngoingFamilyCourtProceeding
+              dependentFieldValue: "*"
+              groupFieldName: applicationFor_YourFamily
+              groupValidationValue: "Yes"
+              requiredFieldCount: 1
+              sectionName: "5.3 - Details of the child or children to be protected by the order"
+
+            #s5.4
+            - yourFamilyGroup: #putting all fields in s5 here for the moment
+              dependentFields:
+                - OngoingFamilyCourtProceeding_row1
+                - OngoingFamilyCourtProceeding_row2
+                - OngoingFamilyCourtProceeding_row3
+              dependentFieldValue: "*"
+              groupFieldName: OngoingFamilyCourtProceeding
+              groupValidationValue: "Yes"
+              requiredFieldCount: 1
+              sectionName: "5.4 - Family court proceedings details"
+

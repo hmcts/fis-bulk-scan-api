@@ -77,6 +77,8 @@ uk:
                 solicitorTelephone: applicant_Solicitor_PhoneNumber
                 solicitorEmail: applicant_Solicitor_EmailAddress
                 solicitorReference: applicant_Solicitor_Reference
+              otherProceedingsTable:
+                previousOrOngoingProceedings: OngoingFamilyCourtProceeding
               home:
                 - value:
                     address:
