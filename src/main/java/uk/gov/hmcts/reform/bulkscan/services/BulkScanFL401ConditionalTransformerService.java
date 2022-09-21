@@ -246,7 +246,9 @@ public class BulkScanFL401ConditionalTransformerService {
 
         populatedMap.put(APPLICANT_FAMILY_TABLE, transformApplicantChildObjects(inputFieldsMap));
 
-        populatedMap.put(FL401_OTHER_PROCEEDINGS_TABLE,transformOngoingFamilyCourtProceedings(inputFieldsMap));
+        populatedMap.put(
+                FL401_OTHER_PROCEEDINGS_TABLE,
+                transformOngoingFamilyCourtProceedings(inputFieldsMap));
     }
 
     private String getFormattedSpecialMeasureAtCourt(Map<String, String> inputFieldsMap) {
@@ -309,8 +311,7 @@ public class BulkScanFL401ConditionalTransformerService {
 
                 childDetails.put(CHILD_FULL_NAME, childName);
                 childDetails.put(CHILD_AGE, childAge);
-                childDetails.put(
-                    RESPONDENT_RESPONSIBLE_FOR_CHILD, isRespondentResponsibleForChild);
+                childDetails.put(RESPONDENT_RESPONSIBLE_FOR_CHILD, isRespondentResponsibleForChild);
 
                 childrenLinkedTreeMap.put(VALUE, childDetails);
 
@@ -320,7 +321,7 @@ public class BulkScanFL401ConditionalTransformerService {
         return children;
     }
 
-    private Map transformApplicantChildObjects(Map<String, String> inputFieldsMap){
+    private Map transformApplicantChildObjects(Map<String, String> inputFieldsMap) {
 
         Map<String, Object> applicantChildMap = new HashMap<>();
         applicantChildMap.put(APPLICANT_CHILD, transformApplicantChild(inputFieldsMap));
@@ -328,7 +329,7 @@ public class BulkScanFL401ConditionalTransformerService {
         final String row1 = inputFieldsMap.get(APPLICATION_FOR_YOU_ONLY);
         final String row2 = inputFieldsMap.get(APPLICATION_FOR_YOUR_FAMILY);
 
-        if(hasText(row1) && row1.equalsIgnoreCase(YES)){
+        if (hasText(row1) && row1.equalsIgnoreCase(YES)) {
             applicantChildMap.put(DOES_APPLICANT_HAVE_CHILDREN, YES);
 
         } else if (hasText(row2) && row2.equalsIgnoreCase(YES)) {
@@ -356,35 +357,36 @@ public class BulkScanFL401ConditionalTransformerService {
             LinkedTreeMap<String, String> childDetails = new LinkedTreeMap<>();
 
             final LinkedTreeMap<String, LinkedTreeMap<String, String>> childrenLinkedTreeMap =
-                new LinkedTreeMap();
+                    new LinkedTreeMap();
 
             if (null != input) {
                 final String[] columnDetails = input.split(",");
 
                 final String childName = columnDetails[0];
 
-                String childDOB = null;
+                String childDoB = null;
                 String yourRelationshipWithChild = null;
                 String doYouAndRespondentHaveParentalResponsibility = null;
                 String respondentsRelationshipWithChild = null;
 
                 if (columnDetails.length > 4) {
-                    childDOB = columnDetails[1];
+                    childDoB = columnDetails[1];
                     yourRelationshipWithChild = columnDetails[2];
                     doYouAndRespondentHaveParentalResponsibility = columnDetails[3];
                     respondentsRelationshipWithChild = columnDetails[4];
                 }
 
                 childDetails.put(FULL_NAME, childName);
-                childDetails.put(DOB, childDOB);
+                childDetails.put(DOB, childDoB);
                 childDetails.put(APPLICANT_CHILD_RELATIONSHIP, yourRelationshipWithChild);
-                childDetails.put(APPLICANT_RESPONDENT_SHARE_PARENTAL, doYouAndRespondentHaveParentalResponsibility);
+                childDetails.put(
+                        APPLICANT_RESPONDENT_SHARE_PARENTAL,
+                        doYouAndRespondentHaveParentalResponsibility);
                 childDetails.put(RESPONDENT_CHILD_RELATIONSHIP, respondentsRelationshipWithChild);
 
                 childrenLinkedTreeMap.put(VALUE, childDetails);
 
                 childrenDetails.add(childrenLinkedTreeMap);
-
             }
         }
         return childrenDetails;
@@ -406,7 +408,7 @@ public class BulkScanFL401ConditionalTransformerService {
             LinkedTreeMap<String, String> caseDetails = new LinkedTreeMap<>();
 
             final LinkedTreeMap<String, LinkedTreeMap<String, String>> childrenLinkedTreeMap =
-                new LinkedTreeMap();
+                    new LinkedTreeMap();
 
             if (null != input) {
                 final String[] columnDetails = input.split(",");
@@ -428,7 +430,6 @@ public class BulkScanFL401ConditionalTransformerService {
                 childrenLinkedTreeMap.put(VALUE, caseDetails);
 
                 familyCourtProceedingsDetails.add(childrenLinkedTreeMap);
-
             }
         }
         return familyCourtProceedingsDetails;

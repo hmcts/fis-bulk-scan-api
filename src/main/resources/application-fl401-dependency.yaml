@@ -140,9 +140,7 @@ uk:
               groupValidationValue: "Someone else – please specify"
               requiredFieldCount: 1
               sectionName: "Someone else – please specify"
-
-            #s5
-            - yourFamilyGroup: #putting all fields in s5 here for the moment
+            - yourFamilyGroup:
               dependentFields:
                 - applicationFor_YouOnly
                 - applicationFor_YourFamily
@@ -159,9 +157,7 @@ uk:
               groupValidationValue: "Yes"
               requiredFieldCount: 1
               sectionName: "5 - Who is this application for?"
-
-            #s5.3
-            - yourFamilyGroup: #putting all fields in s5 here for the moment
+            - yourFamilyGroup:
               dependentFields:
                 - family_childrenDetails_row1
                 - family_childrenDetails_row2
@@ -173,9 +169,7 @@ uk:
               groupValidationValue: "Yes"
               requiredFieldCount: 1
               sectionName: "5.3 - Details of the child or children to be protected by the order"
-
-            #s5.4
-            - yourFamilyGroup: #putting all fields in s5 here for the moment
+            - yourFamilyGroup:
               dependentFields:
                 - OngoingFamilyCourtProceeding_row1
                 - OngoingFamilyCourtProceeding_row2

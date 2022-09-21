@@ -113,21 +113,29 @@ public class BulkScanFL401Service implements BulkScanService {
         return response;
     }
 
-    private List<String> validateJustYouOrYouAndFamilySectionFive(Map<String, String> inputFieldMap){
+    private List<String> validateJustYouOrYouAndFamilySectionFive(
+            Map<String, String> inputFieldMap) {
 
         String needForParentalResponsiblity = inputFieldMap.get(NEED_FOR_PARENTIAL_RESPONSIBILITY);
         String justYou = inputFieldMap.get(APPLICATION_FOR_YOU_ONLY);
         String youAndFamily = inputFieldMap.get(APPLICATION_FOR_YOUR_FAMILY);
         List<String> warningLst = new ArrayList<>();
 
-        if(hasText(needForParentalResponsiblity) && needForParentalResponsiblity.equalsIgnoreCase(YES)){
-            if(hasText(justYou) && !justYou.equalsIgnoreCase(YES) && hasText(youAndFamily) && !youAndFamily.equalsIgnoreCase(YES)){
+        if (hasText(needForParentalResponsiblity)
+                && needForParentalResponsiblity.equalsIgnoreCase(YES)) {
+            if (hasText(justYou)
+                    && !justYou.equalsIgnoreCase(YES)
+                    && hasText(youAndFamily)
+                    && !youAndFamily.equalsIgnoreCase(YES)) {
                 warningLst.add(
-                    String.format(MISSING_FIELD_MESSAGE, "5.1 - Who is this application for?"));
+                        String.format(MISSING_FIELD_MESSAGE, "5.1 - Who is this application for?"));
 
-            } else if (hasText(justYou) && justYou.equalsIgnoreCase(YES) && hasText(youAndFamily) && youAndFamily.equalsIgnoreCase(YES)) {
+            } else if (hasText(justYou)
+                    && justYou.equalsIgnoreCase(YES)
+                    && hasText(youAndFamily)
+                    && youAndFamily.equalsIgnoreCase(YES)) {
                 warningLst.add(
-                    String.format(MISSING_FIELD_MESSAGE, "5.1 - Who is this application for?"));
+                        String.format(MISSING_FIELD_MESSAGE, "5.1 - Who is this application for?"));
             }
         }
         return warningLst;

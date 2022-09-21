@@ -3,48 +3,46 @@
     "case_type_id": "PRLAPPS",
     "event_id": "create-case-privatelaw-bs",
     "case_data": {
-      "applicantChild": [
-        {
-          "value": {
-            "fullName": "Bill",
-            "dateOfBirth": " 03/04/08",
-            "applicantChildRelationship": " father",
-            "applicantRespondentShareParental": " yes",
-            "respondentChildRelationship": " mother"
-          }
-        },
-        {
-          "value": {
-            "fullName": "Will",
-            "dateOfBirth": " 04/05/11",
-            "applicantChildRelationship": " father",
-            "applicantRespondentShareParental": " no",
-            "respondentChildRelationship": " mother"
-          }
-        },
-        {
-          "value": {
-            "fullName": "Ash",
-            "dateOfBirth": " 11/05/16",
-            "applicantChildRelationship": " Mother",
-            "applicantRespondentShareParental": " no",
-            "respondentChildRelationship": " father"
-          }
-        },
-        {
-          "value": {
-            "fullName": "Jerry",
-            "dateOfBirth": " 12/05/17",
-            "applicantChildRelationship": " father",
-            "applicantRespondentShareParental": " no",
-            "respondentChildRelationship": " mother"
-          }
-        }
-      ],
       "applicantFamilyTable": {
-        "otherProceedingsTable": {
-          "previousOrOngoingProceedings": "Yes"
-        }
+        "applicantChild": [
+          {
+            "value": {
+              "fullName": "Bill",
+              "dateOfBirth": " 03/04/08",
+              "applicantChildRelationship": " father",
+              "applicantRespondentShareParental": " yes",
+              "respondentChildRelationship": " mother"
+            }
+          },
+          {
+            "value": {
+              "fullName": "Bill",
+              "dateOfBirth": " 03/04/08",
+              "applicantChildRelationship": " father",
+              "applicantRespondentShareParental": " yes",
+              "respondentChildRelationship": " mother"
+            }
+          },
+          {
+            "value": {
+              "fullName": "Bill",
+              "dateOfBirth": " 03/04/08",
+              "applicantChildRelationship": " father",
+              "applicantRespondentShareParental": " yes",
+              "respondentChildRelationship": " mother"
+            }
+          },
+          {
+            "value": {
+              "fullName": "Bill",
+              "dateOfBirth": " 03/04/08",
+              "applicantChildRelationship": " father",
+              "applicantRespondentShareParental": " yes",
+              "respondentChildRelationship": " mother"
+            }
+          }
+        ],
+        "doesApplicantHaveChildren": "Yes"
       },
       "relationshipToRespondentTable": {
         "applicantRelationship": "Married or in a civil partnership",
@@ -61,6 +59,9 @@
       },
       "applicationTypeDetails": {
         "typesOfApplication": "01234567891"
+      },
+      "otherProceedingsTable": {
+        "previousOrOngoingProceedings": "Yes"
       },
       "scannedDocuments": [
         {
