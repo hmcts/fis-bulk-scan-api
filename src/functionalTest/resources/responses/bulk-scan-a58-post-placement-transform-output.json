@@ -1,197 +1,193 @@
 {
-  "case_creation_details":{
-    "case_type_id":"A58",
-    "event_id":"create-case-adop-bs",
-    "case_data":{
-      "witnessWelshLanguagePreference":"Written",
-      "respondentRequireInterpreter":"Yes",
-      "welshPreferencePartyName":"partyName",
-      "courtInterpreterAssistanceLanguage":"Spanish",
-      "scannedDocuments":[
+  "case_creation_details": {
+    "case_type_id": "A58",
+    "event_id": "create-case-adop-bs",
+    "case_data": {
+      "witnessWelshLanguagePreference": "Written",
+      "respondentRequireInterpreter": "Yes",
+      "welshPreferencePartyName": "partyName",
+      "solicitorEmail": "test@test.com",
+      "courtInterpreterAssistanceLanguage": "Spanish",
+      "scannedDocuments": [
         {
-          "value":{
-            "document_url":"http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c",
-            "document_filename":"test.pdf",
-            "document_binary_url":"http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
+          "value": {
+            "document_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c",
+            "document_filename": "test.pdf",
+            "document_binary_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
           }
         }
       ],
-      "maintanenceOrder":{
-        "name":"murshad",
-        "address":"london",
-        "nameOfCourt":"HMCTSCourt",
-        "dateOfOrder":"01/01/2000",
-        "agreementDate":"01/01/2001"
+      "maintanenceOrder": {
+        "name": "murshad",
+        "address": "london",
+        "nameOfCourt": "HMCTSCourt",
+        "dateOfOrder": "01/01/2000",
+        "agreementDate": "01/01/2001"
       },
-      "courtpreferredDates":"11/10/2022,21/10/2022",
-      "applicantMaritalStatus":"",
-      "birthFatherOccupation":"fatherOccupation",
-      "children":{
-        "gender":"male",
-        "dateOfBirth":"31/12/1985",
-        "approximateDateOfBirth":null,
-        "placeAndCountry":null,
-        "nationality":"german",
-        "isMarried":"yes"
+      "courtpreferredDates": "11/10/2022,21/10/2022",
+      "applicantMaritalStatus": "",
+      "birthFatherOccupation": "fatherOccupation",
+      "children": {
+        "sexAtBirth": "male",
+        "dateOfBirth": "31/12/1985",
+        "approximateDateOfBirth": null,
+        "placeAndCountry": null,
+        "nationality": "german",
+        "isMarried": "yes"
       },
-      "applicantRequireInterpreter":"Yes",
-      "placementOrders":[
+      "applicantRequireInterpreter": "Yes",
+      "placementOrders": [
         {
-          "value":{
-            "placementOrderCourt":"HMCTS",
-            "placementOrderId":"123456",
-            "placementOrderType":"Case",
-            "placementOrderDate":"01/01/2022"
+          "value": {
+            "placementOrderCourt": "HMCTS",
+            "placementOrderId": "123456",
+            "placementOrderType": "Case",
+            "placementOrderDate": "01/01/2022"
           }
         }
       ],
-      "applicant2FirstName":null,
-      "birthMotherFirstName":"motherFirstName",
-      "applicant2StatementOfTruth":null,
-      "otherParentRelationshipToChild":"Father",
-      "parentalResponsibility":"No",
-      "courtUnavailableDates":"10/10/2022,20/10/2022",
-      "applicant1RelationToChild":null,
-      "applicant1Occupation":null,
-      "applicant1Signing":"true",
-      "applicant1StatementOfTruthDate":"12/12/2000",
-      "specialAssistanceFacilitiesRequired":"Yes",
-      "solicitor":{
-        "solicitorName":"SolName",
-        "solicitorFirm":"SolFirmName",
-        "solicitorAddress":"123, Address Tw31NN",
-        "solicitorPhoneNumber":"+447438766833",
-        "solicitorFaxNumber":null,
-        "solicitorDxNumber":null,
-        "solicitorEmail":"test@test.com",
-        "solicitorFeeAccountNumber":"12345667899"
-      },
-      "applicant1FirstName":"Test First Name",
-      "hasProceedingDetails":"yes",
-      "childWelshLanguagePreference":"Both",
-      "applicant1TelephoneNumber":"+447438766833",
-      "birthFatherLastName":"fatherFirstName",
-      "otherPartyRequireInterpreter":"Yes",
-      "birthFatherNationality":"fatherNationality",
-      "applicantRelationToChild":"",
-      "applicant2RelationToChild":null,
-      "applicant1LastName":"Test Last Name",
-      "applicant1DateOfBirth":null,
-      "applicant2TelephoneNumber":null,
-      "specialAssistanceFacilities":"WheelChair",
-      "guardianFirstName":"guardianFirstName",
-      "applicant2DateOfBirth":null,
-      "birthFatherFirstName":"Address1 London",
-      "freeingOrders":[
-
-      ],
-      "applicantsDomicileStatus":"true",
-      "applicantRelationToChildFatherPartner":"",
-      "applicant1SignStatementOfTruth":"true",
-      "dateChildMovedIn":"01/01/2012",
-      "applicant1LegalRepSignature":"true",
-      "adopAgencyOrLAs":[
+      "applicant2FirstName": null,
+      "solicitorFeeAccountNumber": "12345667899",
+      "birthMotherFirstName": "motherFirstName",
+      "solicitorDxNumber": null,
+      "applicant2StatementOfTruth": null,
+      "solicitorFirm": "SolFirmName",
+      "otherParentRelationshipToChild": "Father",
+      "parentalResponsibility": "No",
+      "courtUnavailableDates": "10/10/2022,20/10/2022",
+      "applicant1RelationToChild": null,
+      "applicant1Occupation": null,
+      "applicant1Signing": "true",
+      "applicant1StatementOfTruthDate": "12/12/2000",
+      "specialAssistanceFacilitiesRequired": "Yes",
+      "applicant1FirstName": "Test First Name",
+      "hasProceedingDetails": "yes",
+      "applicant2LegalRepSigning": null,
+      "childWelshLanguagePreference": "Both",
+      "applicant1TelephoneNumber": "+447438766833",
+      "birthFatherLastName": "fatherFirstName",
+      "otherPartyRequireInterpreter": "Yes",
+      "birthFatherNationality": "fatherNationality",
+      "applicantRelationToChild": "",
+      "applicant2RelationToChild": null,
+      "applicant1LastName": "Test Last Name",
+      "applicant1DateOfBirth": null,
+      "applicant2TelephoneNumber": null,
+      "specialAssistanceFacilities": "WheelChair",
+      "applicant1LegalRepSigning": "true",
+      "guardianFirstName": "guardianFirstName",
+      "applicant2DateOfBirth": null,
+      "birthFatherFirstName": "Address1 London",
+      "freeingOrders": [],
+      "applicantsDomicileStatus": "true",
+      "applicantRelationToChildFatherPartner": "",
+      "applicant1SignStatementOfTruth": "true",
+      "dateChildMovedIn": "01/01/2012",
+      "applicant1LegalRepSignature": "true",
+      "adopAgencyOrLAs": [
         {
-          "value":{
-            "adopAgencyOrLaName":"HMCTS",
-            "adopAgencyOrLaaddress":"London",
-            "adopAgencyOrLaContactName":"HMCTS contact",
-            "adopAgencyOrLaPhoneNumber":"07070707007",
-            "laorAdoptionAgencyCategory":"Child placed for the purpose of Adoption"
+          "value": {
+            "adopAgencyOrLaName": "HMCTS",
+            "adopAgencyOrLaaddress": "London",
+            "adopAgencyOrLaContactName": "HMCTS contact",
+            "adopAgencyOrLaPhoneNumber": "07070707007",
+            "laorAdoptionAgencyCategory": "Child placed for the purpose of Adoption"
           }
         },
         {
-          "value":{
-            "adopAgencyOrLaName":"abdullah",
-            "adopAgencyOrLaaddress":"London",
-            "adopAgencyOrLaContactName":"ahmad",
-            "adopAgencyOrLaPhoneNumber":"0676767676767",
-            "laorAdoptionAgencyCategory":"Involved in the placing of the child"
+          "value": {
+            "adopAgencyOrLaName": "abdullah",
+            "adopAgencyOrLaaddress": "London",
+            "adopAgencyOrLaContactName": "ahmad",
+            "adopAgencyOrLaPhoneNumber": "0676767676767",
+            "laorAdoptionAgencyCategory": "Involved in the placing of the child"
           }
         },
         {
-          "value":{
-            "adopAgencyOrLaName":"yaseen",
-            "adopAgencyOrLaaddress":"London",
-            "adopAgencyOrLaContactName":"Yaseen contact",
-            "adopAgencyOrLaPhoneNumber":"09999999999",
-            "adopAgencyOrLaContactEmail ":"yaseen@hmcts.net",
-            "laorAdoptionAgencyCategory":"Notify Local Authority intention of Adoption"
+          "value": {
+            "adopAgencyOrLaName": "yaseen",
+            "adopAgencyOrLaaddress": "London",
+            "adopAgencyOrLaContactName": "Yaseen contact",
+            "adopAgencyOrLaPhoneNumber": "09999999999",
+            "adopAgencyOrLaContactEmail ": "yaseen@hmcts.net",
+            "laorAdoptionAgencyCategory": "Notify Local Authority intention of Adoption"
           }
         },
         {
-          "value":{
-            "adopAgencyOrLaName":"kamal",
-            "adopAgencyOrLaaddress":"London",
-            "adopAgencyOrLaContactName":"Jamal",
-            "adopAgencyOrLaPhoneNumber":"07777777777",
-            "adopAgencyOrLaContactEmail ":"murshad@hmcts.net",
-            "laorAdoptionAgencyCategory":"Local Authority has parental responsibility of the Child"
+          "value": {
+            "adopAgencyOrLaName": "kamal",
+            "adopAgencyOrLaaddress": "London",
+            "adopAgencyOrLaContactName": "Jamal",
+            "adopAgencyOrLaPhoneNumber": "07777777777",
+            "adopAgencyOrLaContactEmail ": "murshad@hmcts.net",
+            "laorAdoptionAgencyCategory": "Local Authority has parental responsibility of the Child"
           }
         }
       ],
-      "applicant2Nationality":null,
-      "applicant2LegalRepPosition":null,
-      "birthMotherAddress":"motherAddress",
-      "childrenAdoptionPaymentDetails":null,
-      "hasMaintanenceOrder":"yes",
-      "guardianLastName":"guardianLastName",
-      "welshSpokenInCourtRequired":"Yes",
-      "applicant1LegalRepFirm":null,
-      "proceedingDetails":[
+      "applicant2Nationality": null,
+      "applicant2LegalRepPosition": null,
+      "birthMotherAddress": "motherAddress",
+      "childrenAdoptionPaymentDetails": null,
+      "hasMaintanenceOrder": "yes",
+      "guardianLastName": "guardianLastName",
+      "welshSpokenInCourtRequired": "Yes",
+      "applicant1LegalRepFirm": null,
+      "proceedingDetails": [
         {
-          "value":{
-            "typeOfOrder":"child",
-            "dateOfOrder":"01/01/2022",
-            "nameOfCourt":"London City Court",
-            "caseNumber":"0980980980980980",
-            "caseTypeCategory ":"About other orders or proceedings that affect the child"
+          "value": {
+            "typeOfOrder": "child",
+            "dateOfOrder": "01/01/2022",
+            "nameOfCourt": "London City Court",
+            "caseNumber": "0980980980980980",
+            "caseTypeCategory ": "About other orders or proceedings that affect the child"
           }
         },
         {
-          "value":{
-            "typeOfOrder":"children",
-            "dateOfOrder":"01/01/2022",
-            "nameOfCourt":"London Court",
-            "caseNumber":"353453245",
-            "caseTypeCategory ":"Cases concerning a related child"
+          "value": {
+            "typeOfOrder": "children",
+            "dateOfOrder": "01/01/2022",
+            "nameOfCourt": "London Court",
+            "caseNumber": "353453245",
+            "caseTypeCategory ": "Cases concerning a related child"
           }
         }
       ],
-      "applicant1Address":"Male",
-      "applicant2Address":null,
-      "birthFatherAddress":"Address1 London",
-      "applicant2LegalRepFirm":null,
-      "hasProceedingDetailsWithRelation":"yes",
-      "welshPreferenceWitnessName":"witnessName",
-      "adoptionDate":"01/01/2022",
-      "applicant1StatementOfTruth":"true",
-      "applicant2LastName":null,
-      "childrenHealthReportDate":null,
-      "applicant1Nationality":"British",
-      "applicant2SignStatementOfTruth":null,
-      "childrenFirstNameAfterAdoption":"charlie",
-      "childrenLastNameAfterAdoption":"impey",
-      "applicant2Signing":null,
-      "partyWelshLanguagePreference":"Spoken",
-      "applicant1SotFullName":null,
-      "birthMotherLastName":"motherLastName",
-      "hasAnotherAdopAgencyOrLA":"true",
-      "birthMotherNationality":"motherNationality",
-      "parentalResponsibilityOrder":"Yes",
-      "welshPreferenceChildName":"childName",
-      "courtInterpreterAssistanceRequired":"Yes",
-      "anyOtherOrdersAvailable":"no",
-      "guardianAddress":"Address1 London",
-      "applicant2Occupation":null,
-      "applicant1LegalRepPosition":null,
-      "birthMotherOccupation":"motherOccupation",
-      "applicant2SotFullName":null,
-      "applicant2LegalRepSignature":null,
-      "otherPartyName":"otherPartyName"
+      "solicitorName": "SolName",
+      "solicitorPhoneNumber": "+447438766833",
+      "applicant1Address": "Male",
+      "applicant2Address": null,
+      "birthFatherAddress": "Address1 London",
+      "applicant2LegalRepFirm": null,
+      "hasProceedingDetailsWithRelation": "yes",
+      "welshPreferenceWitnessName": "witnessName",
+      "adoptionDate": "01/01/2022",
+      "applicant1StatementOfTruth": "true",
+      "applicant2LastName": null,
+      "childrenHealthReportDate": null,
+      "applicant1Nationality": "British",
+      "applicant2SignStatementOfTruth": null,
+      "childrenFirstNameAfterAdoption": "charlie",
+      "childrenLastNameAfterAdoption": "impey",
+      "address1": "123, Address Tw31NN",
+      "solicitorFaxNumber": null,
+      "applicant2Signing": null,
+      "partyWelshLanguagePreference": "Spoken",
+      "applicant1SotFullName": null,
+      "birthMotherLastName": "motherLastName",
+      "hasAnotherAdopAgencyOrLA": "true",
+      "birthMotherNationality": "motherNationality",
+      "parentalResponsibilityOrder": "Yes",
+      "welshPreferenceChildName": "childName",
+      "courtInterpreterAssistanceRequired": "Yes",
+      "anyOtherOrdersAvailable": "no",
+      "guardianAddress": "Address1 London",
+      "applicant2Occupation": null,
+      "applicant1LegalRepPosition": null,
+      "birthMotherOccupation": "motherOccupation",
+      "applicant2SotFullName": null,
+      "applicant2LegalRepSignature": null,
+      "otherPartyName": "otherPartyName"
     }
   },
-  "warnings":[
-
-  ]
+  "warnings": []
 }
