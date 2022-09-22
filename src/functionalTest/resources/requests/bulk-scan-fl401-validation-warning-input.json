@@ -410,19 +410,19 @@
     },
     {
       "name": "family_childrenDetails_row1",
-      "value": "No"
+      "value": "Bill, 03/04/08, father, yes, mother"
     },
     {
       "name": "family_childrenDetails_row2",
-      "value": "No"
+      "value": "Will, 04/05/11, father, no, mother"
     },
     {
       "name": "family_childrenDetails_row3",
-      "value": "Yes"
+      "value": "Ash, 11/05/16, Mother, no, father"
     },
     {
       "name":"family_childrenDetails_row4",
-      "value":"Yes"
+      "value":"Jerry, 12/05/17, father, no, mother"
     },
     {
       "name":"OngoingFamilyCourtProceeding",
@@ -430,15 +430,15 @@
     },
     {
       "name":"OngoingFamilyCourtProceeding_row1",
-      "value":"Yes"
+      "value":"Windsor Ct, 232134, Civil"
     },
     {
       "name":"OngoingFamilyCourtProceeding_row2",
-      "value":"Yes"
+      "value":"Nottingham Ct, 432134, Adoption"
     },
     {
       "name":"OngoingFamilyCourtProceeding_row3",
-      "value":"Yes"
+      "value":"Williamsburgh Ct, 762134, Removal of Child"
     }
   ]
 }

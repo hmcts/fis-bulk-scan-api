@@ -334,55 +334,6 @@ public final class BulkScanConstants {
     public static final String APPLICANT_RELATION_TO_CHILD = "applicantRelationToChild";
     public static final String APPLICANT_MARITAL_STATUS = "applicantMaritalStatus";
     // End of A58
-
-    // fl401 section 5
-
-    public static final String CASE_NUMBER = "caseNumber";
-    public static final String CHILDREN = "children";
-    public static final String APPLICANT_FAMILY_TABLE = "applicantFamilyTable";
-    public static final String FL401_OTHER_PROCEEDINGS_TABLE = "fl401OtherProceedingsDetailsTable";
-
-    public static final String TYPE_OF_CASE = "typeOfCase";
-
-    public static final String ONGOING_COURT_PROCEEDING_ROW1 = "OngoingFamilyCourtProceeding_row1";
-    public static final String ONGOING_COURT_PROCEEDING_ROW2 = "OngoingFamilyCourtProceeding_row2";
-    public static final String ONGOING_COURT_PROCEEDING_ROW3 = "OngoingFamilyCourtProceeding_row3";
-
-    public static final String DO_CHILDREN_LIVE_ADDRESS = "doAnyChildrenLiveAtAddress";
-
-    public static final String CHILD_LIVE_ADDRESS_ROW_1 = "childLivesAtAddress_Row1";
-    public static final String CHILD_LIVE_ADDRESS_ROW_2 = "childLivesAtAddress_Row2";
-    public static final String CHILD_LIVE_ADDRESS_ROW_3 = "childLivesAtAddress_Row3";
-    public static final String CHILD_LIVE_ADDRESS_ROW_4 = "childLivesAtAddress_Row4";
-    public static final String OTHER_CHILD_LIVE_ADDRESS_ROW_1 = "otherChildren_Row1";
-    public static final String OTHER_CHILD_LIVE_ADDRESS_ROW_2 = "otherChildren_Row2";
-    public static final String OTHER_CHILD_LIVE_ADDRESS_ROW_3 = "otherChildren_Row3";
-    public static final String OTHER_CHILD_LIVE_ADDRESS_ROW_4 = "otherChildren_Row4";
-
-    public static final String FULL_NAME = "fullName";
-    public static final String DOB = "dateOfBirth";
-    public static final String APPLICANT_CHILD_RELATIONSHIP = "applicantChildRelationship";
-    public static final String APPLICANT_RESPONDENT_SHARE_PARENTAL =
-            "applicantRespondentShareParental";
-    public static final String RESPONDENT_CHILD_RELATIONSHIP = "respondentChildRelationship";
-
-    public static final String CHILD_FULL_NAME = "childFullName";
-
-    public static final String FAM_CHILD_DETAILS_ROW_1 = "family_childrenDetails_row1";
-    public static final String FAM_CHILD_DETAILS_ROW_2 = "family_childrenDetails_row1";
-    public static final String FAM_CHILD_DETAILS_ROW_3 = "family_childrenDetails_row1";
-    public static final String FAM_CHILD_DETAILS_ROW_4 = "family_childrenDetails_row1";
-    public static final String CHILD_AGE = "childsAge";
-    public static final String RESPONDENT_RESPONSIBLE_FOR_CHILD = "isRespondentResponsibleForChild";
-    public static final String APPLICANT_CHILD = "applicantChild";
-
-    public static final String APPLICATION_FOR_YOU_ONLY = "applicationFor_YouOnly";
-
-    public static final String APPLICATION_FOR_YOUR_FAMILY = "applicationFor_YourFamily";
-
-    public static final String DOES_APPLICANT_HAVE_CHILDREN = "doesApplicantHaveChildren";
-
-    public static final String NEED_FOR_PARENTIAL_RESPONSIBILITY = "needForParentalResponsiblity";
     public static final String EMPTY = "";
 
     public static final int INT_THREE = 3;

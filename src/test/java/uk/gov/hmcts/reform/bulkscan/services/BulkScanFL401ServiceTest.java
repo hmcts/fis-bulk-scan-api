@@ -84,8 +84,6 @@ class BulkScanFL401ServiceTest {
                 mapper.readValue(
                         readFileFrom(FL401_VALIDATE_REQUEST_PATH), BulkScanValidationRequest.class);
 
-        when(postcodeLookupService.isValidPostCode(INVALID_POST_CODE, null)).thenReturn(true);
-
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
         JSONAssert.assertEquals(

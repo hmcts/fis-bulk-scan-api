@@ -1,41 +1,8 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
 import static org.springframework.util.StringUtils.hasText;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_CHILD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_CHILD_RELATIONSHIP;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_FAMILY_TABLE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_RESPONDENT_SHARE_PARENTAL;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICATION_FOR_YOUR_FAMILY;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICATION_FOR_YOU_ONLY;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CASE_NUMBER;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILDREN;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_AGE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_FULL_NAME;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVE_ADDRESS_ROW_1;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVE_ADDRESS_ROW_2;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVE_ADDRESS_ROW_3;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVE_ADDRESS_ROW_4;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DOB;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DOES_APPLICANT_HAVE_CHILDREN;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DO_CHILDREN_LIVE_ADDRESS;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FAM_CHILD_DETAILS_ROW_1;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FAM_CHILD_DETAILS_ROW_2;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FAM_CHILD_DETAILS_ROW_3;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FAM_CHILD_DETAILS_ROW_4;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FL401_OTHER_PROCEEDINGS_TABLE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.FULL_NAME;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NAME_OF_COURT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NO;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ONGOING_COURT_PROCEEDING_ROW1;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ONGOING_COURT_PROCEEDING_ROW2;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ONGOING_COURT_PROCEEDING_ROW3;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.OTHER_CHILD_LIVE_ADDRESS_ROW_1;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.OTHER_CHILD_LIVE_ADDRESS_ROW_2;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.OTHER_CHILD_LIVE_ADDRESS_ROW_3;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.OTHER_CHILD_LIVE_ADDRESS_ROW_4;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_CHILD_RELATIONSHIP;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDENT_RESPONSIBLE_FOR_CHILD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.TYPE_OF_CASE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.VALUE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.ADDRESS;
@@ -46,35 +13,65 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPL
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_ADDRESS_POSTCODE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_ADDRESS_SECOND_LINE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_ADDRESS_TOWN_OR_CITY;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_CHILD;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_CHILD_RELATIONSHIP;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_CONTACT_CONFIDENTIALITY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_EMAIL;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_FAMILY_TABLE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_PHONE_NUMBER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_PREFER_TO_BE_CONTACTED;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_RESPONDENT_OTHER_RELATIONSHIP_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_RESPONDENT_RELATIONSHIP_FIELDS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_RESPONDENT_RELATIONSHIP_OPTIONS_FIELDS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_RESPONDENT_SHARE_PARENTAL;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_SOLICITOR_NAME;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICATION_FOR_YOUR_FAMILY;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICATION_FOR_YOU_ONLY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLYING_FOR_NON_MOLES_STATION_ORDER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.ATTEND_HEARING_TABLE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.BAIL_CONDITION_END_DATE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.CASE_NUMBER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.CCD_APPLICANT_RELATIONSHIOP_DATE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.CCD_RELATIONSHIP_DATE_COMPLEX_END_DATE_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.CCD_RELATIONSHIP_DATE_COMPLEX_START_DATE_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.CCD_RELATIONSHIP_TO_RESPONDENT_TABLE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.CHILDREN;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.CHILD_AGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.CHILD_FULL_NAME;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.CHILD_LIVE_ADDRESS_ROW_1;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.CHILD_LIVE_ADDRESS_ROW_2;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.CHILD_LIVE_ADDRESS_ROW_3;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.CHILD_LIVE_ADDRESS_ROW_4;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.COMMA;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.COUNTY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.DELIVERATELY_EVADING_SERVICE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.DETERREDOR_PREVENTED;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.DOB;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.DOES_APPLICANT_HAVE_CHILDREN;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.DO_CHILDREN_LIVE_ADDRESS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.EMAIL;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.EMPTY_SPACE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.FAM_CHILD_DETAILS_ROW_1;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.FAM_CHILD_DETAILS_ROW_2;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.FAM_CHILD_DETAILS_ROW_3;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.FAM_CHILD_DETAILS_ROW_4;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.FL401_APPLICANT_RELATIONSHIP;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.FL401_APPLICANT_RELATIONSHIP_OPTIONS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.FL401_APPLICANT_TABLE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.FL401_OTHER_PROCEEDINGS_TABLE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.FL401_SOLICITOR_TABLE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.FULL_NAME;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.IS_ADDRESS_CONFIDENTIAL;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.IS_EMAIL_ADDRESS_CONFIDENTIAL;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.IS_PHONE_NUMBER_CONFIDENTIAL;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.ONGOING_COURT_PROCEEDING_ROW1;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.ONGOING_COURT_PROCEEDING_ROW2;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.ONGOING_COURT_PROCEEDING_ROW3;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.OTHERS_STOP_RESPONDENT_BEHAVIOUR_OPTIONS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.OTHER_CHILD_LIVE_ADDRESS_ROW_1;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.OTHER_CHILD_LIVE_ADDRESS_ROW_2;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.OTHER_CHILD_LIVE_ADDRESS_ROW_3;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.OTHER_CHILD_LIVE_ADDRESS_ROW_4;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.PHONE_NUMBER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.POSTCODE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.POSTTOWN;
@@ -82,6 +79,8 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.PREF
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.REASON_FOR_ORDER_WITHOUT_GIVING_NOTICE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.REPRESENTATIVE_FIRST_NAME;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.REPRESENTATIVE_LAST_NAME;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.RESPONDENT_CHILD_RELATIONSHIP;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.RESPONDENT_RESPONSIBLE_FOR_CHILD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.RISK_OF_SIGNIFICANT_HARM;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.SPACE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.SPECIAL_MEASURE_AT_COURT;
@@ -95,6 +94,7 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.STOP
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.STOP_RESPONDENT_BEHAVIOUR_TABLE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.TEXT_AND_NUMERIC_MONTH_PATTERN;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.TWO_DIGIT_MONTH_FORMAT;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.TYPE_OF_CASE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.WITHOUT_NOTICE_ORDER_TABLE;
 import static uk.gov.hmcts.reform.bulkscan.enums.OrderWithouGivingNoticeReasonEnum.RISKOF_SIGNIFICANT_HARM;
 
@@ -105,6 +105,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.BooleanUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
@@ -116,6 +117,7 @@ import uk.gov.hmcts.reform.bulkscan.utils.DateUtil;
 
 @SuppressWarnings({"PMD", "unchecked"})
 @Component
+@Slf4j
 public class BulkScanFL401ConditionalTransformerService {
 
     public void transform(Map<String, Object> populatedMap, Map<String, String> inputFieldsMap) {
@@ -298,15 +300,20 @@ public class BulkScanFL401ConditionalTransformerService {
                     new LinkedTreeMap();
 
             if (null != input) {
-                final String[] columnDetails = input.split(",");
+                final String[] columnDetails = input.split(COMMA);
 
                 final String childName = columnDetails[0];
 
                 String childAge = null;
                 String isRespondentResponsibleForChild = null;
-                if (columnDetails.length > 2) {
-                    childAge = columnDetails[1];
-                    isRespondentResponsibleForChild = columnDetails[2];
+
+                try {
+                    if (columnDetails.length > 1) {
+                        childAge = columnDetails[1];
+                        isRespondentResponsibleForChild = columnDetails[2];
+                    }
+                } catch (Exception e) {
+                    log.warn(e.getMessage());
                 }
 
                 childDetails.put(CHILD_FULL_NAME, childName);
@@ -340,7 +347,7 @@ public class BulkScanFL401ConditionalTransformerService {
     }
 
     private List transformApplicantChild(Map<String, String> inputFieldsMap) {
-        ArrayList<LinkedTreeMap> childrenDetails = new ArrayList<>();
+        ArrayList<LinkedTreeMap> childrenDetailsLst = new ArrayList<>();
 
         final String row1 = inputFieldsMap.get(FAM_CHILD_DETAILS_ROW_1);
         final String row2 = inputFieldsMap.get(FAM_CHILD_DETAILS_ROW_2);
@@ -356,11 +363,11 @@ public class BulkScanFL401ConditionalTransformerService {
         for (String input : childInput) {
             LinkedTreeMap<String, String> childDetails = new LinkedTreeMap<>();
 
-            final LinkedTreeMap<String, LinkedTreeMap<String, String>> childrenLinkedTreeMap =
+            LinkedTreeMap<String, LinkedTreeMap<String, String>> childrenLinkedTreeMap =
                     new LinkedTreeMap();
 
-            if (null != input) {
-                final String[] columnDetails = input.split(",");
+            if (StringUtils.hasText(input)) {
+                final String[] columnDetails = input.split(COMMA);
 
                 final String childName = columnDetails[0];
 
@@ -369,11 +376,15 @@ public class BulkScanFL401ConditionalTransformerService {
                 String doYouAndRespondentHaveParentalResponsibility = null;
                 String respondentsRelationshipWithChild = null;
 
-                if (columnDetails.length > 4) {
-                    childDoB = columnDetails[1];
-                    yourRelationshipWithChild = columnDetails[2];
-                    doYouAndRespondentHaveParentalResponsibility = columnDetails[3];
-                    respondentsRelationshipWithChild = columnDetails[4];
+                try {
+                    if (columnDetails.length > 1) {
+                        childDoB = columnDetails[1];
+                        yourRelationshipWithChild = columnDetails[2];
+                        doYouAndRespondentHaveParentalResponsibility = columnDetails[3];
+                        respondentsRelationshipWithChild = columnDetails[4];
+                    }
+                } catch (Exception e) {
+                    log.warn(e.getMessage());
                 }
 
                 childDetails.put(FULL_NAME, childName);
@@ -386,10 +397,10 @@ public class BulkScanFL401ConditionalTransformerService {
 
                 childrenLinkedTreeMap.put(VALUE, childDetails);
 
-                childrenDetails.add(childrenLinkedTreeMap);
+                childrenDetailsLst.add(childrenLinkedTreeMap);
             }
         }
-        return childrenDetails;
+        return childrenDetailsLst;
     }
 
     private List transformOngoingFamilyCourtProceedings(Map<String, String> inputFieldsMap) {
@@ -410,17 +421,21 @@ public class BulkScanFL401ConditionalTransformerService {
             final LinkedTreeMap<String, LinkedTreeMap<String, String>> childrenLinkedTreeMap =
                     new LinkedTreeMap();
 
-            if (null != input) {
-                final String[] columnDetails = input.split(",");
+            if (StringUtils.hasText(input)) {
+                final String[] columnDetails = input.split(COMMA);
 
                 final String nameOfCourt = columnDetails[0];
 
                 String caseNumber = null;
                 String typeOfCase = null;
 
-                if (columnDetails.length > 2) {
-                    caseNumber = columnDetails[1];
-                    typeOfCase = columnDetails[2];
+                try {
+                    if (columnDetails.length > 1) {
+                        caseNumber = columnDetails[1];
+                        typeOfCase = columnDetails[2];
+                    }
+                } catch (Exception e) {
+                    log.warn(e.getMessage());
                 }
 
                 caseDetails.put(NAME_OF_COURT, nameOfCourt);

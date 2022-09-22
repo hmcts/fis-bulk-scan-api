@@ -2,13 +2,9 @@ package uk.gov.hmcts.reform.bulkscan.services;
 
 import static java.util.Objects.nonNull;
 import static org.springframework.util.StringUtils.hasText;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICATION_FOR_YOUR_FAMILY;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICATION_FOR_YOU_ONLY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CASE_TYPE_ID;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EVENT_ID;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_ERROR_MESSAGE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MISSING_FIELD_MESSAGE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NEED_FOR_PARENTIAL_RESPONSIBILITY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.POST_CODE_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.SCAN_DOCUMENTS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES;
@@ -106,39 +102,13 @@ public class BulkScanFL401Service implements BulkScanService {
 
         response.addWarning(validateRespondentBehaviour(inputFieldMap));
 
-        response.addWarning(validateJustYouOrYouAndFamilySectionFive(inputFieldMap));
+        response.addWarning(
+                bulkScanFL401ValidationService.validateJustYouOrYouAndFamilySectionFive(
+                        inputFieldMap));
 
         response.changeStatus();
 
         return response;
-    }
-
-    private List<String> validateJustYouOrYouAndFamilySectionFive(
-            Map<String, String> inputFieldMap) {
-
-        String needForParentalResponsiblity = inputFieldMap.get(NEED_FOR_PARENTIAL_RESPONSIBILITY);
-        String justYou = inputFieldMap.get(APPLICATION_FOR_YOU_ONLY);
-        String youAndFamily = inputFieldMap.get(APPLICATION_FOR_YOUR_FAMILY);
-        List<String> warningLst = new ArrayList<>();
-
-        if (hasText(needForParentalResponsiblity)
-                && needForParentalResponsiblity.equalsIgnoreCase(YES)) {
-            if (hasText(justYou)
-                    && !justYou.equalsIgnoreCase(YES)
-                    && hasText(youAndFamily)
-                    && !youAndFamily.equalsIgnoreCase(YES)) {
-                warningLst.add(
-                        String.format(MISSING_FIELD_MESSAGE, "5.1 - Who is this application for?"));
-
-            } else if (hasText(justYou)
-                    && justYou.equalsIgnoreCase(YES)
-                    && hasText(youAndFamily)
-                    && youAndFamily.equalsIgnoreCase(YES)) {
-                warningLst.add(
-                        String.format(MISSING_FIELD_MESSAGE, "5.1 - Who is this application for?"));
-            }
-        }
-        return warningLst;
     }
 
     /**
