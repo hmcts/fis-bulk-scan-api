@@ -1,323 +1,337 @@
 {
-  "case_creation_details": {
-    "case_type_id": "PRLAPPS",
-    "event_id": "create-case-privatelaw-bs",
-    "case_data": {
-      "applicantFamilyTable": {
-        "applicantChild": [
+  "case_creation_details":{
+    "case_type_id":"PRLAPPS",
+    "event_id":"create-case-privatelaw-bs",
+    "case_data":{
+      "applicantFamilyTable":{
+        "applicantChild":[
           {
-            "value": {
-              "fullName": "Bill",
-              "dateOfBirth": " 03/04/08",
-              "applicantChildRelationship": " father",
-              "applicantRespondentShareParental": " yes",
-              "respondentChildRelationship": " mother"
+            "value":{
+              "fullName":"Bill",
+              "dateOfBirth":" 03/04/08",
+              "applicantChildRelationship":" father",
+              "applicantRespondentShareParental":" yes",
+              "respondentChildRelationship":" mother"
             }
           },
           {
-            "value": {
-              "fullName": "Will",
-              "dateOfBirth": " 04/05/11",
-              "applicantChildRelationship": " father",
-              "applicantRespondentShareParental": " no",
-              "respondentChildRelationship": " mother"
+            "value":{
+              "fullName":"Will",
+              "dateOfBirth":" 04/05/11",
+              "applicantChildRelationship":" father",
+              "applicantRespondentShareParental":" no",
+              "respondentChildRelationship":" mother"
             }
           },
           {
-            "value": {
-              "fullName": "Ash",
-              "dateOfBirth": " 11/05/16",
-              "applicantChildRelationship": " Mother",
-              "applicantRespondentShareParental": " no",
-              "respondentChildRelationship": " father"
+            "value":{
+              "fullName":"Ash",
+              "dateOfBirth":" 11/05/16",
+              "applicantChildRelationship":" Mother",
+              "applicantRespondentShareParental":" no",
+              "respondentChildRelationship":" father"
             }
           },
           {
-            "value": {
-              "fullName": "Jerry",
-              "dateOfBirth": " 12/05/17",
-              "applicantChildRelationship": " father",
-              "applicantRespondentShareParental": " no",
-              "respondentChildRelationship": " mother"
+            "value":{
+              "fullName":"Jerry",
+              "dateOfBirth":" 12/05/17",
+              "applicantChildRelationship":" father",
+              "applicantRespondentShareParental":" no",
+              "respondentChildRelationship":" mother"
             }
           }
         ],
-        "doesApplicantHaveChildren": "Yes"
+        "doesApplicantHaveChildren":"Yes"
       },
-      "relationshipToRespondentTable": {
-        "applicantRelationship": "Married or in a civil partnership",
-        "relationshipDateComplexStartDate": "2002-12-02",
-        "relationshipDateComplexEndDate": "2012-12-02",
-        "applicantRelationshipDate": "2003-12-02",
-        "applicantRelationshipOptions": null,
-        "needForParentalResponsibility": null
+      "relationshipToRespondentTable":{
+        "applicantRelationship":"Married or in a civil partnership",
+        "relationshipDateComplexStartDate":"2002-12-02",
+        "relationshipDateComplexEndDate":"2012-12-02",
+        "applicantRelationshipDate":"2003-12-02",
+        "applicantRelationshipOptions":null,
+        "needForParentalResponsibility":null
       },
-      "respondentBehaviourTable": {
-        "applicantWantToStopFromRespondentDoing": "Being violent towards me or threatening me,Harassing or intimidating me,Causing damage to my home,",
-        "applicantWantToStopFromRespondentDoingToChild": "Being violent towards my children or threatening my children,",
-        "otherReasonApplicantWantToStopFromRespondentDoing": "Yes"
+      "respondentBehaviourTable":{
+        "applicantWantToStopFromRespondentDoing":"Being violent towards me or threatening me,Harassing or intimidating me,Causing damage to my home,",
+        "applicantWantToStopFromRespondentDoingToChild":"Being violent towards my children or threatening my children,",
+        "otherReasonApplicantWantToStopFromRespondentDoing":"Yes"
       },
-      "applicationTypeDetails": {
-        "typesOfApplication": "01234567891"
+      "applicationTypeDetails":{
+        "typesOfApplication":"01234567891"
       },
-      "otherProceedingsTable": {
-        "previousOrOngoingProceedings": "Yes"
+      "otherProceedingsTable":{
+        "previousOrOngoingProceedings":"Yes"
       },
-      "scannedDocuments": [
+      "scannedDocuments":[
         {
-          "value": {
-            "document_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c",
-            "document_filename": "test.pdf",
-            "document_binary_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
+          "value":{
+            "document_url":"http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c",
+            "document_filename":"test.pdf",
+            "document_binary_url":"http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
           }
         }
       ],
-      "applicant": [
+      "applicant":[
         {
-          "value": {
-            "firstName": "Johnny",
-            "lastName": "Boy",
-            "address": "JohnTown",
-            "phoneNumber": "0908776545"
+          "value":{
+            "firstName":"Johnny",
+            "lastName":"Boy",
+            "address":"JohnTown",
+            "phoneNumber":"0908776545"
           }
         }
       ],
-      "fl401ApplicantTable": {
-        "firstName": null,
-        "lastName": null,
-        "previousName": null,
-        "dateOfBirth": null,
-        "applicantContactInstructions": null,
-        "applicantLegalRepresenationNeeded": null,
-        "address": {}
+      "fl401ApplicantTable":{
+        "firstName":"testfirstname",
+        "lastName":"testLastname",
+        "previousName":"no previous name",
+        "dateOfBirth":"2001-03-26",
+        "applicantContactInstructions":"No",
+        "applicantLegalRepresenationNeeded":"No",
+        "isAddressConfidential":"No",
+        "isPhoneNumberConfidential":"No",
+        "isEmailAddressConfidential":"No",
+        "address":{
+          "AddressLine1":"No",
+          "AddressLine2":"applicant second line",
+          "PostTown":"No",
+          "County":"applicant county",
+          "PostCode":"cv2 4nz"
+        },
+        "phoneNumber":"No",
+        "email":"No",
+        "preferToBeContacted":"No"
       },
-      "home": [
+      "home":[
         {
-          "value": {
-            "address": [
+          "value":{
+            "address":[
               {
-                "value": {
-                  "AddressLine1": "Clark St",
-                  "AddressLine2": "Malbourough",
-                  "PostTown": "KentVille",
-                  "PostCode": "Xjkh",
-                  "County": "JohnsCounty"
+                "value":{
+                  "AddressLine1":"Clark St",
+                  "AddressLine2":"Malbourough",
+                  "PostTown":"KentVille",
+                  "PostCode":"Xjkh",
+                  "County":"JohnsCounty"
                 }
               }
             ],
-            "peopleLivingAtThisAddress": "Clark Wells",
-            "textAreaSomethingElse": "MalbouroughsWell",
-            "everLivedAtTheAddress": "Billy Jay",
-            "intendToLiveAtTheAddress": "Bill Rae",
-            "isPropertyAdapted": "Yes",
-            "howIsThePropertyAdapted": "Stairs",
-            "isThereMortgageOnProperty": "Yes",
-            "mortgages": [
+            "peopleLivingAtThisAddress":"Clark Wells",
+            "textAreaSomethingElse":"MalbouroughsWell",
+            "everLivedAtTheAddress":"Billy Jay",
+            "intendToLiveAtTheAddress":"Bill Rae",
+            "isPropertyAdapted":"Yes",
+            "howIsThePropertyAdapted":"Stairs",
+            "isThereMortgageOnProperty":"Yes",
+            "mortgages":[
               {
-                "value": {
-                  "mortgageLenderName": "UK Bank",
-                  "address": [
+                "value":{
+                  "mortgageLenderName":"UK Bank",
+                  "address":[
                     {
-                      "value": {
-                        "AddressLine1": "Bank St",
-                        "AddressLine2": "Hackney",
-                        "PostTown": "London",
-                        "County": "Greater London",
-                        "PostCode": "UKghsf67"
+                      "value":{
+                        "AddressLine1":"Bank St",
+                        "AddressLine2":"Hackney",
+                        "PostTown":"London",
+                        "County":"Greater London",
+                        "PostCode":"UKghsf67"
                       }
                     }
                   ],
-                  "mortgageNamedAfter": "Will Smith",
-                  "textAreaSomethingElse": "James Welsh",
-                  "mortgageNumber": "12345"
+                  "mortgageNamedAfter":"Will Smith",
+                  "textAreaSomethingElse":"James Welsh",
+                  "mortgageNumber":"12345"
                 }
               }
             ],
-            "isPropertyRented": "Yes",
-            "mortgageNamedAfterList": "UKghsf67",
-            "landlords": {
-              "textAreaSomethingElse": "Will Smith",
-              "landlordName": "Jim Welly",
-              "address": [
+            "isPropertyRented":"Yes",
+            "mortgageNamedAfterList":"UKghsf67",
+            "landlords":{
+              "textAreaSomethingElse":"Will Smith",
+              "landlordName":"Jim Welly",
+              "address":[
                 {
-                  "value": {
-                    "AddressLine1": "12345 St",
-                    "AddressLine2": "French District",
-                    "PostTown": "London",
-                    "County": "Kings County",
-                    "PostCode": "xc34tgh"
+                  "value":{
+                    "AddressLine1":"12345 St",
+                    "AddressLine2":"French District",
+                    "PostTown":"London",
+                    "County":"Kings County",
+                    "PostCode":"xc34tgh"
                   }
                 }
               ]
             },
-            "doesApplicantHaveHomeRights": "Yes",
-            "livingSituation": [
+            "doesApplicantHaveHomeRights":"Yes",
+            "livingSituation":[
               {
-                "value": {
-                  "ableToStayInHome": "Yes",
-                  "restrictFromEnteringHome": "No",
-                  "awayFromHome": "Away",
-                  "limitRespondentInHome": "Limited",
-                  "ableToReturnHome": "Yes"
+                "value":{
+                  "ableToStayInHome":"Yes",
+                  "restrictFromEnteringHome":"No",
+                  "awayFromHome":"Away",
+                  "limitRespondentInHome":"Limited",
+                  "ableToReturnHome":"Yes"
                 }
               }
             ],
-            "familyHome": {
-              "payForRepairs": "Paid",
-              "useHouseholdContents": "Use any",
-              "payOrContributeRent": "460"
+            "familyHome":{
+              "payForRepairs":"Paid",
+              "useHouseholdContents":"Use any",
+              "payOrContributeRent":"460"
             },
-            "furtherInformation": "More stairs needed"
+            "furtherInformation":"More stairs needed"
           }
         }
       ],
-      "fl401OtherProceedingsDetailsTable": [
+      "fl401OtherProceedingsDetailsTable":[
         {
-          "value": {
-            "nameOfCourt": "Windsor Ct",
-            "caseNumber": " 232134",
-            "typeOfCase": " Civil"
+          "value":{
+            "nameOfCourt":"Windsor Ct",
+            "caseNumber":" 232134",
+            "typeOfCase":" Civil"
           }
         },
         {
-          "value": {
-            "nameOfCourt": "Nottingham Ct",
-            "caseNumber": " 432134",
-            "typeOfCase": " Adoption"
+          "value":{
+            "nameOfCourt":"Nottingham Ct",
+            "caseNumber":" 432134",
+            "typeOfCase":" Adoption"
           }
         },
         {
-          "value": {
-            "nameOfCourt": "Williamsburgh Ct",
-            "caseNumber": " 762134",
-            "typeOfCase": " Removal of Child"
-          }
-        }
-      ],
-      "doAnyChildrenLiveAtAddress": "yes",
-      "children": [
-        {
-          "value": {
-            "childFullName": "John",
-            "childsAge": "61",
-            "isRespondentResponsibleForChild": "Yes"
-          }
-        },
-        {
-          "value": {
-            "childFullName": "John",
-            "childsAge": "61",
-            "isRespondentResponsibleForChild": "Yes"
-          }
-        },
-        {
-          "value": {
-            "childFullName": "Johnny",
-            "childsAge": "43",
-            "isRespondentResponsibleForChild": "No"
-          }
-        },
-        {
-          "value": {
-            "childFullName": "Jim",
-            "childsAge": "45",
-            "isRespondentResponsibleForChild": "Yes"
-          }
-        },
-        {
-          "value": {
-            "childFullName": "John",
-            "childsAge": "61",
-            "isRespondentResponsibleForChild": "No"
-          }
-        },
-        {
-          "value": {
-            "childFullName": "John",
-            "childsAge": "61",
-            "isRespondentResponsibleForChild": "Yes"
-          }
-        },
-        {
-          "value": {
-            "childFullName": "Johnny",
-            "childsAge": "43",
-            "isRespondentResponsibleForChild": "No"
-          }
-        },
-        {
-          "value": {
-            "childFullName": "Jim",
-            "childsAge": "45",
-            "isRespondentResponsibleForChild": "Yes"
+          "value":{
+            "nameOfCourt":"Williamsburgh Ct",
+            "caseNumber":" 762134",
+            "typeOfCase":" Removal of Child"
           }
         }
       ],
-      "fl401SolicitorDetailsTable": {
-        "solicitorOrg": {
-          "OrganisationName": null
+      "doAnyChildrenLiveAtAddress":"yes",
+      "children":[
+        {
+          "value":{
+            "childFullName":"John",
+            "childsAge":"61",
+            "isRespondentResponsibleForChild":"Yes"
+          }
         },
-        "address": {
-          "addressLine1": null,
-          "addressLine2": null,
-          "postTown": null,
-          "county": null,
-          "postCode": null
+        {
+          "value":{
+            "childFullName":"John",
+            "childsAge":"61",
+            "isRespondentResponsibleForChild":"Yes"
+          }
         },
-        "dxNumber": null,
-        "solicitorTelephone": null,
-        "solicitorEmail": null,
-        "solicitorReference": null
+        {
+          "value":{
+            "childFullName":"Johnny",
+            "childsAge":"43",
+            "isRespondentResponsibleForChild":"No"
+          }
+        },
+        {
+          "value":{
+            "childFullName":"Jim",
+            "childsAge":"45",
+            "isRespondentResponsibleForChild":"Yes"
+          }
+        },
+        {
+          "value":{
+            "childFullName":"John",
+            "childsAge":"61",
+            "isRespondentResponsibleForChild":"No"
+          }
+        },
+        {
+          "value":{
+            "childFullName":"John",
+            "childsAge":"61",
+            "isRespondentResponsibleForChild":"Yes"
+          }
+        },
+        {
+          "value":{
+            "childFullName":"Johnny",
+            "childsAge":"43",
+            "isRespondentResponsibleForChild":"No"
+          }
+        },
+        {
+          "value":{
+            "childFullName":"Jim",
+            "childsAge":"45",
+            "isRespondentResponsibleForChild":"Yes"
+          }
+        }
+      ],
+      "fl401SolicitorDetailsTable":{
+        "solicitorOrg":{
+          "OrganisationName":"solicitor firm name"
+        },
+        "address":{
+          "addressLine1":"1 abc street",
+          "addressLine2":"line 2",
+          "postTown":"solicitor town city",
+          "county":"test county",
+          "postCode":"ab34 1ab"
+        },
+        "dxNumber":"12243",
+        "solicitorTelephone":"076888887687",
+        "solicitorEmail":"sol email",
+        "solicitorReference":"test sol ref",
+        "representativeFirstName":"solicitot",
+        "representativeLastName":"name"
       },
-      "attendingTheHearingTable": {
-        "isInterpreterNeeded": "Yes",
-        "isDisabilityPresent": "john@gmail.com",
-        "adjustmentsRequired": "john@gmail.com",
-        "specialMeasureAtCourt": "Measure1,Measure2,Measure4",
-        "interpreterNeeds": [
+      "attendingTheHearingTable":{
+        "isInterpreterNeeded":"Yes",
+        "isDisabilityPresent":"john@gmail.com",
+        "adjustmentsRequired":"john@gmail.com",
+        "specialMeasureAtCourt":"Measure1,Measure2,Measure4",
+        "interpreterNeeds":[
           {
-            "value": {
-              "language": "john@gmail.com",
-              "dialect": "john@gmail.com"
+            "value":{
+              "language":"john@gmail.com",
+              "dialect":"john@gmail.com"
             }
           }
         ]
       },
-      "fl401RespondentTable": [
+      "fl401RespondentTable":[
         {
-          "value": {
-            "firstName": "John",
-            "lastName": "Maxwell",
-            "previousName": "Connor",
-            "dateOfBirth": "2022/12/04",
-            "liveWithApplicant": "yes",
-            "phoneNumber": "09866534424",
-            "email": "john@gmail.com",
-            "address": [
+          "value":{
+            "firstName":"John",
+            "lastName":"Maxwell",
+            "previousName":"Connor",
+            "dateOfBirth":"2022/12/04",
+            "liveWithApplicant":"yes",
+            "phoneNumber":"09866534424",
+            "email":"john@gmail.com",
+            "address":[
               {
-                "value": {
-                  "AddressLine1": "123 Harley St.",
-                  "AddressLine2": "Vox Rd",
-                  "PostTown": "Blighty",
-                  "County": "UK",
-                  "PostCode": "respondent_Address_Postcode"
+                "value":{
+                  "AddressLine1":"123 Harley St.",
+                  "AddressLine2":"Vox Rd",
+                  "PostTown":"Blighty",
+                  "County":"UK",
+                  "PostCode":"respondent_Address_Postcode"
                 }
               }
             ]
           }
         }
       ],
-      "withoutNoticeOrderTable": {
-        "orderWithoutGivingNotice": "Yes",
-        "anyOtherDtailsForWithoutNoticeOrder": "more reason",
-        "isRespondentAlreadyInBailCondition": "Yes",
-        "bailConditionEndDate": "2021-02-07",
-        "furtherDetails": "XYZ",
-        "reasonForOrderWithoutGivingNotice": "there is risk of significant harm to the applicant or a relevant child, attributable to conduct of the respondent, if the order is not made immediately,it is likely that I will be deterred or prevented from pursuing the application if an order is not made immediately,I believe that the respondent is aware of the proceedings but is deliberately evading service and that I or a relevant child will be seriously prejudiced by the delay in effecting substituted service"
+      "withoutNoticeOrderTable":{
+        "orderWithoutGivingNotice":"Yes",
+        "anyOtherDtailsForWithoutNoticeOrder":"more reason",
+        "isRespondentAlreadyInBailCondition":"Yes",
+        "bailConditionEndDate":"2021-02-07",
+        "furtherDetails":"XYZ",
+        "reasonForOrderWithoutGivingNotice":"there is risk of significant harm to the applicant or a relevant child, attributable to conduct of the respondent, if the order is not made immediately,it is likely that I will be deterred or prevented from pursuing the application if an order is not made immediately,I believe that the respondent is aware of the proceedings but is deliberately evading service and that I or a relevant child will be seriously prejudiced by the delay in effecting substituted service"
       }
     }
   },
-  "warnings": [
+  "warnings":[
     "The following fields are not configured with our system: [doAnyChildrenLiveAtAddress,otherChildren_Row1,otherChildren_Row2,otherChildren_Row3,otherChildren_Row4] "
   ]
 }
