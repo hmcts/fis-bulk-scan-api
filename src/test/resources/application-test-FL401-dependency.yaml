@@ -57,7 +57,7 @@ uk:
               dependentFieldValue: "*"
               groupFieldName: applicantContact_Confidentiality
               groupValidationValue: "No"
-              requiredFieldCount: 6
+              requiredFieldCount: 5
               sectionName: "2 - your details"
             - occupationOrderGroup:
               dependentFields:
@@ -140,4 +140,43 @@ uk:
               groupValidationValue: "Someone else – please specify"
               requiredFieldCount: 1
               sectionName: "Someone else – please specify"
+            - yourFamilyGroup:
+              dependentFields:
+                - applicationFor_YouOnly
+                - applicationFor_YourFamily
+                - family_childrenDetails_row1
+                - family_childrenDetails_row2
+                - family_childrenDetails_row3
+                - family_childrenDetails_row4
+                - OngoingFamilyCourtProceeding
+                - OngoingFamilyCourtProceeding_row1
+                - OngoingFamilyCourtProceeding_row2
+                - OngoingFamilyCourtProceeding_row3
+              dependentFieldValue: "*"
+              groupFieldName: needForParentalResponsiblity
+              groupValidationValue: "Yes"
+              requiredFieldCount: 1
+              sectionName: "5 - Who is this application for?"
+            - yourFamilyGroup:
+              dependentFields:
+                - family_childrenDetails_row1
+                - family_childrenDetails_row2
+                - family_childrenDetails_row3
+                - family_childrenDetails_row4
+                - OngoingFamilyCourtProceeding
+              dependentFieldValue: "*"
+              groupFieldName: applicationFor_YourFamily
+              groupValidationValue: "Yes"
+              requiredFieldCount: 1
+              sectionName: "5.3 - Details of the child or children to be protected by the order"
+            - yourFamilyGroup:
+              dependentFields:
+                - OngoingFamilyCourtProceeding_row1
+                - OngoingFamilyCourtProceeding_row2
+                - OngoingFamilyCourtProceeding_row3
+              dependentFieldValue: "*"
+              groupFieldName: OngoingFamilyCourtProceeding
+              groupValidationValue: "Yes"
+              requiredFieldCount: 1
+              sectionName: "5.4 - Family court proceedings details"
 

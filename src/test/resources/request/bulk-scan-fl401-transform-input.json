@@ -1,16 +1,16 @@
 {
-  "ocr_data_fields":[
+  "ocr_data_fields": [
     {
       "name":"applicant_firstName",
       "value":"Johnny"
     },
     {
-      "name": "applicant_lastName",
-      "value": "Boy"
+      "name":"applicant_lastName",
+      "value":"Boy"
     },
     {
-      "name": "applicant_address",
-      "value": "JohnTown"
+      "name":"applicant_address",
+      "value":"JohnTown"
     },
     {
       "name":"telephone_number",
@@ -209,12 +209,12 @@
       "value": "XYZ"
     },
     {
-      "name": "interpreterNeededAtCourt",
-      "value": "Yes"
+      "name":"interpreterNeededAtCourt",
+      "value":"Yes"
     },
     {
-      "name": "interpreterNeededAtCourt_Language",
-      "value": "john@gmail.com"
+      "name":"interpreterNeededAtCourt_Language",
+      "value":"john@gmail.com"
     },
     {
       "name":"interpreterNeededAtCourt_Dialect",
@@ -239,12 +239,10 @@
     {
       "name":"specialMeasureAtCourt_Row4",
       "value":"Measure4"
-    },
-    {
+    },{
       "name":"applyingFor_NonMolestationOrder",
       "value":"Yes"
     },
-
     {
       "name":"stopRespondentFromDoing_2",
       "value":"Yes"
@@ -264,110 +262,6 @@
     {
       "name":"stopRespondentFromDoing_1",
       "value":"Yes"
-    },
-    {
-      "name": "applicantFirstName",
-      "value": "testfirstname"
-    },
-    {
-      "name": "applicantLastName",
-      "value": "testLastname"
-    },
-    {
-      "name": "applicantPreviousNames",
-      "value": "no previous name"
-    },
-    {
-      "name": "applicantDateOfBirth",
-      "value": "2001-03-26"
-    },
-    {
-      "name": "applicantContact_Confidentiality",
-      "value": "No"
-    },
-    {
-      "name": "applicant_Address_BuildingAndStreet",
-      "value": "No"
-    },
-    {
-      "name": "applicant_Address_SecondLine",
-      "value": "applicant second line"
-    },
-    {
-      "name": "applicant_Address_TownOrCity",
-      "value": "No"
-    },
-    {
-      "name": "applicant_Address_County",
-      "value": "applicant county"
-    },
-    {
-      "name": "applicant_Address_Postcode",
-      "value": "cv2 4nz"
-    },
-    {
-      "name": "applicant_PhoneNumber",
-      "value": "No"
-    },
-    {
-      "name": "applicant_Email",
-      "value": "No"
-    },
-    {
-      "name": "applicant_PreferToBeContacted",
-      "value": "No"
-    },
-    {
-      "name": "applicant_ContactInstructions",
-      "value": "No"
-    },
-    {
-      "name": "applicant_LegalRepresenationNeeded",
-      "value": "No"
-    },
-    {
-      "name": "applicant_SolicitorName",
-      "value": "solicitot name"
-    },
-    {
-      "name": "applicant_Solicitor_FirmName",
-      "value": "solicitor firm name"
-    },
-    {
-      "name": "applicant_Solicitor_Address_BuildingAndStreet",
-      "value": "1 abc street"
-    },
-    {
-      "name": "applicant_Solicitor_Address_SecondLine",
-      "value": "line 2"
-    },
-    {
-      "name": "applicant_Solicitor_Address_TownOrCity",
-      "value": "solicitor town city"
-    },
-    {
-      "name": "applicant_Solicitor_Address_County",
-      "value": "test county"
-    },
-    {
-      "name": "applicant_Solicitor_Address_Postcode",
-      "value": "ab34 1ab"
-    },
-    {
-      "name": "applicant_Solicitor_DXNumber",
-      "value": "12243"
-    },
-    {
-      "name": "applicant_Solicitor_PhoneNumber",
-      "value": "076888887687"
-    },
-    {
-      "name": "applicant_Solicitor_EmailAddress",
-      "value": "sol email"
-    },
-    {
-      "name": "applicant_Solicitor_Reference",
-      "value": "test sol ref"
     },
     {
       "name": "occupationOrderAddress_BuildingAndStreet",
@@ -564,6 +458,46 @@
     {
       "name":"otherChildren_Row4",
       "value":"Jim,45,Yes"
+    },
+    {
+      "name": "applicationFor_YouOnly",
+      "value": "No"
+    },
+    {
+      "name": "applicationFor_YourFamily",
+      "value": "Yes"
+    },
+    {
+      "name": "family_childrenDetails_row1",
+      "value": "Bill, 03/04/08, father, yes, mother"
+    },
+    {
+      "name": "family_childrenDetails_row2",
+      "value": "Will, 04/05/11, father, no, mother"
+    },
+    {
+      "name": "family_childrenDetails_row3",
+      "value": "Ash, 11/05/16, Mother, no, father"
+    },
+    {
+      "name":"family_childrenDetails_row4",
+      "value":"Jerry, 12/05/17, father, no, mother"
+    },
+    {
+      "name":"OngoingFamilyCourtProceeding",
+      "value":"Yes"
+    },
+    {
+      "name":"OngoingFamilyCourtProceeding_row1",
+      "value":"Windsor Ct, 232134, Civil"
+    },
+    {
+      "name":"OngoingFamilyCourtProceeding_row2",
+      "value":"Nottingham Ct, 432134, Adoption"
+    },
+    {
+      "name":"OngoingFamilyCourtProceeding_row3",
+      "value":"Williamsburgh Ct, 762134, Removal of Child"
     }
   ],
   "scanned_documents": [

@@ -3,6 +3,47 @@
     "case_type_id": "PRLAPPS",
     "event_id": "create-case-privatelaw-bs",
     "case_data": {
+      "applicantFamilyTable": {
+        "applicantChild": [
+          {
+            "value": {
+              "fullName": "Bill",
+              "dateOfBirth": " 03/04/08",
+              "applicantChildRelationship": " father",
+              "applicantRespondentShareParental": " yes",
+              "respondentChildRelationship": " mother"
+            }
+          },
+          {
+            "value": {
+              "fullName": "Will",
+              "dateOfBirth": " 04/05/11",
+              "applicantChildRelationship": " father",
+              "applicantRespondentShareParental": " no",
+              "respondentChildRelationship": " mother"
+            }
+          },
+          {
+            "value": {
+              "fullName": "Ash",
+              "dateOfBirth": " 11/05/16",
+              "applicantChildRelationship": " Mother",
+              "applicantRespondentShareParental": " no",
+              "respondentChildRelationship": " father"
+            }
+          },
+          {
+            "value": {
+              "fullName": "Jerry",
+              "dateOfBirth": " 12/05/17",
+              "applicantChildRelationship": " father",
+              "applicantRespondentShareParental": " no",
+              "respondentChildRelationship": " mother"
+            }
+          }
+        ],
+        "doesApplicantHaveChildren": "Yes"
+      },
       "relationshipToRespondentTable": {
         "applicantRelationship": "Married or in a civil partnership",
         "relationshipDateComplexStartDate": "2002-12-02",
@@ -18,6 +59,9 @@
       },
       "applicationTypeDetails": {
         "typesOfApplication": "01234567891"
+      },
+      "otherProceedingsTable": {
+        "previousOrOngoingProceedings": "Yes"
       },
       "scannedDocuments": [
         {
@@ -39,25 +83,13 @@
         }
       ],
       "fl401ApplicantTable": {
-        "firstName": "testfirstname",
-        "lastName": "testLastname",
-        "previousName": "no previous name",
-        "dateOfBirth": "2001-03-26",
-        "applicantContactInstructions": "No",
-        "applicantLegalRepresenationNeeded": "No",
-        "isAddressConfidential": "No",
-        "isPhoneNumberConfidential": "No",
-        "isEmailAddressConfidential": "No",
-        "address": {
-          "AddressLine1": "No",
-          "AddressLine2": "applicant second line",
-          "PostTown": "No",
-          "County": "applicant county",
-          "PostCode": "cv2 4nz"
-        },
-        "phoneNumber": "No",
-        "email": "No",
-        "preferToBeContacted": "No"
+        "firstName": null,
+        "lastName": null,
+        "previousName": null,
+        "dateOfBirth": null,
+        "applicantContactInstructions": null,
+        "applicantLegalRepresenationNeeded": null,
+        "address": {}
       },
       "home": [
         {
@@ -139,6 +171,29 @@
           }
         }
       ],
+      "fl401OtherProceedingsDetailsTable": [
+        {
+          "value": {
+            "nameOfCourt": "Windsor Ct",
+            "caseNumber": " 232134",
+            "typeOfCase": " Civil"
+          }
+        },
+        {
+          "value": {
+            "nameOfCourt": "Nottingham Ct",
+            "caseNumber": " 432134",
+            "typeOfCase": " Adoption"
+          }
+        },
+        {
+          "value": {
+            "nameOfCourt": "Williamsburgh Ct",
+            "caseNumber": " 762134",
+            "typeOfCase": " Removal of Child"
+          }
+        }
+      ],
       "doAnyChildrenLiveAtAddress": "yes",
       "children": [
         {
@@ -200,21 +255,19 @@
       ],
       "fl401SolicitorDetailsTable": {
         "solicitorOrg": {
-          "OrganisationName": "solicitor firm name"
+          "OrganisationName": null
         },
         "address": {
-          "addressLine1": "1 abc street",
-          "addressLine2": "line 2",
-          "postTown": "solicitor town city",
-          "county": "test county",
-          "postCode": "ab34 1ab"
+          "addressLine1": null,
+          "addressLine2": null,
+          "postTown": null,
+          "county": null,
+          "postCode": null
         },
-        "dxNumber": "12243",
-        "solicitorTelephone": "076888887687",
-        "solicitorEmail": "sol email",
-        "solicitorReference": "test sol ref",
-        "representativeFirstName": "solicitot",
-        "representativeLastName": "name"
+        "dxNumber": null,
+        "solicitorTelephone": null,
+        "solicitorEmail": null,
+        "solicitorReference": null
       },
       "attendingTheHearingTable": {
         "isInterpreterNeeded": "Yes",

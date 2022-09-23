@@ -3,6 +3,47 @@
     "case_type_id": "PRLAPPS",
     "event_id": "create-case-privatelaw-bs",
     "case_data": {
+      "applicantFamilyTable": {
+        "applicantChild": [
+          {
+            "value": {
+              "fullName": "Bill",
+              "dateOfBirth": " 03/04/08",
+              "applicantChildRelationship": " father",
+              "applicantRespondentShareParental": " yes",
+              "respondentChildRelationship": " mother"
+            }
+          },
+          {
+            "value": {
+              "fullName": "Will",
+              "dateOfBirth": " 04/05/11",
+              "applicantChildRelationship": " father",
+              "applicantRespondentShareParental": " no",
+              "respondentChildRelationship": " mother"
+            }
+          },
+          {
+            "value": {
+              "fullName": "Ash",
+              "dateOfBirth": " 11/05/16",
+              "applicantChildRelationship": " Mother",
+              "applicantRespondentShareParental": " no",
+              "respondentChildRelationship": " father"
+            }
+          },
+          {
+            "value": {
+              "fullName": "Jerry",
+              "dateOfBirth": " 12/05/17",
+              "applicantChildRelationship": " father",
+              "applicantRespondentShareParental": " no",
+              "respondentChildRelationship": " mother"
+            }
+          }
+        ],
+        "doesApplicantHaveChildren": "Yes"
+      },
       "relationshipToRespondentTable": {
         "applicantRelationship": "Married or in a civil partnership",
         "relationshipDateComplexStartDate": "2002-12-02",
@@ -11,116 +52,16 @@
         "applicantRelationshipOptions": null,
         "needForParentalResponsibility": null
       },
+      "respondentBehaviourTable": {
+        "applicantWantToStopFromRespondentDoing": "Being violent towards me or threatening me,Harassing or intimidating me,Causing damage to my home,",
+        "applicantWantToStopFromRespondentDoingToChild": "Being violent towards my children or threatening my children,",
+        "otherReasonApplicantWantToStopFromRespondentDoing": "Yes"
+      },
       "applicationTypeDetails": {
         "typesOfApplication": "01234567891"
       },
-      "attendingTheHearingTable": {
-        "isInterpreterNeeded": null,
-        "isDisabilityPresent": null,
-        "adjustmentsRequired": null,
-        "specialMeasureAtCourt": "",
-        "interpreterNeeds": [
-          {
-            "value": {
-              "language": null,
-              "dialect": null
-            }
-          }
-        ]
-      },
-      "doAnyChildrenLiveAtAddress": "yes",
-      "children": [
-        {
-          "value": {
-            "childFullName": "John",
-            "childsAge": "61",
-            "isRespondentResponsibleForChild": "Yes"
-          }
-        },
-        {
-          "value": {
-            "childFullName": "John",
-            "childsAge": "61",
-            "isRespondentResponsibleForChild": "Yes"
-          }
-        },
-        {
-          "value": {
-            "childFullName": "Johnny",
-            "childsAge": "43",
-            "isRespondentResponsibleForChild": "No"
-          }
-        },
-        {
-          "value": {
-            "childFullName": "Jim",
-            "childsAge": "45",
-            "isRespondentResponsibleForChild": "Yes"
-          }
-        },
-        {
-          "value": {
-            "childFullName": "John",
-            "childsAge": "61",
-            "isRespondentResponsibleForChild": "No"
-          }
-        },
-        {
-          "value": {
-            "childFullName": "John",
-            "childsAge": "61",
-            "isRespondentResponsibleForChild": "Yes"
-          }
-        },
-        {
-          "value": {
-            "childFullName": "Johnny",
-            "childsAge": "43",
-            "isRespondentResponsibleForChild": "No"
-          }
-        },
-        {
-          "value": {
-            "childFullName": "Jim",
-            "childsAge": "45",
-            "isRespondentResponsibleForChild": "Yes"
-          }
-        }
-      ],
-      "applicationTypeDetails": {
-        "typesOfApplication": "01234567891"
-      },
-      "fl401RespondentTable": [
-        {
-          "value": {
-            "firstName": "John",
-            "lastName": "Maxwell",
-            "previousName": "Connor",
-            "dateOfBirth": "2022/12/04",
-            "liveWithApplicant": "yes",
-            "phoneNumber": "09866534424",
-            "email": "john@gmail.com",
-            "address": [
-              {
-                "value": {
-                  "AddressLine1": "123 Harley St.",
-                  "AddressLine2": "Vox Rd",
-                  "PostTown": "Blighty",
-                  "County": "UK",
-                  "PostCode": "respondent_Address_Postcode"
-                }
-              }
-            ]
-          }
-        }
-      ],
-      "withoutNoticeOrderTable": {
-        "orderWithoutGivingNotice": "Yes",
-        "anyOtherDtailsForWithoutNoticeOrder": "more reason",
-        "isRespondentAlreadyInBailCondition": "Yes",
-        "bailConditionEndDate": "2021-02-07",
-        "furtherDetails": "XYZ",
-        "reasonForOrderWithoutGivingNotice": "there is risk of significant harm to the applicant or a relevant child, attributable to conduct of the respondent, if the order is not made immediately,it is likely that I will be deterred or prevented from pursuing the application if an order is not made immediately,I believe that the respondent is aware of the proceedings but is deliberately evading service and that I or a relevant child will be seriously prejudiced by the delay in effecting substituted service"
+      "otherProceedingsTable": {
+        "previousOrOngoingProceedings": "Yes"
       },
       "scannedDocuments": [
         {
@@ -137,10 +78,19 @@
             "firstName": "Johnny",
             "lastName": "Boy",
             "address": "JohnTown",
-            "phoneNumber": "+442088956847"
+            "phoneNumber": "0908776545"
           }
         }
       ],
+      "fl401ApplicantTable": {
+        "firstName": null,
+        "lastName": null,
+        "previousName": null,
+        "dateOfBirth": null,
+        "applicantContactInstructions": null,
+        "applicantLegalRepresenationNeeded": null,
+        "address": {}
+      },
       "home": [
         {
           "value": {
@@ -220,7 +170,151 @@
             "furtherInformation": "More stairs needed"
           }
         }
-      ]
+      ],
+      "fl401OtherProceedingsDetailsTable": [
+        {
+          "value": {
+            "nameOfCourt": "Windsor Ct",
+            "caseNumber": " 232134",
+            "typeOfCase": " Civil"
+          }
+        },
+        {
+          "value": {
+            "nameOfCourt": "Nottingham Ct",
+            "caseNumber": " 432134",
+            "typeOfCase": " Adoption"
+          }
+        },
+        {
+          "value": {
+            "nameOfCourt": "Williamsburgh Ct",
+            "caseNumber": " 762134",
+            "typeOfCase": " Removal of Child"
+          }
+        }
+      ],
+      "doAnyChildrenLiveAtAddress": "yes",
+      "children": [
+        {
+          "value": {
+            "childFullName": "John",
+            "childsAge": "61",
+            "isRespondentResponsibleForChild": "Yes"
+          }
+        },
+        {
+          "value": {
+            "childFullName": "John",
+            "childsAge": "61",
+            "isRespondentResponsibleForChild": "Yes"
+          }
+        },
+        {
+          "value": {
+            "childFullName": "Johnny",
+            "childsAge": "43",
+            "isRespondentResponsibleForChild": "No"
+          }
+        },
+        {
+          "value": {
+            "childFullName": "Jim",
+            "childsAge": "45",
+            "isRespondentResponsibleForChild": "Yes"
+          }
+        },
+        {
+          "value": {
+            "childFullName": "John",
+            "childsAge": "61",
+            "isRespondentResponsibleForChild": "No"
+          }
+        },
+        {
+          "value": {
+            "childFullName": "John",
+            "childsAge": "61",
+            "isRespondentResponsibleForChild": "Yes"
+          }
+        },
+        {
+          "value": {
+            "childFullName": "Johnny",
+            "childsAge": "43",
+            "isRespondentResponsibleForChild": "No"
+          }
+        },
+        {
+          "value": {
+            "childFullName": "Jim",
+            "childsAge": "45",
+            "isRespondentResponsibleForChild": "Yes"
+          }
+        }
+      ],
+      "fl401SolicitorDetailsTable": {
+        "solicitorOrg": {
+          "OrganisationName": null
+        },
+        "address": {
+          "addressLine1": null,
+          "addressLine2": null,
+          "postTown": null,
+          "county": null,
+          "postCode": null
+        },
+        "dxNumber": null,
+        "solicitorTelephone": null,
+        "solicitorEmail": null,
+        "solicitorReference": null
+      },
+      "attendingTheHearingTable": {
+        "isInterpreterNeeded": "Yes",
+        "isDisabilityPresent": "john@gmail.com",
+        "adjustmentsRequired": "john@gmail.com",
+        "specialMeasureAtCourt": "Measure1,Measure2,Measure4",
+        "interpreterNeeds": [
+          {
+            "value": {
+              "language": "john@gmail.com",
+              "dialect": "john@gmail.com"
+            }
+          }
+        ]
+      },
+      "fl401RespondentTable": [
+        {
+          "value": {
+            "firstName": "John",
+            "lastName": "Maxwell",
+            "previousName": "Connor",
+            "dateOfBirth": "2022/12/04",
+            "liveWithApplicant": "yes",
+            "phoneNumber": "09866534424",
+            "email": "john@gmail.com",
+            "address": [
+              {
+                "value": {
+                  "AddressLine1": "123 Harley St.",
+                  "AddressLine2": "Vox Rd",
+                  "PostTown": "Blighty",
+                  "County": "UK",
+                  "PostCode": "respondent_Address_Postcode"
+                }
+              }
+            ]
+          }
+        }
+      ],
+      "withoutNoticeOrderTable": {
+        "orderWithoutGivingNotice": "Yes",
+        "anyOtherDtailsForWithoutNoticeOrder": "more reason",
+        "isRespondentAlreadyInBailCondition": "Yes",
+        "bailConditionEndDate": "2021-02-07",
+        "furtherDetails": "XYZ",
+        "reasonForOrderWithoutGivingNotice": "there is risk of significant harm to the applicant or a relevant child, attributable to conduct of the respondent, if the order is not made immediately,it is likely that I will be deterred or prevented from pursuing the application if an order is not made immediately,I believe that the respondent is aware of the proceedings but is deliberately evading service and that I or a relevant child will be seriously prejudiced by the delay in effecting substituted service"
+      }
     }
   },
   "warnings": [

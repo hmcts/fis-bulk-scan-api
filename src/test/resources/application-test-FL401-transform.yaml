@@ -77,6 +77,8 @@ uk:
                 solicitorTelephone: applicant_Solicitor_PhoneNumber
                 solicitorEmail: applicant_Solicitor_EmailAddress
                 solicitorReference: applicant_Solicitor_Reference
+              otherProceedingsTable:
+                previousOrOngoingProceedings: OngoingFamilyCourtProceeding
               home:
                 - value:
                     address:
@@ -107,9 +109,9 @@ uk:
                           textAreaSomethingElse: MortgageOnProperty_Person_Others
                           mortgageNumber: MortgageOnProperty_Number
                     isPropertyRented: RentedProperty
-                    mortgageNamedAfterList: RentedProperty_Person #list?
+                    mortgageNamedAfterList: RentedProperty_Person
                     landlords:
-                      textAreaSomethingElse: RentedProperty_Person_Others #line 180 on ccd, RentedProperty_Person_Others in XL, in here on ccd
+                      textAreaSomethingElse: RentedProperty_Person_Others
                       landlordName: LandlordDetails_Name
                       address:
                         - value:
@@ -120,14 +122,14 @@ uk:
                             PostCode: LandlordDetails_Postcode
                     doesApplicantHaveHomeRights: HomeRights
                     livingSituation:
-                      - value: #ccd values from json, not on the XL, which just says livingSituation, which is an object opn the json
+                      - value:
                           ableToStayInHome: ChangesToLivingSituation_Row1
                           restrictFromEnteringHome: ChangesToLivingSituation_Row2
                           awayFromHome: ChangesToLivingSituation_Row3
                           limitRespondentInHome: ChangesToLivingSituation_Row4
                           ableToReturnHome: ChangesToLivingSituation_Row5
                     familyHome:
-                      payForRepairs: ChangesToFamilyHome_Row1 #ccd values from json, not on the XL, which just says livingSituation, which is an object opn the json
+                      payForRepairs: ChangesToFamilyHome_Row1
                       useHouseholdContents: ChangesToFamilyHome_Row2
                       payOrContributeRent: ChangesToFamilyHome_Row3
                     furtherInformation: CourtToConsider

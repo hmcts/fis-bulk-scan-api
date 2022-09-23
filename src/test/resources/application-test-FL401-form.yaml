@@ -46,6 +46,26 @@ uk:
               - needForParentalResponsiblity
               - respondentFirstName
               - respondentLastName
+              - previousName
+              - respondentDoB
+              - respondent_LiveWithApplicant
+              - respondent_Address_BuildingAndStreet
+              - respondent_Address_SecondLine
+              - respondent_Address_TownOrCity
+              - respondent_Address_County
+              - respondent_Address_Postcode
+              - respondent_PhoneNumber
+              - respondent_Email
+              - orderWithoutGivingNoticeReason
+              - riskOfSignificantHarm
+              - deterredOrPrevented
+              - deliberatelyEvadingService
+              - orderWithoutGivingNotice_moreReason
+              - respondentBailConditions
+              - respondent_BailConditionsEndDate
+              - situationCourtToKnow
+              - respondentFirstName
+              - respondentLastName
               - respondentPreviousNames
               - respondentDoB
               - respondent_LiveWithApplicant
@@ -161,6 +181,16 @@ uk:
               - ChangesToFamilyHome_Row2
               - ChangesToFamilyHome_Row3
               - CourtToConsider
+              - applicationFor_YouOnly
+              - applicationFor_YourFamily
+              - family_childrenDetails_row1
+              - family_childrenDetails_row2
+              - family_childrenDetails_row3
+              - family_childrenDetails_row4
+              - OngoingFamilyCourtProceeding
+              - OngoingFamilyCourtProceeding_row1
+              - OngoingFamilyCourtProceeding_row2
+              - OngoingFamilyCourtProceeding_row3
             regexValidationFields:
               dateFields:
                 fieldNames:

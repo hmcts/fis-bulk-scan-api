@@ -100,9 +100,13 @@ public class BulkScanFL401Service implements BulkScanService {
 
         response.addWarning(isValidPostCode(inputFieldMap, APPLICANT_ADDRESS_POSTCODE));
 
-        response.changeStatus();
-
         response.addWarning(validateRespondentBehaviour(inputFieldMap));
+
+        response.addWarning(
+                bulkScanFL401ValidationService.validateJustYouOrYouAndFamilySectionFive(
+                        inputFieldMap));
+
+        response.changeStatus();
 
         return response;
     }

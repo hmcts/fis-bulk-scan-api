@@ -334,7 +334,6 @@ public final class BulkScanConstants {
     public static final String APPLICANT_RELATION_TO_CHILD = "applicantRelationToChild";
     public static final String APPLICANT_MARITAL_STATUS = "applicantMaritalStatus";
     // End of A58
-
     public static final String EMPTY = "";
 
     public static final int INT_THREE = 3;

@@ -1,5 +1,7 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
+import static org.springframework.util.StringUtils.hasText;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MISSING_FIELD_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_HAS_MORETHAN_ONE_RELATIONSHIP_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_MUST_HAVE_RELATIONSHIP_MESSAGE;
@@ -7,18 +9,22 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPL
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_RESPONDENT_RELATIONSHIP_DATE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_RESPONDENT_RELATIONSHIP_FIELDS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_RESPONDENT_RELATIONSHIP_OPTIONS_FIELDS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICATION_FOR_YOUR_FAMILY;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICATION_FOR_YOU_ONLY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.EXPECTED_APPLICANT_RESPONDENT_RELATIONSHIP_MINIMUM_COUNT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.FIELD_SUMMARY_END;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.FIELD_SUMMARY_PREVIOUS_MARRIED;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.FIELD_SUMMARY_START;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.FL401_RELATIONSHIP_TO_RESPONDENT_SECTION;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.FL401_RESPONDENT_RELATIONSHIP_TO_YOU_SECTION;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.NEED_FOR_PARENTAL_RESPONSIBILITY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.NO_APPLICANT_RESPONDENT_RELATIONSHIP_COUNT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.RESPONDENT_PREVIOUS_MARRIED_DATE_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.RESPONDENT_RELATIONSHIP_END_DATE_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.RESPONDENT_RELATIONSHIP_START_DATE_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.TEXT_AND_NUMERIC_MONTH_PATTERN;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.VALID_DATE_WARNING_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.WHO_IS_APPLICATION_FOR_S5;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -27,7 +33,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.TreeMap;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.Status;
 import uk.gov.hmcts.reform.bulkscan.utils.DateUtil;
@@ -108,6 +113,39 @@ public class BulkScanFL401ValidationService {
         bulkScanValidationResponse.changeStatus();
 
         return bulkScanValidationResponse;
+    }
+
+    /**
+     * This method will validate section 5.1. Choice must be made, Yes for one. This method makes
+     * sure both are not yes, or no.
+     *
+     * @param inputFieldMap as input
+     * @return warning
+     */
+    public List<String> validateJustYouOrYouAndFamilySectionFive(
+            Map<String, String> inputFieldMap) {
+
+        String needForParentalResponsiblity = inputFieldMap.get(NEED_FOR_PARENTAL_RESPONSIBILITY);
+        String justYou = inputFieldMap.get(APPLICATION_FOR_YOU_ONLY);
+        String youAndFamily = inputFieldMap.get(APPLICATION_FOR_YOUR_FAMILY);
+        List<String> warningLst = new ArrayList<>();
+
+        if (hasText(needForParentalResponsiblity)
+                && needForParentalResponsiblity.equalsIgnoreCase(YES)) {
+            if (hasText(justYou)
+                    && !justYou.equalsIgnoreCase(YES)
+                    && hasText(youAndFamily)
+                    && !youAndFamily.equalsIgnoreCase(YES)) {
+                warningLst.add(String.format(MISSING_FIELD_MESSAGE, WHO_IS_APPLICATION_FOR_S5));
+
+            } else if (hasText(justYou)
+                    && justYou.equalsIgnoreCase(YES)
+                    && hasText(youAndFamily)
+                    && youAndFamily.equalsIgnoreCase(YES)) {
+                warningLst.add(String.format(MISSING_FIELD_MESSAGE, WHO_IS_APPLICATION_FOR_S5));
+            }
+        }
+        return warningLst;
     }
 
     private void setApplicantRespondentErrorWarningMsg(
@@ -208,7 +246,7 @@ public class BulkScanFL401ValidationService {
         if (null != ocrDataFieldsMap
                 && !ocrDataFieldsMap.isEmpty()
                 && ocrDataFieldsMap.containsKey(fieldName)
-                && StringUtils.hasText(ocrDataFieldsMap.get(fieldName))) {
+                && hasText(ocrDataFieldsMap.get(fieldName))) {
             return validateDate(
                     Objects.requireNonNull(ocrDataFieldsMap.get(fieldName)),
                     String.format(message, fieldSummaryDescr),
