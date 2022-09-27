@@ -3,6 +3,8 @@
     "case_type_id": "PRLAPPS",
     "event_id": "create-case-privatelaw-bs",
     "case_data": {
+      "statementOfTruthLegalRepresentative": "Gene Wilder",
+      "statementOfTruthFirmName": "Wilder and Wilder",
       "applicantFamilyTable": {
         "applicantChild": [
           {
@@ -83,13 +85,25 @@
         }
       ],
       "fl401ApplicantTable": {
-        "firstName": null,
-        "lastName": null,
-        "previousName": null,
-        "dateOfBirth": null,
-        "applicantContactInstructions": null,
-        "applicantLegalRepresenationNeeded": null,
-        "address": {}
+        "firstName": "testfirstname",
+        "lastName": "testLastname",
+        "previousName": "no previous name",
+        "dateOfBirth": "2001-03-26",
+        "applicantContactInstructions": "No",
+        "applicantLegalRepresenationNeeded": "No",
+        "isAddressConfidential": "No",
+        "isPhoneNumberConfidential": "No",
+        "isEmailAddressConfidential": "No",
+        "address": {
+          "AddressLine1": "No",
+          "AddressLine2": "applicant second line",
+          "PostTown": "No",
+          "County": "applicant county",
+          "PostCode": "cv2 4nz"
+        },
+        "phoneNumber": "No",
+        "email": "No",
+        "preferToBeContacted": "No"
       },
       "home": [
         {
@@ -194,6 +208,9 @@
           }
         }
       ],
+      "statementOfTruthLine1": "Yes",
+      "statementOfTruthDate": "02/04/22",
+      "statementOfTruthLine2": "Yes",
       "doAnyChildrenLiveAtAddress": "yes",
       "children": [
         {
@@ -255,20 +272,24 @@
       ],
       "fl401SolicitorDetailsTable": {
         "solicitorOrg": {
-          "OrganisationName": null
+          "OrganisationName": "solicitor firm name"
         },
         "address": {
-          "addressLine1": null,
-          "addressLine2": null,
-          "postTown": null,
-          "county": null,
-          "postCode": null
+          "addressLine1": "1 abc street",
+          "addressLine2": "line 2",
+          "postTown": "solicitor town city",
+          "county": "test county",
+          "postCode": "ab34 1ab"
         },
-        "dxNumber": null,
-        "solicitorTelephone": null,
-        "solicitorEmail": null,
-        "solicitorReference": null
+        "dxNumber": "12243",
+        "solicitorTelephone": "076888887687",
+        "solicitorEmail": "sol email",
+        "solicitorReference": "test sol ref",
+        "representativeFirstName": "solicitot",
+        "representativeLastName": "name"
       },
+      "statementOfTruthFullName": "John B. North",
+      "statementOfTruthPositionHeld": "Legal Rep",
       "attendingTheHearingTable": {
         "isInterpreterNeeded": "Yes",
         "isDisabilityPresent": "john@gmail.com",
@@ -314,7 +335,8 @@
         "bailConditionEndDate": "2021-02-07",
         "furtherDetails": "XYZ",
         "reasonForOrderWithoutGivingNotice": "there is risk of significant harm to the applicant or a relevant child, attributable to conduct of the respondent, if the order is not made immediately,it is likely that I will be deterred or prevented from pursuing the application if an order is not made immediately,I believe that the respondent is aware of the proceedings but is deliberately evading service and that I or a relevant child will be seriously prejudiced by the delay in effecting substituted service"
-      }
+      },
+      "statementOfTruthApplicant": "John North"
     }
   },
   "warnings": [

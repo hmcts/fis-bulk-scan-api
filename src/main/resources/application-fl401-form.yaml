@@ -191,6 +191,14 @@ uk:
               - OngoingFamilyCourtProceeding_row1
               - OngoingFamilyCourtProceeding_row2
               - OngoingFamilyCourtProceeding_row3
+              - statementOfTruth_Line1
+              - statementOfTruth_Line2
+              - statementOfTruth_ApplicantFlag
+              - statementOfTruth_LegalRepresentative
+              - statementOfTruth_Date
+              - statementOfTruth_FullName
+              - statementOfTruth_FirmName
+              - statementOfTruth_PositionHeld
             regexValidationFields:
               dateFields:
                 fieldNames:
