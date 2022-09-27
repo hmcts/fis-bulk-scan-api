@@ -451,6 +451,38 @@
     {
       "name":"OngoingFamilyCourtProceeding_row3",
       "value":"Williamsburgh Ct, 762134, Removal of Child"
+    },
+    {
+      "name":"statementOfTruth_Line1",
+      "value":"Yes"
+    },
+    {
+      "name":"statementOfTruth_Line2",
+      "value":"Yes"
+    },
+    {
+      "name":"statementOfTruth_ApplicantFlag",
+      "value":"John North"
+    },
+    {
+      "name":"statementOfTruth_LegalRepresentative",
+      "value":"Gene Wilder"
+    },
+    {
+      "name":"statementOfTruth_Date",
+      "value":"02/04/22"
+    },
+    {
+      "name":"statementOfTruth_FullName",
+      "value":"John B. North"
+    },
+    {
+      "name":"statementOfTruth_FirmName",
+      "value":"Wilder and Wilder"
+    },
+    {
+      "name":"statementOfTruth_PositionHeld",
+      "value":"Legal Rep"
     }
   ]
 }
