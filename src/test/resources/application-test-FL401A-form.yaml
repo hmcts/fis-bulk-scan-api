@@ -9,7 +9,8 @@ uk:
               - applicant_address
               - applicant_postcode
             optionalFields:
-              -
+              - applicant_dateOfBirth
+              - applicant_telephone_number
             regexValidationFields:
               dateFields:
                 fieldNames:
