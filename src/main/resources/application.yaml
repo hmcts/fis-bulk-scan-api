@@ -22,7 +22,7 @@ spring:
     name: fis bulk scan api
   profiles:
     include:
-      - FL401A-form
+      - c100-form
       - fl401-form
       - fl401a-form
       - fl403-form
@@ -30,8 +30,8 @@ spring:
       - c51-form
       - c63-form
       - a60-form
-      - FL401A-transform
-      - FL401A-dependency
+      - c100-transform
+      - c100-dependency
       - a58-form
       - a59-form
       - fgm001-form

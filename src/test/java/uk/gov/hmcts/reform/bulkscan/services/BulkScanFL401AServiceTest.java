@@ -6,12 +6,12 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DATE_FORMAT_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_ERROR_MESSAGE;
-import static uk.gov.hmcts.reform.bulkscan.utils.TestResourceUtil.readFileFrom;
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.FL401A_APPLICANT_ADDRESS_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.FL401A_APPLICANT_DATE_OF_BIRTH_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.FL401A_APPLICANT_FULL_NAME_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.FL401A_APPLICANT_POSTCODE_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.FL401A_TEST_POSTCODE;
+import static uk.gov.hmcts.reform.bulkscan.utils.TestResourceUtil.readFileFrom;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
@@ -46,11 +46,9 @@ class BulkScanFL401AServiceTest {
     private static final String FL401A_VALIDATION_WARNING_REQUEST_PATH =
             "classpath:request/bulk-scan-fl401a-validate-warning-input.json";
 
-    @Autowired
-    BulkScanFL401AService bulkScanFL401AValidationService;
+    @Autowired BulkScanFL401AService bulkScanFL401AValidationService;
 
-    @MockBean
-    PostcodeLookupService postcodeLookupService;
+    @MockBean PostcodeLookupService postcodeLookupService;
 
     @Test
     void testFL401ASuccess() throws IOException {
@@ -82,15 +80,22 @@ class BulkScanFL401AServiceTest {
         assertTrue(
                 res.getErrors()
                         .items
-                        .contains(String.format(MANDATORY_ERROR_MESSAGE, FL401A_APPLICANT_FULL_NAME_FIELD)));
+                        .contains(
+                                String.format(
+                                        MANDATORY_ERROR_MESSAGE,
+                                        FL401A_APPLICANT_FULL_NAME_FIELD)));
         assertTrue(
                 res.getErrors()
                         .items
-                        .contains(String.format(MANDATORY_ERROR_MESSAGE, FL401A_APPLICANT_ADDRESS_FIELD)));
+                        .contains(
+                                String.format(
+                                        MANDATORY_ERROR_MESSAGE, FL401A_APPLICANT_ADDRESS_FIELD)));
         assertTrue(
                 res.getErrors()
                         .items
-                        .contains(String.format(MANDATORY_ERROR_MESSAGE, FL401A_APPLICANT_POSTCODE_FIELD)));
+                        .contains(
+                                String.format(
+                                        MANDATORY_ERROR_MESSAGE, FL401A_APPLICANT_POSTCODE_FIELD)));
     }
 
     @Test
@@ -108,7 +113,10 @@ class BulkScanFL401AServiceTest {
         assertTrue(
                 res.getWarnings()
                         .items
-                        .contains(String.format(DATE_FORMAT_MESSAGE, FL401A_APPLICANT_DATE_OF_BIRTH_FIELD)));
+                        .contains(
+                                String.format(
+                                        DATE_FORMAT_MESSAGE,
+                                        FL401A_APPLICANT_DATE_OF_BIRTH_FIELD)));
     }
 
     @Test
