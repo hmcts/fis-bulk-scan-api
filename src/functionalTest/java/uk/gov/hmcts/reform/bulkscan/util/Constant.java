@@ -30,6 +30,24 @@ public class Constant {
             "classpath:requests/bulk-scan-fl401-validation-warning-input.json";
     public static final String FL401_VALIDATION_WARNING_OUTPUT_PATH =
             "classpath:responses/bulk-scan-fl401-validation-warning-output.json";
+    public static final String FL401A_VALIDATION_INPUT_PATH =
+            "classpath:requests/bulk-scan-fl401a-validate-input.json";
+    public static final String FL401A_VALIDATION_OUTPUT_PATH =
+            "classpath:responses/bulk-scan-fl401a-validate-output.json";
+
+    public static final String FL401A_WARNING_VALIDATION_INPUT_PATH =
+            "classpath:requests/bulk-scan-fl401a-validate-warning-input.json";
+
+    public static final String FL401A_WARNING_VALIDATION_OUTPUT_PATH =
+            "classpath:responses/bulk-scan-fl401a-validate-warning-output.json";
+
+    public static final String FL401A_ERROR_VALIDATION_INPUT_PATH =
+            "classpath:requests/bulk-scan-fl401a-validate-error-input.json";
+
+    public static final String FL401A_ERROR_VALIDATION_OUTPUT_PATH =
+            "classpath:responses/bulk-scan-fl401a-validate-error-output.json";
+    public static final String FL401A_CASE_TYPE_VALIDATE_ENDPOINT = "/forms/FL401A/validate-ocr";
+
     public static final String BULK_SCAN_TEST_LOCAL_HOST = "http://localhost:8090";
     public static final String BULK_SCAN_TEST_URL = "TEST_URL";
     public static final String JSON_CONTENT_TYPE = "application/json";

@@ -5,6 +5,7 @@ public final class Constants {
     public static final String SERVICE_AUTHORIZATION_VALUE = "SlAV32hkKG";
 
     public static final String FL401_CASE_TYPE_VALIDATE_ENDPOINT = "/forms/FL401/validate-ocr";
+    public static final String FL401A_CASE_TYPE_VALIDATE_ENDPOINT = "/forms/FL401A/validate-ocr";
     public static final String FL403_CASE_TYPE_VALIDATE_ENDPOINT = "/forms/FL403/validate-ocr";
     public static final String C51_CASE_TYPE_VALIDATE_ENDPOINT = "/forms/C51/validate-ocr";
     public static final String C63_CASE_TYPE_VALIDATE_ENDPOINT = "/forms/C63/validate-ocr";

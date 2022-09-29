@@ -4,7 +4,7 @@ import static org.mockito.Mockito.when;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static uk.gov.hmcts.reform.bulkscan.utils.Constants.FL401_CASE_TYPE_VALIDATE_ENDPOINT;
+import static uk.gov.hmcts.reform.bulkscan.utils.Constants.FL401A_CASE_TYPE_VALIDATE_ENDPOINT;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.SERVICE_AUTHORIZATION;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.SERVICE_AUTH_TOKEN;
 import static uk.gov.hmcts.reform.bulkscan.utils.TestResourceUtil.readFileFrom;
@@ -35,20 +35,20 @@ class BulkScanFL401AEndpointIntegrationTest {
     @Autowired private transient MockMvc mockMvc;
 
     private static final String FL401A_VALIDATION_REQUEST_PATH =
-            "classpath:request/bulk-scan-fl401-validation-input.json";
+            "classpath:request/bulk-scan-fl401a-validate-input.json";
 
     @BeforeEach
     void beforeEach() {
-        when(authTokenValidator.getServiceName(SERVICE_AUTH_TOKEN)).thenReturn("fis_bulk_scan_api");
+        when(authTokenValidator.getServiceName(SERVICE_AUTH_TOKEN)).thenReturn("fis_cos_api");
     }
 
     @DisplayName("should test validate request case type FL401A")
     @Test
     void shouldTestValidationRequestCaseTypeFL401A() throws Exception {
-        when(authTokenValidator.getServiceName(SERVICE_AUTH_TOKEN)).thenReturn("fis_bulk_scan_api");
+        when(authTokenValidator.getServiceName(SERVICE_AUTH_TOKEN)).thenReturn("fis_cos_api");
 
         mockMvc.perform(
-                        post(FL401_CASE_TYPE_VALIDATE_ENDPOINT)
+                        post(FL401A_CASE_TYPE_VALIDATE_ENDPOINT)
                                 .contentType(APPLICATION_JSON)
                                 .header(SERVICE_AUTHORIZATION, SERVICE_AUTH_TOKEN)
                                 .content(readFileFrom(FL401A_VALIDATION_REQUEST_PATH)))

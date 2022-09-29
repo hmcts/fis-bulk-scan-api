@@ -2,6 +2,13 @@ package uk.gov.hmcts.reform.bulkscan.controllers;
 
 import static uk.gov.hmcts.reform.bulkscan.util.Constant.BULK_SCAN_TEST_LOCAL_HOST;
 import static uk.gov.hmcts.reform.bulkscan.util.Constant.BULK_SCAN_TEST_URL;
+import static uk.gov.hmcts.reform.bulkscan.util.Constant.FL401A_CASE_TYPE_VALIDATE_ENDPOINT;
+import static uk.gov.hmcts.reform.bulkscan.util.Constant.FL401A_ERROR_VALIDATION_INPUT_PATH;
+import static uk.gov.hmcts.reform.bulkscan.util.Constant.FL401A_ERROR_VALIDATION_OUTPUT_PATH;
+import static uk.gov.hmcts.reform.bulkscan.util.Constant.FL401A_VALIDATION_INPUT_PATH;
+import static uk.gov.hmcts.reform.bulkscan.util.Constant.FL401A_VALIDATION_OUTPUT_PATH;
+import static uk.gov.hmcts.reform.bulkscan.util.Constant.FL401A_WARNING_VALIDATION_INPUT_PATH;
+import static uk.gov.hmcts.reform.bulkscan.util.Constant.FL401A_WARNING_VALIDATION_OUTPUT_PATH;
 import static uk.gov.hmcts.reform.bulkscan.util.Constant.JSON_CONTENT_TYPE;
 import static uk.gov.hmcts.reform.bulkscan.util.TestResourceUtil.readFileFrom;
 
@@ -35,23 +42,6 @@ public class BulkScanEndpointFL401AFunctionalTest {
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
     private static final String AUTH_HEADER = "serviceauthorization";
-    private static final String FL401A_VALIDATION_TEST_PATH = "forms/FL401A/validate-ocr";
-    private static final String FL401A_VALIDATION_INPUT_PATH =
-            "classpath:requests/bulk-scan-fl401a-validate-input.json";
-    private static final String FL401A_VALIDATION_OUTPUT_PATH =
-            "classpath:responses/bulk-scan-fl401a-validate-output.json";
-
-    private static final String FL401A_WARNING_VALIDATION_INPUT_PATH =
-            "classpath:requests/bulk-scan-fl401a-validate-warning-input.json";
-
-    private static final String FL401A_WARNING_VALIDATION_OUTPUT_PATH =
-            "classpath:responses/bulk-scan-fl401a-validate-warning-output.json";
-
-    private static final String FL401A_ERROR_VALIDATION_INPUT_PATH =
-            "classpath:requests/bulk-scan-fl401a-validate-error-input.json";
-
-    private static final String FL401A_ERROR_VALIDATION_OUTPUT_PATH =
-            "classpath:responses/bulk-scan-fl401a-validate-error-output.json";
 
     private final String targetInstance =
             StringUtils.defaultIfBlank(
@@ -77,7 +67,7 @@ public class BulkScanEndpointFL401AFunctionalTest {
                         .body(bulkScanValidationRequest)
                         .when()
                         .contentType(JSON_CONTENT_TYPE)
-                        .post(FL401A_VALIDATION_TEST_PATH);
+                        .post(FL401A_CASE_TYPE_VALIDATE_ENDPOINT);
 
         response.then().assertThat().statusCode(HttpStatus.OK.value());
 
@@ -96,7 +86,7 @@ public class BulkScanEndpointFL401AFunctionalTest {
                         .body(bulkScanValidationRequest)
                         .when()
                         .contentType(JSON_CONTENT_TYPE)
-                        .post(FL401A_VALIDATION_TEST_PATH);
+                        .post(FL401A_CASE_TYPE_VALIDATE_ENDPOINT);
 
         response.then().assertThat().statusCode(HttpStatus.OK.value());
 
@@ -115,7 +105,7 @@ public class BulkScanEndpointFL401AFunctionalTest {
                         .body(bulkScanValidationRequest)
                         .when()
                         .contentType(JSON_CONTENT_TYPE)
-                        .post(FL401A_VALIDATION_TEST_PATH);
+                        .post(FL401A_CASE_TYPE_VALIDATE_ENDPOINT);
 
         response.then().assertThat().statusCode(HttpStatus.OK.value());
 
