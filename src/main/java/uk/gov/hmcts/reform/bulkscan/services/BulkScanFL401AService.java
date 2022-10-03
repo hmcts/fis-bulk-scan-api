@@ -36,7 +36,6 @@ public class BulkScanFL401AService implements BulkScanService {
         return response;
     }
 
-    @SuppressWarnings("unchecked")
     @Override
     public BulkScanTransformationResponse transform(
             BulkScanTransformationRequest bulkScanTransformationRequest) {
