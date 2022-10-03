@@ -1,0 +1,46 @@
+{
+  "ocr_data_fields": [
+    {
+      "name":"applicant_first_name",
+      "value":"Johnny"
+    },
+    {
+      "name":"applicant_last_name",
+      "value":"MacDowell"
+    },
+    {
+      "name":"applicant_building_and_street",
+      "value":"MacDowell St."
+    },
+    {
+      "name":"applicant_second_line_of_address",
+      "value":"MC Avenue"
+    },
+    {
+      "name":"applicant_third_line_of_address",
+      "value":"Mac Town"
+    },
+    {
+      "name":"applicant_postcode",
+      "value":"5fv 7thy"
+    },
+    {
+      "name":"applicant_phoneno",
+      "value":"0123456789"
+    },
+    {
+      "name":"applicant_email",
+      "value":"applicant@gmail.com"
+    }
+  ],
+  "scanned_documents": [
+    {
+      "url": {
+        "document_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c",
+        "document_filename": "test.pdf",
+        "document_binary_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
+      }
+    }
+  ],
+  "form_type": "C63"
+}

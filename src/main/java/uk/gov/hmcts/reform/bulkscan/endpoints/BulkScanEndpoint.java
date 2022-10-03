@@ -79,6 +79,7 @@ public class BulkScanEndpoint {
         BulkScanValidationResponse bulkScanResponse =
                 Objects.requireNonNull(BulkScanServiceFactory.getService(formTypeEnum))
                         .validate(bulkScanValidationRequest);
+
         return ok(bulkScanResponse);
     }
 

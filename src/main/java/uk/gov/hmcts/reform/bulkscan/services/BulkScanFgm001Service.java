@@ -23,10 +23,17 @@ public class BulkScanFgm001Service implements BulkScanService {
     }
 
     @Override
-    public BulkScanValidationResponse validate(BulkScanValidationRequest bulkRequest) {
-        // Validating the Fields..
-        return bulkScanValidationHelper.validateMandatoryAndOptionalFields(
-                bulkRequest.getOcrdatafields(), configManager.getValidationConfig(FormType.FGM001));
+    public BulkScanValidationResponse validate(
+            BulkScanValidationRequest bulkScanValidationRequest) {
+
+        BulkScanValidationResponse response =
+                bulkScanValidationHelper.validateMandatoryAndOptionalFields(
+                        bulkScanValidationRequest.getOcrdatafields(),
+                        configManager.getValidationConfig(FormType.FGM001));
+
+        response.changeStatus();
+
+        return response;
     }
 
     @Override

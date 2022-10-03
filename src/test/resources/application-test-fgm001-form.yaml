@@ -6,16 +6,14 @@ uk:
           FGM001:
             mandatoryFields:
               - applicant_fullName
-              - applicant_dateOfBirth
               - applicant_address
-              - applicant_postCode
+              - applicant_phoneNumber
             optionalFields:
-              -
+              - optional_empty #this is just here so that optionalFields.isEmpty() in BulkScanValidationHelper
             regexValidationFields:
               dateFields:
                 fieldNames:
-                  - applicant_dateOfBirth
-                regex: dd/MM/yyyy
+                  regex: dd/MM/yyyy
               emailFields:
                 fieldNames:
                   -
@@ -32,7 +30,3 @@ uk:
                 fieldNames:
                   - applicant_telephoneNumber
                 regex: ^(?:0|\+?44)(?:\d\s?){9,10}$
-              xorCondtionalFields:
-                fieldNames:
-                  - applicant_telephoneNumber, applicant_postCode
-

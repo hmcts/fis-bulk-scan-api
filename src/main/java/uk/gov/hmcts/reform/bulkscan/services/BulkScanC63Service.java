@@ -1,38 +1,105 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
+import static java.util.Objects.nonNull;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CASE_TYPE_ID;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EVENT_ID;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.SCAN_DOCUMENTS;
+import static uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper.transformScanDocuments;
+import static uk.gov.hmcts.reform.bulkscan.model.FormType.C63;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanFormValidationConfigManager;
+import uk.gov.hmcts.reform.bulkscan.config.BulkScanTransformConfigManager;
+import uk.gov.hmcts.reform.bulkscan.group.util.BulkScanGroupValidatorUtil;
+import uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper;
 import uk.gov.hmcts.reform.bulkscan.helper.BulkScanValidationHelper;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
+import uk.gov.hmcts.reform.bulkscan.model.CaseCreationDetails;
 import uk.gov.hmcts.reform.bulkscan.model.FormType;
+import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
 
 @Service
 public class BulkScanC63Service implements BulkScanService {
 
     @Autowired BulkScanFormValidationConfigManager configManager;
 
+    @Autowired BulkScanTransformConfigManager transformConfigManager;
+
     @Autowired BulkScanValidationHelper bulkScanValidationHelper;
 
     @Override
     public FormType getCaseType() {
-        return FormType.C63;
+        return C63;
     }
 
     @Override
-    public BulkScanValidationResponse validate(BulkScanValidationRequest bulkRequest) {
-        // Validating the Fields..
-        return bulkScanValidationHelper.validateMandatoryAndOptionalFields(
-                bulkRequest.getOcrdatafields(), configManager.getValidationConfig(FormType.C63));
+    public BulkScanValidationResponse validate(
+            BulkScanValidationRequest bulkScanValidationRequest) {
+
+        BulkScanValidationResponse response =
+                bulkScanValidationHelper.validateMandatoryAndOptionalFields(
+                        bulkScanValidationRequest.getOcrdatafields(),
+                        configManager.getValidationConfig(C63));
+
+        response.changeStatus();
+
+        return response;
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public BulkScanTransformationResponse transform(
             BulkScanTransformationRequest bulkScanTransformationRequest) {
-        // TODO transformation logic
-        return null;
+        List<OcrDataField> inputFieldsList = bulkScanTransformationRequest.getOcrdatafields();
+
+        FormType formType = C63;
+
+        Map<String, String> inputFieldsMap = getOcrDataFieldAsMap(inputFieldsList);
+
+        List<String> unknownFieldsList = null;
+
+        BulkScanFormValidationConfigManager.ValidationConfig validationConfig =
+                configManager.getValidationConfig(formType);
+
+        Map<String, Object> populatedMap =
+                (Map<String, Object>)
+                        BulkScanTransformHelper.transformToCaseData(
+                                new HashMap<>(
+                                        transformConfigManager
+                                                .getTransformationConfig(formType)
+                                                .getCaseDataFields()),
+                                inputFieldsMap);
+
+        populatedMap.put(SCAN_DOCUMENTS, transformScanDocuments(bulkScanTransformationRequest));
+
+        Map<String, String> caseTypeAndEventId =
+                transformConfigManager.getTransformationConfig(formType).getCaseFields();
+
+        BulkScanTransformationResponse.BulkScanTransformationResponseBuilder builder =
+                BulkScanTransformationResponse.builder()
+                        .caseCreationDetails(
+                                CaseCreationDetails.builder()
+                                        .caseTypeId(caseTypeAndEventId.get(CASE_TYPE_ID))
+                                        .eventId(caseTypeAndEventId.get(EVENT_ID))
+                                        .caseData(populatedMap)
+                                        .build());
+
+        if (nonNull(validationConfig)) {
+            unknownFieldsList =
+                    bulkScanValidationHelper.findUnknownFields(
+                            inputFieldsList,
+                            validationConfig.getMandatoryFields(),
+                            validationConfig.getOptionalFields());
+        }
+        BulkScanGroupValidatorUtil.updateTransformationUnknownFieldsByGroupFields(
+                formType, unknownFieldsList, builder);
+        return builder.build();
     }
 }

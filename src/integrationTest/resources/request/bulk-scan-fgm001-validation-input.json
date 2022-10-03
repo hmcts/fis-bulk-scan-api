@@ -1,0 +1,16 @@
+{
+  "ocr_data_fields":[
+    {
+      "name":"applicant_fullName",
+      "value":"Johnny Mac"
+    },
+    {
+      "name":"applicant_address",
+      "value":"Mac Street"
+    },
+    {
+      "name":"applicant_phoneNumber",
+      "value":"+4407890393437"
+    }
+  ]
+}
