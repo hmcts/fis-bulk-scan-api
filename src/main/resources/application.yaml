@@ -38,6 +38,8 @@ spring:
       - c2-form
       - a1-form
       - a58-transform
+      - c63-form
+      - c63-transform
       - a59-transform
       - a60-transform
       - c51-transform

@@ -1,0 +1,24 @@
+uk:
+  gov:
+    hmcts:
+      transform:
+        caseTypeofApplication:
+          C63:
+            caseFields:
+              CASE_TYPE_ID: PRLAPPS
+              EVENT_ID: create-case-privatelaw-bs
+            caseDataFields:
+              applicants:
+                - value:
+                    firstName: applicant_first_name
+                    lastName: applicant_last_name
+                    phoneNumber: applicant_phoneno
+                    email: applicant_email
+                    address:
+                      - value:
+                          AddressLine1: applicant_building_and_street
+                          AddressLine2: applicant_second_line_of_address
+                          PostTown: applicant_third_line_of_address #this ccd value should be correct
+                          PostCode: applicant_postcode
+
+
