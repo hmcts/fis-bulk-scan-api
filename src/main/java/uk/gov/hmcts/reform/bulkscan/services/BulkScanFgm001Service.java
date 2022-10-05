@@ -22,13 +22,29 @@ public class BulkScanFgm001Service implements BulkScanService {
         return FormType.FGM001;
     }
 
+    /**
+     * This method will validate Fgm001.
+     *
+     * @return BulkScanValidationResponse object
+     */
     @Override
-    public BulkScanValidationResponse validate(BulkScanValidationRequest bulkRequest) {
-        // Validating the Fields..
-        return bulkScanValidationHelper.validateMandatoryAndOptionalFields(
-                bulkRequest.getOcrdatafields(), configManager.getValidationConfig(FormType.FGM001));
+    public BulkScanValidationResponse validate(
+            BulkScanValidationRequest bulkScanValidationRequest) {
+
+        BulkScanValidationResponse response =
+                bulkScanValidationHelper.validateMandatoryAndOptionalFields(
+                        bulkScanValidationRequest.getOcrdatafields(),
+                        configManager.getValidationConfig(FormType.FGM001));
+
+        response.changeStatus();
+
+        return response;
     }
 
+    /**
+     * This method does not currently transform Fgm001. It is not necessary thus far to do so, the
+     * data is mocked in service
+     */
     @Override
     public BulkScanTransformationResponse transform(
             BulkScanTransformationRequest bulkScanTransformationRequest) {
