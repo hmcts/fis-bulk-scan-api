@@ -12,5 +12,4 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 @ActiveProfiles("test")
 class BulkScanC63ServiceTest {
 
-    @Spy @Autowired BulkScanC63Service bulkScanValidationService;
 }
