@@ -23,6 +23,8 @@ spring:
   profiles:
     include:
       - test-C100-form
+      - test-C100-transform
+      - test-C100-dependency
       - test-FL401-form
       - test-FL401A-form
       - test-FL403-form
@@ -30,8 +32,6 @@ spring:
       - test-C51-form
       - test-C63-form
       - test-A60-form
-      - test-C100-transform
-      - test-C100-dependency
       - test-A58-form
       - test-a59-form
       - test-fgm001-form

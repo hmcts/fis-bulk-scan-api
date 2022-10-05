@@ -1,0 +1,24 @@
+{
+  "ocr_data_fields":[
+    {
+      "name":"applicant_full_name",
+      "value":""
+    },
+    {
+      "name":"applicant_address",
+      "value":""
+    },
+    {
+      "name":"applicant_postcode",
+      "value":""
+    },
+    {
+      "name":"applicant_telephone_number",
+      "value":"02087768888"
+    },
+    {
+      "name":"applicant_dateOfBirth",
+      "value":"22/02/2002"
+    }
+  ]
+}

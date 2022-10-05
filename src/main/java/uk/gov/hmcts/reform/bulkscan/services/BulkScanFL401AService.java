@@ -1,6 +1,5 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
-import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanFormValidationConfigManager;
@@ -11,7 +10,6 @@ import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.FormType;
 
-@NoArgsConstructor
 @Service
 public class BulkScanFL401AService implements BulkScanService {
 
@@ -25,10 +23,17 @@ public class BulkScanFL401AService implements BulkScanService {
     }
 
     @Override
-    public BulkScanValidationResponse validate(BulkScanValidationRequest bulkRequest) {
-        // Validating the Fields..
-        return bulkScanValidationHelper.validateMandatoryAndOptionalFields(
-                bulkRequest.getOcrdatafields(), configManager.getValidationConfig(FormType.FL401A));
+    public BulkScanValidationResponse validate(
+            BulkScanValidationRequest bulkScanValidationRequest) {
+
+        BulkScanValidationResponse response =
+                bulkScanValidationHelper.validateMandatoryAndOptionalFields(
+                        bulkScanValidationRequest.getOcrdatafields(),
+                        configManager.getValidationConfig(FormType.FL401A));
+
+        response.changeStatus();
+
+        return response;
     }
 
     @Override

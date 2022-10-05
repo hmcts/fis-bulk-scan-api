@@ -49,6 +49,11 @@ public final class PrlTestConstants {
             "Some details are missing in the following section: 3c - Urgency.";
     public static final String NOMIAM_DOMESTICVIOLENCE_DEPENDENCY_WARNING =
             "Some details are missing in the following section: 3a - Domestic violence evidence.";
+    public static final String FL401A_APPLICANT_FULL_NAME_FIELD = "applicant_full_name";
+    public static final String FL401A_APPLICANT_ADDRESS_FIELD = "applicant_address";
+    public static final String FL401A_APPLICANT_POSTCODE_FIELD = "applicant_postcode";
+    public static final String FL401A_APPLICANT_DATE_OF_BIRTH_FIELD = "applicant_dateOfBirth";
+    public static final String FL401A_TEST_POSTCODE = "N13 4PS";
 
     public static final String RESPONDENT_ONE_NOT_LIVED_IN_ADDRESS_FOR_FIVE_YEARS =
             "("
