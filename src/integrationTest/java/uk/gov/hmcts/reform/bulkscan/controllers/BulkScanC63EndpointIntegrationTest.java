@@ -9,6 +9,9 @@ import static uk.gov.hmcts.reform.bulkscan.utils.Constants.CASE_TYPE_TRANSFORM_E
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.FL401_CASE_TYPE_VALIDATE_ENDPOINT;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.SERVICE_AUTHORIZATION;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.SERVICE_AUTH_TOKEN;
+import static uk.gov.hmcts.reform.bulkscan.utils.EdgeCaseConstants.C63_TRANSFORM_REQUEST_PATH;
+import static uk.gov.hmcts.reform.bulkscan.utils.EdgeCaseConstants.C63_TRANSFORM_RESPONSE_PATH;
+import static uk.gov.hmcts.reform.bulkscan.utils.EdgeCaseConstants.C63_VALIDATION_REQUEST_PATH;
 import static uk.gov.hmcts.reform.bulkscan.utils.TestResourceUtil.readFileFrom;
 
 import org.junit.jupiter.api.BeforeEach;
@@ -35,15 +38,6 @@ class BulkScanC63EndpointIntegrationTest {
     @MockBean protected AuthTokenValidator authTokenValidator;
 
     @Autowired private transient MockMvc mockMvc;
-
-    private static final String C63_VALIDATION_REQUEST_PATH =
-            "classpath:request/bulk-scan-c63-validate-input.json";
-
-    private static final String C63_TRANSFORM_REQUEST_PATH =
-            "classpath:request/bulk-scan-c63-transform-input.json";
-
-    private static final String C63_TRANSFORM_RESPONSE_PATH =
-            "classpath:response/bulk-scan-c63-transform-output.json";
 
     @BeforeEach
     void beforeEach() {

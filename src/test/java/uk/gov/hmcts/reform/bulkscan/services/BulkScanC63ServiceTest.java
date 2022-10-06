@@ -1,5 +1,13 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
+import static uk.gov.hmcts.reform.bulkscan.utils.EdgeCaseConstants.C63_TRANSFORM_REQUEST_PATH;
+import static uk.gov.hmcts.reform.bulkscan.utils.EdgeCaseConstants.C63_TRANSFORM_RESPONSE_PATH;
+import static uk.gov.hmcts.reform.bulkscan.utils.EdgeCaseConstants.C63_VALIDATE_ERROR_REQUEST_PATH;
+import static uk.gov.hmcts.reform.bulkscan.utils.EdgeCaseConstants.C63_VALIDATE_ERROR_RESPONSE_PATH;
+import static uk.gov.hmcts.reform.bulkscan.utils.EdgeCaseConstants.C63_VALIDATE_REQUEST_PATH;
+import static uk.gov.hmcts.reform.bulkscan.utils.EdgeCaseConstants.C63_VALIDATE_RESPONSE_PATH;
+import static uk.gov.hmcts.reform.bulkscan.utils.EdgeCaseConstants.C63_VALIDATE_WARNING_REQUEST_PATH;
+import static uk.gov.hmcts.reform.bulkscan.utils.EdgeCaseConstants.C63_VALIDATE_WARNING_RESPONSE_PATH;
 import static uk.gov.hmcts.reform.bulkscan.utils.TestResourceUtil.readFileFrom;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -27,31 +35,8 @@ class BulkScanC63ServiceTest {
 
     @Autowired BulkScanC63Service bulkScanValidationService;
 
-    private static final String C63_VALIDATE_REQUEST_PATH =
-            "classpath:request/bulk-scan-c63-validate-input.json";
-
-    private static final String C63_VALIDATE_RESPONSE_PATH =
-            "classpath:response/bulk-scan-c63-validate-output.json";
-
-    private static final String C63_VALIDATE_ERROR_REQUEST_PATH =
-            "classpath:request/bulk-scan-c63-validate-error-input.json";
-
-    private static final String C63_VALIDATE_ERROR_RESPONSE_PATH =
-            "classpath:response/bulk-scan-c63-validate-error-output.json";
-
-    private static final String C63_VALIDATE_WARNING_REQUEST_PATH =
-            "classpath:request/bulk-scan-c63-validate-warning-input.json";
-
-    private static final String C63_VALIDATE_WARNING_RESPONSE_PATH =
-            "classpath:response/bulk-scan-c63-validate-warning-output.json";
-
-    private static final String C63_TRANSFORM_REQUEST_PATH =
-            "classpath:request/bulk-scan-c63-transform-input.json";
-
-    private static final String C63_TRANSFORM_RESPONSE_PATH =
-            "classpath:response/bulk-scan-c63-transform-output.json";
-
     @Test
+    @DisplayName("C63 validating input fields")
     void testC63ValidationSuccess() throws IOException, JSONException {
         BulkScanValidationRequest bulkScanValidationRequest =
                 mapper.readValue(
@@ -64,6 +49,7 @@ class BulkScanC63ServiceTest {
     }
 
     @Test
+    @DisplayName("C63 validating with a missing mandatory field")
     void testC63ErrorWhileDoingValidation() throws IOException, JSONException {
         BulkScanValidationRequest bulkScanValidationRequest =
                 mapper.readValue(
@@ -79,6 +65,7 @@ class BulkScanC63ServiceTest {
     }
 
     @Test
+    @DisplayName("C63 Validating mandatory fields with a warning for an unknown field")
     void testC63WarningWhileDoingValidation() throws IOException, JSONException {
         BulkScanValidationRequest bulkScanValidationRequest =
                 mapper.readValue(

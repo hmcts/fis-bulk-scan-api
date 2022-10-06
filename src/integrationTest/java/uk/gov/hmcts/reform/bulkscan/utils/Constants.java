@@ -1,6 +1,7 @@
 package uk.gov.hmcts.reform.bulkscan.utils;
 
 public final class Constants {
+
     public static final String SERVICE_AUTHORIZATION = "serviceauthorization";
     public static final String SERVICE_AUTHORIZATION_VALUE = "SlAV32hkKG";
 

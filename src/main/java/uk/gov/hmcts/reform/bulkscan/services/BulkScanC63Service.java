@@ -40,6 +40,11 @@ public class BulkScanC63Service implements BulkScanService {
         return C63;
     }
 
+    /**
+     * This method will validate c63.
+     *
+     * @return BulkScanValidationResponse object
+     */
     @Override
     public BulkScanValidationResponse validate(
             BulkScanValidationRequest bulkScanValidationRequest) {
@@ -54,6 +59,7 @@ public class BulkScanC63Service implements BulkScanService {
         return response;
     }
 
+    /** This method transforms c63. */
     @Override
     @SuppressWarnings("unchecked")
     public BulkScanTransformationResponse transform(
