@@ -2,6 +2,8 @@ package uk.gov.hmcts.reform.bulkscan.utils;
 
 public final class EdgeCaseConstants {
 
+    private EdgeCaseConstants() {}
+
     public static final String C63_VALIDATE_REQUEST_PATH =
             "classpath:request/bulk-scan-c63-validate-input.json";
 
