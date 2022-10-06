@@ -69,15 +69,6 @@ public class BulkScanC63Service implements BulkScanService {
 
         Map<String, String> inputFieldsMap = getOcrDataFieldAsMap(inputFieldsList);
 
-        BulkScanFormValidationConfigManager.ValidationConfig validationConfig =
-                configManager.getValidationConfig(FormType.valueOf(getCaseType().name()));
-
-        List<String> unknownFieldsList =
-                bulkScanValidationHelper.findUnknownFields(
-                        inputFieldsList,
-                        validationConfig.getMandatoryFields(),
-                        validationConfig.getOptionalFields());
-
         Map<String, Object> populatedMap =
                 (Map)
                         BulkScanTransformHelper.transformToCaseData(
@@ -101,12 +92,6 @@ public class BulkScanC63Service implements BulkScanService {
                                         .caseData(populatedMap)
                                         .build());
 
-        if (null != unknownFieldsList && !unknownFieldsList.isEmpty()) {
-            builder.warnings(
-                    Arrays.asList(
-                            String.format(
-                                    UNKNOWN_FIELDS_MESSAGE, String.join(",", unknownFieldsList))));
-        }
         return builder.build();
     }
 }
