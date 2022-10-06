@@ -40,11 +40,7 @@ public class BulkScanC63Service implements BulkScanService {
         return C63;
     }
 
-    /**
-     * This method will validate c63.
-     *
-     * @return BulkScanValidationResponse object
-     */
+    /** This method will validate c63. */
     @Override
     public BulkScanValidationResponse validate(
             BulkScanValidationRequest bulkScanValidationRequest) {
