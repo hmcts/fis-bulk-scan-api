@@ -1,0 +1,28 @@
+{
+  "ocr_data_fields":[
+    {
+      "name":"applicant_address",
+      "value":"Mac Street"
+    },
+    {
+      "name":"applicant_postcode",
+      "value":"MA14 2WE"
+    },
+    {
+      "name":"applicant_telephone_number",
+      "value":"0123456789"
+    },
+    {
+      "name":"applicant_reference",
+      "value":"reference"
+    },
+    {
+      "name":"applicant_dateOfBirth",
+      "value":"01/01/1994"
+    },
+    {
+      "name":"applicant1_dateOfBirth",
+      "value":"01/01/1994"
+    }
+  ]
+}

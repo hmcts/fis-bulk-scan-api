@@ -9,6 +9,10 @@ import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.FormType;
+import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
+
+import java.util.List;
+import java.util.Map;
 
 @Service
 public class BulkScanA1Service implements BulkScanService {
@@ -22,13 +26,32 @@ public class BulkScanA1Service implements BulkScanService {
         return FormType.A1;
     }
 
+    /**
+     * This method will validate A1.
+     *
+     * @return BulkScanValidationResponse object
+     */
     @Override
-    public BulkScanValidationResponse validate(BulkScanValidationRequest bulkRequest) {
-        // Validating the Fields..
-        return bulkScanValidationHelper.validateMandatoryAndOptionalFields(
-                bulkRequest.getOcrdatafields(), configManager.getValidationConfig(FormType.A1));
+    public BulkScanValidationResponse validate(
+            BulkScanValidationRequest bulkScanValidationRequest) {
+
+        List<OcrDataField> inputFieldsList = bulkScanValidationRequest.getOcrdatafields();
+        Map<String, String> inputFieldsMap = getOcrDataFieldAsMap(inputFieldsList);
+
+        BulkScanValidationResponse response =
+                bulkScanValidationHelper.validateMandatoryAndOptionalFields(
+                        bulkScanValidationRequest.getOcrdatafields(),
+                        configManager.getValidationConfig(FormType.A1));
+
+        response.changeStatus();
+
+        return response;
     }
 
+    /**
+     * This method does not currently transform Fgm001. It is not necessary thus far to do so, the
+     * data is mocked
+     */
     @Override
     public BulkScanTransformationResponse transform(
             BulkScanTransformationRequest bulkScanTransformationRequest) {

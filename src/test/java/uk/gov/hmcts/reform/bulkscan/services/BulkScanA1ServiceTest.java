@@ -1,17 +1,15 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ALPHA_NUMERIC_FIELDS_MESSAGE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MISSING_FIELD_MESSAGE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PHONE_NUMBER_MESSAGE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.POST_CODE_MESSAGE;
+import static uk.gov.hmcts.reform.bulkscan.utils.TestResourceUtil.readFileFrom;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import org.json.JSONException;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
-import org.mockito.Spy;
+import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
@@ -20,79 +18,87 @@ import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
-import uk.gov.hmcts.reform.bulkscan.model.Status;
-import uk.gov.hmcts.reform.bulkscan.utils.TestDataUtil;
+
+import java.io.IOException;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
 @ActiveProfiles("test")
 class BulkScanA1ServiceTest {
 
-    @Spy @Autowired BulkScanA1Service bulkScanValidationService;
+    private final ObjectMapper mapper = new ObjectMapper();
+    @Autowired
+    BulkScanA1Service bulkScanValidationService;
 
+    private static final String A1_VALIDATE_REQUEST_PATH =
+        "classpath:request/bulk-scan-a1-validate-input.json";
+
+    private static final String A1_VALIDATE_RESPONSE_PATH =
+        "classpath:response/bulk-scan-a1-validate-output.json";
+
+    private static final String A1_VALIDATE_ERROR_REQUEST_PATH =
+        "classpath:request/bulk-scan-a1-validate-error-input.json";
+
+    private static final String A1_VALIDATE_ERROR_RESPONSE_PATH =
+        "classpath:response/bulk-scan-a1-validate-error-output.json";
+
+    private static final String A1_VALIDATE_WARNING_REQUEST_PATH =
+        "classpath:request/bulk-scan-a1-validate-warning-input.json";
+
+    private static final String A1_VALIDATE_WARNING_RESPONSE_PATH =
+        "classpath:response/bulk-scan-a1-validate-warning-output.json";
+
+    @DisplayName("A1 validation.")
     @Test
-    void testA1Success() {
+    void testA1ValidationSuccess() throws IOException, JSONException {
         BulkScanValidationRequest bulkScanValidationRequest =
-                BulkScanValidationRequest.builder().ocrdatafields(TestDataUtil.getA1Data()).build();
+            mapper.readValue(
+                readFileFrom(A1_VALIDATE_REQUEST_PATH),
+                BulkScanValidationRequest.class);
+
         BulkScanValidationResponse res =
-                bulkScanValidationService.validate(bulkScanValidationRequest);
-        assertEquals(Status.SUCCESS, res.status);
+            bulkScanValidationService.validate(bulkScanValidationRequest);
+        JSONAssert.assertEquals(
+            readFileFrom(A1_VALIDATE_RESPONSE_PATH), mapper.writeValueAsString(res), true);
     }
 
+    @DisplayName("A1 validation error with warning for unknown fields.")
     @Test
-    void testA1FieldValidationErrorWhileDoingValidation() {
+    void testA1ErrorWhileDoingValidation() throws IOException, JSONException {
         BulkScanValidationRequest bulkScanValidationRequest =
-                BulkScanValidationRequest.builder()
-                        .ocrdatafields(TestDataUtil.getA1ErrorData())
-                        .build();
+            mapper.readValue(
+                readFileFrom(A1_VALIDATE_ERROR_REQUEST_PATH),
+                BulkScanValidationRequest.class);
+
         BulkScanValidationResponse res =
-                bulkScanValidationService.validate(bulkScanValidationRequest);
-        assertEquals(Status.ERRORS, res.status);
-        assertTrue(
-                res.getErrors()
-                        .items
-                        .contains(String.format(ALPHA_NUMERIC_FIELDS_MESSAGE, "applicant_ref")));
-        assertTrue(
-                res.getErrors()
-                        .items
-                        .contains(String.format(POST_CODE_MESSAGE, "applicant_postcode")));
-        assertTrue(
-                res.getErrors()
-                        .items
-                        .contains(String.format(PHONE_NUMBER_MESSAGE, "applicant_telephone_no")));
+            bulkScanValidationService.validate(bulkScanValidationRequest);
+        JSONAssert.assertEquals(
+            readFileFrom(A1_VALIDATE_ERROR_RESPONSE_PATH),
+            mapper.writeValueAsString(res),
+            true);
     }
 
+    @DisplayName("A1 validation warning for unknown fields.")
     @Test
-    void testA1MandatoryFieldMissingErrorWhileDoingValidation() {
+    void testA1WarningWhileDoingValidation() throws IOException, JSONException {
         BulkScanValidationRequest bulkScanValidationRequest =
-                BulkScanValidationRequest.builder()
-                        .ocrdatafields(TestDataUtil.getA1MandatoryErrorData())
-                        .build();
+            mapper.readValue(
+                readFileFrom(A1_VALIDATE_WARNING_REQUEST_PATH),
+                BulkScanValidationRequest.class);
+
         BulkScanValidationResponse res =
-                bulkScanValidationService.validate(bulkScanValidationRequest);
-        assertEquals(Status.ERRORS, res.status);
-        assertTrue(
-                res.getErrors()
-                        .items
-                        .contains(String.format(MISSING_FIELD_MESSAGE, "applicant_address")));
-        assertTrue(
-                res.getErrors()
-                        .items
-                        .contains(String.format(MISSING_FIELD_MESSAGE, "applicant_ref")));
-        assertTrue(
-                res.getErrors()
-                        .items
-                        .contains(String.format(MISSING_FIELD_MESSAGE, "applicant_postcode")));
-        assertTrue(
-                res.getErrors()
-                        .items
-                        .contains(String.format(MISSING_FIELD_MESSAGE, "applicant_telephone_no")));
+            bulkScanValidationService.validate(bulkScanValidationRequest);
+        JSONAssert.assertEquals(
+            readFileFrom(A1_VALIDATE_WARNING_RESPONSE_PATH),
+            mapper.writeValueAsString(res),
+            true);
     }
 
+    @DisplayName("A1 mock transform.")
     @Test
-    void testTransform() {
+    void testA1Transform() {
         BulkScanTransformationResponse bulkScanTransformationResponse =
-                bulkScanValidationService.transform(mock(BulkScanTransformationRequest.class));
+            bulkScanValidationService.transform(mock(BulkScanTransformationRequest.class));
         Assertions.assertNull(bulkScanTransformationResponse);
     }
 }
