@@ -22,8 +22,7 @@ public class BulkScanC63ValidationService {
 
         if (StringUtils.isEmpty(thirdLineOfAddress)) {
             warningItem.add(String.format(MISSING_FIELD_MESSAGE, THIRD_LINE_OF_ADDRESS));
-            bulkScanValidationResponse.addWarning(
-                    warningItem);
+            bulkScanValidationResponse.addWarning(warningItem);
         }
     }
 }
