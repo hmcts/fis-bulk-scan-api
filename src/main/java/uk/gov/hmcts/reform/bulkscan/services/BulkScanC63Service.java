@@ -33,6 +33,8 @@ public class BulkScanC63Service implements BulkScanService {
 
     @Autowired BulkScanValidationHelper bulkScanValidationHelper;
 
+    @Autowired BulkScanC63ValidationService bulkScanC63ValidationService;
+
     @Override
     public FormType getCaseType() {
         return C63;
@@ -43,10 +45,15 @@ public class BulkScanC63Service implements BulkScanService {
     public BulkScanValidationResponse validate(
             BulkScanValidationRequest bulkScanValidationRequest) {
 
+        final List<OcrDataField> ocrDataFields = bulkScanValidationRequest.getOcrdatafields();
+        Map<String, String> inputFieldMap = getOcrDataFieldAsMap(ocrDataFields);
+
         BulkScanValidationResponse response =
                 bulkScanValidationHelper.validateMandatoryAndOptionalFields(
                         bulkScanValidationRequest.getOcrdatafields(),
                         configManager.getValidationConfig(C63));
+
+        bulkScanC63ValidationService.thirdLineOfAddressMissing(inputFieldMap, response);
 
         response.changeStatus();
 
