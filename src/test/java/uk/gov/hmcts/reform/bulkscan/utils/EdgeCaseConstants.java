@@ -2,6 +2,24 @@ package uk.gov.hmcts.reform.bulkscan.utils;
 
 public final class EdgeCaseConstants {
 
+    public static final String A1_VALIDATE_REQUEST_PATH =
+            "classpath:request/bulk-scan-a1-validate-input.json";
+
+    public static final String A1_VALIDATE_RESPONSE_PATH =
+            "classpath:response/bulk-scan-a1-validate-output.json";
+
+    public static final String A1_VALIDATE_ERROR_REQUEST_PATH =
+            "classpath:request/bulk-scan-a1-validate-error-input.json";
+
+    public static final String A1_VALIDATE_ERROR_RESPONSE_PATH =
+            "classpath:response/bulk-scan-a1-validate-error-output.json";
+
+    public static final String A1_VALIDATE_WARNING_REQUEST_PATH =
+            "classpath:request/bulk-scan-a1-validate-warning-input.json";
+
+    public static final String A1_VALIDATE_WARNING_RESPONSE_PATH =
+            "classpath:response/bulk-scan-a1-validate-warning-output.json";
+
     public static final String C63_VALIDATE_REQUEST_PATH =
             "classpath:request/bulk-scan-c63-validate-input.json";
 

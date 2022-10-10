@@ -12,8 +12,7 @@ public final class EdgeCaseConstants {
             "classpath:response/bulk-scan-c63-transform-output.json";
 
     public static final String A1_VALIDATION_REQUEST_PATH =
-        "classpath:request/bulk-scan-a1-validate-input.json";
-
+            "classpath:request/bulk-scan-a1-validate-input.json";
 
     private EdgeCaseConstants() {}
 }

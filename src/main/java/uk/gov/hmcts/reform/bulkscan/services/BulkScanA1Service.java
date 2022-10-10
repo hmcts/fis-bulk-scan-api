@@ -1,5 +1,7 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
+import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanFormValidationConfigManager;
@@ -10,9 +12,6 @@ import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.FormType;
 import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
-
-import java.util.List;
-import java.util.Map;
 
 @Service
 public class BulkScanA1Service implements BulkScanService {
