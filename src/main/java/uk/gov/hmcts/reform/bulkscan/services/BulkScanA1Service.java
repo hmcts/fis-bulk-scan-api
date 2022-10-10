@@ -1,7 +1,5 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
-import java.util.List;
-import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanFormValidationConfigManager;
@@ -11,7 +9,6 @@ import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.FormType;
-import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
 
 @Service
 public class BulkScanA1Service implements BulkScanService {
@@ -33,9 +30,6 @@ public class BulkScanA1Service implements BulkScanService {
     @Override
     public BulkScanValidationResponse validate(
             BulkScanValidationRequest bulkScanValidationRequest) {
-
-        List<OcrDataField> inputFieldsList = bulkScanValidationRequest.getOcrdatafields();
-        Map<String, String> inputFieldsMap = getOcrDataFieldAsMap(inputFieldsList);
 
         BulkScanValidationResponse response =
                 bulkScanValidationHelper.validateMandatoryAndOptionalFields(

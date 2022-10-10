@@ -29,7 +29,7 @@ import uk.gov.hmcts.reform.authorisation.validators.AuthTokenValidator;
 @AutoConfigureMockMvc
 @ContextConfiguration
 @TestPropertySource(locations = "classpath:application_e2e.yaml")
-public class BulkScanA1EndpointIntegrationTest {
+class BulkScanA1EndpointIntegrationTest {
 
     @MockBean protected AuthTokenValidator authTokenValidator;
 
