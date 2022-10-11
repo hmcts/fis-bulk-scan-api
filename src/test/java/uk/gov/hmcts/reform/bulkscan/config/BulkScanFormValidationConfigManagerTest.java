@@ -59,19 +59,17 @@ class BulkScanFormValidationConfigManagerTest {
         assertNotNull(getValidationConfigByFormType(FormType.A1));
         assertFalse(getValidationConfigByFormType(FormType.A1).mandatoryFields.isEmpty());
         assertEquals(
-                "applicant_name",
+                "applicant_full_name",
                 getValidationConfigByFormType(FormType.A1).mandatoryFields.get(0));
         assertEquals(
                 "applicant_address",
                 getValidationConfigByFormType(FormType.A1).mandatoryFields.get(1));
         assertEquals(
-                "applicant_ref", getValidationConfigByFormType(FormType.A1).mandatoryFields.get(2));
-        assertEquals(
                 "applicant_postcode",
-                getValidationConfigByFormType(FormType.A1).mandatoryFields.get(3));
+                getValidationConfigByFormType(FormType.A1).mandatoryFields.get(2));
         assertEquals(
-                "applicant_telephone_no",
-                getValidationConfigByFormType(FormType.A1).mandatoryFields.get(4));
+                "applicant_telephone_number",
+                getValidationConfigByFormType(FormType.A1).mandatoryFields.get(3));
     }
 
     private BulkScanFormValidationConfigManager.ValidationConfig getValidationConfigByFormType(
