@@ -28,7 +28,6 @@ public class BulkScanA1Service implements BulkScanService {
      * @param bulkScanValidationRequest for A1 validation request.
      * @return response, validated A1 output.
      */
-
     @Override
     public BulkScanValidationResponse validate(
             BulkScanValidationRequest bulkScanValidationRequest) {
@@ -44,8 +43,8 @@ public class BulkScanA1Service implements BulkScanService {
     }
 
     /**
-     * This method does not currently transform A1.
-     * The data is mocked. Transformation is not required.
+     * This method does not currently transform A1. The data is mocked. Transformation is not
+     * required.
      */
     @Override
     public BulkScanTransformationResponse transform(
