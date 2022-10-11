@@ -13,7 +13,8 @@ import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
 @Service
 public class BulkScanC63ValidationService {
 
-    public void thirdLineOfAddressMissing(
+    /** This method validates address c63. */
+    public void validateAddress(
             Map<String, String> inputFieldsMap,
             BulkScanValidationResponse bulkScanValidationResponse) {
 

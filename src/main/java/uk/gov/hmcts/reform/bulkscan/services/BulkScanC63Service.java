@@ -40,7 +40,13 @@ public class BulkScanC63Service implements BulkScanService {
         return C63;
     }
 
-    /** This method will validate c63. */
+    /**
+     * This method will validate c63.
+     *
+     * @param BulkScanValidationRequest validation request.
+     * @return BulkScanValidationResponse returns C63 output after validation,
+     * there is also a validation of the address's third line.
+     */
     @Override
     public BulkScanValidationResponse validate(
             BulkScanValidationRequest bulkScanValidationRequest) {
@@ -53,14 +59,20 @@ public class BulkScanC63Service implements BulkScanService {
                         bulkScanValidationRequest.getOcrdatafields(),
                         configManager.getValidationConfig(C63));
 
-        bulkScanC63ValidationService.thirdLineOfAddressMissing(inputFieldMap, response);
+
+        bulkScanC63ValidationService.validateAddress(inputFieldMap, response);
 
         response.changeStatus();
 
         return response;
     }
 
-    /** This method transforms c63. */
+    /**
+     * This method transforms c63.
+     *
+     * @param BulkScanTransformationRequest transform request.
+     * @return BulkScanTransformationResponse returns C63 output after transformation.
+     */
     @Override
     @SuppressWarnings("unchecked")
     public BulkScanTransformationResponse transform(
