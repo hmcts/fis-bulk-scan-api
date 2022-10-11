@@ -72,7 +72,7 @@ public class BulkScanA1EndpointTest {
     }
 
     @Test
-    @DisplayName("Validating errors for mandatory fields")
+    @DisplayName("Validating A1 errors for mandatory fields")
     public void shouldValidateA1ErrorBulkScanRequest() throws Exception {
         String bulkScanValidationRequest = readFileFrom(A1_VALIDATION_ERROR_INPUT_PATH);
 
@@ -82,7 +82,7 @@ public class BulkScanA1EndpointTest {
                 request.header(AUTH_HEADER, s2sClient.serviceAuthTokenGenerator())
                         .body(bulkScanValidationRequest)
                         .when()
-                        .contentType("application/json")
+                        .contentType(JSON_CONTENT_TYPE)
                         .post("forms/A1/validate-ocr");
 
         response.then().assertThat().statusCode(HttpStatus.OK.value());
@@ -101,7 +101,7 @@ public class BulkScanA1EndpointTest {
                 request.header(AUTH_HEADER, s2sClient.serviceAuthTokenGenerator())
                         .body(bulkScanValidationRequest)
                         .when()
-                        .contentType("application/json")
+                        .contentType(JSON_CONTENT_TYPE)
                         .post("forms/A1/validate-ocr");
 
         response.then().assertThat().statusCode(HttpStatus.OK.value());

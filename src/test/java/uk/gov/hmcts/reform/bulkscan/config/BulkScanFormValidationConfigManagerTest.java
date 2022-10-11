@@ -4,6 +4,10 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.assertTrue;
+import static uk.gov.hmcts.reform.bulkscan.utils.EdgeCaseConstants.APPLICANT_ADDRESS;
+import static uk.gov.hmcts.reform.bulkscan.utils.EdgeCaseConstants.APPLICANT_FULL_NAME;
+import static uk.gov.hmcts.reform.bulkscan.utils.EdgeCaseConstants.APPLICANT_POSTCODE;
+import static uk.gov.hmcts.reform.bulkscan.utils.EdgeCaseConstants.APPLICANT_TELEPHONE_NUMBER;
 
 import java.util.Map;
 import org.junit.jupiter.api.Test;
@@ -59,16 +63,16 @@ class BulkScanFormValidationConfigManagerTest {
         assertNotNull(getValidationConfigByFormType(FormType.A1));
         assertFalse(getValidationConfigByFormType(FormType.A1).mandatoryFields.isEmpty());
         assertEquals(
-                "applicant_full_name",
+                APPLICANT_FULL_NAME,
                 getValidationConfigByFormType(FormType.A1).mandatoryFields.get(0));
         assertEquals(
-                "applicant_address",
+                APPLICANT_ADDRESS,
                 getValidationConfigByFormType(FormType.A1).mandatoryFields.get(1));
         assertEquals(
-                "applicant_postcode",
+                APPLICANT_POSTCODE,
                 getValidationConfigByFormType(FormType.A1).mandatoryFields.get(2));
         assertEquals(
-                "applicant_telephone_number",
+                APPLICANT_TELEPHONE_NUMBER,
                 getValidationConfigByFormType(FormType.A1).mandatoryFields.get(3));
     }
 

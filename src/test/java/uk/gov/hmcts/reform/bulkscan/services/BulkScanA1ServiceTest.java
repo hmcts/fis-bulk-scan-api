@@ -1,6 +1,12 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
 import static org.mockito.Mockito.mock;
+import static uk.gov.hmcts.reform.bulkscan.utils.EdgeCaseConstants.A1_VALIDATE_ERROR_REQUEST_PATH;
+import static uk.gov.hmcts.reform.bulkscan.utils.EdgeCaseConstants.A1_VALIDATE_ERROR_RESPONSE_PATH;
+import static uk.gov.hmcts.reform.bulkscan.utils.EdgeCaseConstants.A1_VALIDATE_REQUEST_PATH;
+import static uk.gov.hmcts.reform.bulkscan.utils.EdgeCaseConstants.A1_VALIDATE_RESPONSE_PATH;
+import static uk.gov.hmcts.reform.bulkscan.utils.EdgeCaseConstants.A1_VALIDATE_WARNING_REQUEST_PATH;
+import static uk.gov.hmcts.reform.bulkscan.utils.EdgeCaseConstants.A1_VALIDATE_WARNING_RESPONSE_PATH;
 import static uk.gov.hmcts.reform.bulkscan.utils.TestResourceUtil.readFileFrom;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -27,24 +33,6 @@ class BulkScanA1ServiceTest {
 
     private final ObjectMapper mapper = new ObjectMapper();
     @Autowired BulkScanA1Service bulkScanValidationService;
-
-    public static final String A1_VALIDATE_REQUEST_PATH =
-            "classpath:request/bulk-scan-a1-validate-input.json";
-
-    public static final String A1_VALIDATE_RESPONSE_PATH =
-            "classpath:response/bulk-scan-a1-validate-output.json";
-
-    public static final String A1_VALIDATE_ERROR_REQUEST_PATH =
-            "classpath:request/bulk-scan-a1-validate-error-input.json";
-
-    public static final String A1_VALIDATE_ERROR_RESPONSE_PATH =
-            "classpath:response/bulk-scan-a1-validate-error-output.json";
-
-    public static final String A1_VALIDATE_WARNING_REQUEST_PATH =
-            "classpath:request/bulk-scan-a1-validate-warning-input.json";
-
-    public static final String A1_VALIDATE_WARNING_RESPONSE_PATH =
-            "classpath:response/bulk-scan-a1-validate-warning-output.json";
 
     @DisplayName("A1 validation.")
     @Test
