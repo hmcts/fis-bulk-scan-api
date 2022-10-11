@@ -324,6 +324,8 @@ public final class BulkScanConstants {
             "child_dontKnowProceedingDetailsWithRelation";
     public static final String DONT_KNOW = "DontKnow";
 
+    public static final String THIRD_LINE_OF_ADDRESS = "applicant_third_line_of_address";
+
     public static final String STEP_PARENT_ADOPTION = "Step Parent";
     public static final String OTHER_PARENT_RELATIONSHIP_TO_CHILD =
             "otherParentRelationshipToChild";

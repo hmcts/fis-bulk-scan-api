@@ -1,5 +1,5 @@
 {
-  "ocr_data_fields":[
+  "ocr_data_fields": [
     {
       "name":"applicant_first_name",
       "value":"Johnny"
@@ -18,7 +18,7 @@
     },
     {
       "name":"applicant_third_line_of_address",
-      "value":"MacVille"
+      "value":"Mac Town"
     },
     {
       "name":"applicant_postcode",
@@ -32,5 +32,15 @@
       "name":"applicant_email",
       "value":"applicant@gmail.com"
     }
-  ]
+  ],
+  "scanned_documents": [
+    {
+      "url": {
+        "document_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c",
+        "document_filename": "test.pdf",
+        "document_binary_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
+      }
+    }
+  ],
+  "form_type": "C63"
 }

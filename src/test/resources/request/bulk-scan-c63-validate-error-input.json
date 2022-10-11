@@ -1,10 +1,6 @@
 {
   "ocr_data_fields":[
     {
-      "name":"applicant_first_name",
-      "value":"Johnny"
-    },
-    {
       "name":"applicant_last_name",
       "value":"MacDowell"
     },
@@ -18,7 +14,7 @@
     },
     {
       "name":"applicant_third_line_of_address",
-      "value":"MacVille"
+      "value":"Mac Town"
     },
     {
       "name":"applicant_postcode",
@@ -31,6 +27,10 @@
     {
       "name":"applicant_email",
       "value":"applicant@gmail.com"
+    },
+    {
+      "name":"applicant1_dateOfBirth",
+      "value":"01/01/1994"
     }
   ]
 }

@@ -28,4 +28,10 @@
     <cve>CVE-2022-33915</cve>
     <cve>CVE-2022-33915</cve>
  </suppress>
+  <suppress>
+    <notes><![CDATA[
+    jackson-databind-2.13.3.jar ]]></notes>
+    <cve>CVE-2022-42003</cve>
+    <cve>CVE-2022-42004</cve>
+  </suppress>
 </suppressions>
