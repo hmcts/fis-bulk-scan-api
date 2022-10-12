@@ -22,13 +22,30 @@ public class BulkScanA1Service implements BulkScanService {
         return FormType.A1;
     }
 
+    /**
+     * This method will validate A1.
+     *
+     * @param bulkScanValidationRequest for A1 validation request.
+     * @return response, validated A1 output.
+     */
     @Override
-    public BulkScanValidationResponse validate(BulkScanValidationRequest bulkRequest) {
-        // Validating the Fields..
-        return bulkScanValidationHelper.validateMandatoryAndOptionalFields(
-                bulkRequest.getOcrdatafields(), configManager.getValidationConfig(FormType.A1));
+    public BulkScanValidationResponse validate(
+            BulkScanValidationRequest bulkScanValidationRequest) {
+
+        BulkScanValidationResponse response =
+                bulkScanValidationHelper.validateMandatoryAndOptionalFields(
+                        bulkScanValidationRequest.getOcrdatafields(),
+                        configManager.getValidationConfig(FormType.A1));
+
+        response.changeStatus();
+
+        return response;
     }
 
+    /**
+     * This method does not currently transform A1. The data is mocked. Transformation is not
+     * required.
+     */
     @Override
     public BulkScanTransformationResponse transform(
             BulkScanTransformationRequest bulkScanTransformationRequest) {

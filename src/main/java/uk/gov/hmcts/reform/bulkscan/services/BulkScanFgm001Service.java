@@ -43,7 +43,7 @@ public class BulkScanFgm001Service implements BulkScanService {
 
     /**
      * This method does not currently transform Fgm001. It is not necessary thus far to do so, the
-     * data is mocked in service
+     * data is mocked
      */
     @Override
     public BulkScanTransformationResponse transform(

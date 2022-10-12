@@ -1,0 +1,13 @@
+{
+  "status": "ERRORS",
+  "warnings": {
+    "items": [
+      "The following fields are not configured with our system: [applicant1_dateOfBirth] "
+    ]
+  },
+  "errors": {
+    "items": [
+      "applicant_full_name is missing"
+    ]
+  }
+}
