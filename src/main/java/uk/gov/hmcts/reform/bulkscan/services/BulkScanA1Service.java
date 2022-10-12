@@ -58,7 +58,6 @@ public class BulkScanA1Service implements BulkScanService {
         return response;
     }
 
-
     /**
      * This method will transform A1.
      *
