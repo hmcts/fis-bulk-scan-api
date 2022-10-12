@@ -1,17 +1,33 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.BULK_SCAN_CASE_REFERENCE;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CASE_TYPE_ID;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EVENT_ID;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.SCAN_DOCUMENTS;
+import static uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper.transformScanDocuments;
+import static uk.gov.hmcts.reform.bulkscan.model.FormType.A1;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanFormValidationConfigManager;
+import uk.gov.hmcts.reform.bulkscan.config.BulkScanTransformConfigManager;
+import uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper;
 import uk.gov.hmcts.reform.bulkscan.helper.BulkScanValidationHelper;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
+import uk.gov.hmcts.reform.bulkscan.model.CaseCreationDetails;
 import uk.gov.hmcts.reform.bulkscan.model.FormType;
+import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
 
 @Service
 public class BulkScanA1Service implements BulkScanService {
+
+    @Autowired BulkScanTransformConfigManager transformConfigManager;
 
     @Autowired BulkScanFormValidationConfigManager configManager;
 
@@ -19,7 +35,7 @@ public class BulkScanA1Service implements BulkScanService {
 
     @Override
     public FormType getCaseType() {
-        return FormType.A1;
+        return A1;
     }
 
     /**
@@ -35,21 +51,54 @@ public class BulkScanA1Service implements BulkScanService {
         BulkScanValidationResponse response =
                 bulkScanValidationHelper.validateMandatoryAndOptionalFields(
                         bulkScanValidationRequest.getOcrdatafields(),
-                        configManager.getValidationConfig(FormType.A1));
+                        configManager.getValidationConfig(A1));
 
         response.changeStatus();
 
         return response;
     }
 
+
     /**
-     * This method does not currently transform A1. The data is mocked. Transformation is not
-     * required.
+     * This method will transform A1.
+     *
+     * @param bulkScanTransformationRequest for A1 transform request.
+     * @return response, transform A1 output.
      */
     @Override
+    @SuppressWarnings("unchecked")
     public BulkScanTransformationResponse transform(
             BulkScanTransformationRequest bulkScanTransformationRequest) {
-        // TODO transformation logic
-        return null;
+        Map<String, Object> caseData = new HashMap<>();
+        List<OcrDataField> inputFieldsList = bulkScanTransformationRequest.getOcrdatafields();
+
+        caseData.put(BULK_SCAN_CASE_REFERENCE, bulkScanTransformationRequest.getId());
+
+        Map<String, String> inputFieldsMap = getOcrDataFieldAsMap(inputFieldsList);
+
+        Map<String, Object> populatedMap =
+                (Map)
+                        BulkScanTransformHelper.transformToCaseData(
+                                new HashMap<>(
+                                        transformConfigManager
+                                                .getTransformationConfig(A1)
+                                                .getCaseDataFields()),
+                                inputFieldsMap);
+
+        populatedMap.put(SCAN_DOCUMENTS, transformScanDocuments(bulkScanTransformationRequest));
+
+        Map<String, String> caseTypeAndEventId =
+                transformConfigManager.getTransformationConfig(A1).getCaseFields();
+
+        BulkScanTransformationResponse.BulkScanTransformationResponseBuilder builder =
+                BulkScanTransformationResponse.builder()
+                        .caseCreationDetails(
+                                CaseCreationDetails.builder()
+                                        .caseTypeId(caseTypeAndEventId.get(CASE_TYPE_ID))
+                                        .eventId(caseTypeAndEventId.get(EVENT_ID))
+                                        .caseData(populatedMap)
+                                        .build());
+
+        return builder.build();
     }
 }

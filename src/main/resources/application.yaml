@@ -37,6 +37,7 @@ spring:
       - fgm001-form
       - c2-form
       - a1-form
+      - a1-transform
       - a58-transform
       - c63-form
       - c63-transform

@@ -1,6 +1,7 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
-import static org.mockito.Mockito.mock;
+import static uk.gov.hmcts.reform.bulkscan.utils.EdgeCaseConstants.A1_TRANSFORM_REQUEST_PATH;
+import static uk.gov.hmcts.reform.bulkscan.utils.EdgeCaseConstants.A1_TRANSFORM_RESPONSE_PATH;
 import static uk.gov.hmcts.reform.bulkscan.utils.EdgeCaseConstants.A1_VALIDATE_ERROR_REQUEST_PATH;
 import static uk.gov.hmcts.reform.bulkscan.utils.EdgeCaseConstants.A1_VALIDATE_ERROR_RESPONSE_PATH;
 import static uk.gov.hmcts.reform.bulkscan.utils.EdgeCaseConstants.A1_VALIDATE_REQUEST_PATH;
@@ -12,7 +13,6 @@ import static uk.gov.hmcts.reform.bulkscan.utils.TestResourceUtil.readFileFrom;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import org.json.JSONException;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -79,11 +79,17 @@ class BulkScanA1ServiceTest {
                 true);
     }
 
-    @DisplayName("A1 mock transform.")
     @Test
-    void testA1Transform() {
-        BulkScanTransformationResponse bulkScanTransformationResponse =
-                bulkScanValidationService.transform(mock(BulkScanTransformationRequest.class));
-        Assertions.assertNull(bulkScanTransformationResponse);
+    @DisplayName("A1 transform success.")
+    void testA1TransformSuccess() throws IOException, JSONException {
+        BulkScanTransformationRequest bulkScanTransformationRequest =
+                mapper.readValue(
+                        readFileFrom(A1_TRANSFORM_REQUEST_PATH),
+                        BulkScanTransformationRequest.class);
+
+        BulkScanTransformationResponse res =
+                bulkScanValidationService.transform(bulkScanTransformationRequest);
+        JSONAssert.assertEquals(
+                readFileFrom(A1_TRANSFORM_RESPONSE_PATH), mapper.writeValueAsString(res), true);
     }
 }
