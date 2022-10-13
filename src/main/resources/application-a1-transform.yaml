@@ -10,9 +10,9 @@ uk:
             caseDataFields:
               applicant:
                 - value:
-                    applicantFullName: applicant_full_name #applicantFullName - not in use in prl-ccd-definition
-                    applicantAddress: applicant_address #applicantAddress - not in use
-                    addressPostCode: applicant_postcode #addressPostCode - not in use
-                    applicantPhoneNumber: applicant_telephone_number #applicantPhoneNumber - not in use
-                    applicantDateOfBirth: applicant_dateOfBirth #applicantDateOfBirth - not in use
-                    reference: applicant_reference #reference - not in use
+                    applicantFullName: applicant_full_name
+                    applicantAddress: applicant_address
+                    addressPostCode: applicant_postcode
+                    applicantPhoneNumber: applicant_telephone_number
+                    applicantDateOfBirth: applicant_dateOfBirth
+                    reference: applicant_reference
