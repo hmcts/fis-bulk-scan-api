@@ -38,16 +38,15 @@ public class BulkScanFL401AService implements BulkScanService {
         return FL401A;
     }
 
+    /**
+     * This method will validate FL401A form data.
+     *
+     * @param bulkScanValidationRequest is used to add error/warnings
+     * @return BulkScanValidationResponse object
+     */
     @Override
     public BulkScanValidationResponse validate(
             BulkScanValidationRequest bulkScanValidationRequest) {
-        /**
-         * This method will validate FL401A form data.
-         *
-         * @param ocrDataFields represents request payload
-         * @param bulkScanValidationResponse is used to add error/warnings
-         * @return BulkScanValidationResponse object
-         */
         BulkScanValidationResponse response =
                 bulkScanValidationHelper.validateMandatoryAndOptionalFields(
                         bulkScanValidationRequest.getOcrdatafields(),
@@ -58,16 +57,16 @@ public class BulkScanFL401AService implements BulkScanService {
         return response;
     }
 
+    /**
+     * This method will transform FL401A form data to CCD fields.
+     *
+     * @param bulkScanTransformationRequest is used to store input fields to be transformed
+     * @return BulkScanValidationResponse object used to store transformed ccd field and data
+     */
     @Override
     @SuppressWarnings("unchecked")
     public BulkScanTransformationResponse transform(
             BulkScanTransformationRequest bulkScanTransformationRequest) {
-        /**
-         * This method will transform FL401A form data to CCD fields.
-         *
-         * @param bulkScanTransformationRequest is used to store input fields to be transformed
-         * @return BulkScanValidationResponse object used to store transformed ccd field and data
-         */
         Map<String, Object> caseData = new HashMap<>();
         List<OcrDataField> inputFieldsList = bulkScanTransformationRequest.getOcrdatafields();
 
