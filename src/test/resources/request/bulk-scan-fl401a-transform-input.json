@@ -1,0 +1,35 @@
+{
+  "ocr_data_fields":[
+    {
+      "name":"applicant_full_name",
+      "value":"Oluremi Kilanko Ogabi"
+    },
+    {
+      "name":"applicant_address",
+      "value":"21 Lakeside Avenue"
+    },
+    {
+      "name":"applicant_postcode",
+      "value":"N13 4PS"
+    },
+    {
+      "name":"applicant_telephone_number",
+      "value":"02087768888"
+    },
+    {
+      "name":"applicant_dateOfBirth",
+      "value":"22/02/2002"
+    }
+  ],
+  "scanned_documents": [
+    {
+      "url": {
+        "document_url":"http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c",
+        "document_filename":"test.pdf",
+        "document_binary_url":"http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
+      }
+    }
+  ],
+  "form_type": "FL401A"
+
+}

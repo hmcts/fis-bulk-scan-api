@@ -1,10 +1,14 @@
 package uk.gov.hmcts.reform.bulkscan.controllers;
 
+import static uk.gov.hmcts.reform.bulkscan.util.Constant.AUTH_HEADER;
 import static uk.gov.hmcts.reform.bulkscan.util.Constant.BULK_SCAN_TEST_LOCAL_HOST;
 import static uk.gov.hmcts.reform.bulkscan.util.Constant.BULK_SCAN_TEST_URL;
+import static uk.gov.hmcts.reform.bulkscan.util.Constant.CASE_TYPE_TRANSFORM_ENDPOINT;
 import static uk.gov.hmcts.reform.bulkscan.util.Constant.FL401A_CASE_TYPE_VALIDATE_ENDPOINT;
 import static uk.gov.hmcts.reform.bulkscan.util.Constant.FL401A_ERROR_VALIDATION_INPUT_PATH;
 import static uk.gov.hmcts.reform.bulkscan.util.Constant.FL401A_ERROR_VALIDATION_OUTPUT_PATH;
+import static uk.gov.hmcts.reform.bulkscan.util.Constant.FL401A_TRANSFORM_INPUT_PATH;
+import static uk.gov.hmcts.reform.bulkscan.util.Constant.FL401A_TRANSFORM_OUTPUT_PATH;
 import static uk.gov.hmcts.reform.bulkscan.util.Constant.FL401A_VALIDATION_INPUT_PATH;
 import static uk.gov.hmcts.reform.bulkscan.util.Constant.FL401A_VALIDATION_OUTPUT_PATH;
 import static uk.gov.hmcts.reform.bulkscan.util.Constant.FL401A_WARNING_VALIDATION_INPUT_PATH;
@@ -40,8 +44,6 @@ public class BulkScanEndpointFL401AFunctionalTest {
     @Autowired S2sClient s2sClient;
 
     private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
-
-    private static final String AUTH_HEADER = "serviceauthorization";
 
     private final String targetInstance =
             StringUtils.defaultIfBlank(
@@ -94,7 +96,7 @@ public class BulkScanEndpointFL401AFunctionalTest {
     }
 
     @Test
-    @DisplayName("Validating warnings for mandatory fields and unknown field for FL401A")
+    @DisplayName("Validation warnings for mandatory fields and unknown field for FL401A")
     public void shouldValidateFL401AWarningBulkScanRequest() throws Exception {
         String bulkScanValidationRequest = readFileFrom(FL401A_WARNING_VALIDATION_INPUT_PATH);
 
@@ -110,5 +112,23 @@ public class BulkScanEndpointFL401AFunctionalTest {
         response.then().assertThat().statusCode(HttpStatus.OK.value());
 
         JSONAssert.assertEquals(bulkScanValidationResponse, response.getBody().asString(), true);
+    }
+
+    @Test
+    public void shouldTransformBulkScanRequest() throws Exception {
+        String bulkScanTransformRequest = readFileFrom(FL401A_TRANSFORM_INPUT_PATH);
+
+        String bulkScanTransformResponse = readFileFrom(FL401A_TRANSFORM_OUTPUT_PATH);
+
+        Response response =
+                request.header(AUTH_HEADER, s2sClient.serviceAuthTokenGenerator())
+                        .body(bulkScanTransformRequest)
+                        .when()
+                        .contentType(JSON_CONTENT_TYPE)
+                        .post(CASE_TYPE_TRANSFORM_ENDPOINT);
+
+        response.then().assertThat().statusCode(HttpStatus.OK.value());
+
+        JSONAssert.assertEquals(bulkScanTransformResponse, response.getBody().asString(), true);
     }
 }
