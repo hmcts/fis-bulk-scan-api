@@ -1,40 +1,38 @@
 {
-  "case_creation_details":{
-    "case_type_id":"PRLAPPS",
-    "event_id":"create-case-privatelaw-bs",
-    "case_data":{
-      "scannedDocuments":[
+  "case_creation_details": {
+    "case_type_id": "PRLAPPS",
+    "event_id": "create-case-privatelaw-bs",
+    "case_data": {
+      "applicantInfo": [
         {
-          "value":{
-            "document_url":"http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c",
-            "document_filename":"test.pdf",
-            "document_binary_url":"http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
-          }
-        }
-      ],
-      "applicants":[
-        {
-          "value":{
-            "firstName":"Johnny",
-            "lastName":"MacDowell",
-            "phoneNumber":"0123456789",
-            "email":"applicant@gmail.com",
-            "address":[
+          "value": {
+            "applicantFirstName": "Johnny",
+            "applicantLastName": "MacDowell",
+            "applicantPhoneNumber": "0123456789",
+            "applicantEmail": "applicant@gmail.com",
+            "applicantHomeAddress": [
               {
-                "value":{
-                  "AddressLine1":"MacDowell St.",
-                  "AddressLine2":"MC Avenue",
-                  "PostTown":"Mac Town",
-                  "PostCode":"5fv 7thy"
+                "value": {
+                  "applicantAddressLine1": "MacDowell St.",
+                  "applicantAddressLine2": "MC Avenue",
+                  "applicantPostTown": "Mac Town",
+                  "addressPostCode": "5fv 7thy"
                 }
               }
             ]
           }
         }
+      ],
+      "scannedDocuments": [
+        {
+          "value": {
+            "document_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c",
+            "document_filename": "test.pdf",
+            "document_binary_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
+          }
+        }
       ]
     }
   },
-  "warnings":[
-
-  ]
+  "warnings": []
 }
