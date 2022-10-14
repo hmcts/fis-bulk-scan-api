@@ -3,10 +3,14 @@ package uk.gov.hmcts.reform.bulkscan.controllers;
 import static uk.gov.hmcts.reform.bulkscan.util.Constant.AUTH_HEADER;
 import static uk.gov.hmcts.reform.bulkscan.util.Constant.BULK_SCAN_TEST_LOCAL_HOST;
 import static uk.gov.hmcts.reform.bulkscan.util.Constant.BULK_SCAN_TEST_URL;
-import static uk.gov.hmcts.reform.bulkscan.util.Constant.FGM001_VALIDATION_ERROR_INPUT_PATH;
-import static uk.gov.hmcts.reform.bulkscan.util.Constant.FGM001_VALIDATION_ERROR_OUTPUT_PATH;
+import static uk.gov.hmcts.reform.bulkscan.util.Constant.CASE_TYPE_TRANSFORM_ENDPOINT;
+import static uk.gov.hmcts.reform.bulkscan.util.Constant.FGM001_CASE_TYPE_VALIDATE_ENDPOINT;
+import static uk.gov.hmcts.reform.bulkscan.util.Constant.FGM001_TRANSFORM_INPUT_PATH;
+import static uk.gov.hmcts.reform.bulkscan.util.Constant.FGM001_TRANSFORM_OUTPUT_PATH;
 import static uk.gov.hmcts.reform.bulkscan.util.Constant.FGM001_VALIDATION_INPUT_PATH;
 import static uk.gov.hmcts.reform.bulkscan.util.Constant.FGM001_VALIDATION_OUTPUT_PATH;
+import static uk.gov.hmcts.reform.bulkscan.util.Constant.FGM001_VALIDATION_ERROR_INPUT_PATH;
+import static uk.gov.hmcts.reform.bulkscan.util.Constant.FGM001_VALIDATION_ERROR_OUTPUT_PATH;
 import static uk.gov.hmcts.reform.bulkscan.util.Constant.FGM001_VALIDATION_WARNING_INPUT_PATH;
 import static uk.gov.hmcts.reform.bulkscan.util.Constant.FGM001_VALIDATION_WARNING_OUTPUT_PATH;
 import static uk.gov.hmcts.reform.bulkscan.util.Constant.JSON_CONTENT_TYPE;
@@ -63,7 +67,7 @@ public class BulkScanFgm001EndpointTest {
                         .body(bulkScanValidationRequest)
                         .when()
                         .contentType(JSON_CONTENT_TYPE)
-                        .post("forms/FGM001/validate-ocr");
+                        .post(FGM001_CASE_TYPE_VALIDATE_ENDPOINT);
 
         response.then().assertThat().statusCode(HttpStatus.OK.value());
 
@@ -81,8 +85,8 @@ public class BulkScanFgm001EndpointTest {
                 request.header(AUTH_HEADER, s2sClient.serviceAuthTokenGenerator())
                         .body(bulkScanValidationRequest)
                         .when()
-                        .contentType("application/json")
-                        .post("forms/FGM001/validate-ocr");
+                        .contentType(JSON_CONTENT_TYPE)
+                        .post(FGM001_CASE_TYPE_VALIDATE_ENDPOINT);
 
         response.then().assertThat().statusCode(HttpStatus.OK.value());
 
@@ -100,11 +104,29 @@ public class BulkScanFgm001EndpointTest {
                 request.header(AUTH_HEADER, s2sClient.serviceAuthTokenGenerator())
                         .body(bulkScanValidationRequest)
                         .when()
-                        .contentType("application/json")
-                        .post("forms/FGM001/validate-ocr");
+                        .contentType(JSON_CONTENT_TYPE)
+                        .post(FGM001_CASE_TYPE_VALIDATE_ENDPOINT);
 
         response.then().assertThat().statusCode(HttpStatus.OK.value());
 
         JSONAssert.assertEquals(bulkScanValidationResponse, response.getBody().asString(), true);
+    }
+
+    @Test
+    public void shouldTransformBulkScanRequest() throws Exception {
+        String bulkScanTransformRequest = readFileFrom(FGM001_TRANSFORM_INPUT_PATH);
+
+        String bulkScanTransformResponse = readFileFrom(FGM001_TRANSFORM_OUTPUT_PATH);
+
+        Response response =
+                request.header(AUTH_HEADER, s2sClient.serviceAuthTokenGenerator())
+                        .body(bulkScanTransformRequest)
+                        .when()
+                        .contentType(JSON_CONTENT_TYPE)
+                        .post(CASE_TYPE_TRANSFORM_ENDPOINT);
+
+        response.then().assertThat().statusCode(HttpStatus.OK.value());
+
+        JSONAssert.assertEquals(bulkScanTransformResponse, response.getBody().asString(), true);
     }
 }
