@@ -3,7 +3,11 @@ package uk.gov.hmcts.reform.bulkscan.controllers;
 import static org.mockito.Mockito.when;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static uk.gov.hmcts.reform.bulkscan.utils.Constants.CASE_TYPE_TRANSFORM_ENDPOINT;
+import static uk.gov.hmcts.reform.bulkscan.utils.Constants.FGM001_TRANSFORM_REQUEST_PATH;
+import static uk.gov.hmcts.reform.bulkscan.utils.Constants.FGM001_TRANSFORM_RESPONSE_PATH;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.FL401_CASE_TYPE_VALIDATE_ENDPOINT;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.SERVICE_AUTHORIZATION;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.SERVICE_AUTH_TOKEN;
@@ -54,5 +58,19 @@ class BulkScanFgm001IntegrationTest {
                                 .content(readFileFrom(FGM001_VALIDATION_REQUEST_PATH)))
                 .andExpect(status().isOk())
                 .andReturn();
+    }
+
+    @DisplayName("should test data transform request case type FGM001")
+    @Test
+    void shouldTestTransformRequestCaseTypeFgm001() throws Exception {
+        when(authTokenValidator.getServiceName(SERVICE_AUTH_TOKEN)).thenReturn("fis_cos_api");
+
+        mockMvc.perform(
+                        post(CASE_TYPE_TRANSFORM_ENDPOINT)
+                                .contentType(APPLICATION_JSON)
+                                .header(SERVICE_AUTHORIZATION, SERVICE_AUTH_TOKEN)
+                                .content(readFileFrom(FGM001_TRANSFORM_REQUEST_PATH)))
+                .andExpect(status().isOk())
+                .andExpect(content().json(readFileFrom(FGM001_TRANSFORM_RESPONSE_PATH)));
     }
 }

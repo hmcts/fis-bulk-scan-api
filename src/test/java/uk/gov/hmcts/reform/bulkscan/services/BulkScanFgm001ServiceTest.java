@@ -1,12 +1,18 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
-import static org.mockito.Mockito.mock;
+import static uk.gov.hmcts.reform.bulkscan.utils.EdgeCaseConstants.FGM001_TRANSFORM_REQUEST_PATH;
+import static uk.gov.hmcts.reform.bulkscan.utils.EdgeCaseConstants.FGM001_TRANSFORM_RESPONSE_PATH;
+import static uk.gov.hmcts.reform.bulkscan.utils.EdgeCaseConstants.FGM001_VALIDATE_ERROR_REQUEST_PATH;
+import static uk.gov.hmcts.reform.bulkscan.utils.EdgeCaseConstants.FGM001_VALIDATE_ERROR_RESPONSE_PATH;
+import static uk.gov.hmcts.reform.bulkscan.utils.EdgeCaseConstants.FGM001_VALIDATE_REQUEST_PATH;
+import static uk.gov.hmcts.reform.bulkscan.utils.EdgeCaseConstants.FGM001_VALIDATE_RESPONSE_PATH;
+import static uk.gov.hmcts.reform.bulkscan.utils.EdgeCaseConstants.FGM001_VALIDATE_WARNING_REQUEST_PATH;
+import static uk.gov.hmcts.reform.bulkscan.utils.EdgeCaseConstants.FGM001_VALIDATE_WARNING_RESPONSE_PATH;
 import static uk.gov.hmcts.reform.bulkscan.utils.TestResourceUtil.readFileFrom;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import org.json.JSONException;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -28,24 +34,6 @@ class BulkScanFgm001ServiceTest {
     private final ObjectMapper mapper = new ObjectMapper();
 
     @Autowired BulkScanFgm001Service bulkScanValidationService;
-
-    private static final String FGM001_VALIDATE_REQUEST_PATH =
-            "classpath:request/bulk-scan-fgm001-validate-input.json";
-
-    private static final String FGM001_VALIDATE_RESPONSE_PATH =
-            "classpath:response/bulk-scan-fgm001-validate-output.json";
-
-    private static final String FGM001_VALIDATE_ERROR_REQUEST_PATH =
-            "classpath:request/bulk-scan-fgm001-validate-error-input.json";
-
-    private static final String FGM001_VALIDATE_ERROR_RESPONSE_PATH =
-            "classpath:response/bulk-scan-fgm001-validate-error-output.json";
-
-    private static final String FGM001_VALIDATE_WARNING_REQUEST_PATH =
-            "classpath:request/bulk-scan-fgm001-validate-warning-input.json";
-
-    private static final String FGM001_VALIDATE_WARNING_RESPONSE_PATH =
-            "classpath:response/bulk-scan-fgm001-validate-warning-output.json";
 
     @Test
     void testFL401ValidationSuccess() throws IOException, JSONException {
@@ -90,11 +78,17 @@ class BulkScanFgm001ServiceTest {
                 true);
     }
 
-    @DisplayName("FGM001 mock transform.")
+    @DisplayName("FGM001 transform success.")
     @Test
-    void testTransform() {
-        BulkScanTransformationResponse bulkScanTransformationResponse =
-                bulkScanValidationService.transform(mock(BulkScanTransformationRequest.class));
-        Assertions.assertNull(bulkScanTransformationResponse);
+    void testFL401ATransformSuccess() throws IOException, JSONException {
+        BulkScanTransformationRequest bulkScanTransformationRequest =
+                mapper.readValue(
+                        readFileFrom(FGM001_TRANSFORM_REQUEST_PATH),
+                        BulkScanTransformationRequest.class);
+
+        BulkScanTransformationResponse res =
+                bulkScanValidationService.transform(bulkScanTransformationRequest);
+        JSONAssert.assertEquals(
+                readFileFrom(FGM001_TRANSFORM_RESPONSE_PATH), mapper.writeValueAsString(res), true);
     }
 }
