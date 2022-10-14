@@ -45,6 +45,7 @@ spring:
       - test-fgm001-transform
       - test-FL401-transform
       - test-FL401-dependency
+      - test-FL401A-transform
 azure:
   application-insights:
     instrumentation-key: ${fis.AppInsightsInstrumentationKey:00000000-0000-0000-0000-000000000000}

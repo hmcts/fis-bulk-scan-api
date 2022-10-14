@@ -2,7 +2,6 @@ package uk.gov.hmcts.reform.bulkscan.services;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
-import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DATE_FORMAT_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_ERROR_MESSAGE;
@@ -15,9 +14,12 @@ import static uk.gov.hmcts.reform.bulkscan.utils.TestResourceUtil.readFileFrom;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
+import org.json.JSONException;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.skyscreamer.jsonassert.JSONAssert;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
@@ -39,6 +41,12 @@ class BulkScanFL401AServiceTest {
 
     private static final String FL401A_VALIDATION_REQUEST_PATH =
             "classpath:request/bulk-scan-fl401a-validate-input.json";
+
+    private static final String FL401A_TRANSFORM_REQUEST_PATH =
+            "classpath:request/bulk-scan-fl401a-transform-input.json";
+
+    private static final String FL401A_TRANSFORM_RESPONSE_PATH =
+            "classpath:response/bulk-scan-fl401a-transform-output.json";
 
     private static final String FL401A_VALIDATION_ERROR_REQUEST_PATH =
             "classpath:request/bulk-scan-fl401a-validate-error-input.json";
@@ -120,10 +128,16 @@ class BulkScanFL401AServiceTest {
     }
 
     @Test
-    void testTransform() {
-        BulkScanTransformationResponse bulkScanTransformationResponse =
-                bulkScanFL401AValidationService.transform(
-                        mock(BulkScanTransformationRequest.class));
-        Assertions.assertNull(bulkScanTransformationResponse);
+    @DisplayName("FL401A transform success.")
+    void testFL401ATransformSuccess() throws IOException, JSONException {
+        BulkScanTransformationRequest bulkScanTransformationRequest =
+                mapper.readValue(
+                        readFileFrom(FL401A_TRANSFORM_REQUEST_PATH),
+                        BulkScanTransformationRequest.class);
+
+        BulkScanTransformationResponse res =
+                bulkScanFL401AValidationService.transform(bulkScanTransformationRequest);
+        JSONAssert.assertEquals(
+                readFileFrom(FL401A_TRANSFORM_RESPONSE_PATH), mapper.writeValueAsString(res), true);
     }
 }
