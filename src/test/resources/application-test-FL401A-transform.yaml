@@ -1,0 +1,15 @@
+uk:
+  gov:
+    hmcts:
+      transform:
+        caseTypeofApplication:
+          FL401A:
+            caseFields:
+              CASE_TYPE_ID: PRLAPPS
+              EVENT_ID: create-case-privatelaw-bs
+            caseDataFields: #These are new fields for Edgecases to be created in CCD
+              applicantFullName: applicant_full_name
+              applicantAddress: applicant_address
+              addressPostcode: applicant_postcode
+              applicantPhoneNumber: applicant_telephone_number
+              applicantDateOfBirth: applicant_dateOfBirth
