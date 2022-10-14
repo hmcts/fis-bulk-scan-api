@@ -3,26 +3,14 @@
     "case_type_id": "PRLAPPS",
     "event_id": "create-case-privatelaw-bs",
     "case_data": {
-      "applicantInfo": [
-        {
-          "value": {
-            "applicantFirstName": "Johnny",
-            "applicantLastName": "MacDowell",
-            "applicantPhoneNumber": "0123456789",
-            "applicantEmail": "applicant@gmail.com",
-            "applicantHomeAddress": [
-              {
-                "value": {
-                  "applicantAddressLine1": "MacDowell St.",
-                  "applicantAddressLine2": "MC Avenue",
-                  "applicantPostTown": "Mac Town",
-                  "addressPostCode": "5fv 7thy"
-                }
-              }
-            ]
-          }
-        }
-      ],
+      "applicantLastName": "MacDowell",
+      "applicantAddressLine1": "MacDowell St.",
+      "applicantAddressLine2": "MC Avenue",
+      "applicantPostTown": "Mac Town",
+      "addressPostCode": "5fv 7thy",
+      "applicantFirstName": "Johnny",
+      "applicantEmail": "applicant@gmail.com",
+      "applicantPhoneNumber": "0123456789",
       "scannedDocuments": [
         {
           "value": {

@@ -8,18 +8,14 @@ uk:
               CASE_TYPE_ID: PRLAPPS
               EVENT_ID: create-case-privatelaw-bs
             caseDataFields:
-              applicantInfo:
-                - value:
-                    applicantFirstName: applicant_first_name
-                    applicantLastName: applicant_last_name
-                    applicantPhoneNumber: applicant_phoneno
-                    applicantEmail: applicant_email
-                    applicantHomeAddress:
-                      - value:
-                          applicantAddressLine1: applicant_building_and_street
-                          applicantAddressLine2: applicant_second_line_of_address
-                          applicantPostTown: applicant_third_line_of_address
-                          addressPostCode: applicant_postcode
+              applicantFirstName: applicant_first_name
+              applicantLastName: applicant_last_name
+              applicantPhoneNumber: applicant_phoneno
+              applicantEmail: applicant_email
+              applicantAddressLine1: applicant_building_and_street
+              applicantAddressLine2: applicant_second_line_of_address
+              applicantPostTown: applicant_third_line_of_address
+              addressPostCode: applicant_postcode
 
 
 
