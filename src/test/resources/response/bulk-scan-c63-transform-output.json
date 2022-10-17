@@ -1,40 +1,26 @@
 {
-  "case_creation_details":{
-    "case_type_id":"PRLAPPS",
-    "event_id":"create-case-privatelaw-bs",
-    "case_data":{
-      "scannedDocuments":[
+  "case_creation_details": {
+    "case_type_id": "PRLAPPS",
+    "event_id": "create-case-privatelaw-bs",
+    "case_data": {
+      "applicantLastName": "MacDowell",
+      "applicantAddressLine1": "MacDowell St.",
+      "applicantAddressLine2": "MC Avenue",
+      "applicantPostTown": "Mac Town",
+      "addressPostCode": "5fv 7thy",
+      "applicantFirstName": "Johnny",
+      "applicantEmail": "applicant@gmail.com",
+      "applicantPhoneNumber": "0123456789",
+      "scannedDocuments": [
         {
-          "value":{
-            "document_url":"http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c",
-            "document_filename":"test.pdf",
-            "document_binary_url":"http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
-          }
-        }
-      ],
-      "applicants":[
-        {
-          "value":{
-            "firstName":"Johnny",
-            "lastName":"MacDowell",
-            "phoneNumber":"0123456789",
-            "email":"applicant@gmail.com",
-            "address":[
-              {
-                "value":{
-                  "AddressLine1":"MacDowell St.",
-                  "AddressLine2":"MC Avenue",
-                  "PostTown":"Mac Town",
-                  "PostCode":"5fv 7thy"
-                }
-              }
-            ]
+          "value": {
+            "document_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c",
+            "document_filename": "test.pdf",
+            "document_binary_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
           }
         }
       ]
     }
   },
-  "warnings":[
-
-  ]
+  "warnings": []
 }
