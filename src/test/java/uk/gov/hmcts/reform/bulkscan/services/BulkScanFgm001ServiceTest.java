@@ -80,7 +80,7 @@ class BulkScanFgm001ServiceTest {
 
     @DisplayName("FGM001 transform success.")
     @Test
-    void testFL401ATransformSuccess() throws IOException, JSONException {
+    void testFgm001TransformSuccess() throws IOException, JSONException {
         BulkScanTransformationRequest bulkScanTransformationRequest =
                 mapper.readValue(
                         readFileFrom(FGM001_TRANSFORM_REQUEST_PATH),

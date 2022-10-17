@@ -7,10 +7,10 @@ import static uk.gov.hmcts.reform.bulkscan.util.Constant.CASE_TYPE_TRANSFORM_END
 import static uk.gov.hmcts.reform.bulkscan.util.Constant.FGM001_CASE_TYPE_VALIDATE_ENDPOINT;
 import static uk.gov.hmcts.reform.bulkscan.util.Constant.FGM001_TRANSFORM_INPUT_PATH;
 import static uk.gov.hmcts.reform.bulkscan.util.Constant.FGM001_TRANSFORM_OUTPUT_PATH;
-import static uk.gov.hmcts.reform.bulkscan.util.Constant.FGM001_VALIDATION_INPUT_PATH;
-import static uk.gov.hmcts.reform.bulkscan.util.Constant.FGM001_VALIDATION_OUTPUT_PATH;
 import static uk.gov.hmcts.reform.bulkscan.util.Constant.FGM001_VALIDATION_ERROR_INPUT_PATH;
 import static uk.gov.hmcts.reform.bulkscan.util.Constant.FGM001_VALIDATION_ERROR_OUTPUT_PATH;
+import static uk.gov.hmcts.reform.bulkscan.util.Constant.FGM001_VALIDATION_INPUT_PATH;
+import static uk.gov.hmcts.reform.bulkscan.util.Constant.FGM001_VALIDATION_OUTPUT_PATH;
 import static uk.gov.hmcts.reform.bulkscan.util.Constant.FGM001_VALIDATION_WARNING_INPUT_PATH;
 import static uk.gov.hmcts.reform.bulkscan.util.Constant.FGM001_VALIDATION_WARNING_OUTPUT_PATH;
 import static uk.gov.hmcts.reform.bulkscan.util.Constant.JSON_CONTENT_TYPE;
