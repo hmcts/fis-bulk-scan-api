@@ -43,7 +43,7 @@ class BulkScanFgm001IntegrationTest {
 
     @BeforeEach
     void beforeEach() {
-        when(authTokenValidator.getServiceName(SERVICE_AUTH_TOKEN)).thenReturn("fis_cos_api");
+        when(authTokenValidator.getServiceName(SERVICE_AUTH_TOKEN)).thenReturn("fis_bulk_scan_api");
     }
 
     @DisplayName("should test validate request case type FGM001")
@@ -63,7 +63,7 @@ class BulkScanFgm001IntegrationTest {
     @DisplayName("should test data transform request case type FGM001")
     @Test
     void shouldTestTransformRequestCaseTypeFgm001() throws Exception {
-        when(authTokenValidator.getServiceName(SERVICE_AUTH_TOKEN)).thenReturn("fis_cos_api");
+        when(authTokenValidator.getServiceName(SERVICE_AUTH_TOKEN)).thenReturn("fis_bulk_scan_api");
 
         mockMvc.perform(
                         post(CASE_TYPE_TRANSFORM_ENDPOINT)

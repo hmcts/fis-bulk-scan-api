@@ -13,7 +13,6 @@ import static uk.gov.hmcts.reform.bulkscan.utils.TestResourceUtil.readFileFrom;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import org.json.JSONException;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
