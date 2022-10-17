@@ -17,6 +17,12 @@ public final class EdgeCaseConstants {
     public static final String A1_VALIDATION_WARNING_OUTPUT_PATH =
             "classpath:responses/bulk-scan-a1-validation-warning-output.json";
 
+    public static final String A1_TRANSFORM_INPUT_PATH =
+            "classpath:requests/bulk-scan-a1-transform-input.json";
+
+    public static final String A1_TRANSFORM_OUTPUT_PATH =
+            "classpath:responses/bulk-scan-a1-transform-output.json";
+
     public static final String C63_VALIDATION_INPUT_PATH =
             "classpath:requests/bulk-scan-c63-validation-input.json";
     public static final String C63_VALIDATION_OUTPUT_PATH =

@@ -1,0 +1,30 @@
+{
+  "case_creation_details": {
+    "case_type_id": "PRLAPPS",
+    "event_id": "create-case-privatelaw-bs",
+    "case_data": {
+      "scannedDocuments": [
+        {
+          "value": {
+            "document_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c",
+            "document_filename": "test.pdf",
+            "document_binary_url": "http://dm-store:8080/documents/0663b907-eac5-443a-8117-62f1fd67fc5c/binary"
+          }
+        }
+      ],
+      "applicant": [
+        {
+          "value": {
+            "applicantFullName": "murshad",
+            "applicantAddress": "murshad street",
+            "addressPostCode": "MA14 2WE",
+            "applicantPhoneNumber": "0123456789",
+            "applicantDateOfBirth": "07/10/2022",
+            "reference": "reference"
+          }
+        }
+      ]
+    }
+  },
+  "warnings": []
+}

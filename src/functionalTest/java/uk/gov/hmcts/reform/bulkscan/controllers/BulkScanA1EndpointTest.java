@@ -4,6 +4,9 @@ import static uk.gov.hmcts.reform.bulkscan.util.Constant.AUTH_HEADER;
 import static uk.gov.hmcts.reform.bulkscan.util.Constant.BULK_SCAN_TEST_LOCAL_HOST;
 import static uk.gov.hmcts.reform.bulkscan.util.Constant.BULK_SCAN_TEST_URL;
 import static uk.gov.hmcts.reform.bulkscan.util.Constant.JSON_CONTENT_TYPE;
+import static uk.gov.hmcts.reform.bulkscan.util.Constant.TRANSFORM_EXCEPTION_URL;
+import static uk.gov.hmcts.reform.bulkscan.util.EdgeCaseConstants.A1_TRANSFORM_INPUT_PATH;
+import static uk.gov.hmcts.reform.bulkscan.util.EdgeCaseConstants.A1_TRANSFORM_OUTPUT_PATH;
 import static uk.gov.hmcts.reform.bulkscan.util.EdgeCaseConstants.A1_VALIDATION_ERROR_INPUT_PATH;
 import static uk.gov.hmcts.reform.bulkscan.util.EdgeCaseConstants.A1_VALIDATION_ERROR_OUTPUT_PATH;
 import static uk.gov.hmcts.reform.bulkscan.util.EdgeCaseConstants.A1_VALIDATION_INPUT_PATH;
@@ -107,5 +110,24 @@ public class BulkScanA1EndpointTest {
         response.then().assertThat().statusCode(HttpStatus.OK.value());
 
         JSONAssert.assertEquals(bulkScanValidationResponse, response.getBody().asString(), true);
+    }
+
+    @Test
+    @DisplayName("Transform test case for form A1")
+    public void shouldTransformA1BulkScanRequest() throws Exception {
+        String bulkScanTransformRequest = readFileFrom(A1_TRANSFORM_INPUT_PATH);
+
+        String bulkScanTransformResponse = readFileFrom(A1_TRANSFORM_OUTPUT_PATH);
+
+        Response response =
+                request.header(AUTH_HEADER, s2sClient.serviceAuthTokenGenerator())
+                        .body(bulkScanTransformRequest)
+                        .when()
+                        .contentType(JSON_CONTENT_TYPE)
+                        .post(TRANSFORM_EXCEPTION_URL);
+
+        response.then().assertThat().statusCode(HttpStatus.OK.value());
+
+        JSONAssert.assertEquals(bulkScanTransformResponse, response.getBody().asString(), true);
     }
 }
