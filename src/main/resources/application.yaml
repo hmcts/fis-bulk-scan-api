@@ -44,6 +44,7 @@ spring:
       - a59-transform
       - a60-transform
       - c51-transform
+      - fgm001-transform
       - fl401-transform
       - fl401-dependency
       - fl401a-transform

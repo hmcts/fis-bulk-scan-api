@@ -55,5 +55,29 @@ public final class EdgeCaseConstants {
     public static final String C63_TRANSFORM_RESPONSE_PATH =
             "classpath:response/bulk-scan-c63-transform-output.json";
 
+    public static final String FGM001_VALIDATE_REQUEST_PATH =
+            "classpath:request/bulk-scan-fgm001-validate-input.json";
+
+    public static final String FGM001_VALIDATE_RESPONSE_PATH =
+            "classpath:response/bulk-scan-fgm001-validate-output.json";
+
+    public static final String FGM001_TRANSFORM_REQUEST_PATH =
+            "classpath:request/bulk-scan-fgm001-transform-input.json";
+
+    public static final String FGM001_TRANSFORM_RESPONSE_PATH =
+            "classpath:response/bulk-scan-fgm001-transform-output.json";
+
+    public static final String FGM001_VALIDATE_ERROR_REQUEST_PATH =
+            "classpath:request/bulk-scan-fgm001-validate-error-input.json";
+
+    public static final String FGM001_VALIDATE_ERROR_RESPONSE_PATH =
+            "classpath:response/bulk-scan-fgm001-validate-error-output.json";
+
+    public static final String FGM001_VALIDATE_WARNING_REQUEST_PATH =
+            "classpath:request/bulk-scan-fgm001-validate-warning-input.json";
+
+    public static final String FGM001_VALIDATE_WARNING_RESPONSE_PATH =
+            "classpath:response/bulk-scan-fgm001-validate-warning-output.json";
+
     private EdgeCaseConstants() {}
 }

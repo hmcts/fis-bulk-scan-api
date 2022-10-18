@@ -10,6 +10,6 @@ uk:
             caseDataFields: #These are new fields for Edgecases to be created in CCD
               applicantFullName: applicant_full_name
               applicantAddress: applicant_address
-              addressPostcode: applicant_postcode
+              addressPostCode: applicant_postcode
               applicantPhoneNumber: applicant_telephone_number
               applicantDateOfBirth: applicant_dateOfBirth
