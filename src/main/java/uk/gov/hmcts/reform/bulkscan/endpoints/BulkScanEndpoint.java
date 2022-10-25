@@ -5,6 +5,8 @@ import static java.util.Collections.singletonList;
 import static org.slf4j.LoggerFactory.getLogger;
 import static org.springframework.http.ResponseEntity.ok;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -64,8 +66,13 @@ public class BulkScanEndpoint {
             @RequestHeader(CONTENT_TYPE) String contentType,
             @PathVariable("form-type") String formType,
             @RequestBody final BulkScanValidationRequest bulkScanValidationRequest) {
-        logger.info(
-                "Request received to validate ocr data from service {}", bulkScanValidationRequest);
+        try { // TODO:NEED TO REMOVE LATER BELOW LOGGING JSON
+            logger.info(
+                    "Request received to validate ocr data from service {}",
+                    new ObjectMapper().writeValueAsString(bulkScanValidationRequest));
+        } catch (JsonProcessingException e) {
+            logger.info(e.getMessage());
+        }
 
         if (formType == null || !EnumUtils.isValidEnum(FormType.class, formType)) {
             logger.error("Invalid form type {} received when validating bulk scan", formType);
@@ -81,7 +88,13 @@ public class BulkScanEndpoint {
         BulkScanValidationResponse bulkScanResponse =
                 Objects.requireNonNull(BulkScanServiceFactory.getService(formTypeEnum))
                         .validate(bulkScanValidationRequest);
-        logger.info("response object from service {}", bulkScanResponse);
+        try { // TODO:NEED TO REMOVE LATER
+            logger.info(
+                    "response object from service {}",
+                    new ObjectMapper().writeValueAsString(bulkScanResponse));
+        } catch (JsonProcessingException e) {
+            logger.info(e.getMessage());
+        }
         return ok(bulkScanResponse);
     }
 
@@ -116,9 +129,13 @@ public class BulkScanEndpoint {
             @RequestHeader(SERVICEAUTHORIZATION) String s2sToken,
             @RequestHeader(CONTENT_TYPE) String contentType,
             @RequestBody final BulkScanTransformationRequest bulkScanTransformationRequest) {
-        logger.info(
-                "Request received to transformationOcrData ocr data from service {}",
-                bulkScanTransformationRequest);
+        try { // TODO:NEED TO REMOVE LATER
+            logger.info(
+                    "Request received to transformationOcrData ocr data from service {}",
+                    new ObjectMapper().writeValueAsString(bulkScanTransformationRequest));
+        } catch (JsonProcessingException e) {
+            logger.info(e.getMessage());
+        }
 
         String serviceName = authService.authenticate(s2sToken);
         logger.info(
