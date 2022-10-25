@@ -7,6 +7,7 @@ import java.net.URL;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import uk.gov.hmcts.reform.bulkscan.exception.InvalidResourceException;
 
 public final class FileUtil {
     public static final String TEST_RESOURCE_NOT_FOUND = "Could not find resource in path";
@@ -27,7 +28,7 @@ public final class FileUtil {
             }
             return Files.readAllBytes(Paths.get(url.toURI()));
         } catch (IOException | URISyntaxException | IllegalArgumentException ioException) {
-            throw new RuntimeException(TEST_RESOURCE_NOT_FOUND + filePath, ioException);
+            throw new InvalidResourceException(TEST_RESOURCE_NOT_FOUND + filePath, ioException);
         }
     }
 
@@ -35,7 +36,7 @@ public final class FileUtil {
         try {
             return new ObjectMapper().readValue(loadJson(filePath), type);
         } catch (Exception e) {
-            throw new RuntimeException(TEST_RESOURCE_NOT_FOUND + filePath, e);
+            throw new InvalidResourceException(TEST_RESOURCE_NOT_FOUND + filePath, e);
         }
     }
 
@@ -43,7 +44,7 @@ public final class FileUtil {
         try {
             return new ObjectMapper().writeValueAsString(object);
         } catch (Exception e) {
-            throw new RuntimeException("Could not write object to Json ", e);
+            throw new InvalidResourceException("Could not write object to Json ", e);
         }
     }
 }
