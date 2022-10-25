@@ -64,7 +64,8 @@ public class BulkScanEndpoint {
             @RequestHeader(CONTENT_TYPE) String contentType,
             @PathVariable("form-type") String formType,
             @RequestBody final BulkScanValidationRequest bulkScanValidationRequest) {
-        logger.info("Request received to validate ocr data from service {}", bulkScanValidationRequest);
+        logger.info(
+                "Request received to validate ocr data from service {}", bulkScanValidationRequest);
 
         if (formType == null || !EnumUtils.isValidEnum(FormType.class, formType)) {
             logger.error("Invalid form type {} received when validating bulk scan", formType);
@@ -115,10 +116,13 @@ public class BulkScanEndpoint {
             @RequestHeader(SERVICEAUTHORIZATION) String s2sToken,
             @RequestHeader(CONTENT_TYPE) String contentType,
             @RequestBody final BulkScanTransformationRequest bulkScanTransformationRequest) {
-        logger.info("Request received to transformationOcrData ocr data from service {}", bulkScanTransformationRequest);
+        logger.info(
+                "Request received to transformationOcrData ocr data from service {}",
+                bulkScanTransformationRequest);
 
         String serviceName = authService.authenticate(s2sToken);
-        logger.info("Request received to transformationOcrData ocr data from service {}", serviceName);
+        logger.info(
+                "Request received to transformationOcrData ocr data from service {}", serviceName);
 
         authService.assertIsAllowedToHandleService(serviceName);
 
