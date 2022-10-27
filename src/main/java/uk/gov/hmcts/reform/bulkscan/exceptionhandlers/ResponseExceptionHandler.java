@@ -5,8 +5,6 @@ import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 import static org.springframework.http.ResponseEntity.status;
 
 import feign.FeignException;
-import java.util.ArrayList;
-import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -17,7 +15,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import uk.gov.hmcts.reform.authorisation.exceptions.InvalidTokenException;
 import uk.gov.hmcts.reform.bulkscan.exception.ForbiddenException;
 import uk.gov.hmcts.reform.bulkscan.exception.UnauthorizedException;
-import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
 
 @ControllerAdvice
 public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
@@ -55,15 +52,13 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler({
         Exception.class,
     })
-    protected ResponseEntity<String> handleInternalException(
-            Exception exception) {
+    protected ResponseEntity<String> handleInternalException(Exception exception) {
         log.error(exception.getMessage(), exception);
 
-     String errors =
+        String errors =
                 "There was an unknown error when processing the case. If the error persists, please"
                         + " contact the Bulk Scan development team";
 
         return status(HttpStatus.INTERNAL_SERVER_ERROR).body(errors);
-
     }
 }
