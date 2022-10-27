@@ -17,10 +17,8 @@ import uk.gov.hmcts.reform.bulkscan.group.fields.CompositeField;
 import uk.gov.hmcts.reform.bulkscan.group.validation.enums.MessageTypeEnum;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
-import uk.gov.hmcts.reform.bulkscan.model.Errors;
 import uk.gov.hmcts.reform.bulkscan.model.FormType;
 import uk.gov.hmcts.reform.bulkscan.model.Status;
-import uk.gov.hmcts.reform.bulkscan.model.Warnings;
 
 public final class BulkScanGroupValidatorUtil {
     private BulkScanGroupValidatorUtil() {}
@@ -66,23 +64,20 @@ public final class BulkScanGroupValidatorUtil {
         List<String> allConfiguredGroupFields =
                 BulkScanGroupValidatorUtil.getAllConfiguredGroupFields(group);
         List<String> updateWarningList =
-                bulkScanValidationResponse.getWarnings().getItems().stream()
+                bulkScanValidationResponse.getWarnings().stream()
                         .map(item -> updateMissingField(item, allConfiguredGroupFields))
                         .filter(s -> !StringUtils.isEmpty(s))
                         .collect(Collectors.toList());
         if (!updateWarningList.isEmpty()) {
-            bulkScanValidationResponse.setWarnings(
-                    Warnings.builder().items(updateWarningList).build());
+            bulkScanValidationResponse.setWarnings(updateWarningList);
             bulkScanValidationResponse.setStatus(Status.WARNINGS);
         } else {
-            bulkScanValidationResponse.setWarnings(
-                    Warnings.builder().items(updateWarningList).build());
+            bulkScanValidationResponse.setWarnings(updateWarningList);
         }
-        if (!bulkScanValidationResponse.getErrors().getItems().isEmpty()) {
+        if (!bulkScanValidationResponse.getErrors().isEmpty()) {
             bulkScanValidationResponse.setStatus(ERRORS);
         }
-        if (updateWarningList.isEmpty()
-                && bulkScanValidationResponse.getErrors().getItems().isEmpty()) {
+        if (updateWarningList.isEmpty() && bulkScanValidationResponse.getErrors().isEmpty()) {
             bulkScanValidationResponse.setStatus(Status.SUCCESS);
         }
     }
@@ -112,19 +107,12 @@ public final class BulkScanGroupValidatorUtil {
     public static void updateGroupErrorsAndWarnings(
             BulkScanValidationResponse bulkScanValidationResponse,
             Map<MessageTypeEnum, List<String>> groupErrorsAndWarningsHashMap) {
-        Errors errors = bulkScanValidationResponse.getErrors();
-        Warnings warnings = bulkScanValidationResponse.getWarnings();
-        List<String> errorsItems = errors.getItems();
-        List<String> warningsItems = warnings.getItems();
+
+        List<String> errorsItems = bulkScanValidationResponse.getErrors();
+        List<String> warningsItems = bulkScanValidationResponse.getWarnings();
 
         errorsItems.addAll(groupErrorsAndWarningsHashMap.get(MessageTypeEnum.ERROR));
         warningsItems.addAll(groupErrorsAndWarningsHashMap.get(MessageTypeEnum.WARNING));
-
-        errors.setItems(errorsItems);
-        warnings.setItems(warningsItems);
-
-        bulkScanValidationResponse.setErrors(errors);
-        bulkScanValidationResponse.setWarnings(warnings);
     }
 
     public static void updateTransformationUnknownFieldsByGroupFields(

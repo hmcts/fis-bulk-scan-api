@@ -52,7 +52,6 @@ import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.CaseCreationDetails;
-import uk.gov.hmcts.reform.bulkscan.model.Errors;
 import uk.gov.hmcts.reform.bulkscan.model.FormType;
 import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
 
@@ -105,7 +104,7 @@ public class BulkScanA58Service implements BulkScanService {
                     getApplicant2ErrorList(inputFieldsMap, bulkScanValidationResponse);
             return bulkScanValidationResponse.toBuilder()
                     .status(!errorList.isEmpty() ? ERRORS : bulkScanValidationResponse.getStatus())
-                    .errors(Errors.builder().items(errorList).build())
+                    .errors(errorList)
                     .build();
         }
         return bulkScanValidationResponse;
@@ -196,7 +195,7 @@ public class BulkScanA58Service implements BulkScanService {
             Map<String, String> inputFieldsMap,
             BulkScanValidationResponse bulkScanValidationResponse) {
         return flattenLists(
-                bulkScanValidationResponse.getErrors().getItems(),
+                bulkScanValidationResponse.getErrors(),
                 notNull(inputFieldsMap.get(APPLICANT2_SOT), APPLICANT2_SOT),
                 notNull(inputFieldsMap.get(APPLICANT2_LEGAL_REP_SOT), APPLICANT2_LEGAL_REP_SOT),
                 notNull(

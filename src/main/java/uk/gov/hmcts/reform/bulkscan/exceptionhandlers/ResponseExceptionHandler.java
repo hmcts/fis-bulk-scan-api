@@ -17,7 +17,6 @@ import uk.gov.hmcts.reform.authorisation.exceptions.InvalidTokenException;
 import uk.gov.hmcts.reform.bulkscan.exception.ForbiddenException;
 import uk.gov.hmcts.reform.bulkscan.exception.UnauthorizedException;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
-import uk.gov.hmcts.reform.bulkscan.model.Errors;
 
 @ControllerAdvice
 public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
@@ -65,9 +64,6 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
                 "There was an unknown error when processing the case. If the error persists, please"
                         + " contact the Bulk Scan development team");
 
-        return ResponseEntity.ok(
-                BulkScanValidationResponse.builder()
-                        .errors(Errors.builder().items(errors).build())
-                        .build());
+        return ResponseEntity.ok(BulkScanValidationResponse.builder().errors(errors).build());
     }
 }

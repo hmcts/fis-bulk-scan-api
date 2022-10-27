@@ -41,8 +41,8 @@ public class BulkScanC100Section6ValidationService implements BulkScanSectionVal
             BulkScanValidationResponse bulkScanValidationResponse) {
         Map<String, String> ocrDataFieldsMap =
                 this.getOcrDataFieldAsMap(bulkScanValidationRequest.getOcrdatafields());
-        List<String> errorItemList = bulkScanValidationResponse.getErrors().getItems();
-        List<String> warningItemList = bulkScanValidationResponse.getWarnings().getItems();
+        List<String> errorItemList = bulkScanValidationResponse.getErrors();
+        List<String> warningItemList = bulkScanValidationResponse.getWarnings();
 
         if (null != ocrDataFieldsMap
                 && !ocrDataFieldsMap.isEmpty()

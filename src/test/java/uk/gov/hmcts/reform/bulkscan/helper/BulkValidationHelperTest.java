@@ -51,7 +51,6 @@ class BulkValidationHelperTest {
         assertEquals(Status.ERRORS, res.status);
         assertTrue(
                 res.getErrors()
-                        .items
                         .contains(String.format(MANDATORY_ERROR_MESSAGE, "appellant_lastName")));
     }
 
@@ -65,7 +64,6 @@ class BulkValidationHelperTest {
         assertEquals(Status.WARNINGS, res.status);
         assertTrue(
                 res.getWarnings()
-                        .items
                         .contains(String.format(DATE_FORMAT_MESSAGE, "appellant_dateOfBirth")));
     }
 
@@ -78,9 +76,7 @@ class BulkValidationHelperTest {
                         TestDataUtil.getEmailErrorData(), validationConfig.getConfig());
         assertEquals(Status.WARNINGS, res.status);
         assertTrue(
-                res.getWarnings()
-                        .items
-                        .contains(String.format(EMAIL_FORMAT_MESSAGE, "appellant_email")));
+                res.getWarnings().contains(String.format(EMAIL_FORMAT_MESSAGE, "appellant_email")));
     }
 
     @Test
@@ -93,15 +89,11 @@ class BulkValidationHelperTest {
         assertEquals(Status.ERRORS, res.status);
         Assert.assertTrue(
                 res.getErrors()
-                        .items
                         .contains(String.format(ALPHA_NUMERIC_FIELDS_MESSAGE, "applicant_ref")));
         Assert.assertTrue(
-                res.getErrors()
-                        .items
-                        .contains(String.format(POST_CODE_MESSAGE, "applicant_postcode")));
+                res.getErrors().contains(String.format(POST_CODE_MESSAGE, "applicant_postcode")));
         Assert.assertTrue(
                 res.getErrors()
-                        .items
                         .contains(String.format(PHONE_NUMBER_MESSAGE, "applicant_telephone_no")));
     }
 
@@ -114,8 +106,6 @@ class BulkValidationHelperTest {
                         TestDataUtil.getFL401AErrorData(), validationConfig.getConfig());
         assertEquals(Status.ERRORS, res.status);
         assertTrue(
-                res.getErrors()
-                        .items
-                        .contains(String.format(POST_CODE_MESSAGE, "applicant_postcode")));
+                res.getErrors().contains(String.format(POST_CODE_MESSAGE, "applicant_postcode")));
     }
 }

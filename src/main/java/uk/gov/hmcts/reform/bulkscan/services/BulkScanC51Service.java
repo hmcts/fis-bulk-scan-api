@@ -63,7 +63,7 @@ public class BulkScanC51Service implements BulkScanService {
 
         // validate conditional fields
 
-        if (bulkScanValidationResponse.getErrors().items.isEmpty()) {
+        if (bulkScanValidationResponse.getErrors().isEmpty()) {
             validateConditionalFields(ocrDataFields, bulkScanValidationResponse);
         }
 
@@ -100,7 +100,7 @@ public class BulkScanC51Service implements BulkScanService {
 
             bulkScanValidationResponse.setStatus(Status.ERRORS);
 
-            List<String> items = bulkScanValidationResponse.getErrors().getItems();
+            List<String> items = bulkScanValidationResponse.getErrors();
 
             items.add(
                     String.format(
