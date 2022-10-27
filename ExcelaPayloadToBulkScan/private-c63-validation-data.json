@@ -1,0 +1,36 @@
+{
+  "Metadata_file":[
+    {
+      "metadata_field_name":"applicant_first_name",
+      "metadata_field_value":"Johnny"
+    },
+    {
+      "metadata_field_name":"applicant_last_name",
+      "metadata_field_value":"MacDowell"
+    },
+    {
+      "metadata_field_name":"applicant_building_and_street",
+      "metadata_field_value":"MacDowell St."
+    },
+    {
+      "metadata_field_name":"applicant_second_line_of_address",
+      "metadata_field_value":"MC Avenue"
+    },
+    {
+      "metadata_field_name":"applicant_third_line_of_address",
+      "metadata_field_value":"MacVille"
+    },
+    {
+      "metadata_field_name":"applicant_postcode",
+      "metadata_field_value":"5fv 7thy"
+    },
+    {
+      "metadata_field_name":"applicant_phoneno",
+      "metadata_field_value":"0123456789"
+    },
+    {
+      "metadata_field_name":"applicant_email",
+      "metadata_field_value":"applicant@gmail.com"
+    }
+  ]
+}

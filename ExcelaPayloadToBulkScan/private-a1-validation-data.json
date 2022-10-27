@@ -1,0 +1,28 @@
+{
+  "Metadata_file":[
+    {
+      "metadata_field_name":"applicant_full_name",
+      "metadata_field_value":"Johnny Mac"
+    },
+    {
+      "metadata_field_name":"applicant_address",
+      "metadata_field_value":"Mac Street"
+    },
+    {
+      "metadata_field_name":"applicant_postcode",
+      "metadata_field_value":"MA14 2WE"
+    },
+    {
+      "metadata_field_name":"applicant_telephone_number",
+      "metadata_field_value":"0123456789"
+    },
+    {
+      "metadata_field_name":"applicant_reference",
+      "metadata_field_value":"reference"
+    },
+    {
+      "metadata_field_name":"applicant_dateOfBirth",
+      "metadata_field_value":"07/10/2022"
+    }
+  ]
+}

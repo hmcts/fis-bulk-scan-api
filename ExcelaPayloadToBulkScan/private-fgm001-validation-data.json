@@ -1,0 +1,16 @@
+{
+  "Metadata_file":[
+    {
+      "metadata_field_name":"applicant_fullName",
+      "metadata_field_value":"Johnny Mac"
+    },
+    {
+      "metadata_field_name":"applicant_address",
+      "metadata_field_value":"Mac Street"
+    },
+    {
+      "metadata_field_name":"applicant_phoneNumber",
+      "metadata_field_value":"+4407890393437"
+    }
+  ]
+}
