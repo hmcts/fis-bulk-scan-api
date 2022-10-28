@@ -1,13 +1,7 @@
 {
-  "status":"ERRORS",
-  "warnings":{
-    "items":[
-
-    ]
-  },
-  "errors":{
-    "items":[
-      "applicant1_telephoneNumber is not valid phone number"
-    ]
-  }
+  "status": "ERRORS",
+  "warnings": [],
+  "errors": [
+    "applicant1_telephoneNumber is not valid phone number"
+  ]
 }

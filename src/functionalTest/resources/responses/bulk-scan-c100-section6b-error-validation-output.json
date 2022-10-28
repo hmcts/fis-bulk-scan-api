@@ -1,18 +1,14 @@
 {
-  "status":"ERRORS",
-  "warnings":{
-    "items":[
-      "Some details are missing in the following section: 3d - Previous MIAM attendance or MIAM exemption.",
-      "withoutNotice_frustrateTheOrder_reason is missing",
-      "withoutNotice_abridged_or_informalNotice_reasons is missing"
-    ]
-  },
-  "errors":{
-    "items":[
-      "applicantRequiresWelsh is missing",
-      "applicantRequiresInterpreter is missing",
-      "applicantRequiresInterpreter_intermediaryRequired is missing",
-      "requiredSpecialAssistanceOrFacilities is missing"
-    ]
-  }
+  "status": "ERRORS",
+  "warnings": [
+    "Some details are missing in the following section: 3d - Previous MIAM attendance or MIAM exemption.",
+    "withoutNotice_frustrateTheOrder_reason is missing",
+    "withoutNotice_abridged_or_informalNotice_reasons is missing"
+  ],
+  "errors": [
+    "applicantRequiresWelsh is missing",
+    "applicantRequiresInterpreter is missing",
+    "applicantRequiresInterpreter_intermediaryRequired is missing",
+    "requiredSpecialAssistanceOrFacilities is missing"
+  ]
 }

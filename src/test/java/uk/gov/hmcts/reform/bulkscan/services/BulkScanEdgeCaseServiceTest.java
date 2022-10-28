@@ -47,7 +47,6 @@ class BulkScanEdgeCaseServiceTest {
         assertEquals(Status.ERRORS, res.status);
         assertTrue(
                 res.getErrors()
-                        .items
                         .contains(String.format(MANDATORY_ERROR_MESSAGE, "appellant_lastName")));
     }
 
@@ -61,7 +60,6 @@ class BulkScanEdgeCaseServiceTest {
         assertEquals(Status.ERRORS, res.status);
         assertTrue(
                 res.getWarnings()
-                        .items
                         .contains(String.format(DATE_FORMAT_MESSAGE, "appellant_dateOfBirth")));
     }
 
@@ -74,9 +72,7 @@ class BulkScanEdgeCaseServiceTest {
         BulkScanValidationResponse res = bulkScanService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
         assertTrue(
-                res.getErrors()
-                        .items
-                        .contains(String.format(EMAIL_FORMAT_MESSAGE, "appellant_email")));
+                res.getErrors().contains(String.format(EMAIL_FORMAT_MESSAGE, "appellant_email")));
     }
 
     @Test

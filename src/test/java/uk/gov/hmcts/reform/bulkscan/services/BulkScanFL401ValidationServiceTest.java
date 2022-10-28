@@ -14,7 +14,6 @@ import static uk.gov.hmcts.reform.bulkscan.utils.TestResourceUtil.readFileFrom;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -57,8 +56,8 @@ class BulkScanFL401ValidationServiceTest {
         bulkScanValidationResponse =
                 BulkScanValidationResponse.builder()
                         .status(Status.SUCCESS)
-                        .warnings(Warnings.builder().items(new ArrayList<>()).build())
-                        .errors(Errors.builder().items(new ArrayList<>()).build())
+                        .warnings(Warnings.builder().build().items)
+                        .errors(Errors.builder().build().items)
                         .build();
     }
 
@@ -106,7 +105,6 @@ class BulkScanFL401ValidationServiceTest {
         assertTrue(
                 bulkScanValidationResponse
                         .getErrors()
-                        .getItems()
                         .contains(
                                 "Section 4.1 - Applicant must have a relationship with the"
                                         + " respondent"));
@@ -139,7 +137,6 @@ class BulkScanFL401ValidationServiceTest {
         assertTrue(
                 bulkScanValidationResponse
                         .getWarnings()
-                        .getItems()
                         .contains(
                                 "Section 4.1 - Applicant has more than one relationship with the"
                                         + " respondent"));
@@ -174,7 +171,6 @@ class BulkScanFL401ValidationServiceTest {
         assertTrue(
                 bulkScanValidationResponse
                         .getErrors()
-                        .getItems()
                         .contains(
                                 "Section 4.4 - Applicant must have a relationship with the"
                                         + " respondent"));
@@ -229,14 +225,12 @@ class BulkScanFL401ValidationServiceTest {
         assertTrue(
                 bulkScanValidationResponse
                         .getErrors()
-                        .getItems()
                         .contains(
                                 "Please enter valid date for Applicant respondent relationship"
                                         + " Start date"));
         assertTrue(
                 bulkScanValidationResponse
                         .getWarnings()
-                        .getItems()
                         .contains(
                                 "Please enter valid date for Applicant respondent relationship End"
                                         + " date"));

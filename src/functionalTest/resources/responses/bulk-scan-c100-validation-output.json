@@ -1,9 +1,5 @@
 {
   "status": "SUCCESS",
-  "warnings": {
-    "items": []
-  },
-  "errors": {
-    "items": []
-  }
+  "warnings": [],
+  "errors": []
 }

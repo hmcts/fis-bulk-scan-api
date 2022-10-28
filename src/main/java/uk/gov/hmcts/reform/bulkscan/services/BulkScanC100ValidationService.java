@@ -120,7 +120,17 @@ public class BulkScanC100ValidationService extends BulkScanC100OtherSectionValid
                 && BulkScanConstants.NO.equalsIgnoreCase(
                         ocrDataFieldsMap.get(EXEMPTION_TO_ATTEND_MIAM))
                 && BulkScanConstants.NO.equalsIgnoreCase(ocrDataFieldsMap.get(ATTENDED_MIAM))) {
-            items.add(String.format(MANDATORY_ATTENDED_MIAM_MESSAGE, ATTENDED_MIAM));
+            if (items != null) {
+
+                items.add(
+                        String.format(
+                                MANDATORY_ATTENDED_MIAM_MESSAGE, ATTENDED_MIAM)); // original line
+            } else {
+
+                items = new ArrayList<>();
+                items.add(String.format(MANDATORY_ERROR_MESSAGE, ATTENDED_MIAM));
+                bulkScanValidationResponse.setErrors(items);
+            }
             bulkScanValidationResponse.setStatus(Status.ERRORS);
         }
     }
@@ -131,9 +141,13 @@ public class BulkScanC100ValidationService extends BulkScanC100OtherSectionValid
             List<String> items,
             String field) {
         if (!StringUtils.hasText(ocrDataFieldsMap.get(field))) {
-
-            items.add(String.format(MANDATORY_ERROR_MESSAGE, field));
-
+            if (items != null) {
+                items.add(String.format(MANDATORY_ERROR_MESSAGE, field));
+            } else {
+                items = new ArrayList<>();
+                items.add(String.format(MANDATORY_ERROR_MESSAGE, field));
+                bulkScanValidationResponse.setErrors(items);
+            }
             bulkScanValidationResponse.setStatus(Status.ERRORS);
         }
     }

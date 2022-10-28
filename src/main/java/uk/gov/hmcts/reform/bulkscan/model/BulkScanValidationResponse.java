@@ -33,9 +33,9 @@ public class BulkScanValidationResponse {
     }
 
     public void changeStatus() {
-        if (!this.getErrors().isEmpty()) {
+        if (null != this.getErrors() && !this.getErrors().isEmpty()) {
             this.status = Status.ERRORS;
-        } else if (!this.getWarnings().isEmpty()) {
+        } else if (null != this.getWarnings() && !this.getWarnings().isEmpty()) {
             this.status = Status.WARNINGS;
         } else {
             this.status = Status.SUCCESS;

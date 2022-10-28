@@ -1,13 +1,9 @@
 {
   "status": "ERRORS",
-  "warnings": {
-    "items": []
-  },
-  "errors": {
-    "items": [
-      "applicant_full_name should not be null or empty",
-      "applicant_address should not be null or empty",
-      "applicant_postcode should not be null or empty"
-    ]
-  }
+  "warnings": [],
+  "errors": [
+    "applicant_full_name should not be null or empty",
+    "applicant_address should not be null or empty",
+    "applicant_postcode should not be null or empty"
+  ]
 }
