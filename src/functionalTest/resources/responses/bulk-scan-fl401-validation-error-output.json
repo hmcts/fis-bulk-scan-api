@@ -1,24 +1,20 @@
 {
   "status": "ERRORS",
-  "warnings": {
-    "items": [
-      "The following fields are not configured with our system: [applicant1_dateOfBirth] "
-    ]
-  },
-  "errors": {
-    "items": [
-      "applicant_firstName is missing",
-      "applicant_lastName is missing",
-      "applicant_address is missing",
-      "telephone_number is missing",
-      "orderApplyingFor is missing",
-      "orderWithout_GivingNotice is missing",
-      "applicantFirstName is missing",
-      "applicantLastName is missing",
-      "applicantDateOfBirth is missing",
-      "applicantContact_Confidentiality is missing",
-      "applyingFor_NonMolestationOrder is missing",
-      "Section 4.1 - Applicant must have a relationship with the respondent"
-    ]
-  }
+  "warnings": [
+    "The following fields are not configured with our system: [applicant1_dateOfBirth] "
+  ],
+  "errors": [
+    "applicant_firstName is missing",
+    "applicant_lastName is missing",
+    "applicant_address is missing",
+    "telephone_number is missing",
+    "orderApplyingFor is missing",
+    "orderWithout_GivingNotice is missing",
+    "applicantFirstName is missing",
+    "applicantLastName is missing",
+    "applicantDateOfBirth is missing",
+    "applicantContact_Confidentiality is missing",
+    "applyingFor_NonMolestationOrder is missing",
+    "Section 4.1 - Applicant must have a relationship with the respondent"
+  ]
 }

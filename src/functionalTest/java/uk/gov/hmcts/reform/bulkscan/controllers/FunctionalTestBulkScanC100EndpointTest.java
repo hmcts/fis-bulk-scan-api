@@ -38,7 +38,6 @@ public class FunctionalTestBulkScanC100EndpointTest {
             "classpath:responses/bulk-scan-c100-validation-output.json";
     private static final String C100_VALIDATION_SECTION6B_INPUT_PATH =
             "classpath:requests/bulk-scan-c100-section6b-validate-input.json";
-
     private static final String C100_VALIDATION_SECTION6B_WARNING_OUTPUT_PATH =
             "classpath:responses/bulk-scan-c100-section6b-warning-validate-output.json";
     private static final String C100_VALIDATION_SECTION6B_ERROR_INPUT_PATH =

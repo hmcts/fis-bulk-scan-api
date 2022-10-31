@@ -38,10 +38,8 @@ import org.springframework.util.StringUtils;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanFormValidationConfigManager;
 import uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
-import uk.gov.hmcts.reform.bulkscan.model.Errors;
 import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
 import uk.gov.hmcts.reform.bulkscan.model.Status;
-import uk.gov.hmcts.reform.bulkscan.model.Warnings;
 import uk.gov.hmcts.reform.bulkscan.services.postcode.PostcodeLookupService;
 
 @Slf4j
@@ -90,8 +88,8 @@ public class BulkScanValidationHelper {
 
         return BulkScanValidationResponse.builder()
                 .status(status)
-                .warnings(Warnings.builder().items(warnings).build())
-                .errors(Errors.builder().items(errors).build())
+                .warnings(warnings)
+                .errors(errors)
                 .build();
     }
 

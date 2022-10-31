@@ -87,20 +87,17 @@ class BulkScanFL401AServiceTest {
         assertEquals(Status.ERRORS, res.status);
         assertTrue(
                 res.getErrors()
-                        .items
                         .contains(
                                 String.format(
                                         MANDATORY_ERROR_MESSAGE,
                                         FL401A_APPLICANT_FULL_NAME_FIELD)));
         assertTrue(
                 res.getErrors()
-                        .items
                         .contains(
                                 String.format(
                                         MANDATORY_ERROR_MESSAGE, FL401A_APPLICANT_ADDRESS_FIELD)));
         assertTrue(
                 res.getErrors()
-                        .items
                         .contains(
                                 String.format(
                                         MANDATORY_ERROR_MESSAGE, FL401A_APPLICANT_POSTCODE_FIELD)));
@@ -120,7 +117,6 @@ class BulkScanFL401AServiceTest {
         assertEquals(Status.WARNINGS, res.status);
         assertTrue(
                 res.getWarnings()
-                        .items
                         .contains(
                                 String.format(
                                         DATE_FORMAT_MESSAGE,

@@ -49,7 +49,6 @@ class BulkScanFL403ServiceTest {
         assertEquals(Status.ERRORS, res.status);
         assertTrue(
                 res.getErrors()
-                        .items
                         .contains(String.format(MANDATORY_ERROR_MESSAGE, "appellant_lastName")));
     }
 
@@ -63,7 +62,6 @@ class BulkScanFL403ServiceTest {
         assertEquals(Status.WARNINGS, res.status);
         assertTrue(
                 res.getWarnings()
-                        .items
                         .contains(String.format(DATE_FORMAT_MESSAGE, "appellant_dateOfBirth")));
     }
 
@@ -76,9 +74,7 @@ class BulkScanFL403ServiceTest {
         BulkScanValidationResponse res = bulkScanService.validate(bulkScanValidationRequest);
         assertEquals(Status.WARNINGS, res.status);
         assertTrue(
-                res.getWarnings()
-                        .items
-                        .contains(String.format(EMAIL_FORMAT_MESSAGE, "appellant_email")));
+                res.getWarnings().contains(String.format(EMAIL_FORMAT_MESSAGE, "appellant_email")));
     }
 
     @Test
@@ -91,7 +87,6 @@ class BulkScanFL403ServiceTest {
         assertEquals(Status.ERRORS, res.status);
         assertTrue(
                 res.getErrors()
-                        .items
                         .contains(String.format(MISSING_FIELD_MESSAGE, "appellant_lastName")));
     }
 
@@ -105,7 +100,6 @@ class BulkScanFL403ServiceTest {
         assertEquals(Status.WARNINGS, res.status);
         assertTrue(
                 res.getWarnings()
-                        .items
                         .contains(String.format(FAX_NUMBER_ERROR_MESSAGE, "solicitor_fax_number")));
     }
 

@@ -1,12 +1,8 @@
 {
   "status": "WARNINGS",
-  "warnings": {
-    "items": [
-      "The following fields are not configured with our system: [applicant1_dateOfBirth] ",
-      "Some details are missing in the following section: Welsh Required."
-    ]
-  },
-  "errors": {
-    "items": []
-  }
+  "warnings": [
+    "The following fields are not configured with our system: [applicant1_dateOfBirth] ",
+    "Some details are missing in the following section: Welsh Required."
+  ],
+  "errors": []
 }

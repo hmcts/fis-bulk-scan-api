@@ -1,12 +1,9 @@
 {
   "status":"ERRORS",
-  "warnings":{
-    "items":[
+    "warnings":[
 
-    ]
-  },
-  "errors":{
-    "items":[
+    ],
+    "errors":[
       "applicant_firstName should not be null or empty",
       "applicant_lastName should not be null or empty",
       "applicant_address should not be null or empty",
@@ -19,5 +16,4 @@
       "solicitor_reference is missing",
       "solicitor_dx_number is missing"
     ]
-  }
 }

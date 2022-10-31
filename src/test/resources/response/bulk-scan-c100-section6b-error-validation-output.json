@@ -1,14 +1,11 @@
 {
   "status":"ERRORS",
-  "warnings":{
-    "items":[
+    "warnings":[
 
-    ]
-  },
-  "errors":{
-    "items":[
+    ],
+    "errors":[
       "withoutNotice_frustrateTheOrder_reason is missing",
       "withoutNotice_abridged_or_informalNotice_reasons is missing"
     ]
-  }
+
 }

@@ -1,17 +1,13 @@
 {
-  "status":"ERRORS",
-  "warnings":{
-    "items":[
-      "The following fields are not configured with our system: [applicant1_dateOfBirth] "
-    ]
-  },
-  "errors":{
-    "items":[
-      "applicant1LastName is missing",
-      "applicantRequiresWelsh is missing",
-      "applicantRequiresInterpreter is missing",
-      "applicantRequiresInterpreter_intermediaryRequired is missing",
-      "requiredSpecialAssistanceOrFacilities is missing"
-    ]
-  }
+  "status": "ERRORS",
+  "warnings": [
+    "The following fields are not configured with our system: [applicant1_dateOfBirth] "
+  ],
+  "errors": [
+    "applicant1LastName is missing",
+    "applicantRequiresWelsh is missing",
+    "applicantRequiresInterpreter is missing",
+    "applicantRequiresInterpreter_intermediaryRequired is missing",
+    "requiredSpecialAssistanceOrFacilities is missing"
+  ]
 }

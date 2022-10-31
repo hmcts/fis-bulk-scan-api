@@ -64,7 +64,6 @@ class BulkScanC51ServiceTest {
         assertEquals(Status.ERRORS, res.status);
         assertTrue(
                 res.getErrors()
-                        .items
                         .contains(String.format(MANDATORY_ERROR_MESSAGE, APPLICANT_1_FIRST_NAME)));
     }
 
@@ -79,7 +78,6 @@ class BulkScanC51ServiceTest {
         assertEquals(Status.ERRORS, res.status);
         assertTrue(
                 res.getErrors()
-                        .items
                         .contains(String.format(MISSING_FIELD_MESSAGE, APPLICANT_1_LAST_NAME)));
     }
 
@@ -96,7 +94,6 @@ class BulkScanC51ServiceTest {
         assertEquals(Status.ERRORS, res.status);
         assertTrue(
                 res.getErrors()
-                        .items
                         .contains(
                                 String.format(
                                         BulkScanConstants.XOR_CONDITIONAL_FIELDS_MESSAGE,

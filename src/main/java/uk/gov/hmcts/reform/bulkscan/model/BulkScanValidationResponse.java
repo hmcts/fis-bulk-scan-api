@@ -11,21 +11,31 @@ import lombok.ToString;
 public class BulkScanValidationResponse {
 
     public Enum<Status> status;
-    public Warnings warnings;
-    public Errors errors;
 
-    public void addWarning(List<String> warnings) {
-        this.warnings.getItems().addAll(warnings);
+    private List<String> warnings;
+    private List<String> errors;
+
+    public void addWarning(List<String> warningLst) {
+
+        if (null == warnings) {
+            this.warnings = warningLst;
+        } else {
+            this.warnings.addAll(warningLst);
+        }
     }
 
-    public void addErrors(List<String> errors) {
-        this.errors.getItems().addAll(errors);
+    public void addErrors(List<String> errorsLst) {
+        if (null == errors) {
+            this.errors = errorsLst;
+        } else {
+            this.errors.addAll(errorsLst);
+        }
     }
 
     public void changeStatus() {
-        if (!errors.getItems().isEmpty()) {
+        if (null != this.getErrors() && !this.getErrors().isEmpty()) {
             this.status = Status.ERRORS;
-        } else if (!warnings.getItems().isEmpty()) {
+        } else if (null != this.getWarnings() && !this.getWarnings().isEmpty()) {
             this.status = Status.WARNINGS;
         } else {
             this.status = Status.SUCCESS;

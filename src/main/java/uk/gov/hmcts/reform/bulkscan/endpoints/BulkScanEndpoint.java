@@ -1,6 +1,5 @@
 package uk.gov.hmcts.reform.bulkscan.endpoints;
 
-import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 import static org.slf4j.LoggerFactory.getLogger;
 import static org.springframework.http.ResponseEntity.ok;
@@ -9,6 +8,7 @@ import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
+import java.util.ArrayList;
 import java.util.Objects;
 import org.apache.commons.lang3.EnumUtils;
 import org.slf4j.Logger;
@@ -29,10 +29,8 @@ import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
-import uk.gov.hmcts.reform.bulkscan.model.Errors;
 import uk.gov.hmcts.reform.bulkscan.model.FormType;
 import uk.gov.hmcts.reform.bulkscan.model.Status;
-import uk.gov.hmcts.reform.bulkscan.model.Warnings;
 import uk.gov.hmcts.reform.bulkscan.services.postcode.PostcodeLookupService;
 import uk.gov.hmcts.reform.bulkscan.utils.FileUtil;
 
@@ -147,17 +145,12 @@ public class BulkScanEndpoint {
     private BulkScanValidationResponse validateFormType(String formType) {
         return BulkScanValidationResponse.builder()
                 .status(Status.ERRORS)
-                .warnings(Warnings.builder().items(emptyList()).build())
+                .warnings(new ArrayList<>())
                 .errors(
-                        Errors.builder()
-                                .items(
-                                        singletonList(
-                                                "Form type '"
-                                                        + (null != formType
-                                                                ? formType
-                                                                : "No Form Type")
-                                                        + "' not found"))
-                                .build())
+                        singletonList(
+                                "Form type '"
+                                        + (null != formType ? formType : "No Form Type")
+                                        + "' not found"))
                 .build();
     }
 }

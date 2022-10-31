@@ -5,10 +5,9 @@ import static org.springframework.http.HttpStatus.UNAUTHORIZED;
 import static org.springframework.http.ResponseEntity.status;
 
 import feign.FeignException;
-import java.util.ArrayList;
-import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -16,8 +15,6 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 import uk.gov.hmcts.reform.authorisation.exceptions.InvalidTokenException;
 import uk.gov.hmcts.reform.bulkscan.exception.ForbiddenException;
 import uk.gov.hmcts.reform.bulkscan.exception.UnauthorizedException;
-import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
-import uk.gov.hmcts.reform.bulkscan.model.Errors;
 
 @ControllerAdvice
 public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
@@ -55,19 +52,13 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler({
         Exception.class,
     })
-    protected ResponseEntity<BulkScanValidationResponse> handleInternalException(
-            Exception exception) {
+    protected ResponseEntity<String> handleInternalException(Exception exception) {
         log.error(exception.getMessage(), exception);
 
-        List<String> errors = new ArrayList<>();
-
-        errors.add(
+        String errors =
                 "There was an unknown error when processing the case. If the error persists, please"
-                        + " contact the Bulk Scan development team");
+                        + " contact the Bulk Scan development team";
 
-        return ResponseEntity.ok(
-                BulkScanValidationResponse.builder()
-                        .errors(Errors.builder().items(errors).build())
-                        .build());
+        return status(HttpStatus.INTERNAL_SERVER_ERROR).body(errors);
     }
 }

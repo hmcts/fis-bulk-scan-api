@@ -1,13 +1,5 @@
 {
-  "status":"SUCCESS",
-  "warnings":{
-    "items":[
-
-    ]
-  },
-  "errors":{
-    "items":[
-
-    ]
-  }
+  "status": "SUCCESS",
+  "warnings": [],
+  "errors": []
 }

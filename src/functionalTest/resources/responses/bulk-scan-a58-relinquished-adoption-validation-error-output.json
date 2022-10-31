@@ -1,13 +1,9 @@
 {
   "status": "ERRORS",
-  "warnings": {
-    "items": [
-      "The following fields are not configured with our system: [applicant1_dateOfBirth]"
-    ]
-  },
-  "errors": {
-    "items": [
-      "applicant1_lastName is missing"
-    ]
-  }
+  "warnings": [
+    "The following fields are not configured with our system: [applicant1_dateOfBirth]"
+  ],
+  "errors": [
+    "applicant1_lastName is missing"
+  ]
 }

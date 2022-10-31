@@ -148,7 +148,7 @@ class BulkScanC100ServiceTest {
                 "one field must be present out of"
                         + " child_living_with_Applicant,child_living_with_Respondent,"
                         + "child_living_with_others",
-                res.getErrors().getItems().get(0));
+                res.getErrors().get(0));
     }
 
     @Test
@@ -164,9 +164,7 @@ class BulkScanC100ServiceTest {
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
-        assertEquals(
-                "children_parentsName should not be null or empty",
-                res.getErrors().getItems().get(0));
+        assertEquals("children_parentsName should not be null or empty", res.getErrors().get(0));
     }
 
     @Test
@@ -189,8 +187,7 @@ class BulkScanC100ServiceTest {
                 bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
         assertEquals(
-                "child_parentsName_collection should not be null or empty",
-                res.getErrors().getItems().get(0));
+                "child_parentsName_collection should not be null or empty", res.getErrors().get(0));
     }
 
     @Test
@@ -213,8 +210,7 @@ class BulkScanC100ServiceTest {
                 bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
         assertEquals(
-                "child_parentsName_collection should not be null or empty",
-                res.getErrors().getItems().get(0));
+                "child_parentsName_collection should not be null or empty", res.getErrors().get(0));
     }
 
     @Test
@@ -235,7 +231,7 @@ class BulkScanC100ServiceTest {
         assertEquals(Status.ERRORS, res.status);
         assertEquals(
                 "child1_localAuthority_or_socialWorker should not be null or empty",
-                res.getErrors().getItems().get(0));
+                res.getErrors().get(0));
     }
 
     @Test
@@ -314,7 +310,7 @@ class BulkScanC100ServiceTest {
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
         assertEquals(Status.WARNINGS, res.status);
-        assertTrue(res.getWarnings().items.contains(EXEMPTION_TO_ATTEND_MIAM_DEPENDENCY_WARNING));
+        assertTrue(res.getWarnings().contains(EXEMPTION_TO_ATTEND_MIAM_DEPENDENCY_WARNING));
     }
 
     @Test
@@ -343,7 +339,7 @@ class BulkScanC100ServiceTest {
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
         assertEquals(Status.WARNINGS, res.status);
-        assertTrue(res.getWarnings().items.contains(NOMIAM_DOMESTICVIOLENCE_DEPENDENCY_WARNING));
+        assertTrue(res.getWarnings().contains(NOMIAM_DOMESTICVIOLENCE_DEPENDENCY_WARNING));
     }
 
     @Test
@@ -367,10 +363,7 @@ class BulkScanC100ServiceTest {
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
         assertEquals(Status.WARNINGS, res.status);
-        assertTrue(
-                res.getWarnings()
-                        .items
-                        .contains(NOMIAM_CHILDPROTECTIONCONCERNS_DEPENDENCY_WARNING));
+        assertTrue(res.getWarnings().contains(NOMIAM_CHILDPROTECTIONCONCERNS_DEPENDENCY_WARNING));
     }
 
     @Test
@@ -394,7 +387,7 @@ class BulkScanC100ServiceTest {
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
         assertEquals(Status.WARNINGS, res.status);
-        assertTrue(res.getWarnings().items.contains(NOMIAM_URGENCY_DEPENDENCY_WARNING));
+        assertTrue(res.getWarnings().contains(NOMIAM_URGENCY_DEPENDENCY_WARNING));
     }
 
     @Test
@@ -418,7 +411,7 @@ class BulkScanC100ServiceTest {
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
         assertEquals(Status.WARNINGS, res.status);
-        assertTrue(res.getWarnings().items.contains(NOMIAM_PREVIOUSATTENDENCE_DEPENDENCY_WARNING));
+        assertTrue(res.getWarnings().contains(NOMIAM_PREVIOUSATTENDENCE_DEPENDENCY_WARNING));
     }
 
     @Test
@@ -442,7 +435,7 @@ class BulkScanC100ServiceTest {
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
         assertEquals(Status.WARNINGS, res.status);
-        assertTrue(res.getWarnings().items.contains(NOMIAM_OTHERREASONS_DEPENDENCY_WARNING));
+        assertTrue(res.getWarnings().contains(NOMIAM_OTHERREASONS_DEPENDENCY_WARNING));
     }
 
     @Test
@@ -485,7 +478,7 @@ class BulkScanC100ServiceTest {
                         .getValue());
 
         assertEquals(Status.SUCCESS, res.status);
-        assertFalse(res.getWarnings().items.contains(NOMIAM_OTHERREASONS_DEPENDENCY_WARNING));
+        assertFalse(res.getWarnings().contains(NOMIAM_OTHERREASONS_DEPENDENCY_WARNING));
     }
 
     @Test
@@ -530,10 +523,7 @@ class BulkScanC100ServiceTest {
                         .getValue());
 
         assertEquals(Status.SUCCESS, res.status);
-        assertFalse(
-                res.getWarnings()
-                        .items
-                        .contains(NOMIAM_CHILDPROTECTIONCONCERNS_DEPENDENCY_WARNING));
+        assertFalse(res.getWarnings().contains(NOMIAM_CHILDPROTECTIONCONCERNS_DEPENDENCY_WARNING));
     }
 
     @Test
@@ -570,7 +560,7 @@ class BulkScanC100ServiceTest {
                         .orElse(null)
                         .getValue());
         assertEquals(Status.SUCCESS, res.status);
-        assertFalse(res.getWarnings().items.contains(NOMIAM_URGENCY_DEPENDENCY_WARNING));
+        assertFalse(res.getWarnings().contains(NOMIAM_URGENCY_DEPENDENCY_WARNING));
     }
 
     @Test
@@ -647,7 +637,7 @@ class BulkScanC100ServiceTest {
                         .orElse(null)
                         .getValue());
         assertEquals(Status.SUCCESS, res.status);
-        assertFalse(res.getWarnings().items.contains(NOMIAM_PREVIOUSATTENDENCE_DEPENDENCY_WARNING));
+        assertFalse(res.getWarnings().contains(NOMIAM_PREVIOUSATTENDENCE_DEPENDENCY_WARNING));
     }
 
     @Test
@@ -690,7 +680,7 @@ class BulkScanC100ServiceTest {
                         .getValue());
 
         assertEquals(Status.SUCCESS, res.status);
-        assertFalse(res.getWarnings().items.contains(NOMIAM_OTHERREASONS_DEPENDENCY_WARNING));
+        assertFalse(res.getWarnings().contains(NOMIAM_OTHERREASONS_DEPENDENCY_WARNING));
     }
 
     @Test
@@ -725,10 +715,7 @@ class BulkScanC100ServiceTest {
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
         assertEquals(Status.WARNINGS, res.status);
-        assertTrue(
-                res.getWarnings()
-                        .items
-                        .contains(RESPONDENT_ONE_NOT_LIVED_IN_ADDRESS_FOR_FIVE_YEARS));
+        assertTrue(res.getWarnings().contains(RESPONDENT_ONE_NOT_LIVED_IN_ADDRESS_FOR_FIVE_YEARS));
     }
 
     @Test
@@ -763,10 +750,7 @@ class BulkScanC100ServiceTest {
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
         assertEquals(Status.WARNINGS, res.status);
-        assertTrue(
-                res.getWarnings()
-                        .items
-                        .contains(RESPONDENT_TWO_NOT_LIVED_IN_ADDRESS_FOR_FIVE_YEARS));
+        assertTrue(res.getWarnings().contains(RESPONDENT_TWO_NOT_LIVED_IN_ADDRESS_FOR_FIVE_YEARS));
     }
 
     @Test
@@ -799,7 +783,7 @@ class BulkScanC100ServiceTest {
                     + "other_case_proceeding_for_contact_or_resident_order,"
                     + "other_case_contact_or_residentOrder_withAdoptioNorder,"
                     + "other_case_childMaintenanceOrder,other_case_childArrangementOrder",
-                res.getErrors().getItems().get(0));
+                res.getErrors().get(0));
     }
 
     @Test
@@ -817,9 +801,7 @@ class BulkScanC100ServiceTest {
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
-        assertEquals(
-                "other_case_case_number should not be null or empty",
-                res.getErrors().getItems().get(0));
+        assertEquals("other_case_case_number should not be null or empty", res.getErrors().get(0));
     }
 
     @Test

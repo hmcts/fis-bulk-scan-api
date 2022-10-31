@@ -49,7 +49,6 @@ class BulkScanC2ServiceTest {
         assertEquals(Status.ERRORS, res.status);
         assertTrue(
                 res.getErrors()
-                        .items
                         .contains(
                                 String.format(
                                         XOR_CONDITIONAL_FIELDS_MESSAGE,
@@ -67,7 +66,6 @@ class BulkScanC2ServiceTest {
         assertEquals(Status.ERRORS, res.status);
         assertTrue(
                 res.getErrors()
-                        .items
                         .contains(String.format(DATE_FORMAT_MESSAGE, "applicant1_dateOfBirth")));
     }
 
@@ -82,7 +80,6 @@ class BulkScanC2ServiceTest {
         assertEquals(Status.ERRORS, res.status);
         assertTrue(
                 res.getErrors()
-                        .items
                         .contains(String.format(MISSING_FIELD_MESSAGE, "applicant1_fullName")));
     }
 

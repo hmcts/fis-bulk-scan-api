@@ -1,12 +1,8 @@
 {
   "status": "WARNINGS",
-  "warnings": {
-    "items": [
-      "Some details are missing in the following section: 3d - Previous MIAM attendance or MIAM exemption.",
-      "Some details are missing in the following section: Welsh Required."
-    ]
-  },
-  "errors": {
-    "items": []
-  }
+  "warnings": [
+    "Some details are missing in the following section: 3d - Previous MIAM attendance or MIAM exemption.",
+    "Some details are missing in the following section: Welsh Required."
+  ],
+  "errors": []
 }

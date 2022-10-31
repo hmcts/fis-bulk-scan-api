@@ -1,11 +1,7 @@
 {
   "status": "WARNINGS",
-  "warnings": {
-    "items": [
-      "applicant_dateOfBirth is invalid date or format"
-    ]
-  },
-  "errors": {
-    "items": []
-  }
+  "warnings": [
+    "applicant_dateOfBirth is invalid date or format"
+  ],
+  "errors": []
 }

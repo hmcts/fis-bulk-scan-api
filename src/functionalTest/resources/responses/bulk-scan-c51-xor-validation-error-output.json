@@ -1,11 +1,7 @@
 {
   "status": "ERRORS",
-  "warnings": {
-    "items": []
-  },
-  "errors": {
-    "items": [
-      "one field must be present out of [applicant_homeTelephoneNumber, applicant_mobileTelephoneNumber]"
-    ]
-  }
+  "warnings": [],
+  "errors": [
+    "one field must be present out of [applicant_homeTelephoneNumber, applicant_mobileTelephoneNumber]"
+  ]
 }

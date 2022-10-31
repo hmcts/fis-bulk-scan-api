@@ -61,8 +61,8 @@ class BulkScanC100ValidationServiceTest {
         bulkScanValidationResponse =
                 BulkScanValidationResponse.builder()
                         .status(null)
-                        .warnings(Warnings.builder().items(new ArrayList<>()).build())
-                        .errors(Errors.builder().items(new ArrayList<>()).build())
+                        .warnings(Warnings.builder().build().items)
+                        .errors(Errors.builder().build().items)
                         .build();
     }
 
@@ -195,10 +195,7 @@ class BulkScanC100ValidationServiceTest {
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
         assertEquals(Status.WARNINGS, res.status);
-        assertTrue(
-                res.getWarnings()
-                        .items
-                        .contains(INTERNATIONAL_FACTORS_AFFECTING_LITIGATION_WARNING));
+        assertTrue(res.getWarnings().contains(INTERNATIONAL_FACTORS_AFFECTING_LITIGATION_WARNING));
     }
 
     @Test
@@ -308,7 +305,7 @@ class BulkScanC100ValidationServiceTest {
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
         assertEquals(Status.WARNINGS, res.status);
-        assertTrue(res.getWarnings().items.contains(INTERNATIONALELEMENT_WARNING_MESSAGE));
+        assertTrue(res.getWarnings().contains(INTERNATIONALELEMENT_WARNING_MESSAGE));
     }
 
     @Test
@@ -351,7 +348,7 @@ class BulkScanC100ValidationServiceTest {
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
         assertEquals(Status.WARNINGS, res.status);
-        assertTrue(res.getWarnings().items.contains(INTERNATIONALELEMENT_WARNING_MESSAGE));
+        assertTrue(res.getWarnings().contains(INTERNATIONALELEMENT_WARNING_MESSAGE));
     }
 
     @Test
@@ -477,7 +474,7 @@ class BulkScanC100ValidationServiceTest {
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
         assertEquals(Status.WARNINGS, res.status);
-        assertTrue(res.getWarnings().items.contains(INTERNATIONALELEMENT_WARNING_MESSAGE));
+        assertTrue(res.getWarnings().contains(INTERNATIONALELEMENT_WARNING_MESSAGE));
     }
 
     public List<OcrDataField> getRequestData() {

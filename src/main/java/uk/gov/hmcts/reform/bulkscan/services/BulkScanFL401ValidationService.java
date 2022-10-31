@@ -175,7 +175,7 @@ public class BulkScanFL401ValidationService {
             Map<String, String> ocrApplicantRespondentFieldsMap) {
         int relationshipCounter = 0;
 
-        if (null != ocrApplicantRespondentFieldsMap && !ocrApplicantRespondentFieldsMap.isEmpty()) {
+        if (null != ocrApplicantRespondentFieldsMap) {
             for (Map.Entry<String, String> applicantRespondentRelationshipField :
                     ocrApplicantRespondentFieldsMap.entrySet()) {
                 if (isValidRelationshipApplicantRespondent(
