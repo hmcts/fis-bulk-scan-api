@@ -1,7 +1,7 @@
 {
   "status": "ERRORS",
   "warnings": [
-      "The following fields are not configured with our system: [applicant1_dateOfBirth] "
+      "The following fields are not configured with our system: [applicant1_dateOfBirth]"
     ],
   "errors": [
       "applicant_full_name is missing"
