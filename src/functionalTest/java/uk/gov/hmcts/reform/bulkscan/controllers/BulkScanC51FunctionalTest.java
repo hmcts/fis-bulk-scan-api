@@ -121,7 +121,7 @@ public class BulkScanC51FunctionalTest {
     }
 
     @Test
-    @DisplayName("should tranform C51 incoming request to CCD format ")
+    @DisplayName("should tranform C51 incoming request to CCD format")
     public void shouldTransformC51BulkScanRequest() throws Exception {
         String bulkScanTransformRequest = readFileFrom(C51_TRANSFORM_INPUT_PATH);
 
