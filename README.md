@@ -35,6 +35,7 @@ Create the image of the application by executing the following command:
 ./gradlew assemble
 ```
 
+
 Create docker image:
 
 ```bash
