@@ -224,8 +224,8 @@ dependencyManagement {
 }
 
 dependencies {
-compileOnly("org.projectlombok:lombok:1.18.24")
-testCompileOnly("org.projectlombok:lombok:1.18.16")
+compileOnly("org.projectlombok:lombok:1.18.26")
+testCompileOnly("org.projectlombok:lombok:1.18.26")
 annotationProcessor("org.projectlombok:lombok:1.18.16")
 testAnnotationProcessor("org.projectlombok:lombok:1.18.16")
 
