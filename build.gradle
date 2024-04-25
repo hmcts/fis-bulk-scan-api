@@ -218,7 +218,7 @@ dependencyManagement {
   dependencies {
 
     //CVE-2022-25857
-    dependency group: 'org.yaml',name: 'snakeyaml', version: '2.2'
+    dependency group: 'org.yaml',name: 'snakeyaml', version: '1.32'
 
   }
 }
