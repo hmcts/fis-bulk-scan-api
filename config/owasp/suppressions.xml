@@ -33,6 +33,8 @@
     <cve>CVE-2023-6378</cve>
     <cve>CVE-2023-35116</cve>
     <cve>CVE-2022-1471</cve>
+    <cve>CVE-2023-33202</cve>
+    <cve>CVE-2023-24998</cve>
   </suppress>
   <suppress>
     <notes>jakarta.annotation-api-1.3.5.jar</notes>
