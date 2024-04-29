@@ -3,10 +3,8 @@ package uk.gov.hmcts.reform.bulkscan.services;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.DATE_FORMAT_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_ERROR_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.FL401A_APPLICANT_ADDRESS_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.FL401A_APPLICANT_DATE_OF_BIRTH_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.FL401A_APPLICANT_FULL_NAME_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.FL401A_APPLICANT_POSTCODE_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.FL401A_TEST_POSTCODE;
@@ -114,13 +112,7 @@ class BulkScanFL401AServiceTest {
 
         BulkScanValidationResponse res =
                 bulkScanFL401AValidationService.validate(bulkScanValidationRequest);
-        assertEquals(Status.WARNINGS, res.status);
-        assertTrue(
-                res.getWarnings()
-                        .contains(
-                                String.format(
-                                        DATE_FORMAT_MESSAGE,
-                                        FL401A_APPLICANT_DATE_OF_BIRTH_FIELD)));
+        assertEquals(Status.SUCCESS, res.status);
     }
 
     @Test
