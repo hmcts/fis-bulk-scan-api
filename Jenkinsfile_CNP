@@ -47,6 +47,27 @@ withPipeline(type, product, component) {
   syncBranchesWithMaster(['demo', 'ithc', 'perftest'])
   enableSlackNotifications('#family-integration-devsch') //?
 
+  afterSuccess('sonarscan') {
+
+    publishHTML target: [
+      allowMissing         : true,
+      alwaysLinkToLastBuild: true,
+      keepAll              : true,
+      reportDir            : "build/reports/tests/test",
+      reportFiles          : "index.html",
+      reportName           : "Unit Tests Report"
+    ]
+
+    publishHTML target: [
+      allowMissing         : true,
+      alwaysLinkToLastBuild: true,
+      keepAll              : true,
+      reportDir            : "build/reports/tests/integration",
+      reportFiles          : "index.html",
+      reportName           : "Integration Test Report"
+    ]
+  }
+
   afterAlways('test') {
     builder.gradle('integration')
     builder.gradle('jacocoTestReport')

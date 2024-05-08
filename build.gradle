@@ -146,8 +146,6 @@ def sonarExclusions = [
 		'**uk/gov/hmcts/reform/bulkscan/model/**',
 		'**uk/gov/hmcts/reform/bulkscan/config/**',
 		'**uk/gov/hmcts/reform/bulkscan/constants/**',
-		'**uk/gov/hmcts/reform/bulkscan/helper/**',
-		'**uk/gov/hmcts/reform/bulkscan/utils/**',
 		'**uk/gov/hmcts/reform/bulkscan/enums/**'
 ]
 
@@ -157,6 +155,8 @@ sonarqube {
 	  property "sonar.projectKey", "uk.gov.hmcts.reform:fis-bulk-scan-api"
     property "sonar.exclusions", sonarExclusions.join(", ")
     property "sonar.coverage.jacoco.xmlReportPaths", "${jacocoTestReport.reports.xml.destination.path}"
+    property "sonar.pitest.mode", "reuseReport"
+    property "sonar.pitest.reportsDirectory", "build/reports/pitest"
   }
 }
 
