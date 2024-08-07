@@ -24,7 +24,7 @@ public final class Constants {
     public static final String C2_CASE_TYPE_VALIDATE_ENDPOINT = "/forms/C2/validate-ocr";
     public static final String EdgeCase_CASE_TYPE_VALIDATE_ENDPOINT =
             "/forms/EdgeCase/validate-ocr";
-    public static final String CASE_TYPE_TRANSFORM_ENDPOINT = "/transform-exception-record";
+    public static final String CASE_TYPE_TRANSFORM_ENDPOINT = "/transform-scanned-data";
 
     public static final String WELCOME_BULK_SCAN_API_MESSAGE =
             "Welcome to fis-bulk-scan-api-latest-24-May";

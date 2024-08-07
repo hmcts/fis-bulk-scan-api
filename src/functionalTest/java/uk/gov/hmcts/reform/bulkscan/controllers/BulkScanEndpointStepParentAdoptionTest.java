@@ -80,7 +80,7 @@ public class BulkScanEndpointStepParentAdoptionTest {
                         .body(bulkScanTransformRequest)
                         .when()
                         .contentType("application/json")
-                        .post("/transform-exception-record");
+                        .post("/transform-scanned-data");
 
         response.then().assertThat().statusCode(HttpStatus.OK.value());
 
