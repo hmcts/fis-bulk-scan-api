@@ -5,7 +5,7 @@ public class Constant {
 
     public static final String AUTH_HEADER = "serviceauthorization";
 
-    public static final String CASE_TYPE_TRANSFORM_ENDPOINT = "/transform-scanned-data";
+    public static final String CASE_TYPE_TRANSFORM_ENDPOINT = "/transform-exception-record";
 
     public static final String FGM001_VALIDATION_INPUT_PATH =
             "classpath:requests/bulk-scan-fgm001-validation-input.json";
@@ -78,5 +78,5 @@ public class Constant {
     public static final String BULK_SCAN_TEST_LOCAL_HOST = "http://localhost:8090";
     public static final String BULK_SCAN_TEST_URL = "TEST_URL";
     public static final String JSON_CONTENT_TYPE = "application/json";
-    public static final String TRANSFORM_EXCEPTION_URL = "/transform-scanned-data";
+    public static final String TRANSFORM_EXCEPTION_URL = "/transform-exception-record";
 }

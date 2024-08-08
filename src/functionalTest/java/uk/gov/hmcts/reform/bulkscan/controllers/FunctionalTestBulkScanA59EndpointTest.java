@@ -101,7 +101,7 @@ public class FunctionalTestBulkScanA59EndpointTest {
                         .body(bulkScanTransformRequest)
                         .when()
                         .contentType("application/json")
-                        .post("/transform-scanned-data");
+                        .post("/transform-exception-record");
 
         response.then().assertThat().statusCode(HttpStatus.OK.value());
 

@@ -109,7 +109,7 @@ public class BulkScanEndpointPostPlacementAdoptionTest {
                         .body(bulkScanTransformRequest)
                         .when()
                         .contentType("application/json")
-                        .post("/transform-scanned-data");
+                        .post("/transform-exception-record");
 
         response.then().assertThat().statusCode(HttpStatus.OK.value());
 
