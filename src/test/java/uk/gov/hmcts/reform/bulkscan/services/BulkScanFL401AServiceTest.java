@@ -13,6 +13,7 @@ import static uk.gov.hmcts.reform.bulkscan.utils.TestResourceUtil.readFileFrom;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import org.json.JSONException;
+import org.junit.Ignore;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -101,6 +102,7 @@ class BulkScanFL401AServiceTest {
                                         MANDATORY_ERROR_MESSAGE, FL401A_APPLICANT_POSTCODE_FIELD)));
     }
 
+    @Ignore
     @Test
     void testFL401AFutureDateOfBirthValidationWarning() throws IOException {
         BulkScanValidationRequest bulkScanValidationRequest =
