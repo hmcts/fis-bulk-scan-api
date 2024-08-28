@@ -20,6 +20,9 @@ spring:
     import: "optional:configtree:/mnt/secrets/"
   application:
     name: fis bulk scan api
+  mvc:
+    pathmatch:
+      matching-strategy: ant-path-matcher
   profiles:
     include:
       - c100-form
