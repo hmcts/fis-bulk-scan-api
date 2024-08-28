@@ -21,6 +21,6 @@ java:
         - idam-system-user-password
         - s2s-secret
         - name: AppInsightsInstrumentationKey
-          alias: APP_INSIGHTS_KEY
+          alias: APP_INSIGHTS_INSTRUMENTATION_KEY
         - postcode-lookup-token
 
