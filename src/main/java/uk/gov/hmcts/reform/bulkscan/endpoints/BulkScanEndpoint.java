@@ -87,6 +87,7 @@ public class BulkScanEndpoint {
 
         return ok(bulkScanResponse);
     }
+
     @PostMapping(value = "/transform-scanned-data")
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation(value = "", notes = " ")
