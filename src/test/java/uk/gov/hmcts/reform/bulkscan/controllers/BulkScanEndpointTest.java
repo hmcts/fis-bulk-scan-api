@@ -133,15 +133,15 @@ class BulkScanEndpointTest {
     void testC100TransformScannedDataService() {
         // Given
         BulkScanTransformationRequest bulkScanTransformationRequest =
-            BulkScanTransformationRequest.builder()
-                .ocrdatafields(TestDataUtil.getData())
-                .formType(C100.name())
-                .build();
+                BulkScanTransformationRequest.builder()
+                        .ocrdatafields(TestDataUtil.getData())
+                        .formType(C100.name())
+                        .build();
 
         // When
         ResponseEntity<BulkScanTransformationResponse> response =
-            bulkScanEndpoint.transformScannedData(
-                S2S_TOKEN, CONTENT_TYPE, bulkScanTransformationRequest);
+                bulkScanEndpoint.transformScannedData(
+                        S2S_TOKEN, CONTENT_TYPE, bulkScanTransformationRequest);
         // Then
 
         assertEquals(response.getStatusCode(), HttpStatus.OK);
@@ -151,15 +151,15 @@ class BulkScanEndpointTest {
     void testFL401TransformScannedDataService() {
         // Given
         BulkScanTransformationRequest bulkScanTransformationRequest =
-            BulkScanTransformationRequest.builder()
-                .ocrdatafields(TestDataUtil.getData())
-                .formType(FL401.name())
-                .build();
+                BulkScanTransformationRequest.builder()
+                        .ocrdatafields(TestDataUtil.getData())
+                        .formType(FL401.name())
+                        .build();
 
         // When
         ResponseEntity<BulkScanTransformationResponse> response =
-            bulkScanEndpoint.transformScannedData(
-                S2S_TOKEN, CONTENT_TYPE, bulkScanTransformationRequest);
+                bulkScanEndpoint.transformScannedData(
+                        S2S_TOKEN, CONTENT_TYPE, bulkScanTransformationRequest);
         // Then
         assertEquals(response.getStatusCode(), HttpStatus.OK);
     }
@@ -168,15 +168,15 @@ class BulkScanEndpointTest {
     void testFL403TransformScannedDataService() {
         // Given
         BulkScanTransformationRequest bulkScanTransformationRequest =
-            BulkScanTransformationRequest.builder()
-                .ocrdatafields(TestDataUtil.getData())
-                .formType(FL403.name())
-                .build();
+                BulkScanTransformationRequest.builder()
+                        .ocrdatafields(TestDataUtil.getData())
+                        .formType(FL403.name())
+                        .build();
 
         // When
         ResponseEntity<BulkScanTransformationResponse> response =
-            bulkScanEndpoint.transformScannedData(
-                S2S_TOKEN, CONTENT_TYPE, bulkScanTransformationRequest);
+                bulkScanEndpoint.transformScannedData(
+                        S2S_TOKEN, CONTENT_TYPE, bulkScanTransformationRequest);
         // Then
         assertEquals(response.getStatusCode(), HttpStatus.OK);
     }
