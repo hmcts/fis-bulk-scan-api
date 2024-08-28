@@ -88,6 +88,60 @@ public class BulkScanEndpoint {
         return ok(bulkScanResponse);
     }
 
+    @PostMapping(value = "/transform-exception-record")
+    @ResponseStatus(HttpStatus.CREATED)
+    @ApiOperation(value = "", notes = " ")
+    @ApiResponses(
+            value = {
+                @ApiResponse(
+                        code = 200,
+                        message =
+                                "Transformation of exception record into case data has been"
+                                        + " successful"),
+                @ApiResponse(
+                        code = 400,
+                        message =
+                                "Request failed due to malformed syntax (and only for that reason)."
+                                    + " This response results in a general error presented to the"
+                                    + " caseworker in CCD."),
+                @ApiResponse(code = 401, message = "Provided S2S token is missing or invalid"),
+                @ApiResponse(
+                        code = 403,
+                        message = "Calling service is not authorised to use the endpoint"),
+                @ApiResponse(
+                        code = 404,
+                        message =
+                                "Exception record is well-formed, but the data it contains is"
+                                    + " invalid and case can't be created. Messages from the body"
+                                    + " will be shown to the caseworker.")
+            })
+    public ResponseEntity<BulkScanTransformationResponse> transformationOcrData(
+            @RequestHeader(SERVICEAUTHORIZATION) String s2sToken,
+            @RequestHeader(CONTENT_TYPE) String contentType,
+            @RequestBody final BulkScanTransformationRequest bulkScanTransformationRequest) {
+
+        logger.info(
+                "Request received to transformationOcrData ocr data from service {}",
+                FileUtil.objectToJson(bulkScanTransformationRequest));
+
+        String serviceName = authService.authenticate(s2sToken);
+        logger.info(
+                "Request received to transformationOcrData ocr data from service {}", serviceName);
+
+        authService.assertIsAllowedToHandleService(serviceName);
+
+        BulkScanTransformationResponse bulkScanTransformationResponse =
+                Objects.requireNonNull(
+                                BulkScanServiceFactory.getService(
+                                        FormType.valueOf(
+                                                bulkScanTransformationRequest.getFormType())))
+                        .transform(bulkScanTransformationRequest);
+        logger.info(
+                "response received to transformationOcrData ocr data from service {}",
+                FileUtil.objectToJson(bulkScanTransformationResponse));
+        return new ResponseEntity<>(bulkScanTransformationResponse, HttpStatus.OK);
+    }
+
     @PostMapping(value = "/transform-scanned-data")
     @ResponseStatus(HttpStatus.CREATED)
     @ApiOperation(value = "", notes = " ")
@@ -139,60 +193,6 @@ public class BulkScanEndpoint {
         logger.info(
                 "response received to transformationOcrData ocr data from service {}",
                 FileUtil.objectToJson(bulkScanTransformationResponse));
-        return new ResponseEntity<>(bulkScanTransformationResponse, HttpStatus.OK);
-    }
-
-    @PostMapping(value = "/transform-exception-record")
-    @ResponseStatus(HttpStatus.CREATED)
-    @ApiOperation(value = "", notes = " ")
-    @ApiResponses(
-        value = {
-            @ApiResponse(
-                code = 200,
-                message =
-                    "Transformation of exception record into case data has been"
-                        + " successful"),
-            @ApiResponse(
-                code = 400,
-                message =
-                    "Request failed due to malformed syntax (and only for that reason)."
-                        + " This response results in a general error presented to the"
-                        + " caseworker in CCD."),
-            @ApiResponse(code = 401, message = "Provided S2S token is missing or invalid"),
-            @ApiResponse(
-                code = 403,
-                message = "Calling service is not authorised to use the endpoint"),
-            @ApiResponse(
-                code = 404,
-                message =
-                    "Exception record is well-formed, but the data it contains is"
-                        + " invalid and case can't be created. Messages from the body"
-                        + " will be shown to the caseworker.")
-        })
-    public ResponseEntity<BulkScanTransformationResponse> transformationOcrData(
-        @RequestHeader(SERVICEAUTHORIZATION) String s2sToken,
-        @RequestHeader(CONTENT_TYPE) String contentType,
-        @RequestBody final BulkScanTransformationRequest bulkScanTransformationRequest) {
-
-        logger.info(
-            "Request received to transformationOcrData ocr data from service {}",
-            FileUtil.objectToJson(bulkScanTransformationRequest));
-
-        String serviceName = authService.authenticate(s2sToken);
-        logger.info(
-            "Request received to transformationOcrData ocr data from service {}", serviceName);
-
-        authService.assertIsAllowedToHandleService(serviceName);
-
-        BulkScanTransformationResponse bulkScanTransformationResponse =
-            Objects.requireNonNull(
-                    BulkScanServiceFactory.getService(
-                        FormType.valueOf(
-                            bulkScanTransformationRequest.getFormType())))
-                .transform(bulkScanTransformationRequest);
-        logger.info(
-            "response received to transformationOcrData ocr data from service {}",
-            FileUtil.objectToJson(bulkScanTransformationResponse));
         return new ResponseEntity<>(bulkScanTransformationResponse, HttpStatus.OK);
     }
 
