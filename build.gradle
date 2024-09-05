@@ -203,10 +203,10 @@ jcenter()
 
 def versions = [
 springfoxSwagger  : '3.0.0',
-s2sClient         : '4.0.0',
+s2sClient         : '4.0.3',
 springCloud       : '3.1.3',
 commonsIo         :  '2.7',
-reformsJavaLogging: '5.1.7'
+reformsJavaLogging: '6.1.6'
 ]
 
 ext {
@@ -224,10 +224,10 @@ dependencyManagement {
 }
 
 dependencies {
-compileOnly("org.projectlombok:lombok:1.18.30")
-testCompileOnly("org.projectlombok:lombok:1.18.30")
-annotationProcessor("org.projectlombok:lombok:1.18.30")
-testAnnotationProcessor("org.projectlombok:lombok:1.18.30")
+compileOnly("org.projectlombok:lombok:1.18.34")
+testCompileOnly("org.projectlombok:lombok:1.18.34")
+annotationProcessor("org.projectlombok:lombok:1.18.34")
+testAnnotationProcessor("org.projectlombok:lombok:1.18.34")
 
 implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web'
 implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator'
@@ -236,19 +236,22 @@ implementation group: 'org.springframework.boot', name: 'spring-boot-starter-jso
 
 implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-bootstrap', version: versions.springCloud
 
-implementation group: 'uk.gov.hmcts.reform', name: 'service-auth-provider-client', version: versions.s2sClient
+//implementation group: 'uk.gov.hmcts.reform', name: 'service-auth-provider-client', version: versions.s2sClient
+implementation group: 'com.github.hmcts', name: 'service-auth-provider-java-client', version: versions.s2sClient
 
 implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.6.8'
 
-implementation group: 'uk.gov.hmcts.reform', name: 'logging', version: versions.reformsJavaLogging
-implementation group: 'uk.gov.hmcts.reform', name: 'logging-appinsights', version: versions.reformsJavaLogging
-implementation group: 'uk.gov.hmcts.reform', name: 'logging-spring', version: versions.reformsJavaLogging
+//implementation group: 'uk.gov.hmcts.reform', name: 'logging', version: versions.reformsJavaLogging
+//implementation group: 'uk.gov.hmcts.reform', name: 'logging-appinsights', version: versions.reformsJavaLogging
+//implementation group: 'uk.gov.hmcts.reform', name: 'logging-spring', version: versions.reformsJavaLogging
+implementation group: 'com.github.hmcts.java-logging', name: 'logging', version: versions.reformsJavaLogging
+implementation group: 'com.github.hmcts.java-logging', name: 'logging-appinsights', version: versions.reformsJavaLogging
 
 implementation group: 'com.github.hmcts.java-logging', name: 'logging', version: '6.0.1'
 
 implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: log4JVersion
 implementation group: 'org.apache.logging.log4j', name: 'log4j-to-slf4j', version: log4JVersion
-implementation 'org.projectlombok:lombok:1.18.30'
+implementation 'org.projectlombok:lombok:1.18.34'
 //implementation group: 'io.springfox', name: 'springfox-boot-starter', version: '3.0.0'
 implementation group: 'io.springfox', name: 'springfox-swagger2', version: '3.0.0'
 implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '3.0.0'
@@ -264,8 +267,9 @@ implementation(group: 'org.springframework.cloud', name: 'spring-cloud-starter-o
 	exclude group: 'io.reactivex', module: 'rxnetty-contexts'
 	exclude group: 'io.reactivex', module: 'rxnetty-servo'
 	}
-
-functionalTestImplementation group: 'uk.gov.hmcts.reform', name: 'service-auth-provider-client', version: versions.s2sClient
+implementation group: 'net.logstash.logback', name: 'logstash-logback-encoder', version:'7.4'
+//functionalTestImplementation group: 'uk.gov.hmcts.reform', name: 'service-auth-provider-client', version: versions.s2sClient
+functionalTestImplementation group: 'com.github.hmcts', name: 'service-auth-provider-java-client', version: versions.s2sClient
 
 
 testImplementation(platform('org.junit:junit-bom:5.8.2'))
