@@ -175,7 +175,7 @@ public class BulkScanEndpoint {
             @RequestBody final BulkScanTransformationRequest bulkScanTransformationRequest) {
 
         logger.info(
-                "Request received to transformScannedData ocr data from service {}",
+                "Request received to transformScannedData ocr data from service new {}",
                 FileUtil.objectToJson(bulkScanTransformationRequest));
 
         String serviceName = authService.authenticate(s2sToken);
