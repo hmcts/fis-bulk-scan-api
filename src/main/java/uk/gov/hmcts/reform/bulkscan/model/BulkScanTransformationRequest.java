@@ -40,6 +40,6 @@ public class BulkScanTransformationRequest {
     @JsonProperty("scanned_documents")
     public List<ScannedDocuments> scannedDocuments;
 
-    @JsonProperty("ocr_data_fields")
+    @JsonProperty("Metadata_file")
     public List<OcrDataField> ocrdatafields;
 }
