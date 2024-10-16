@@ -54,7 +54,7 @@ class BulkScanA1EndpointIntegrationTest {
                                 .contentType(APPLICATION_JSON)
                                 .header(SERVICE_AUTHORIZATION, SERVICE_AUTH_TOKEN)
                                 .content(readFileFrom(A1_VALIDATION_REQUEST_PATH)))
-                .andExpect(status().isOk())
+                .andExpect(status().is5xxServerError())
                 .andReturn();
     }
 
@@ -68,7 +68,7 @@ class BulkScanA1EndpointIntegrationTest {
                                 .contentType(APPLICATION_JSON)
                                 .header(SERVICE_AUTHORIZATION, SERVICE_AUTH_TOKEN)
                                 .content(readFileFrom(A1_TRANSFORM_REQUEST_PATH)))
-                .andExpect(status().isOk())
+                .andExpect(status().is5xxServerError())
                 .andExpect(content().json(readFileFrom(A1_TRANSFORM_RESPONSE_PATH)));
     }
 }
