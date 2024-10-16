@@ -1,17 +1,18 @@
 package uk.gov.hmcts.reform.bulkscan.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class BulkScanTransformationRequest {
+public class BulkScanTransformationRequestNew {
 
     @JsonProperty("case_type_id")
     public String caseTypeId;
@@ -40,6 +41,6 @@ public class BulkScanTransformationRequest {
     @JsonProperty("scanned_documents")
     public List<ScannedDocuments> scannedDocuments;
 
-    @JsonProperty("ocr_data_fields")
-    public List<OcrDataField> ocrdatafields;
+    @JsonProperty("Metadata_file")
+    public List<OcrDataFieldNew> ocrdatafields;
 }

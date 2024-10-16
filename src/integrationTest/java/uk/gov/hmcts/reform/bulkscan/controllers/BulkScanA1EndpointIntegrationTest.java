@@ -55,11 +55,10 @@ class BulkScanA1EndpointIntegrationTest {
                                 .contentType(APPLICATION_JSON)
                                 .header(SERVICE_AUTHORIZATION, SERVICE_AUTH_TOKEN)
                                 .content(readFileFrom(A1_VALIDATION_REQUEST_PATH)))
-                .andExpect(status().is5xxServerError())
+                .andExpect(status().isOk())
                 .andReturn();
     }
 
-    @Ignore
     @DisplayName("should test transform request case type A1")
     @Test
     void shouldTestTransformRequestCaseTypeA1() throws Exception {
@@ -70,7 +69,7 @@ class BulkScanA1EndpointIntegrationTest {
                                 .contentType(APPLICATION_JSON)
                                 .header(SERVICE_AUTHORIZATION, SERVICE_AUTH_TOKEN)
                                 .content(readFileFrom(A1_TRANSFORM_REQUEST_PATH)))
-                .andExpect(status().is5xxServerError())
+                .andExpect(status().isOk())
                 .andExpect(content().json(readFileFrom(A1_TRANSFORM_RESPONSE_PATH)));
     }
 }
