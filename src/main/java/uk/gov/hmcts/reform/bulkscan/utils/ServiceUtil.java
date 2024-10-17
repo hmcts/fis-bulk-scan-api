@@ -38,12 +38,11 @@ public final class ServiceUtil {
         Map<String, String> caseTypeAndEventId = transformationConfig.getCaseFields();
 
         return BulkScanTransformationResponse.builder()
-                        .caseCreationDetails(
-                            CaseCreationDetails.builder()
-                                    .caseTypeId(caseTypeAndEventId.get(CASE_TYPE_ID))
-                                    .eventId(caseTypeAndEventId.get(EVENT_ID))
-                                    .caseData(populatedMap)
-                                    .build());
+                .caseCreationDetails(
+                        CaseCreationDetails.builder()
+                                .caseTypeId(caseTypeAndEventId.get(CASE_TYPE_ID))
+                                .eventId(caseTypeAndEventId.get(EVENT_ID))
+                                .caseData(populatedMap)
+                                .build());
     }
-
 }
