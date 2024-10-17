@@ -198,20 +198,7 @@ public class BulkScanFL401Service implements BulkScanService {
 
     @Override
     public BulkScanTransformationResponse transformNew(BulkScanTransformationRequestNew bulkScanTransformationRequest) {
-        return transform(BulkScanTransformationRequest.builder()
-                             .ocrdatafields(bulkScanTransformationRequest.getOcrdatafields()
-                                                .stream().map(ocr -> OcrDataField.builder().name(ocr.getName())
-                                     .value(ocr.getValue()).build()).toList())
-                             .formType(bulkScanTransformationRequest.formType)
-                             .caseTypeId(bulkScanTransformationRequest.caseTypeId)
-                             .deliveryDate(bulkScanTransformationRequest.deliveryDate)
-                             .id(bulkScanTransformationRequest.id)
-                             .journeyClassification(bulkScanTransformationRequest.journeyClassification)
-                             .openingDate(bulkScanTransformationRequest.openingDate)
-                             .poBox(bulkScanTransformationRequest.poBox)
-                             .poBoxJurisdiction(bulkScanTransformationRequest.poBoxJurisdiction)
-                             .scannedDocuments(bulkScanTransformationRequest.scannedDocuments)
-                             .build());
+        return null;
     }
 
     @Override
