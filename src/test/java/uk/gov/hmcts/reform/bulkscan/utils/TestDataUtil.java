@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
+import uk.gov.hmcts.reform.bulkscan.model.OcrDataFieldNew;
 import uk.gov.hmcts.reform.bulkscan.model.ScanDocument;
 import uk.gov.hmcts.reform.bulkscan.model.ScannedDocuments;
 
@@ -91,6 +92,87 @@ public final class TestDataUtil {
         fieldList.add(ocrAddressField);
 
         OcrDataField bailConditionEndDate = new OcrDataField();
+        bailConditionEndDate.setName("respondent_BailConditionsEndDate");
+        bailConditionEndDate.setValue("2012-feb-02");
+        fieldList.add(bailConditionEndDate);
+
+        return fieldList;
+    }
+
+    public static List<OcrDataFieldNew> getDataNew() {
+        List<OcrDataFieldNew> fieldList = new ArrayList<>();
+        OcrDataFieldNew ocrDataFirstNameField = new OcrDataFieldNew();
+        ocrDataFirstNameField.setName("appellant_firstName");
+        ocrDataFirstNameField.setValue(FIRST_NAME);
+        fieldList.add(ocrDataFirstNameField);
+
+        OcrDataFieldNew ocrDataLastNameField = new OcrDataFieldNew();
+        ocrDataLastNameField.setName("appellant_lastName");
+        ocrDataLastNameField.setValue("LastName");
+        fieldList.add(ocrDataLastNameField);
+
+        OcrDataFieldNew ocrDataChildFirstNameField = new OcrDataFieldNew();
+        ocrDataChildFirstNameField.setName("child_firstName");
+        ocrDataChildFirstNameField.setValue("LastName");
+        fieldList.add(ocrDataChildFirstNameField);
+
+        OcrDataFieldNew ocrDataChildLastNameField = new OcrDataFieldNew();
+        ocrDataChildLastNameField.setName("child_lastName");
+        ocrDataChildLastNameField.setValue("LastName");
+        fieldList.add(ocrDataChildLastNameField);
+
+        OcrDataFieldNew ocrDataAppellantChildRelationshipField = new OcrDataFieldNew();
+        ocrDataAppellantChildRelationshipField.setName("appellant_childRelationship");
+        ocrDataAppellantChildRelationshipField.setValue("LastName");
+        fieldList.add(ocrDataAppellantChildRelationshipField);
+
+        OcrDataFieldNew ocrDataEmergencyProtectionOrder = new OcrDataFieldNew();
+        ocrDataEmergencyProtectionOrder.setName("emergency_protection_order");
+        ocrDataEmergencyProtectionOrder.setValue("7777777");
+        fieldList.add(ocrDataEmergencyProtectionOrder);
+
+        OcrDataFieldNew ocrEmailField = new OcrDataFieldNew();
+        ocrEmailField.setName("appellant_email");
+        ocrEmailField.setValue("test@test.com");
+        fieldList.add(ocrEmailField);
+
+        OcrDataFieldNew ocrNumericField = new OcrDataFieldNew();
+        ocrNumericField.setName("appellant_case_number");
+        ocrNumericField.setValue("1311231231");
+        fieldList.add(ocrNumericField);
+
+        OcrDataFieldNew ocrDateField = new OcrDataFieldNew();
+        ocrDateField.setName("appellant_dateOfBirth");
+        ocrDateField.setValue("2/02/2022");
+        fieldList.add(ocrDateField);
+
+        OcrDataFieldNew ocrDateOtherCourtCaseDateField = new OcrDataFieldNew();
+        ocrDateOtherCourtCaseDateField.setName("other_court_case_date");
+        ocrDateOtherCourtCaseDateField.setValue("2/02/2022");
+        fieldList.add(ocrDateOtherCourtCaseDateField);
+
+        OcrDataFieldNew ocrDateAuthorisedFamilyMediatorSignedDateField = new OcrDataFieldNew();
+        ocrDateAuthorisedFamilyMediatorSignedDateField.setName(
+            "authorised_family_mediator_signed_date");
+        ocrDateAuthorisedFamilyMediatorSignedDateField.setValue("2/02/2022");
+        fieldList.add(ocrDateAuthorisedFamilyMediatorSignedDateField);
+
+        OcrDataFieldNew ocrPostCodeField = new OcrDataFieldNew();
+        ocrPostCodeField.setName("appellant_postCode");
+        ocrPostCodeField.setValue("TW3 1NN");
+        fieldList.add(ocrPostCodeField);
+
+        OcrDataFieldNew ocrContactNumberField = new OcrDataFieldNew();
+        ocrContactNumberField.setName("appellant_contactNumber");
+        ocrContactNumberField.setValue("+447405878672");
+        fieldList.add(ocrContactNumberField);
+
+        OcrDataFieldNew ocrAddressField = new OcrDataFieldNew();
+        ocrAddressField.setName("appellant_address");
+        ocrAddressField.setValue("123 test street, London");
+        fieldList.add(ocrAddressField);
+
+        OcrDataFieldNew bailConditionEndDate = new OcrDataFieldNew();
         bailConditionEndDate.setName("respondent_BailConditionsEndDate");
         bailConditionEndDate.setValue("2012-feb-02");
         fieldList.add(bailConditionEndDate);

@@ -93,7 +93,8 @@ public class BulkScanC100Service implements BulkScanService {
                                              OcrDataField ocrDataField = new OcrDataField();
                                              ocrDataField.setName(ocr.getName());
                                              ocrDataField.setValue(ocr.getValue());
-                                             return ocrDataField;}).toList())
+                                             return ocrDataField;
+                                         }).toList())
                       .formType(bulkScanTransformationRequest.formType)
                       .caseTypeId(bulkScanTransformationRequest.caseTypeId)
                       .deliveryDate(bulkScanTransformationRequest.deliveryDate)
