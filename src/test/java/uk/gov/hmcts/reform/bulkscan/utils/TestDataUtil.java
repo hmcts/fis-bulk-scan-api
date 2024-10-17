@@ -153,7 +153,7 @@ public final class TestDataUtil {
 
         OcrDataFieldNew ocrDateAuthorisedFamilyMediatorSignedDateField = new OcrDataFieldNew();
         ocrDateAuthorisedFamilyMediatorSignedDateField.setName(
-            "authorised_family_mediator_signed_date");
+                "authorised_family_mediator_signed_date");
         ocrDateAuthorisedFamilyMediatorSignedDateField.setValue("2/02/2022");
         fieldList.add(ocrDateAuthorisedFamilyMediatorSignedDateField);
 

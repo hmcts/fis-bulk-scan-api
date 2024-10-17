@@ -99,7 +99,7 @@ public class BulkScanC100Service implements BulkScanService {
                                                     ocrDataField.setValue(ocr.getValue());
                                                     return ocrDataField;
                                                 })
-                                          .toList())
+                                        .toList())
                         .formType(bulkScanTransformationRequest.formType)
                         .caseTypeId(bulkScanTransformationRequest.caseTypeId)
                         .deliveryDate(bulkScanTransformationRequest.deliveryDate)
@@ -121,9 +121,7 @@ public class BulkScanC100Service implements BulkScanService {
         Map<String, String> inputFieldsMap =
                 inputFieldsList.stream()
                         .filter(ocrDataField -> StringUtils.isNotEmpty(ocrDataField.getName()))
-                        .collect(
-                                Collectors.toMap(
-                                    OcrDataField::getName, this::getValue));
+                        .collect(Collectors.toMap(OcrDataField::getName, this::getValue));
 
         Map<String, Object> populatedMap =
                 (Map<String, Object>)

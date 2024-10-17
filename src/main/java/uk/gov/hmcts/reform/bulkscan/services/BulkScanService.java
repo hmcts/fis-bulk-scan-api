@@ -22,7 +22,7 @@ public interface BulkScanService {
             BulkScanTransformationRequest bulkScanTransformationRequest);
 
     BulkScanTransformationResponse transformNew(
-        BulkScanTransformationRequestNew bulkScanTransformationRequest);
+            BulkScanTransformationRequestNew bulkScanTransformationRequest);
 
     default Map<String, String> getOcrDataFieldAsMap(List<OcrDataField> ocrdatafields) {
         return ocrdatafields.stream()

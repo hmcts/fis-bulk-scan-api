@@ -152,7 +152,7 @@ class BulkScanEndpointTest {
     void testFL401TransformScannedDataService() {
         // Given
         BulkScanTransformationRequestNew bulkScanTransformationRequest =
-            BulkScanTransformationRequestNew.builder()
+                BulkScanTransformationRequestNew.builder()
                         .ocrdatafields(TestDataUtil.getDataNew())
                         .formType(FL401.name())
                         .build();
@@ -169,7 +169,7 @@ class BulkScanEndpointTest {
     void testFL403TransformScannedDataService() {
         // Given
         BulkScanTransformationRequestNew bulkScanTransformationRequest =
-            BulkScanTransformationRequestNew.builder()
+                BulkScanTransformationRequestNew.builder()
                         .ocrdatafields(TestDataUtil.getDataNew())
                         .formType(FL403.name())
                         .build();
