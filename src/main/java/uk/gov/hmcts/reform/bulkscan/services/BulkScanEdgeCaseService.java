@@ -11,7 +11,6 @@ import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.FormType;
-import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
 
 @NoArgsConstructor
 @Service
