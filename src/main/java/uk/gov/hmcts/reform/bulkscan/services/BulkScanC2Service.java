@@ -38,7 +38,8 @@ public class BulkScanC2Service implements BulkScanService {
     }
 
     @Override
-    public BulkScanTransformationResponse transformNew(BulkScanTransformationRequestNew bulkScanTransformationRequest) {
+    public BulkScanTransformationResponse transformNew(
+            BulkScanTransformationRequestNew bulkScanTransformationRequest) {
         return null;
     }
 }

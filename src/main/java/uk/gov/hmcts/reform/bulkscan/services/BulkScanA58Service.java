@@ -112,7 +112,8 @@ public class BulkScanA58Service implements BulkScanService {
     }
 
     @Override
-    public BulkScanTransformationResponse transformNew(BulkScanTransformationRequestNew bulkScanTransformationRequest) {
+    public BulkScanTransformationResponse transformNew(
+            BulkScanTransformationRequestNew bulkScanTransformationRequest) {
         return null;
     }
 

@@ -86,25 +86,30 @@ public class BulkScanC100Service implements BulkScanService {
     }
 
     @Override
-    public BulkScanTransformationResponse transformNew(BulkScanTransformationRequestNew bulkScanTransformationRequest) {
-        return transform(BulkScanTransformationRequest.builder()
-                      .ocrdatafields(bulkScanTransformationRequest.getOcrdatafields()
-                                         .stream().map(ocr -> {
-                                             OcrDataField ocrDataField = new OcrDataField();
-                                             ocrDataField.setName(ocr.getName());
-                                             ocrDataField.setValue(ocr.getValue());
-                                             return ocrDataField;
-                                         }).toList())
-                      .formType(bulkScanTransformationRequest.formType)
-                      .caseTypeId(bulkScanTransformationRequest.caseTypeId)
-                      .deliveryDate(bulkScanTransformationRequest.deliveryDate)
-                      .id(bulkScanTransformationRequest.id)
-                      .journeyClassification(bulkScanTransformationRequest.journeyClassification)
-                      .openingDate(bulkScanTransformationRequest.openingDate)
-                      .poBox(bulkScanTransformationRequest.poBox)
-                      .poBoxJurisdiction(bulkScanTransformationRequest.poBoxJurisdiction)
-                      .scannedDocuments(bulkScanTransformationRequest.scannedDocuments)
-                      .build());
+    public BulkScanTransformationResponse transformNew(
+            BulkScanTransformationRequestNew bulkScanTransformationRequest) {
+        return transform(
+                BulkScanTransformationRequest.builder()
+                        .ocrdatafields(
+                                bulkScanTransformationRequest.getOcrdatafields().stream()
+                                        .map(
+                                                ocr -> {
+                                                    OcrDataField ocrDataField = new OcrDataField();
+                                                    ocrDataField.setName(ocr.getName());
+                                                    ocrDataField.setValue(ocr.getValue());
+                                                    return ocrDataField;
+                                                })
+                                          .toList())
+                        .formType(bulkScanTransformationRequest.formType)
+                        .caseTypeId(bulkScanTransformationRequest.caseTypeId)
+                        .deliveryDate(bulkScanTransformationRequest.deliveryDate)
+                        .id(bulkScanTransformationRequest.id)
+                        .journeyClassification(bulkScanTransformationRequest.journeyClassification)
+                        .openingDate(bulkScanTransformationRequest.openingDate)
+                        .poBox(bulkScanTransformationRequest.poBox)
+                        .poBoxJurisdiction(bulkScanTransformationRequest.poBoxJurisdiction)
+                        .scannedDocuments(bulkScanTransformationRequest.scannedDocuments)
+                        .build());
     }
 
     @Override

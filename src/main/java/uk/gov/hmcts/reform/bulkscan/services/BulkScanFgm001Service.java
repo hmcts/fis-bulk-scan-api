@@ -104,7 +104,8 @@ public class BulkScanFgm001Service implements BulkScanService {
     }
 
     @Override
-    public BulkScanTransformationResponse transformNew(BulkScanTransformationRequestNew bulkScanTransformationRequest) {
+    public BulkScanTransformationResponse transformNew(
+            BulkScanTransformationRequestNew bulkScanTransformationRequest) {
         return null;
     }
 }
