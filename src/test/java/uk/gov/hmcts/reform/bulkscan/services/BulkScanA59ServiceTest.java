@@ -10,6 +10,8 @@ import static uk.gov.hmcts.reform.bulkscan.utils.TestResourceUtil.readFileFrom;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import org.json.JSONException;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Spy;
@@ -19,6 +21,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
+import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequestNew;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
@@ -116,5 +119,16 @@ class BulkScanA59ServiceTest {
                 readFileFrom(A59_TRANSFORM_RESPONSE_PATH),
                 mapper.writeValueAsString(bulkScanTransformationResponse),
                 true);
+    }
+
+    @Test
+    @DisplayName("A59 transform new success.")
+    void testA59TransformNewSuccess() {
+        BulkScanTransformationRequestNew bulkScanTransformationRequest =
+                new BulkScanTransformationRequestNew();
+
+        BulkScanTransformationResponse res =
+                bulkScanValidationService.transformNew(bulkScanTransformationRequest);
+        Assertions.assertNull(res);
     }
 }

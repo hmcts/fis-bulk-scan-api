@@ -16,6 +16,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
+import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequestNew;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
@@ -88,5 +89,15 @@ class BulkScanC2ServiceTest {
         BulkScanTransformationResponse bulkScanTransformationResponse =
                 bulkScanValidationService.transform(mock(BulkScanTransformationRequest.class));
         Assertions.assertNull(bulkScanTransformationResponse);
+    }
+
+    @Test
+    void testC2TransformNew() {
+        BulkScanTransformationRequestNew bulkScanTransformationRequest =
+                new BulkScanTransformationRequestNew();
+
+        BulkScanTransformationResponse res =
+                bulkScanValidationService.transformNew(bulkScanTransformationRequest);
+        Assertions.assertNull(res);
     }
 }
