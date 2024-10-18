@@ -13,6 +13,7 @@ import static uk.gov.hmcts.reform.bulkscan.utils.TestResourceUtil.readFileFrom;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import org.json.JSONException;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -22,6 +23,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
+import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequestNew;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
@@ -90,5 +92,15 @@ class BulkScanFgm001ServiceTest {
                 bulkScanValidationService.transform(bulkScanTransformationRequest);
         JSONAssert.assertEquals(
                 readFileFrom(FGM001_TRANSFORM_RESPONSE_PATH), mapper.writeValueAsString(res), true);
+    }
+
+    @Test
+    void testFgm001TransformNew() {
+        BulkScanTransformationRequestNew bulkScanTransformationRequest =
+                new BulkScanTransformationRequestNew();
+
+        BulkScanTransformationResponse res =
+                bulkScanValidationService.transformNew(bulkScanTransformationRequest);
+        Assertions.assertNull(res);
     }
 }

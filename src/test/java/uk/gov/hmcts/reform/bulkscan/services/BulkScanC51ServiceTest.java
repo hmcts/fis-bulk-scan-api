@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
 import org.json.JSONException;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.skyscreamer.jsonassert.JSONAssert;
@@ -24,6 +25,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
+import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequestNew;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
@@ -125,5 +127,15 @@ class BulkScanC51ServiceTest {
                 readFileFrom(C51_TRANSFORM_RESPONSE_PATH),
                 mapper.writeValueAsString(bulkScanTransformationResponse),
                 true);
+    }
+
+    @Test
+    void testC51TransformNew() {
+        BulkScanTransformationRequestNew bulkScanTransformationRequest =
+                new BulkScanTransformationRequestNew();
+
+        BulkScanTransformationResponse res =
+                bulkScanValidationService.transformNew(bulkScanTransformationRequest);
+        Assertions.assertNull(res);
     }
 }

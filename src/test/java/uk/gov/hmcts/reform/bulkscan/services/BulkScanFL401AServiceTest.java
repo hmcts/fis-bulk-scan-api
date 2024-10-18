@@ -24,6 +24,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
+import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequestNew;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
@@ -127,5 +128,15 @@ class BulkScanFL401AServiceTest {
                 bulkScanFL401AValidationService.transform(bulkScanTransformationRequest);
         JSONAssert.assertEquals(
                 readFileFrom(FL401A_TRANSFORM_RESPONSE_PATH), mapper.writeValueAsString(res), true);
+    }
+
+    @Test
+    void testFl401aTransformNew() {
+        BulkScanTransformationRequestNew bulkScanTransformationRequest =
+                new BulkScanTransformationRequestNew();
+
+        BulkScanTransformationResponse res =
+                bulkScanFL401AValidationService.transformNew(bulkScanTransformationRequest);
+        Assertions.assertNull(res);
     }
 }

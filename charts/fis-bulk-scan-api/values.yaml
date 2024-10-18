@@ -16,10 +16,6 @@ java:
   keyVaults:
     fis-kv:
       secrets:
-        - idam-ui-secret
-        - idam-system-user-name
-        - idam-system-user-password
-        - s2s-secret
         - name: AppInsightsInstrumentationKey
           alias: APP_INSIGHTS_INSTRUMENTATION_KEY
         - postcode-lookup-token

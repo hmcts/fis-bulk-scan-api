@@ -40,6 +40,7 @@ import uk.gov.hmcts.reform.bulkscan.group.util.BulkScanGroupValidatorUtil;
 import uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper;
 import uk.gov.hmcts.reform.bulkscan.helper.BulkScanValidationHelper;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
+import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequestNew;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
@@ -193,6 +194,12 @@ public class BulkScanFL401Service implements BulkScanService {
     @Override
     public FormType getCaseType() {
         return FormType.FL401;
+    }
+
+    @Override
+    public BulkScanTransformationResponse transformNew(
+            BulkScanTransformationRequestNew bulkScanTransformationRequest) {
+        return null;
     }
 
     @Override
