@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class BulkScanTransformationRequestNew {
 
-    @JsonProperty("case_type_id")
+    @JsonProperty("exception_record_case_type_id")
     public String caseTypeId;
 
     @JsonProperty("id")
@@ -40,6 +40,15 @@ public class BulkScanTransformationRequestNew {
     @JsonProperty("scanned_documents")
     public List<ScannedDocuments> scannedDocuments;
 
-    @JsonProperty("Metadata_file")
+    @JsonProperty("ocr_data_fields")
     public List<OcrDataFieldNew> ocrdatafields;
+
+    @JsonProperty("exception_record_id")
+    public String exceptionRecordId;
+
+    @JsonProperty("envelope_id")
+    public String envelopeId;
+
+    @JsonProperty("is_automated_process")
+    public boolean isAutomatedProcess;
 }

@@ -7,9 +7,9 @@ import lombok.ToString;
 @Data
 @ToString
 public class OcrDataFieldNew {
-    @JsonProperty("metadata_field_name")
+    @JsonProperty("name")
     public String name;
 
-    @JsonProperty("metadata_field_value")
+    @JsonProperty("value")
     public String value;
 }
