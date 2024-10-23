@@ -1,6 +1,8 @@
 package uk.gov.hmcts.reform.bulkscan.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+
+import java.time.LocalDateTime;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -16,9 +18,6 @@ public class BulkScanTransformationRequestNew {
     @JsonProperty("exception_record_case_type_id")
     public String caseTypeId;
 
-    @JsonProperty("id")
-    public String id;
-
     @JsonProperty("po_box")
     public String poBox;
 
@@ -32,10 +31,10 @@ public class BulkScanTransformationRequestNew {
     public JourneyClassification journeyClassification;
 
     @JsonProperty("delivery_date")
-    public String deliveryDate;
+    public LocalDateTime deliveryDate;
 
     @JsonProperty("opening_date")
-    public String openingDate;
+    public LocalDateTime openingDate;
 
     @JsonProperty("scanned_documents")
     public List<ScannedDocuments> scannedDocuments;
@@ -50,5 +49,5 @@ public class BulkScanTransformationRequestNew {
     public String envelopeId;
 
     @JsonProperty("is_automated_process")
-    public boolean isAutomatedProcess;
+    public Boolean isAutomatedProcess;
 }
