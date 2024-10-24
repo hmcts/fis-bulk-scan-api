@@ -17,7 +17,6 @@ import uk.gov.hmcts.reform.bulkscan.config.BulkScanTransformConfigManager;
 import uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper;
 import uk.gov.hmcts.reform.bulkscan.helper.BulkScanValidationHelper;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
-import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequestNew;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
@@ -67,12 +66,6 @@ public class BulkScanC63Service implements BulkScanService {
         return response;
     }
 
-    @Override
-    public BulkScanTransformationResponse transformNew(
-            BulkScanTransformationRequestNew bulkScanTransformationRequest) {
-        return null;
-    }
-
     /**
      * This method transforms c63.
      *
@@ -88,7 +81,7 @@ public class BulkScanC63Service implements BulkScanService {
 
         FormType formType = C63;
 
-        caseData.put(BULK_SCAN_CASE_REFERENCE, bulkScanTransformationRequest.getId());
+        caseData.put(BULK_SCAN_CASE_REFERENCE, bulkScanTransformationRequest.getEnvelopeId());
 
         Map<String, String> inputFieldsMap = getOcrDataFieldAsMap(inputFieldsList);
 

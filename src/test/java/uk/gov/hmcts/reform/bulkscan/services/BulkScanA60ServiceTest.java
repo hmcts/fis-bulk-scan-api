@@ -16,7 +16,6 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import org.json.JSONException;
-import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -26,7 +25,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
-import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequestNew;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
@@ -192,15 +190,5 @@ class BulkScanA60ServiceTest {
                 readFileFrom(A60_TRANSFORM_RESPONSE_PATH),
                 mapper.writeValueAsString(bulkScanTransformationResponse),
                 true);
-    }
-
-    @Test
-    @DisplayName("A60 transform new success.")
-    void testA60TransformNewSuccess() {
-        BulkScanTransformationRequestNew bulkScanTransformationRequest =
-                new BulkScanTransformationRequestNew();
-        BulkScanTransformationResponse res =
-                bulkScanValidationService.transformNew(bulkScanTransformationRequest);
-        Assertions.assertNull(res);
     }
 }

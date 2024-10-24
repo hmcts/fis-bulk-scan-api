@@ -5,7 +5,6 @@ import java.util.Map;
 import java.util.stream.Collectors;
 import org.springframework.util.StringUtils;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
-import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequestNew;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
@@ -20,9 +19,6 @@ public interface BulkScanService {
 
     BulkScanTransformationResponse transform(
             BulkScanTransformationRequest bulkScanTransformationRequest);
-
-    BulkScanTransformationResponse transformNew(
-            BulkScanTransformationRequestNew bulkScanTransformationRequest);
 
     default Map<String, String> getOcrDataFieldAsMap(List<OcrDataField> ocrdatafields) {
         return ocrdatafields.stream()

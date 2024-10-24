@@ -25,7 +25,7 @@ public final class ServiceUtil {
                     Map<String, String> inputFieldsMap,
                     BulkScanTransformConfigManager.TransformationConfig transformationConfig,
                     Map<String, Object> caseData) {
-        caseData.put(BULK_SCAN_CASE_REFERENCE, bulkScanTransformationRequest.getId());
+        caseData.put(BULK_SCAN_CASE_REFERENCE, bulkScanTransformationRequest.getEnvelopeId());
 
         Map<String, Object> populatedMap =
                 (Map)

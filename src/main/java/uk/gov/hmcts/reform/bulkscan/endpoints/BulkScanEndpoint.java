@@ -26,7 +26,6 @@ import org.springframework.web.bind.annotation.RestController;
 import uk.gov.hmcts.reform.bulkscan.auth.AuthService;
 import uk.gov.hmcts.reform.bulkscan.factory.BulkScanServiceFactory;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
-import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequestNew;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
@@ -173,7 +172,7 @@ public class BulkScanEndpoint {
     public ResponseEntity<BulkScanTransformationResponse> transformScannedData(
             @RequestHeader(SERVICEAUTHORIZATION) String s2sToken,
             @RequestHeader(CONTENT_TYPE) String contentType,
-            @RequestBody final BulkScanTransformationRequestNew bulkScanTransformationRequest) {
+            @RequestBody final BulkScanTransformationRequest bulkScanTransformationRequest) {
 
         logger.info(
                 "Request received to transformScannedData ocr data from service new {}",
@@ -190,7 +189,7 @@ public class BulkScanEndpoint {
                                 BulkScanServiceFactory.getService(
                                         FormType.valueOf(
                                                 bulkScanTransformationRequest.getFormType())))
-                        .transformNew(bulkScanTransformationRequest);
+                        .transform(bulkScanTransformationRequest);
         logger.info(
                 "response received to transformationOcrData ocr data from service {}",
                 FileUtil.objectToJson(bulkScanTransformationResponse));

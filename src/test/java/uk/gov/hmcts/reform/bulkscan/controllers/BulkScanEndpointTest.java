@@ -20,7 +20,6 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import uk.gov.hmcts.reform.bulkscan.auth.AuthService;
 import uk.gov.hmcts.reform.bulkscan.endpoints.BulkScanEndpoint;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
-import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequestNew;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.services.postcode.PostcodeLookupService;
@@ -133,9 +132,9 @@ class BulkScanEndpointTest {
     @Test
     void testC100TransformScannedDataService() {
         // Given
-        BulkScanTransformationRequestNew bulkScanTransformationRequest =
-                BulkScanTransformationRequestNew.builder()
-                        .ocrdatafields(TestDataUtil.getDataNew())
+        BulkScanTransformationRequest bulkScanTransformationRequest =
+                BulkScanTransformationRequest.builder()
+                        .ocrdatafields(TestDataUtil.getData())
                         .formType(C100.name())
                         .build();
 
@@ -151,9 +150,9 @@ class BulkScanEndpointTest {
     @Test
     void testFL401TransformScannedDataService() {
         // Given
-        BulkScanTransformationRequestNew bulkScanTransformationRequest =
-                BulkScanTransformationRequestNew.builder()
-                        .ocrdatafields(TestDataUtil.getDataNew())
+        BulkScanTransformationRequest bulkScanTransformationRequest =
+                BulkScanTransformationRequest.builder()
+                        .ocrdatafields(TestDataUtil.getData())
                         .formType(FL401.name())
                         .build();
 
@@ -168,9 +167,9 @@ class BulkScanEndpointTest {
     @Test
     void testFL403TransformScannedDataService() {
         // Given
-        BulkScanTransformationRequestNew bulkScanTransformationRequest =
-                BulkScanTransformationRequestNew.builder()
-                        .ocrdatafields(TestDataUtil.getDataNew())
+        BulkScanTransformationRequest bulkScanTransformationRequest =
+                BulkScanTransformationRequest.builder()
+                        .ocrdatafields(TestDataUtil.getData())
                         .formType(FL403.name())
                         .build();
 
