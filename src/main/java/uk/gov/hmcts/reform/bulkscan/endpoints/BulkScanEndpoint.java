@@ -34,6 +34,8 @@ import uk.gov.hmcts.reform.bulkscan.model.Status;
 import uk.gov.hmcts.reform.bulkscan.services.postcode.PostcodeLookupService;
 import uk.gov.hmcts.reform.bulkscan.utils.FileUtil;
 
+import javax.validation.Valid;
+
 @RestController
 @RequestMapping(
         path = "/",
@@ -172,7 +174,7 @@ public class BulkScanEndpoint {
     public ResponseEntity<BulkScanTransformationResponse> transformScannedData(
             @RequestHeader(SERVICEAUTHORIZATION) String s2sToken,
             @RequestHeader(CONTENT_TYPE) String contentType,
-            @RequestBody final BulkScanTransformationRequest bulkScanTransformationRequest) {
+            @Valid @RequestBody final BulkScanTransformationRequest bulkScanTransformationRequest) {
 
         logger.info(
                 "Request received to transformScannedData ocr data from service new {}",
