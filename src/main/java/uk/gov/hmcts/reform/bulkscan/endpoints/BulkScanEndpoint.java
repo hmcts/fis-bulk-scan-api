@@ -173,7 +173,7 @@ public class BulkScanEndpoint {
     public ResponseEntity<BulkScanTransformationResponse> transformScannedData(
             @RequestHeader(SERVICEAUTHORIZATION) String s2sToken,
             @RequestHeader(CONTENT_TYPE) String contentType,
-            @Valid @RequestBody final BulkScanTransformationRequest bulkScanTransformationRequest) {
+            @Valid @RequestBody BulkScanTransformationRequest bulkScanTransformationRequest) {
 
         logger.info(
                 "Request received to transformScannedData ocr data from service new {}",

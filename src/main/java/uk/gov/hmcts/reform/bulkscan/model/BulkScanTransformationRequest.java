@@ -1,7 +1,6 @@
 package uk.gov.hmcts.reform.bulkscan.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import java.time.LocalDateTime;
 import java.util.List;
 import javax.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
@@ -37,11 +36,11 @@ public class BulkScanTransformationRequest {
 
     @NotNull(message = "delivery_date type cannot be null")
     @JsonProperty("delivery_date")
-    public LocalDateTime deliveryDate;
+    public String deliveryDate;
 
     @NotNull(message = "opening_date type cannot be null")
     @JsonProperty("opening_date")
-    public LocalDateTime openingDate;
+    public String openingDate;
 
     @NotNull(message = "scanned_documents type cannot be null")
     @JsonProperty("scanned_documents")
