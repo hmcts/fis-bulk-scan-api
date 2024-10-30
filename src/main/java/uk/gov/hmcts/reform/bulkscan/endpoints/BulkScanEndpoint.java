@@ -5,6 +5,7 @@ import static org.slf4j.LoggerFactory.getLogger;
 import static org.springframework.http.ResponseEntity.ok;
 import static org.springframework.http.ResponseEntity.status;
 
+import feign.FeignException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 import javax.validation.Valid;
 import org.apache.commons.lang3.EnumUtils;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -26,6 +28,7 @@ import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.HttpClientErrorException;
 import uk.gov.hmcts.reform.bulkscan.auth.AuthService;
 import uk.gov.hmcts.reform.bulkscan.factory.BulkScanServiceFactory;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
@@ -211,14 +214,33 @@ public class BulkScanEndpoint {
                 .build();
     }
 
+    @ExceptionHandler(HttpClientErrorException.BadRequest.class)
+    protected ResponseEntity<String> handleHttpBadRequestException(HttpClientErrorException.BadRequest exception) {
+        logger.info("Http Bad request exception handler handling the exception {}", exception.getMessage());
+        logger.error(exception.getMessage(), exception);
+        String errors =
+            "Http Bad request exception handler handling the exception "
+                + ExceptionUtils.getStackTrace(exception);
+        return status(HttpStatus.BAD_REQUEST).body(errors);
+    }
+
+    @ExceptionHandler(FeignException.BadRequest.class)
+    protected ResponseEntity<String> handleFeignBadRequestException(FeignException.BadRequest exception) {
+        logger.info("Feign Bad request exception handler handling the exception {}", exception.getMessage());
+        logger.error(exception.getMessage(), exception);
+        String errors =
+            "Feign Bad request exception handler handling the exception "
+                + ExceptionUtils.getStackTrace(exception);
+        return status(HttpStatus.BAD_REQUEST).body(errors);
+    }
+
     @ExceptionHandler(Exception.class)
     protected ResponseEntity<String> handleDefaultException(Exception exception) {
         logger.info("Default exception handler handling the exception {}", exception.getMessage());
         logger.error(exception.getMessage(), exception);
         String errors =
-                "There was an unknown error when processing the case. If the error persists, please"
-                        + " contact the Bulk Scan development team";
-
+                "Default exception handler handling the exception "
+                        + ExceptionUtils.getStackTrace(exception);
         return status(HttpStatus.INTERNAL_SERVER_ERROR).body(errors);
     }
 }
