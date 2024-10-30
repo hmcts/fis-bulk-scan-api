@@ -215,22 +215,27 @@ public class BulkScanEndpoint {
     }
 
     @ExceptionHandler(HttpClientErrorException.BadRequest.class)
-    protected ResponseEntity<String> handleHttpBadRequestException(HttpClientErrorException.BadRequest exception) {
-        logger.info("Http Bad request exception handler handling the exception {}", exception.getMessage());
+    protected ResponseEntity<String> handleHttpBadRequestException(
+            HttpClientErrorException.BadRequest exception) {
+        logger.info(
+                "Http Bad request exception handler handling the exception {}",
+                exception.getMessage());
         logger.error(exception.getMessage(), exception);
         String errors =
-            "Http Bad request exception handler handling the exception "
-                + ExceptionUtils.getStackTrace(exception);
+                "Http Bad request exception handler handling the exception "
+                        + ExceptionUtils.getStackTrace(exception);
         return status(HttpStatus.BAD_REQUEST).body(errors);
     }
 
     @ExceptionHandler(FeignException.BadRequest.class)
-    protected ResponseEntity<String> handleFeignBadRequestException(FeignException.BadRequest exception) {
-        logger.info("Feign Bad request exception handler handling the exception {}", exception.getMessage());
+    protected ResponseEntity<String> handleFeignBadRequestException(
+            FeignException.BadRequest exception) {
+        logger.info("Feign Bad request exception handler handling the exception {}",
+                    exception.getMessage());
         logger.error(exception.getMessage(), exception);
         String errors =
-            "Feign Bad request exception handler handling the exception "
-                + ExceptionUtils.getStackTrace(exception);
+                "Feign Bad request exception handler handling the exception "
+                        + ExceptionUtils.getStackTrace(exception);
         return status(HttpStatus.BAD_REQUEST).body(errors);
     }
 
