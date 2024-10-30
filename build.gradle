@@ -200,7 +200,6 @@ repositories {
 mavenLocal()
 mavenCentral()
 maven { url 'https://jitpack.io' }
-jcenter()
 }
 
 def versions = [
@@ -209,7 +208,7 @@ s2sClient         : '4.0.3',
 springCloud       : '3.1.3',
 commonsIo         :  '2.7',
 reformsJavaLogging: '6.1.6',
-jacksonDatabind: '2.17.2'
+jacksonDatabind: '2.17.1'
 ]
 
 ext {
@@ -270,8 +269,12 @@ implementation(group: 'org.springframework.cloud', name: 'spring-cloud-starter-o
 	exclude group: 'io.reactivex', module: 'rxnetty-contexts'
 	exclude group: 'io.reactivex', module: 'rxnetty-servo'
 	}
+implementation group: 'io.github.openfeign', name: 'feign-jackson', version: '13.5'
 implementation group: 'net.logstash.logback', name: 'logstash-logback-encoder', version:'7.4'
 implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: versions.jacksonDatabind
+implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: versions.jacksonDatabind
+implementation group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: versions.jacksonDatabind
+implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: versions.jacksonDatabind
 
 //functionalTestImplementation group: 'uk.gov.hmcts.reform', name: 'service-auth-provider-client', version: versions.s2sClient
 functionalTestImplementation group: 'com.github.hmcts', name: 'service-auth-provider-java-client', version: versions.s2sClient
@@ -287,8 +290,6 @@ testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter
 testImplementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: versions.jacksonDatabind
 
 testImplementation group: 'io.rest-assured', name: 'rest-assured'
-
-
 // Integration test
 integrationTestImplementation(group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign', version: versions.springCloud)
 	{
