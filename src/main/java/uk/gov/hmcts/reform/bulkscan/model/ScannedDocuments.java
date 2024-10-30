@@ -1,6 +1,7 @@
 package uk.gov.hmcts.reform.bulkscan.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import java.time.LocalDateTime;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -28,8 +29,8 @@ public class ScannedDocuments {
     public String fileName;
 
     @JsonProperty("scanned_date")
-    public String scannedDate;
+    public LocalDateTime scannedDate;
 
     @JsonProperty("delivery_date")
-    public String deliveryDate;
+    public LocalDateTime deliveryDate;
 }
