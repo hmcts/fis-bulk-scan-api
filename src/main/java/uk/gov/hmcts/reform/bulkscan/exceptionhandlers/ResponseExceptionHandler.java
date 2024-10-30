@@ -45,7 +45,8 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
     }
 
     @ExceptionHandler(HttpClientErrorException.BadRequest.class)
-    protected ResponseEntity<ApiError> handleBadRequestException(HttpClientErrorException.BadRequest exception) {
+    protected ResponseEntity<ApiError> handleBadRequestException(
+            HttpClientErrorException.BadRequest exception) {
         log.error(exception.getMessage(), exception);
 
         return status(BAD_REQUEST).body(new ApiError(exception.getMessage()));
