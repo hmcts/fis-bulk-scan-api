@@ -3,6 +3,7 @@ package uk.gov.hmcts.reform.bulkscan.endpoints;
 import static java.util.Collections.singletonList;
 import static org.slf4j.LoggerFactory.getLogger;
 import static org.springframework.http.ResponseEntity.ok;
+import static org.springframework.http.ResponseEntity.status;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -17,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -207,5 +209,16 @@ public class BulkScanEndpoint {
                                         + (null != formType ? formType : "No Form Type")
                                         + "' not found"))
                 .build();
+    }
+
+    @ExceptionHandler(Exception.class)
+    protected ResponseEntity<String> handleDefaultException(Exception exception) {
+        logger.info("Default exception handler handling the exception {}", exception.getMessage());
+        logger.error(exception.getMessage(), exception);
+        String errors =
+                "There was an unknown error when processing the case. If the error persists, please"
+                        + " contact the Bulk Scan development team";
+
+        return status(HttpStatus.INTERNAL_SERVER_ERROR).body(errors);
     }
 }

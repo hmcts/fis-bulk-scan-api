@@ -147,7 +147,8 @@ def sonarExclusions = [
 		'**uk/gov/hmcts/reform/bulkscan/config/**',
 		'**uk/gov/hmcts/reform/bulkscan/constants/**',
 		'**uk/gov/hmcts/reform/bulkscan/enums/**',
-    '**uk/gov/hmcts/reform/bulkscan/services/BulkScanC100Service.java'
+    '**uk/gov/hmcts/reform/bulkscan/services/BulkScanC100Service.java',
+    '**uk/gov/hmcts/reform/bulkscan/endpoints/BulkScanEndpoint.java'
 ]
 
 sonarqube {
@@ -269,6 +270,8 @@ implementation(group: 'org.springframework.cloud', name: 'spring-cloud-starter-o
 	exclude group: 'io.reactivex', module: 'rxnetty-servo'
 	}
 implementation group: 'net.logstash.logback', name: 'logstash-logback-encoder', version:'7.4'
+implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: versions.jacksonDatabind
+
 //functionalTestImplementation group: 'uk.gov.hmcts.reform', name: 'service-auth-provider-client', version: versions.s2sClient
 functionalTestImplementation group: 'com.github.hmcts', name: 'service-auth-provider-java-client', version: versions.s2sClient
 
@@ -280,6 +283,7 @@ testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter
 	exclude group: 'junit', module: 'junit'
 	exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 }
+testImplementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: versions.jacksonDatabind
 
 testImplementation group: 'io.rest-assured', name: 'rest-assured'
 
