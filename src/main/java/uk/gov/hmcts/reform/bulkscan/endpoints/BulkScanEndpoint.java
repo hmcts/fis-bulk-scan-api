@@ -6,6 +6,7 @@ import static org.springframework.http.ResponseEntity.ok;
 import static org.springframework.http.ResponseEntity.status;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import feign.FeignException;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
@@ -184,8 +185,10 @@ public class BulkScanEndpoint {
         logger.info(
                 "Request received to transformScannedData ocr data from service new {}", dataMap);
 
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
         BulkScanTransformationRequest bulkScanTransformationRequest =
-                new ObjectMapper().convertValue(dataMap, BulkScanTransformationRequest.class);
+                objectMapper.convertValue(dataMap, BulkScanTransformationRequest.class);
 
         String serviceName = authService.authenticate(s2sToken);
         logger.info(
