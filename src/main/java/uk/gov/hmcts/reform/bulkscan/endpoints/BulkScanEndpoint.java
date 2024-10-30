@@ -11,6 +11,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Objects;
 import javax.validation.Valid;
 import org.apache.commons.lang3.EnumUtils;
@@ -178,11 +179,13 @@ public class BulkScanEndpoint {
     public ResponseEntity<BulkScanTransformationResponse> transformScannedData(
             @RequestHeader(SERVICEAUTHORIZATION) String s2sToken,
             @RequestHeader(CONTENT_TYPE) String contentType,
-            @Valid @RequestBody BulkScanTransformationRequest bulkScanTransformationRequest) {
+            @Valid @RequestBody Map<String, Object> dataMap) {
 
         logger.info(
-                "Request received to transformScannedData ocr data from service new {}",
-                FileUtil.objectToJson(bulkScanTransformationRequest));
+                "Request received to transformScannedData ocr data from service new {}", dataMap);
+
+        BulkScanTransformationRequest bulkScanTransformationRequest =
+                (BulkScanTransformationRequest) dataMap;
 
         String serviceName = authService.authenticate(s2sToken);
         logger.info(
