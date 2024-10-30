@@ -1,7 +1,6 @@
 package uk.gov.hmcts.reform.bulkscan.exceptionhandlers;
 
-import static org.springframework.http.HttpStatus.FORBIDDEN;
-import static org.springframework.http.HttpStatus.UNAUTHORIZED;
+import static org.springframework.http.HttpStatus.*;
 import static org.springframework.http.ResponseEntity.status;
 
 import feign.FeignException;
@@ -11,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 import uk.gov.hmcts.reform.authorisation.exceptions.InvalidTokenException;
 import uk.gov.hmcts.reform.bulkscan.exception.ForbiddenException;
@@ -40,6 +40,13 @@ public class ResponseExceptionHandler extends ResponseEntityExceptionHandler {
         log.error(exception.getMessage(), exception);
 
         return status(FORBIDDEN).body(new ApiError(exception.getMessage()));
+    }
+
+    @ExceptionHandler(HttpClientErrorException.BadRequest.class)
+    protected ResponseEntity<ApiError> handleBadRequestException(HttpClientErrorException.BadRequest exception) {
+        log.error(exception.getMessage(), exception);
+
+        return status(BAD_REQUEST).body(new ApiError(exception.getMessage()));
     }
 
     @ExceptionHandler(FeignException.class)
