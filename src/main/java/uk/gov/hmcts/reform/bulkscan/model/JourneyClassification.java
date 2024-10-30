@@ -8,5 +8,13 @@ public enum JourneyClassification {
     @JsonProperty("new_application")
     newApplication,
     @JsonProperty("supplementary_evidence")
-    supplementaryEvidence;
+    supplementaryEvidence,
+    @JsonProperty("EXCEPTION")
+    EXCEPTION,
+    @JsonProperty("NEW_APPLICATION")
+    NEW_APPLICATION,
+    @JsonProperty("SUPPLEMENTARY_EVIDENCE")
+    SUPPLEMENTARY_EVIDENCE,
+    @JsonProperty("SUPPLEMENTARY_EVIDENCE_WITH_OCR")
+    SUPPLEMENTARY_EVIDENCE_WITH_OCR;
 }
