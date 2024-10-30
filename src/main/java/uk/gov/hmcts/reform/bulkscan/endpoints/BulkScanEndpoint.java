@@ -230,8 +230,9 @@ public class BulkScanEndpoint {
     @ExceptionHandler(FeignException.BadRequest.class)
     protected ResponseEntity<String> handleFeignBadRequestException(
             FeignException.BadRequest exception) {
-        logger.info("Feign Bad request exception handler handling the exception {}",
-                    exception.getMessage());
+        logger.info(
+                "Feign Bad request exception handler handling the exception {}",
+                exception.getMessage());
         logger.error(exception.getMessage(), exception);
         String errors =
                 "Feign Bad request exception handler handling the exception "
