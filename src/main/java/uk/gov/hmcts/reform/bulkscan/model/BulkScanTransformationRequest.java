@@ -1,6 +1,5 @@
 package uk.gov.hmcts.reform.bulkscan.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.LocalDateTime;
@@ -32,11 +31,9 @@ public class BulkScanTransformationRequest {
     @JsonProperty("journey_classification")
     public JourneyClassification journeyClassification;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
     @JsonProperty("delivery_date")
     public LocalDateTime deliveryDate;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss.SSSSSS")
     @JsonProperty("opening_date")
     public LocalDateTime openingDate;
 
