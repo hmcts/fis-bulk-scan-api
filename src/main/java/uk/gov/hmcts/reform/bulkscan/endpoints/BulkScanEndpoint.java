@@ -204,7 +204,7 @@ public class BulkScanEndpoint {
                         .transform(bulkScanTransformationRequest);
         logger.info(
                 "response received to transformationOcrData ocr data from service {}",
-                FileUtil.objectToJson(bulkScanTransformationResponse));
+                bulkScanTransformationResponse.getCaseCreationDetails().getCaseData());
         return new ResponseEntity<>(bulkScanTransformationResponse, HttpStatus.OK);
     }
 
