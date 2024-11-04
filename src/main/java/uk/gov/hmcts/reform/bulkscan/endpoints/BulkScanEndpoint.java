@@ -192,16 +192,18 @@ public class BulkScanEndpoint {
 
         String serviceName = authService.authenticate(s2sToken);
         logger.info(
-                "Request received to transformScannedData ocr data from service {}", serviceName);
+                "Request received to transformScannedData ocr data from service {}",
+                bulkScanTransformationRequest.getScannedDocuments());
 
         authService.assertIsAllowedToHandleService(serviceName);
-
+        logger.info("1 scan docs {}", bulkScanTransformationRequest.getScannedDocuments());
         BulkScanTransformationResponse bulkScanTransformationResponse =
                 Objects.requireNonNull(
                                 BulkScanServiceFactory.getService(
                                         FormType.valueOf(
                                                 bulkScanTransformationRequest.getFormType())))
                         .transform(bulkScanTransformationRequest);
+        logger.info("2 scan docs {}", bulkScanTransformationRequest.getScannedDocuments());
         logger.info(
                 "response received to transformationOcrData ocr data from service {}",
                 bulkScanTransformationResponse.getCaseCreationDetails().getCaseData());
