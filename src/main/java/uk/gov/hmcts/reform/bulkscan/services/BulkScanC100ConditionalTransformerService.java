@@ -1,5 +1,6 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
+import static java.util.Objects.nonNull;
 import static org.apache.commons.lang3.BooleanUtils.TRUE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICATION_PERMISSION_REQUIRED;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVE_WITH_KEY;
@@ -91,7 +92,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.microsoft.applicationinsights.boot.dependencies.apachecommons.lang3.StringUtils;
 import com.microsoft.applicationinsights.core.dependencies.google.gson.internal.LinkedTreeMap;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -109,6 +112,10 @@ import uk.gov.hmcts.reform.bulkscan.enums.PartyEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.PermissionRequiredEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.SpokenOrWrittenWelshEnum;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
+import uk.gov.hmcts.reform.bulkscan.model.ResponseScanDocument;
+import uk.gov.hmcts.reform.bulkscan.model.ResponseScanDocumentNew;
+import uk.gov.hmcts.reform.bulkscan.model.ResponseScanDocumentValueNew;
+import uk.gov.hmcts.reform.bulkscan.model.ScannedDocuments;
 
 @SuppressWarnings({"PMD", "unchecked"})
 @Component
@@ -125,8 +132,7 @@ public class BulkScanC100ConditionalTransformerService {
         objectMapper.registerModule(new JavaTimeModule());
         populatedMap.put(
                 SCAN_DOCUMENTS,
-                objectMapper.convertValue(
-                        bulkScanTransformationRequest.getScannedDocuments(), List.class));
+                transformScanDocuments(bulkScanTransformationRequest));
         populatedMap.put(
                 MIAM_DOMESTIC_VIOLENCE_CHECKLIST,
                 transformMiamDomesticViolenceChecklist(inputFieldsMap));
@@ -608,5 +614,34 @@ public class BulkScanC100ConditionalTransformerService {
                     .getDescription();
         }
         return EMPTY;
+    }
+
+    private static List<ResponseScanDocumentValueNew> transformScanDocuments(
+        BulkScanTransformationRequest bulkScanTransformationRequest) {
+        List<ScannedDocuments> scannedDocumentsList =
+            bulkScanTransformationRequest.getScannedDocuments();
+        return nonNull(scannedDocumentsList)
+            ? bulkScanTransformationRequest.getScannedDocuments().stream()
+            .map(
+                scanDocument ->
+                    ResponseScanDocumentValueNew.builder()
+                        .value(
+                            ResponseScanDocumentNew.builder().url(ResponseScanDocument.builder()
+                                .url(
+                                    scanDocument
+                                        .getScanDocument()
+                                        .getUrl())
+                                .binaryUrl(
+                                    scanDocument
+                                        .getScanDocument()
+                                        .getBinaryUrl())
+                                .filename(
+                                    scanDocument
+                                        .getScanDocument()
+                                        .getFilename())
+                                .build()).build())
+                        .build())
+            .collect(Collectors.toList())
+            : Collections.emptyList();
     }
 }
