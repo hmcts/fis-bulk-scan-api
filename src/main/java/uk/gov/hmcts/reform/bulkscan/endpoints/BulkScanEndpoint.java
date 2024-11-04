@@ -197,9 +197,10 @@ public class BulkScanEndpoint {
                 bulkScanTransformationRequest.getScannedDocuments());
 
         authService.assertIsAllowedToHandleService(serviceName);
-        logger.info("1 scan docs {}",
-                    objectMapper.convertValue(
-                            bulkScanTransformationRequest.getScannedDocuments(), List.class));
+        logger.info(
+                "1 scan docs {}",
+                objectMapper.convertValue(
+                        bulkScanTransformationRequest.getScannedDocuments(), List.class));
         BulkScanTransformationResponse bulkScanTransformationResponse =
                 Objects.requireNonNull(
                                 BulkScanServiceFactory.getService(
