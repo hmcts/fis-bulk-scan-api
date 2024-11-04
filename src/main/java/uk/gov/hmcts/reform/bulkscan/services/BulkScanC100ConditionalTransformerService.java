@@ -88,6 +88,7 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.WHO_WE
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.WITHOUT_NOTICE_ABRIDGED_OR_INFORMAL_NOTICE_REASONS;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.microsoft.applicationinsights.boot.dependencies.apachecommons.lang3.StringUtils;
 import com.microsoft.applicationinsights.core.dependencies.google.gson.internal.LinkedTreeMap;
 import java.util.ArrayList;
@@ -121,6 +122,7 @@ public class BulkScanC100ConditionalTransformerService {
                 APPLICATION_PERMISSION_REQUIRED, transformPermissionRequired(inputFieldsMap));
         populatedMap.put(CHILD_LIVE_WITH_KEY, transformChildLiveWith(inputFieldsMap));
         ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
         populatedMap.put(
                 SCAN_DOCUMENTS,
                 objectMapper.convertValue(
