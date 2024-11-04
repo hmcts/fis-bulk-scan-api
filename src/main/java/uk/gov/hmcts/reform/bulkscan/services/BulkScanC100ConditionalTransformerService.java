@@ -124,8 +124,7 @@ public class BulkScanC100ConditionalTransformerService {
         populatedMap.put(
                 SCAN_DOCUMENTS,
                 objectMapper.convertValue(
-                        bulkScanTransformationRequest.getScannedDocuments(),
-                                                                   List.class));
+                        bulkScanTransformationRequest.getScannedDocuments(), List.class));
         populatedMap.put(
                 MIAM_DOMESTIC_VIOLENCE_CHECKLIST,
                 transformMiamDomesticViolenceChecklist(inputFieldsMap));
