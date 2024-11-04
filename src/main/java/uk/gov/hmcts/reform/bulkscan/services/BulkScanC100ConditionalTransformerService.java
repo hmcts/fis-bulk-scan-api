@@ -87,6 +87,7 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.WELSH_
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.WHO_WELSH_NEEDS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.WITHOUT_NOTICE_ABRIDGED_OR_INFORMAL_NOTICE_REASONS;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.microsoft.applicationinsights.boot.dependencies.apachecommons.lang3.StringUtils;
 import com.microsoft.applicationinsights.core.dependencies.google.gson.internal.LinkedTreeMap;
 import java.util.ArrayList;
@@ -119,7 +120,12 @@ public class BulkScanC100ConditionalTransformerService {
         populatedMap.put(
                 APPLICATION_PERMISSION_REQUIRED, transformPermissionRequired(inputFieldsMap));
         populatedMap.put(CHILD_LIVE_WITH_KEY, transformChildLiveWith(inputFieldsMap));
-        populatedMap.put(SCAN_DOCUMENTS, bulkScanTransformationRequest.getScannedDocuments());
+        ObjectMapper objectMapper = new ObjectMapper();
+        populatedMap.put(
+                SCAN_DOCUMENTS,
+                objectMapper.convertValue(
+                        bulkScanTransformationRequest.getScannedDocuments(),
+                                                                   List.class));
         populatedMap.put(
                 MIAM_DOMESTIC_VIOLENCE_CHECKLIST,
                 transformMiamDomesticViolenceChecklist(inputFieldsMap));
