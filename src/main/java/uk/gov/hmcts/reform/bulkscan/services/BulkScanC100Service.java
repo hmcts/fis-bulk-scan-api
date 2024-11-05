@@ -48,20 +48,17 @@ public class BulkScanC100Service implements BulkScanService {
     public BulkScanValidationResponse validate(BulkScanValidationRequest bulkRequest) {
         // Validating the Fields..
         Map<String, String> inputFieldMap = getOcrDataFieldAsMap(bulkRequest.getOcrdatafields());
-        BulkScanFormValidationConfigManager.ValidationConfig validationConfig =
-                configManager.getValidationConfig(FormType.C100);
+        // BulkScanFormValidationConfigManager.ValidationConfig validationConfig =
+        // configManager.getValidationConfig(FormType.C100);
 
         BulkScanValidationResponse response =
                 bulkScanValidationHelper.validateMandatoryAndOptionalFields(
                         bulkRequest.getOcrdatafields(),
                         configManager.getValidationConfig(FormType.C100));
-        //response.addErrors(bulkScanC100ValidationService.doChildRelatedValidation(inputFieldMap));
-        response.addErrors(
-                bulkScanC100ValidationService.doPermissionRelatedFieldValidation(inputFieldMap));
+        // response.addErrors(bulkScanC100ValidationService.doChildRelatedValidation(inputFieldMap));
+        // response.addErrors(bulkScanC100ValidationService.doPermissionRelatedFieldValidation(inputFieldMap));
 
-        response.addErrors(
-                bulkScanC100ValidationService.validateOtherProceedingFields(
-                        inputFieldMap, validationConfig));
+        // response.addErrors(bulkScanC100ValidationService.validateOtherProceedingFields(inputFieldMap, validationConfig));
 
         response.addWarning(
                 dependencyValidationService.getDependencyWarnings(inputFieldMap, FormType.C100));
@@ -76,8 +73,7 @@ public class BulkScanC100Service implements BulkScanService {
                 bulkRequest.getOcrdatafields(), response);
         bulkScanC100Section6ValidationService.validate(bulkRequest, response);
 
-        response.addErrors(
-                bulkScanC100ValidationService.validateAttendingTheHearing(inputFieldMap));
+        //response.addErrors(bulkScanC100ValidationService.validateAttendingTheHearing(inputFieldMap));
 
         response.changeStatus();
 

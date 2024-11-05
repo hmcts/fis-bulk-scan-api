@@ -132,7 +132,7 @@ public class BulkScanC100ConditionalTransformerService {
         objectMapper.registerModule(new JavaTimeModule());
         populatedMap.put(
                 SCAN_DOCUMENTS,
-                transformScanDocuments(bulkScanTransformationRequest));
+                objectMapper.convertValue(transformScanDocuments(bulkScanTransformationRequest), List.class));
         populatedMap.put(
                 MIAM_DOMESTIC_VIOLENCE_CHECKLIST,
                 transformMiamDomesticViolenceChecklist(inputFieldsMap));

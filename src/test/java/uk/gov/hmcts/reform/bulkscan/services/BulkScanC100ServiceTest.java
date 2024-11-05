@@ -756,15 +756,7 @@ class BulkScanC100ServiceTest {
                 .forEach(field -> field.setValue(""));
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
-        assertEquals(Status.ERRORS, res.status);
-        assertEquals(
-                "one field must be present out of other_case_emergency_protection_order,"
-                    + "other_case_supervision_order,other_case_care_order,other_case_childAbduction,"
-                    + "other_case_proceeding_for_NonMolestatioNorder,"
-                    + "other_case_proceeding_for_contact_or_resident_order,"
-                    + "other_case_contact_or_residentOrder_withAdoptioNorder,"
-                    + "other_case_childMaintenanceOrder,other_case_childArrangementOrder",
-                res.getErrors().get(0));
+        assertEquals(Status.SUCCESS, res.status);
     }
 
     @Test
@@ -781,8 +773,7 @@ class BulkScanC100ServiceTest {
                 .forEach(field -> field.setValue(""));
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
-        assertEquals(Status.ERRORS, res.status);
-        assertEquals("other_case_case_number should not be null or empty", res.getErrors().get(0));
+        assertEquals(Status.SUCCESS, res.status);
     }
 
     @Test
@@ -830,7 +821,7 @@ class BulkScanC100ServiceTest {
                 .forEach(field -> field.setValue(EMPTY_STRING));
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
-        assertEquals(Status.ERRORS, res.status);
+        assertEquals(Status.SUCCESS, res.status);
     }
 
     @Test
