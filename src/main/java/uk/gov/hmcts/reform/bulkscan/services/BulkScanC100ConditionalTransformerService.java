@@ -126,9 +126,14 @@ public class BulkScanC100ConditionalTransformerService {
             Map<String, Object> populatedMap,
             Map<String, String> inputFieldsMap,
             BulkScanTransformationRequest bulkScanTransformationRequest) {
-        populatedMap.put(
-                APPLICATION_PERMISSION_REQUIRED, transformPermissionRequired(inputFieldsMap));
-        populatedMap.put(CHILD_LIVE_WITH_KEY, transformChildLiveWith(inputFieldsMap));
+        String permissionsRequired = transformPermissionRequired(inputFieldsMap);
+        if (StringUtils.isNotEmpty(permissionsRequired)) {
+            populatedMap.put(APPLICATION_PERMISSION_REQUIRED, permissionsRequired);
+        }
+        String childLivesWith = transformChildLiveWith(inputFieldsMap);
+        if (StringUtils.isNotEmpty(childLivesWith)) {
+            populatedMap.put(CHILD_LIVE_WITH_KEY, childLivesWith);
+        }
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
         populatedMap.put(
@@ -162,18 +167,18 @@ public class BulkScanC100ConditionalTransformerService {
         interpreterValues.put(PARTY_ENUM, transformParty(inputFieldsMap));
 
         setOutReasonsBelow(populatedMap, inputFieldsMap);
-
-        populatedMap.put(
-                MEDIATOR_CERTIFIES_MIAM_EXEMPTION,
-                transformMediatorCertifiesMiamExemption(inputFieldsMap));
-
-        populatedMap.put(
-                MEDIATOR_CERTIFIES_APPLICANT_ATTEND_MIAM,
-                transformMediatorCertifiesApplicantAttendMiam(inputFieldsMap));
-
-        populatedMap.put(
-                MEDIATOR_CERTIFIES_DISPUTE_RESOLUTION_NOT_PROCEEDING,
-                transformMediatorCertifiesDisputeResolutionNotProceeding(inputFieldsMap));
+        String miamExemptions = transformMediatorCertifiesMiamExemption(inputFieldsMap);
+        if (StringUtils.isNotEmpty(miamExemptions)) {
+            populatedMap.put(MEDIATOR_CERTIFIES_MIAM_EXEMPTION, miamExemptions);
+        }
+        String mediatorCertAttendedMiam = transformMediatorCertifiesApplicantAttendMiam(inputFieldsMap);
+        if (StringUtils.isNotEmpty(mediatorCertAttendedMiam)) {
+            populatedMap.put(MEDIATOR_CERTIFIES_APPLICANT_ATTEND_MIAM, mediatorCertAttendedMiam);
+        }
+        String mediatorCert = transformMediatorCertifiesDisputeResolutionNotProceeding(inputFieldsMap);
+        if (StringUtils.isNotEmpty(mediatorCert)) {
+            populatedMap.put(MEDIATOR_CERTIFIES_DISPUTE_RESOLUTION_NOT_PROCEEDING, mediatorCert);
+        }
         populatedMap.values().removeIf(Objects::isNull);
     }
 
