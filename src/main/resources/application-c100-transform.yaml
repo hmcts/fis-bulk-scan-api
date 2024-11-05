@@ -90,7 +90,7 @@ uk:
               miamOtherGroundsChecklist: NoMIAM_otherExceptions
               miamOtherGroundsChecklist1: NoMIAM_otherReasons
               childrenKNownToLocalAuthority: childrenServicesAuthority
-              childrenKNownToLocalAuthorityTextArea: child1_localAuthority_or_socialWorker
+              childrenKnownToLocalAuthorityTextArea: child1_localAuthority_or_socialWorker
               childrenSubjectOfChildProtectionPlan: subject_to_childProtectionPlan
               parentalResponsibilityDetails: parentalResponsibilityDetails
               childLiveWith:  children_of_same_parent
