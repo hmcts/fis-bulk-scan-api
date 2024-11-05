@@ -88,7 +88,8 @@ public class BulkScanC100Service implements BulkScanService {
 
         Map<String, String> inputFieldsMap =
                 inputFieldsList.stream()
-                        .filter(ocrDataField -> StringUtils.isNotEmpty(ocrDataField.getName()))
+                        .filter(ocrDataField -> StringUtils.isNotEmpty(ocrDataField.getName())
+                            && StringUtils.isNotEmpty(ocrDataField.getValue()))
                         .collect(Collectors.toMap(OcrDataField::getName, this::getValue));
 
         Map<String, Object> populatedMap =
