@@ -55,7 +55,7 @@ public class BulkScanC100Service implements BulkScanService {
                 bulkScanValidationHelper.validateMandatoryAndOptionalFields(
                         bulkRequest.getOcrdatafields(),
                         configManager.getValidationConfig(FormType.C100));
-        response.addErrors(bulkScanC100ValidationService.doChildRelatedValidation(inputFieldMap));
+        //response.addErrors(bulkScanC100ValidationService.doChildRelatedValidation(inputFieldMap));
         response.addErrors(
                 bulkScanC100ValidationService.doPermissionRelatedFieldValidation(inputFieldMap));
 
