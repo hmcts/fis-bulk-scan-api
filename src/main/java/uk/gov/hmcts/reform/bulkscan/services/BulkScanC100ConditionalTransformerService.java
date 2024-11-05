@@ -93,7 +93,13 @@ import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.microsoft.applicationinsights.boot.dependencies.apachecommons.lang3.StringUtils;
 import com.microsoft.applicationinsights.core.dependencies.google.gson.internal.LinkedTreeMap;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import org.apache.commons.lang3.BooleanUtils;
 import org.springframework.stereotype.Component;
