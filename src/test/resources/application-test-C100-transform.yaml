@@ -89,7 +89,7 @@ uk:
               miamPreviousAttendanceChecklist: NoMIAM_PreviousAttendenceReason
               miamOtherGroundsChecklist: NoMIAM_otherExceptions
               childrenKNownToLocalAuthority: childrenServicesAuthority
-              childrenKNownToLocalAuthorityTextArea: child1_localAuthority_or_socialWorker
+              childrenKnownToLocalAuthorityTextArea: child1_localAuthority_or_socialWorker
               childrenSubjectOfChildProtectionPlan: subject_to_childProtectionPlan
               parentalResponsibilityDetails: parentalResponsibilityDetails
               childrenOfSameParent:  children_of_same_parent

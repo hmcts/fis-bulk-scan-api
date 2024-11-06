@@ -149,7 +149,7 @@
       "parentalResponsibilityDetails": "parentResponsibility",
       "familyMediatorMiam": null,
       "miamPreviousAttendanceChecklist": "miamPreviousAttendanceChecklistEnum_Value_4",
-      "childrenKNownToLocalAuthorityTextArea": "socialWorker",
+      "childrenKnownToLocalAuthorityTextArea": "socialWorker",
       "isSpecialArrangementsRequired": "Yes",
       "welshNeeds": [
         {

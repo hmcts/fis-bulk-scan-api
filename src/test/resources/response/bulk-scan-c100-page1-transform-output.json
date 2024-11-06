@@ -4,7 +4,7 @@
     "event_id": "create-case-privatelaw-bs",
     "case_data": {
       "parentalResponsibilityDetails": "parentResponsibility",
-      "childrenKNownToLocalAuthorityTextArea": "socialWorker",
+      "childrenKnownToLocalAuthorityTextArea": "socialWorker",
       "applicants": {
         "value": {
           "firstName": "applicant1_firstName",
