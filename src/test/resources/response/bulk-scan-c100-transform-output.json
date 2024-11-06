@@ -172,7 +172,7 @@
         "MIAMChildProtectionConcernChecklistEnum_value_2"
       ],
       "litigationCapacityReferrals":"Assessment by adult learning team",
-      "childrenKNownToLocalAuthority":"Yes",
+      "childrenKnownToLocalAuthority":"Yes",
       "respondents":[
         {
           "value":{

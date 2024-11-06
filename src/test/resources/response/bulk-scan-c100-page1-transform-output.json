@@ -22,7 +22,7 @@
           }
         }
       ],
-      "childrenKNownToLocalAuthority": "Yes",
+      "childrenKnownToLocalAuthority": "Yes",
       "prohibitedStepsOrder": "true",
       "children": [
         {
