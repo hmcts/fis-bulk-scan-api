@@ -770,7 +770,7 @@ class BulkScanC100ServiceTest {
                 .filter(
                         eachField ->
                                 OTHER_PROCEEDING_CASE_NUMBER.equalsIgnoreCase(eachField.getName()))
-                .forEach(field -> field.setValue(""));
+                .forEach(field -> field.setValue("1234"));
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.SUCCESS, res.status);
