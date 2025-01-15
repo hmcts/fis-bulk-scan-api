@@ -55,24 +55,34 @@ public class BulkScanC100Service implements BulkScanService {
                 bulkScanValidationHelper.validateMandatoryAndOptionalFields(
                         bulkRequest.getOcrdatafields(),
                         configManager.getValidationConfig(FormType.C100));
+        // Validating the Fields..child related fields
         response.addErrors(bulkScanC100ValidationService.doChildRelatedValidation(inputFieldMap));
+
+        // Validating the Fields..permission related fields
         response.addErrors(bulkScanC100ValidationService.doPermissionRelatedFieldValidation(inputFieldMap));
 
+        // Validating the Fields..other proceeding fields
         response.addErrors(bulkScanC100ValidationService.validateOtherProceedingFields(inputFieldMap, validationConfig));
 
+        //Dependancy warnings
         response.addWarning(
                 dependencyValidationService.getDependencyWarnings(inputFieldMap, FormType.C100));
 
+        //Dependancy warnings - straight dependent fields
         response.addWarning(
                 dependencyValidationService.validateStraightDependentFields(
                         bulkRequest.getOcrdatafields()));
 
+        // Validating the Fields..Attending Miam
         bulkScanC100ValidationService.validateAttendMiam(bulkRequest.getOcrdatafields(), response);
 
+        // Validating the Fields..Applicant Address
         bulkScanC100ValidationService.validateApplicantAddressFiveYears(
                 bulkRequest.getOcrdatafields(), response);
+
         bulkScanC100Section6ValidationService.validate(bulkRequest, response);
 
+        // Validating the Fields..Attending the Hearing
         response.addErrors(bulkScanC100ValidationService.validateAttendingTheHearing(inputFieldMap));
 
         response.changeStatus();
