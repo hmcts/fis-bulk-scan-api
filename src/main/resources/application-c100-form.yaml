@@ -5,8 +5,8 @@ uk:
         caseTypeofApplication:
           C100:
             mandatoryFields:
-              - applicant1FirstName
-              - applicant1LastName
+              - applicant1_firstName
+              - applicant1_lastName
               - respondent1_firstName
               - respondent1_lastName
               - childArrangement_order
@@ -47,13 +47,13 @@ uk:
               - applicantRequiresInterpreter
               - applicantRequiresInterpreter_intermediaryRequired
               - requiredSpecialAssistanceOrFacilities
-              - applicant1DateOfBirth
-              - applicant1PlaceOfBirth
+              - applicantOneDateOfBirth
+              - applicantOnePlaceOfBirth
             optionalFields:
-              - applicant2FirstName
-              - applicant2LastName
-              - respondent2FirstName
-              - respondent2LastName
+              - applicant2_firstName
+              - applicant2_lastName
+              - respondent2_firstName
+              - respondent2_lastName
               - child1_dateOfBirth
               - child2_firstName
               - child2_lastName
@@ -115,48 +115,50 @@ uk:
               - internationalElement_request_toCentral_or_Consular_authority
               - internationalElement_request_toCentral_or_Consular_authority_details
               - factorAffectingLitigationCapacity
-              - applicant1PreviousNames
-              - applicant1HomePhoneNumber
-              - applicant1MobilePhoneNumber
-              - applicant1EmailAddress
-              - applicant1AllAddressesForLastFiveYears
+              - applicantOnePreviousNames
+              - applicantOneHomePhoneNumber
+              - applicantOneMobilePhoneNumber
+              - applicantOneEmailAddress
+              - applicantOneAllAddressesForLastFiveYears
               - hasApplicantTwoLivedAtThisAddressForOverFiveYears
-              - applicant2PreviousNames
-              - applicant2Gender
-              - applicant2DateOfBirth
-              - applicant2PlaceOfBirth
-              - applicant2Address
-              - applicant2HomePhoneNumber
-              - applicant2MobilePhoneNumber
-              - applicant2EmailAddress
-              - applicant2LivedAtThisAddressForOverFiveYears
-              - applicant2AllAddressesForLastFiveYears
-              - respondent1PreviousNames
-              - respondent1DateOfBirth
-              - respondent1DateOfBirthDontKnow
-              - respondent1PlaceOfBirth
-              - respondent1Address
-              - respondent1AddressDontKnow
-              - respondent1HomePhoneNumber
-              - respondent1MobilePhoneNumber
-              - respondent1MobilePhoneNumberDontKnow
-              - respondent1EmailAddress
-              - respondent1EmailAddressDontKnow
+              - applicantTwoFirstName
+              - applicantTwoLastName
+              - applicantTwoPreviousNames
+              - applicantTwoGender
+              - applicantTwoDateOfBirth
+              - applicantTwoPlaceOfBirth
+              - applicantTwoAddress
+              - applicantTwoHomePhoneNumber
+              - applicantTwoMobilePhoneNumber
+              - applicantTwoEmailAddress
+              - applicantTwoLivedAtThisAddressForOverFiveYears
+              - applicantTwoAllAddressesForLastFiveYears
+              - respondentOnePreviousNames
+              - respondentOneDateOfBirth
+              - respondentOneDateOfBirthDontKnow
+              - respondentOnePlaceOfBirth
+              - respondentOneAddress
+              - respondentOneAddressDontKnow
+              - respondentOneHomePhoneNumber
+              - respondentOneMobilePhoneNumber
+              - respondentOneMobilePhoneNumberDontKnow
+              - respondentOneEmailAddress
+              - respondentOneEmailAddressDontKnow
               - hasRespondentOneLivedAtThisAddressForOverFiveYears
-              - respondent1AllAddressesForLastFiveYears
-              - respondent2PreviousNames
-              - respondent2Gender
-              - respondent2DateOfBirth
-              - respondent2DateOfBirthDontKnow
-              - respondent2PlaceOfBirth
-              - respondent2Address
-              - respondent2AddressDontKnow
-              - respondent2HomePhoneNumber
-              - respondent2MobilePhoneNumber
-              - respondent2MobilePhoneNumberDontKnow
-              - respondent2EmailAddress
-              - respondent2EmailAddressDontKnow
-              - respondent2AllAddressesForLastFiveYears
+              - respondentOneAllAddressesForLastFiveYears
+              - respondentTwoPreviousNames
+              - respondentTwoGender
+              - respondentTwoDateOfBirth
+              - respondentTwoDateOfBirthDontKnow
+              - respondentTwoPlaceOfBirth
+              - respondentTwoAddress
+              - respondentTwoAddressDontKnow
+              - respondentTwoHomePhoneNumber
+              - respondentTwoMobilePhoneNumber
+              - respondentTwoMobilePhoneNumberDontKnow
+              - respondentTwoEmailAddress
+              - respondentTwoEmailAddressDontKnow
+              - respondentTwoAllAddressesForLastFiveYears
               - hasRespondentTwoLivedAtThisAddressForOverFiveYears
               - otherPeople1FirstName
               - otherPeople1LastName
@@ -297,16 +299,16 @@ uk:
               - noMIAM_urgency_unreasonablehardship # noMIAM_urgency_financialHardship
               - NoMIAM_PreviousAttendenceReason # previousMIAM_nonCourtDisputeResolution_4month
 
-              - respondent1Gender
-              - respondent1AddressPostCode
-              - respondent1LivedAtThisAddressForOverFiveYears
-              - applicant1Gender
-              - applicant1Address
-              - applicant1AddressPostCode
-              - applicant1LivedAtThisAddressForOverFiveYears
-              - applicant2AddressPostCode
-              - respondent2AddressPostCode
-              - respondent2LivedAtThisAddressForOverFiveYears
+              - respondentOneGender
+              - respondentOneAddressPostCode
+              - respondentOneLivedAtThisAddressForOverFiveYears
+              - applicantOneGender
+              - applicantOneAddress
+              - applicantOneAddressPostCode
+              - applicantOneLivedAtThisAddressForOverFiveYears
+              - applicantTwoAddressPostCode
+              - respondentTwoAddressPostCode
+              - respondentTwoLivedAtThisAddressForOverFiveYears
               - doYouHaveSolicitor
               - your_solicitor_name
               - solicitor_fee_account_No # solicitorFeeAccountNo
@@ -350,8 +352,8 @@ uk:
                   - child2_dateOfBirth
                   - child3_dateOfBirth
                   - child4_dateOfBirth
-                  - respondent1DateOfBirth
-                  - respondent2DateOfBirth
+                  - respondentOneDateOfBirth
+                  - respondentTwoDateOfBirth
                   - otherPeople1DateOfBirth
                   - otherPeople2DateOfBirth
                   - otherChildren1DateOfBirth
@@ -371,10 +373,10 @@ uk:
                 regex: ^[A-Z]{1,2}[0-9R][0-9A-Z]? [0-9][ABD-HJLNP-UW-Z]{2}$
               phoneNumberFields:
                 fieldNames:
-                  - respondent1HomePhoneNumber
-                  - respondent1MobilePhoneNumber
-                  - respondent2HomePhoneNumber
-                  - respondent2MobilePhoneNumber
+                  - respondentOneHomePhoneNumber
+                  - respondentOneMobilePhoneNumber
+                  - respondentTwoHomePhoneNumber
+                  - respondentTwoMobilePhoneNumber
                 regex: ^(?:0|\+?44)(?:\d\s?){9,10}$
               faxNumberFields:
                 fieldNames:
