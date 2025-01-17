@@ -6,11 +6,11 @@ uk:
           C100:
             - groupExemptionToAttend:
               dependentFields:
-                - NoMIAM_domesticViolence
-                - NoMIAM_childProtectionConcerns
-                - NoMIAM_Urgency
-                - NoMIAM_PreviousAttendence
-                - NoMIAM_otherReasons
+                - noMIAM_domesticViolance
+                - noMIAM_childProtectionConcerns
+                - noMIAM_Urgency
+                - noMIAM_PreviousAttendence
+                - noMIAM_otherReasons
               dependentFieldValue: "True"
               groupFieldName: exemption_to_attend_MIAM
               groupValidationValue: "Yes"
@@ -18,27 +18,27 @@ uk:
               sectionName: "2b - Applicant claiming exemption from the requirement to attend a MIAM"
             - NoMIAM_domesticViolence:
               dependentFields:
-                - NoMIAM_DVE_arrestedForSimilarOffence
-                - NoMIAM_DVE_relevantPoliceCaution
-                - NoMIAM_DVE_relevantCriminalProceeding
-                - NoMIAM_DVE_relevantConviction
-                - NoMIAM_DVE_courtOrder
-                - NoMIAM_DVE_protectionNotice
-                - NoMIAM_DVE_protectiveInjunction
-                - NoMIAM_DVE_NoCrossUndertakingGiven
-                - NoMIAM_DVE_copyOfFactFinding
-                - NoMIAM_DVE_expertEvidenceReport
-                - NoMIAM_DVE_healthProfessionalReport
-                - NoMIAM_DVE_ReferralHealthProfessionalReport
-                - NoMIAM_DVE_memberOf_MultiAgencyRiskAssessmentConferrance_letter
-                - NoMIAM_DVE_domesticViolenceAdvisor
-                - NoMIAM_DVE_independentSexualViolenceAdvisor_Letter
-                - NoMIAM_DVE_officerEmployed_localAuthority_letter
-                - NoMIAM_DVE_domesticViolenceSupportCharity_letter
-                - NoMIAM_DVE_domesticViolenceSupportCharity_refuge_letter
-                - NoMIAM_DVE_publicAuthority_confirmationLetter
-                - NoMIAM_DVE_secretaryOfState_letter
-                - NoMIAM_DVE_evidenceFinancialMatters
+                - noMIAM_DVE_arrestedForSimilarOffence
+                - noMIAM_DVE_relevantPoliceCaution
+                - noMIAM_DVE_relevantCriminalProceeding
+                - noMIAM_DVE_relevantConviction
+                - noMIAM_DVE_courtOrder
+                - noMIAM_DVE_protectionNotice
+                - noMIAM_DVE_protectiveInjunction
+                - noMIAM_DVE_NoCrossUndertakingGiven
+                - noMIAM_DVE_copyOfFactFinding
+                - noMIAM_DVE_expertEvidenceReport
+                - noMIAM_DVE_healthProfessionalReport
+                - noMIAM_DVE_ReferralHealthProfessionalReport
+                - noMIAM_DVE_memberOf_MultiAgencyRiskAssessmentConferrance_letter
+                - noMIAM_DVE_domesticViolenceAdvisor
+                - noMIAM_DVE_independentSexualViolenceAdvisor_Letter
+                - noMIAM_DVE_officerEmployed_localAuthority_letter
+                - noMIAM_DVE_domesticViolenceSupportCharity_letter
+                - noMIAM_DVE_domesticViolenceSupportCharity_refuge_letter
+                - noMIAM_DVE_publicAuthority_confirmationLetter
+                - noMIAM_DVE_secretaryOfState_letter
+                - noMIAM_DVE_evidenceFinancialMatters
               dependentFieldValue: "Yes"
               groupFieldName: NoMIAM_domesticViolence
               groupValidationValue: "True"
@@ -55,13 +55,13 @@ uk:
               sectionName: "3b - Child protection concerns"
             - groupNoMIAMUrgency:
               dependentFields:
-                - NoMIAM_urgency_risk_to_life_liberty_or_safety
-                - NoMIAM_urgency_riskOfHarm
-                - NoMIAM_urgency_risk_to_unlawfulRemoval
-                - NoMIAM_urgency_risk_to_miscarriageOfJustice
-                - NoMIAM_urgency_unreasonablehardship
-                - NoMIAM_urgency_irretrievableProblem
-                - NoMIAM_urgency_conflictWithOtherStateCourts
+                - noMIAM_urgency_risk_to_life_liberty_or_safety
+                - noMIAM_urgency_riskOfHarm
+                - noMIAM_urgency_removalFromUnitedKingdom
+                - noMIAM_urgency_risk_to_miscarriageOfJustice
+                - noMIAM_urgency_financialHardship
+                - noMIAM_urgency_irretrievableProblem
+                - noMIAM_urgency_conflictWithOtherStateCourts
               dependentFieldValue: "Yes"
               groupFieldName: NoMIAM_Urgency
               groupValidationValue: "True"
