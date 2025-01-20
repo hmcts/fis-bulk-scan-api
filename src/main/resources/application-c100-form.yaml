@@ -5,8 +5,12 @@ uk:
         caseTypeofApplication:
           C100:
             mandatoryFields:
+              - applicantOneFirstName
+              - applicantOneLastName
               - applicant1_firstName
               - applicant1_lastName
+              - respondentOneFirstName
+              - respondentOneLastName
               - respondent1_firstName
               - respondent1_lastName
               - childArrangement_order
@@ -34,7 +38,6 @@ uk:
               - child_living_with_Respondent
               - child_living_with_others
               - existingCase_onEmergencyProtection_Care_or_supervisioNorder
-
               - section1RelatingToChildCompleted
               - section2Section3Section4RelatingToMediationCompleted
               - section5Section6RelatingToApplicationReasonCompleted
@@ -160,25 +163,25 @@ uk:
               - respondentTwoEmailAddressDontKnow
               - respondentTwoAllAddressesForLastFiveYears
               - hasRespondentTwoLivedAtThisAddressForOverFiveYears
-              - otherPeople1FirstName
-              - otherPeople1LastName
-              - otherPeople1PreviousName
-              - otherPeople1Gender
-              - otherPeople1DateOfBirth
-              - otherPeople1DateOfBirthDontKnow
-              - otherPeople1Address
-              - otherPeople1AddressPostcode
-              - otherPeople1AddressDontKnow
+              - otherPeopleOneFirstName
+              - otherPeopleOneLastName
+              - otherPeopleOnePreviousName
+              - otherPeopleOneGender
+              - otherPeopleOneDateOfBirth
+              - otherPeopleOneDateOfBirthDontKnow
+              - otherPeopleOneAddress
+              - otherPeopleOneAddressPostcode
+              - otherPeopleOneAddressDontKnow
               - otherPeopleOneRelationshipWithChildren
-              - otherPeople2FirstName
-              - otherPeople2LastName
-              - otherPeople2PreviousName
-              - otherPeople2Gender
-              - otherPeople2DateOfBirth
-              - otherPeople2DateOfBirthDontKnow
-              - otherPeople2Address
-              - otherPeople2AddressPostcode
-              - otherPeople2AddressDontKnow
+              - otherPeopleTwoFirstName
+              - otherPeopleTwoLastName
+              - otherPeopleTwoPreviousName
+              - otherPeopleTwoGender
+              - otherPeopleTwoDateOfBirth
+              - otherPeopleTwoDateOfBirthDontKnow
+              - otherPeopleTwoAddress
+              - otherPeopleTwoAddressPostcode
+              - otherPeopleTwoAddressDontKnow
               - otherPeopleTwoRelationshipWithChildren
               - otherChildren1FullName
               - otherChildren1DateOfBirth
@@ -328,8 +331,8 @@ uk:
               - other_case_childMaintenanceOrder
               - other_case_childArrangementOrder
               - requiredSpecialArrangementDetails # requiredSpecialAssistanceOrFacilities_details
-              - otherPeople1RelationshipToChild #withChildren
-              - otherPeople2RelationshipToChild
+              - otherPeopleOneRelationshipToChild #withChildren
+              - otherPeopleTwoRelationshipToChild
               - otherChildren1RelationshipToApplicants
               - otherChildren1RelationshipToRespondents
               - otherChildren2RelationshipToApplicants
@@ -354,8 +357,8 @@ uk:
                   - child4_dateOfBirth
                   - respondentOneDateOfBirth
                   - respondentTwoDateOfBirth
-                  - otherPeople1DateOfBirth
-                  - otherPeople2DateOfBirth
+                  - otherPeopleOneDateOfBirth
+                  - otherPeopleTwoDateOfBirth
                   - otherChildren1DateOfBirth
                   - otherChildren2DateOfBirth
                 regex: dd/MM/yyyy
