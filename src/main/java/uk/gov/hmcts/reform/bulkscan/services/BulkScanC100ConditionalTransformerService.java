@@ -3,7 +3,6 @@ package uk.gov.hmcts.reform.bulkscan.services;
 import static java.util.Objects.nonNull;
 import static org.apache.commons.lang3.BooleanUtils.TRUE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICATION_PERMISSION_REQUIRED;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVE_WITH_KEY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVING_WITH_APPLICANT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVING_WITH_OTHERS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVING_WITH_RESPONDENT;
@@ -130,10 +129,10 @@ public class BulkScanC100ConditionalTransformerService {
         if (StringUtils.isNotEmpty(permissionsRequired)) {
             populatedMap.put(APPLICATION_PERMISSION_REQUIRED, permissionsRequired);
         }
-        String childLivesWith = transformChildLiveWith(inputFieldsMap);
-        if (StringUtils.isNotEmpty(childLivesWith)) {
-            populatedMap.put(CHILD_LIVE_WITH_KEY, childLivesWith);
-        }
+        //String childLivesWith = transformChildLiveWith(inputFieldsMap);
+        //if (StringUtils.isNotEmpty(childLivesWith)) {
+        //    populatedMap.put(CHILD_LIVE_WITH_KEY, childLivesWith);
+        //}
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
         populatedMap.put(
