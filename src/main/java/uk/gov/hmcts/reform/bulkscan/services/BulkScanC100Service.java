@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
+
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,7 @@ import uk.gov.hmcts.reform.bulkscan.model.CaseCreationDetails;
 import uk.gov.hmcts.reform.bulkscan.model.FormType;
 import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
 
+@Slf4j
 @Service
 public class BulkScanC100Service implements BulkScanService {
 
@@ -115,7 +118,7 @@ public class BulkScanC100Service implements BulkScanService {
                 populatedMap, inputFieldsMap, bulkScanTransformationRequest);
         Map<String, String> caseTypeAndEventId =
                 transformConfigManager.getTransformationConfig(FormType.C100).getCaseFields();
-
+        log.info("Populated map {}", populatedMap);
         return BulkScanTransformationResponse.builder()
                 .caseCreationDetails(
                         CaseCreationDetails.builder()

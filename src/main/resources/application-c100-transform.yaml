@@ -106,7 +106,7 @@ uk:
               havePreviousParentingPlan: havePreviousParentingPlan
               applicationPermissionRequired : askingPermissionForApplication
               isCaseUrgent : urgent_or_withoutHearing
-              previousOrOngoingProceedings : previous_or_ongoingProceeding
+              #previousOrOngoingProceedings : previous_or_ongoingProceeding
               consentOrder : isConsentOrder
               welshLanguageRequirement : welshRequired
 
