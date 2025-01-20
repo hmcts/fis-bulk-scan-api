@@ -207,7 +207,9 @@ public class BulkScanEndpoint {
                                         FormType.valueOf(
                                                 bulkScanTransformationRequest.getFormType())))
                         .transform(bulkScanTransformationRequest);
-        logger.info("2 scan docs {}", bulkScanTransformationRequest.getScannedDocuments());
+        logger.info("2 scan docs {}",
+                    objectMapper.convertValue(
+                        bulkScanTransformationRequest.getScannedDocuments(), List.class));
         logger.info(
                 "response received to transformationOcrData ocr data from service {}",
                 bulkScanTransformationResponse.getCaseCreationDetails().getCaseData());
