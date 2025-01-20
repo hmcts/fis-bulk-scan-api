@@ -134,14 +134,14 @@ uk:
               setWithoutNoticeHearing: withoutNotice_frustrateTheOrder_reason
               otherProceedingsTable :
                 previousOrOngoingProceedings : previous_or_ongoingProceeding
-#              otherProceedingsDetailsTable:
-#                - value:
-#                    previousOrOngoingProceedings: previous_or_ongoingProceeding
-#                    caseNumber: other_case_case_number
-#                    dateOrYear: other_case_date_or_year
-#                    nameOfCourt: other_case_name_of_court
-#                    nameOfChildrenInvolved: other_case_name_of_children
-#                    nameAndOffice: other_case_name_and_office
+              otherProceedingsDetailsTable:
+                - value:
+                    previousOrOngoingProceedings: previous_or_ongoingProceeding
+                    caseNumber: other_case_case_number
+                    dateOrYear: other_case_date_or_year
+                    nameOfCourt: other_case_name_of_court
+                    nameOfChildrenInvolved: other_case_name_of_children
+                    nameAndOffice: other_case_name_and_office
               respondents:
                 - value:
                     firstName: respondentOneFirstName
