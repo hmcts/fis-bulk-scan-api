@@ -110,7 +110,7 @@ public class BulkScanC100Service implements BulkScanService {
                                                 .getTransformationConfig(FormType.C100)
                                                 .getCaseDataFields()),
                                 inputFieldsMap);
-
+        populatedMap.remove("otherChildrenNotInTheCaseTable");
         bulkScanC100ConditionalTransformerService.transform(
                 populatedMap, inputFieldsMap, bulkScanTransformationRequest);
         Map<String, String> caseTypeAndEventId =
