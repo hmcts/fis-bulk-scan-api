@@ -62,6 +62,7 @@ uk:
                     orderAppliedFor: child1_orderAppliedFor
                     applicantsRelationshipToChild: child1_applicant1_relationship
                     respondentsRelationshipToChild: child1_respondent1_relationship
+                    childLiveWith: children_of_same_parent
                 - value:
                     firstName: child2_firstName
                     lastName: child2_lastName
@@ -93,7 +94,6 @@ uk:
               childrenKnownToLocalAuthorityTextArea: child1_localAuthority_or_socialWorker
               childrenSubjectOfChildProtectionPlan: subject_to_childProtectionPlan
               parentalResponsibilityDetails: parentalResponsibilityDetails
-              childLiveWith:  children_of_same_parent
               childrenParentsName: children_parentsName
               ordersForcedMarriageProtection: existingCase_onEmergencyProtection_Care_or_supervisioNorder
               childParentsNameCollection: child_parentsName_collection
