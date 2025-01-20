@@ -202,7 +202,7 @@ uk:
               - applicantSolicitorsFirmName
               - applicantAndApplicantsolicitorSignedDate
               - courtFee
-
+              - isApplicantSolicitorPresent
               - attended_MIAM
               - exemption_to_attend_MIAM
               - noMIAM_domesticViolance

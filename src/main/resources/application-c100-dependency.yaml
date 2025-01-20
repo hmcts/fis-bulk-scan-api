@@ -141,8 +141,8 @@ uk:
               sectionName: "4a - Mediator Certifies MIAM Exemption"
             - groupMediatorCertifiesAttendedMIAM:
               dependentFields:
-                - applicantOnly_AttendedMIAM
-                - applicantOnly_AttendedMIAMTogether
+                - applicantOnlyAttended
+                - attendedMIAMTogether
                 - applicantAndRespondentParty_AttendedMIAMSeparately
                 - respondentPartyArranged_ToAttendMIAMSeparately
               dependentFieldValue: "true"
@@ -162,9 +162,9 @@ uk:
               sectionName: "4b - Mediator Certifies Dispute Resolution not proceeding"
             - groupMediatorCertifiesMIAMTable:
               dependentFields:
-                - fmc_RegistrationNumber
-                - family_Mediation_ServiceName
-                - sole_TraderName
+                - fmcRegistrationNumber
+                - familyMediationServiceName
+                - soleTraderName
                 - authorizedFamilyMediator_address
                 - authorizedFamilyMediator_date
               dependentFieldValue: "*"
