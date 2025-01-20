@@ -28,9 +28,6 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.MEDIAT
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.MEDIATION_NOT_SUITABLE_FOR_RESOLVING_THE_DISPUTE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.MEDIATION_NOT_SUITABLE_NONEOFTHERESPONDENTS_FAILED_TO_ATTEND_MIAM_WITHOUT_GOOD_REASON;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.MEDIATION_NOT_SUITABLE_NONEOFTHERESPONDENTS_WILLING_TO_ATTEND_MIAM;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.MEDIATOR_CERTIFIES_APPLICANT_ATTEND_MIAM;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.MEDIATOR_CERTIFIES_DISPUTE_RESOLUTION_NOT_PROCEEDING;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.MEDIATOR_CERTIFIES_MIAM_EXEMPTION;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.MIAM_DOMESTIC_VIOLENCE_CHECKLIST;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.MIAM_EXEMPTIONS_CHECKLIST;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.MIAM_URGENCY_REASON_CHECKLIST;
@@ -166,18 +163,9 @@ public class BulkScanC100ConditionalTransformerService {
         interpreterValues.put(PARTY_ENUM, transformParty(inputFieldsMap));
 
         setOutReasonsBelow(populatedMap, inputFieldsMap);
-        String miamExemptions = transformMediatorCertifiesMiamExemption(inputFieldsMap);
-        if (StringUtils.isNotEmpty(miamExemptions)) {
-            populatedMap.put(MEDIATOR_CERTIFIES_MIAM_EXEMPTION, miamExemptions);
-        }
-        String mediatorCertAttendedMiam = transformMediatorCertifiesApplicantAttendMiam(inputFieldsMap);
-        if (StringUtils.isNotEmpty(mediatorCertAttendedMiam)) {
-            populatedMap.put(MEDIATOR_CERTIFIES_APPLICANT_ATTEND_MIAM, mediatorCertAttendedMiam);
-        }
-        String mediatorCert = transformMediatorCertifiesDisputeResolutionNotProceeding(inputFieldsMap);
-        if (StringUtils.isNotEmpty(mediatorCert)) {
-            populatedMap.put(MEDIATOR_CERTIFIES_DISPUTE_RESOLUTION_NOT_PROCEEDING, mediatorCert);
-        }
+        transformMediatorCertifiesMiamExemption(inputFieldsMap);
+        transformMediatorCertifiesApplicantAttendMiam(inputFieldsMap);
+        transformMediatorCertifiesDisputeResolutionNotProceeding(inputFieldsMap);
         populatedMap.values().removeIf(Objects::isNull);
     }
 
@@ -544,26 +532,31 @@ public class BulkScanC100ConditionalTransformerService {
      * @param inputFieldsMap All input key-value pair from transformation request.
      * @return Mediator Certifies MIAM exemption field in the transformation output.
      */
-    private String transformMediatorCertifiesMiamExemption(Map<String, String> inputFieldsMap) {
+    private void transformMediatorCertifiesMiamExemption(Map<String, String> inputFieldsMap) {
 
         if (TRUE.equalsIgnoreCase(
                 inputFieldsMap.get(
                         MEDIATION_NOT_SUITABLE_NONEOFTHERESPONDENTS_WILLING_TO_ATTEND_MIAM))) {
-            return GroupMediatorCertifiesEnum
-                    .MEDIATION_NOT_PROCEEDING_APPLICATION_ATTENDED_MIAM_ALONE
-                    .getDescription();
+            inputFieldsMap.put("respondentWillingToAttendMiam", "No");
+            inputFieldsMap.put("respondentReasonNotAttendingMiam", GroupMediatorCertifiesEnum
+                .MEDIATION_NOT_PROCEEDING_APPLICATION_ATTENDED_MIAM_ALONE
+                .getDescription());
         } else if (TRUE.equals(
                 inputFieldsMap.get(
                         MEDIATION_NOT_SUITABLE_NONEOFTHERESPONDENTS_FAILED_TO_ATTEND_MIAM_WITHOUT_GOOD_REASON))) {
-            return GroupMediatorCertifiesEnum
+            inputFieldsMap.put("respondentWillingToAttendMiam", "No");
+            inputFieldsMap.put("respondentReasonNotAttendingMiam",  GroupMediatorCertifiesEnum
                     .MEDIATION_NOT_SUITABLE_NONEOFTHERESPONDENTS_FAILED_TO_ATTEND_MIAM_WITHOUT_GOOD_REASON
-                    .getDescription();
+                    .getDescription());
         } else if (TRUE.equals(
                 inputFieldsMap.get(MEDIATION_NOT_SUITABLE_FOR_RESOLVING_THE_DISPUTE))) {
-            return GroupMediatorCertifiesEnum.MEDIATION_NOT_SUITABLE_FOR_RESOLVING_THE_DISPUTE
-                    .getDescription();
+            inputFieldsMap.put("respondentWillingToAttendMiam", "No");
+            inputFieldsMap.put("respondentReasonNotAttendingMiam",
+                               GroupMediatorCertifiesEnum.MEDIATION_NOT_SUITABLE_FOR_RESOLVING_THE_DISPUTE.getDescription());
+        } else {
+            inputFieldsMap.put("respondentWillingToAttendMiam", "No");
+            inputFieldsMap.put("respondentReasonNotAttendingMiam", "");
         }
-        return EMPTY;
     }
 
     /**
