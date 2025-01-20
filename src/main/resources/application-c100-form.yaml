@@ -51,8 +51,8 @@ uk:
               - applicantRequiresInterpreter_intermediaryRequired
               - requiredSpecialAssistanceOrFacilities
               - applicantOneDateOfBirth
-              - applicantOnePlaceOfBirth
             optionalFields:
+              - applicantOnePlaceOfBirth
               - applicant2_firstName
               - applicant2_lastName
               - respondent2_firstName
@@ -90,7 +90,7 @@ uk:
               - child_parentsName_collection
               - parentalResponsibilityDetails
               - child_living_with_others_details
-              - fmc_RegistrationNumber
+              - fmcRegistrationNumber
               - familyMember_Intimation_on_No_MIAM
               - soleTraderName
               - authorizedFamilyMediator_address
@@ -195,9 +195,9 @@ uk:
               - otherChildren2DateOfBirthDontKnow
               - OtherChildrenTwoRelationshipWithApplicant
               - OtherChildrenTwoRelationshipWithRespondent
-              - solicitor_firm_name
-              - solicitor_telephone_number
-              - solicitor_fax_number
+              - solicitorFirmName
+              - solicitorTelephoneNumber
+              - solicitorFaxNumber
               - printFullName
               - applicantSolicitorsFirmName
               - applicantAndApplicantsolicitorSignedDate
@@ -279,9 +279,9 @@ uk:
               - Attendence_joinHearingByVideo
               - solicitorFullName
               - solicitorAddress
-              - solicitor_dx_number
+              - solicitorDxNumber
               - solicitorPostcode
-              - solicitor_reference
+              - solicitorReference
               - solicitorFeeAccountNo
               - applicantSolicitorEmailAddress
               - Checklist_claimingMIAMExemption
@@ -312,8 +312,6 @@ uk:
               - applicantTwoAddressPostCode
               - respondentTwoAddressPostCode
               - respondentTwoLivedAtThisAddressForOverFiveYears
-              - doYouHaveSolicitor
-              - your_solicitor_name
               - solicitor_fee_account_No # solicitorFeeAccountNo
               - solicitor_email_address # applicantSolicitorEmailAddress
               - other_case_name_of_children
@@ -337,8 +335,6 @@ uk:
               - otherChildren1RelationshipToRespondents
               - otherChildren2RelationshipToApplicants
               - otherChildren2RelationshipToRespondents
-              - solicitor_address
-              - solicitor_postcode
               - position_or_OfficeHeld
               - courtFeeConsent
               - mediationNotSuitable_NoneOfTheRespondentsWillingToAttendMIAM
