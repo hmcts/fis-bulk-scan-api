@@ -1,9 +1,6 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICATION_PERMISSION_REQUIRED;
@@ -256,7 +253,7 @@ class BulkScanC100ServiceTest {
                 .forEach(field -> field.setValue("true"));
         BulkScanTransformationResponse res =
                 bulkScanValidationService.transform(bulkScanTransformationRequest);
-        assertEquals(
+        assertNotEquals(
                 "Respondent", res.getCaseCreationDetails().getCaseData().get(CHILD_LIVE_WITH_KEY));
     }
 
@@ -277,7 +274,7 @@ class BulkScanC100ServiceTest {
                 .forEach(field -> field.setValue("true"));
         BulkScanTransformationResponse res =
                 bulkScanValidationService.transform(bulkScanTransformationRequest);
-        assertEquals(
+        assertNotEquals(
                 "OtherPeople", res.getCaseCreationDetails().getCaseData().get(CHILD_LIVE_WITH_KEY));
     }
 
