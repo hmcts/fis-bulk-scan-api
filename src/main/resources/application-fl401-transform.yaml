@@ -9,11 +9,11 @@ uk:
               EVENT_ID: create-case-privatelaw-bs
             caseDataFields:
               relationshipToRespondentTable:
-                applicantRelationship: applicantRespondent_Relationship_01
-                relationshipDateComplexStartDate: applicantRespondent_Relationship_StartDate
-                relationshipDateComplexEndDate: applicantRespondent_Relationship_EndDate
+                applicantRelationship: appliantRespondent_Relationship_1
+                relationshipDateComplexStartDate: appliantRespondent_Relationship_StartDate
+                relationshipDateComplexEndDate: appliantRespondent_Relationship_EndDate
                 applicantRelationshipDate: applicantRespondent_PreviousMarried_Date
-                applicantRelationshipOptions: applicantRespondent_Relationship_10
+                applicantRelationshipOptions: appliantRespondent_Relationship_10
                 needForParentalResponsibility: needForParentalResponsibility
               applicant:
                 - value:

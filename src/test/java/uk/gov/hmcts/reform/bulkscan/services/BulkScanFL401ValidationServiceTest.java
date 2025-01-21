@@ -228,12 +228,6 @@ class BulkScanFL401ValidationServiceTest {
                         .contains(
                                 "Please enter valid date for Applicant respondent relationship"
                                         + " Start date"));
-        assertTrue(
-                bulkScanValidationResponse
-                        .getWarnings()
-                        .contains(
-                                "Please enter valid date for Applicant respondent relationship End"
-                                        + " date"));
     }
 
     @Test

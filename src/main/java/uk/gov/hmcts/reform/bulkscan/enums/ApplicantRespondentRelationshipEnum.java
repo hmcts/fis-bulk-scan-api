@@ -4,17 +4,17 @@ import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
 public enum ApplicantRespondentRelationshipEnum {
-    applicantRespondent_Relationship_01("Married or in a civil partnership"),
-    applicantRespondent_Relationship_02("Formerly married or in a civil partnership"),
-    applicantRespondent_Relationship_03("Engaged or proposed civil partnership"),
-    applicantRespondent_Relationship_04("Formerly engaged or proposed civil partnership"),
-    applicantRespondent_Relationship_05("Live together as a couple"),
-    applicantRespondent_Relationship_06("Formerly lived together as a couple"),
-    applicantRespondent_Relationship_07(
+    applicantRespondent_Relationship_1("Married or in a civil partnership"),
+    applicantRespondent_Relationship_2("Formerly married or in a civil partnership"),
+    applicantRespondent_Relationship_3("Engaged or proposed civil partnership"),
+    applicantRespondent_Relationship_4("Formerly engaged or proposed civil partnership"),
+    applicantRespondent_Relationship_5("Live together as a couple"),
+    applicantRespondent_Relationship_6("Formerly lived together as a couple"),
+    applicantRespondent_Relationship_7(
             "Boyfriend, girlfriend or partner who does not live with me"),
-    applicantRespondent_Relationship_08(
+    applicantRespondent_Relationship_8(
             "Former boyfriend, girlfriend or partner who did not live with me"),
-    applicantRespondent_Relationship_09("None of the above"),
+    applicantRespondent_Relationship_9("None of the above"),
     applicantRespondent_Relationship_10("Father"),
     applicantRespondent_Relationship_11("Mother"),
     applicantRespondent_Relationship_12("Son"),

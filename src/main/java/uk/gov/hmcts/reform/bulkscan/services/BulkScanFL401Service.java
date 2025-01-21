@@ -9,10 +9,8 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.POST_CODE
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.SCAN_DOCUMENTS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_ADDRESS_POSTCODE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_DATE_OF_BIRTH;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_DATE_OF_BIRTH_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.BAIL_CONDITION_END_DATE_MESSAGE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.RESPONDENT_BAIL_CONDITIONS_ENDDATE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.TEXT_AND_NUMERIC_MONTH_PATTERN;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.VALID_DATE_WARNING_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper.transformScanDocuments;
@@ -88,7 +86,9 @@ public class BulkScanFL401Service implements BulkScanService {
         response.addWarning(
                 validateInputDate(
                         ocrDataFields,
-                        RESPONDENT_BAIL_CONDITIONS_ENDDATE,
+                        "respondentBailConditions_EndDate_Day",
+                        "respondentBailConditions_EndDate_Month",
+                        "respondentBailConditions_EndDate_Year",
                         BAIL_CONDITION_END_DATE_MESSAGE));
 
         bulkScanFL401ValidationService.validateApplicantRespondentRelationhip(
@@ -96,7 +96,10 @@ public class BulkScanFL401Service implements BulkScanService {
 
         response.addWarning(
                 validateInputDate(
-                        ocrDataFields, APPLICANT_DATE_OF_BIRTH, APPLICANT_DATE_OF_BIRTH_MESSAGE));
+                    ocrDataFields,
+                    "applicantDoB_DD",
+                    "applicantDoB_MM",
+                    "applicantDoB_YYYY", APPLICANT_DATE_OF_BIRTH_MESSAGE));
 
         response.addWarning(isValidPostCode(inputFieldMap, APPLICANT_ADDRESS_POSTCODE));
 
@@ -248,18 +251,19 @@ public class BulkScanFL401Service implements BulkScanService {
     }
 
     private List<String> validateInputDate(
-            List<OcrDataField> ocrDataFields, String fieldName, String message) {
+        List<OcrDataField> ocrDataFields, String day, String month, String year, String message) {
 
         final Map<String, String> ocrDataFieldsMap = getOcrDataFieldAsMap(ocrDataFields);
 
         if (null != ocrDataFieldsMap
-                && ocrDataFieldsMap.containsKey(fieldName)
-                && hasText(ocrDataFieldsMap.get(fieldName))) {
-            String date = ocrDataFieldsMap.get(fieldName);
-
+                && ocrDataFieldsMap.containsKey(day)
+                && hasText(ocrDataFieldsMap.get(day)) && ocrDataFieldsMap.containsKey(month)
+                && hasText(ocrDataFieldsMap.get(month))
+                && ocrDataFieldsMap.containsKey(year) && hasText(ocrDataFieldsMap.get(year))) {
+            String date = ocrDataFieldsMap.get(year) + "-" + ocrDataFieldsMap.get(month) + "-" + ocrDataFieldsMap.get(day);
             return validateDate(Objects.requireNonNull(date), message);
         }
-        return Collections.emptyList();
+        return List.of(String.format(VALID_DATE_WARNING_MESSAGE, message));
     }
 
     private List<String> validateDate(String date, String fieldName) {

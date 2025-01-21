@@ -9,7 +9,7 @@ uk:
               EVENT_ID: create-case-privatelaw-bs
             caseDataFields:
               relationshipToRespondentTable:
-                applicantRelationship: applicantRespondent_Relationship_01
+                applicantRelationship: applicantRespondent_Relationship_1
                 relationshipDateComplexStartDate: applicantRespondent_Relationship_StartDate
                 relationshipDateComplexEndDate: applicantRespondent_Relationship_EndDate
                 applicantRelationshipDate: applicantRespondent_PreviousMarried_Date

@@ -28,7 +28,6 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.MEDIAT
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.MEDIATION_NOT_SUITABLE_FOR_RESOLVING_THE_DISPUTE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.MEDIATION_NOT_SUITABLE_NONEOFTHERESPONDENTS_FAILED_TO_ATTEND_MIAM_WITHOUT_GOOD_REASON;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.MEDIATION_NOT_SUITABLE_NONEOFTHERESPONDENTS_WILLING_TO_ATTEND_MIAM;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.MIAM_DOMESTIC_VIOLENCE_CHECKLIST;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.MIAM_EXEMPTIONS_CHECKLIST;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.MIAM_URGENCY_REASON_CHECKLIST;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.NO_MIAM_CHILD_PROTECTION_CONCERNS;
@@ -136,7 +135,7 @@ public class BulkScanC100ConditionalTransformerService {
                 SCAN_DOCUMENTS,
                 objectMapper.convertValue(transformScanDocuments(bulkScanTransformationRequest), List.class));
         populatedMap.put(
-                MIAM_DOMESTIC_VIOLENCE_CHECKLIST,
+            "mpuDomesticAbuseEvidences",
                 transformMiamDomesticViolenceChecklist(inputFieldsMap));
         populatedMap.put(
                 MIAM_EXEMPTIONS_CHECKLIST, transformMiamExemptionsChecklist(inputFieldsMap));

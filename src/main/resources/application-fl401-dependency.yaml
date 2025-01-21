@@ -6,17 +6,17 @@ uk:
           FL401:
             - groupRelationshipWithRespondent:
               dependentFields:
-                - applicantRespondent_Relationship_StartDate
+                - relationship_Start_DD
+                - relationship_Start_MM
+                - relationship_Start_YYYY
               dependentFieldValue: "*"
-              groupFieldName: applicantRespondent_Relationship_09
+              groupFieldName: appliantRespondent_Relationship_9
               groupValidationValue: "Yes"
               requiredFieldCount: 1
               sectionName: "4.2 - Relationship Start Date cannot be null"
             - applyingWithoutGivingNotice:
               dependentFields:
-                - riskOfSignificantHarm
-                - deterredOrPrevented
-                - deliberatelyEvadingService
+                - orderWithoutGivingNoticeReason
               dependentFieldValue: "Yes"
               groupFieldName: orderWithout_GivingNotice
               groupValidationValue: "Yes"
@@ -69,7 +69,7 @@ uk:
                 - occupationOrderAddress_CurrentOccupant_Others
                 - occupationOrderAddress_PreviousOccupant
               dependentFieldValue: "*"
-              groupFieldName: applyingForOccupationOrder
+              groupFieldName: ApplyingForOccupationOrder
               groupValidationValue: "Yes"
               requiredFieldCount: 2
               sectionName: "To what address do you want the occupation order to apply?"
@@ -144,14 +144,6 @@ uk:
               dependentFields:
                 - applicationFor_YouOnly
                 - applicationFor_YourFamily
-                - family_childrenDetails_row1
-                - family_childrenDetails_row2
-                - family_childrenDetails_row3
-                - family_childrenDetails_row4
-                - OngoingFamilyCourtProceeding
-                - OngoingFamilyCourtProceeding_row1
-                - OngoingFamilyCourtProceeding_row2
-                - OngoingFamilyCourtProceeding_row3
               dependentFieldValue: "*"
               groupFieldName: needForParentalResponsiblity
               groupValidationValue: "Yes"
@@ -179,4 +171,12 @@ uk:
               groupValidationValue: "Yes"
               requiredFieldCount: 1
               sectionName: "5.4 - Family court proceedings details"
+            - yourFamilyGroup:
+              dependentFields:
+                - ApplyingForOccupationOrder
+              dependentFieldValue: "*"
+              groupFieldName: orderApplyingFor
+              groupValidationValue: "occupationOrder"
+              requiredFieldCount: 1
+              sectionName: "7.1 - Are you applying for an occupation order?"
 
