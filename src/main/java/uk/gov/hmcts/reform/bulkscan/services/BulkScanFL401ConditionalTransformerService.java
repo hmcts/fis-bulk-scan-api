@@ -99,12 +99,14 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.WITH
 import static uk.gov.hmcts.reform.bulkscan.enums.OrderWithouGivingNoticeReasonEnum.RISKOF_SIGNIFICANT_HARM;
 
 import com.microsoft.applicationinsights.core.dependencies.google.gson.internal.LinkedTreeMap;
+
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.BooleanUtils;
 import org.springframework.stereotype.Component;
@@ -127,24 +129,25 @@ public class BulkScanFL401ConditionalTransformerService {
         final String bailConditionEndDate =
                 (String) withoutNoticeOrderTableMap.get(BAIL_CONDITION_END_DATE);
 
-        withoutNoticeOrderTableMap.put(
+        if (org.apache.commons.lang3.StringUtils.isNotBlank(bailConditionEndDate)) {
+            withoutNoticeOrderTableMap.put(
                 BAIL_CONDITION_END_DATE,
                 DateUtil.transformDate(
-                        bailConditionEndDate,
-                        TEXT_AND_NUMERIC_MONTH_PATTERN,
-                        TWO_DIGIT_MONTH_FORMAT));
+                    bailConditionEndDate,
+                    TEXT_AND_NUMERIC_MONTH_PATTERN,
+                    TWO_DIGIT_MONTH_FORMAT));
+        }
 
         withoutNoticeOrderTableMap.put(
                 REASON_FOR_ORDER_WITHOUT_GIVING_NOTICE,
-                transformReasonForOrderWithoutGivingNotice(inputFieldsMap));
+                inputFieldsMap.get("orderWithoutGivingNoticeReason"));
 
         LinkedTreeMap relationshipToRespondentTableMap =
                 (LinkedTreeMap) populatedMap.get(CCD_RELATIONSHIP_TO_RESPONDENT_TABLE);
 
-        final String relationshipDateComplexStartDate =
-                (String)
-                        relationshipToRespondentTableMap.get(
-                                CCD_RELATIONSHIP_DATE_COMPLEX_START_DATE_FIELD);
+        final String relationshipDateComplexStartDate = DateUtil
+            .buildDate(inputFieldsMap.get("relationship_Start_DD"),inputFieldsMap.get("relationship_Start_MM"),
+                       inputFieldsMap.get("relationship_Start_YYYY"));
 
         if (null != relationshipDateComplexStartDate
                 && !relationshipDateComplexStartDate.isEmpty()) {
@@ -155,10 +158,9 @@ public class BulkScanFL401ConditionalTransformerService {
                             TEXT_AND_NUMERIC_MONTH_PATTERN,
                             TWO_DIGIT_MONTH_FORMAT));
         }
-        final String relationshipDateComplexEndDate =
-                (String)
-                        relationshipToRespondentTableMap.get(
-                                CCD_RELATIONSHIP_DATE_COMPLEX_END_DATE_FIELD);
+        final String relationshipDateComplexEndDate = DateUtil
+            .buildDate(inputFieldsMap.get("relationship_End_DD"),inputFieldsMap.get("relationship_End_MM"),
+                       inputFieldsMap.get("relationship_End_YYYY"));
 
         if (null != relationshipDateComplexEndDate && !relationshipDateComplexEndDate.isEmpty()) {
             relationshipToRespondentTableMap.put(
@@ -168,8 +170,10 @@ public class BulkScanFL401ConditionalTransformerService {
                             TEXT_AND_NUMERIC_MONTH_PATTERN,
                             TWO_DIGIT_MONTH_FORMAT));
         }
-        final String applicantRelationshipDate =
-                (String) relationshipToRespondentTableMap.get(CCD_APPLICANT_RELATIONSHIOP_DATE);
+        final String applicantRelationshipDate = DateUtil
+            .buildDate(inputFieldsMap.get("relationship_PreviousMarried_DD"),
+                       inputFieldsMap.get("relationship_PreviousMarried_MM"),
+                       inputFieldsMap.get("relationship_PreviousMarried_YYYY"));
 
         if (null != applicantRelationshipDate && !applicantRelationshipDate.isEmpty()) {
             relationshipToRespondentTableMap.put(
@@ -206,6 +210,7 @@ public class BulkScanFL401ConditionalTransformerService {
         } else {
             relationshipToRespondentTableMap.put(FL401_APPLICANT_RELATIONSHIP_OPTIONS, null);
         }
+        populatedMap.put(CCD_RELATIONSHIP_TO_RESPONDENT_TABLE, relationshipToRespondentTableMap);
 
         LinkedTreeMap attendHearingTableMap =
                 (LinkedTreeMap) populatedMap.get(ATTEND_HEARING_TABLE);
@@ -239,7 +244,8 @@ public class BulkScanFL401ConditionalTransformerService {
                 transformApplicantAddress(inputFieldsMap, applicantContactConfidentiality));
         transformContactDetails(
                 inputFieldsMap, fl401ApplicantTable, applicantContactConfidentiality);
-
+        fl401ApplicantTable.put("dateOfBirth", DateUtil.buildDate(inputFieldsMap.get("applicantDoB_DD"),
+            inputFieldsMap.get("applicantDoB_MM"), inputFieldsMap.get("applicantDoB_YYYY")));
         LinkedTreeMap fl401SolicitorDetailsTable =
                 (LinkedTreeMap) populatedMap.get(FL401_SOLICITOR_TABLE);
         transformSolicitorName(inputFieldsMap, fl401SolicitorDetailsTable);
@@ -319,7 +325,6 @@ public class BulkScanFL401ConditionalTransformerService {
                 childDetails.put(CHILD_FULL_NAME, childName);
                 childDetails.put(CHILD_AGE, childAge);
                 childDetails.put(RESPONDENT_RESPONSIBLE_FOR_CHILD, isRespondentResponsibleForChild);
-
                 childrenLinkedTreeMap.put(VALUE, childDetails);
 
                 children.add(childrenLinkedTreeMap);

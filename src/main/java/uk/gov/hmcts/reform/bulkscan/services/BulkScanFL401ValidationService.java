@@ -152,7 +152,7 @@ public class BulkScanFL401ValidationService {
         return warningLst;
     }
 
-    private String buildDate(String dd, String mm, String yyyy) {
+    public String buildDate(String dd, String mm, String yyyy) {
         if (StringUtils.isBlank(dd) || StringUtils.isBlank(mm) || StringUtils.isBlank(yyyy)) {
             return null;
         }

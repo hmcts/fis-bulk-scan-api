@@ -63,8 +63,8 @@ uk:
                       language: interpreterNeededAtCourt_Language
                       dialect: interpreterNeededAtCourt_Dialect
               respondentBehaviourTable:
-               applicantWantToStopFromRespondentDoing:
-               applicantWantToStopFromRespondentDoingToChild:
+                applicantWantToStopFromRespondentDoing:
+                applicantWantToStopFromRespondentDoingToChild:
               fl401ApplicantTable:
                 firstName: applicantFirstName
                 lastName: applicantLastName
