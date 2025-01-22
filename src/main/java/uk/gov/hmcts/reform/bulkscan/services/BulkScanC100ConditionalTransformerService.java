@@ -614,7 +614,7 @@ public class BulkScanC100ConditionalTransformerService {
         return EMPTY;
     }
 
-    private static List<ResponseScanDocumentValueNew> transformScanDocuments(
+    public static List<ResponseScanDocumentValueNew> transformScanDocuments(
         BulkScanTransformationRequest bulkScanTransformationRequest) {
         List<ScannedDocuments> scannedDocumentsList =
             bulkScanTransformationRequest.getScannedDocuments();

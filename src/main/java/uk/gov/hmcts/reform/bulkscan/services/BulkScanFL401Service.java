@@ -22,6 +22,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -228,7 +231,12 @@ public class BulkScanFL401Service implements BulkScanService {
                 transformConfigManager.getTransformationConfig(formType).getCaseFields();
 
         bulkScanFL401ConditionalTransformerService.transform(populatedMap, inputFieldsMap);
-
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
+        populatedMap.put(
+            SCAN_DOCUMENTS,
+            objectMapper.convertValue(BulkScanC100ConditionalTransformerService
+                                          .transformScanDocuments(bulkScanTransformationRequest), List.class));
         BulkScanTransformationResponse.BulkScanTransformationResponseBuilder builder =
                 BulkScanTransformationResponse.builder()
                         .caseCreationDetails(
