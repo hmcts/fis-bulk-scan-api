@@ -212,15 +212,26 @@ public class BulkScanFL401ConditionalTransformerService {
                 SPECIAL_MEASURE_AT_COURT, getFormattedSpecialMeasureAtCourt(inputFieldsMap));
         LinkedTreeMap respondentBehaviourTable =
                 (LinkedTreeMap) populatedMap.get(STOP_RESPONDENT_BEHAVIOUR_TABLE);
-
         if (StringUtils.hasText(inputFieldsMap.get(APPLYING_FOR_NON_MOLES_STATION_ORDER))
                 && inputFieldsMap.get(APPLYING_FOR_NON_MOLES_STATION_ORDER).equalsIgnoreCase(YES)) {
+            Map<String, Object> respondentBehaviourData = new HashMap<>();
+
+            respondentBehaviourData.put(
+                STOP_RESPONDENT_BEHAVIOUR_OPTIONS,
+                getRespondentBehaviourOptions(inputFieldsMap));
+            respondentBehaviourData.put(
+                STOP_RESPONDENT_BEHAVIOUR_CHILD_OPTIONS,
+                getRespondentBehaviourChildOptions(inputFieldsMap));
+            respondentBehaviourData.put(
+                OTHERS_STOP_RESPONDENT_BEHAVIOUR_OPTIONS,
+                inputFieldsMap.get(STOP_RESPONDENT_BEHAVIOUR_OPTIONS_6));
+
             respondentBehaviourTable.put(
                     STOP_RESPONDENT_BEHAVIOUR_OPTIONS,
-                    getRespondentBehaviourOptions(inputFieldsMap));
+                    String.join(",", getRespondentBehaviourOptions(inputFieldsMap)));
             respondentBehaviourTable.put(
                     STOP_RESPONDENT_BEHAVIOUR_CHILD_OPTIONS,
-                    getRespondentBehaviourChildOptions(inputFieldsMap));
+                    String.join(",", getRespondentBehaviourChildOptions(inputFieldsMap)));
             respondentBehaviourTable.put(
                     OTHERS_STOP_RESPONDENT_BEHAVIOUR_OPTIONS,
                     inputFieldsMap.get(STOP_RESPONDENT_BEHAVIOUR_OPTIONS_6));
@@ -526,31 +537,27 @@ public class BulkScanFL401ConditionalTransformerService {
         return null;
     }
 
-    private String getRespondentBehaviourOptions(Map<String, String> inputFieldsMap) {
-        StringBuilder sb = new StringBuilder();
+    private List<String> getRespondentBehaviourOptions(Map<String, String> inputFieldsMap) {
+        List<String> respondentBehaviourOptions = new ArrayList<>();
         for (FL401StopRespondentEnum l : EnumSet.allOf(FL401StopRespondentEnum.class)) {
             String key = l.getKey();
             if (null != inputFieldsMap.get(key) && inputFieldsMap.get(key).equalsIgnoreCase(YES)) {
-
-                sb.append(l.getValue(l.name())).append(COMMA);
+                respondentBehaviourOptions.add(FL401StopRespondentEnum.getValue(key));
             }
         }
-
-        return sb.toString();
+        return respondentBehaviourOptions;
     }
 
-    private String getRespondentBehaviourChildOptions(Map<String, String> inputFieldsMap) {
-        StringBuilder sb = new StringBuilder();
+    private List<String> getRespondentBehaviourChildOptions(Map<String, String> inputFieldsMap) {
+        List<String> respondentBehaviourChildOptions = new ArrayList<>();
         for (FL401StopRespondentBehaviourChildEnum l :
                 EnumSet.allOf(FL401StopRespondentBehaviourChildEnum.class)) {
             String key = l.getKey();
             if (null != inputFieldsMap.get(key) && inputFieldsMap.get(key).equalsIgnoreCase(YES)) {
-
-                sb.append(l.getValue(l.name())).append(COMMA);
+                respondentBehaviourChildOptions.add(FL401StopRespondentBehaviourChildEnum.getValue(key));
             }
         }
-
-        return sb.toString();
+        return respondentBehaviourChildOptions;
     }
 
     private void transformApplicantConfidentiality(

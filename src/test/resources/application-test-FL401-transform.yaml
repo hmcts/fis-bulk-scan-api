@@ -18,7 +18,6 @@ uk:
               applicantsFL401:
                     firstName: applicant_firstName
                     lastName: applicant_lastName
-                    address: applicant_address
                     phoneNumber: telephone_number
               statementOfTruthLine1: statementOfTruth_Line1
               statementOfTruthLine2: statementOfTruth_Line2
