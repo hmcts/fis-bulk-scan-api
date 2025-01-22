@@ -18,7 +18,7 @@ uk:
               applicantsFL401:
                   firstName: applicant_firstName
                   lastName: applicant_lastName
-                  address: applicant_address
+                  email: applicant_Email
                   phoneNumber: telephone_number
               fl401StmtOfTruth:
                 date: statementOfTruth_Date
@@ -65,6 +65,7 @@ uk:
               fl401ApplicantTable:
                 firstName: applicantFirstName
                 lastName: applicantLastName
+                email: applicant_Email
                 previousName: applicantPreviousNames
                 dateOfBirth: applicantDateOfBirth
                 applicantContactInstructions: applicant_ContactInstructions

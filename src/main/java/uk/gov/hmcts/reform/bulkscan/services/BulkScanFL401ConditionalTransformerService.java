@@ -227,14 +227,15 @@ public class BulkScanFL401ConditionalTransformerService {
         }
 
         LinkedTreeMap fl401ApplicantTable = (LinkedTreeMap) populatedMap.get(FL401_APPLICANT_TABLE);
+        LinkedTreeMap fl401Applicant = (LinkedTreeMap) populatedMap.get("applicantsFL401");
 
         String applicantContactConfidentiality =
                 inputFieldsMap.get(APPLICANT_CONTACT_CONFIDENTIALITY);
 
         transformApplicantConfidentiality(fl401ApplicantTable, applicantContactConfidentiality);
-        fl401ApplicantTable.put(
-                ADDRESS,
-                transformApplicantAddress(inputFieldsMap, applicantContactConfidentiality));
+        LinkedTreeMap applicantAddress = transformApplicantAddress(inputFieldsMap, applicantContactConfidentiality);
+        fl401ApplicantTable.put(ADDRESS, applicantAddress);
+        fl401Applicant.put(ADDRESS, applicantAddress);
         transformContactDetails(
                 inputFieldsMap, fl401ApplicantTable, applicantContactConfidentiality);
         fl401ApplicantTable.put("dateOfBirth", DateUtil.buildDate(inputFieldsMap.get("applicantDoB_DD"),
@@ -247,14 +248,14 @@ public class BulkScanFL401ConditionalTransformerService {
             LinkedTreeMap mortgage = (LinkedTreeMap) home.get("mortgages");
             mortgage.put("mortgageNamedAfter", List.of("MortgageOnProperty_Person"));
         }
-        if (YES.equalsIgnoreCase(String.valueOf(home.get("isPropertyRented")))) {
+        if (YES.equalsIgnoreCase(String.valueOf(home.get(inputFieldsMap.get("isPropertyRented"))))) {
             LinkedTreeMap rented = (LinkedTreeMap) home.get("landlords");
-            rented.put("mortgageNamedAfterList", List.of("RentedProperty_Person"));
+            rented.put("mortgageNamedAfterList", List.of(inputFieldsMap.get("RentedProperty_Person")));
         }
         home.put(CHILDREN, buildTransformChild(populatedMap, inputFieldsMap));
         home.put("livingSituation", buildLivingSituation(inputFieldsMap));
         home.put("familyHome", buildFamilyHome(inputFieldsMap));
-        home.put("peopleLivingAtThisAddress", List.of("occupationOrderAddress_CurrentOccupant"));
+        home.put("peopleLivingAtThisAddress", List.of(inputFieldsMap.get("occupationOrderAddress_CurrentOccupant")));
         if (StringUtils.hasText(inputFieldsMap.get(CHILD_LIVE_ADDRESS_ROW_1))) {
             home.put("doAnyChildrenLiveAtAddress", YES);
         }
