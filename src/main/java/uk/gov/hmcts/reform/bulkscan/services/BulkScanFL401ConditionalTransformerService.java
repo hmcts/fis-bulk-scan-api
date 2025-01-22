@@ -48,7 +48,6 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.DELI
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.DETERREDOR_PREVENTED;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.DOB;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.DOES_APPLICANT_HAVE_CHILDREN;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.DO_CHILDREN_LIVE_ADDRESS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.EMAIL;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.EMPTY_SPACE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.FAM_CHILD_DETAILS_ROW_1;
@@ -108,7 +107,6 @@ import java.util.Map;
 import java.util.TreeMap;
 
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.BooleanUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
 import uk.gov.hmcts.reform.bulkscan.enums.ApplicantRespondentRelationshipEnum;
