@@ -16,11 +16,10 @@ uk:
                 applicantRelationshipOptions: appliantRespondent_Relationship_10
                 needForParentalResponsibility: needForParentalResponsibility
               applicantsFL401:
-                - value:
-                    firstName: applicant_firstName
-                    lastName: applicant_lastName
-                    address: applicant_address
-                    phoneNumber: telephone_number
+                  firstName: applicant_firstName
+                  lastName: applicant_lastName
+                  address: applicant_address
+                  phoneNumber: telephone_number
               fl401StmtOfTruth:
                 date: statementOfTruth_Date
                 fullname: statementOfTruth_FullName
@@ -37,7 +36,6 @@ uk:
                     phoneNumber: respondent_PhoneNumber
                     email: respondent_Email
                     address:
-                      - value:
                           AddressLine1: respondent_Address_BuildingAndStreet
                           AddressLine2: respondent_Address_SecondLine
                           PostTown: respondent_Address_TownOrCity
