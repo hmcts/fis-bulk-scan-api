@@ -61,6 +61,7 @@ uk:
               respondentBehaviourTable:
                 applicantWantToStopFromRespondentDoing:
                 applicantWantToStopFromRespondentDoingToChild:
+                otherReasonApplicantWantToStopFromRespondentDoing:
               fl401ApplicantTable:
                 firstName: applicantFirstName
                 lastName: applicantLastName

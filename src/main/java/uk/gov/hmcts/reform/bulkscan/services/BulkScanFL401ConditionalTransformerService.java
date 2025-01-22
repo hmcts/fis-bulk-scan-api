@@ -309,7 +309,7 @@ public class BulkScanFL401ConditionalTransformerService {
                         + (row2 != null ? row2 + COMMA : SPACE)
                         + (row3 != null ? row3 + COMMA : SPACE)
                         + (row4 != null ? row4 : SPACE);
-        return str;
+        return StringUtils.hasText(str) ? str : null;
     }
 
     private List buildTransformChild(
