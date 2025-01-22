@@ -212,10 +212,6 @@ public class BulkScanFL401Service implements BulkScanService {
         Map<String, String> inputFieldsMap = getOcrDataFieldAsMap(inputFieldsList);
 
         List<String> unknownFieldsList = null;
-
-        BulkScanFormValidationConfigManager.ValidationConfig validationConfig =
-                configManager.getValidationConfig(formType);
-
         Map<String, Object> populatedMap =
                 (Map<String, Object>)
                         BulkScanTransformHelper.transformToCaseData(
@@ -226,10 +222,6 @@ public class BulkScanFL401Service implements BulkScanService {
                                 inputFieldsMap);
 
         populatedMap.put(SCAN_DOCUMENTS, transformScanDocuments(bulkScanTransformationRequest));
-
-        Map<String, String> caseTypeAndEventId =
-                transformConfigManager.getTransformationConfig(formType).getCaseFields();
-
         bulkScanFL401ConditionalTransformerService.transform(populatedMap, inputFieldsMap);
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
@@ -237,6 +229,8 @@ public class BulkScanFL401Service implements BulkScanService {
             SCAN_DOCUMENTS,
             objectMapper.convertValue(BulkScanC100ConditionalTransformerService
                                           .transformScanDocuments(bulkScanTransformationRequest), List.class));
+        Map<String, String> caseTypeAndEventId =
+            transformConfigManager.getTransformationConfig(formType).getCaseFields();
         BulkScanTransformationResponse.BulkScanTransformationResponseBuilder builder =
                 BulkScanTransformationResponse.builder()
                         .caseCreationDetails(
@@ -245,7 +239,8 @@ public class BulkScanFL401Service implements BulkScanService {
                                         .eventId(caseTypeAndEventId.get(EVENT_ID))
                                         .caseData(populatedMap)
                                         .build());
-
+        BulkScanFormValidationConfigManager.ValidationConfig validationConfig =
+            configManager.getValidationConfig(formType);
         if (nonNull(validationConfig)) {
             unknownFieldsList =
                     bulkScanValidationHelper.findUnknownFields(
