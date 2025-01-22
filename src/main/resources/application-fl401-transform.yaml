@@ -15,7 +15,7 @@ uk:
                 applicantRelationshipDate: applicantRespondent_PreviousMarried_Date
                 applicantRelationshipOptions: appliantRespondent_Relationship_10
                 needForParentalResponsibility: needForParentalResponsibility
-              applicant:
+              applicantsFL401:
                 - value:
                     firstName: applicant_firstName
                     lastName: applicant_lastName
@@ -139,9 +139,3 @@ uk:
                       useHouseholdContents: ChangesToFamilyHome_Row2
                       payOrContributeRent: ChangesToFamilyHome_Row3
                     furtherInformation: CourtToConsider
-
-
-
-
-
-
