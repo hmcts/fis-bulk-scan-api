@@ -86,56 +86,55 @@ uk:
               otherProceedingsTable:
                 previousOrOngoingProceedings: OngoingFamilyCourtProceeding
               home:
-                - value:
-                    address:
-                      - value:
-                          AddressLine1: occupationOrderAddress_BuildingAndStreet
-                          AddressLine2: occupationOrderAddress_SecondLine
-                          PostTown: occupationOrderAddress_TownOrCity
-                          PostCode: occupationOrderAddress_Postcode
-                          County: occupationOrderAddress_County
-                    peopleLivingAtThisAddress: occupationOrderAddress_CurrentOccupant
-                    textAreaSomethingElse: occupationOrderAddress_CurrentOccupant_Others
-                    everLivedAtTheAddress: occupationOrderAddress_PreviousOccupant
-                    intendToLiveAtTheAddress: occupationOrderAddress_IntendedOccupant
-                    isPropertyAdapted: propertySpeciallyAdapted
-                    howIsThePropertyAdapted: propertySpeciallyAdapted_Details
-                    isThereMortgageOnProperty: MortgageOnProperty
-                    mortgages:
-                      - value:
-                          mortgageLenderName: MortgageLender_Name
-                          address:
-                            - value:
-                                AddressLine1: MortgageLender_BuildingAndStreet
-                                AddressLine2: MortgageLender_SecondLine
-                                PostTown: MortgageLender_TownOrCity
-                                County: MortgageLender_County
-                                PostCode: MortgageLender_Postcode
-                          mortgageNamedAfter: MortgageOnProperty_Person
-                          textAreaSomethingElse: MortgageOnProperty_Person_Others
-                          mortgageNumber: MortgageOnProperty_Number
-                    isPropertyRented: RentedProperty
-                    mortgageNamedAfterList: RentedProperty_Person
-                    landlords:
-                          textAreaSomethingElse: RentedProperty_Person_Others
-                          landlordName: LandlordDetails_Name
-                          address:
-                            - value:
-                                AddressLine1: LandlordDetails_BuildingAndStreet
-                                AddressLine2: LandlordDetails_SecondLine
-                                PostTown: LandlordDetails_TownOrCity
-                                County: LandlordDetails_County
-                                PostCode: LandlordDetails_Postcode
-                    doesApplicantHaveHomeRights: HomeRights
-                    livingSituation:
-                      - value:
-                          ableToStayInHome: ChangesToLivingSituation_Row1
-                          restrictFromEnteringHome: ChangesToLivingSituation_Row2
-                          awayFromHome: ChangesToLivingSituation_Row3
-                          limitRespondentInHome: ChangesToLivingSituation_Row4
-                          ableToReturnHome: ChangesToLivingSituation_Row5
-                    familyHome:
-                      payForRepairs: ChangesToFamilyHome_Row1
-                      useHouseholdContents: ChangesToFamilyHome_Row2
-                      payOrContributeRent: ChangesToFamilyHome_Row3
-                    furtherInformation: CourtToConsider
+                address:
+                  - value:
+                      AddressLine1: occupationOrderAddress_BuildingAndStreet
+                      AddressLine2: occupationOrderAddress_SecondLine
+                      PostTown: occupationOrderAddress_TownOrCity
+                      PostCode: occupationOrderAddress_Postcode
+                      County: occupationOrderAddress_County
+                peopleLivingAtThisAddress: occupationOrderAddress_CurrentOccupant
+                textAreaSomethingElse: occupationOrderAddress_CurrentOccupant_Others
+                everLivedAtTheAddress: occupationOrderAddress_PreviousOccupant
+                intendToLiveAtTheAddress: occupationOrderAddress_IntendedOccupant
+                isPropertyAdapted: propertySpeciallyAdapted
+                howIsThePropertyAdapted: propertySpeciallyAdapted_Details
+                isThereMortgageOnProperty: MortgageOnProperty
+                mortgages:
+                  - value:
+                      mortgageLenderName: MortgageLender_Name
+                      address:
+                        - value:
+                            AddressLine1: MortgageLender_BuildingAndStreet
+                            AddressLine2: MortgageLender_SecondLine
+                            PostTown: MortgageLender_TownOrCity
+                            County: MortgageLender_County
+                            PostCode: MortgageLender_Postcode
+                      mortgageNamedAfter: MortgageOnProperty_Person
+                      textAreaSomethingElse: MortgageOnProperty_Person_Others
+                      mortgageNumber: MortgageOnProperty_Number
+                isPropertyRented: RentedProperty
+                mortgageNamedAfterList: RentedProperty_Person
+                landlords:
+                      textAreaSomethingElse: RentedProperty_Person_Others
+                      landlordName: LandlordDetails_Name
+                      address:
+                        - value:
+                            AddressLine1: LandlordDetails_BuildingAndStreet
+                            AddressLine2: LandlordDetails_SecondLine
+                            PostTown: LandlordDetails_TownOrCity
+                            County: LandlordDetails_County
+                            PostCode: LandlordDetails_Postcode
+                doesApplicantHaveHomeRights: HomeRights
+                livingSituation:
+                  - value:
+                      ableToStayInHome: ChangesToLivingSituation_Row1
+                      restrictFromEnteringHome: ChangesToLivingSituation_Row2
+                      awayFromHome: ChangesToLivingSituation_Row3
+                      limitRespondentInHome: ChangesToLivingSituation_Row4
+                      ableToReturnHome: ChangesToLivingSituation_Row5
+                familyHome:
+                  payForRepairs: ChangesToFamilyHome_Row1
+                  useHouseholdContents: ChangesToFamilyHome_Row2
+                  payOrContributeRent: ChangesToFamilyHome_Row3
+                furtherInformation: CourtToConsider
