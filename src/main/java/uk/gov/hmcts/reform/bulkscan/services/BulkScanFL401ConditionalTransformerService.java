@@ -249,9 +249,11 @@ public class BulkScanFL401ConditionalTransformerService {
         LinkedTreeMap fl401SolicitorDetailsTable =
                 (LinkedTreeMap) populatedMap.get(FL401_SOLICITOR_TABLE);
         transformSolicitorName(inputFieldsMap, fl401SolicitorDetailsTable);
-
-        populatedMap.put(CHILDREN, buildTransformChild(populatedMap, inputFieldsMap));
-
+        LinkedTreeMap home = (LinkedTreeMap) populatedMap.get("home");
+        home.put(CHILDREN, buildTransformChild(populatedMap, inputFieldsMap));
+        if (StringUtils.hasText(inputFieldsMap.get(CHILD_LIVE_ADDRESS_ROW_1))) {
+            home.put("doAnyChildrenLiveAtAddress", YES);
+        }
         populatedMap.put(APPLICANT_FAMILY_TABLE, transformApplicantChildObjects(inputFieldsMap));
 
         populatedMap.put(
@@ -284,11 +286,6 @@ public class BulkScanFL401ConditionalTransformerService {
         final String otherChildrenRow2 = inputFieldsMap.get(OTHER_CHILD_LIVE_ADDRESS_ROW_2);
         final String otherChildrenRow3 = inputFieldsMap.get(OTHER_CHILD_LIVE_ADDRESS_ROW_3);
         final String otherChildrenRow4 = inputFieldsMap.get(OTHER_CHILD_LIVE_ADDRESS_ROW_4);
-
-        if (row1 != null) {
-            populatedMap.put(DO_CHILDREN_LIVE_ADDRESS, BooleanUtils.YES);
-        }
-
         ArrayList<String> childInput = new ArrayList<>();
         childInput.add(row1);
         childInput.add(row2);
