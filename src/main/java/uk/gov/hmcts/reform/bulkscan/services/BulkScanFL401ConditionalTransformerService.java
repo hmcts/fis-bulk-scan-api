@@ -244,11 +244,13 @@ public class BulkScanFL401ConditionalTransformerService {
                 (LinkedTreeMap) populatedMap.get(FL401_SOLICITOR_TABLE);
         transformSolicitorName(inputFieldsMap, fl401SolicitorDetailsTable);
         LinkedTreeMap home = (LinkedTreeMap) populatedMap.get("home");
-        if (YES.equalsIgnoreCase(String.valueOf(home.get("isThereMortgageOnProperty")))) {
+        if (YES.equalsIgnoreCase(String.valueOf(home.get("isThereMortgageOnProperty")))
+            && StringUtils.hasText(inputFieldsMap.get("MortgageOnProperty_Person"))) {
             LinkedTreeMap mortgage = (LinkedTreeMap) home.get("mortgages");
-            mortgage.put("mortgageNamedAfter", List.of("MortgageOnProperty_Person"));
+            mortgage.put("mortgageNamedAfter", List.of(inputFieldsMap.get("MortgageOnProperty_Person")));
         }
-        if (YES.equalsIgnoreCase(String.valueOf(home.get(inputFieldsMap.get("isPropertyRented"))))) {
+        if (YES.equalsIgnoreCase(String.valueOf(home.get(inputFieldsMap.get("isPropertyRented"))))
+            && StringUtils.hasText(inputFieldsMap.get("RentedProperty_Person"))) {
             LinkedTreeMap rented = (LinkedTreeMap) home.get("landlords");
             rented.put("mortgageNamedAfterList", List.of(inputFieldsMap.get("RentedProperty_Person")));
         }
