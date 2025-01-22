@@ -111,7 +111,6 @@ uk:
                       textAreaSomethingElse: MortgageOnProperty_Person_Others
                       mortgageNumber: MortgageOnProperty_Number
                 isPropertyRented: RentedProperty
-                mortgageNamedAfterList: RentedProperty_Person
                 landlords:
                       textAreaSomethingElse: RentedProperty_Person_Others
                       landlordName: LandlordDetails_Name
