@@ -115,6 +115,8 @@ import uk.gov.hmcts.reform.bulkscan.utils.DateUtil;
 @Slf4j
 public class BulkScanFL401ConditionalTransformerService {
 
+    public static final String INFORMATION_TO_BE_KEPT_CONFIDENTIAL = "Information to be kept confidential";
+
     public void transform(Map<String, Object> populatedMap, Map<String, String> inputFieldsMap) {
 
         LinkedTreeMap withoutNoticeOrderTableMap =
@@ -235,6 +237,7 @@ public class BulkScanFL401ConditionalTransformerService {
             respondentBehaviourTable.put(
                     OTHERS_STOP_RESPONDENT_BEHAVIOUR_OPTIONS,
                     inputFieldsMap.get(STOP_RESPONDENT_BEHAVIOUR_OPTIONS_6));
+            populatedMap.putAll(respondentBehaviourData);
         }
 
         LinkedTreeMap fl401ApplicantTable = (LinkedTreeMap) populatedMap.get(FL401_APPLICANT_TABLE);
@@ -588,6 +591,12 @@ public class BulkScanFL401ConditionalTransformerService {
             address.put(POSTTOWN, inputFieldsMap.get(APPLICANT_ADDRESS_TOWN_OR_CITY));
             address.put(COUNTY, inputFieldsMap.get(APPLICANT_ADDRESS_COUNTY));
             address.put(POSTCODE, inputFieldsMap.get(APPLICANT_ADDRESS_POSTCODE));
+        } else if (NO.equalsIgnoreCase(applicantContactConfidentiality)) {
+            address.put(ADDRESS_LINE1, INFORMATION_TO_BE_KEPT_CONFIDENTIAL);
+            address.put(ADDRESS_LINE2, INFORMATION_TO_BE_KEPT_CONFIDENTIAL);
+            address.put(POSTTOWN, INFORMATION_TO_BE_KEPT_CONFIDENTIAL);
+            address.put(COUNTY, INFORMATION_TO_BE_KEPT_CONFIDENTIAL);
+            address.put(POSTCODE, INFORMATION_TO_BE_KEPT_CONFIDENTIAL);
         }
         return address;
     }
