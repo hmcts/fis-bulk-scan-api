@@ -255,7 +255,9 @@ public class BulkScanFL401ConditionalTransformerService {
         home.put(CHILDREN, buildTransformChild(populatedMap, inputFieldsMap));
         home.put("livingSituation", buildLivingSituation(inputFieldsMap));
         home.put("familyHome", buildFamilyHome(inputFieldsMap));
-        home.put("peopleLivingAtThisAddress", List.of(inputFieldsMap.get("occupationOrderAddress_CurrentOccupant")));
+        if (StringUtils.hasText(inputFieldsMap.get("occupationOrderAddress_CurrentOccupant"))) {
+            home.put("peopleLivingAtThisAddress", List.of(inputFieldsMap.get("occupationOrderAddress_CurrentOccupant")));
+        }
         if (StringUtils.hasText(inputFieldsMap.get(CHILD_LIVE_ADDRESS_ROW_1))) {
             home.put("doAnyChildrenLiveAtAddress", YES);
         }
