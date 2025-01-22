@@ -16,7 +16,6 @@ uk:
                 applicantRelationshipOptions: applicantRespondent_Relationship_10
                 needForParentalResponsibility: needForParentalResponsibility
               applicantsFL401:
-                - value:
                     firstName: applicant_firstName
                     lastName: applicant_lastName
                     address: applicant_address
