@@ -21,14 +21,12 @@ uk:
                     lastName: applicant_lastName
                     address: applicant_address
                     phoneNumber: telephone_number
-              statementOfTruthLine1: statementOfTruth_Line1
-              statementOfTruthLine2: statementOfTruth_Line2
-              statementOfTruthApplicant: statementOfTruth_ApplicantFlag
-              statementOfTruthLegalRepresentative: statementOfTruth_LegalRepresentative
-              statementOfTruthDate: statementOfTruth_Date
-              statementOfTruthFullName: statementOfTruth_FullName
-              statementOfTruthFirmName: statementOfTruth_FirmName
-              statementOfTruthPositionHeld: statementOfTruth_PositionHeld
+              fl401StmtOfTruth:
+                date: statementOfTruth_Date
+                fullname: statementOfTruth_FullName
+                signature:
+                nameOfFirm: statementOfTruth_FirmName
+                signOnBehalf: statementOfTruth_PositionHeld
               fl401RespondentTable:
                 - value:
                     firstName: respondentFirstName
