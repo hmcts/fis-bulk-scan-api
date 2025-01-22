@@ -44,8 +44,6 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.CHIL
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.CHILD_LIVE_ADDRESS_ROW_4;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.COMMA;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.COUNTY;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.DELIVERATELY_EVADING_SERVICE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.DETERREDOR_PREVENTED;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.DOB;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.DOES_APPLICANT_HAVE_CHILDREN;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.EMAIL;
@@ -80,7 +78,6 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.REPR
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.REPRESENTATIVE_LAST_NAME;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.RESPONDENT_CHILD_RELATIONSHIP;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.RESPONDENT_RESPONSIBLE_FOR_CHILD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.RISK_OF_SIGNIFICANT_HARM;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.SPACE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.SPECIAL_MEASURE_AT_COURT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.SPECIAL_MEASURE_AT_COURT_ROW_1;
@@ -95,7 +92,6 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.TEXT
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.TWO_DIGIT_MONTH_FORMAT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.TYPE_OF_CASE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.WITHOUT_NOTICE_ORDER_TABLE;
-import static uk.gov.hmcts.reform.bulkscan.enums.OrderWithouGivingNoticeReasonEnum.RISKOF_SIGNIFICANT_HARM;
 
 import com.microsoft.applicationinsights.core.dependencies.google.gson.internal.LinkedTreeMap;
 
@@ -112,7 +108,6 @@ import org.springframework.util.StringUtils;
 import uk.gov.hmcts.reform.bulkscan.enums.ApplicantRespondentRelationshipEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.FL401StopRespondentBehaviourChildEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.FL401StopRespondentEnum;
-import uk.gov.hmcts.reform.bulkscan.enums.OrderWithouGivingNoticeReasonEnum;
 import uk.gov.hmcts.reform.bulkscan.utils.DateUtil;
 
 @SuppressWarnings({"PMD", "unchecked"})
@@ -248,7 +243,18 @@ public class BulkScanFL401ConditionalTransformerService {
                 (LinkedTreeMap) populatedMap.get(FL401_SOLICITOR_TABLE);
         transformSolicitorName(inputFieldsMap, fl401SolicitorDetailsTable);
         LinkedTreeMap home = (LinkedTreeMap) populatedMap.get("home");
+        if (YES.equalsIgnoreCase(String.valueOf(home.get("isThereMortgageOnProperty")))) {
+            LinkedTreeMap mortgage = (LinkedTreeMap) populatedMap.get("mortgages");
+            mortgage.put("mortgageNamedAfter", List.of("MortgageOnProperty_Person"));
+        }
+        if (YES.equalsIgnoreCase(String.valueOf(home.get("isPropertyRented")))) {
+            LinkedTreeMap rented = (LinkedTreeMap) populatedMap.get("landlords");
+            rented.put("mortgageNamedAfterList", List.of("RentedProperty_Person"));
+        }
         home.put(CHILDREN, buildTransformChild(populatedMap, inputFieldsMap));
+        home.put("livingSituation", buildLivingSituation(inputFieldsMap));
+        home.put("familyHome", buildFamilyHome(inputFieldsMap));
+        home.put("peopleLivingAtThisAddress", List.of("occupationOrderAddress_CurrentOccupant"));
         if (StringUtils.hasText(inputFieldsMap.get(CHILD_LIVE_ADDRESS_ROW_1))) {
             home.put("doAnyChildrenLiveAtAddress", YES);
         }
@@ -257,6 +263,40 @@ public class BulkScanFL401ConditionalTransformerService {
         populatedMap.put(
                 FL401_OTHER_PROCEEDINGS_TABLE,
                 transformOngoingFamilyCourtProceedings(inputFieldsMap));
+    }
+
+    private List<String> buildFamilyHome(Map<String, String> inputFieldsMap) {
+        List<String> familyHome = new ArrayList<>();
+        if (StringUtils.hasText(inputFieldsMap.get("ChangesToFamilyHome_Row1"))) {
+            familyHome.add(inputFieldsMap.get("ChangesToFamilyHome_Row1"));
+        }
+        if (StringUtils.hasText(inputFieldsMap.get("ChangesToFamilyHome_Row2"))) {
+            familyHome.add(inputFieldsMap.get("ChangesToFamilyHome_Row2"));
+        }
+        if (StringUtils.hasText(inputFieldsMap.get("ChangesToFamilyHome_Row3"))) {
+            familyHome.add(inputFieldsMap.get("ChangesToFamilyHome_Row3"));
+        }
+        return familyHome;
+    }
+
+    private List<String> buildLivingSituation(Map<String, String> inputFieldsMap) {
+        List<String> livingSituation = new ArrayList<>();
+        if (StringUtils.hasText(inputFieldsMap.get("ChangesToLivingSituation_Row1"))) {
+            livingSituation.add(inputFieldsMap.get("ChangesToLivingSituation_Row1"));
+        }
+        if (StringUtils.hasText(inputFieldsMap.get("ChangesToLivingSituation_Row2"))) {
+            livingSituation.add(inputFieldsMap.get("ChangesToLivingSituation_Row2"));
+        }
+        if (StringUtils.hasText(inputFieldsMap.get("ChangesToLivingSituation_Row3"))) {
+            livingSituation.add(inputFieldsMap.get("ChangesToLivingSituation_Row3"));
+        }
+        if (StringUtils.hasText(inputFieldsMap.get("ChangesToLivingSituation_Row4"))) {
+            livingSituation.add(inputFieldsMap.get("ChangesToLivingSituation_Row4"));
+        }
+        if (StringUtils.hasText(inputFieldsMap.get("ChangesToLivingSituation_Row5"))) {
+            livingSituation.add(inputFieldsMap.get("ChangesToLivingSituation_Row5"));
+        }
+        return livingSituation;
     }
 
     private String getFormattedSpecialMeasureAtCourt(Map<String, String> inputFieldsMap) {
@@ -448,44 +488,6 @@ public class BulkScanFL401ConditionalTransformerService {
             }
         }
         return familyCourtProceedingsDetails;
-    }
-
-    private String transformReasonForOrderWithoutGivingNotice(Map<String, String> inputFieldsMap) {
-
-        StringBuilder orderWithoutGivingNoticeReason = new StringBuilder();
-
-        if (YES.equalsIgnoreCase(inputFieldsMap.get(RISK_OF_SIGNIFICANT_HARM))) {
-            orderWithoutGivingNoticeReason.append(RISKOF_SIGNIFICANT_HARM.getDescription());
-        }
-        if (YES.equalsIgnoreCase(inputFieldsMap.get(DETERREDOR_PREVENTED))) {
-
-            orderWithoutGivingNoticeReason =
-                    orderWithoutGivingNoticeReason.length() != 0
-                            ? orderWithoutGivingNoticeReason
-                                    .append(COMMA)
-                                    .append(
-                                            OrderWithouGivingNoticeReasonEnum.DETERRED_OR_PREVENTED
-                                                    .getDescription())
-                            : orderWithoutGivingNoticeReason.append(
-                                    OrderWithouGivingNoticeReasonEnum.DETERRED_OR_PREVENTED
-                                            .getDescription());
-        }
-        if (YES.equalsIgnoreCase(inputFieldsMap.get(DELIVERATELY_EVADING_SERVICE))) {
-
-            orderWithoutGivingNoticeReason =
-                    orderWithoutGivingNoticeReason.length() != 0
-                            ? orderWithoutGivingNoticeReason
-                                    .append(COMMA)
-                                    .append(
-                                            OrderWithouGivingNoticeReasonEnum
-                                                    .DELIBERATELYEVADING_SERVICE
-                                                    .getDescription())
-                            : orderWithoutGivingNoticeReason.append(
-                                    OrderWithouGivingNoticeReasonEnum.DELIBERATELYEVADING_SERVICE
-                                            .getDescription());
-        }
-
-        return orderWithoutGivingNoticeReason.toString();
     }
 
     private String getApplicantRelationships(
