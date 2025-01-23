@@ -9,7 +9,7 @@ uk:
               EVENT_ID: create-case-privatelaw-bs
             caseDataFields:
               typeOfApplicationOrders:
-                orderApplyingFor:
+                orderType:
               orderWithoutGivingNoticeToRespondent:
                 orderWithoutGivingNotice: orderWithout_GivingNotice
               reasonForOrderWithoutGivingNotice:
@@ -31,19 +31,26 @@ uk:
                   isEmailAddressConfidential:
                   applicantPreferredContact:
                   doTheyHaveLegalRepresentation: applicant_LegalRepresenationNeeded
+                  applicantContactInstructions: applicant_ContactInstructions
                   address:
                     addressLine1: applicant_Address_BuildingAndStreet
                     addressLine2: applicant_Address_SecondLine
                     postTown: applicant_Address_TownOrCity
                     county: applicant_Address_County
                     postCode: applicant_Address_Postcode
+                  solicitorAddress:
+                      addressLine1: applicant_Solicitor_Address_BuildingAndStreet
+                      addressLine2: applicant_Solicitor_Address_SecondLine
+                      postTown: applicant_Solicitor_Address_TownOrCity
+                      county: applicant_Solicitor_Address_County
+                      postCode: applicant_Solicitor_Address_Postcode
               relationshipToRespondentTable:
                 applicantRelationship: appliantRespondent_Relationship_1
                 relationshipDateComplexStartDate: appliantRespondent_Relationship_StartDate
                 relationshipDateComplexEndDate: appliantRespondent_Relationship_EndDate
                 applicantRelationshipDate: applicantRespondent_PreviousMarried_Date
                 applicantRelationshipOptions: appliantRespondent_Relationship_10
-                needForParentalResponsibility: needForParentalResponsibility
+                doesApplicantHaveChildren: needForParentalResponsibility
               fl401StmtOfTruth:
                 date: statementOfTruth_Date
                 fullname: statementOfTruth_FullName
@@ -55,15 +62,15 @@ uk:
                     lastName: respondentLastName
                     previousName: respondentPreviousNames
                     dateOfBirth: respondentDoB
-                    liveWithApplicant: respondent_LiveWithApplicant
+                    isRespondentLiveWithApplicant: respondent_LiveWithApplicant
                     phoneNumber: respondent_PhoneNumber
                     email: respondent_Email
                     address:
-                          AddressLine1: respondent_Address_BuildingAndStreet
-                          AddressLine2: respondent_Address_SecondLine
-                          PostTown: respondent_Address_TownOrCity
-                          County: respondent_Address_County
-                          PostCode: respondent_Address_Postcode
+                          addressLine1: respondent_Address_BuildingAndStreet
+                          addressLine2: respondent_Address_SecondLine
+                          postTown: respondent_Address_TownOrCity
+                          county: respondent_Address_County
+                          postCode: respondent_Address_Postcode
               applicationTypeDetails:
                 typesOfApplication: orderApplyingFor_nonmolestation
               withoutNoticeOrderTable:
@@ -71,13 +78,13 @@ uk:
                 anyOtherDtailsForWithoutNoticeOrder: orderWithoutGivingNotice_moreReason
                 isRespondentAlreadyInBailCondition: respondentBailConditions
                 bailConditionEndDate: respondent_BailConditionsEndDate
-                furtherDetails: situationCourtToKnow
+                futherDetails: situationCourtToKnow
               attendingTheHearingTable:
                 isInterpreterNeeded: interpreterNeededAtCourt
                 isDisabilityPresent: disabilitySupport_NeededAtCourt
                 adjustmentsRequired: disabilitySupport_details
-                specialMeasureAtCourt: specialMeasureAtCourt_Row1
-                interpreterNeeds:
+                #specialMeasureAtCourt: specialMeasureAtCourt_Row1
+                #interpreterNeeds:
               respondentBehaviourTable:
                 applicantWantToStopFromRespondentDoing:
                 applicantWantToStopFromRespondentDoingToChild:
@@ -88,17 +95,9 @@ uk:
                 email: applicant_Email
                 previousName: applicantPreviousNames
                 dateOfBirth: applicantDateOfBirth
-                applicantContactInstructions: applicant_ContactInstructions
-                applicantLegalRepresenationNeeded: applicant_LegalRepresenationNeeded
               fl401SolicitorDetailsTable:
                 solicitorOrg:
-                  OrganisationName: applicant_Solicitor_FirmName
-                address:
-                  addressLine1: applicant_Solicitor_Address_BuildingAndStreet
-                  addressLine2: applicant_Solicitor_Address_SecondLine
-                  postTown: applicant_Solicitor_Address_TownOrCity
-                  county: applicant_Solicitor_Address_County
-                  postCode: applicant_Solicitor_Address_Postcode
+                  organisationName: applicant_Solicitor_FirmName
                 dxNumber: applicant_Solicitor_DXNumber
                 solicitorTelephone: applicant_Solicitor_PhoneNumber
                 solicitorEmail: applicant_Solicitor_EmailAddress
@@ -107,11 +106,11 @@ uk:
                 previousOrOngoingProceedings: OngoingFamilyCourtProceeding
               home:
                 address:
-                      AddressLine1: occupationOrderAddress_BuildingAndStreet
-                      AddressLine2: occupationOrderAddress_SecondLine
-                      PostTown: occupationOrderAddress_TownOrCity
-                      PostCode: occupationOrderAddress_Postcode
-                      County: occupationOrderAddress_County
+                      addressLine1: occupationOrderAddress_BuildingAndStreet
+                      addressLine2: occupationOrderAddress_SecondLine
+                      postTown: occupationOrderAddress_TownOrCity
+                      postCode: occupationOrderAddress_Postcode
+                      county: occupationOrderAddress_County
                 peopleLivingAtThisAddress: occupationOrderAddress_CurrentOccupant
                 textAreaSomethingElse: occupationOrderAddress_CurrentOccupant_Others
                 everLivedAtTheAddress: occupationOrderAddress_PreviousOccupant
@@ -122,11 +121,11 @@ uk:
                 mortgages:
                       mortgageLenderName: MortgageLender_Name
                       address:
-                            AddressLine1: MortgageLender_BuildingAndStreet
-                            AddressLine2: MortgageLender_SecondLine
-                            PostTown: MortgageLender_TownOrCity
-                            County: MortgageLender_County
-                            PostCode: MortgageLender_Postcode
+                            addressLine1: MortgageLender_BuildingAndStreet
+                            addressLine2: MortgageLender_SecondLine
+                            postTown: MortgageLender_TownOrCity
+                            county: MortgageLender_County
+                            postCode: MortgageLender_Postcode
                       mortgageNamedAfter:
                       textAreaSomethingElse: MortgageOnProperty_Person_Others
                       mortgageNumber: MortgageOnProperty_Number
@@ -135,10 +134,10 @@ uk:
                       textAreaSomethingElse: RentedProperty_Person_Others
                       landlordName: LandlordDetails_Name
                       address:
-                            AddressLine1: LandlordDetails_BuildingAndStreet
-                            AddressLine2: LandlordDetails_SecondLine
-                            PostTown: LandlordDetails_TownOrCity
-                            County: LandlordDetails_County
-                            PostCode: LandlordDetails_Postcode
+                            addressLine1: LandlordDetails_BuildingAndStreet
+                            addressLine2: LandlordDetails_SecondLine
+                            postTown: LandlordDetails_TownOrCity
+                            county: LandlordDetails_County
+                            postCode: LandlordDetails_Postcode
                 doesApplicantHaveHomeRights: HomeRights
                 furtherInformation: CourtToConsider

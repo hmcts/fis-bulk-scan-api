@@ -70,7 +70,6 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.REPR
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.RESPONDENT_CHILD_RELATIONSHIP;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.RESPONDENT_RESPONSIBLE_FOR_CHILD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.SPACE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.SPECIAL_MEASURE_AT_COURT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.SPECIAL_MEASURE_AT_COURT_ROW_1;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.SPECIAL_MEASURE_AT_COURT_ROW_2;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.SPECIAL_MEASURE_AT_COURT_ROW_3;
@@ -132,7 +131,6 @@ public class BulkScanFL401ConditionalTransformerService {
             fl401ApplicantTable.put(ADDRESS, applicantAddress);
             fl401Applicant.put(ADDRESS, applicantAddress);
             transformContactDetails(fl401ApplicantTable);
-            transformContactDetails(fl401Applicant);
         }
         List<String> contactPreference = new ArrayList<>();
         if (YES.equalsIgnoreCase(inputFieldsMap.get("PreferToBeContactedPost"))) {
@@ -229,8 +227,8 @@ public class BulkScanFL401ConditionalTransformerService {
         LinkedTreeMap attendHearingTableMap =
                 (LinkedTreeMap) populatedMap.get(ATTEND_HEARING_TABLE);
 
-        attendHearingTableMap.put(
-                SPECIAL_MEASURE_AT_COURT, getFormattedSpecialMeasureAtCourt(inputFieldsMap));
+        //attendHearingTableMap.put(
+        //        SPECIAL_MEASURE_AT_COURT, getFormattedSpecialMeasureAtCourt(inputFieldsMap));
         getInterpreterNeeds(inputFieldsMap, attendHearingTableMap);
 
         //transform respondent behaviour
@@ -302,27 +300,25 @@ public class BulkScanFL401ConditionalTransformerService {
             if (StringUtils.hasText(inputFieldsMap.get("interpreterNeededAtCourt_Dialect"))) {
                 values.put("dialect", inputFieldsMap.get("interpreterNeededAtCourt_Dialect"));
             }
-            attendHearingTableMap.put("interpreterNeeds", List.of(Map.ofEntries(
-                                                                      Map.entry("id", UUID.randomUUID()),
-                                                                      Map.entry("value", values)
-                                                                  )));
-
+            //attendHearingTableMap.put("interpreterNeeds", List.of(Map.ofEntries(
+            //                                                          Map.entry("id", UUID.randomUUID()),
+            //                                                          Map.entry("value", values)
+            //                                                      )));
+            log.info("interpreterNeeds: {}", attendHearingTableMap);
         }
     }
 
     private void tranformReasonForWithoutNotice(Map<String, Object> populatedMap, Map<String, String> inputFieldsMap) {
         List<String> reasonForOrderWithoutGivingNoticeList = new ArrayList<>();
         if (StringUtils.hasText(inputFieldsMap.get("orderWithoutGivingNoticeReason1"))) {
-            reasonForOrderWithoutGivingNoticeList.add(ReasonForOrderWithoutGivingNoticeEnum.harmToApplicantOrChild
-                                                          .getDisplayedValue());
+            reasonForOrderWithoutGivingNoticeList.add(ReasonForOrderWithoutGivingNoticeEnum.harmToApplicantOrChild.toString());
         }
         if (StringUtils.hasText(inputFieldsMap.get("orderWithoutGivingNoticeReason2"))) {
             reasonForOrderWithoutGivingNoticeList.add(ReasonForOrderWithoutGivingNoticeEnum.deferringApplicationIfNotImmediate
-                                                          .getDisplayedValue());
+                                                          .toString());
         }
         if (StringUtils.hasText(inputFieldsMap.get("orderWithoutGivingNoticeReason3"))) {
-            reasonForOrderWithoutGivingNoticeList.add(ReasonForOrderWithoutGivingNoticeEnum.prejudiced
-                                                          .getDisplayedValue());
+            reasonForOrderWithoutGivingNoticeList.add(ReasonForOrderWithoutGivingNoticeEnum.prejudiced.toString());
         }
         LinkedTreeMap reasonForOrderWithoutGivingNotice = (LinkedTreeMap) populatedMap.get("reasonForOrderWithoutGivingNotice");
         reasonForOrderWithoutGivingNotice.put("reasonForOrderWithoutGivingNotice", reasonForOrderWithoutGivingNoticeList);
@@ -355,19 +351,19 @@ public class BulkScanFL401ConditionalTransformerService {
         if (StringUtils.hasText(inputFieldsMap.get("orderApplyingFor_occupation"))) {
             orderApplyingFor.add("Occupation order");
         }
-        typeOfApplicationOrders.put("orderApplyingFor", String.join(", ", orderApplyingFor));
+        typeOfApplicationOrders.put("orderType", orderApplyingFor);
     }
 
     private List<String> buildFamilyHome(Map<String, String> inputFieldsMap) {
         List<String> familyHome = new ArrayList<>();
         if (StringUtils.hasText(inputFieldsMap.get("ChangesToFamilyHome_Row1"))) {
-            familyHome.add(inputFieldsMap.get("ChangesToFamilyHome_Row1"));
+            familyHome.add("payForRepairs");
         }
         if (StringUtils.hasText(inputFieldsMap.get("ChangesToFamilyHome_Row2"))) {
-            familyHome.add(inputFieldsMap.get("ChangesToFamilyHome_Row2"));
+            familyHome.add("payOrContributeRent");
         }
         if (StringUtils.hasText(inputFieldsMap.get("ChangesToFamilyHome_Row3"))) {
-            familyHome.add(inputFieldsMap.get("ChangesToFamilyHome_Row3"));
+            familyHome.add("useHouseholdContents");
         }
         return familyHome;
     }
@@ -375,19 +371,19 @@ public class BulkScanFL401ConditionalTransformerService {
     private List<String> buildLivingSituation(Map<String, String> inputFieldsMap) {
         List<String> livingSituation = new ArrayList<>();
         if (StringUtils.hasText(inputFieldsMap.get("ChangesToLivingSituation_Row1"))) {
-            livingSituation.add(inputFieldsMap.get("ChangesToLivingSituation_Row1"));
+            livingSituation.add("ableToStayInHome");
         }
         if (StringUtils.hasText(inputFieldsMap.get("ChangesToLivingSituation_Row2"))) {
-            livingSituation.add(inputFieldsMap.get("ChangesToLivingSituation_Row2"));
+            livingSituation.add("ableToReturnHome");
         }
         if (StringUtils.hasText(inputFieldsMap.get("ChangesToLivingSituation_Row3"))) {
-            livingSituation.add(inputFieldsMap.get("ChangesToLivingSituation_Row3"));
+            livingSituation.add("restrictFromEnteringHome");
         }
         if (StringUtils.hasText(inputFieldsMap.get("ChangesToLivingSituation_Row4"))) {
-            livingSituation.add(inputFieldsMap.get("ChangesToLivingSituation_Row4"));
+            livingSituation.add("awayFromHome");
         }
         if (StringUtils.hasText(inputFieldsMap.get("ChangesToLivingSituation_Row5"))) {
-            livingSituation.add(inputFieldsMap.get("ChangesToLivingSituation_Row5"));
+            livingSituation.add("limitRespondentInHome");
         }
         return livingSituation;
     }
@@ -518,9 +514,10 @@ public class BulkScanFL401ConditionalTransformerService {
                 childDetails.put(FULL_NAME, childName);
                 childDetails.put(DOB, childDoB);
                 childDetails.put(APPLICANT_CHILD_RELATIONSHIP, yourRelationshipWithChild);
-                childDetails.put(
-                        APPLICANT_RESPONDENT_SHARE_PARENTAL,
-                        doYouAndRespondentHaveParentalResponsibility);
+                if (StringUtils.hasText(doYouAndRespondentHaveParentalResponsibility)) {
+                    childDetails.put(APPLICANT_RESPONDENT_SHARE_PARENTAL, doYouAndRespondentHaveParentalResponsibility
+                        .toLowerCase().contains("yes") ? "Yes" : "No");
+                }
                 childDetails.put(RESPONDENT_CHILD_RELATIONSHIP, respondentsRelationshipWithChild);
                 childrenLinkedTreeMap.put("id", UUID.randomUUID().toString());
                 childrenLinkedTreeMap.put(VALUE, childDetails);

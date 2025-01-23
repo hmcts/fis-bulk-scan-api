@@ -9,7 +9,7 @@ uk:
               EVENT_ID: create-case-privatelaw-bs
             caseDataFields:
               typeOfApplicationOrders:
-                orderApplyingFor:
+                orderType:
               orderWithoutGivingNoticeToRespondent:
                 orderWithoutGivingNotice: orderWithout_GivingNotice
               reasonForOrderWithoutGivingNotice:
@@ -43,7 +43,7 @@ uk:
                 relationshipDateComplexEndDate: appliantRespondent_Relationship_EndDate
                 applicantRelationshipDate: applicantRespondent_PreviousMarried_Date
                 applicantRelationshipOptions: appliantRespondent_Relationship_10
-                needForParentalResponsibility: needForParentalResponsibility
+                doesApplicantHaveChildren: needForParentalResponsibility
               fl401StmtOfTruth:
                 date: statementOfTruth_Date
                 fullname: statementOfTruth_FullName
@@ -55,7 +55,7 @@ uk:
                 lastName: respondentLastName
                 previousName: respondentPreviousNames
                 dateOfBirth: respondentDoB
-                liveWithApplicant: respondent_LiveWithApplicant
+                isRespondentLiveWithApplicant: respondent_LiveWithApplicant
                 phoneNumber: respondent_PhoneNumber
                 email: respondent_Email
                 address:
@@ -71,7 +71,7 @@ uk:
                 anyOtherDtailsForWithoutNoticeOrder: orderWithoutGivingNotice_moreReason
                 isRespondentAlreadyInBailCondition: respondentBailConditions
                 bailConditionEndDate: respondent_BailConditionsEndDate
-                furtherDetails: situationCourtToKnow
+                futherDetails: situationCourtToKnow
               attendingTheHearingTable:
                 isInterpreterNeeded: interpreterNeededAtCourt
                 isDisabilityPresent: disabilitySupport_NeededAtCourt
