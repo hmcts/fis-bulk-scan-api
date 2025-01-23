@@ -258,7 +258,7 @@ public class BulkScanFL401ConditionalTransformerService {
             respondentBehaviourTable.put(
                     OTHERS_STOP_RESPONDENT_BEHAVIOUR_OPTIONS,
                     inputFieldsMap.get(STOP_RESPONDENT_BEHAVIOUR_OPTIONS_6));
-            populatedMap.putAll(respondentBehaviourData);
+            populatedMap.put("respondentBehaviourData", respondentBehaviourData);
         }
 
         //transform Home
