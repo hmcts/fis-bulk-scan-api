@@ -92,11 +92,11 @@ public final class BulkScanFl401Constants {
     public static final String APPLICANT_ADDRESS_TOWN_OR_CITY = "applicant_Address_TownOrCity";
     public static final String APPLICANT_ADDRESS_COUNTY = "applicant_Address_County";
     public static final String ADDRESS = "address";
-    public static final String ADDRESS_LINE1 = "AddressLine1";
-    public static final String ADDRESS_LINE2 = "AddressLine2";
-    public static final String POSTTOWN = "PostTown";
-    public static final String COUNTY = "County";
-    public static final String POSTCODE = "PostCode";
+    public static final String ADDRESS_LINE1 = "addressLine1";
+    public static final String ADDRESS_LINE2 = "addressLine2";
+    public static final String POSTTOWN = "postTown";
+    public static final String COUNTY = "county";
+    public static final String POSTCODE = "postCode";
     public static final String APPLICANT_PHONE_NUMBER = "applicant_PhoneNumber";
     public static final String APPLICANT_EMAIL = "applicant_Email";
     public static final String APPLICANT_PREFER_TO_BE_CONTACTED = "applicant_PreferToBeContacted";

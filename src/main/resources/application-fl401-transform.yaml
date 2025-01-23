@@ -50,7 +50,6 @@ uk:
                 relationshipDateComplexEndDate: appliantRespondent_Relationship_EndDate
                 applicantRelationshipDate: applicantRespondent_PreviousMarried_Date
                 applicantRelationshipOptions: appliantRespondent_Relationship_10
-                doesApplicantHaveChildren: needForParentalResponsibility
               fl401StmtOfTruth:
                 date: statementOfTruth_Date
                 fullname: statementOfTruth_FullName

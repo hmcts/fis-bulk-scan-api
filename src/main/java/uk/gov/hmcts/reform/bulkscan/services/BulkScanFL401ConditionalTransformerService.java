@@ -346,10 +346,10 @@ public class BulkScanFL401ConditionalTransformerService {
             (LinkedTreeMap) populatedMap.get("typeOfApplicationOrders");
         List<String> orderApplyingFor = new ArrayList<>();
         if (StringUtils.hasText(inputFieldsMap.get("orderApplyingFor_nonmolestation"))) {
-            orderApplyingFor.add("Non-molestation order");
+            orderApplyingFor.add("nonMolestationOrder");
         }
         if (StringUtils.hasText(inputFieldsMap.get("orderApplyingFor_occupation"))) {
-            orderApplyingFor.add("Occupation order");
+            orderApplyingFor.add("occupationOrder");
         }
         typeOfApplicationOrders.put("orderType", orderApplyingFor);
     }
@@ -510,9 +510,11 @@ public class BulkScanFL401ConditionalTransformerService {
                 } catch (Exception e) {
                     log.warn(e.getMessage());
                 }
-
                 childDetails.put(FULL_NAME, childName);
-                childDetails.put(DOB, childDoB);
+                if (StringUtils.hasText(childDoB)) {
+                    childDetails.put(DOB, DateUtil.transformDate(childDoB, TEXT_AND_NUMERIC_MONTH_PATTERN,
+                                                                 TWO_DIGIT_MONTH_FORMAT));
+                }
                 childDetails.put(APPLICANT_CHILD_RELATIONSHIP, yourRelationshipWithChild);
                 if (StringUtils.hasText(doYouAndRespondentHaveParentalResponsibility)) {
                     childDetails.put(APPLICANT_RESPONDENT_SHARE_PARENTAL, doYouAndRespondentHaveParentalResponsibility
@@ -652,7 +654,7 @@ public class BulkScanFL401ConditionalTransformerService {
         address.put(ADDRESS_LINE2, INFORMATION_TO_BE_KEPT_CONFIDENTIAL);
         address.put(POSTTOWN, INFORMATION_TO_BE_KEPT_CONFIDENTIAL);
         address.put(COUNTY, INFORMATION_TO_BE_KEPT_CONFIDENTIAL);
-        address.put(POSTCODE, INFORMATION_TO_BE_KEPT_CONFIDENTIAL);
+        address.put(POSTCODE, null);
         return address;
     }
 
