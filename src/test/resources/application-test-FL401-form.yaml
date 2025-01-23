@@ -7,7 +7,6 @@ uk:
             mandatoryFields:
               - applicant_address
               - telephone_number
-              - orderApplyingFor
               - orderWithout_GivingNotice
               - applicantFirstName
               - applicantLastName
@@ -17,6 +16,7 @@ uk:
               - applicantContact_Confidentiality
               - applyingFor_NonMolestationOrder
             optionalFields:
+              - orderApplyingFor_occupation
               - orderWithoutGivingNoticeReason
               - orderWithoutGivingNotice_moreReason
               - respondentBailConditions

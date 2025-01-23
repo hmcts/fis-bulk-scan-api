@@ -6,7 +6,6 @@
       "Please enter valid date for Applicant date of birth"
     ],
     "errors": [
-      "orderApplyingFor is missing",
       "orderWithout_GivingNotice is missing",
       "applicantFirstName is missing",
       "applicantLastName is missing",

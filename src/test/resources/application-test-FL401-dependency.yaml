@@ -175,8 +175,8 @@ uk:
               dependentFields:
                 - ApplyingForOccupationOrder
               dependentFieldValue: "*"
-              groupFieldName: orderApplyingFor
-              groupValidationValue: "occupationOrder"
+              groupFieldName: orderApplyingFor_occupation
+              groupValidationValue: "Occupation order"
               requiredFieldCount: 1
               sectionName: "7.1 - Are you applying for an occupation order?"
 

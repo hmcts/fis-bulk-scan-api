@@ -65,7 +65,7 @@ uk:
                           County: respondent_Address_County
                           PostCode: respondent_Address_Postcode
               applicationTypeDetails:
-                typesOfApplication: orderApplyingFor
+                typesOfApplication: orderApplyingFor_nonmolestation
               withoutNoticeOrderTable:
                 orderWithoutGivingNotice: orderWithout_GivingNotice
                 anyOtherDtailsForWithoutNoticeOrder: orderWithoutGivingNotice_moreReason
