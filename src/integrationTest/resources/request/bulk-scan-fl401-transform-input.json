@@ -305,8 +305,16 @@
       "value": "Yes"
     },
     {
-      "name": "respondent_BailConditionsEndDate",
-      "value": "2021-feb-07"
+      "name": "respondentBailConditions_EndDate_Day",
+      "value": "07"
+    },
+    {
+      "name": "respondentBailConditions_EndDate_Month",
+      "value": "07"
+    },
+    {
+      "name": "respondentBailConditions_EndDate_Year",
+      "value": "07"
     },
     {
       "name": "situationCourtToKnow",

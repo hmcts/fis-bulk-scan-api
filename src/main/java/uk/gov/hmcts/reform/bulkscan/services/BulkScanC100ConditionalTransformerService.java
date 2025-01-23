@@ -95,6 +95,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.UUID;
 import java.util.stream.Collectors;
 import org.apache.commons.lang3.BooleanUtils;
 import org.springframework.stereotype.Component;
@@ -623,6 +624,7 @@ public class BulkScanC100ConditionalTransformerService {
             .map(
                 scanDocument ->
                     ResponseScanDocumentValueNew.builder()
+                        .id(UUID.randomUUID().toString())
                         .value(
                             ResponseScanDocumentNew.builder().url(ResponseScanDocument.builder()
                                 .url(

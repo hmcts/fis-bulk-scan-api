@@ -7,7 +7,8 @@ import lombok.Data;
 @Data
 @Builder
 public class ResponseScanDocumentValueNew {
-
+    @JsonProperty("id")
+    public String id;
     @JsonProperty("value")
     public ResponseScanDocumentNew value;
 }

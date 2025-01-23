@@ -8,6 +8,35 @@ uk:
               CASE_TYPE_ID: PRLAPPS
               EVENT_ID: create-case-privatelaw-bs
             caseDataFields:
+              typeOfApplicationOrders:
+                orderApplyingFor:
+              orderWithoutGivingNoticeToRespondent:
+                orderWithoutGivingNotice: orderWithout_GivingNotice
+              reasonForOrderWithoutGivingNotice:
+                reasonForOrderWithoutGivingNotice:
+                futherDetails: orderWithoutGivingNotice_moreReason
+              bailDetails:
+                isRespondentAlreadyInBailCondition: respondentBailConditions
+                bailConditionEndDate:
+              anyOtherDtailsForWithoutNoticeOrder:
+                otherDetails: situationCourtToKnow
+              applicantsFL401:
+                  firstName: applicantFirstName
+                  lastName: applicantLastName
+                  previousName: applicantPreviousNames
+                  email: applicant_Email
+                  phoneNumber: applicant_PhoneNumber
+                  isAddressConfidential:
+                  isPhoneNumberConfidential:
+                  isEmailAddressConfidential:
+                  applicantPreferredContact:
+                  doTheyHaveLegalRepresentation: applicant_LegalRepresenationNeeded
+                  address:
+                    addressLine1: applicant_Address_BuildingAndStreet
+                    addressLine2: applicant_Address_SecondLine
+                    postTown: applicant_Address_TownOrCity
+                    county: applicant_Address_County
+                    postCode: applicant_Address_Postcode
               relationshipToRespondentTable:
                 applicantRelationship: appliantRespondent_Relationship_1
                 relationshipDateComplexStartDate: appliantRespondent_Relationship_StartDate
@@ -15,11 +44,6 @@ uk:
                 applicantRelationshipDate: applicantRespondent_PreviousMarried_Date
                 applicantRelationshipOptions: appliantRespondent_Relationship_10
                 needForParentalResponsibility: needForParentalResponsibility
-              applicantsFL401:
-                  firstName: applicant_firstName
-                  lastName: applicant_lastName
-                  email: applicant_Email
-                  phoneNumber: telephone_number
               fl401StmtOfTruth:
                 date: statementOfTruth_Date
                 fullname: statementOfTruth_FullName
@@ -27,7 +51,6 @@ uk:
                 nameOfFirm: statementOfTruth_FirmName
                 signOnBehalf: statementOfTruth_PositionHeld
               fl401RespondentTable:
-                - value:
                     firstName: respondentFirstName
                     lastName: respondentLastName
                     previousName: respondentPreviousNames
@@ -55,9 +78,6 @@ uk:
                 adjustmentsRequired: disabilitySupport_details
                 specialMeasureAtCourt: specialMeasureAtCourt_Row1
                 interpreterNeeds:
-                  - value:
-                      language: interpreterNeededAtCourt_Language
-                      dialect: interpreterNeededAtCourt_Dialect
               respondentBehaviourTable:
                 applicantWantToStopFromRespondentDoing:
                 applicantWantToStopFromRespondentDoingToChild:

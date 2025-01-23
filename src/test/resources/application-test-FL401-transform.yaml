@@ -8,41 +8,62 @@ uk:
               CASE_TYPE_ID: PRLAPPS
               EVENT_ID: create-case-privatelaw-bs
             caseDataFields:
-              relationshipToRespondentTable:
-                applicantRelationship: applicantRespondent_Relationship_1
-                relationshipDateComplexStartDate: applicantRespondent_Relationship_StartDate
-                relationshipDateComplexEndDate: applicantRespondent_Relationship_EndDate
-                applicantRelationshipDate: applicantRespondent_PreviousMarried_Date
-                applicantRelationshipOptions: applicantRespondent_Relationship_10
-                needForParentalResponsibility: needForParentalResponsibility
+              typeOfApplicationOrders:
+                orderApplyingFor:
+              orderWithoutGivingNoticeToRespondent:
+                orderWithoutGivingNotice: orderWithout_GivingNotice
+              reasonForOrderWithoutGivingNotice:
+                reasonForOrderWithoutGivingNotice:
+                futherDetails: orderWithoutGivingNotice_moreReason
+              bailDetails:
+                isRespondentAlreadyInBailCondition: respondentBailConditions
+                bailConditionEndDate:
+              anyOtherDtailsForWithoutNoticeOrder:
+                otherDetails: situationCourtToKnow
               applicantsFL401:
-                    firstName: applicant_firstName
-                    lastName: applicant_lastName
-                    phoneNumber: telephone_number
-              statementOfTruthLine1: statementOfTruth_Line1
-              statementOfTruthLine2: statementOfTruth_Line2
-              statementOfTruthApplicant: statementOfTruth_ApplicantFlag
-              statementOfTruthLegalRepresentative: statementOfTruth_LegalRepresentative
-              statementOfTruthDate: statementOfTruth_Date
-              statementOfTruthFullName: statementOfTruth_FullName
-              statementOfTruthFirmName: statementOfTruth_FirmName
-              statementOfTruthPositionHeld: statementOfTruth_PositionHeld
+                firstName: applicantFirstName
+                lastName: applicantLastName
+                previousName: applicantPreviousNames
+                email: applicant_Email
+                phoneNumber: applicant_PhoneNumber
+                isAddressConfidential:
+                isPhoneNumberConfidential:
+                isEmailAddressConfidential:
+                applicantPreferredContact:
+                doTheyHaveLegalRepresentation: applicant_LegalRepresenationNeeded
+                address:
+                  addressLine1: applicant_Address_BuildingAndStreet
+                  addressLine2: applicant_Address_SecondLine
+                  postTown: applicant_Address_TownOrCity
+                  county: applicant_Address_County
+                  postCode: applicant_Address_Postcode
+              relationshipToRespondentTable:
+                applicantRelationship: appliantRespondent_Relationship_1
+                relationshipDateComplexStartDate: appliantRespondent_Relationship_StartDate
+                relationshipDateComplexEndDate: appliantRespondent_Relationship_EndDate
+                applicantRelationshipDate: applicantRespondent_PreviousMarried_Date
+                applicantRelationshipOptions: appliantRespondent_Relationship_10
+                needForParentalResponsibility: needForParentalResponsibility
+              fl401StmtOfTruth:
+                date: statementOfTruth_Date
+                fullname: statementOfTruth_FullName
+                signature:
+                nameOfFirm: statementOfTruth_FirmName
+                signOnBehalf: statementOfTruth_PositionHeld
               fl401RespondentTable:
-                - value:
-                    firstName: respondentFirstName
-                    lastName: respondentLastName
-                    previousName: respondentPreviousNames
-                    dateOfBirth: respondentDoB
-                    liveWithApplicant: respondent_LiveWithApplicant
-                    phoneNumber: respondent_PhoneNumber
-                    email: respondent_Email
-                    address:
-                      - value:
-                          AddressLine1: respondent_Address_BuildingAndStreet
-                          AddressLine2: respondent_Address_SecondLine
-                          PostTown: respondent_Address_TownOrCity
-                          County: respondent_Address_County
-                          PostCode: respondent_Address_Postcode
+                firstName: respondentFirstName
+                lastName: respondentLastName
+                previousName: respondentPreviousNames
+                dateOfBirth: respondentDoB
+                liveWithApplicant: respondent_LiveWithApplicant
+                phoneNumber: respondent_PhoneNumber
+                email: respondent_Email
+                address:
+                  AddressLine1: respondent_Address_BuildingAndStreet
+                  AddressLine2: respondent_Address_SecondLine
+                  PostTown: respondent_Address_TownOrCity
+                  County: respondent_Address_County
+                  PostCode: respondent_Address_Postcode
               applicationTypeDetails:
                 typesOfApplication: orderApplyingFor
               withoutNoticeOrderTable:
@@ -63,9 +84,11 @@ uk:
               respondentBehaviourTable:
                 applicantWantToStopFromRespondentDoing:
                 applicantWantToStopFromRespondentDoingToChild:
+                otherReasonApplicantWantToStopFromRespondentDoing:
               fl401ApplicantTable:
                 firstName: applicantFirstName
                 lastName: applicantLastName
+                email: applicant_Email
                 previousName: applicantPreviousNames
                 dateOfBirth: applicantDateOfBirth
                 applicantContactInstructions: applicant_ContactInstructions
@@ -111,7 +134,6 @@ uk:
                   textAreaSomethingElse: MortgageOnProperty_Person_Others
                   mortgageNumber: MortgageOnProperty_Number
                 isPropertyRented: RentedProperty
-                mortgageNamedAfterList: RentedProperty_Person
                 landlords:
                   textAreaSomethingElse: RentedProperty_Person_Others
                   landlordName: LandlordDetails_Name
@@ -123,9 +145,3 @@ uk:
                     PostCode: LandlordDetails_Postcode
                 doesApplicantHaveHomeRights: HomeRights
                 furtherInformation: CourtToConsider
-
-
-
-
-
-
