@@ -12,8 +12,6 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPL
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_CONTACT_CONFIDENTIALITY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_FAMILY_TABLE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_RESPONDENT_OTHER_RELATIONSHIP_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_RESPONDENT_RELATIONSHIP_FIELDS;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_RESPONDENT_RELATIONSHIP_OPTIONS_FIELDS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_RESPONDENT_SHARE_PARENTAL;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_SOLICITOR_NAME;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLYING_FOR_NON_MOLES_STATION_ORDER;
@@ -88,12 +86,12 @@ import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
 import java.util.UUID;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.util.StringUtils;
+import uk.gov.hmcts.reform.bulkscan.enums.ApplicantRelationshipEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.ApplicantRespondentRelationshipEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.FL401StopRespondentBehaviourChildEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.FL401StopRespondentEnum;
@@ -304,26 +302,22 @@ public class BulkScanFL401ConditionalTransformerService {
         if (!respondentRelationDateInfoObject.isEmpty()) {
             populatedMap.put("respondentRelationDateInfoObject", respondentRelationDateInfoObject);
         }
-        String applicantRelationship = getApplicantRelationships(inputFieldsMap, APPLICANT_RESPONDENT_RELATIONSHIP_FIELDS);
-        if (StringUtils.hasText(applicantRelationship)) {
-            relationshipToRespondentTableMap.put(FL401_APPLICANT_RELATIONSHIP, applicantRelationship);
-            populatedMap.put("respondentRelationObject", Map.of(FL401_APPLICANT_RELATIONSHIP, applicantRelationship));
-        } else {
-            relationshipToRespondentTableMap.put(FL401_APPLICANT_RELATIONSHIP, null);
-        }
+        ApplicantRelationshipEnum applicantRelationship = getApplicantRelationships(inputFieldsMap);
+        relationshipToRespondentTableMap.put(FL401_APPLICANT_RELATIONSHIP,
+                                             null != applicantRelationship? applicantRelationship.getDisplayedValue()
+            : applicantRelationship);
+        populatedMap.put("respondentRelationObject", Map.of(FL401_APPLICANT_RELATIONSHIP, applicantRelationship));
+
 
         if (null != inputFieldsMap.get(APPLICANT_RESPONDENT_OTHER_RELATIONSHIP_FIELD)
                 && inputFieldsMap.get(APPLICANT_RESPONDENT_OTHER_RELATIONSHIP_FIELD).equalsIgnoreCase(YES)) {
-            String applicantRelationshipOptions = getApplicantRelationships(
-                inputFieldsMap,
-                APPLICANT_RESPONDENT_RELATIONSHIP_OPTIONS_FIELDS);
-            if (StringUtils.hasText(applicantRelationshipOptions)) {
-                relationshipToRespondentTableMap.put(FL401_APPLICANT_RELATIONSHIP_OPTIONS, applicantRelationshipOptions);
-                populatedMap.put("respondentRelationOptions", Map.of(FL401_APPLICANT_RELATIONSHIP_OPTIONS,
-                                                                     applicantRelationship));
-            } else {
-                relationshipToRespondentTableMap.put(FL401_APPLICANT_RELATIONSHIP_OPTIONS, null);
-            }
+            ApplicantRespondentRelationshipEnum applicantRelationshipOptions =
+                getApplicantRespondentRelationshipOptions(inputFieldsMap);
+            relationshipToRespondentTableMap.put(FL401_APPLICANT_RELATIONSHIP_OPTIONS,
+                                                 applicantRelationshipOptions.getDisplayedValue());
+            populatedMap.put("respondentRelationOptions", Map.of(FL401_APPLICANT_RELATIONSHIP_OPTIONS,
+                                                                 applicantRelationship));
+
         } else {
             relationshipToRespondentTableMap.put(FL401_APPLICANT_RELATIONSHIP_OPTIONS, null);
         }
@@ -627,34 +621,82 @@ public class BulkScanFL401ConditionalTransformerService {
         return familyCourtProceedingsDetails;
     }
 
-    private String getApplicantRelationships(
-            Map<String, String> inputFieldsMap, String relationshipField) {
-        TreeMap<String, String> orderedRelationshipFieldMap = new TreeMap<>();
+    private ApplicantRelationshipEnum getApplicantRelationships(
+            Map<String, String> inputFieldsMap) {
 
-        if (null == inputFieldsMap || inputFieldsMap.isEmpty()) {
-            return null;
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_1"))) {
+            return ApplicantRelationshipEnum.marriedOrCivil;
         }
-
-        for (Map.Entry<String, String> relationship : inputFieldsMap.entrySet()) {
-            if (relationship.getKey().matches(relationshipField)) {
-                orderedRelationshipFieldMap.put(relationship.getKey(), relationship.getValue());
-            }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_2"))) {
+            return ApplicantRelationshipEnum.formerlyMarriedOrCivil;
         }
-
-        if (!orderedRelationshipFieldMap.isEmpty()) {
-            for (Map.Entry<String, String> relationShipField :
-                    orderedRelationshipFieldMap.entrySet()) {
-                if (null != relationShipField.getValue()
-                        && relationShipField.getValue().equalsIgnoreCase(YES)
-                        && ApplicantRespondentRelationshipEnum.getValue(relationShipField.getKey())
-                                        .getRelationshipDescription()
-                                != null) {
-                    return ApplicantRespondentRelationshipEnum.getValue(relationShipField.getKey())
-                            .getRelationshipDescription();
-                }
-            }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_3"))) {
+            return ApplicantRelationshipEnum.engagedOrProposed;
         }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_4"))) {
+            return ApplicantRelationshipEnum.formerlyEngagedOrProposed;
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_5"))) {
+            return ApplicantRelationshipEnum.liveTogether;
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_6"))) {
+            return ApplicantRelationshipEnum.foremerlyLivedTogether;
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_7"))) {
+            return ApplicantRelationshipEnum.bfGfOrPartnerNotLivedTogether;
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_8"))) {
+            return ApplicantRelationshipEnum.formerBfGfOrPartnerNotLivedTogether;
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_9"))) {
+            return ApplicantRelationshipEnum.noneOfTheAbove;
+        }
+        return null;
+    }
 
+    private ApplicantRespondentRelationshipEnum getApplicantRespondentRelationshipOptions(Map<String, String> inputFieldsMap) {
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_10"))) {
+            return ApplicantRespondentRelationshipEnum.father;
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_11"))) {
+            return ApplicantRespondentRelationshipEnum.mother;
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_12"))) {
+            return ApplicantRespondentRelationshipEnum.son;
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_13"))) {
+            return ApplicantRespondentRelationshipEnum.daughter;
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_14"))) {
+            return ApplicantRespondentRelationshipEnum.brother;
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_15"))) {
+            return ApplicantRespondentRelationshipEnum.sister;
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_16"))) {
+            return ApplicantRespondentRelationshipEnum.grandfather;
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_17"))) {
+            return ApplicantRespondentRelationshipEnum.grandmother;
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_18"))) {
+            return ApplicantRespondentRelationshipEnum.uncle;
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_19"))) {
+            return ApplicantRespondentRelationshipEnum.aunt;
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_20"))) {
+            return ApplicantRespondentRelationshipEnum.nephew;
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_21"))) {
+            return ApplicantRespondentRelationshipEnum.niece;
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_22"))) {
+            return ApplicantRespondentRelationshipEnum.cousin;
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_23"))) {
+            return ApplicantRespondentRelationshipEnum.other;
+        }
         return null;
     }
 
