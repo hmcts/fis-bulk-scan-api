@@ -142,15 +142,6 @@ uk:
               sectionName: "Someone else – please specify"
             - yourFamilyGroup:
               dependentFields:
-                - applicationFor_YouOnly
-                - applicationFor_YourFamily
-              dependentFieldValue: "*"
-              groupFieldName: needForParentalResponsiblity
-              groupValidationValue: "Yes"
-              requiredFieldCount: 1
-              sectionName: "5 - Who is this application for?"
-            - yourFamilyGroup:
-              dependentFields:
                 - family_childrenDetails_row1
                 - family_childrenDetails_row2
                 - family_childrenDetails_row3

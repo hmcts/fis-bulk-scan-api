@@ -20,6 +20,7 @@ uk:
                 bailConditionEndDate:
               anyOtherDtailsForWithoutNoticeOrder:
                 otherDetails: situationCourtToKnow
+
               applicantsFL401:
                   firstName: applicantFirstName
                   lastName: applicantLastName
@@ -31,6 +32,10 @@ uk:
                   isEmailAddressConfidential:
                   applicantPreferredContact:
                   doTheyHaveLegalRepresentation: applicant_LegalRepresenationNeeded
+                  solicitorTelephone: applicant_Solicitor_PhoneNumber
+                  solicitorEmail: applicant_Solicitor_EmailAddress
+                  solicitorReference: applicant_Solicitor_Reference
+                  dxNumber: applicant_Solicitor_DXNumber
                   applicantContactInstructions: applicant_ContactInstructions
                   address:
                     addressLine1: applicant_Address_BuildingAndStreet
@@ -44,32 +49,64 @@ uk:
                       postTown: applicant_Solicitor_Address_TownOrCity
                       county: applicant_Solicitor_Address_County
                       postCode: applicant_Solicitor_Address_Postcode
+
+              fl401ApplicantTable:
+                firstName: applicantFirstName
+                lastName: applicantLastName
+                email: applicant_Email
+                previousName: applicantPreviousNames
+
+              fl401SolicitorDetailsTable:
+                solicitorOrg:
+                  organisationName: applicant_Solicitor_FirmName
+                dxNumber: applicant_Solicitor_DXNumber
+                solicitorTelephone: applicant_Solicitor_PhoneNumber
+                solicitorEmail: applicant_Solicitor_EmailAddress
+                solicitorReference: applicant_Solicitor_Reference
+
+              respondentsFL401:
+                firstName: respondentFirstName
+                lastName: respondentLastName
+                previousName: respondentPreviousNames
+                email: respondent_Email
+                phoneNumber: respondent_PhoneNumber
+                address:
+                  addressLine1: respondent_Address_BuildingAndStreet
+                  addressLine2: respondent_Address_SecondLine
+                  postTown: respondent_Address_TownOrCity
+                  county: respondent_Address_County
+                  postCode: respondent_Address_Postcode
+              fl401RespondentTable:
+                firstName: respondentFirstName
+                lastName: respondentLastName
+                previousName: respondentPreviousNames
+                dateOfBirth: respondentDoB
+                isRespondentLiveWithApplicant: respondent_LiveWithApplicant
+                phoneNumber: respondent_PhoneNumber
+                email: respondent_Email
+                address:
+                  addressLine1: respondent_Address_BuildingAndStreet
+                  addressLine2: respondent_Address_SecondLine
+                  postTown: respondent_Address_TownOrCity
+                  county: respondent_Address_County
+                  postCode: respondent_Address_Postcode
+
+              respondentRelationDateInfoObject:
+
               relationshipToRespondentTable:
                 applicantRelationship: appliantRespondent_Relationship_1
                 relationshipDateComplexStartDate: appliantRespondent_Relationship_StartDate
                 relationshipDateComplexEndDate: appliantRespondent_Relationship_EndDate
                 applicantRelationshipDate: applicantRespondent_PreviousMarried_Date
                 applicantRelationshipOptions: appliantRespondent_Relationship_10
+
               fl401StmtOfTruth:
                 date: statementOfTruth_Date
                 fullname: statementOfTruth_FullName
                 signature:
                 nameOfFirm: statementOfTruth_FirmName
                 signOnBehalf: statementOfTruth_PositionHeld
-              fl401RespondentTable:
-                    firstName: respondentFirstName
-                    lastName: respondentLastName
-                    previousName: respondentPreviousNames
-                    dateOfBirth: respondentDoB
-                    isRespondentLiveWithApplicant: respondent_LiveWithApplicant
-                    phoneNumber: respondent_PhoneNumber
-                    email: respondent_Email
-                    address:
-                          addressLine1: respondent_Address_BuildingAndStreet
-                          addressLine2: respondent_Address_SecondLine
-                          postTown: respondent_Address_TownOrCity
-                          county: respondent_Address_County
-                          postCode: respondent_Address_Postcode
+
               applicationTypeDetails:
                 typesOfApplication: orderApplyingFor_nonmolestation
               withoutNoticeOrderTable:
@@ -88,21 +125,13 @@ uk:
                 applicantWantToStopFromRespondentDoing:
                 applicantWantToStopFromRespondentDoingToChild:
                 otherReasonApplicantWantToStopFromRespondentDoing:
-              fl401ApplicantTable:
-                firstName: applicantFirstName
-                lastName: applicantLastName
-                email: applicant_Email
-                previousName: applicantPreviousNames
-                dateOfBirth: applicantDateOfBirth
-              fl401SolicitorDetailsTable:
-                solicitorOrg:
-                  organisationName: applicant_Solicitor_FirmName
-                dxNumber: applicant_Solicitor_DXNumber
-                solicitorTelephone: applicant_Solicitor_PhoneNumber
-                solicitorEmail: applicant_Solicitor_EmailAddress
-                solicitorReference: applicant_Solicitor_Reference
+
               otherProceedingsTable:
                 previousOrOngoingProceedings: OngoingFamilyCourtProceeding
+
+              isInterpreterNeeded: InterpreterNeededAtCourt
+              isDisabilityPresent: disabilitySupport_NeededAtCourt
+
               home:
                 address:
                       addressLine1: occupationOrderAddress_BuildingAndStreet
