@@ -24,7 +24,9 @@ uk:
               sectionName: "1.3 - Why do you want to apply without giving notice to the respondent?"
             - bailCondition:
               dependentFields:
-                - respondent_BailConditionsEndDate
+                - respondentBailConditions_EndDate_Day
+                - respondentBailConditions_EndDate_Month
+                - respondentBailConditions_EndDate_Year
               dependentFieldValue: "*"
               groupFieldName: respondentBailConditions
               groupValidationValue: "Yes"
