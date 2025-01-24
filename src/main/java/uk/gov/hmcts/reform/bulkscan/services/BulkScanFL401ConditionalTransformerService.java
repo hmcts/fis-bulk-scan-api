@@ -304,10 +304,13 @@ public class BulkScanFL401ConditionalTransformerService {
         }
         ApplicantRelationshipEnum applicantRelationship = getApplicantRelationships(inputFieldsMap);
         relationshipToRespondentTableMap.put(FL401_APPLICANT_RELATIONSHIP,
-                                             null != applicantRelationship? applicantRelationship.getDisplayedValue()
+                                             null != applicantRelationship ? applicantRelationship.getDisplayedValue()
             : applicantRelationship);
-        populatedMap.put("respondentRelationObject", Map.of(FL401_APPLICANT_RELATIONSHIP, applicantRelationship));
-
+        Map<String, Object> applicantRelationshipMap = new HashMap<>();
+        if (null != applicantRelationship) {
+            applicantRelationshipMap.put(FL401_APPLICANT_RELATIONSHIP, applicantRelationship);
+        }
+        populatedMap.put("respondentRelationObject", applicantRelationshipMap);
 
         if (null != inputFieldsMap.get(APPLICANT_RESPONDENT_OTHER_RELATIONSHIP_FIELD)
                 && inputFieldsMap.get(APPLICANT_RESPONDENT_OTHER_RELATIONSHIP_FIELD).equalsIgnoreCase(YES)) {

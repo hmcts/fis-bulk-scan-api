@@ -229,6 +229,7 @@ public class BulkScanFL401Service implements BulkScanService {
             SCAN_DOCUMENTS,
             objectMapper.convertValue(BulkScanC100ConditionalTransformerService
                                           .transformScanDocuments(bulkScanTransformationRequest), List.class));
+        populatedMap.put("caseTypeOfApplication", "FL401");
         Map<String, String> caseTypeAndEventId =
             transformConfigManager.getTransformationConfig(formType).getCaseFields();
         BulkScanTransformationResponse.BulkScanTransformationResponseBuilder builder =
