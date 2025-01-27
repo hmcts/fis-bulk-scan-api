@@ -5,9 +5,8 @@ uk:
         caseTypeofApplication:
           FL401:
             mandatoryFields:
-              - applicant_address
-              - telephone_number
               - orderWithout_GivingNotice
+              - telephone_number
               - applicantFirstName
               - applicantLastName
               - applicantDoB_DD
