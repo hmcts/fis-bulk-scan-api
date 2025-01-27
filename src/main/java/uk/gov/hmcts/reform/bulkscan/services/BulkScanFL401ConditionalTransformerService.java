@@ -302,9 +302,9 @@ public class BulkScanFL401ConditionalTransformerService {
         if (!respondentRelationDateInfoObject.isEmpty()) {
             populatedMap.put("respondentRelationDateInfoObject", respondentRelationDateInfoObject);
         }
-        ApplicantRelationshipEnum applicantRelationship = getApplicantRelationships(inputFieldsMap);
-        relationshipToRespondentTableMap.put(FL401_APPLICANT_RELATIONSHIP,
-                                             null != applicantRelationship ? applicantRelationship.getDisplayedValue()
+        String applicantRelationship = getApplicantRelationships(inputFieldsMap);
+        relationshipToRespondentTableMap.put(FL401_APPLICANT_RELATIONSHIP, null != applicantRelationship
+                                                 ? ApplicantRelationshipEnum.getValue(applicantRelationship)
             : applicantRelationship);
         Map<String, Object> applicantRelationshipMap = new HashMap<>();
         if (null != applicantRelationship) {
@@ -624,35 +624,35 @@ public class BulkScanFL401ConditionalTransformerService {
         return familyCourtProceedingsDetails;
     }
 
-    private ApplicantRelationshipEnum getApplicantRelationships(
+    private String getApplicantRelationships(
             Map<String, String> inputFieldsMap) {
 
         if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_1"))) {
-            return ApplicantRelationshipEnum.marriedOrCivil;
+            return ApplicantRelationshipEnum.marriedOrCivil.getId();
         }
         if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_2"))) {
-            return ApplicantRelationshipEnum.formerlyMarriedOrCivil;
+            return ApplicantRelationshipEnum.formerlyMarriedOrCivil.getId();
         }
         if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_3"))) {
-            return ApplicantRelationshipEnum.engagedOrProposed;
+            return ApplicantRelationshipEnum.engagedOrProposed.getId();
         }
         if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_4"))) {
-            return ApplicantRelationshipEnum.formerlyEngagedOrProposed;
+            return ApplicantRelationshipEnum.formerlyEngagedOrProposed.getId();
         }
         if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_5"))) {
-            return ApplicantRelationshipEnum.liveTogether;
+            return ApplicantRelationshipEnum.liveTogether.getId();
         }
         if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_6"))) {
-            return ApplicantRelationshipEnum.foremerlyLivedTogether;
+            return ApplicantRelationshipEnum.foremerlyLivedTogether.getId();
         }
         if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_7"))) {
-            return ApplicantRelationshipEnum.bfGfOrPartnerNotLivedTogether;
+            return ApplicantRelationshipEnum.bfGfOrPartnerNotLivedTogether.getId();
         }
         if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_8"))) {
-            return ApplicantRelationshipEnum.formerBfGfOrPartnerNotLivedTogether;
+            return ApplicantRelationshipEnum.formerBfGfOrPartnerNotLivedTogether.getId();
         }
         if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_9"))) {
-            return ApplicantRelationshipEnum.noneOfTheAbove;
+            return ApplicantRelationshipEnum.noneOfTheAbove.getId();
         }
         return null;
     }
