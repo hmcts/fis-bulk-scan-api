@@ -40,7 +40,7 @@ uk:
                 - noMIAM_DVE_secretaryOfState_letter
                 - noMIAM_DVE_evidenceFinancialMatters
               dependentFieldValue: "Yes"
-              groupFieldName: NoMIAM_domesticViolence
+              groupFieldName: noMIAM_domesticViolance
               groupValidationValue: "True"
               requiredFieldCount: 1
               sectionName: "3a - Domestic violence evidence"

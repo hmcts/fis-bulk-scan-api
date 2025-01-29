@@ -67,7 +67,6 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.NO_MIA
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.NO_MIAM_URGENCY_RISK_TO_UNLAWFUL_REMOVAL;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.NO_MIAM_URGENCY_UNREASONABLEHARDSHIP;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.ORDER_APPLIED_FOR;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDINGS_DETAILS_TABLE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.PARTY_ENUM;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.PROHIBITED_STEPS_ORDER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.PROHIBITED_STEPS_ORDER_DESCRIPTION;
@@ -76,7 +75,6 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.SET_OU
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.SPECIAL_ISSUE_ORDER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.SPECIFIC_ISSUE_ORDER_DESCRIPTION;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.SPOKEN_WRITTEN_BOTH;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.TYPE_OF_ORDER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.URGENCY_REASON;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.WELSH_NEEDS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.WELSH_NEEDS_CCD;
@@ -85,7 +83,6 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.WITHOU
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.microsoft.applicationinsights.boot.dependencies.apachecommons.lang3.StringUtils;
 import com.microsoft.applicationinsights.core.dependencies.google.gson.internal.LinkedTreeMap;
 
 import java.util.ArrayList;
@@ -122,37 +119,47 @@ public class BulkScanC100ConditionalTransformerService {
             Map<String, Object> populatedMap,
             Map<String, String> inputFieldsMap,
             BulkScanTransformationRequest bulkScanTransformationRequest) {
-        String permissionsRequired = transformPermissionRequired(inputFieldsMap);
-        if (StringUtils.isNotEmpty(permissionsRequired)) {
-            populatedMap.put(APPLICATION_PERMISSION_REQUIRED, permissionsRequired);
-        }
-        //String childLivesWith = transformChildLiveWith(inputFieldsMap);
-        //if (StringUtils.isNotEmpty(childLivesWith)) {
-        //    populatedMap.put(CHILD_LIVE_WITH_KEY, childLivesWith);
-        //}
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
         populatedMap.put(
-                SCAN_DOCUMENTS,
-                objectMapper.convertValue(transformScanDocuments(bulkScanTransformationRequest), List.class));
-        populatedMap.put(
-            "mpuDomesticAbuseEvidences",
-                transformMiamDomesticViolenceChecklist(inputFieldsMap));
-        populatedMap.put(
-                MIAM_EXEMPTIONS_CHECKLIST, transformMiamExemptionsChecklist(inputFieldsMap));
-        populatedMap.put(
-                NO_MIAM_CHILD_PROTECTION_CONCERNS_CHECKLIST,
-                transformNoMiamChildProtectionConcerns(inputFieldsMap));
-        populatedMap.put(
-                MIAM_URGENCY_REASON_CHECKLIST, transformMiamUrgencyReasonChecklist(inputFieldsMap));
+            SCAN_DOCUMENTS,
+            objectMapper.convertValue(transformScanDocuments(bulkScanTransformationRequest), List.class));
+        //transform type of application
         populatedMap.put(ORDER_APPLIED_FOR, transformOrderAppliedFor(inputFieldsMap));
 
-        List<LinkedTreeMap> list = (List) populatedMap.get(OTHER_PROCEEDINGS_DETAILS_TABLE);
-        LinkedTreeMap innerValue = list.get(0);
-        LinkedTreeMap values = (LinkedTreeMap) innerValue.get(VALUE);
-        values.put(TYPE_OF_ORDER, transformTypeOfOrder(inputFieldsMap));
+        //transform child details
+        transformChildDetails(inputFieldsMap, populatedMap);
 
-        populatedMap.put(OTHER_PROCEEDINGS_DETAILS_TABLE, list);
+        //transform permission required
+        transformPermissionRequiredFromCourt(inputFieldsMap, populatedMap);
+
+        //transform allegations of harm
+        transformAllegationsOfHarm(inputFieldsMap, populatedMap);
+
+        //transform Miam details
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("ExistingCase_onEmergencyProtection_Care_or_supervisionOrder"))) {
+            populatedMap.put("mpuChildInvolvedInMiam", YES);
+        } else {
+            if (TRUE.equalsIgnoreCase(inputFieldsMap.get("attended_MIAM"))) {
+                populatedMap.put("mpuApplicantAttendedMiam", YES);
+                populatedMap.put("soleTraderName", inputFieldsMap.get("soleTraderName"));
+                populatedMap.put("mediatorRegistrationNumber", inputFieldsMap.get("fmcRegistrationNumber"));
+                populatedMap.put("familyMediatorServiceName", inputFieldsMap.get("familyMediationServiceName"));
+            } else {
+                if (TRUE.equalsIgnoreCase(inputFieldsMap.get("exemption_to_attend_MIAM"))) {
+                    populatedMap.put("mpuClaimingExemptionMiam", inputFieldsMap.get(""));
+                    populatedMap.put(
+                        "mpuDomesticAbuseEvidences",
+                        transformMiamDomesticViolenceChecklist(inputFieldsMap));
+                    populatedMap.put(
+                        MIAM_EXEMPTIONS_CHECKLIST, transformMiamExemptionsChecklist(inputFieldsMap));
+                    populatedMap.put(
+                        NO_MIAM_CHILD_PROTECTION_CONCERNS_CHECKLIST,
+                        transformNoMiamChildProtectionConcerns(inputFieldsMap));
+                    populatedMap.put(MIAM_URGENCY_REASON_CHECKLIST, transformMiamUrgencyReasonChecklist(inputFieldsMap));
+                }
+            }
+        }
 
         // C100 Attending the hearing fields transform
         populatedMap.put(WELSH_NEEDS_CCD, populateWelshNeeds(inputFieldsMap));
@@ -164,9 +171,39 @@ public class BulkScanC100ConditionalTransformerService {
 
         setOutReasonsBelow(populatedMap, inputFieldsMap);
         transformMediatorCertifiesMiamExemption(inputFieldsMap);
-        transformMediatorCertifiesApplicantAttendMiam(inputFieldsMap);
+        //transformMediatorCertifiesApplicantAttendMiam(inputFieldsMap);
         transformMediatorCertifiesDisputeResolutionNotProceeding(inputFieldsMap);
         populatedMap.values().removeIf(Objects::isNull);
+    }
+
+    private void transformChildDetails(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
+        List<Map<String, Object>> children = (List<Map<String, Object>>) populatedMap.get("children");
+        List<String> childLiveWith = transformChildLiveWith(inputFieldsMap);
+        populatedMap.put("children", children.stream().map(child -> {
+            child.put("id", UUID.randomUUID());
+            Map<String, Object> childValue = (Map<String, Object>) child.get("value");
+            childValue.put("childLiveWith", childLiveWith);
+            child.put("value", childValue);
+            return child;
+        }).collect(Collectors.toList()));
+    }
+
+    private void transformAllegationsOfHarm(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("domesticAbuse"))) {
+            populatedMap.put("allegationsOfHarmDomesticAbuseYesNo", YES);
+        }
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("childAbduction"))) {
+            populatedMap.put("allegationsOfHarmChildAbductionYesNo", YES);
+        }
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("childAbuse"))) {
+            populatedMap.put("allegationsOfHarmChildAbuseYesNo", YES);
+        }
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("otherSafety_or_welfareAbuse"))) {
+            populatedMap.put("allegationsOfHarmOtherConcernsYesNo", YES);
+        }
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("drugs_alcohol_substanceAbuse"))) {
+            populatedMap.put("allegationsOfHarmSubstanceAbuseYesNo", YES);
+        }
     }
 
     /**
@@ -306,29 +343,28 @@ public class BulkScanC100ConditionalTransformerService {
      * @param inputFieldsMap All input key-value pair from transformation request.
      * @return list of enum values for miamExemptionsChecklist field in the transformation output.
      */
-    private List<MiamExemptionsChecklistEnum> transformMiamExemptionsChecklist(
+    private List<String> transformMiamExemptionsChecklist(
             Map<String, String> inputFieldsMap) {
-        List<MiamExemptionsChecklistEnum> miamExemptionsChecklist = new ArrayList<>();
+        List<String> miamExemptionsChecklist = new ArrayList<>();
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_DOMESTIC_VIOLENCE))) {
-            miamExemptionsChecklist.add(MiamExemptionsChecklistEnum.domesticViolence);
+            miamExemptionsChecklist.add(MiamExemptionsChecklistEnum.domesticViolence.getDisplayedValue());
         }
 
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_CHILD_PROTECTION_CONCERNS))) {
-            miamExemptionsChecklist.add(MiamExemptionsChecklistEnum.childProtectionConcern);
+            miamExemptionsChecklist.add(MiamExemptionsChecklistEnum.childProtectionConcern.getDisplayedValue());
         }
 
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_URGENCY))) {
-            miamExemptionsChecklist.add(MiamExemptionsChecklistEnum.urgency);
+            miamExemptionsChecklist.add(MiamExemptionsChecklistEnum.urgency.getDisplayedValue());
         }
 
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_PREVIOUS_ATTENDENCE))) {
-            miamExemptionsChecklist.add(MiamExemptionsChecklistEnum.previousMIAMattendance);
+            miamExemptionsChecklist.add(MiamExemptionsChecklistEnum.previousMIAMattendance.getDisplayedValue());
         }
 
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_OTHER_REASONS))) {
-            miamExemptionsChecklist.add(MiamExemptionsChecklistEnum.other);
+            miamExemptionsChecklist.add(MiamExemptionsChecklistEnum.other.getDisplayedValue());
         }
-
         return miamExemptionsChecklist;
     }
 
@@ -440,30 +476,30 @@ public class BulkScanC100ConditionalTransformerService {
         return miamDomesticViolenceChecklistEnumMap;
     }
 
-    private String transformChildLiveWith(Map<String, String> inputFieldsMap) {
+    private List<String> transformChildLiveWith(Map<String, String> inputFieldsMap) {
+        List<String> childLiveWithList = new ArrayList<>();
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(CHILD_LIVING_WITH_APPLICANT))) {
-            return ChildLiveWithEnum.APPLICANT.getName();
+            childLiveWithList.add(ChildLiveWithEnum.APPLICANT.getName());
         }
         if (TRUE.equals(inputFieldsMap.get(CHILD_LIVING_WITH_RESPONDENT))) {
-            return ChildLiveWithEnum.RESPONDENT.getName();
+            childLiveWithList.add(ChildLiveWithEnum.RESPONDENT.getName());
         }
         if (TRUE.equals(inputFieldsMap.get(CHILD_LIVING_WITH_OTHERS))) {
-            return ChildLiveWithEnum.OTHERPEOPLE.getName();
+            childLiveWithList.add(ChildLiveWithEnum.OTHERPEOPLE.getName());
         }
-        return StringUtils.EMPTY;
+        return childLiveWithList;
     }
 
-    private String transformPermissionRequired(Map<String, String> inputFieldsMap) {
+    private void transformPermissionRequiredFromCourt(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
         if (YES.equalsIgnoreCase(inputFieldsMap.get(PERMISSION_REQUIRED))) {
-            return PermissionRequiredEnum.yes.getDisplayedValue();
+            populatedMap.put(APPLICATION_PERMISSION_REQUIRED, PermissionRequiredEnum.yes.getDisplayedValue());
         }
         if ("No, permission Not required".equals(inputFieldsMap.get(PERMISSION_REQUIRED))) {
-            return PermissionRequiredEnum.noNotRequired.getDisplayedValue();
+            populatedMap.put(APPLICATION_PERMISSION_REQUIRED, PermissionRequiredEnum.noNotRequired.getDisplayedValue());
         }
         if ("No, permission Now sought".equals(inputFieldsMap.get(PERMISSION_REQUIRED))) {
-            return PermissionRequiredEnum.noNowSought.getDisplayedValue();
+            populatedMap.put(APPLICATION_PERMISSION_REQUIRED, PermissionRequiredEnum.noNowSought.getDisplayedValue());
         }
-        return StringUtils.EMPTY;
     }
 
     /**

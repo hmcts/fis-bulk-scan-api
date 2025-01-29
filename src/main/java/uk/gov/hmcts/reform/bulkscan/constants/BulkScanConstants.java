@@ -200,10 +200,8 @@ public final class BulkScanConstants {
 
     // C100 form section 2 validation fields
 
-    public static final String PREVIOUS_OR_ONGOING_PROCEEDING = "previous_or_ongoingProceeding";
-
     public static final String EXISTING_CASE_ON_EMERGENCY_PROTECTION_CARE_OR_SUPERVISION_ORDER =
-            "existingCase_onEmergencyProtection_Care_or_supervisioNorder";
+            "ExistingCase_onEmergencyProtection_Care_or_supervisionOrder";
 
     public static final String EXEMPTION_TO_ATTEND_MIAM = "exemption_to_attend_MIAM";
 

@@ -8,14 +8,14 @@ import uk.gov.hmcts.reform.bulkscan.enums.PartyEnum;
 public final class BulkScanPrlConstants {
 
     public static final String MIAM_EXEMPTIONS_CHECKLIST = "miamExemptionsChecklist";
-    public static final String NO_MIAM_DOMESTIC_VIOLENCE = "NoMIAM_domesticViolence";
-    public static final String NO_MIAM_CHILD_PROTECTION_CONCERNS = "NoMIAM_childProtectionConcerns";
-    public static final String NO_MIAM_URGENCY = "NoMIAM_Urgency";
-    public static final String NO_MIAM_PREVIOUS_ATTENDENCE = "NoMIAM_PreviousAttendence";
-    public static final String NO_MIAM_OTHER_REASONS = "NoMIAM_otherReasons";
+    public static final String NO_MIAM_DOMESTIC_VIOLENCE = "noMIAM_domesticViolance";
+    public static final String NO_MIAM_CHILD_PROTECTION_CONCERNS = "noMIAM_childProtectionConcerns";
+    public static final String NO_MIAM_URGENCY = "noMIAM_Urgency";
+    public static final String NO_MIAM_PREVIOUS_ATTENDENCE = "noMIAM_PreviousAttendence";
+    public static final String NO_MIAM_OTHER_REASONS = "noMIAM_otherReasons";
     public static final String PREVIOUS_OR_ONGOING_PROCEEDING = "previous_or_ongoingProceeding";
     public static final String EXISTING_CASE_ON_EMERGENCY_PROTECTION_CARE_OR_SUPERVISION_ORDER =
-            "existingCase_onEmergencyProtection_Care_or_supervisioNorder";
+            "ExistingCase_onEmergencyProtection_Care_or_supervisionOrder";
     public static final String EXEMPTION_TO_ATTEND_MIAM = "exemption_to_attend_MIAM";
     public static final String FAMILY_MEMBER_INTIMATION_ON_NO_MIAM =
             "familyMember_Intimation_on_No_MIAM";
@@ -118,7 +118,7 @@ public final class BulkScanPrlConstants {
 
     // C100 Other Proceeding Fields.
     public static final String OTHER_PROCEEDING_AVAILABLE =
-            "existingCase_onEmergencyProtection_Care_or_supervisioNorder";
+            "ExistingCase_onEmergencyProtection_Care_or_supervisionOrder";
     public static final String OTHER_PROCEEDING_NAME_OF_CHILDREN = "other_case_name_of_children";
     public static final String OTHER_PROCEEDING_CASE_NUMBER = "other_case_case_number";
     public static final String OTHER_PROCEEDING_DATE_OF_YEAR = "other_case_date_or_year";

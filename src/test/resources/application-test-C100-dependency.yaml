@@ -6,11 +6,11 @@ uk:
           C100:
             - groupExemptionToAttend:
               dependentFields:
-                - NoMIAM_domesticViolence
-                - NoMIAM_childProtectionConcerns
-                - NoMIAM_Urgency
-                - NoMIAM_PreviousAttendence
-                - NoMIAM_otherReasons
+                - noMIAM_domesticViolance
+                - noMIAM_childProtectionConcerns
+                - noMIAM_Urgency
+                - noMIAM_PreviousAttendence
+                - noMIAM_otherReasons
               dependentFieldValue: "True"
               groupFieldName: exemption_to_attend_MIAM
               groupValidationValue: "Yes"
@@ -40,7 +40,7 @@ uk:
                 - NoMIAM_DVE_secretaryOfState_letter
                 - NoMIAM_DVE_evidenceFinancialMatters
               dependentFieldValue: "Yes"
-              groupFieldName: NoMIAM_domesticViolence
+              groupFieldName: noMIAM_domesticViolance
               groupValidationValue: "True"
               requiredFieldCount: 1
               sectionName: "3a - Domestic violence evidence"

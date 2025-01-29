@@ -109,6 +109,7 @@ uk:
 
               applicationTypeDetails:
                 typesOfApplication: orderApplyingFor_nonmolestation
+
               withoutNoticeOrderTable:
                 orderWithoutGivingNotice: orderWithout_GivingNotice
                 anyOtherDtailsForWithoutNoticeOrder: orderWithoutGivingNotice_moreReason

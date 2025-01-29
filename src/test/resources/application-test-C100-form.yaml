@@ -96,7 +96,7 @@ uk:
               - child4_respondent1_relationship
               - child4_localAuthority_or_socialWorker
               - previous_or_ongoingProceeding
-              - existingCase_onEmergencyProtection_Care_or_supervisioNorder
+              - ExistingCase_onEmergencyProtection_Care_or_supervisionOrder
               - exemption_to_attend_MIAM
               - familyMember_Intimation_on_No_MIAM
               - attended_MIAM
@@ -105,7 +105,7 @@ uk:
               - briefDetailsOnTheApplication
               - havePreviousParentingPlan
               - askingPermissionForApplication
-              - NoMIAM_domesticViolence
+              - noMIAM_domesticViolance
               - NoMIAM_childProtectionConcerns
               - NoMIAM_Urgency
               - NoMIAM_PreviousAttendence
@@ -131,7 +131,7 @@ uk:
               - NoMIAM_DVE_publicAuthority_confirmationLetter
               - NoMIAM_DVE_secretaryOfState_letter
               - NoMIAM_DVE_evidenceFinancialMatters
-              - NoMIAM_domesticViolence
+              - noMIAM_domesticViolance
               - NoMIAM_childProtectionConcerns
               - NoMIAM_Urgency
               - NoMIAM_PreviousAttendence

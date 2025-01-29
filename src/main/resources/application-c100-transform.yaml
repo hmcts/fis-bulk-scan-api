@@ -8,6 +8,7 @@ uk:
               CASE_TYPE_ID: PRLAPPS
               EVENT_ID: create-case-privatelaw-bs
             caseDataFields:
+              natureofOrder: natureofOrder
               applicants:
                 - value:
                     firstName: applicantOneFirstName
@@ -87,6 +88,7 @@ uk:
                     orderAppliedFor: child4_orderAppliedFor
                     applicantsRelationshipToChild: child4_applicant1_relationship
                     respondentsRelationshipToChild: child4_respondent1_relationship
+              isChildrenWithSameParents:  children_of_same_parent
               miamPreviousAttendanceChecklist: NoMIAM_PreviousAttendenceReason
               miamOtherGroundsChecklist: NoMIAM_otherExceptions
               miamOtherGroundsChecklist1: noMIAM_otherReasons
@@ -95,16 +97,16 @@ uk:
               childrenSubjectOfChildProtectionPlan: subject_to_childProtectionPlan
               parentalResponsibilityDetails: parentalResponsibilityDetails
               childrenParentsName: children_parentsName
-              ordersForcedMarriageProtection: existingCase_onEmergencyProtection_Care_or_supervisioNorder
+              mpuApplicantAttendedMiam: ExistingCase_onEmergencyProtection_Care_or_supervisionOrder
               childParentsNameCollection: child_parentsName_collection
               personWhoLivesWithChild: child_living_with_others_details
               claimingExemptionMiam: exemption_to_attend_MIAM
               familyMediatorMiam: familyMember_Intimation_on_No_MIAM
               applicantAttendedMiam: attended_MIAM
               applicationPermissionRequiredReason: permissionRequiredReason
-              briefDetailsOnTheApplication: briefDetailsOnTheApplication
+              applicationDetails: briefDetailsOnTheApplication
               havePreviousParentingPlan: havePreviousParentingPlan
-              applicationPermissionRequired : askingPermissionForApplication
+              #applicationPermissionRequired : askingPermissionForApplication
               isCaseUrgent : urgent_or_withoutHearing
               #previousOrOngoingProceedings : previous_or_ongoingProceeding
               consentOrder : isConsentOrder
@@ -249,8 +251,5 @@ uk:
               isSpecialArrangementsRequired: requiredSpecialAssistanceOrFacilities
               reasonsForIntermediary: applicantRequiresInterpreter_intermediaryRequired_details
               specialArrangementsRequired: requiredSpecialAssistanceOrFacilities_details
-              mediatorRegistrationNumber: fmc_RegistrationNumber
-              familyMediatorServiceName: family_Mediation_ServiceName
-              soleTraderName: sole_TraderName
               #authorizedFamilyMediatorAddress: authorizedFamilyMediator_address
               #authorizedFamilyMediatorDate: authorizedFamilyMediator_date

@@ -13,7 +13,7 @@
       "value": "Yes"
     },
     {
-      "name": "existingCase_onEmergencyProtection_Care_or_supervisioNorder",
+      "name": "ExistingCase_onEmergencyProtection_Care_or_supervisionOrder",
       "value": "No"
     },
     {
@@ -25,23 +25,23 @@
       "value": "No"
     },
     {
-      "name": "NoMIAM_domesticViolence",
+      "name": "noMIAM_domesticViolance",
       "value": "true"
     },
     {
-      "name": "NoMIAM_childProtectionConcerns",
+      "name": "noMIAM_childProtectionConcerns",
       "value": "true"
     },
     {
-      "name": "NoMIAM_Urgency",
+      "name": "noMIAM_Urgency",
       "value": "true"
     },
     {
-      "name": "NoMIAM_PreviousAttendence",
+      "name": "noMIAM_PreviousAttendence",
       "value": "true"
     },
     {
-      "name": "NoMIAM_otherReasons",
+      "name": "noMIAM_otherReasons",
       "value": "true"
     },
     {

@@ -485,7 +485,7 @@ class BulkScanC100ValidationServiceTest {
         fieldList.add(ocrDataFirstNameField);
 
         OcrDataField ocrDataLastNameField = new OcrDataField();
-        ocrDataLastNameField.setName("existingCase_onEmergencyProtection_Care_or_supervisioNorder");
+        ocrDataLastNameField.setName("ExistingCase_onEmergencyProtection_Care_or_supervisionOrder");
         ocrDataLastNameField.setValue("No");
         fieldList.add(ocrDataLastNameField);
 

@@ -94,7 +94,7 @@ public final class TestDataC100Util {
 
         OcrDataField ocrDataExistingCaseEmergencyProtectionField = new OcrDataField();
         ocrDataExistingCaseEmergencyProtectionField.setName(
-                "existingCase_onEmergencyProtection_Care_or_supervisioNorder");
+                "ExistingCase_onEmergencyProtection_Care_or_supervisionOrder");
         ocrDataExistingCaseEmergencyProtectionField.setValue(TICK_BOX_NO);
         fieldList.add(ocrDataExistingCaseEmergencyProtectionField);
 
@@ -132,7 +132,7 @@ public final class TestDataC100Util {
 
         OcrDataField ocrDataExistingCaseEmergencyProtectionField = new OcrDataField();
         ocrDataExistingCaseEmergencyProtectionField.setName(
-                "existingCase_onEmergencyProtection_Care_or_supervisioNorder");
+                "ExistingCase_onEmergencyProtection_Care_or_supervisionOrder");
         ocrDataExistingCaseEmergencyProtectionField.setValue(TICK_BOX_NO);
         fieldList.add(ocrDataExistingCaseEmergencyProtectionField);
 

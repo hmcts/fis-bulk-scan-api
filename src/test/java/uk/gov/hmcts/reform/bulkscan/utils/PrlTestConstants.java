@@ -13,7 +13,7 @@ public final class PrlTestConstants {
 
     public static final String NOMIAM_CHILDPROTECTIONCONCERNS_FIELD =
             "NoMIAM_childProtectionConcerns";
-    public static final String NOMIAM_DOMESTICVIOLENCE_FIELD = "NoMIAM_domesticViolence";
+    public static final String NOMIAM_DOMESTICVIOLENCE_FIELD = "noMIAM_domesticViolance";
     public static final String NOMIAM_DVE_ARRESTEDFORSIMILAROFFENCE_FIELD =
             "NoMIAM_DVE_arrestedForSimilarOffence";
     public static final String NOMIAM_URGENCY_FIELD = "NoMIAM_Urgency";

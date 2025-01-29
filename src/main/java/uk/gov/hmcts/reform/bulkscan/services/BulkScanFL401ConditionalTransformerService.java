@@ -501,6 +501,7 @@ public class BulkScanFL401ConditionalTransformerService {
                 childDetails.put(CHILD_FULL_NAME, childName);
                 childDetails.put(CHILD_AGE, childAge);
                 childDetails.put(RESPONDENT_RESPONSIBLE_FOR_CHILD, isRespondentResponsibleForChild);
+                childDetails.put("keepChildrenInfoConfidential", NO);
                 childrenLinkedTreeMap.put("id", UUID.randomUUID().toString());
                 childrenLinkedTreeMap.put(VALUE, childDetails);
                 children.add(childrenLinkedTreeMap);
