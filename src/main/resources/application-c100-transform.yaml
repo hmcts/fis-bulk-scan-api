@@ -60,7 +60,7 @@ uk:
                     lastName: child1_lastName
                     dateOfBirth: child1_dateOfBirth
                     gender: child1_gender
-                    orderAppliedFor: child1_orderAppliedFor
+                    #orderAppliedFor: child1_orderAppliedFor
                     applicantsRelationshipToChild: child1_applicant1_relationship
                     respondentsRelationshipToChild: child1_respondent1_relationship
                 - value:
