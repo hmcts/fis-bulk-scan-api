@@ -89,20 +89,13 @@ uk:
                     applicantsRelationshipToChild: child4_applicant1_relationship
                     respondentsRelationshipToChild: child4_respondent1_relationship
               isChildrenWithSameParents:  children_of_same_parent
-              miamPreviousAttendanceChecklist: NoMIAM_PreviousAttendenceReason
-              miamOtherGroundsChecklist: NoMIAM_otherExceptions
-              miamOtherGroundsChecklist1: noMIAM_otherReasons
               childrenKnownToLocalAuthority: childrenServicesAuthority
               childrenKnownToLocalAuthorityTextArea: child1_localAuthority_or_socialWorker
               childrenSubjectOfChildProtectionPlan: subject_to_childProtectionPlan
               parentalResponsibilityDetails: parentalResponsibilityDetails
               childrenParentsName: children_parentsName
-              mpuApplicantAttendedMiam: ExistingCase_onEmergencyProtection_Care_or_supervisionOrder
               childParentsNameCollection: child_parentsName_collection
               personWhoLivesWithChild: child_living_with_others_details
-              claimingExemptionMiam: exemption_to_attend_MIAM
-              familyMediatorMiam: familyMember_Intimation_on_No_MIAM
-              applicantAttendedMiam: attended_MIAM
               applicationPermissionRequiredReason: permissionRequiredReason
               applicationDetails: briefDetailsOnTheApplication
               havePreviousParentingPlan: havePreviousParentingPlan
@@ -112,38 +105,37 @@ uk:
               consentOrder : isConsentOrder
               welshLanguageRequirement : welshRequired
 
-              miamTable:
-                claimingExemptionMiam: exemption_to_attend_MIAM
-                familyMediatorMiam: familyMember_Intimation_on_No_MIAM
-                applicantAttendedMiam: attended_MIAM
-              allegationsOfHarmOverviewTable :
-                allegationsOfHarmDomesticAbuseYesNo: domesticAbuse
-                allegationsOfHarmChildAbductionYesNo: childAbduction
-                allegationsOfHarmChildAbuseYesNo: childAbuse
-                allegationsOfHarmSubstanceAbuseYesNo : drugs_alcohol_substanceAbuse
-                allegationsOfHarmOtherConcernsYesNo: otherSafety_or_welfareAbuse
-              typeOfApplicationTable :
-                applicationPermissionRequired : askingPermissionForApplication
+#              miamTable:
+#                claimingExemptionMiam: exemption_to_attend_MIAM
+#                familyMediatorMiam: familyMember_Intimation_on_No_MIAM
+#                applicantAttendedMiam: attended_MIAM
+#              allegationsOfHarmOverviewTable :
+#                allegationsOfHarmDomesticAbuseYesNo: domesticAbuse
+#                allegationsOfHarmChildAbductionYesNo: childAbduction
+#                allegationsOfHarmChildAbuseYesNo: childAbuse
+#                allegationsOfHarmSubstanceAbuseYesNo : drugs_alcohol_substanceAbuse
+#                allegationsOfHarmOtherConcernsYesNo: otherSafety_or_welfareAbuse
+#              typeOfApplicationTable :
+#                applicationPermissionRequired : askingPermissionForApplication
               setOutReasonsBelow: null
               effortsMadeWithRespondents: respondent_effort
               doYouRequireAHearingWithReducedNotice: withoutNotice_abridged_or_informalNotice
               doYouNeedAWithoutNoticeHearing: withoutNotice_abridged_or_informalNotice
               caseUrgencyTimeAndReason: application_timetable
               reasonsForApplicationWithoutNotice: reason_for_consideration
-              childAbuseDomesticHelpSought: order_direction_sought
               doYouRequireAWithoutNoticeHearing: withoutNotice_frustrateTheOrder
               c100RebuildHearingUrgency: urgency_reason
               setWithoutNoticeHearing: withoutNotice_frustrateTheOrder_reason
-              otherProceedingsTable :
-                previousOrOngoingProceedings : previous_or_ongoingProceeding
-              otherProceedingsDetailsTable:
-                - value:
-                    previousOrOngoingProceedings: previous_or_ongoingProceeding
-                    caseNumber: other_case_case_number
-                    dateOrYear: other_case_date_or_year
-                    nameOfCourt: other_case_name_of_court
-                    nameOfChildrenInvolved: other_case_name_of_children
-                    nameAndOffice: other_case_name_and_office
+#              otherProceedingsTable :
+#                previousOrOngoingProceedings : previous_or_ongoingProceeding
+#              otherProceedingsDetailsTable:
+#                - value:
+#                    previousOrOngoingProceedings: previous_or_ongoingProceeding
+#                    caseNumber: other_case_case_number
+#                    dateOrYear: other_case_date_or_year
+#                    nameOfCourt: other_case_name_of_court
+#                    nameOfChildrenInvolved: other_case_name_of_children
+#                    nameAndOffice: other_case_name_and_office
               respondents:
                 - value:
                     firstName: respondentOneFirstName
@@ -241,7 +233,6 @@ uk:
               #SignedDate: applicantAndApplicantsolicitorSignedDate
               #positionOrOfficeHeld: position_or_OfficeHeld
               #courtFeeConsent: courtFeeConsent
-              isWelshNeeded: applicantRequiresWelsh
               isInterpreterNeeded: applicantRequiresInterpreter
               interpreterNeeds:
                 - value:

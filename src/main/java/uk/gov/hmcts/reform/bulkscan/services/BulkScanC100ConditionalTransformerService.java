@@ -7,9 +7,9 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIV
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVING_WITH_OTHERS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVING_WITH_RESPONDENT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EMPTY;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NO;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PERMISSION_REQUIRED;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.SCAN_DOCUMENTS;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.VALUE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.getTypeOfOrderEnumFields;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.getTypeOfOrderEnumMapping;
@@ -21,7 +21,6 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.APPLIC
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.APPLICANT_REQUIRES_INTERPRETER_RESPONDENT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.CHILD_ARRANGEMENTS_ORDER_DESCRIPTION;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.CHILD_ARRANGEMENT_ORDER;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERPRETER_NEEDS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.MEDIATION_NOT_PROCEEDING_APPLICANTS_AND_RESPONDENTS_ATTENDED_MIAM;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.MEDIATION_NOT_PROCEEDING_APPLICANT_ATTENDED_MIAM_ALONE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.MEDIATION_NOT_PROCEEDING_HASSTARTED_BUT_BROKEN_WITH_SOMEISSUE;
@@ -74,16 +73,11 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.RESPON
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.SET_OUT_REASONS_BELOW;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.SPECIAL_ISSUE_ORDER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.SPECIFIC_ISSUE_ORDER_DESCRIPTION;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.SPOKEN_WRITTEN_BOTH;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.URGENCY_REASON;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.WELSH_NEEDS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.WELSH_NEEDS_CCD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.WHO_WELSH_NEEDS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.WITHOUT_NOTICE_ABRIDGED_OR_INFORMAL_NOTICE_REASONS;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import com.microsoft.applicationinsights.core.dependencies.google.gson.internal.LinkedTreeMap;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -95,6 +89,7 @@ import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
 import org.apache.commons.lang3.BooleanUtils;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 import uk.gov.hmcts.reform.bulkscan.enums.ChildLiveWithEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.GroupMediatorCertifiesEnum;
@@ -104,6 +99,7 @@ import uk.gov.hmcts.reform.bulkscan.enums.MiamExemptionsChecklistEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.MiamUrgencyReasonChecklistEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.PartyEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.PermissionRequiredEnum;
+import uk.gov.hmcts.reform.bulkscan.enums.SpecialMeasuresEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.SpokenOrWrittenWelshEnum;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.ResponseScanDocument;
@@ -130,13 +126,222 @@ public class BulkScanC100ConditionalTransformerService {
         //transform child details
         transformChildDetails(inputFieldsMap, populatedMap);
 
+        //transform Miam details
+        transformMiamDetails(populatedMap, inputFieldsMap);
+
         //transform permission required
         transformPermissionRequiredFromCourt(inputFieldsMap, populatedMap);
+
+        //transform hearing urgency
+        transformHearingUrgency(populatedMap, inputFieldsMap);
+
+        //transform previous or ongoing proceedings
+        transformPreviousOrOngoingProceedings(inputFieldsMap, populatedMap);
+
+        //transform international elements
+        transformInternationalElements(inputFieldsMap, populatedMap);
+
+        //transform litigation capacity
+        transformLitigationCapacity(inputFieldsMap, populatedMap);
+
+        //transform attending the court
+        transformAttendingTheCourt(inputFieldsMap, populatedMap);
 
         //transform allegations of harm
         transformAllegationsOfHarm(inputFieldsMap, populatedMap);
 
-        //transform Miam details
+        //transformMediatorCertifiesMiamExemption(inputFieldsMap);
+        //transformMediatorCertifiesApplicantAttendMiam(inputFieldsMap);
+        //transformMediatorCertifiesDisputeResolutionNotProceeding(inputFieldsMap);
+        populatedMap.values().removeIf(Objects::isNull);
+    }
+
+    private void transformAttendingTheCourt(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("applicantRequiresWelsh"))) {
+            populatedMap.put("isWelshNeeded", YES);
+            populateWelshNeeds(inputFieldsMap, populatedMap);
+        } else {
+            populatedMap.put("isWelshNeeded", NO);
+        }
+        populateInterpreterNeeds(inputFieldsMap, populatedMap);
+        populateIntermediaryNeeds(inputFieldsMap, populatedMap);
+        populateDisabilityNeeds(inputFieldsMap, populatedMap);
+        populateSpecialArrangementNeeds(inputFieldsMap, populatedMap);
+    }
+
+    private void populateSpecialArrangementNeeds(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
+        List<String> specialArrangements = new ArrayList<>();
+
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("Attendence_separateWaitingRoom"))) {
+            specialArrangements.add(SpecialMeasuresEnum.separateWaitingRoom.toString());
+        }
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("Attendence_separateEntryAndExit"))) {
+            specialArrangements.add(SpecialMeasuresEnum.seperateEntranceExit.toString());
+        }
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("Attendence_privacyScreen"))) {
+            specialArrangements.add(SpecialMeasuresEnum.shieldedByScreen.toString());
+        }
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("Attendence_joinHearingByVideo"))) {
+            specialArrangements.add(SpecialMeasuresEnum.joinByVideoLink.toString());
+        }
+        if (!specialArrangements.isEmpty()) {
+            populatedMap.put("isSpecialArrangementsRequired", YES);
+            populatedMap.put("specialArrangementsRequired", String.join(",", specialArrangements));
+        }
+    }
+
+    private void populateDisabilityNeeds(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("requiredSpecialAssistanceOrFacilities"))) {
+            populatedMap.put("isDisabilityPresent", YES);
+            if (StringUtils.isNotEmpty(inputFieldsMap.get("requiredSpecialAssistanceOrFacilities_details"))) {
+                populatedMap.put("adjustmentsRequired",
+                                 inputFieldsMap.get("requiredSpecialAssistanceOrFacilities_details"));
+            }
+        } else {
+            populatedMap.put("isDisabilityPresent", NO);
+        }
+    }
+
+    private void populateIntermediaryNeeds(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("applicantRequiresInterpreter_intermediaryRequired"))) {
+            populatedMap.put("isIntermediaryNeeded", YES);
+            if (StringUtils.isNotEmpty(inputFieldsMap.get("applicantRequiresInterpreter_intermediaryRequired_details"))) {
+                populatedMap.put("reasonsForIntermediary",
+                                 inputFieldsMap.get("applicantRequiresInterpreter_intermediaryRequired_details"));
+            }
+        } else {
+            populatedMap.put("isIntermediaryNeeded", NO);
+        }
+    }
+
+    private void populateInterpreterNeeds(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("applicantRequiresInterpreter"))) {
+            populatedMap.put("isInterpreterNeeded", YES);
+            Map<String, Object> interpreterNeed = new HashMap<>();
+            interpreterNeed.put("id", UUID.randomUUID());
+            Map<String, Object> value = new HashMap<>();
+            value.put(PARTY_ENUM, transformParty(inputFieldsMap));
+            if (StringUtils.isNotEmpty(inputFieldsMap.get("applicantRequiresInterpreter_otherParty_dialect"))) {
+                value.put("language", inputFieldsMap.get("applicantRequiresInterpreter_otherParty_dialect"));
+            }
+            if (StringUtils.isNotEmpty(inputFieldsMap.get("applicantRequiresInterpreter_otherParty_details"))) {
+                value.put("otherAssistance", inputFieldsMap.get("applicantRequiresInterpreter_otherParty_details"));
+            }
+            interpreterNeed.put("value", value);
+            List<Map<String, Object>> interpreterNeeds = new ArrayList<>();
+            interpreterNeeds.add(interpreterNeed);
+        } else {
+            populatedMap.put("isInterpreterNeeded", NO);
+        }
+    }
+
+    private void transformLitigationCapacity(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
+        if (StringUtils.isNotEmpty(inputFieldsMap.get("factorAffectingLitigationCapacity"))) {
+            populatedMap.put("litigationCapacityFactors", inputFieldsMap.get("factorAffectingLitigationCapacity"));
+        }
+        if (StringUtils.isNotEmpty(inputFieldsMap.get("assessmentByAdultLearningTeam"))) {
+            populatedMap.put("litigationCapacityReferrals", inputFieldsMap.get("assessmentByAdultLearningTeam"));
+        }
+        if (StringUtils.isNotEmpty(inputFieldsMap.get("factorsAffectingPersonInCourt"))) {
+            populatedMap.put("litigationCapacityOtherFactors", YES);
+            populatedMap.put("litigationCapacityOtherFactorsDetails", inputFieldsMap.get("factorsAffectingPersonInCourt"));
+        }
+    }
+
+    private void transformInternationalElements(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("internationalElement_Resident_of_another_state"))) {
+            populatedMap.put("habitualResidentInOtherState", YES);
+            if (StringUtils.isNotEmpty(inputFieldsMap.get("internationalElement_Resident_of_another_state_details"))) {
+                populatedMap.put("habitualResidentInOtherStateGiveReason",
+                                 inputFieldsMap.get("internationalElement_Resident_of_another_state_details"));
+            }
+        }
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("internationalElement_jurisdictionIssue"))) {
+            populatedMap.put("jurisdictionIssue", YES);
+            if (StringUtils.isNotEmpty(inputFieldsMap.get("withoutNotice_jurisdictionIssue_details"))) {
+                populatedMap.put("jurisdictionIssueGiveReason",
+                                 inputFieldsMap.get("withoutNotice_jurisdictionIssue_details"));
+            }
+        }
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("internationalElement_request_toCentral_or_Consular_authority"))) {
+            populatedMap.put("requestToForeignAuthority", YES);
+            if (StringUtils.isNotEmpty(inputFieldsMap
+                                           .get("internationalElement_request_toCentral_or_Consular_authority_details"))) {
+                populatedMap.put("requestToForeignAuthorityGiveReason",
+                                 inputFieldsMap.get("internationalElement_request_toCentral_or_Consular_authority_details"));
+            }
+        }
+    }
+
+    private void transformPreviousOrOngoingProceedings(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("previous_or_ongoingProceeding"))) {
+            populatedMap.put("previousOrOngoingProceedingsForChildren", YES);
+            Map<String, Object> proceeding = new HashMap<>();
+            proceeding.put("id", UUID.randomUUID());
+            List<String> children = new ArrayList<>();
+            if (StringUtils.isNotEmpty(inputFieldsMap.get("withoutNotice_otherReasons_child1_name"))) {
+                children.add(inputFieldsMap.get("withoutNotice_otherReasons_child1_name"));
+            }
+            if (StringUtils.isNotEmpty(inputFieldsMap.get("withoutNotice_otherReasons_child2_name"))) {
+                children.add(inputFieldsMap.get("withoutNotice_otherReasons_child2_name"));
+            }
+            if (StringUtils.isNotEmpty(inputFieldsMap.get("withoutNotice_otherReasons_child3_name"))) {
+                children.add(inputFieldsMap.get("withoutNotice_otherReasons_child3_name"));
+            }
+            if (StringUtils.isNotEmpty(inputFieldsMap.get("withoutNotice_otherReasons_child4_name"))) {
+                children.add(inputFieldsMap.get("withoutNotice_otherReasons_child4_name"));
+            }
+            Map<String, Object> value = new HashMap<>();
+            value.put("nameOfChildrenInvolved", String.join(",", children));
+            if (StringUtils.isNotEmpty(inputFieldsMap.get("withoutNotice_otherReasons_name_of_the_court"))) {
+                value.put("nameOfCourt", inputFieldsMap.get("withoutNotice_otherReasons_name_of_the_court"));
+            }
+            if (StringUtils.isNotEmpty(inputFieldsMap.get("withoutNotice_otherReasons_CaseNo"))) {
+                value.put("caseNumber", inputFieldsMap.get("withoutNotice_otherReasons_CaseNo"));
+            }
+            if (StringUtils.isNotEmpty(inputFieldsMap.get("withoutNotice_otherReasons_CAFCASS_Name_and_officeAddress"))) {
+                value.put("nameAndOffice", inputFieldsMap.get("withoutNotice_otherReasons_CAFCASS_Name_and_officeAddress"));
+            }
+            value.put("caseNumber", inputFieldsMap.get("caseNumber"));
+            proceeding.put("value", value);
+            List<String> typeOfOrders = new ArrayList<>();
+            if (TRUE.equalsIgnoreCase(inputFieldsMap.get("withoutNotice_emergency_Protection_Order"))) {
+                typeOfOrders.add("emergencyProtectionOrder");
+            }
+            if (TRUE.equalsIgnoreCase(inputFieldsMap.get("withoutNotice_supervisionOrder"))) {
+                typeOfOrders.add("supervisionOrder");
+            }
+            if (TRUE.equalsIgnoreCase(inputFieldsMap.get("withoutNotice_caseOrder"))) {
+                typeOfOrders.add("careOrder");
+            }
+            if (TRUE.equalsIgnoreCase(inputFieldsMap.get("withoutNotice_childAbduction"))) {
+                typeOfOrders.add("childAbduction");
+            }
+            if (TRUE.equalsIgnoreCase(inputFieldsMap.get("withoutNotice_proceeding_for_NonMolestationOrder"))) {
+                typeOfOrders.add("familyLaw1996Part4");
+            }
+            if (TRUE.equalsIgnoreCase(inputFieldsMap.get("withoutNotice_contact_or_residentOrder"))) {
+                typeOfOrders.add("contactOrResidenceOrder");
+            }
+            if (TRUE.equalsIgnoreCase(inputFieldsMap.get("withoutNotice_contact_or_residentOrder_withAdoptionOrder"))) {
+                typeOfOrders.add("contactOrResidenceOrderWithAdoption");
+            }
+            if (TRUE.equalsIgnoreCase(inputFieldsMap.get("withoutNotice_childMaintenanceOrder"))) {
+                typeOfOrders.add("orderRelatingToChildMaintainance");
+            }
+            if (TRUE.equalsIgnoreCase(inputFieldsMap.get("withoutNotice_childArrangementOrder"))) {
+                typeOfOrders.add("childArrangementsOrder");
+            }
+            if (!typeOfOrders.isEmpty()) {
+                proceeding.put("tyoeOfOrder", typeOfOrders);
+            }
+            List<Map<String, Object>> proceedings = new ArrayList<>();
+            proceedings.add(proceeding);
+            populatedMap.put("existingProceedings", proceedings);
+        }
+    }
+
+    private void transformMiamDetails(Map<String, Object> populatedMap, Map<String, String> inputFieldsMap) {
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get("ExistingCase_onEmergencyProtection_Care_or_supervisionOrder"))) {
             populatedMap.put("mpuChildInvolvedInMiam", YES);
         } else {
@@ -149,31 +354,67 @@ public class BulkScanC100ConditionalTransformerService {
                 if (TRUE.equalsIgnoreCase(inputFieldsMap.get("exemption_to_attend_MIAM"))) {
                     populatedMap.put("mpuClaimingExemptionMiam", inputFieldsMap.get(""));
                     populatedMap.put(
-                        "mpuDomesticAbuseEvidences",
-                        transformMiamDomesticViolenceChecklist(inputFieldsMap));
-                    populatedMap.put(
                         MIAM_EXEMPTIONS_CHECKLIST, transformMiamExemptionsChecklist(inputFieldsMap));
-                    populatedMap.put(
-                        NO_MIAM_CHILD_PROTECTION_CONCERNS_CHECKLIST,
-                        transformNoMiamChildProtectionConcerns(inputFieldsMap));
-                    populatedMap.put(MIAM_URGENCY_REASON_CHECKLIST, transformMiamUrgencyReasonChecklist(inputFieldsMap));
+                    if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_DOMESTIC_VIOLENCE))) {
+                        populatedMap.put(
+                            "mpuDomesticAbuseEvidences",
+                            transformMiamDomesticViolenceChecklist(inputFieldsMap));
+                    }
+                    if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_CHILD_PROTECTION_CONCERNS))) {
+                        transformNoMiamChildProtectionConcerns(inputFieldsMap, populatedMap);
+                    }
+                    if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_URGENCY))) {
+                        transformMiamUrgencyReasonChecklist(inputFieldsMap, populatedMap);
+                    }
+                    if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_PREVIOUS_ATTENDENCE))) {
+                        transformMiamPreviousAttendance(populatedMap, inputFieldsMap);
+                    }
+                    if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_OTHER_REASONS))) {
+                        transformMiamOtherReasonsExemptions(populatedMap, inputFieldsMap);
+                    }
+
                 }
             }
         }
+    }
 
-        // C100 Attending the hearing fields transform
-        populatedMap.put(WELSH_NEEDS_CCD, populateWelshNeeds(inputFieldsMap));
+    private void transformMiamOtherReasonsExemptions(Map<String, Object> populatedMap, Map<String, String> inputFieldsMap) {
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("otherExemption_withoutNotice"))) {
+            populatedMap.put("mpuOtherExemptionReasons", "miamPolicyUpgradeOtherGrounds_Value_1");
+        }
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("otherExemption_byVirture_of_Rule12_3"))) {
+            populatedMap.put("mpuOtherExemptionReasons", "miamPolicyUpgradeOtherGrounds_Value_2");
+        }
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("otherExemption_mediator_notAvailableToConduct"))) {
+            populatedMap.put("mpuOtherExemptionReasons", "miamPolicyUpgradeOtherGrounds_Value_3");
+            populatedMap.put("mpuApplicantUnableToAttendMiamReason1", inputFieldsMap.get("otherExemption_additonalInformation"));
+        }
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("otherExemption_disability_or_inabilityToAttend"))) {
+            populatedMap.put("mpuOtherExemptionReasons", "miamPolicyUpgradeOtherGrounds_Value_4");
+            populatedMap.put("mpuApplicantUnableToAttendMiamReason1", inputFieldsMap.get("otherExemption_additonalInformation"));
+        }
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("otherExemption_NotSufficient_Respondent_ContactDetails"))) {
+            populatedMap.put("mpuOtherExemptionReasons", "miamPolicyUpgradeOtherGrounds_Value_5");
+            populatedMap.put("mpuApplicantUnableToAttendMiamReason2", inputFieldsMap.get("otherExemption_additonalInformation"));
+        }
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("otherExemption_applicant_or_respondent_inPrison"))) {
+            populatedMap.put("mpuOtherExemptionReasons", "miamPolicyUpgradeOtherGrounds_Value_6");
+        }
+        if (StringUtils.isNotEmpty(inputFieldsMap.get("otherExemption_NoEvidence_reason"))) {
+            populatedMap.put(
+                "mpuNoDomesticAbuseEvidenceReason",
+                inputFieldsMap.get("otherExemption_NoEvidence_reason")
+            );
+        }
+    }
 
-        List<LinkedTreeMap> interpreterNeeds = (List) populatedMap.get(INTERPRETER_NEEDS);
-        LinkedTreeMap innerinterpreterValue = interpreterNeeds.get(0);
-        LinkedTreeMap interpreterValues = (LinkedTreeMap) innerinterpreterValue.get(VALUE);
-        interpreterValues.put(PARTY_ENUM, transformParty(inputFieldsMap));
-
-        setOutReasonsBelow(populatedMap, inputFieldsMap);
-        transformMediatorCertifiesMiamExemption(inputFieldsMap);
-        //transformMediatorCertifiesApplicantAttendMiam(inputFieldsMap);
-        transformMediatorCertifiesDisputeResolutionNotProceeding(inputFieldsMap);
-        populatedMap.values().removeIf(Objects::isNull);
+    private void transformMiamPreviousAttendance(Map<String, Object> populatedMap, Map<String, String> inputFieldsMap) {
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("previousMIAM_nonCourtDisputeResolution_4month"))) {
+            populatedMap.put("mpuPreviousMiamAttendanceReason", "miamPolicyUpgradePreviousAttendance_Value_1");
+        }
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("previousMIAM_existingProceeding_exepmtMIAM"))) {
+            populatedMap.put("mpuPreviousMiamAttendanceReason", "miamPolicyUpgradePreviousAttendance_Value_2");
+        }
     }
 
     private void transformChildDetails(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
@@ -215,24 +456,40 @@ public class BulkScanC100ConditionalTransformerService {
     private List<String> transformParty(Map<String, String> inputFieldsMap) {
         List<String> partyDetails = new ArrayList<>();
         if (YES.equalsIgnoreCase(inputFieldsMap.get(APPLICANT_REQUIRES_INTERPRETER_APPLICANT))) {
-            partyDetails.add(PartyEnum.applicant.getDisplayedValue());
+            partyDetails.add(PartyEnum.applicant.toString());
         }
         if (YES.equalsIgnoreCase(inputFieldsMap.get(APPLICANT_REQUIRES_INTERPRETER_RESPONDENT))) {
-            partyDetails.add(PartyEnum.respondent.getDisplayedValue());
+            partyDetails.add(PartyEnum.respondent.toString());
         }
         if (YES.equalsIgnoreCase(inputFieldsMap.get(APPLICANT_REQUIRES_INTERPRETER_OTHER_PARTY))) {
-            partyDetails.add(PartyEnum.other.getDisplayedValue());
+            partyDetails.add(PartyEnum.other.toString());
         }
-
         return partyDetails;
     }
 
     @SuppressWarnings("unchecked")
-    private void setOutReasonsBelow(
+    private void transformHearingUrgency(
             Map<String, Object> populatedMap, Map<String, String> inputFieldsMap) {
-        if (!org.apache.commons.lang3.StringUtils.isEmpty(inputFieldsMap.get(URGENCY_REASON))) {
-            populatedMap.put(SET_OUT_REASONS_BELOW, inputFieldsMap.get(URGENCY_REASON));
-        } else if (!org.apache.commons.lang3.StringUtils.isEmpty(
+        String urgencyReason = "";
+        if (StringUtils.isNotEmpty(inputFieldsMap.get("urgency_reason"))) {
+            urgencyReason = inputFieldsMap.get("urgency_reason");
+        }
+        if (StringUtils.isNotEmpty(inputFieldsMap.get("order_direction_sought"))) {
+            urgencyReason += inputFieldsMap.get("order_direction_sought");
+        }
+        if (StringUtils.isNotEmpty(inputFieldsMap.get("application_timetable"))) {
+            urgencyReason += String.format("Application should be considered within %s hours/days",
+                                           inputFieldsMap.get("application_timetable"));
+        }
+        populatedMap.put("caseUrgencyTimeAndReason", urgencyReason);
+        if (StringUtils.isNotEmpty(inputFieldsMap.get("respondent_effort"))) {
+            populatedMap.put("effortsMadeWithRespondents", inputFieldsMap.get("respondent_effort"));
+        }
+        if (StringUtils.isNotEmpty(inputFieldsMap.get("reason_for_consideration"))) {
+            populatedMap.put("reasonsForApplicationWithoutNotice", inputFieldsMap.get("reason_for_consideration"));
+            populatedMap.put("doYouNeedAWithoutNoticeHearing", YES);
+        }
+        if (StringUtils.isNotEmpty(
                 inputFieldsMap.get(WITHOUT_NOTICE_ABRIDGED_OR_INFORMAL_NOTICE_REASONS))) {
             populatedMap.put(
                     SET_OUT_REASONS_BELOW,
@@ -267,74 +524,64 @@ public class BulkScanC100ConditionalTransformerService {
      * C100 form Section 3c.
      *
      * @param inputFieldsMap All input key-value pair from transformation request.
-     * @return list of enum values for miamUrgencyReasonChecklist field in the transformation
-     *     output.
+     * @param populatedMap All input key-value pair from transform object
      */
-    private List<MiamUrgencyReasonChecklistEnum> transformMiamUrgencyReasonChecklist(
-            Map<String, String> inputFieldsMap) {
-        List<MiamUrgencyReasonChecklistEnum> miamUrgencyReasonChecklistEnumList = new ArrayList<>();
+    private void transformMiamUrgencyReasonChecklist(
+        Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
         if (TRUE.equalsIgnoreCase(
                 inputFieldsMap.get(NO_MIAM_URGENCY_RISK_TO_LIFE_LIBERTY_OR_SAFETY))) {
-            miamUrgencyReasonChecklistEnumList.add(
+            populatedMap.put(MIAM_URGENCY_REASON_CHECKLIST,
                     MiamUrgencyReasonChecklistEnum.miamUrgencyReasonChecklistEnum_Value_1);
         }
 
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_URGENCY_RISK_OF_HARM))) {
-            miamUrgencyReasonChecklistEnumList.add(
+            populatedMap.put(MIAM_URGENCY_REASON_CHECKLIST,
                     MiamUrgencyReasonChecklistEnum.miamUrgencyReasonChecklistEnum_Value_2);
         }
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_URGENCY_RISK_TO_UNLAWFUL_REMOVAL))) {
-            miamUrgencyReasonChecklistEnumList.add(
+            populatedMap.put(MIAM_URGENCY_REASON_CHECKLIST,
                     MiamUrgencyReasonChecklistEnum.miamUrgencyReasonChecklistEnum_Value_3);
         }
 
         if (TRUE.equalsIgnoreCase(
                 inputFieldsMap.get(NO_MIAM_URGENCY_RISK_TO_MISCARRIAGE_OF_JUSTICE))) {
-            miamUrgencyReasonChecklistEnumList.add(
+            populatedMap.put(MIAM_URGENCY_REASON_CHECKLIST,
                     MiamUrgencyReasonChecklistEnum.miamUrgencyReasonChecklistEnum_Value_4);
         }
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_URGENCY_UNREASONABLEHARDSHIP))) {
-            miamUrgencyReasonChecklistEnumList.add(
+            populatedMap.put(MIAM_URGENCY_REASON_CHECKLIST,
                     MiamUrgencyReasonChecklistEnum.miamUrgencyReasonChecklistEnum_Value_5);
         }
 
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_URGENCY_IRRETRIEVABLE_PROBLEM))) {
-            miamUrgencyReasonChecklistEnumList.add(
+            populatedMap.put(MIAM_URGENCY_REASON_CHECKLIST,
                     MiamUrgencyReasonChecklistEnum.miamUrgencyReasonChecklistEnum_Value_6);
         }
 
         if (TRUE.equalsIgnoreCase(
                 inputFieldsMap.get(NO_MIAM_URGENCY_CONFLICT_WITH_OTHER_STATE_COURTS))) {
-            miamUrgencyReasonChecklistEnumList.add(
+            populatedMap.put(MIAM_URGENCY_REASON_CHECKLIST,
                     MiamUrgencyReasonChecklistEnum.miamUrgencyReasonChecklistEnum_Value_7);
         }
-        return miamUrgencyReasonChecklistEnumList;
     }
 
     /**
      * C100 form Section 3b.
      *
      * @param inputFieldsMap All input key-value pair from transformation request.
-     * @return list of enum values for miamChildProtectionConcernList field in the transformation
-     *     output.
+     * @param populatedMap All input key-value pair from transform object
      */
-    private List<MiamChildProtectionConcernChecklistEnum> transformNoMiamChildProtectionConcerns(
-            Map<String, String> inputFieldsMap) {
-        List<MiamChildProtectionConcernChecklistEnum> miamChildProtectionConcernList =
-                new ArrayList<>();
+    private void transformNoMiamChildProtectionConcerns(
+        Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
         if (TRUE.equalsIgnoreCase(
                 inputFieldsMap.get(NO_MIAM_SUBJECT_OF_ENQUIRIES_BY_LOCAL_AUTHORITY))) {
-            miamChildProtectionConcernList.add(
-                    MiamChildProtectionConcernChecklistEnum
-                            .MIAMChildProtectionConcernChecklistEnum_value_1);
+            populatedMap.put(NO_MIAM_CHILD_PROTECTION_CONCERNS_CHECKLIST,
+                             MiamChildProtectionConcernChecklistEnum.MIAMChildProtectionConcernChecklistEnum_value_1);
         }
-
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_SUBJECT_OF_CPP_BY_LOCAL_AUTHORITY))) {
-            miamChildProtectionConcernList.add(
-                    MiamChildProtectionConcernChecklistEnum
-                            .MIAMChildProtectionConcernChecklistEnum_value_2);
+            populatedMap.put(NO_MIAM_CHILD_PROTECTION_CONCERNS_CHECKLIST,
+                             MiamChildProtectionConcernChecklistEnum.MIAMChildProtectionConcernChecklistEnum_value_2);
         }
-        return miamChildProtectionConcernList;
     }
 
     /**
@@ -347,23 +594,23 @@ public class BulkScanC100ConditionalTransformerService {
             Map<String, String> inputFieldsMap) {
         List<String> miamExemptionsChecklist = new ArrayList<>();
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_DOMESTIC_VIOLENCE))) {
-            miamExemptionsChecklist.add(MiamExemptionsChecklistEnum.domesticViolence.getDisplayedValue());
+            miamExemptionsChecklist.add(MiamExemptionsChecklistEnum.domesticViolence.toString());
         }
 
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_CHILD_PROTECTION_CONCERNS))) {
-            miamExemptionsChecklist.add(MiamExemptionsChecklistEnum.childProtectionConcern.getDisplayedValue());
+            miamExemptionsChecklist.add(MiamExemptionsChecklistEnum.childProtectionConcern.toString());
         }
 
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_URGENCY))) {
-            miamExemptionsChecklist.add(MiamExemptionsChecklistEnum.urgency.getDisplayedValue());
+            miamExemptionsChecklist.add(MiamExemptionsChecklistEnum.urgency.toString());
         }
 
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_PREVIOUS_ATTENDENCE))) {
-            miamExemptionsChecklist.add(MiamExemptionsChecklistEnum.previousMIAMattendance.getDisplayedValue());
+            miamExemptionsChecklist.add(MiamExemptionsChecklistEnum.previousMIAMattendance.toString());
         }
 
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_OTHER_REASONS))) {
-            miamExemptionsChecklist.add(MiamExemptionsChecklistEnum.other.getDisplayedValue());
+            miamExemptionsChecklist.add(MiamExemptionsChecklistEnum.other.toString());
         }
         return miamExemptionsChecklist;
     }
@@ -524,43 +771,44 @@ public class BulkScanC100ConditionalTransformerService {
      * <<<<<<< HEAD C100 form fields of Section 10.
      *
      * @param inputFieldsMap All input key-value pair from transformation request.
-     * @return list of values for welshneeds field in the transformation output.
+     * @param populatedMap All input key-value pair from transform object
      */
-    private List<LinkedTreeMap> populateWelshNeeds(Map<String, String> inputFieldsMap) {
-        List<LinkedTreeMap> list = new ArrayList<>();
-        String welshNeeds = inputFieldsMap.get(WELSH_NEEDS);
-        // child1 Yes no no;child2 No Yes Yes;
-        String[] splittedArr = org.apache.commons.lang3.StringUtils.split(welshNeeds, ";");
-        if (splittedArr != null) {
-            for (String eachStr : splittedArr) {
-                LinkedTreeMap<String, Object> linkedTreeMap = new LinkedTreeMap<>();
-                List<String> enums = new ArrayList<>();
-                String childName = eachStr.substring(0, eachStr.indexOf("["));
-                String spokenEnum =
-                        eachStr.substring(eachStr.indexOf("[") + 1, eachStr.lastIndexOf("]"));
-                String[] spokenOrWrittenOrBoth = spokenEnum.split(" ");
-                // 0 - Spoken , 1- Written, 2- Both
-                if (spokenOrWrittenOrBoth.length > 0) {
-                    if (YES.equalsIgnoreCase(spokenOrWrittenOrBoth[0])) {
-                        enums.add(SpokenOrWrittenWelshEnum.spoken.getDisplayedValue());
-                    }
-                    if (YES.equalsIgnoreCase(spokenOrWrittenOrBoth[1])) {
-                        enums.add(SpokenOrWrittenWelshEnum.written.getDisplayedValue());
-                    }
-                    if (YES.equalsIgnoreCase(spokenOrWrittenOrBoth[2])) {
-                        enums.add(SpokenOrWrittenWelshEnum.both.getDisplayedValue());
-                    }
-                }
-                linkedTreeMap.put(WHO_WELSH_NEEDS, childName);
-                linkedTreeMap.put(SPOKEN_WRITTEN_BOTH, enums);
+    private void populateWelshNeeds(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
+        List<Map<String, Object>> welshNeeds = new ArrayList<>();
+        getWelshNeeds(inputFieldsMap, "1", welshNeeds);
+        getWelshNeeds(inputFieldsMap, "2", welshNeeds);
+        getWelshNeeds(inputFieldsMap, "3", welshNeeds);
+        getWelshNeeds(inputFieldsMap, "4", welshNeeds);
+        getWelshNeeds(inputFieldsMap, "5", welshNeeds);
+        getWelshNeeds(inputFieldsMap, "6", welshNeeds);
+        getWelshNeeds(inputFieldsMap, "7", welshNeeds);
+        populatedMap.put(WELSH_NEEDS_CCD, welshNeeds);
+    }
 
-                LinkedTreeMap<String, Object> valueLinkMap = new LinkedTreeMap<>();
-                valueLinkMap.put(VALUE, linkedTreeMap);
-                list.add(valueLinkMap);
+    private void getWelshNeeds(Map<String, String> inputFieldsMap, String personCount, List<Map<String, Object>> welshNeeds) {
+        String personName = "nameOfPartyWhoNeedsWelsh_" + personCount;
+        if (StringUtils.isNotEmpty(inputFieldsMap.get(personName))) {
+            Map<String, Object> welshNeed = new HashMap<>();
+            welshNeed.put("id", UUID.randomUUID());
+            String spoken = String.format("applicantRequiresWelsh_%s_Spoken", personCount);
+            String written = String.format("applicantRequiresWelsh_%s_written", personCount);
+            String both = String.format("applicantRequiresWelsh_%s_Both", personCount);
+            List<String> spokenOrWritten = new ArrayList<>();
+            if (TRUE.equalsIgnoreCase(inputFieldsMap.get(spoken))) {
+                spokenOrWritten.add(SpokenOrWrittenWelshEnum.spoken.toString());
             }
+            if (TRUE.equalsIgnoreCase(inputFieldsMap.get(written))) {
+                spokenOrWritten.add(SpokenOrWrittenWelshEnum.written.toString());
+            }
+            if (TRUE.equalsIgnoreCase(inputFieldsMap.get(both))) {
+                spokenOrWritten.add(SpokenOrWrittenWelshEnum.both.toString());
+            }
+            Map<String, Object> value = new HashMap<>();
+            value.put("whoNeedsWelsh", personName);
+            value.put("spokenOrWritten", spokenOrWritten);
+            welshNeed.put("value", value);
+            welshNeeds.add(welshNeed);
         }
-
-        return list;
     }
 
     /* C100 form Above fields of Section 4a.
