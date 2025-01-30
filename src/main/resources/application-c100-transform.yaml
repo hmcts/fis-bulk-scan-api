@@ -27,10 +27,10 @@ uk:
                     doTheyHaveLegalRepresentation: doYouHaveSolicitor
                     representativeFirstName: your_solicitor_name
                     solicitorOrg:
-                      - value:
+                       value:
                           OrganisationName: solicitor_firm_name
                     solicitorAddress:
-                      - value:
+                       value:
                           AddressLine1: solicitor_address
                           PostCode: solicitor_postcode
                     solicitorTelephone: solicitor_telephone_number
