@@ -6,9 +6,9 @@ import lombok.Getter;
 @AllArgsConstructor
 @Getter
 public enum ChildLiveWithEnum {
-    APPLICANT("Applicant"),
-    RESPONDENT("Respondent"),
-    OTHERPEOPLE("OtherPeople");
+    APPLICANT("applicant"),
+    RESPONDENT("respondent"),
+    OTHERPEOPLE("otherPeople");
 
     private final String name;
 }
