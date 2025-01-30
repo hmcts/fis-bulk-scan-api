@@ -18,11 +18,11 @@ uk:
                     dateOfBirth: applicantOneDateOfBirth
                     placeOfBirth: applicantOnePlaceOfBirth
                     AddressLine1: applicantOneAddress
-                    PostCode: applicantOneAddressPostCode
+                    #PostCode: applicantOneAddressPostCode
                     landline: applicantOneHomePhoneNumber
                     phoneNumber: applicantOneMobilePhoneNumber
                     email: applicantOneEmailAddress
-                    isAtAddressLessThan5Years: hasapplicantOneLivedAtThisAddressForOverFiveYears
+                    #isAtAddressLessThan5Years: hasapplicantOneLivedAtThisAddressForOverFiveYears
                     addressLivedLessThan5YearsDetails: applicantOneAllAddressesForLastFiveYears
                     doTheyHaveLegalRepresentation: doYouHaveSolicitor
                     representativeFirstName: your_solicitor_name
@@ -47,11 +47,11 @@ uk:
                     dateOfBirth: applicantTwoDateOfBirth
                     placeOfBirth: applicantTwoPlaceOfBirth
                     AddressLine1: applicantTwoAddress
-                    PostCode: applicantTwoAddressPostCode
+                    #PostCode: applicantTwoAddressPostCode
                     landline: applicantTwoHomePhoneNumber
                     phoneNumber: applicantTwoMobilePhoneNumber
                     email: applicantTwoEmailAddress
-                    isAtAddressLessThan5Years: hasapplicantTwoLivedAtThisAddressForOverFiveYears
+                    #isAtAddressLessThan5Years: hasapplicantTwoLivedAtThisAddressForOverFiveYears
                     addressLivedLessThan5YearsDetails: applicantTwoAllAddressesForLastFiveYears
               typeOfChildArrangementsOrder: childArrangement_order
               children:
@@ -63,7 +63,6 @@ uk:
                     orderAppliedFor: child1_orderAppliedFor
                     applicantsRelationshipToChild: child1_applicant1_relationship
                     respondentsRelationshipToChild: child1_respondent1_relationship
-                    childLiveWith: children_of_same_parent
                 - value:
                     firstName: child2_firstName
                     lastName: child2_lastName
@@ -146,14 +145,14 @@ uk:
                     isDateOfBirthUnknown: respondentOneDateOfBirthDontKnow
                     placeOfBirth: respondentOnePlaceOfBirth
                     AddressLine1: respondentOneAddress
-                    PostCode: respondentOneAddressPostCode
+                    #PostCode: respondentOneAddressPostCode
                     isAddressUnknown: respondentOneAddressDontKnow
                     landline: respondentOneHomePhoneNumber
                     phoneNumber: respondentOneMobilePhoneNumber
                     canYouProvidePhoneNumber: respondentOneMobilePhoneNumberDontKnow
                     email: respondentOneEmailAddress
                     canYouProvideEmailAddress: respondentOneEmailAddressDontKnow
-                    isAtAddressLessThan5Years: respondentOneLivedAtThisAddressForOverFiveYears
+                    #isAtAddressLessThan5Years: respondentOneLivedAtThisAddressForOverFiveYears
                     addressLivedLessThan5YearsDetails: respondentOneAllAddressesForLastFiveYears
                 - value:
                     firstName: respondentTwoFirstName
@@ -164,14 +163,14 @@ uk:
                     isDateOfBirthUnknown: respondentTwoDateOfBirthDontKnow
                     placeOfBirth: respondentTwoPlaceOfBirth
                     AddressLine1: respondentTwoAddress
-                    PostCode: respondentTwoAddressPostCode
+                    #PostCode: respondentTwoAddressPostCode
                     isAddressUnknown: respondentTwoAddressDontKnow
                     landline: respondentTwoHomePhoneNumber
                     phoneNumber: respondentTwoMobilePhoneNumber
                     canYouProvidePhoneNumber: respondentTwoMobilePhoneNumberDontKnow
                     email: respondentTwoEmailAddress
                     canYouProvideEmailAddress: respondentTwoEmailAddressDontKnow
-                    isAtAddressLessThan5Years: respondentTwoLivedAtThisAddressForOverFiveYears
+                    #isAtAddressLessThan5Years: respondentTwoLivedAtThisAddressForOverFiveYears
                     addressLivedLessThan5YearsDetails: respondentTwoAllAddressesForLastFiveYears
               habitualResidentInOtherState: international_or_factorsAffectingLitigation
               habitualResidentInOtherStateGiveReason: internationalElement_Resident_of_another_state_details
@@ -233,14 +232,14 @@ uk:
               #SignedDate: applicantAndApplicantsolicitorSignedDate
               #positionOrOfficeHeld: position_or_OfficeHeld
               #courtFeeConsent: courtFeeConsent
-              isInterpreterNeeded: applicantRequiresInterpreter
-              interpreterNeeds:
-                - value:
-                    language: applicantRequiresInterpreter_otherParty_dialect
-                    otherAssistance: applicantRequiresInterpreter_otherParty_details
-              isIntermediaryNeeded: applicantRequiresInterpreter_intermediaryRequired
-              isSpecialArrangementsRequired: requiredSpecialAssistanceOrFacilities
-              reasonsForIntermediary: applicantRequiresInterpreter_intermediaryRequired_details
-              specialArrangementsRequired: requiredSpecialAssistanceOrFacilities_details
+              #isInterpreterNeeded: applicantRequiresInterpreter
+              #interpreterNeeds:
+              #  - value:
+              #      language: applicantRequiresInterpreter_otherParty_dialect
+              #      otherAssistance: applicantRequiresInterpreter_otherParty_details
+              #isIntermediaryNeeded: applicantRequiresInterpreter_intermediaryRequired
+              #isSpecialArrangementsRequired: requiredSpecialAssistanceOrFacilities
+              #reasonsForIntermediary: applicantRequiresInterpreter_intermediaryRequired_details
+              #specialArrangementsRequired: requiredSpecialAssistanceOrFacilities_details
               #authorizedFamilyMediatorAddress: authorizedFamilyMediator_address
               #authorizedFamilyMediatorDate: authorizedFamilyMediator_date

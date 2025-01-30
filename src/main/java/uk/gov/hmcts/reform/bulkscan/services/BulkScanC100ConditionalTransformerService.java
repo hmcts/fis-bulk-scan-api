@@ -147,6 +147,12 @@ public class BulkScanC100ConditionalTransformerService {
         //transform attending the court
         transformAttendingTheCourt(inputFieldsMap, populatedMap);
 
+        //transform applicant details
+        transformPartyDetails(inputFieldsMap, populatedMap, "applicants");
+
+        //transform respondent details
+        transformPartyDetails(inputFieldsMap, populatedMap, "respondents");
+
         //transform allegations of harm
         transformAllegationsOfHarm(inputFieldsMap, populatedMap);
 
@@ -154,6 +160,16 @@ public class BulkScanC100ConditionalTransformerService {
         //transformMediatorCertifiesApplicantAttendMiam(inputFieldsMap);
         //transformMediatorCertifiesDisputeResolutionNotProceeding(inputFieldsMap);
         populatedMap.values().removeIf(Objects::isNull);
+    }
+
+    private void transformPartyDetails(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap,
+                                       String partyType) {
+        List<Map<String, Object>> parties = (List<Map<String, Object>>) populatedMap.get(partyType);
+        populatedMap.put(partyType, parties.stream().map(party -> {
+            party.put("id", UUID.randomUUID());
+            Map<String, Object> value = (Map<String, Object>) party.get("value");
+            return party;
+        }).toList());
     }
 
     private void transformAttendingTheCourt(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
