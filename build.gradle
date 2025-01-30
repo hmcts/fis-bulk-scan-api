@@ -135,8 +135,10 @@ def sonarExclusions = [
 		'**uk/gov/hmcts/reform/bulkscan/constants/**',
 		'**uk/gov/hmcts/reform/bulkscan/enums/**',
     '**uk/gov/hmcts/reform/bulkscan/services/BulkScanFL401ConditionalTransformerService.java',
+    '**uk/gov/hmcts/reform/bulkscan/services/BulkScanC100ConditionalTransformerService.java',
     '**uk/gov/hmcts/reform/bulkscan/services/BulkScanC100Service.java',
-    '**uk/gov/hmcts/reform/bulkscan/endpoints/BulkScanEndpoint.java'
+    '**uk/gov/hmcts/reform/bulkscan/endpoints/BulkScanEndpoint.java',
+    '**uk/gov/hmcts/reform/bulkscan/exceptionhandlers/ResponseExceptionHandler.java'
 ]
 
 sonarqube {

@@ -10,6 +10,7 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EMPTY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NO;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PERMISSION_REQUIRED;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.SCAN_DOCUMENTS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.VALUE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.getTypeOfOrderEnumFields;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.getTypeOfOrderEnumMapping;
@@ -87,7 +88,6 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
-import java.util.stream.Collectors;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
@@ -110,6 +110,9 @@ import uk.gov.hmcts.reform.bulkscan.model.ScannedDocuments;
 @SuppressWarnings({"PMD", "unchecked"})
 @Component
 public class BulkScanC100ConditionalTransformerService {
+
+    public static final String RESPONDENT_REASON_NOT_ATTENDING_MIAM = "respondentReasonNotAttendingMiam";
+    public static final String RESPONDENT_WILLING_TO_ATTEND_MIAM = "respondentWillingToAttendMiam";
 
     public void transform(
             Map<String, Object> populatedMap,
@@ -167,7 +170,7 @@ public class BulkScanC100ConditionalTransformerService {
         List<Map<String, Object>> parties = (List<Map<String, Object>>) populatedMap.get(partyType);
         populatedMap.put(partyType, parties.stream().map(party -> {
             party.put("id", UUID.randomUUID());
-            Map<String, Object> value = (Map<String, Object>) party.get("value");
+            //Map<String, Object> value = (Map<String, Object>) party.get("value");
             return party;
         }).toList());
     }
@@ -243,7 +246,7 @@ public class BulkScanC100ConditionalTransformerService {
             if (StringUtils.isNotEmpty(inputFieldsMap.get("applicantRequiresInterpreter_otherParty_details"))) {
                 value.put("otherAssistance", inputFieldsMap.get("applicantRequiresInterpreter_otherParty_details"));
             }
-            interpreterNeed.put("value", value);
+            interpreterNeed.put(VALUE, value);
             List<Map<String, Object>> interpreterNeeds = new ArrayList<>();
             interpreterNeeds.add(interpreterNeed);
         } else {
@@ -319,7 +322,7 @@ public class BulkScanC100ConditionalTransformerService {
                 value.put("nameAndOffice", inputFieldsMap.get("withoutNotice_otherReasons_CAFCASS_Name_and_officeAddress"));
             }
             value.put("caseNumber", inputFieldsMap.get("caseNumber"));
-            proceeding.put("value", value);
+            proceeding.put(VALUE, value);
             List<String> typeOfOrders = new ArrayList<>();
             if (TRUE.equalsIgnoreCase(inputFieldsMap.get("withoutNotice_emergency_Protection_Order"))) {
                 typeOfOrders.add("emergencyProtectionOrder");
@@ -438,11 +441,11 @@ public class BulkScanC100ConditionalTransformerService {
         List<String> childLiveWith = transformChildLiveWith(inputFieldsMap);
         populatedMap.put("children", children.stream().map(child -> {
             child.put("id", UUID.randomUUID());
-            Map<String, Object> childValue = (Map<String, Object>) child.get("value");
+            Map<String, Object> childValue = (Map<String, Object>) child.get(VALUE);
             childValue.put("childLiveWith", childLiveWith);
-            child.put("value", childValue);
+            child.put(VALUE, childValue);
             return child;
-        }).collect(Collectors.toList()));
+        }).toList());
     }
 
     private void transformAllegationsOfHarm(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
@@ -661,7 +664,7 @@ public class BulkScanC100ConditionalTransformerService {
                                     });
                         });
 
-        return miamDomesticViolenceChecklistEnumList.stream().sorted().collect(Collectors.toList());
+        return miamDomesticViolenceChecklistEnumList.stream().sorted().toList();
     }
 
     /**
@@ -822,7 +825,7 @@ public class BulkScanC100ConditionalTransformerService {
             Map<String, Object> value = new HashMap<>();
             value.put("whoNeedsWelsh", personName);
             value.put("spokenOrWritten", spokenOrWritten);
-            welshNeed.put("value", value);
+            welshNeed.put(VALUE, value);
             welshNeeds.add(welshNeed);
         }
     }
@@ -837,25 +840,26 @@ public class BulkScanC100ConditionalTransformerService {
         if (TRUE.equalsIgnoreCase(
                 inputFieldsMap.get(
                         MEDIATION_NOT_SUITABLE_NONEOFTHERESPONDENTS_WILLING_TO_ATTEND_MIAM))) {
-            inputFieldsMap.put("respondentWillingToAttendMiam", "No");
-            inputFieldsMap.put("respondentReasonNotAttendingMiam", GroupMediatorCertifiesEnum
+            inputFieldsMap.put(RESPONDENT_WILLING_TO_ATTEND_MIAM, "No");
+            inputFieldsMap.put(RESPONDENT_REASON_NOT_ATTENDING_MIAM, GroupMediatorCertifiesEnum
                 .MEDIATION_NOT_PROCEEDING_APPLICATION_ATTENDED_MIAM_ALONE
                 .getDescription());
         } else if (TRUE.equals(
                 inputFieldsMap.get(
                         MEDIATION_NOT_SUITABLE_NONEOFTHERESPONDENTS_FAILED_TO_ATTEND_MIAM_WITHOUT_GOOD_REASON))) {
-            inputFieldsMap.put("respondentWillingToAttendMiam", "No");
-            inputFieldsMap.put("respondentReasonNotAttendingMiam",  GroupMediatorCertifiesEnum
+            inputFieldsMap.put(RESPONDENT_WILLING_TO_ATTEND_MIAM, "No");
+            inputFieldsMap.put(RESPONDENT_REASON_NOT_ATTENDING_MIAM, GroupMediatorCertifiesEnum
                     .MEDIATION_NOT_SUITABLE_NONEOFTHERESPONDENTS_FAILED_TO_ATTEND_MIAM_WITHOUT_GOOD_REASON
                     .getDescription());
         } else if (TRUE.equals(
                 inputFieldsMap.get(MEDIATION_NOT_SUITABLE_FOR_RESOLVING_THE_DISPUTE))) {
-            inputFieldsMap.put("respondentWillingToAttendMiam", "No");
-            inputFieldsMap.put("respondentReasonNotAttendingMiam",
-                               GroupMediatorCertifiesEnum.MEDIATION_NOT_SUITABLE_FOR_RESOLVING_THE_DISPUTE.getDescription());
+            inputFieldsMap.put(RESPONDENT_WILLING_TO_ATTEND_MIAM, "No");
+            inputFieldsMap.put(
+                RESPONDENT_REASON_NOT_ATTENDING_MIAM,
+                GroupMediatorCertifiesEnum.MEDIATION_NOT_SUITABLE_FOR_RESOLVING_THE_DISPUTE.getDescription());
         } else {
-            inputFieldsMap.put("respondentWillingToAttendMiam", "No");
-            inputFieldsMap.put("respondentReasonNotAttendingMiam", "");
+            inputFieldsMap.put(RESPONDENT_WILLING_TO_ATTEND_MIAM, "No");
+            inputFieldsMap.put(RESPONDENT_REASON_NOT_ATTENDING_MIAM, "");
         }
     }
 
@@ -941,7 +945,7 @@ public class BulkScanC100ConditionalTransformerService {
                                         .getFilename())
                                 .build()).build())
                         .build())
-            .collect(Collectors.toList())
+            .toList()
             : Collections.emptyList();
     }
 }
