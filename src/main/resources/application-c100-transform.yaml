@@ -8,7 +8,7 @@ uk:
               CASE_TYPE_ID: PRLAPPS
               EVENT_ID: create-case-privatelaw-bs
             caseDataFields:
-              natureofOrder: natureofOrder
+              natureOfOrder: natureofOrder
               applicants:
                 - value:
                     firstName: applicantOneFirstName
