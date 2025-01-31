@@ -38,17 +38,17 @@ uk:
                   dxNumber: applicant_Solicitor_DXNumber
                   applicantContactInstructions: applicant_ContactInstructions
                   address:
-                    addressLine1: applicant_Address_BuildingAndStreet
-                    addressLine2: applicant_Address_SecondLine
-                    postTown: applicant_Address_TownOrCity
-                    county: applicant_Address_County
-                    postCode: applicant_Address_Postcode
+                    AddressLine1: applicant_Address_BuildingAndStreet
+                    AddressLine2: applicant_Address_SecondLine
+                    PostTown: applicant_Address_TownOrCity
+                    County: applicant_Address_County
+                    PostCode: applicant_Address_Postcode
                   solicitorAddress:
-                      addressLine1: applicant_Solicitor_Address_BuildingAndStreet
-                      addressLine2: applicant_Solicitor_Address_SecondLine
-                      postTown: applicant_Solicitor_Address_TownOrCity
-                      county: applicant_Solicitor_Address_County
-                      postCode: applicant_Solicitor_Address_Postcode
+                      AddressLine1: applicant_Solicitor_Address_BuildingAndStreet
+                      AddressLine2: applicant_Solicitor_Address_SecondLine
+                      PostTown: applicant_Solicitor_Address_TownOrCity
+                      County: applicant_Solicitor_Address_County
+                      PostCode: applicant_Solicitor_Address_Postcode
 
 #              fl401ApplicantTable:
 #                firstName: applicantFirstName
@@ -71,8 +71,8 @@ uk:
                 email: respondent_Email
                 phoneNumber: respondent_PhoneNumber
                 address:
-                  addressLine1: respondent_Address_BuildingAndStreet
-                  addressLine2: respondent_Address_SecondLine
+                  AddressLine1: respondent_Address_BuildingAndStreet
+                  AddressLine2: respondent_Address_SecondLine
                   postTown: respondent_Address_TownOrCity
                   county: respondent_Address_County
                   postCode: respondent_Address_Postcode
@@ -135,11 +135,11 @@ uk:
 
               home:
                 address:
-                      addressLine1: occupationOrderAddress_BuildingAndStreet
-                      addressLine2: occupationOrderAddress_SecondLine
-                      postTown: occupationOrderAddress_TownOrCity
-                      postCode: occupationOrderAddress_Postcode
-                      county: occupationOrderAddress_County
+                      AddressLine1: occupationOrderAddress_BuildingAndStreet
+                      AddressLine2: occupationOrderAddress_SecondLine
+                      PostTown: occupationOrderAddress_TownOrCity
+                      PostCode: occupationOrderAddress_Postcode
+                      County: occupationOrderAddress_County
                 peopleLivingAtThisAddress: occupationOrderAddress_CurrentOccupant
                 textAreaSomethingElse: occupationOrderAddress_CurrentOccupant_Others
                 everLivedAtTheAddress: occupationOrderAddress_PreviousOccupant
@@ -150,11 +150,11 @@ uk:
                 mortgages:
                       mortgageLenderName: MortgageLender_Name
                       address:
-                            addressLine1: MortgageLender_BuildingAndStreet
-                            addressLine2: MortgageLender_SecondLine
-                            postTown: MortgageLender_TownOrCity
-                            county: MortgageLender_County
-                            postCode: MortgageLender_Postcode
+                            AddressLine1: MortgageLender_BuildingAndStreet
+                            AddressLine2: MortgageLender_SecondLine
+                            PostTown: MortgageLender_TownOrCity
+                            County: MortgageLender_County
+                            PostCode: MortgageLender_Postcode
                       mortgageNamedAfter:
                       textAreaSomethingElse: MortgageOnProperty_Person_Others
                       mortgageNumber: MortgageOnProperty_Number
@@ -163,10 +163,10 @@ uk:
                       textAreaSomethingElse: RentedProperty_Person_Others
                       landlordName: LandlordDetails_Name
                       address:
-                            addressLine1: LandlordDetails_BuildingAndStreet
-                            addressLine2: LandlordDetails_SecondLine
-                            postTown: LandlordDetails_TownOrCity
-                            county: LandlordDetails_County
-                            postCode: LandlordDetails_Postcode
+                            AddressLine1: LandlordDetails_BuildingAndStreet
+                            AddressLine2: LandlordDetails_SecondLine
+                            PostTown: LandlordDetails_TownOrCity
+                            County: LandlordDetails_County
+                            PostCode: LandlordDetails_Postcode
                 doesApplicantHaveHomeRights: HomeRights
                 furtherInformation: CourtToConsider
