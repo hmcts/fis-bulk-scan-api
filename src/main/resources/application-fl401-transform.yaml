@@ -50,19 +50,19 @@ uk:
                       county: applicant_Solicitor_Address_County
                       postCode: applicant_Solicitor_Address_Postcode
 
-              fl401ApplicantTable:
-                firstName: applicantFirstName
-                lastName: applicantLastName
-                email: applicant_Email
-                previousName: applicantPreviousNames
+#              fl401ApplicantTable:
+#                firstName: applicantFirstName
+#                lastName: applicantLastName
+#                email: applicant_Email
+#                previousName: applicantPreviousNames
 
-              fl401SolicitorDetailsTable:
-                solicitorOrg:
-                  organisationName: applicant_Solicitor_FirmName
-                dxNumber: applicant_Solicitor_DXNumber
-                solicitorTelephone: applicant_Solicitor_PhoneNumber
-                solicitorEmail: applicant_Solicitor_EmailAddress
-                solicitorReference: applicant_Solicitor_Reference
+#              fl401SolicitorDetailsTable:
+#                solicitorOrg:
+#                  organisationName: applicant_Solicitor_FirmName
+#                dxNumber: applicant_Solicitor_DXNumber
+#                solicitorTelephone: applicant_Solicitor_PhoneNumber
+#                solicitorEmail: applicant_Solicitor_EmailAddress
+#                solicitorReference: applicant_Solicitor_Reference
 
               respondentsFL401:
                 firstName: respondentFirstName
@@ -76,29 +76,29 @@ uk:
                   postTown: respondent_Address_TownOrCity
                   county: respondent_Address_County
                   postCode: respondent_Address_Postcode
-              fl401RespondentTable:
-                firstName: respondentFirstName
-                lastName: respondentLastName
-                previousName: respondentPreviousNames
-                dateOfBirth: respondentDoB
-                isRespondentLiveWithApplicant: respondent_LiveWithApplicant
-                phoneNumber: respondent_PhoneNumber
-                email: respondent_Email
-                address:
-                  addressLine1: respondent_Address_BuildingAndStreet
-                  addressLine2: respondent_Address_SecondLine
-                  postTown: respondent_Address_TownOrCity
-                  county: respondent_Address_County
-                  postCode: respondent_Address_Postcode
+#              fl401RespondentTable:
+#                firstName: respondentFirstName
+#                lastName: respondentLastName
+#                previousName: respondentPreviousNames
+#                dateOfBirth: respondentDoB
+#                isRespondentLiveWithApplicant: respondent_LiveWithApplicant
+#                phoneNumber: respondent_PhoneNumber
+#                email: respondent_Email
+#                address:
+#                  addressLine1: respondent_Address_BuildingAndStreet
+#                  addressLine2: respondent_Address_SecondLine
+#                  postTown: respondent_Address_TownOrCity
+#                  county: respondent_Address_County
+#                  postCode: respondent_Address_Postcode
 
               respondentRelationDateInfoObject:
 
-              relationshipToRespondentTable:
-                applicantRelationship: appliantRespondent_Relationship_1
-                relationshipDateComplexStartDate: appliantRespondent_Relationship_StartDate
-                relationshipDateComplexEndDate: appliantRespondent_Relationship_EndDate
-                applicantRelationshipDate: applicantRespondent_PreviousMarried_Date
-                applicantRelationshipOptions: appliantRespondent_Relationship_10
+#              relationshipToRespondentTable:
+#                applicantRelationship: appliantRespondent_Relationship_1
+#                relationshipDateComplexStartDate: appliantRespondent_Relationship_StartDate
+#                relationshipDateComplexEndDate: appliantRespondent_Relationship_EndDate
+#                applicantRelationshipDate: applicantRespondent_PreviousMarried_Date
+#                applicantRelationshipOptions: appliantRespondent_Relationship_10
 
               fl401StmtOfTruth:
                 date: statementOfTruth_Date
@@ -110,25 +110,25 @@ uk:
               applicationTypeDetails:
                 typesOfApplication: orderApplyingFor_nonmolestation
 
-              withoutNoticeOrderTable:
-                orderWithoutGivingNotice: orderWithout_GivingNotice
-                anyOtherDtailsForWithoutNoticeOrder: orderWithoutGivingNotice_moreReason
-                isRespondentAlreadyInBailCondition: respondentBailConditions
-                bailConditionEndDate: respondent_BailConditionsEndDate
-                futherDetails: situationCourtToKnow
-              attendingTheHearingTable:
-                isInterpreterNeeded: interpreterNeededAtCourt
-                isDisabilityPresent: disabilitySupport_NeededAtCourt
-                adjustmentsRequired: disabilitySupport_details
+#              withoutNoticeOrderTable:
+#                orderWithoutGivingNotice: orderWithout_GivingNotice
+#                anyOtherDtailsForWithoutNoticeOrder: orderWithoutGivingNotice_moreReason
+#                isRespondentAlreadyInBailCondition: respondentBailConditions
+#                bailConditionEndDate: respondent_BailConditionsEndDate
+#                futherDetails: situationCourtToKnow
+#              attendingTheHearingTable:
+#                isInterpreterNeeded: interpreterNeededAtCourt
+#                isDisabilityPresent: disabilitySupport_NeededAtCourt
+#                adjustmentsRequired: disabilitySupport_details
                 #specialMeasureAtCourt: specialMeasureAtCourt_Row1
                 #interpreterNeeds:
-              respondentBehaviourTable:
-                applicantWantToStopFromRespondentDoing:
-                applicantWantToStopFromRespondentDoingToChild:
-                otherReasonApplicantWantToStopFromRespondentDoing:
-
-              otherProceedingsTable:
-                previousOrOngoingProceedings: OngoingFamilyCourtProceeding
+#              respondentBehaviourTable:
+#                applicantWantToStopFromRespondentDoing:
+#                applicantWantToStopFromRespondentDoingToChild:
+#                otherReasonApplicantWantToStopFromRespondentDoing:
+#
+#              otherProceedingsTable:
+#                previousOrOngoingProceedings: OngoingFamilyCourtProceeding
 
               isInterpreterNeeded: InterpreterNeededAtCourt
               isDisabilityPresent: disabilitySupport_NeededAtCourt
