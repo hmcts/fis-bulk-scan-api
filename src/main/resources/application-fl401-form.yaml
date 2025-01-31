@@ -14,6 +14,9 @@ uk:
               - applicantDoB_YYYY
               - applicantContact_Confidentiality
               - applyingFor_NonMolestationOrder
+              - applicant_Address_BuildingAndStreet
+              - applicant_Address_TownOrCity
+              - applicant_Address_Postcode
             optionalFields:
               - orderApplyingFor_nonmolestation
               - orderApplyingFor_occupation
@@ -27,13 +30,8 @@ uk:
               - respondentBailConditions_EndDate_Year
               - situationCourtToKnow
               - applicantPreviousNames
-              - applicant_Address_BuildingAndStreet
               - applicant_Address_SecondLine
-              - applicant_Address_TownOrCity
               - applicant_Address_County
-              - applicant_Address_Postcode
-              - applicant_PhoneNumber
-              - applicant_Email
               - applicant_PreferToBeContacted
               - applicant_ContactInstructions
               - applicant_LegalRepresenationNeeded
@@ -44,6 +42,8 @@ uk:
               - applicant_Solicitor_Address_TownOrCity
               - applicant_Solicitor_Address_County
               - applicant_Solicitor_Address_Postcode
+              - applicant_PhoneNumber
+              - applicant_Email
               - applicant_Solicitor_DXNumber
               - applicant_Solicitor_PhoneNumber
               - applicant_Solicitor_EmailAddress
