@@ -4,8 +4,6 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NAME_OF_C
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NO;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.VALUE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.ADDRESS_LINE1;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.ADDRESS_LINE2;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_CHILD_RELATIONSHIP;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_CONTACT_CONFIDENTIALITY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_RESPONDENT_OTHER_RELATIONSHIP_FIELD;
@@ -25,9 +23,7 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.CHIL
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.CHILD_LIVE_ADDRESS_ROW_3;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.CHILD_LIVE_ADDRESS_ROW_4;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.COMMA;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.COUNTY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.DOB;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.EMAIL;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.EMPTY_SPACE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.FAM_CHILD_DETAILS_ROW_1;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.FAM_CHILD_DETAILS_ROW_2;
@@ -48,9 +44,6 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.OTHE
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.OTHER_CHILD_LIVE_ADDRESS_ROW_2;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.OTHER_CHILD_LIVE_ADDRESS_ROW_3;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.OTHER_CHILD_LIVE_ADDRESS_ROW_4;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.PHONE_NUMBER;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.POSTCODE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.POSTTOWN;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.REASON_FOR_ORDER_WITHOUT_GIVING_NOTICE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.REPRESENTATIVE_FIRST_NAME;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.REPRESENTATIVE_LAST_NAME;
@@ -92,9 +85,9 @@ import uk.gov.hmcts.reform.bulkscan.utils.DateUtil;
 @Slf4j
 public class BulkScanFL401ConditionalTransformerService {
 
-    public static final String INFORMATION_TO_BE_KEPT_CONFIDENTIAL = "Information to be kept confidential";
     public static final String INTERPRETER_NEEDED_AT_COURT_LANGUAGE = "interpreterNeededAtCourt_Language";
     public static final String INTERPRETER_NEEDED_AT_COURT_DIALECT = "interpreterNeededAtCourt_Dialect";
+    public static final String APPLICANT = "applicant";
 
     public void transform(Map<String, Object> populatedMap, Map<String, String> inputFieldsMap) {
 
@@ -149,18 +142,18 @@ public class BulkScanFL401ConditionalTransformerService {
     }
 
     private void transformHome(Map<String, Object> populatedMap, Map<String, String> inputFieldsMap) {
-        LinkedTreeMap home = (LinkedTreeMap) populatedMap.get("home");
+        LinkedTreeMap<String, Object> home = (LinkedTreeMap<String, Object>) populatedMap.get("home");
         if (YES.equalsIgnoreCase(String.valueOf(home.get("isThereMortgageOnProperty")))
             && StringUtils.hasText(inputFieldsMap.get("MortgageOnProperty_Person"))) {
-            LinkedTreeMap mortgage = (LinkedTreeMap) home.get("mortgages");
+            LinkedTreeMap<String, Object> mortgage = (LinkedTreeMap<String, Object>) home.get("mortgages");
             mortgage.put("mortgageNamedAfter", List.of(inputFieldsMap.get("MortgageOnProperty_Person")));
         }
         if (YES.equalsIgnoreCase(String.valueOf(home.get(inputFieldsMap.get("isPropertyRented"))))
             && StringUtils.hasText(inputFieldsMap.get("RentedProperty_Person"))) {
-            LinkedTreeMap rented = (LinkedTreeMap) home.get("landlords");
+            LinkedTreeMap<String, Object> rented = (LinkedTreeMap<String, Object>) home.get("landlords");
             rented.put("mortgageNamedAfterList", List.of(inputFieldsMap.get("RentedProperty_Person")));
         }
-        home.put(CHILDREN, buildTransformChild(populatedMap, inputFieldsMap));
+        home.put(CHILDREN, buildTransformChild(inputFieldsMap));
         home.put("livingSituation", buildLivingSituation(inputFieldsMap));
         home.put("familyHome", buildFamilyHome(inputFieldsMap));
         if (StringUtils.hasText(inputFieldsMap.get("occupationOrderAddress_CurrentOccupant"))) {
@@ -173,25 +166,22 @@ public class BulkScanFL401ConditionalTransformerService {
 
     private void transformRespondentBehaviourDetails(Map<String, Object> populatedMap, Map<String, String> inputFieldsMap) {
         if (YES.equalsIgnoreCase(inputFieldsMap.get(APPLYING_FOR_NON_MOLES_STATION_ORDER))) {
-            if (StringUtils.hasText(inputFieldsMap.get(APPLYING_FOR_NON_MOLES_STATION_ORDER))
-                && inputFieldsMap.get(APPLYING_FOR_NON_MOLES_STATION_ORDER).equalsIgnoreCase(YES)) {
-                Map<String, Object> respondentBehaviourData = new HashMap<>();
-                respondentBehaviourData.put(
-                    STOP_RESPONDENT_BEHAVIOUR_OPTIONS,
-                    getRespondentBehaviourOptions(inputFieldsMap));
-                respondentBehaviourData.put(
-                    STOP_RESPONDENT_BEHAVIOUR_CHILD_OPTIONS,
-                    getRespondentBehaviourChildOptions(inputFieldsMap));
-                respondentBehaviourData.put(
-                    OTHERS_STOP_RESPONDENT_BEHAVIOUR_OPTIONS,
-                    inputFieldsMap.get(STOP_RESPONDENT_BEHAVIOUR_OPTIONS_6));
-                populatedMap.put("respondentBehaviourData", respondentBehaviourData);
-            }
+            Map<String, Object> respondentBehaviourData = new HashMap<>();
+            respondentBehaviourData.put(
+                STOP_RESPONDENT_BEHAVIOUR_OPTIONS,
+                getRespondentBehaviourOptions(inputFieldsMap));
+            respondentBehaviourData.put(
+                STOP_RESPONDENT_BEHAVIOUR_CHILD_OPTIONS,
+                getRespondentBehaviourChildOptions(inputFieldsMap));
+            respondentBehaviourData.put(
+                OTHERS_STOP_RESPONDENT_BEHAVIOUR_OPTIONS,
+                inputFieldsMap.get(STOP_RESPONDENT_BEHAVIOUR_OPTIONS_6));
+            populatedMap.put("respondentBehaviourData", respondentBehaviourData);
         }
     }
 
     private void transformApplicantDetails(Map<String, Object> populatedMap, Map<String, String> inputFieldsMap) {
-        LinkedTreeMap fl401Applicant = (LinkedTreeMap) populatedMap.get("applicantsFL401");
+        LinkedTreeMap<String, Object> fl401Applicant = (LinkedTreeMap<String, Object>) populatedMap.get("applicantsFL401");
         //transform confidentiality for applicant details
         String applicantContactConfidentiality =
             inputFieldsMap.get(APPLICANT_CONTACT_CONFIDENTIALITY);
@@ -277,9 +267,9 @@ public class BulkScanFL401ConditionalTransformerService {
 
     private void getInterpreterNeeds(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
         if (YES.equalsIgnoreCase(inputFieldsMap.get("InterpreterNeededAtCourt"))) {
+            Map<String, Object> values = new HashMap<>();
             if (StringUtils.hasText(inputFieldsMap.get(INTERPRETER_NEEDED_AT_COURT_LANGUAGE))
                 || StringUtils.hasText(inputFieldsMap.get(INTERPRETER_NEEDED_AT_COURT_DIALECT))) {
-                Map<String, Object> values = new HashMap<>();
                 List<String> languageAndDialect = new ArrayList<>();
                 if (StringUtils.hasText(inputFieldsMap.get(INTERPRETER_NEEDED_AT_COURT_LANGUAGE))) {
                     languageAndDialect.add(inputFieldsMap.get(INTERPRETER_NEEDED_AT_COURT_LANGUAGE));
@@ -287,14 +277,14 @@ public class BulkScanFL401ConditionalTransformerService {
                 if (StringUtils.hasText(inputFieldsMap.get(INTERPRETER_NEEDED_AT_COURT_DIALECT))) {
                     languageAndDialect.add(inputFieldsMap.get(INTERPRETER_NEEDED_AT_COURT_DIALECT));
                 }
-                values.put("party", List.of("applicant"));
-                values.put("name", "self");
                 values.put("language", String.join(",", languageAndDialect));
-                populatedMap.put("interpreterNeeds", List.of(Map.ofEntries(
-                    Map.entry("id", UUID.randomUUID()),
-                    Map.entry(VALUE, values)
-                )));
             }
+            values.put("party", List.of(APPLICANT));
+            values.put("name", APPLICANT);
+            populatedMap.put("interpreterNeeds", List.of(Map.ofEntries(
+                Map.entry("id", UUID.randomUUID()),
+                Map.entry(VALUE, values)
+            )));
         }
         if (YES.equalsIgnoreCase(inputFieldsMap.get("disabilitySupport_NeededAtCourt"))) {
             populatedMap.put("adjustmentsRequired", inputFieldsMap.get("disabilitySupport_details"));
@@ -318,12 +308,13 @@ public class BulkScanFL401ConditionalTransformerService {
         if (StringUtils.hasText(inputFieldsMap.get("orderWithoutGivingNoticeReason3"))) {
             reasonForOrderWithoutGivingNoticeList.add(ReasonForOrderWithoutGivingNoticeEnum.prejudiced.toString());
         }
-        LinkedTreeMap reasonForOrderWithoutGivingNotice = (LinkedTreeMap) populatedMap.get("reasonForOrderWithoutGivingNotice");
+        LinkedTreeMap<String, Object> reasonForOrderWithoutGivingNotice = (LinkedTreeMap<String, Object>) populatedMap
+            .get("reasonForOrderWithoutGivingNotice");
         reasonForOrderWithoutGivingNotice.put(REASON_FOR_ORDER_WITHOUT_GIVING_NOTICE, reasonForOrderWithoutGivingNoticeList);
 
         //transform Bail conditions
         if (YES.equalsIgnoreCase(inputFieldsMap.get("respondentBailConditions"))) {
-            LinkedTreeMap bailConditions = (LinkedTreeMap) populatedMap.get("bailDetails");
+            LinkedTreeMap<String, Object> bailConditions = (LinkedTreeMap<String, Object>) populatedMap.get("bailDetails");
             String bailConditionEndDate = DateUtil
                 .transformDate(DateUtil.buildDate(inputFieldsMap.get("respondentBailConditions_EndDate_Day"),
                                                   inputFieldsMap.get("respondentBailConditions_EndDate_Month"),
@@ -335,8 +326,8 @@ public class BulkScanFL401ConditionalTransformerService {
     }
 
     private void transFormOrdersApplyingFor(Map<String, Object> populatedMap, Map<String, String> inputFieldsMap) {
-        LinkedTreeMap typeOfApplicationOrders =
-            (LinkedTreeMap) populatedMap.get("typeOfApplicationOrders");
+        LinkedTreeMap<String, Object> typeOfApplicationOrders =
+            (LinkedTreeMap<String, Object>) populatedMap.get("typeOfApplicationOrders");
         List<String> orderApplyingFor = new ArrayList<>();
         if (StringUtils.hasText(inputFieldsMap.get("orderApplyingFor_nonmolestation"))) {
             orderApplyingFor.add("nonMolestationOrder");
@@ -394,10 +385,7 @@ public class BulkScanFL401ConditionalTransformerService {
         return StringUtils.hasText(str) ? str : null;
     }
 
-    private List buildTransformChild(
-            Map<String, Object> populatedMap, Map<String, String> inputFieldsMap) {
-        ArrayList<LinkedTreeMap> children = new ArrayList<>();
-
+    private List<LinkedTreeMap<String, Object>> buildTransformChild(Map<String, String> inputFieldsMap) {
         final String row1 = inputFieldsMap.get(CHILD_LIVE_ADDRESS_ROW_1);
         final String row2 = inputFieldsMap.get(CHILD_LIVE_ADDRESS_ROW_2);
         final String row3 = inputFieldsMap.get(CHILD_LIVE_ADDRESS_ROW_3);
@@ -411,30 +399,36 @@ public class BulkScanFL401ConditionalTransformerService {
         childInput.add(row2);
         childInput.add(row3);
         childInput.add(row4);
-        childInput.add(otherChildrenRow1);
-        childInput.add(otherChildrenRow2);
-        childInput.add(otherChildrenRow3);
-        childInput.add(otherChildrenRow4);
+        ArrayList<String> otherChildInput = new ArrayList<>();
 
+        otherChildInput.add(otherChildrenRow1);
+        otherChildInput.add(otherChildrenRow2);
+        otherChildInput.add(otherChildrenRow3);
+        otherChildInput.add(otherChildrenRow4);
+        ArrayList<LinkedTreeMap<String, Object>> children = new ArrayList<>();
+        updateChildDetails(children, childInput, YES);
+        updateChildDetails(children, otherChildInput, NO);
+        return children;
+    }
+
+    private void updateChildDetails(ArrayList<LinkedTreeMap<String, Object>> children, ArrayList<String> childInput,
+                                    String isRespondentResponsibleForChild) {
         for (String input : childInput) {
             LinkedTreeMap<String, String> childDetails = new LinkedTreeMap<>();
-            final LinkedTreeMap<String, Object> childrenLinkedTreeMap = new LinkedTreeMap();
+            final LinkedTreeMap<String, Object> childrenLinkedTreeMap = new LinkedTreeMap<>();
             if (null != input) {
                 final String[] columnDetails = input.split(COMMA);
                 final String childName = columnDetails[0];
 
                 String childAge = null;
-                String isRespondentResponsibleForChild = null;
 
                 try {
                     if (columnDetails.length > 1) {
                         childAge = columnDetails[1];
-                        isRespondentResponsibleForChild = columnDetails[2];
                     }
                 } catch (Exception e) {
                     log.warn(e.getMessage());
                 }
-
                 childDetails.put(CHILD_FULL_NAME, childName);
                 childDetails.put(CHILD_AGE, childAge);
                 childDetails.put(RESPONDENT_RESPONSIBLE_FOR_CHILD, isRespondentResponsibleForChild);
@@ -444,7 +438,6 @@ public class BulkScanFL401ConditionalTransformerService {
                 children.add(childrenLinkedTreeMap);
             }
         }
-        return children;
     }
 
     private List<Map<String, Object>> transformApplicantChild(Map<String, String> inputFieldsMap) {
@@ -653,7 +646,7 @@ public class BulkScanFL401ConditionalTransformerService {
     }
 
     private void transformApplicantConfidentiality(
-            LinkedTreeMap applicantDetails, String applicantContactConfidentiality) {
+            LinkedTreeMap<String, Object> applicantDetails, String applicantContactConfidentiality) {
 
         if (null != applicantContactConfidentiality
                 && applicantContactConfidentiality.equalsIgnoreCase(YES)) {
@@ -670,24 +663,8 @@ public class BulkScanFL401ConditionalTransformerService {
         }
     }
 
-    private LinkedTreeMap transformApplicantAddress() {
-        LinkedTreeMap address = new LinkedTreeMap<>();
-        address.put(ADDRESS_LINE1, INFORMATION_TO_BE_KEPT_CONFIDENTIAL);
-        address.put(ADDRESS_LINE2, INFORMATION_TO_BE_KEPT_CONFIDENTIAL);
-        address.put(POSTTOWN, INFORMATION_TO_BE_KEPT_CONFIDENTIAL);
-        address.put(COUNTY, INFORMATION_TO_BE_KEPT_CONFIDENTIAL);
-        address.put(POSTCODE, null);
-        return address;
-    }
-
-    private void transformContactDetails(
-            LinkedTreeMap applicantDetails) {
-        applicantDetails.put(PHONE_NUMBER, INFORMATION_TO_BE_KEPT_CONFIDENTIAL);
-        applicantDetails.put(EMAIL, INFORMATION_TO_BE_KEPT_CONFIDENTIAL);
-    }
-
     private void transformSolicitorName(
-        Map<String, String> inputFieldsMap, LinkedTreeMap fl401Applicant) {
+        Map<String, String> inputFieldsMap, LinkedTreeMap<String, Object> fl401Applicant) {
 
         final String applicantSolicitorName = inputFieldsMap.get(APPLICANT_SOLICITOR_NAME);
         if (applicantSolicitorName != null) {
