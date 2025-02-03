@@ -71,4 +71,4 @@ allowed-services: fis_cos_api,fis_bulk_scan_api,bulk_scan_processor,bulk_scan_or
 
 courtfinder:
   api:
-    url: ${FACT_API:http://fact-api-aat.service.core-compute-aat.internal}
+    url: ${FACT_API:http://fact-api-demo.service.core-compute-demo.internal}
