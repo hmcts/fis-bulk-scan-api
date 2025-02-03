@@ -207,6 +207,10 @@ public final class BulkScanPrlConstants {
     public static final String MEDIATION_NOT_PROCEEDING_HASSTARTED_BUT_BROKEN_WITH_SOMEISSUE =
             "mediationNotProceeding_hasStartedButBrokenWithSomeIssue";
 
+    public static final String SEARCH_RESULTS_POSTCODE_POSTCODE_SERVICE_AREA = "search/results?postcode={postcode}&serviceArea=";
+    public static final String DOMESTIC_ABUSE_POSTCODE_URL = SEARCH_RESULTS_POSTCODE_POSTCODE_SERVICE_AREA + "domestic-abuse";
+    public static final String COURT_DETAILS_URL = "courts/{court-slug}";
+
     // // C100 - section 4 ENDS
 
     public static Map<String, String> getInterpreterEnum() {

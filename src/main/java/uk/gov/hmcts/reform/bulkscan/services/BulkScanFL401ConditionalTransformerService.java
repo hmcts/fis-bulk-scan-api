@@ -199,7 +199,7 @@ public class BulkScanFL401ConditionalTransformerService {
         } else {
             fl401Applicant.put("canYouProvideEmailAddress", NO);
         }
-        fl401Applicant.put("gender", "male");
+
         fl401Applicant.put("applicantPreferredContact", contactPreference);
         fl401Applicant.put("dateOfBirth", DateUtil.buildDate(
             inputFieldsMap.get("applicantDoB_DD"),

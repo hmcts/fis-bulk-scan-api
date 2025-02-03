@@ -27,10 +27,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import lombok.AllArgsConstructor;
 import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.HttpClientErrorException;
+import uk.gov.hmcts.reform.bulkscan.clients.CourtFinderApi;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanFormValidationConfigManager;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanTransformConfigManager;
 import uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants;
@@ -47,9 +49,12 @@ import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.CaseCreationDetails;
 import uk.gov.hmcts.reform.bulkscan.model.FormType;
 import uk.gov.hmcts.reform.bulkscan.model.OcrDataField;
+import uk.gov.hmcts.reform.bulkscan.model.court.Court;
+import uk.gov.hmcts.reform.bulkscan.model.court.ServiceArea;
 import uk.gov.hmcts.reform.bulkscan.services.postcode.PostcodeLookupService;
 import uk.gov.hmcts.reform.bulkscan.utils.DateUtil;
 
+@Slf4j
 @NoArgsConstructor
 @AllArgsConstructor
 @Service
@@ -69,6 +74,8 @@ public class BulkScanFL401Service implements BulkScanService {
     BulkScanFL401ConditionalTransformerService bulkScanFL401ConditionalTransformerService;
 
     @Autowired PostcodeLookupService postcodeLookupService;
+
+    @Autowired CourtFinderApi courtFinderApi;
 
     @Override
     public BulkScanValidationResponse validate(
@@ -230,6 +237,7 @@ public class BulkScanFL401Service implements BulkScanService {
             objectMapper.convertValue(BulkScanC100ConditionalTransformerService
                                           .transformScanDocuments(bulkScanTransformationRequest), List.class));
         populatedMap.put("caseTypeOfApplication", "FL401");
+        populatedMap.put("courtName", getNearestFamilyCourt(inputFieldsMap.get("applicant_Address_Postcode")));
         Map<String, String> caseTypeAndEventId =
             transformConfigManager.getTransformationConfig(formType).getCaseFields();
         BulkScanTransformationResponse.BulkScanTransformationResponseBuilder builder =
@@ -279,4 +287,24 @@ public class BulkScanFL401Service implements BulkScanService {
         }
         return Collections.emptyList();
     }
+
+    public String getNearestFamilyCourt(String postCode) {
+        ServiceArea serviceArea = null;
+        try {
+            serviceArea = courtFinderApi
+                .findClosestDomesticAbuseCourtByPostCode(postCode);
+
+        } catch (Exception e) {
+            log.error("CourtFinderService.getNearestFamilyCourt() method is throwing exception : {}",e.getMessage());
+        }
+        Court court = null;
+        if (serviceArea != null
+            && !serviceArea.getCourts().isEmpty()) {
+            court = courtFinderApi.getCourtDetails(serviceArea.getCourts()
+                                                       .get(0)
+                                                       .getCourtSlug());
+        }
+        return null != court ? court.getCourtName() : null;
+    }
+
 }
