@@ -16,7 +16,9 @@ uk:
               sectionName: "4.2 - Relationship Start Date cannot be null"
             - applyingWithoutGivingNotice:
               dependentFields:
-                - orderWithoutGivingNoticeReason
+                - orderWithoutGivingNoticeReason1
+                - orderWithoutGivingNoticeReason2
+                - orderWithoutGivingNoticeReason3
               dependentFieldValue: "Yes"
               groupFieldName: orderWithout_GivingNotice
               groupValidationValue: "Yes"
@@ -67,8 +69,10 @@ uk:
                 - occupationOrderAddress_SecondLine
                 - occupationOrderAddress_TownOrCity
                 - occupationOrderAddress_Postcode
-                - occupationOrderAddress_CurrentOccupant
-                - occupationOrderAddress_CurrentOccupant_Others
+                - occupationOrderAddress_CurrentOccupant_applicant
+                - occupationOrderAddress_CurrentOccupant_respondent
+                - occupationOrderAddress_CurrentOccupant_other
+                - occupationOrderAddress_CurrentOccupant_others
                 - occupationOrderAddress_PreviousOccupant
               dependentFieldValue: "*"
               groupFieldName: ApplyingForOccupationOrder
@@ -77,12 +81,12 @@ uk:
               sectionName: "To what address do you want the occupation order to apply?"
             - occupationOrderIntendedOccupantGroup:
               dependentFields:
-                - occupationOrderAddress_CurrentOccupant_Others
+                - occupationOrderAddress_CurrentOccupant_others
               dependentFieldValue: "*"
-              groupFieldName: occupationOrderAddress_CurrentOccupant
-              groupValidationValue: "Someone else – please specify"
+              groupFieldName: occupationOrderAddress_CurrentOccupant_other
+              groupValidationValue: "Others"
               requiredFieldCount: 1
-              sectionName: "Someone else – please specify."
+              sectionName: "Occupation order - Current occupant -> Someone else – please specify."
             - occupationOrderIntendedOccupantGroup:
               dependentFields:
                 - occupationOrderAddress_IntendedOccupant
