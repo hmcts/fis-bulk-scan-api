@@ -6,7 +6,8 @@ uk:
           FL401:
             mandatoryFields:
               - orderWithout_GivingNotice
-              - telephone_number
+              - applicant_PhoneNumber
+              - applicant_Email
               - applicantFirstName
               - applicantLastName
               - applicantDoB_DD
@@ -42,8 +43,6 @@ uk:
               - applicant_Solicitor_Address_TownOrCity
               - applicant_Solicitor_Address_County
               - applicant_Solicitor_Address_Postcode
-              - applicant_PhoneNumber
-              - applicant_Email
               - applicant_Solicitor_DXNumber
               - applicant_Solicitor_PhoneNumber
               - applicant_Solicitor_EmailAddress
@@ -126,8 +125,11 @@ uk:
               - occupationOrderAddress_TownOrCity
               - occupationOrderAddress_County
               - occupationOrderAddress_Postcode
-              - occupationOrderAddress_CurrentOccupant
-              - occupationOrderAddress_CurrentOccupant_Others
+              - occupationOrderAddress_CurrentOccupant_applicant
+              - occupationOrderAddress_CurrentOccupant_respondent
+              - occupationOrderAddress_CurrentOccupant_children
+              - occupationOrderAddress_CurrentOccupant_other
+              - occupationOrderAddress_CurrentOccupant_others
               - occupationOrderAddress_PreviousOccupant
               - occupationOrderAddress_IntendedOccupant
               - childLivesAtAddress_Row1
@@ -169,15 +171,15 @@ uk:
               - ChangesToFamilyHome_Row2
               - ChangesToFamilyHome_Row3
               - CourtToConsider
-              - interpreterNeededAtCourt
-              - interpreterNeededAtCourt_Language
-              - interpreterNeededAtCourt_Dialect
+              - InterpreterNeededAtCourt
+              - InterpreterNeededAtCourt_Language
+              - InterpreterNeededAtCourt_Dialect
               - disabilitySupport_NeededAtCourt
               - disabilitySupport_details
-              - specialMeasureAtCourt_Row1
-              - specialMeasureAtCourt_Row2
-              - specialMeasureAtCourt_Row3
-              - specialMeasureAtCourt_Row4
+              - SpecialMeasureAtCourt_Row1
+              - SpecialMeasureAtCourt_Row2
+              - SpecialMeasureAtCourt_Row3
+              - SpecialMeasureAtCourt_Row4
               - statementOfTruth_Line1
               - statementOfTruth_Line2
               - statementOfTruth_ApplicantFlag

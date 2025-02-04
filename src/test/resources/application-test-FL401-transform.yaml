@@ -6,7 +6,7 @@ uk:
           FL401:
             caseFields:
               CASE_TYPE_ID: PRLAPPS
-              EVENT_ID: create-case-privatelaw-bs
+              EVENT_ID: create-case-privatelaw-bs-fl401
             caseDataFields:
               typeOfApplicationOrders:
                 orderType:
@@ -73,14 +73,14 @@ uk:
                 bailConditionEndDate: respondent_BailConditionsEndDate
                 futherDetails: situationCourtToKnow
               attendingTheHearingTable:
-                isInterpreterNeeded: interpreterNeededAtCourt
+                isInterpreterNeeded: InterpreterNeededAtCourt
                 isDisabilityPresent: disabilitySupport_NeededAtCourt
                 adjustmentsRequired: disabilitySupport_details
-                specialMeasureAtCourt: specialMeasureAtCourt_Row1
+                specialMeasureAtCourt: SpecialMeasureAtCourt_Row1
                 interpreterNeeds:
                   - value:
-                      language: interpreterNeededAtCourt_Language
-                      dialect: interpreterNeededAtCourt_Dialect
+                      language: InterpreterNeededAtCourt_Language
+                      dialect: InterpreterNeededAtCourt_Dialect
               respondentBehaviourTable:
                 applicantWantToStopFromRespondentDoing:
                 applicantWantToStopFromRespondentDoingToChild:

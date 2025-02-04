@@ -167,15 +167,15 @@ uk:
               - ChangesToFamilyHome_Row2
               - ChangesToFamilyHome_Row3
               - CourtToConsider
-              - interpreterNeededAtCourt
-              - interpreterNeededAtCourt_Language
-              - interpreterNeededAtCourt_Dialect
+              - InterpreterNeededAtCourt
+              - InterpreterNeededAtCourt_Language
+              - InterpreterNeededAtCourt_Dialect
               - disabilitySupport_NeededAtCourt
               - disabilitySupport_details
-              - specialMeasureAtCourt_Row1
-              - specialMeasureAtCourt_Row2
-              - specialMeasureAtCourt_Row3
-              - specialMeasureAtCourt_Row4
+              - SpecialMeasureAtCourt_Row1
+              - SpecialMeasureAtCourt_Row2
+              - SpecialMeasureAtCourt_Row3
+              - SpecialMeasureAtCourt_Row4
               - statementOfTruth_Line1
               - statementOfTruth_Line2
               - statementOfTruth_ApplicantFlag

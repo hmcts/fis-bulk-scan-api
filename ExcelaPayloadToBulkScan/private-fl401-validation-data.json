@@ -297,15 +297,15 @@
       "metadata_field_value": "XYZ"
     },
     {
-      "metadata_field_name":"interpreterNeededAtCourt",
+      "metadata_field_name":"InterpreterNeededAtCourt",
       "metadata_field_value":"Yes"
     },
     {
-      "metadata_field_name":"interpreterNeededAtCourt_Language",
+      "metadata_field_name":"InterpreterNeededAtCourt_Language",
       "metadata_field_value":"john@gmail.com"
     },
     {
-      "metadata_field_name":"interpreterNeededAtCourt_Dialect",
+      "metadata_field_name":"InterpreterNeededAtCourt_Dialect",
       "metadata_field_value":"john@gmail.com"
     },
     {
@@ -317,19 +317,19 @@
       "metadata_field_value":"john@gmail.com"
     },
     {
-      "metadata_field_name":"specialMeasureAtCourt_Row1",
+      "metadata_field_name":"SpecialMeasureAtCourt_Row1",
       "metadata_field_value":"john@gmail.com"
     },
     {
-      "metadata_field_name":"specialMeasureAtCourt_Row2",
+      "metadata_field_name":"SpecialMeasureAtCourt_Row2",
       "metadata_field_value":"john@gmail.com"
     },
     {
-      "metadata_field_name":"specialMeasureAtCourt_Row3",
+      "metadata_field_name":"SpecialMeasureAtCourt_Row3",
       "metadata_field_value":"john@gmail.com"
     },
     {
-      "metadata_field_name":"specialMeasureAtCourt_Row4",
+      "metadata_field_name":"SpecialMeasureAtCourt_Row4",
       "metadata_field_value":"john@gmail.com"
     },
     {

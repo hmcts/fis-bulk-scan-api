@@ -38,12 +38,12 @@ uk:
               groupValidationValue: "Yes"
               requiredFieldCount: 1
               sectionName: "8 - going To Court"
-            - interpreterNeededAtCourt:
+            - InterpreterNeededAtCourt:
               dependentFields:
-                - interpreterNeededAtCourt_Language
-                - interpreterNeededAtCourt_Dialect
+                - InterpreterNeededAtCourt_Language
+                - InterpreterNeededAtCourt_Dialect
               dependentFieldValue: "*"
-              groupFieldName: interpreterNeededAtCourt
+              groupFieldName: InterpreterNeededAtCourt
               groupValidationValue: "Yes"
               requiredFieldCount: 1
               sectionName: "8 - going To Court"

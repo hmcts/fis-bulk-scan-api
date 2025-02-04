@@ -85,8 +85,8 @@ import uk.gov.hmcts.reform.bulkscan.utils.DateUtil;
 @Slf4j
 public class BulkScanFL401ConditionalTransformerService {
 
-    public static final String INTERPRETER_NEEDED_AT_COURT_LANGUAGE = "interpreterNeededAtCourt_Language";
-    public static final String INTERPRETER_NEEDED_AT_COURT_DIALECT = "interpreterNeededAtCourt_Dialect";
+    public static final String INTERPRETER_NEEDED_AT_COURT_LANGUAGE = "InterpreterNeededAtCourt_Language";
+    public static final String INTERPRETER_NEEDED_AT_COURT_DIALECT = "InterpreterNeededAtCourt_Dialect";
     public static final String APPLICANT = "applicant";
 
     public void transform(Map<String, Object> populatedMap, Map<String, String> inputFieldsMap) {

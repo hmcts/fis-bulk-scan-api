@@ -321,15 +321,15 @@
       "value": "XYZ"
     },
     {
-      "name":"interpreterNeededAtCourt",
+      "name":"InterpreterNeededAtCourt",
       "value":"Yes"
     },
     {
-      "name":"interpreterNeededAtCourt_Language",
+      "name":"InterpreterNeededAtCourt_Language",
       "value":"john@gmail.com"
     },
     {
-      "name":"interpreterNeededAtCourt_Dialect",
+      "name":"InterpreterNeededAtCourt_Dialect",
       "value":"john@gmail.com"
     },
     {
@@ -341,15 +341,15 @@
       "value":"john@gmail.com"
     },
     {
-      "name":"specialMeasureAtCourt_Row1",
+      "name":"SpecialMeasureAtCourt_Row1",
       "value":"Measure1"
     },
     {
-      "name":"specialMeasureAtCourt_Row2",
+      "name":"SpecialMeasureAtCourt_Row2",
       "value":"Measure2"
     },
     {
-      "name":"specialMeasureAtCourt_Row4",
+      "name":"SpecialMeasureAtCourt_Row4",
       "value":"Measure4"
     },{
       "name":"applyingFor_NonMolestationOrder",
