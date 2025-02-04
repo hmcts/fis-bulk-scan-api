@@ -49,19 +49,16 @@ public class BulkScanC100Service implements BulkScanService {
         // Validating the Fields..
         Map<String, String> inputFieldMap = getOcrDataFieldAsMap(bulkRequest.getOcrdatafields());
         BulkScanFormValidationConfigManager.ValidationConfig validationConfig =
-                configManager.getValidationConfig(FormType.C100);
+            configManager.getValidationConfig(FormType.C100);
 
         BulkScanValidationResponse response =
                 bulkScanValidationHelper.validateMandatoryAndOptionalFields(
                         bulkRequest.getOcrdatafields(),
                         configManager.getValidationConfig(FormType.C100));
         response.addErrors(bulkScanC100ValidationService.doChildRelatedValidation(inputFieldMap));
-        response.addErrors(
-                bulkScanC100ValidationService.doPermissionRelatedFieldValidation(inputFieldMap));
+        response.addErrors(bulkScanC100ValidationService.doPermissionRelatedFieldValidation(inputFieldMap));
 
-        response.addErrors(
-                bulkScanC100ValidationService.validateOtherProceedingFields(
-                        inputFieldMap, validationConfig));
+        response.addErrors(bulkScanC100ValidationService.validateOtherProceedingFields(inputFieldMap, validationConfig));
 
         response.addWarning(
                 dependencyValidationService.getDependencyWarnings(inputFieldMap, FormType.C100));
@@ -76,8 +73,7 @@ public class BulkScanC100Service implements BulkScanService {
                 bulkRequest.getOcrdatafields(), response);
         bulkScanC100Section6ValidationService.validate(bulkRequest, response);
 
-        response.addErrors(
-                bulkScanC100ValidationService.validateAttendingTheHearing(inputFieldMap));
+        response.addErrors(bulkScanC100ValidationService.validateAttendingTheHearing(inputFieldMap));
 
         response.changeStatus();
 
@@ -92,10 +88,9 @@ public class BulkScanC100Service implements BulkScanService {
 
         Map<String, String> inputFieldsMap =
                 inputFieldsList.stream()
-                        .filter(ocrDataField -> StringUtils.isNotEmpty(ocrDataField.getName()))
-                        .collect(
-                                Collectors.toMap(
-                                        ocrDataField -> ocrDataField.getName(), this::getValue));
+                        .filter(ocrDataField -> StringUtils.isNotEmpty(ocrDataField.getName())
+                            && StringUtils.isNotEmpty(ocrDataField.getValue()))
+                        .collect(Collectors.toMap(OcrDataField::getName, this::getValue));
 
         Map<String, Object> populatedMap =
                 (Map<String, Object>)

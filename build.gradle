@@ -13,19 +13,6 @@ id 'com.diffplug.spotless' version '6.25.0'
 
 group = 'uk.gov.hmcts.reform'
 version = '0.0.1'
-spotless {
-
-  java {
-    target 'src/**/*.java'
-    importOrder()
-    removeUnusedImports()
-    trimTrailingWhitespace()
-    indentWithTabs() // or spaces. Takes an integer argument if you don't like 4
-    endWithNewline()
-    googleJavaFormat('1.11.0').aosp().reflowLongStrings()
-
-  }
-}
 
 java {
 toolchain {
@@ -146,7 +133,9 @@ def sonarExclusions = [
 		'**uk/gov/hmcts/reform/bulkscan/model/**',
 		'**uk/gov/hmcts/reform/bulkscan/config/**',
 		'**uk/gov/hmcts/reform/bulkscan/constants/**',
-		'**uk/gov/hmcts/reform/bulkscan/enums/**'
+		'**uk/gov/hmcts/reform/bulkscan/enums/**',
+    '**uk/gov/hmcts/reform/bulkscan/services/BulkScanC100Service.java',
+    '**uk/gov/hmcts/reform/bulkscan/endpoints/BulkScanEndpoint.java'
 ]
 
 sonarqube {
@@ -206,7 +195,8 @@ springfoxSwagger  : '3.0.0',
 s2sClient         : '4.0.3',
 springCloud       : '3.1.9',
 commonsIo         :  '2.7',
-reformsJavaLogging: '6.1.6'
+reformsJavaLogging: '6.1.6',
+jacksonDatabind: '2.17.2'
 ]
 
 ext {
@@ -219,7 +209,26 @@ dependencyManagement {
 
     //CVE-2022-25857
     dependency group: 'org.yaml',name: 'snakeyaml', version: '1.33'
-
+    dependencySet(
+      group: 'com.fasterxml.jackson.core',
+      version: versions.jacksonDatabind
+    ) {
+      entry 'jackson-core'
+      entry 'jackson-databind'
+    }
+    dependencySet(
+      group: 'com.fasterxml.jackson.datatype',
+      version: versions.jacksonDatabind
+    ) {
+      entry 'jackson-datatype-jdk8'
+      entry 'jackson-datatype-jsr310'
+    }
+    dependencySet(
+      group: 'com.fasterxml.jackson.module',
+      version: versions.jacksonDatabind
+    ) {
+      entry 'jackson-module-parameter-names'
+    }
   }
 }
 
@@ -267,7 +276,14 @@ implementation(group: 'org.springframework.cloud', name: 'spring-cloud-starter-o
 	exclude group: 'io.reactivex', module: 'rxnetty-contexts'
 	exclude group: 'io.reactivex', module: 'rxnetty-servo'
 	}
+implementation group: 'io.github.openfeign', name: 'feign-jackson', version: '13.5'
 implementation group: 'net.logstash.logback', name: 'logstash-logback-encoder', version:'7.4'
+implementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: versions.jacksonDatabind
+
+implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: versions.jacksonDatabind
+implementation group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: versions.jacksonDatabind
+implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: versions.jacksonDatabind
+
 //functionalTestImplementation group: 'uk.gov.hmcts.reform', name: 'service-auth-provider-client', version: versions.s2sClient
 functionalTestImplementation group: 'com.github.hmcts', name: 'service-auth-provider-java-client', version: versions.s2sClient
 
@@ -279,9 +295,9 @@ testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter
 	exclude group: 'junit', module: 'junit'
 	exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
 }
+testImplementation group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: versions.jacksonDatabind
 
 testImplementation group: 'io.rest-assured', name: 'rest-assured'
-
 
 // Integration test
 integrationTestImplementation(group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign', version: versions.springCloud)

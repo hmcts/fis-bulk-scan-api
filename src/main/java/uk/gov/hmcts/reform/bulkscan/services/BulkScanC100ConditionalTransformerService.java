@@ -1,5 +1,6 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
+import static java.util.Objects.nonNull;
 import static org.apache.commons.lang3.BooleanUtils.TRUE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICATION_PERMISSION_REQUIRED;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVE_WITH_KEY;
@@ -86,14 +87,18 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.WELSH_
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.WELSH_NEEDS_CCD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.WHO_WELSH_NEEDS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.WITHOUT_NOTICE_ABRIDGED_OR_INFORMAL_NOTICE_REASONS;
-import static uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper.transformScanDocuments;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 import com.microsoft.applicationinsights.boot.dependencies.apachecommons.lang3.StringUtils;
 import com.microsoft.applicationinsights.core.dependencies.google.gson.internal.LinkedTreeMap;
+
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 import org.apache.commons.lang3.BooleanUtils;
@@ -108,6 +113,10 @@ import uk.gov.hmcts.reform.bulkscan.enums.PartyEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.PermissionRequiredEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.SpokenOrWrittenWelshEnum;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
+import uk.gov.hmcts.reform.bulkscan.model.ResponseScanDocument;
+import uk.gov.hmcts.reform.bulkscan.model.ResponseScanDocumentNew;
+import uk.gov.hmcts.reform.bulkscan.model.ResponseScanDocumentValueNew;
+import uk.gov.hmcts.reform.bulkscan.model.ScannedDocuments;
 
 @SuppressWarnings({"PMD", "unchecked"})
 @Component
@@ -117,10 +126,19 @@ public class BulkScanC100ConditionalTransformerService {
             Map<String, Object> populatedMap,
             Map<String, String> inputFieldsMap,
             BulkScanTransformationRequest bulkScanTransformationRequest) {
+        String permissionsRequired = transformPermissionRequired(inputFieldsMap);
+        if (StringUtils.isNotEmpty(permissionsRequired)) {
+            populatedMap.put(APPLICATION_PERMISSION_REQUIRED, permissionsRequired);
+        }
+        String childLivesWith = transformChildLiveWith(inputFieldsMap);
+        if (StringUtils.isNotEmpty(childLivesWith)) {
+            populatedMap.put(CHILD_LIVE_WITH_KEY, childLivesWith);
+        }
+        ObjectMapper objectMapper = new ObjectMapper();
+        objectMapper.registerModule(new JavaTimeModule());
         populatedMap.put(
-                APPLICATION_PERMISSION_REQUIRED, transformPermissionRequired(inputFieldsMap));
-        populatedMap.put(CHILD_LIVE_WITH_KEY, transformChildLiveWith(inputFieldsMap));
-        populatedMap.put(SCAN_DOCUMENTS, transformScanDocuments(bulkScanTransformationRequest));
+                SCAN_DOCUMENTS,
+                objectMapper.convertValue(transformScanDocuments(bulkScanTransformationRequest), List.class));
         populatedMap.put(
                 MIAM_DOMESTIC_VIOLENCE_CHECKLIST,
                 transformMiamDomesticViolenceChecklist(inputFieldsMap));
@@ -149,18 +167,19 @@ public class BulkScanC100ConditionalTransformerService {
         interpreterValues.put(PARTY_ENUM, transformParty(inputFieldsMap));
 
         setOutReasonsBelow(populatedMap, inputFieldsMap);
-
-        populatedMap.put(
-                MEDIATOR_CERTIFIES_MIAM_EXEMPTION,
-                transformMediatorCertifiesMiamExemption(inputFieldsMap));
-
-        populatedMap.put(
-                MEDIATOR_CERTIFIES_APPLICANT_ATTEND_MIAM,
-                transformMediatorCertifiesApplicantAttendMiam(inputFieldsMap));
-
-        populatedMap.put(
-                MEDIATOR_CERTIFIES_DISPUTE_RESOLUTION_NOT_PROCEEDING,
-                transformMediatorCertifiesDisputeResolutionNotProceeding(inputFieldsMap));
+        String miamExemptions = transformMediatorCertifiesMiamExemption(inputFieldsMap);
+        if (StringUtils.isNotEmpty(miamExemptions)) {
+            populatedMap.put(MEDIATOR_CERTIFIES_MIAM_EXEMPTION, miamExemptions);
+        }
+        String mediatorCertAttendedMiam = transformMediatorCertifiesApplicantAttendMiam(inputFieldsMap);
+        if (StringUtils.isNotEmpty(mediatorCertAttendedMiam)) {
+            populatedMap.put(MEDIATOR_CERTIFIES_APPLICANT_ATTEND_MIAM, mediatorCertAttendedMiam);
+        }
+        String mediatorCert = transformMediatorCertifiesDisputeResolutionNotProceeding(inputFieldsMap);
+        if (StringUtils.isNotEmpty(mediatorCert)) {
+            populatedMap.put(MEDIATOR_CERTIFIES_DISPUTE_RESOLUTION_NOT_PROCEEDING, mediatorCert);
+        }
+        populatedMap.values().removeIf(Objects::isNull);
     }
 
     /**
@@ -602,5 +621,34 @@ public class BulkScanC100ConditionalTransformerService {
                     .getDescription();
         }
         return EMPTY;
+    }
+
+    private static List<ResponseScanDocumentValueNew> transformScanDocuments(
+        BulkScanTransformationRequest bulkScanTransformationRequest) {
+        List<ScannedDocuments> scannedDocumentsList =
+            bulkScanTransformationRequest.getScannedDocuments();
+        return nonNull(scannedDocumentsList)
+            ? bulkScanTransformationRequest.getScannedDocuments().stream()
+            .map(
+                scanDocument ->
+                    ResponseScanDocumentValueNew.builder()
+                        .value(
+                            ResponseScanDocumentNew.builder().url(ResponseScanDocument.builder()
+                                .url(
+                                    scanDocument
+                                        .getScanDocument()
+                                        .getUrl())
+                                .binaryUrl(
+                                    scanDocument
+                                        .getScanDocument()
+                                        .getBinaryUrl())
+                                .filename(
+                                    scanDocument
+                                        .getScanDocument()
+                                        .getFilename())
+                                .build()).build())
+                        .build())
+            .collect(Collectors.toList())
+            : Collections.emptyList();
     }
 }
