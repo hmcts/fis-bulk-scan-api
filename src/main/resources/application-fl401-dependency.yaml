@@ -19,7 +19,7 @@ uk:
                 - orderWithoutGivingNoticeReason1
                 - orderWithoutGivingNoticeReason2
                 - orderWithoutGivingNoticeReason3
-              dependentFieldValue: "Yes"
+              dependentFieldValue: "*"
               groupFieldName: orderWithout_GivingNotice
               groupValidationValue: "Yes"
               requiredFieldCount: 1
