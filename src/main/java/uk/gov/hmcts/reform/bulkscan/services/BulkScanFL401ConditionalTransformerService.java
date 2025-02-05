@@ -155,10 +155,14 @@ public class BulkScanFL401ConditionalTransformerService {
         }
         home.put(CHILDREN, buildTransformChild(inputFieldsMap));
         home.put("livingSituation", buildLivingSituation(inputFieldsMap));
-        home.put("intendToLiveAtTheAddress", transformLivedAtAddress(inputFieldsMap
-                                                                         .get("occupationOrderAddress_IntentedOccupant")));
-        home.put("everLivedAtTheAddress", transformLivedAtAddress(inputFieldsMap
-                                                                      .get("occupationOrderAddress_PreviousOccupant")));
+        if (StringUtils.hasText(inputFieldsMap.get("occupationOrderAddress_IntentedOccupant"))) {
+            home.put("intendToLiveAtTheAddress", transformLivedAtAddress(inputFieldsMap
+                                                                             .get("occupationOrderAddress_IntentedOccupant")));
+        }
+        if (StringUtils.hasText(inputFieldsMap.get("occupationOrderAddress_PreviousOccupant"))) {
+            home.put("everLivedAtTheAddress", transformLivedAtAddress(inputFieldsMap
+                                                                          .get("occupationOrderAddress_PreviousOccupant")));
+        }
         home.put("familyHome", buildFamilyHome(inputFieldsMap));
         if (StringUtils.hasText(inputFieldsMap.get("occupationOrderAddress_CurrentOccupant"))) {
             home.put("peopleLivingAtThisAddress", List.of(inputFieldsMap.get("occupationOrderAddress_CurrentOccupant")));
@@ -168,8 +172,8 @@ public class BulkScanFL401ConditionalTransformerService {
         }
     }
 
-    private Object transformLivedAtAddress(String occupationOrderAddress_previousOccupant) {
-        switch (occupationOrderAddress_previousOccupant) {
+    private Object transformLivedAtAddress(String occupationOrderAddressPreviousOccupant) {
+        switch (occupationOrderAddressPreviousOccupant) {
             case "Both": return "yesBothOfThem";
             case "Myself": return "yesApplicant";
             case "Respondent": return "yesRespondent";
