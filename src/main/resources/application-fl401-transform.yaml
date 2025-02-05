@@ -142,8 +142,6 @@ uk:
                       County: occupationOrderAddress_County
                 peopleLivingAtThisAddress: occupationOrderAddress_CurrentOccupant
                 textAreaSomethingElse: occupationOrderAddress_CurrentOccupant_Others
-                everLivedAtTheAddress: occupationOrderAddress_PreviousOccupant
-                intendToLiveAtTheAddress: occupationOrderAddress_IntendedOccupant
                 isPropertyAdapted: propertySpeciallyAdapted
                 howIsThePropertyAdapted: propertySpeciallyAdapted_Details
                 isThereMortgageOnProperty: MortgageOnProperty

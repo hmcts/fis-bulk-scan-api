@@ -155,12 +155,26 @@ public class BulkScanFL401ConditionalTransformerService {
         }
         home.put(CHILDREN, buildTransformChild(inputFieldsMap));
         home.put("livingSituation", buildLivingSituation(inputFieldsMap));
+        home.put("intendToLiveAtTheAddress", transformLivedAtAddress(inputFieldsMap
+                                                                         .get("occupationOrderAddress_IntentedOccupant")));
+        home.put("everLivedAtTheAddress", transformLivedAtAddress(inputFieldsMap
+                                                                      .get("occupationOrderAddress_PreviousOccupant")));
         home.put("familyHome", buildFamilyHome(inputFieldsMap));
         if (StringUtils.hasText(inputFieldsMap.get("occupationOrderAddress_CurrentOccupant"))) {
             home.put("peopleLivingAtThisAddress", List.of(inputFieldsMap.get("occupationOrderAddress_CurrentOccupant")));
         }
         if (StringUtils.hasText(inputFieldsMap.get(CHILD_LIVE_ADDRESS_ROW_1))) {
             home.put("doAnyChildrenLiveAtAddress", YES);
+        }
+    }
+
+    private Object transformLivedAtAddress(String occupationOrderAddress_previousOccupant) {
+        switch (occupationOrderAddress_previousOccupant) {
+            case "Both": return "yesBothOfThem";
+            case "Myself": return "yesApplicant";
+            case "Respondent": return "yesRespondent";
+            case "No": return "No";
+            default: return "";
         }
     }
 
