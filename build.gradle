@@ -206,7 +206,7 @@ springfoxSwagger  : '3.0.0',
 s2sClient         : '4.0.3',
 springCloud       : '3.1.9',
 commonsIo         :  '2.7',
-reformsJavaLogging: '6.1.7'
+reformsJavaLogging: '6.1.8'
 ]
 
 ext {
