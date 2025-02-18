@@ -113,10 +113,12 @@ public class BulkScanFL401ConditionalTransformerService {
         //transform attending the hearing
         getInterpreterNeeds(inputFieldsMap, populatedMap);
         LinkedHashMap stmtOfTruth = (LinkedHashMap) populatedMap.get("fl401StmtOfTruth");
-        stmtOfTruth.put("date", DateUtil.buildDate(
-            inputFieldsMap.get("StatementOfTruth_Date_DD"),
-            inputFieldsMap.get("StatementOfTruth_Date_MM"),
-            inputFieldsMap.get("StatementOfTruth_Date_YYYY")));
+        if (StringUtils.hasText(inputFieldsMap.get("StatementOfTruth_Date_DD"))) {
+            stmtOfTruth.put("date", DateUtil.buildDate(
+                inputFieldsMap.get("StatementOfTruth_Date_DD"),
+                inputFieldsMap.get("StatementOfTruth_Date_MM"),
+                inputFieldsMap.get("StatementOfTruth_Date_YYYY")));
+        }
     }
 
     private void transformOtherProceedingsToCourt(Map<String, Object> populatedMap, Map<String, String> inputFieldsMap) {
