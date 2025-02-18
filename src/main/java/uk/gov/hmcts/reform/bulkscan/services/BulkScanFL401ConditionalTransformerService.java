@@ -63,7 +63,13 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.TYPE
 
 import com.microsoft.applicationinsights.core.dependencies.google.gson.internal.LinkedTreeMap;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.EnumSet;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
