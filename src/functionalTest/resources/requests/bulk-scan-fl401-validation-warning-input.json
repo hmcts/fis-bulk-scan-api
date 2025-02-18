@@ -457,19 +457,19 @@
       "value":"Gene Wilder"
     },
     {
-      "name":"statementOfTruth_Date",
+      "name":"StatementOfTruth_Date",
       "value":"02/04/22"
     },
     {
-      "name":"statementOfTruth_FullName",
+      "name":"StatementOfTruth_FullName",
       "value":"John B. North"
     },
     {
-      "name":"statementOfTruth_FirmName",
+      "name":"StatementOfTruth_FirmName",
       "value":"Wilder and Wilder"
     },
     {
-      "name":"statementOfTruth_PositionHeld",
+      "name":"StatementOfTruth_PositionHeld",
       "value":"Legal Rep"
     }
   ]
