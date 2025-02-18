@@ -440,8 +440,8 @@
       "value": "UKghsf67"
     },
     {
-      "name": "MortgageOnProperty_Person",
-      "value": "Will Smith"
+      "name": "MortgageOnProperty_Person_applicant",
+      "value": "applicant"
     },
     {
       "name":"MortgageOnProperty_Person_Others",

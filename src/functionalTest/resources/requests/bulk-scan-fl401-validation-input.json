@@ -101,8 +101,8 @@
       "value":"Johnny"
     },
     {
-      "name":"MortgageOnProperty_Person",
-      "value":"Boy"
+      "name":"MortgageOnProperty_Person_applicant",
+      "value":"applicant"
     },
     {
       "name":"MortgageOnProperty_Person_Others",

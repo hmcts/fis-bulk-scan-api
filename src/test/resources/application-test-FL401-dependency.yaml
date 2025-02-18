@@ -99,7 +99,9 @@ uk:
               sectionName: "Please provide details of how the property is specially adapted."
             - mortgageOnPropertyGroup:
               dependentFields:
-                - MortgageOnProperty_Person
+                - MortgageOnProperty_Person_applicant
+                - MortgageOnProperty_Person_respondant
+                - MortgageOnProperty_Person_other
                 - MortgageOnProperty_Number
                 - MortgageLender_Name
                 - MortgageLender_BuildingAndStreet
@@ -115,8 +117,8 @@ uk:
               dependentFields:
                 - MortgageOnProperty_Person_Others
               dependentFieldValue: "*"
-              groupFieldName: MortgageOnProperty_Person
-              groupValidationValue: "Someone else – please specify"
+              groupFieldName: MortgageOnProperty_Person_other
+              groupValidationValue: "someoneElse"
               requiredFieldCount: 1
               sectionName: "Someone else – please specify"
             - propertyRentedGroup:

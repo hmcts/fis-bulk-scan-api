@@ -143,10 +143,19 @@ public class BulkScanFL401ConditionalTransformerService {
 
     private void transformHome(Map<String, Object> populatedMap, Map<String, String> inputFieldsMap) {
         LinkedTreeMap<String, Object> home = (LinkedTreeMap<String, Object>) populatedMap.get("home");
-        if (YES.equalsIgnoreCase(String.valueOf(home.get("isThereMortgageOnProperty")))
-            && StringUtils.hasText(inputFieldsMap.get("MortgageOnProperty_Person"))) {
+        if (YES.equalsIgnoreCase(String.valueOf(home.get("isThereMortgageOnProperty")))) {
+            List<String> mortgageNamedAfterList = new ArrayList<>();
+            if (StringUtils.hasText(inputFieldsMap.get("MortgageOnProperty_Person_applicant"))) {
+                mortgageNamedAfterList.add(inputFieldsMap.get("MortgageOnProperty_Person_applicant"));
+            }
+            if (StringUtils.hasText(inputFieldsMap.get("MortgageOnProperty_Person_respondant"))) {
+                mortgageNamedAfterList.add(inputFieldsMap.get("MortgageOnProperty_Person_respondant"));
+            }
+            if (StringUtils.hasText(inputFieldsMap.get("MortgageOnProperty_Person_other"))) {
+                mortgageNamedAfterList.add(inputFieldsMap.get("MortgageOnProperty_Person_other"));
+            }
             LinkedTreeMap<String, Object> mortgage = (LinkedTreeMap<String, Object>) home.get("mortgages");
-            mortgage.put("mortgageNamedAfter", List.of(inputFieldsMap.get("MortgageOnProperty_Person")));
+            mortgage.put("mortgageNamedAfter", mortgageNamedAfterList);
         }
         if (YES.equalsIgnoreCase(String.valueOf(home.get(inputFieldsMap.get("isPropertyRented"))))
             && StringUtils.hasText(inputFieldsMap.get("RentedProperty_Person"))) {

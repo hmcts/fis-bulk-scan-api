@@ -101,8 +101,8 @@
       "metadata_field_value":"Johnny"
     },
     {
-      "metadata_field_name":"MortgageOnProperty_Person",
-      "metadata_field_value":"Boy"
+      "metadata_field_name":"MortgageOnProperty_Person_applicant",
+      "metadata_field_value":"applicant"
     },
     {
       "metadata_field_name":"MortgageOnProperty_Person_Others",

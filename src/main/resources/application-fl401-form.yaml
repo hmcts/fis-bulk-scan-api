@@ -143,7 +143,9 @@ uk:
               - propertySpeciallyAdapted
               - propertySpeciallyAdapted_Details
               - MortgageOnProperty
-              - MortgageOnProperty_Person
+              - MortgageOnProperty_Person_applicant
+              - MortgageOnProperty_Person_respondant
+              - MortgageOnProperty_Person_other
               - MortgageOnProperty_Person_Others
               - MortgageOnProperty_Number
               - MortgageLender_Name

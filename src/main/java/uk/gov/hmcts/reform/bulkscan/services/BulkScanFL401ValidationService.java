@@ -51,72 +51,79 @@ public class BulkScanFL401ValidationService {
             BulkScanValidationResponse bulkScanValidationResponse) {
 
         if (null != ocrDataFieldsMap && !ocrDataFieldsMap.isEmpty()) {
-            final Map<String, String> ocrPryApplicantRespondentRelationshipFieldsMap =
-                    new TreeMap<>(
-                            getApplicantRespondentRelationshipFieldsMap(
-                                    ocrDataFieldsMap, APPLICANT_RESPONDENT_RELATIONSHIP_FIELDS));
-            final Map<String, String> ocrSecApplicantRespondentRelationshipFieldsMap =
-                    new TreeMap<>(
-                            getApplicantRespondentRelationshipFieldsMap(
-                                    ocrDataFieldsMap,
-                                    APPLICANT_RESPONDENT_RELATIONSHIP_OPTIONS_FIELDS));
-
-            List<String> warningItems = new ArrayList<>();
-            List<String> errorItems = new ArrayList<>();
-
-            setApplicantRespondentErrorWarningMsg(
-                    bulkScanValidationResponse,
-                    warningItems,
-                    errorItems,
-                    FL401_RELATIONSHIP_TO_RESPONDENT_SECTION,
-                    applicantRespondentRelationshipCounter(
-                            ocrPryApplicantRespondentRelationshipFieldsMap));
-
-            if (ocrDataFieldsMap.containsKey(APPLICANT_RESPONDENT_OTHER_RELATIONSHIP_FIELD)
-                    && ocrDataFieldsMap
-                            .get(APPLICANT_RESPONDENT_OTHER_RELATIONSHIP_FIELD)
-                            .equalsIgnoreCase(YES)) {
-
-                warningItems = new ArrayList<>();
-                errorItems = new ArrayList<>();
-
-                setApplicantRespondentErrorWarningMsg(
-                        bulkScanValidationResponse,
-                        warningItems,
-                        errorItems,
-                        FL401_RESPONDENT_RELATIONSHIP_TO_YOU_SECTION,
-                        applicantRespondentRelationshipCounter(
-                                ocrSecApplicantRespondentRelationshipFieldsMap));
-                String startDate = buildDate(ocrDataFieldsMap.get("relationship_Start_DD"),
-                                             ocrDataFieldsMap.get("relationship_Start_MM"),
-                        ocrDataFieldsMap.get("relationship_Start_YYYY"));
-                String endDate = buildDate(ocrDataFieldsMap.get("relationship_End_DD"),
-                        ocrDataFieldsMap.get("relationship_End_MM"),
-                        ocrDataFieldsMap.get("relationship_End_YYYY"));
-                String previosMarriedDate = buildDate(ocrDataFieldsMap.get("relationship_PreviousMarried_DD"),
-                        ocrDataFieldsMap.get("relationship_PreviousMarried_MM"),
-                        ocrDataFieldsMap.get("relationship_PreviousMarried_YYYY"));
-                bulkScanValidationResponse.addErrors(
-                        validateInputDateWithFieldSummary(
-                                startDate,
-                                APPLICANT_RESPONDENT_RELATIONSHIP_DATE,
-                                FIELD_SUMMARY_START));
-                bulkScanValidationResponse.addWarning(
-                    validateInputDateWithFieldSummary(
-                        endDate,
-                        APPLICANT_RESPONDENT_RELATIONSHIP_DATE,
-                        FIELD_SUMMARY_END));
-                bulkScanValidationResponse.addWarning(
-                    validateInputDateWithFieldSummary(
-                        previosMarriedDate,
-                        APPLICANT_RESPONDENT_RELATIONSHIP_DATE,
-                        FIELD_SUMMARY_PREVIOUS_MARRIED));
-            }
+            validateRelationships(ocrDataFieldsMap, bulkScanValidationResponse);
         }
 
         bulkScanValidationResponse.changeStatus();
 
         return bulkScanValidationResponse;
+    }
+
+    private void validateRelationships(Map<String, String> ocrDataFieldsMap,
+                                       BulkScanValidationResponse bulkScanValidationResponse) {
+        final Map<String, String> ocrPryApplicantRespondentRelationshipFieldsMap =
+                new TreeMap<>(
+                        getApplicantRespondentRelationshipFieldsMap(
+                            ocrDataFieldsMap, APPLICANT_RESPONDENT_RELATIONSHIP_FIELDS));
+        List<String> warningItems = new ArrayList<>();
+        List<String> errorItems = new ArrayList<>();
+
+        setApplicantRespondentErrorWarningMsg(
+            bulkScanValidationResponse,
+                warningItems,
+                errorItems,
+                FL401_RELATIONSHIP_TO_RESPONDENT_SECTION,
+                applicantRespondentRelationshipCounter(
+                        ocrPryApplicantRespondentRelationshipFieldsMap));
+
+        if (ocrDataFieldsMap.containsKey(APPLICANT_RESPONDENT_OTHER_RELATIONSHIP_FIELD)
+                && ocrDataFieldsMap
+                        .get(APPLICANT_RESPONDENT_OTHER_RELATIONSHIP_FIELD)
+                        .equalsIgnoreCase(YES)) {
+            final Map<String, String> ocrSecApplicantRespondentRelationshipFieldsMap =
+                new TreeMap<>(
+                    getApplicantRespondentRelationshipFieldsMap(
+                        ocrDataFieldsMap,
+                        APPLICANT_RESPONDENT_RELATIONSHIP_OPTIONS_FIELDS));
+
+            warningItems = new ArrayList<>();
+            errorItems = new ArrayList<>();
+
+            setApplicantRespondentErrorWarningMsg(
+                bulkScanValidationResponse,
+                    warningItems,
+                    errorItems,
+                    FL401_RESPONDENT_RELATIONSHIP_TO_YOU_SECTION,
+                    applicantRespondentRelationshipCounter(
+                            ocrSecApplicantRespondentRelationshipFieldsMap));
+            String startDate = buildDate(
+                ocrDataFieldsMap.get("relationship_Start_DD"),
+                ocrDataFieldsMap.get("relationship_Start_MM"),
+                ocrDataFieldsMap.get("relationship_Start_YYYY"));
+            String endDate = buildDate(
+                ocrDataFieldsMap.get("relationship_End_DD"),
+                ocrDataFieldsMap.get("relationship_End_MM"),
+                ocrDataFieldsMap.get("relationship_End_YYYY"));
+            String previosMarriedDate = buildDate(
+                ocrDataFieldsMap.get("relationship_PreviousMarried_DD"),
+                ocrDataFieldsMap.get("relationship_PreviousMarried_MM"),
+                ocrDataFieldsMap.get("relationship_PreviousMarried_YYYY"));
+            bulkScanValidationResponse.addErrors(
+                    validateInputDateWithFieldSummary(
+                            startDate,
+                            APPLICANT_RESPONDENT_RELATIONSHIP_DATE,
+                            FIELD_SUMMARY_START));
+            bulkScanValidationResponse.addWarning(
+                validateInputDateWithFieldSummary(
+                    endDate,
+                    APPLICANT_RESPONDENT_RELATIONSHIP_DATE,
+                    FIELD_SUMMARY_END));
+            bulkScanValidationResponse.addWarning(
+                validateInputDateWithFieldSummary(
+                    previosMarriedDate,
+                    APPLICANT_RESPONDENT_RELATIONSHIP_DATE,
+                    FIELD_SUMMARY_PREVIOUS_MARRIED));
+        }
     }
 
     /**
