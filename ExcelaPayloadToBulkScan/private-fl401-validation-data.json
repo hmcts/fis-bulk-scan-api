@@ -528,15 +528,15 @@
       "metadata_field_name": "needForParentalResponsiblity",
       "metadata_field_value": "Yes"
     },{
-      "metadata_field_name":"applyingFor_NonMolestationOrder",
+      "metadata_field_name":"ApplyingFor_NonMolestationOrder",
       "metadata_field_value":"Yes"
     },
     {
-      "metadata_field_name":"stopRespondentFromDoing_1",
+      "metadata_field_name":"StopRespondentFromDoing_1",
       "metadata_field_value":"Yes"
     },
     {
-      "metadata_field_name":"stopRespondentFromDoingToChild_1",
+      "metadata_field_name":"StopRespondentFromDoingToChild_1",
       "metadata_field_value":"Yes"
     },
     {
@@ -580,35 +580,35 @@
       "metadata_field_value":"Williamsburgh Ct, 762134, Removal of Child"
     },
     {
-      "metadata_field_name":"statementOfTruth_Line1",
+      "metadata_field_name":"StatementOfTruth_Line1",
       "metadata_field_value":"Yes"
     },
     {
-      "metadata_field_name":"statementOfTruth_Line2",
+      "metadata_field_name":"StatementOfTruth_Line2",
       "metadata_field_value":"Yes"
     },
     {
-      "metadata_field_name":"statementOfTruth_ApplicantFlag",
+      "metadata_field_name":"StatementOfTruth_ApplicantFlag",
       "metadata_field_value":"John North"
     },
     {
-      "metadata_field_name":"statementOfTruth_LegalRepresentative",
+      "metadata_field_name":"StatementOfTruth_LegalRepresentative",
       "metadata_field_value":"Gene Wilder"
     },
     {
-      "metadata_field_name":"statementOfTruth_Date",
+      "metadata_field_name":"StatementOfTruth_Date",
       "metadata_field_value":"02/04/22"
     },
     {
-      "metadata_field_name":"statementOfTruth_FullName",
+      "metadata_field_name":"StatementOfTruth_FullName",
       "metadata_field_value":"John B. North"
     },
     {
-      "metadata_field_name":"statementOfTruth_FirmName",
+      "metadata_field_name":"StatementOfTruth_FirmName",
       "metadata_field_value":"Wilder and Wilder"
     },
     {
-      "metadata_field_name":"statementOfTruth_PositionHeld",
+      "metadata_field_name":"StatementOfTruth_PositionHeld",
       "metadata_field_value":"Legal Rep"
     }
   ]

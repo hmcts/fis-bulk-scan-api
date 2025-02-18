@@ -14,7 +14,7 @@
     "applicantLastName is missing",
     "applicantDateOfBirth is missing",
     "applicantContact_Confidentiality is missing",
-    "applyingFor_NonMolestationOrder is missing",
+    "ApplyingFor_NonMolestationOrder is missing",
     "Section 4.1 - Applicant must have a relationship with the respondent"
   ]
 }

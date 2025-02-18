@@ -14,7 +14,7 @@ uk:
               - applicantDoB_MM
               - applicantDoB_YYYY
               - applicantContact_Confidentiality
-              - applyingFor_NonMolestationOrder
+              - ApplyingFor_NonMolestationOrder
             optionalFields:
               - orderApplyingFor_occupation
               - orderWithoutGivingNoticeReason
@@ -103,21 +103,21 @@ uk:
               - OngoingFamilyCourtProceeding_row1
               - OngoingFamilyCourtProceeding_row2
               - OngoingFamilyCourtProceeding_row3
-              - stopRespondentFromDoing_1
-              - stopRespondentFromDoing_2
-              - stopRespondentFromDoing_3
-              - stopRespondentFromDoing_4
-              - stopRespondentFromDoing_5
-              - stopRespondentFromDoing_6
-              - stopRespondentFromDoing_7
-              - stopRespondentFromDoing_8
-              - stopRespondentFromDoing_9
-              - stopRespondentFromDoingToChild_1
-              - stopRespondentFromDoingToChild_2
-              - stopRespondentFromDoingToChild_3
-              - stopRespondentFromDoingToChild_4
-              - stopRespondentFromDoingToChild_5
-              - stopRespondentFromDoingToChild_6
+              - StopRespondentFromDoing_1
+              - StopRespondentFromDoing_2
+              - StopRespondentFromDoing_3
+              - StopRespondentFromDoing_4
+              - StopRespondentFromDoing_5
+              - StopRespondentFromDoing_6
+              - StopRespondentFromDoing_7
+              - StopRespondentFromDoing_8
+              - StopRespondentFromDoing_9
+              - StopRespondentFromDoingToChild_1
+              - StopRespondentFromDoingToChild_2
+              - StopRespondentFromDoingToChild_3
+              - StopRespondentFromDoingToChild_4
+              - StopRespondentFromDoingToChild_5
+              - StopRespondentFromDoingToChild_6
               - ApplyingForOccupationOrder
               - occupationOrderAddress_BuildingAndStreet
               - occupationOrderAddress_SecondLine
@@ -178,14 +178,14 @@ uk:
               - SpecialMeasureAtCourt_Row2
               - SpecialMeasureAtCourt_Row3
               - SpecialMeasureAtCourt_Row4
-              - statementOfTruth_Line1
-              - statementOfTruth_Line2
-              - statementOfTruth_ApplicantFlag
-              - statementOfTruth_LegalRepresentative
-              - statementOfTruth_Date
-              - statementOfTruth_FullName
-              - statementOfTruth_FirmName
-              - statementOfTruth_PositionHeld
+              - StatementOfTruth_FirmName,
+              - StatementOfTruth_PositionHeld
+              - StatementOfTruth_Line1
+              - StatementOfTruth_Line2
+              - StatementOfTruth_ApplicantFlag
+              - StatementOfTruth_LegalRepresentative
+              - StatementOfTruth_Date
+              - StatementOfTruth_FullName
             regexValidationFields:
               dateFields:
                 fieldNames:

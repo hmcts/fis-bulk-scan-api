@@ -344,27 +344,27 @@
       "name":"SpecialMeasureAtCourt_Row4",
       "value":"Measure4"
     },{
-      "name":"applyingFor_NonMolestationOrder",
+      "name":"ApplyingFor_NonMolestationOrder",
       "value":"Yes"
     },
     {
-      "name":"stopRespondentFromDoing_2",
+      "name":"StopRespondentFromDoing_2",
       "value":"Yes"
     },
     {
-      "name":"stopRespondentFromDoing_6",
+      "name":"StopRespondentFromDoing_6",
       "value":"Yes"
     },
     {
-      "name":"stopRespondentFromDoingToChild_1",
+      "name":"StopRespondentFromDoingToChild_1",
       "value":"Yes"
     },
     {
-      "name":"stopRespondentFromDoingToChild_6",
+      "name":"StopRespondentFromDoingToChild_6",
       "value":"Yes"
     },
     {
-      "name":"stopRespondentFromDoing_1",
+      "name":"StopRespondentFromDoing_1",
       "value":"Yes"
     },
     {
@@ -604,35 +604,35 @@
       "value":"Williamsburgh Ct, 762134, Removal of Child"
     },
     {
-      "name":"statementOfTruth_Line1",
+      "name":"StatementOfTruth_Line1",
       "value":"Yes"
     },
     {
-      "name":"statementOfTruth_Line2",
+      "name":"StatementOfTruth_Line2",
       "value":"Yes"
     },
     {
-      "name":"statementOfTruth_ApplicantFlag",
+      "name":"StatementOfTruth_ApplicantFlag",
       "value":"John North"
     },
     {
-      "name":"statementOfTruth_LegalRepresentative",
+      "name":"StatementOfTruth_LegalRepresentative",
       "value":"Gene Wilder"
     },
     {
-      "name":"statementOfTruth_Date",
+      "name":"StatementOfTruth_Date",
       "value":"02/04/22"
     },
     {
-      "name":"statementOfTruth_FullName",
+      "name":"StatementOfTruth_FullName",
       "value":"John B. North"
     },
     {
-      "name":"statementOfTruth_FirmName",
+      "name":"StatementOfTruth_FirmName",
       "value":"Wilder and Wilder"
     },
     {
-      "name":"statementOfTruth_PositionHeld",
+      "name":"StatementOfTruth_PositionHeld",
       "value":"Legal Rep"
     }
   ],

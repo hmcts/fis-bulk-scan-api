@@ -3,8 +3,8 @@
     "case_type_id": "PRLAPPS",
     "event_id": "create-case-privatelaw-bs-fl401",
     "case_data": {
-      "statementOfTruthLegalRepresentative": "Gene Wilder",
-      "statementOfTruthFirmName": "Wilder and Wilder",
+      "StatementOfTruthLegalRepresentative": "Gene Wilder",
+      "StatementOfTruthFirmName": "Wilder and Wilder",
       "applicantFamilyTable": {
         "applicantChild": [
           {

@@ -397,7 +397,7 @@
       "value": "No"
     },
     {
-      "name":"applyingFor_NonMolestationOrder",
+      "name":"ApplyingFor_NonMolestationOrder",
       "value":"Yes"
     },
     {
@@ -441,19 +441,19 @@
       "value":"Williamsburgh Ct, 762134, Removal of Child"
     },
     {
-      "name":"statementOfTruth_Line1",
+      "name":"StatementOfTruth_Line1",
       "value":"Yes"
     },
     {
-      "name":"statementOfTruth_Line2",
+      "name":"StatementOfTruth_Line2",
       "value":"Yes"
     },
     {
-      "name":"statementOfTruth_ApplicantFlag",
+      "name":"StatementOfTruth_ApplicantFlag",
       "value":"John North"
     },
     {
-      "name":"statementOfTruth_LegalRepresentative",
+      "name":"StatementOfTruth_LegalRepresentative",
       "value":"Gene Wilder"
     },
     {
