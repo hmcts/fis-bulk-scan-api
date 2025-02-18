@@ -31,6 +31,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 import org.springframework.web.client.HttpClientErrorException;
 import uk.gov.hmcts.reform.bulkscan.clients.CourtFinderApi;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanFormValidationConfigManager;
@@ -93,13 +94,15 @@ public class BulkScanFL401Service implements BulkScanService {
         response.addWarning(
                 dependencyValidationService.getDependencyWarnings(inputFieldMap, FormType.FL401));
 
-        response.addWarning(
+        if (YES.equalsIgnoreCase(inputFieldMap.get("respondentBailConditions"))) {
+            response.addWarning(
                 validateInputDate(
-                        ocrDataFields,
-                        "respondentBailConditions_EndDate_Day",
-                        "respondentBailConditions_EndDate_Month",
-                        "respondentBailConditions_EndDate_Year",
-                        BAIL_CONDITION_END_DATE_MESSAGE));
+                    ocrDataFields,
+                    "respondentBailConditions_EndDate_Day",
+                    "respondentBailConditions_EndDate_Month",
+                    "respondentBailConditions_EndDate_Year",
+                    BAIL_CONDITION_END_DATE_MESSAGE));
+        }
 
         bulkScanFL401ValidationService.validateApplicantRespondentRelationhip(
                 inputFieldMap, response);
@@ -168,11 +171,9 @@ public class BulkScanFL401Service implements BulkScanService {
         List<String> warningLst = new ArrayList<>();
         String applyingOrder =
                 inputFieldMap.get(BulkScanFl401Constants.APPLYING_FOR_NON_MOLES_STATION_ORDER);
-        if (hasText(applyingOrder) && applyingOrder.equalsIgnoreCase(YES)) {
-
+        if (YES.equalsIgnoreCase(applyingOrder)) {
             validateStopRespondedDoing(inputFieldMap, warningLst);
         }
-
         return warningLst;
     }
 
