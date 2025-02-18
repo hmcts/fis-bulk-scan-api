@@ -2,7 +2,6 @@
   "status": "ERRORS",
     "warnings": [
       "The following fields are not configured with our system: [applicant_firstName,applicant_lastName,applyingForOccupationOrder,respondentDoB,applicantRespondent_Relationship_1,applicantRespondent_Relationship_2,applicantRespondent_Relationship_3,applicantRespondent_Relationship_4,applicantRespondent_Relationship_5,applicantRespondent_Relationship_6,applicantRespondent_Relationship_7,applicantRespondent_Relationship_8,applicantRespondent_Relationship_9,applicantRespondent_Relationship_StartDate,applicantRespondent_Relationship_EndDate,applicantRespondent_PreviousMarried_Date,applicantRespondent_Relationship_10,applicantRespondent_Relationship_11,applicantRespondent_Relationship_12,applicantRespondent_Relationship_13,applicantRespondent_Relationship_14,applicantRespondent_Relationship_15,applicantRespondent_Relationship_16,applicantRespondent_Relationship_17,applicantRespondent_Relationship_18,applicantRespondent_Relationship_19,applicantRespondent_Relationship_20,applicantRespondent_Relationship_21,applicantRespondent_Relationship_22,applicantRespondent_Relationship_23,riskOfSignificantHarm,deterredOrPrevented,deliberatelyEvadingService,respondent_BailConditionsEndDate] ",
-      "Please enter valid date for bail condition end date",
       "Please enter valid date for Applicant date of birth"
     ],
     "errors": [
