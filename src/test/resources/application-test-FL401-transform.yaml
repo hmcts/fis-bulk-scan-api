@@ -45,7 +45,6 @@ uk:
                 applicantRelationshipOptions: appliantRespondent_Relationship_10
                 doesApplicantHaveChildren: needForParentalResponsibility
               fl401StmtOfTruth:
-                date: StatementOfTruth_Date
                 fullname: StatementOfTruth_FullName
                 signature:
                 nameOfFirm: StatementOfTruth_FirmName

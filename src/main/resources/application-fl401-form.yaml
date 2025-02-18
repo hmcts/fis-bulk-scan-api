@@ -189,7 +189,9 @@ uk:
               - StatementOfTruth_Line2
               - StatementOfTruth_ApplicantFlag
               - StatementOfTruth_LegalRepresentative
-              - StatementOfTruth_Date
+              - StatementOfTruth_Date_DD
+              - StatementOfTruth_Date_MM
+              - StatementOfTruth_Date_YYYY
               - StatementOfTruth_FullName
               - StatementOfTruth_FirmName
               - StatementOfTruth_PositionHeld

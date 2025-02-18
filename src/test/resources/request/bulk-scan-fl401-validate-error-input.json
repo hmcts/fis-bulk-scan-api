@@ -469,8 +469,16 @@
       "value":"Gene Wilder"
     },
     {
-      "name":"StatementOfTruth_Date",
-      "value":"02/04/22"
+      "metadata_field_name":"StatementOfTruth_Date_DD",
+      "metadata_field_value":"02"
+    },
+    {
+      "metadata_field_name":"StatementOfTruth_Date_MM",
+      "metadata_field_value":"02"
+    },
+    {
+      "metadata_field_name":"StatementOfTruth_Date_YYYY",
+      "metadata_field_value":"2022"
     },
     {
       "name":"StatementOfTruth_FullName",

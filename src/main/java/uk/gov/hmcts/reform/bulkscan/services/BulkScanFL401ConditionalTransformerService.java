@@ -63,12 +63,7 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.TYPE
 
 import com.microsoft.applicationinsights.core.dependencies.google.gson.internal.LinkedTreeMap;
 
-import java.util.ArrayList;
-import java.util.EnumSet;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
+import java.util.*;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -117,6 +112,11 @@ public class BulkScanFL401ConditionalTransformerService {
 
         //transform attending the hearing
         getInterpreterNeeds(inputFieldsMap, populatedMap);
+        LinkedHashMap stmtOfTruth = (LinkedHashMap) populatedMap.get("fl401StmtOfTruth");
+        stmtOfTruth.put("date", DateUtil.buildDate(
+            inputFieldsMap.get("StatementOfTruth_Date_DD"),
+            inputFieldsMap.get("StatementOfTruth_Date_MM"),
+            inputFieldsMap.get("StatementOfTruth_Date_YYYY")));
     }
 
     private void transformOtherProceedingsToCourt(Map<String, Object> populatedMap, Map<String, String> inputFieldsMap) {
