@@ -119,7 +119,10 @@ public class BulkScanC100Service implements BulkScanService {
         Map<String, String> caseTypeAndEventId =
                 transformConfigManager.getTransformationConfig(FormType.C100).getCaseFields();
         log.info("Populated map {}", populatedMap);
-        populatedMap.put("caseNameHmctsInternal", buildCaseName(populatedMap));
+        String caseName = buildCaseName(populatedMap);
+        populatedMap.put("caseNameHmctsInternal", caseName);
+        populatedMap.put("caseName", caseName);
+        populatedMap.put("caseTypeOfApplication", "FL401");
         return BulkScanTransformationResponse.builder()
                 .caseCreationDetails(
                         CaseCreationDetails.builder()
