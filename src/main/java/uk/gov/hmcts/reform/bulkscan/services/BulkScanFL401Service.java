@@ -238,6 +238,10 @@ public class BulkScanFL401Service implements BulkScanService {
                                           .transformScanDocuments(bulkScanTransformationRequest), List.class));
         populatedMap.put("caseTypeOfApplication", "FL401");
         populatedMap.put("courtName", getNearestFamilyCourt(inputFieldsMap.get("applicant_Address_Postcode")));
+
+        String caseName = buildCaseName(populatedMap);
+        populatedMap.put("caseNameHmctsInternal", caseName);
+        populatedMap.put("applicantCaseName", caseName);
         Map<String, String> caseTypeAndEventId =
             transformConfigManager.getTransformationConfig(formType).getCaseFields();
         BulkScanTransformationResponse.BulkScanTransformationResponseBuilder builder =
@@ -276,6 +280,11 @@ public class BulkScanFL401Service implements BulkScanService {
             return validateDate(Objects.requireNonNull(date), message);
         }
         return List.of(String.format(VALID_DATE_WARNING_MESSAGE, message));
+    }
+
+    private String buildCaseName(Map<String, Object> populatedMap) {
+        return populatedMap.get("applicant1_firstName") + " " + populatedMap.get("applicant1_lastName")
+            + " & " + populatedMap.get("respondent1_firstName") + " " + populatedMap.get("respondent1_lastName");
     }
 
     private List<String> validateDate(String date, String fieldName) {
