@@ -122,7 +122,7 @@ public class BulkScanC100Service implements BulkScanService {
         String caseName = buildCaseName(populatedMap);
         populatedMap.put("caseNameHmctsInternal", caseName);
         populatedMap.put("caseName", caseName);
-        populatedMap.put("caseTypeOfApplication", "FL401");
+        populatedMap.put("caseTypeOfApplication", "C100");
         return BulkScanTransformationResponse.builder()
                 .caseCreationDetails(
                         CaseCreationDetails.builder()
