@@ -66,7 +66,6 @@ import com.microsoft.applicationinsights.core.dependencies.google.gson.internal.
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -118,7 +117,7 @@ public class BulkScanFL401ConditionalTransformerService {
 
         //transform attending the hearing
         getInterpreterNeeds(inputFieldsMap, populatedMap);
-        LinkedHashMap stmtOfTruth = (LinkedHashMap) populatedMap.get("fl401StmtOfTruth");
+        LinkedTreeMap stmtOfTruth = (LinkedTreeMap) populatedMap.get("fl401StmtOfTruth");
         if (StringUtils.hasText(inputFieldsMap.get("StatementOfTruth_Date_DD"))) {
             stmtOfTruth.put("date", DateUtil.buildDate(
                 inputFieldsMap.get("StatementOfTruth_Date_DD"),
