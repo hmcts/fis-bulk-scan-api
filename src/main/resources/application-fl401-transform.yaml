@@ -139,7 +139,6 @@ uk:
                       PostTown: occupationOrderAddress_TownOrCity
                       PostCode: occupationOrderAddress_Postcode
                       County: occupationOrderAddress_County
-                peopleLivingAtThisAddress: occupationOrderAddress_CurrentOccupant
                 textAreaSomethingElse: occupationOrderAddress_CurrentOccupant_Others
                 isPropertyAdapted: propertySpeciallyAdapted
                 howIsThePropertyAdapted: propertySpeciallyAdapted_Details
