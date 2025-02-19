@@ -75,7 +75,27 @@ uk:
               groupValidationValue: "Yes"
               requiredFieldCount: 2
               sectionName: "To what address do you want the occupation order to apply?"
-
+            - occupationOrderCurrentOccupantGroup:
+              dependentFields:
+                - occupationOrderAddress_CurrentOccupant_applicant
+                - occupationOrderAddress_CurrentOccupant_respondent
+                - occupationOrderAddress_CurrentOccupant_children
+                - occupationOrderAddress_CurrentOccupant_other
+              dependentFieldValue: "*"
+              groupFieldName: ApplyingForOccupationOrder
+              groupValidationValue: "Yes"
+              requiredFieldCount: 1
+              sectionName: "Who currently lives at the address?"
+            - occupationOrderMandatoryHomeGroup:
+              dependentFields:
+                - MortgageOnProperty
+                - RentedProperty
+                - HomeRights
+              dependentFieldValue: "*"
+              groupFieldName: ApplyingForOccupationOrder
+              groupValidationValue: "Yes"
+              requiredFieldCount: 3
+              sectionName: "MortgageOnProperty, RentedProperty, HomeRights, please provide Yes or No"
             - occupationOrderCurrentOccupantOtherGroup:
               dependentFields:
                 - occupationOrderAddress_CurrentOccupant_others

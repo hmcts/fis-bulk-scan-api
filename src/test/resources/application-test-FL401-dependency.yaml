@@ -16,15 +16,19 @@ uk:
               sectionName: "4.2 - Relationship Start Date cannot be null"
             - applyingWithoutGivingNotice:
               dependentFields:
-                - orderWithoutGivingNoticeReason
-              dependentFieldValue: "Yes"
+                - orderWithoutGivingNoticeReason1
+                - orderWithoutGivingNoticeReason2
+                - orderWithoutGivingNoticeReason3
+              dependentFieldValue: "*"
               groupFieldName: orderWithout_GivingNotice
               groupValidationValue: "Yes"
               requiredFieldCount: 1
               sectionName: "1.3 - Why do you want to apply without giving notice to the respondent?"
             - bailCondition:
               dependentFields:
-                - respondent_BailConditionsEndDate
+                - respondentBailConditions_EndDate_Day
+                - respondentBailConditions_EndDate_Month
+                - respondentBailConditions_EndDate_Year
               dependentFieldValue: "*"
               groupFieldName: respondentBailConditions
               groupValidationValue: "Yes"
@@ -38,7 +42,7 @@ uk:
               groupValidationValue: "Yes"
               requiredFieldCount: 1
               sectionName: "8 - going To Court"
-            - InterpreterNeededAtCourt:
+            - interpreterNeededAtCourt:
               dependentFields:
                 - InterpreterNeededAtCourt_Language
                 - InterpreterNeededAtCourt_Dialect
@@ -59,28 +63,47 @@ uk:
               groupValidationValue: "No"
               requiredFieldCount: 5
               sectionName: "2 - your details"
-            - occupationOrderGroup:
+            - occupationOrderAddressGroup:
               dependentFields:
                 - occupationOrderAddress_BuildingAndStreet
                 - occupationOrderAddress_SecondLine
                 - occupationOrderAddress_TownOrCity
                 - occupationOrderAddress_Postcode
-                - occupationOrderAddress_CurrentOccupant
-                - occupationOrderAddress_CurrentOccupant_Others
                 - occupationOrderAddress_PreviousOccupant
               dependentFieldValue: "*"
               groupFieldName: ApplyingForOccupationOrder
               groupValidationValue: "Yes"
               requiredFieldCount: 2
               sectionName: "To what address do you want the occupation order to apply?"
-            - occupationOrderIntendedOccupantGroup:
+            - occupationOrderCurrentOccupantGroup:
               dependentFields:
-                - occupationOrderAddress_CurrentOccupant_Others
+                - occupationOrderAddress_CurrentOccupant_applicant
+                - occupationOrderAddress_CurrentOccupant_respondent
+                - occupationOrderAddress_CurrentOccupant_children
+                - occupationOrderAddress_CurrentOccupant_other
               dependentFieldValue: "*"
-              groupFieldName: occupationOrderAddress_CurrentOccupant
-              groupValidationValue: "Someone else – please specify"
+              groupFieldName: ApplyingForOccupationOrder
+              groupValidationValue: "Yes"
               requiredFieldCount: 1
-              sectionName: "Someone else – please specify."
+              sectionName: "Who currently lives at the address?"
+            - occupationOrderMandatoryHomeGroup:
+              dependentFields:
+                - MortgageOnProperty
+                - RentedProperty
+                - HomeRights
+              dependentFieldValue: "*"
+              groupFieldName: ApplyingForOccupationOrder
+              groupValidationValue: "Yes"
+              requiredFieldCount: 3
+              sectionName: "MortgageOnProperty, RentedProperty, HomeRights, please provide Yes or No"
+            - occupationOrderCurrentOccupantOtherGroup:
+              dependentFields:
+                - occupationOrderAddress_CurrentOccupant_others
+              dependentFieldValue: "*"
+              groupFieldName: occupationOrderAddress_CurrentOccupant_other
+              groupValidationValue: "Others"
+              requiredFieldCount: 1
+              sectionName: "Occupation order - Current occupant -> Someone else – please specify."
             - occupationOrderIntendedOccupantGroup:
               dependentFields:
                 - occupationOrderAddress_IntendedOccupant
@@ -154,7 +177,7 @@ uk:
               groupValidationValue: "Yes"
               requiredFieldCount: 1
               sectionName: "5.3 - Details of the child or children to be protected by the order"
-            - yourFamilyGroup:
+            - OngoingCourtProceedingGroup:
               dependentFields:
                 - OngoingFamilyCourtProceeding_row1
                 - OngoingFamilyCourtProceeding_row2
@@ -164,12 +187,12 @@ uk:
               groupValidationValue: "Yes"
               requiredFieldCount: 1
               sectionName: "5.4 - Family court proceedings details"
-            - yourFamilyGroup:
+            - OccupationOrderGroup:
               dependentFields:
                 - ApplyingForOccupationOrder
               dependentFieldValue: "*"
               groupFieldName: orderApplyingFor_occupation
-              groupValidationValue: "Occupation order"
+              groupValidationValue: "occupationOrder"
               requiredFieldCount: 1
               sectionName: "7.1 - Are you applying for an occupation order?"
 
