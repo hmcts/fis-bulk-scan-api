@@ -116,13 +116,13 @@ public class BulkScanC100Service implements BulkScanService {
         populatedMap.remove("otherChildrenNotInTheCaseTable");
         bulkScanC100ConditionalTransformerService.transform(
                 populatedMap, inputFieldsMap, bulkScanTransformationRequest);
-        Map<String, String> caseTypeAndEventId =
-                transformConfigManager.getTransformationConfig(FormType.C100).getCaseFields();
         log.info("Populated map {}", populatedMap);
         String caseName = buildCaseName(populatedMap);
         populatedMap.put("caseNameHmctsInternal", caseName);
         populatedMap.put("caseName", caseName);
         populatedMap.put("caseTypeOfApplication", "C100");
+        Map<String, String> caseTypeAndEventId =
+            transformConfigManager.getTransformationConfig(FormType.C100).getCaseFields();
         return BulkScanTransformationResponse.builder()
                 .caseCreationDetails(
                         CaseCreationDetails.builder()
