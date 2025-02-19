@@ -72,6 +72,7 @@ import java.util.UUID;
 
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 import uk.gov.hmcts.reform.bulkscan.enums.ApplicantRelationshipEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.ApplicantRespondentRelationshipEnum;
@@ -180,11 +181,26 @@ public class BulkScanFL401ConditionalTransformerService {
                                                                           .get("occupationOrderAddress_PreviousOccupant")));
         }
         home.put("familyHome", buildFamilyHome(inputFieldsMap));
-        if (StringUtils.hasText(inputFieldsMap.get("occupationOrderAddress_CurrentOccupant"))) {
-            home.put("peopleLivingAtThisAddress", List.of(inputFieldsMap.get("occupationOrderAddress_CurrentOccupant")));
+        List<String> peopleLivingAtThisAddress = new ArrayList<>();
+        if (StringUtils.hasText(inputFieldsMap.get("occupationOrderAddress_CurrentOccupant_applicant"))) {
+            peopleLivingAtThisAddress.add(inputFieldsMap.get("occupationOrderAddress_CurrentOccupant_applicant"));
+        }
+        if (StringUtils.hasText(inputFieldsMap.get("occupationOrderAddress_CurrentOccupant_respondent"))) {
+            peopleLivingAtThisAddress.add(inputFieldsMap.get("occupationOrderAddress_CurrentOccupant_respondent"));
+        }
+        if (StringUtils.hasText(inputFieldsMap.get("occupationOrderAddress_CurrentOccupant_children"))) {
+            peopleLivingAtThisAddress.add(inputFieldsMap.get("occupationOrderAddress_CurrentOccupant_children"));
+        }
+        if (StringUtils.hasText(inputFieldsMap.get("occupationOrderAddress_CurrentOccupant_other"))) {
+            peopleLivingAtThisAddress.add(inputFieldsMap.get("occupationOrderAddress_CurrentOccupant_other"));
+        }
+        if (!CollectionUtils.isEmpty(peopleLivingAtThisAddress)) {
+            home.put("peopleLivingAtThisAddress", peopleLivingAtThisAddress);
         }
         if (StringUtils.hasText(inputFieldsMap.get(CHILD_LIVE_ADDRESS_ROW_1))) {
             home.put("doAnyChildrenLiveAtAddress", YES);
+        } else {
+            home.put("doAnyChildrenLiveAtAddress", NO);
         }
     }
 
