@@ -514,16 +514,18 @@ public class BulkScanC100ConditionalTransformerService {
     private void transformChildDetails(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
         List<Map<String, Object>> children = (List<Map<String, Object>>) populatedMap.get("children");
         List<String> childLiveWith = transformChildLiveWith(inputFieldsMap);
-        populatedMap.put("children", populateChildren(children, childLiveWith));
+        populatedMap.put("children", populateChildren(children, childLiveWith, inputFieldsMap));
     }
 
-    private List<Map<String, Object>> populateChildren(List<Map<String, Object>> children, List<String> childLiveWith) {
+    private List<Map<String, Object>> populateChildren(List<Map<String, Object>> children, List<String> childLiveWith,
+                                                       Map<String, String> inputFieldsMap) {
         List<Map<String, Object>> childrenList = new ArrayList<>();
         for (Map<String, Object> child : children) {
             child.put("id", UUID.randomUUID());
             Map<String, Object> childValue = (Map<String, Object>) child.get(VALUE);
             if (null != childValue.get("firstName")) {
                 childValue.put("childLiveWith", childLiveWith);
+                childValue.put("parentalResponsibilityDetails", inputFieldsMap.get("parentalResponsibilityDetails"));
                 child.put(VALUE, childValue);
                 childrenList.add(child);
             }
