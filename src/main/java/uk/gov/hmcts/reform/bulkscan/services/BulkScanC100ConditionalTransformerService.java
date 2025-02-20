@@ -88,6 +88,8 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
 import java.util.UUID;
+
+import com.microsoft.applicationinsights.core.dependencies.google.gson.internal.LinkedTreeMap;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
@@ -162,7 +164,80 @@ public class BulkScanC100ConditionalTransformerService {
         //transformMediatorCertifiesMiamExemption(inputFieldsMap);
         //transformMediatorCertifiesApplicantAttendMiam(inputFieldsMap);
         //transformMediatorCertifiesDisputeResolutionNotProceeding(inputFieldsMap);
+        transformFlags(inputFieldsMap, populatedMap);
         populatedMap.values().removeIf(Objects::isNull);
+    }
+
+    private void transformFlags(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
+        List<String> details = new ArrayList<>();
+        if (StringUtils.isNotEmpty(inputFieldsMap.get("applicantOneFirstName"))) {
+            LinkedTreeMap caApplicant1ExternalFlags = (LinkedTreeMap) populatedMap.get("caApplicant1ExternalFlags");
+            LinkedTreeMap caApplicant1InternalFlags = (LinkedTreeMap) populatedMap.get("caApplicant1InternalFlags");
+            caApplicant1InternalFlags.put("partyName", inputFieldsMap.get("applicantOneFirstName") + " "
+                + inputFieldsMap.get("applicantOneLastName"));
+            caApplicant1InternalFlags.put("roleOnCase", "Applicant 1");
+            caApplicant1ExternalFlags.put("details", details);
+            caApplicant1InternalFlags.put("details", details);
+            caApplicant1ExternalFlags.put("partyName", inputFieldsMap.get("applicantOneFirstName") + " "
+                + inputFieldsMap.get("applicantOneLastName"));
+            caApplicant1ExternalFlags.put("roleOnCase", "Applicant 1");
+            populatedMap.put("caApplicant1ExternalFlags", caApplicant1ExternalFlags);
+            populatedMap.put("caApplicant1InternalFlags", caApplicant1InternalFlags);
+        } else {
+            populatedMap.remove("caApplicant1ExternalFlags");
+            populatedMap.remove("caApplicant1InternalFlags");
+        }
+        if (StringUtils.isNotEmpty(inputFieldsMap.get("applicantTwoFirstName"))) {
+            LinkedTreeMap caApplicant2ExternalFlags = (LinkedTreeMap) populatedMap.get("caApplicant2ExternalFlags");
+            LinkedTreeMap caApplicant2InternalFlags = (LinkedTreeMap) populatedMap.get("caApplicant2InternalFlags");
+            caApplicant2InternalFlags.put("partyName", inputFieldsMap.get("applicantTwoFirstName") + " "
+                + inputFieldsMap.get("applicantTwoLastName"));
+            caApplicant2ExternalFlags.put("details", details);
+            caApplicant2InternalFlags.put("details", details);
+            caApplicant2InternalFlags.put("roleOnCase", "Applicant 2");
+            caApplicant2ExternalFlags.put("partyName", inputFieldsMap.get("applicantTwoFirstName") + " "
+                + inputFieldsMap.get("applicantTwoLastName"));
+            caApplicant2ExternalFlags.put("roleOnCase", "Applicant 2");
+            populatedMap.put("caApplicant2ExternalFlags", caApplicant2ExternalFlags);
+            populatedMap.put("caApplicant2InternalFlags", caApplicant2InternalFlags);
+        } else {
+            populatedMap.remove("caApplicant2ExternalFlags");
+            populatedMap.remove("caApplicant2InternalFlags");
+        }
+        if (StringUtils.isNotEmpty(inputFieldsMap.get("respondentOneFirstName"))) {
+            LinkedTreeMap caRespondent1ExternalFlags = (LinkedTreeMap) populatedMap.get("caRespondent1ExternalFlags");
+            caRespondent1ExternalFlags.put("partyName", inputFieldsMap.get("respondentOneFirstName") + " "
+                + inputFieldsMap.get("respondentOneLastName"));
+            caRespondent1ExternalFlags.put("roleOnCase", "Respondent 1");
+            LinkedTreeMap caRespondent1InternalFlags = (LinkedTreeMap) populatedMap.get("caRespondent1InternalFlags");
+            caRespondent1InternalFlags.put("partyName", inputFieldsMap.get("respondentOneFirstName") + " "
+                + inputFieldsMap.get("respondentOneLastName"));
+            caRespondent1InternalFlags.put("roleOnCase", "Respondent 1");
+            caRespondent1ExternalFlags.put("details", details);
+            caRespondent1InternalFlags.put("details", details);
+            populatedMap.put("caRespondent1ExternalFlags", caRespondent1ExternalFlags);
+            populatedMap.put("caRespondent1InternalFlags", caRespondent1InternalFlags);
+        } else {
+            populatedMap.put("caRespondent1ExternalFlags", null);
+            populatedMap.put("caRespondent1InternalFlags", null);
+        }
+        if (StringUtils.isNotEmpty(inputFieldsMap.get("respondentTwoFirstName"))) {
+            LinkedTreeMap caRespondent2ExternalFlags = (LinkedTreeMap) populatedMap.get("caRespondent2ExternalFlags");
+            caRespondent2ExternalFlags.put("partyName", inputFieldsMap.get("respondentTwoFirstName") + " "
+                + inputFieldsMap.get("respondentTwoLastName"));
+            caRespondent2ExternalFlags.put("roleOnCase", "Respondent 2");
+            LinkedTreeMap caRespondent2InternalFlags = (LinkedTreeMap) populatedMap.get("caRespondent2ExternalFlags");
+            caRespondent2InternalFlags.put("partyName", inputFieldsMap.get("respondentTwoFirstName") + " "
+                + inputFieldsMap.get("respondentTwoLastName"));
+            caRespondent2ExternalFlags.put("details", details);
+            caRespondent2InternalFlags.put("details", details);
+            caRespondent2InternalFlags.put("roleOnCase", "Respondent 2");
+            populatedMap.put("caRespondent2ExternalFlags", caRespondent2ExternalFlags);
+            populatedMap.put("caRespondent2InternalFlags", caRespondent2InternalFlags);
+        } else {
+            populatedMap.put("caRespondent2ExternalFlags", null);
+            populatedMap.put("caRespondent2InternalFlags", null);
+        }
     }
 
     private void transformPartyDetails(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap,

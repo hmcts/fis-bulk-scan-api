@@ -117,7 +117,7 @@ public class BulkScanC100Service implements BulkScanService {
         bulkScanC100ConditionalTransformerService.transform(
                 populatedMap, inputFieldsMap, bulkScanTransformationRequest);
         log.info("Populated map {}", populatedMap);
-        String caseName = buildCaseName(populatedMap);
+        String caseName = buildCaseName(inputFieldsMap);
         populatedMap.put("caseNameHmctsInternal", caseName);
         populatedMap.put("applicantCaseName", caseName);
         populatedMap.put("caseTypeOfApplication", "C100");
@@ -133,7 +133,7 @@ public class BulkScanC100Service implements BulkScanService {
                 .build();
     }
 
-    private String buildCaseName(Map<String, Object> populatedMap) {
+    private String buildCaseName(Map<String, String> populatedMap) {
         return populatedMap.get("applicantFirstName") + " " + populatedMap.get("applicantLastName")
             + " & " + populatedMap.get("respondentFirstName") + " " + populatedMap.get("respondentLastName");
     }

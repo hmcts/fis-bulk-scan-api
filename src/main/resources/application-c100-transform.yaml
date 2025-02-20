@@ -103,19 +103,6 @@ uk:
               #previousOrOngoingProceedings : previous_or_ongoingProceeding
               consentOrder : isConsentOrder
               welshLanguageRequirement : welshRequired
-
-#              miamTable:
-#                claimingExemptionMiam: exemption_to_attend_MIAM
-#                familyMediatorMiam: familyMember_Intimation_on_No_MIAM
-#                applicantAttendedMiam: attended_MIAM
-#              allegationsOfHarmOverviewTable :
-#                allegationsOfHarmDomesticAbuseYesNo: domesticAbuse
-#                allegationsOfHarmChildAbductionYesNo: childAbduction
-#                allegationsOfHarmChildAbuseYesNo: childAbuse
-#                allegationsOfHarmSubstanceAbuseYesNo : drugs_alcohol_substanceAbuse
-#                allegationsOfHarmOtherConcernsYesNo: otherSafety_or_welfareAbuse
-#              typeOfApplicationTable :
-#                applicationPermissionRequired : askingPermissionForApplication
               setOutReasonsBelow: null
               effortsMadeWithRespondents: respondent_effort
               doYouRequireAHearingWithReducedNotice: withoutNotice_abridged_or_informalNotice
@@ -125,16 +112,7 @@ uk:
               doYouRequireAWithoutNoticeHearing: withoutNotice_frustrateTheOrder
               c100RebuildHearingUrgency: urgency_reason
               setWithoutNoticeHearing: withoutNotice_frustrateTheOrder_reason
-#              otherProceedingsTable :
-#                previousOrOngoingProceedings : previous_or_ongoingProceeding
-#              otherProceedingsDetailsTable:
-#                - value:
-#                    previousOrOngoingProceedings: previous_or_ongoingProceeding
-#                    caseNumber: other_case_case_number
-#                    dateOrYear: other_case_date_or_year
-#                    nameOfCourt: other_case_name_of_court
-#                    nameOfChildrenInvolved: other_case_name_of_children
-#                    nameAndOffice: other_case_name_and_office
+
               respondents:
                 - value:
                     firstName: respondentOneFirstName
@@ -183,52 +161,31 @@ uk:
               litigationCapacityFactors: factorAffectingLitigationCapacity
               litigationCapacityReferrals: assessmentByAdultLearningTeam
               litigationCapacityOtherFactors: factorsAffectingPersonInCourt
-#              otherPeopleInTheCaseTable:
-#                - value:
-#                    firstName: otherPeopleOneFirstName
-#                    lastName: otherPeopleOneLastName
-#                    previousName: otherPeopleOnePreviousName
-#                    gender: otherPeopleOneGender
-#                    dateOfBirth: otherPeopleOneDateOfBirth
-#                    isDateOfBirthKnown: otherPeopleOneDateOfBirthDontKnow
-#                    AddressLine1: otherPeopleOneAddress
-#                    PostCode: otherPeopleOneAddressPostCode
-#                    isCurrentAddressKnown: otherPeopleOneAddressDontKnow
-#                    relationshipToChild: otherPeopleOnerelationshipToChild
-#                - value:
-#                    firstName: otherPeopleTwoFirstName
-#                    lastName: otherPeopleTwoLastName
-#                    previousName: otherPeopleTwoPreviousName
-#                    gender: otherPeopleTwoGender
-#                    dateOfBirth: otherPeopleTwoDateOfBirth
-#                    isDateOfBirthKnown: otherPeopleTwoDateOfBirthDontKnow
-#                    AddressLine1: otherPeopleTwoAddress
-#                    PostCode: otherPeopleTwoAddressPostCode
-#                    isCurrentAddressKnown: otherPeopleTwoAddressDontKnow
-#                    relationshipToChild: otherPeopleTworelationshipToChild
-#              otherChildrenNotInTheCaseTable:
-#                - value:
-#                    fullName: otherChildren1FullName
-#                    DateOfBirth: otherChildren1DateOfBirth
-#                    DateOfBirthDontKnow: otherChildren1DateOfBirthDontKnow
-#                    Gender: otherChildren1Gender
-#                    RelationshipToApplicants: otherChildren1RelationshipToApplicants
-#                    RelationshipToRespondents: otherChildren1RelationshipToRespondents
-#                - value:
-#                    fullName: otherChildren2FullName
-#                    DateOfBirth: otherChildren2DateOfBirth
-#                    DateOfBirthDontKnow: otherChildren2DateOfBirthDontKnow
-#                    Gender: otherChildren2Gender
-#                    RelationshipToApplicants: otherChildren2RelationshipToApplicants
-#                    RelationshipToRespondents: otherChildren2RelationshipToRespondents
-              #checklistSection1Completed: section1RelatingToChildCompleted
-              #checklistSection2To4Completed: section2Section3Section4RelatingToMediationCompleted
-              #checklistSection5To6Completed: section5Section6RelatingToApplicationReasonCompleted
-              #checklistSection7Completed: section7RelatingToOtherCourtFullyCompleted
-              #checklistSection8To10Completed: section8Section9Section10FactorsAffectingProceedingsCompleted
-              #checklistSection11Completed: section11RelatingToApplicantCompleted
-              #checklistSection12To14Completed: sections12Section13Section14RelatingToRespondentAndOthersNoticeCompleted
-              #checklistSection16Completed: section16RelatingToTruthStatementCompleted
+              caApplicant1ExternalFlags:
+                groupId: caApplicant1
+                visibility: External
+              caApplicant1InternalFlags:
+                groupId: caApplicant1
+                visibility: Internal
+              caApplicant2ExternalFlags:
+                groupId: caApplicant2
+                visibility: External
+              caApplicant2InternalFlags:
+                groupId: caApplicant2
+                visibility: Internal
+              caRespondent1ExternalFlags:
+                groupId: caRespondent1
+                visibility: External
+              caRespondent1InternalFlags:
+                groupId: caRespondent1
+                visibility: Internal
+              caRespondent2ExternalFlags:
+                groupId: caRespondent2
+                visibility: External
+              caRespondent2InternalFlags:
+                groupId: caRespondent2
+                visibility: Internal
+
               #printFullName: printFullName
               #agreedBy: applicantSolicitorsFirmName
               #SignedDate: applicantAndApplicantsolicitorSignedDate

@@ -239,7 +239,7 @@ public class BulkScanFL401Service implements BulkScanService {
         populatedMap.put("caseTypeOfApplication", "FL401");
         populatedMap.put("courtName", getNearestFamilyCourt(inputFieldsMap.get("applicant_Address_Postcode")));
 
-        String caseName = buildCaseName(populatedMap);
+        String caseName = buildCaseName(inputFieldsMap);
         populatedMap.put("caseNameHmctsInternal", caseName);
         populatedMap.put("applicantCaseName", caseName);
         Map<String, String> caseTypeAndEventId =
@@ -282,7 +282,7 @@ public class BulkScanFL401Service implements BulkScanService {
         return List.of(String.format(VALID_DATE_WARNING_MESSAGE, message));
     }
 
-    private String buildCaseName(Map<String, Object> populatedMap) {
+    private String buildCaseName(Map<String, String> populatedMap) {
         return populatedMap.get("applicant1_firstName") + " " + populatedMap.get("applicant1_lastName")
             + " & " + populatedMap.get("respondent1_firstName") + " " + populatedMap.get("respondent1_lastName");
     }
