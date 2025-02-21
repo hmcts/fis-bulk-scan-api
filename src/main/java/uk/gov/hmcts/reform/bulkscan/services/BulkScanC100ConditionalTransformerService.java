@@ -1009,7 +1009,7 @@ public class BulkScanC100ConditionalTransformerService {
         List<ScannedDocuments> scannedDocumentsList =
             bulkScanTransformationRequest.getScannedDocuments();
         return nonNull(scannedDocumentsList)
-            ? bulkScanTransformationRequest.getScannedDocuments().stream()
+            ? scannedDocumentsList.stream()
             .map(
                 scanDocument ->
                     ResponseScanDocumentValueNew.builder()
