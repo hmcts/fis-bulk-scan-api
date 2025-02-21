@@ -36,7 +36,6 @@ import uk.gov.hmcts.reform.bulkscan.clients.CourtFinderApi;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanFormValidationConfigManager;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanTransformConfigManager;
 import uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants;
-import uk.gov.hmcts.reform.bulkscan.enums.FL401StopRespondentBehaviourChildEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.FL401StopRespondentEnum;
 import uk.gov.hmcts.reform.bulkscan.exception.PostCodeValidationException;
 import uk.gov.hmcts.reform.bulkscan.group.util.BulkScanGroupValidatorUtil;
@@ -149,10 +148,8 @@ public class BulkScanFL401Service implements BulkScanService {
                 }
             } catch (PostCodeValidationException e) {
                 // if postocde is wrong then postcode lookup service will throw exception
-                if (e.getCause() instanceof HttpClientErrorException
-                        && ((HttpClientErrorException) e.getCause())
-                                .getStatusCode()
-                                .equals(HttpStatus.BAD_REQUEST)) {
+                if (e.getCause() instanceof HttpClientErrorException cause
+                        && HttpStatus.BAD_REQUEST.equals(cause.getStatusCode())) {
                     return List.of(String.format(POST_CODE_MESSAGE, APPLICANT_ADDRESS_POSTCODE));
                 }
             }
@@ -188,18 +185,6 @@ public class BulkScanFL401Service implements BulkScanService {
         if (!stopRespondentFromDoing) {
             warningLst.add(
                     String.format(MANDATORY_ERROR_MESSAGE, "Respondent's behaviour options 6.2 "));
-        }
-        boolean stopRespondentFromDoingToChild = false;
-        for (FL401StopRespondentBehaviourChildEnum l :
-                EnumSet.allOf(FL401StopRespondentBehaviourChildEnum.class)) {
-            String key = l.getKey();
-            if (hasText(inputFieldMap.get(key)) && inputFieldMap.get(key).equalsIgnoreCase(YES)) {
-                stopRespondentFromDoingToChild = true;
-            }
-        }
-        if (!stopRespondentFromDoingToChild) {
-            warningLst.add(
-                    String.format(MANDATORY_ERROR_MESSAGE, "Respondent's behaviour options 6.3"));
         }
     }
 
