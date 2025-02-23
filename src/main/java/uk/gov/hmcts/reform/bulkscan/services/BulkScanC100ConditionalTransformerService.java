@@ -1015,19 +1015,13 @@ public class BulkScanC100ConditionalTransformerService {
                     ResponseScanDocumentValueNew.builder()
                         .id(UUID.randomUUID().toString())
                         .value(
-                            ResponseScanDocumentNew.builder().url(ResponseScanDocument.builder()
-                                .url(
-                                    scanDocument
-                                        .getScanDocument()
-                                        .getUrl())
-                                .binaryUrl(
-                                    scanDocument
-                                        .getScanDocument()
-                                        .getBinaryUrl())
-                                .filename(
-                                    scanDocument
-                                        .getScanDocument()
-                                        .getFilename())
+                            ResponseScanDocumentNew.builder()
+                                .scannedDate(scanDocument.getScannedDate())
+                                .controlNumber(scanDocument.getControlNumber())
+                                .fileName(scanDocument.getFileName())
+                                .url(ResponseScanDocument.builder().url(scanDocument.getScanDocument().getUrl())
+                                .binaryUrl(scanDocument.getScanDocument().getBinaryUrl())
+                                .filename(scanDocument.getScanDocument().getFilename())
                                 .build()).build())
                         .build())
             .toList()
