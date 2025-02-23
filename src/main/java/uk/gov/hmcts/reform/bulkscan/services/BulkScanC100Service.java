@@ -121,6 +121,7 @@ public class BulkScanC100Service implements BulkScanService {
         populatedMap.put("caseNameHmctsInternal", caseName);
         populatedMap.put("applicantCaseName", caseName);
         populatedMap.put("caseTypeOfApplication", "C100");
+        populatedMap.put("caseCreatedBy", "BULK_SCAN");
         Map<String, String> caseTypeAndEventId =
             transformConfigManager.getTransformationConfig(FormType.C100).getCaseFields();
         return BulkScanTransformationResponse.builder()
@@ -134,8 +135,8 @@ public class BulkScanC100Service implements BulkScanService {
     }
 
     private String buildCaseName(Map<String, String> populatedMap) {
-        return populatedMap.get("applicantFirstName") + " " + populatedMap.get("applicantLastName")
-            + " & " + populatedMap.get("respondentFirstName") + " " + populatedMap.get("respondentLastName");
+        return populatedMap.get("applicant1_firstName") + " " + populatedMap.get("applicant1_lastName")
+            + " & " + populatedMap.get("respondent1_firstName") + " " + populatedMap.get("respondent1_lastName");
     }
 
     private String getValue(OcrDataField ocrDataField) {
