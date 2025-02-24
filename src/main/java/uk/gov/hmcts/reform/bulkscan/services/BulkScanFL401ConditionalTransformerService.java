@@ -116,6 +116,9 @@ public class BulkScanFL401ConditionalTransformerService {
         //transform Home
         transformHome(populatedMap, inputFieldsMap);
 
+        //transform case flags
+        transformCaseFlags(inputFieldsMap, populatedMap);
+
         //transform attending the hearing
         getInterpreterNeeds(inputFieldsMap, populatedMap);
         LinkedTreeMap stmtOfTruth = (LinkedTreeMap) populatedMap.get("fl401StmtOfTruth");
@@ -124,6 +127,44 @@ public class BulkScanFL401ConditionalTransformerService {
                 inputFieldsMap.get("StatementOfTruth_Date_DD"),
                 inputFieldsMap.get("StatementOfTruth_Date_MM"),
                 inputFieldsMap.get("StatementOfTruth_Date_YYYY")));
+        }
+    }
+
+    private void transformCaseFlags(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
+        List<String> details = new ArrayList<>();
+        if (org.apache.commons.lang3.StringUtils.isNotEmpty(inputFieldsMap.get("applicantFirstName"))) {
+            LinkedTreeMap daApplicantExternalFlags = (LinkedTreeMap) populatedMap.get("daApplicantExternalFlags");
+            LinkedTreeMap daApplicantInternalFlags = (LinkedTreeMap) populatedMap.get("daApplicantInternalFlags");
+            daApplicantInternalFlags.put("partyName", inputFieldsMap.get("applicantFirstName") + " "
+                + inputFieldsMap.get("applicantLastName"));
+            daApplicantInternalFlags.put("roleOnCase", "Applicant");
+            daApplicantExternalFlags.put("details", details);
+            daApplicantInternalFlags.put("details", details);
+            daApplicantExternalFlags.put("partyName", inputFieldsMap.get("applicantFirstName") + " "
+                + inputFieldsMap.get("applicantLastName"));
+            daApplicantExternalFlags.put("roleOnCase", "Applicant");
+            populatedMap.put("daApplicantExternalFlags", daApplicantExternalFlags);
+            populatedMap.put("daApplicantInternalFlags", daApplicantInternalFlags);
+        } else {
+            populatedMap.remove("daApplicantExternalFlags");
+            populatedMap.remove("daApplicantInternalFlags");
+        }
+        if (org.apache.commons.lang3.StringUtils.isNotEmpty(inputFieldsMap.get("respondentFirstName"))) {
+            LinkedTreeMap daRespondentExternalFlags = (LinkedTreeMap) populatedMap.get("daRespondentExternalFlags");
+            daRespondentExternalFlags.put("partyName", inputFieldsMap.get("respondentFirstName") + " "
+                + inputFieldsMap.get("respondentLastName"));
+            daRespondentExternalFlags.put("roleOnCase", "Respondent");
+            LinkedTreeMap daRespondentInternalFlags = (LinkedTreeMap) populatedMap.get("daRespondentInternalFlags");
+            daRespondentInternalFlags.put("partyName", inputFieldsMap.get("respondentFirstName") + " "
+                + inputFieldsMap.get("respondentLastName"));
+            daRespondentInternalFlags.put("roleOnCase", "Respondent");
+            daRespondentExternalFlags.put("details", details);
+            daRespondentInternalFlags.put("details", details);
+            populatedMap.put("daRespondentExternalFlags", daRespondentExternalFlags);
+            populatedMap.put("daRespondentInternalFlags", daRespondentInternalFlags);
+        } else {
+            populatedMap.put("daRespondentExternalFlags", null);
+            populatedMap.put("daRespondentInternalFlags", null);
         }
     }
 

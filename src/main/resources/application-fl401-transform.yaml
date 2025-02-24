@@ -111,3 +111,16 @@ uk:
                             PostCode: LandlordDetails_Postcode
                 doesApplicantHaveHomeRights: HomeRights
                 furtherInformation: CourtToConsider
+
+              daApplicantExternalFlags:
+                groupId: daApplicant
+                visibility: External
+              daApplicantInternalFlags:
+                groupId: daApplicant
+                visibility: Internal
+              daRespondentExternalFlags:
+                groupId: daRespondent
+                visibility: External
+              daRespondentInternalFlags:
+                groupId: daRespondent
+                visibility: Internal
