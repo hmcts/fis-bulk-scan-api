@@ -268,8 +268,8 @@ public class BulkScanFL401Service implements BulkScanService {
     }
 
     private String buildCaseName(Map<String, String> populatedMap) {
-        return populatedMap.get("applicant1_firstName") + " " + populatedMap.get("applicant1_lastName")
-            + " & " + populatedMap.get("respondent1_firstName") + " " + populatedMap.get("respondent1_lastName");
+        return populatedMap.get("applicantFirstName") + " " + populatedMap.get("applicantLastName")
+            + " & " + populatedMap.get("respondentFirstName") + " " + populatedMap.get("respondentLastName");
     }
 
     private List<String> validateDate(String date, String fieldName) {
