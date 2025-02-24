@@ -13,7 +13,7 @@ uk:
               - applicantDoB_DD
               - applicantDoB_MM
               - applicantDoB_YYYY
-              - applicantContact_Confidentiality
+              - ApplicantContact_Confidentiality
               - ApplyingFor_NonMolestationOrder
             optionalFields:
               - orderApplyingFor_occupation

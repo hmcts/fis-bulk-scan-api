@@ -59,7 +59,7 @@ uk:
                 - applicant_PhoneNumber
                 - applicant_Email
               dependentFieldValue: "*"
-              groupFieldName: applicantContact_Confidentiality
+              groupFieldName: ApplicantContact_Confidentiality
               groupValidationValue: "No"
               requiredFieldCount: 5
               sectionName: "2 - your details"

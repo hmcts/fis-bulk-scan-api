@@ -82,7 +82,7 @@ public final class BulkScanFl401Constants {
     public static final String APPLICANT_DATE_OF_BIRTH_MESSAGE = "Applicant date of birth";
     public static final String FL401_APPLICANT_TABLE = "fl401ApplicantTable";
     public static final String APPLICANT_CONTACT_CONFIDENTIALITY =
-            "applicantContact_Confidentiality";
+            "ApplicantContact_Confidentiality";
     public static final String IS_ADDRESS_CONFIDENTIAL = "isAddressConfidential";
     public static final String IS_PHONE_NUMBER_CONFIDENTIAL = "isPhoneNumberConfidential";
     public static final String IS_EMAIL_ADDRESS_CONFIDENTIAL = "isEmailAddressConfidential";

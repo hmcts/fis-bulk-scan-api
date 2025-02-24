@@ -11,7 +11,7 @@
       "applicantDoB_DD is missing",
       "applicantDoB_MM is missing",
       "applicantDoB_YYYY is missing",
-      "applicantContact_Confidentiality is missing",
+      "ApplicantContact_Confidentiality is missing",
       "Section 4.1 - Applicant must have a relationship with the respondent"
     ]
 }
