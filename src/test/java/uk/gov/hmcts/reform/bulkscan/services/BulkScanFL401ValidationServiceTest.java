@@ -157,7 +157,7 @@ class BulkScanFL401ValidationServiceTest {
         bulkScanValidationRequest.getOcrdatafields().stream()
                 .filter(
                         eachField ->
-                                APPLICANT_RESPONDENT_OTHER_RELATIONSHIP_FIELD.equalsIgnoreCase(
+                                RESPONDENT_ENGAGED_PROPOSED_CIVIL_RELATIONSHIP_FIELD.equalsIgnoreCase(
                                         eachField.getName()))
                 .forEach(field -> field.setValue(YES));
 
@@ -167,13 +167,12 @@ class BulkScanFL401ValidationServiceTest {
         bulkScanValidationResponse =
                 bulkScanFL401ValidationService.validateApplicantRespondentRelationhip(
                         inputFieldsMap, bulkScanValidationResponse);
-        assertEquals(Status.ERRORS, bulkScanValidationResponse.status);
+        assertEquals(Status.WARNINGS, bulkScanValidationResponse.status);
         assertTrue(
                 bulkScanValidationResponse
-                        .getErrors()
+                        .getWarnings()
                         .contains(
-                                "Section 4.4 - Applicant must have a relationship with the"
-                                        + " respondent"));
+                                "Section 4.1 - Applicant has more than one relationship with the respondent"));
     }
 
     @Test
@@ -186,13 +185,6 @@ class BulkScanFL401ValidationServiceTest {
                 mapper.readValue(
                         readFileFrom(FL401_VALIDATION_REQUEST_PATH),
                         BulkScanValidationRequest.class);
-
-        bulkScanValidationRequest.getOcrdatafields().stream()
-                .filter(
-                        eachField ->
-                                APPLICANT_RESPONDENT_OTHER_RELATIONSHIP_FIELD.equalsIgnoreCase(
-                                        eachField.getName()))
-                .forEach(field -> field.setValue(YES));
 
         bulkScanValidationRequest.getOcrdatafields().stream()
                 .filter(
@@ -213,7 +205,7 @@ class BulkScanFL401ValidationServiceTest {
                         eachField ->
                                 RESPONDENT_PREVIOUS_MARRIED_DATE_FIELD.equalsIgnoreCase(
                                         eachField.getName()))
-                .forEach(field -> field.setValue("2022-Dec-02"));
+                .forEach(field -> field.setValue("20"));
 
         Map<String, String> inputFieldsMap =
                 getOcrDataFieldsMap(bulkScanValidationRequest.getOcrdatafields());
@@ -221,17 +213,11 @@ class BulkScanFL401ValidationServiceTest {
         bulkScanValidationResponse =
                 bulkScanFL401ValidationService.validateApplicantRespondentRelationhip(
                         inputFieldsMap, bulkScanValidationResponse);
-        assertEquals(Status.ERRORS, bulkScanValidationResponse.status);
-        assertTrue(
-                bulkScanValidationResponse
-                        .getErrors()
-                        .contains(
-                                "Please enter valid date for Applicant respondent relationship"
-                                        + " Start date"));
+        assertEquals(Status.SUCCESS, bulkScanValidationResponse.status);
     }
 
     @Test
-    @DisplayName("FL401 When 'Non of the above' is chosen then valid dates should generate SUCCESS")
+    @DisplayName("FL401 When 'None of the above' is chosen then valid dates should generate SUCCESS")
     void testFL401CompliantDateFormatsForApplicantRespondentRelationshipsGiveSuccess()
             throws IOException {
         BulkScanValidationRequest bulkScanValidationRequest =
@@ -265,7 +251,7 @@ class BulkScanFL401ValidationServiceTest {
                         eachField ->
                                 RESPONDENT_PREVIOUS_MARRIED_DATE_FIELD.equalsIgnoreCase(
                                         eachField.getName()))
-                .forEach(field -> field.setValue("2003-12-02"));
+                .forEach(field -> field.setValue("20"));
 
         Map<String, String> inputFieldsMap =
                 getOcrDataFieldsMap(bulkScanValidationRequest.getOcrdatafields());

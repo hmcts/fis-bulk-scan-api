@@ -305,6 +305,30 @@
       "value": "2002"
     },
     {
+      "name": "relationship_End_DD",
+      "value": "02"
+    },
+    {
+      "name": "relationship_End_MM",
+      "value": "Dec"
+    },
+    {
+      "name": "relationship_End_YYYY",
+      "value": "2002"
+    },
+    {
+      "name": "relationship_PreviousMarried_DD",
+      "value": "02"
+    },
+    {
+      "name": "relationship_PreviousMarried_MM",
+      "value": "Dec"
+    },
+    {
+      "name": "relationship_PreviousMarried_YYYY",
+      "value": "2002"
+    },
+    {
       "name": "appliantRespondent_Relationship_10",
       "value": "No"
     },

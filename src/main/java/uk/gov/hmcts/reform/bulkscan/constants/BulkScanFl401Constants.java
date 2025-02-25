@@ -134,7 +134,7 @@ public final class BulkScanFl401Constants {
     public static final String RESPONDENT_RELATIONSHIP_END_DATE_FIELD =
             "appliantRespondent_Relationship_EndDate";
     public static final String RESPONDENT_PREVIOUS_MARRIED_DATE_FIELD =
-            "appliantRespondent_PreviousMarried_Date";
+            "relationship_PreviousMarried_DD";
     public static final String RESPONDENT_MARRIED_CIVIL_RELATIONSHIP_FIELD =
             "appliantRespondent_Relationship_1";
     public static final String RESPONDENT_FORMERLY_MARRIED_CIVIL_RELATIONSHIP_FIELD =

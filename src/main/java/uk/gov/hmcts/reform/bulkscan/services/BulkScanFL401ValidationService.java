@@ -76,10 +76,7 @@ public class BulkScanFL401ValidationService {
                 applicantRespondentRelationshipCounter(
                         ocrPryApplicantRespondentRelationshipFieldsMap));
 
-        if (ocrDataFieldsMap.containsKey(APPLICANT_RESPONDENT_OTHER_RELATIONSHIP_FIELD)
-                && ocrDataFieldsMap
-                        .get(APPLICANT_RESPONDENT_OTHER_RELATIONSHIP_FIELD)
-                        .equalsIgnoreCase(YES)) {
+        if (YES.equalsIgnoreCase(ocrDataFieldsMap.get(APPLICANT_RESPONDENT_OTHER_RELATIONSHIP_FIELD))) {
             final Map<String, String> ocrSecApplicantRespondentRelationshipFieldsMap =
                 new TreeMap<>(
                     getApplicantRespondentRelationshipFieldsMap(
@@ -96,6 +93,7 @@ public class BulkScanFL401ValidationService {
                     FL401_RESPONDENT_RELATIONSHIP_TO_YOU_SECTION,
                     applicantRespondentRelationshipCounter(
                             ocrSecApplicantRespondentRelationshipFieldsMap));
+        } else if (warningItems.isEmpty() && errorItems.isEmpty()) {
             String startDate = buildDate(
                 ocrDataFieldsMap.get("relationship_Start_DD"),
                 ocrDataFieldsMap.get("relationship_Start_MM"),
@@ -109,10 +107,10 @@ public class BulkScanFL401ValidationService {
                 ocrDataFieldsMap.get("relationship_PreviousMarried_MM"),
                 ocrDataFieldsMap.get("relationship_PreviousMarried_YYYY"));
             bulkScanValidationResponse.addErrors(
-                    validateInputDateWithFieldSummary(
-                            startDate,
-                            APPLICANT_RESPONDENT_RELATIONSHIP_DATE,
-                            FIELD_SUMMARY_START));
+                validateInputDateWithFieldSummary(
+                    startDate,
+                    APPLICANT_RESPONDENT_RELATIONSHIP_DATE,
+                    FIELD_SUMMARY_START));
             bulkScanValidationResponse.addWarning(
                 validateInputDateWithFieldSummary(
                     endDate,
@@ -163,7 +161,7 @@ public class BulkScanFL401ValidationService {
         if (StringUtils.isBlank(dd) || StringUtils.isBlank(mm) || StringUtils.isBlank(yyyy)) {
             return null;
         }
-        return dd + "/" + mm + "/" + yyyy;
+        return yyyy + "-" + mm + "-" + dd;
     }
 
     private void setApplicantRespondentErrorWarningMsg(
@@ -202,6 +200,9 @@ public class BulkScanFL401ValidationService {
                         YES)) {
                     relationshipCounter++;
                 }
+            }
+            if (StringUtils.isNotEmpty(ocrApplicantRespondentFieldsMap.get("appliantRespondent_Relationship_23"))) {
+                relationshipCounter++;
             }
         }
 
@@ -275,7 +276,9 @@ public class BulkScanFL401ValidationService {
         final boolean validateDate = DateUtil.validateDate(dateFieldInput, datePattern);
 
         if (!validateDate) {
-            return List.of(String.format(VALID_DATE_WARNING_MESSAGE, fieldName));
+            List<String> warnings = new ArrayList<>();
+            warnings.add(String.format(VALID_DATE_WARNING_MESSAGE, fieldName));
+            return warnings;
         }
         return Collections.emptyList();
     }
