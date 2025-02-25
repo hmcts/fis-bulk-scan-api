@@ -224,16 +224,16 @@ public class BulkScanFL401ConditionalTransformerService {
         home.put("familyHome", buildFamilyHome(inputFieldsMap));
         List<String> peopleLivingAtThisAddress = new ArrayList<>();
         if (StringUtils.hasText(inputFieldsMap.get("occupationOrderAddress_CurrentOccupant_applicant"))) {
-            peopleLivingAtThisAddress.add(inputFieldsMap.get("occupationOrderAddress_CurrentOccupant_applicant"));
+            peopleLivingAtThisAddress.add("applicant");
         }
         if (StringUtils.hasText(inputFieldsMap.get("occupationOrderAddress_CurrentOccupant_respondent"))) {
-            peopleLivingAtThisAddress.add(inputFieldsMap.get("occupationOrderAddress_CurrentOccupant_respondent"));
+            peopleLivingAtThisAddress.add("respondent");
         }
         if (StringUtils.hasText(inputFieldsMap.get("occupationOrderAddress_CurrentOccupant_children"))) {
-            peopleLivingAtThisAddress.add(inputFieldsMap.get("occupationOrderAddress_CurrentOccupant_children"));
+            peopleLivingAtThisAddress.add("applicantChildren");
         }
         if (StringUtils.hasText(inputFieldsMap.get("occupationOrderAddress_CurrentOccupant_other"))) {
-            peopleLivingAtThisAddress.add(inputFieldsMap.get("occupationOrderAddress_CurrentOccupant_other"));
+            peopleLivingAtThisAddress.add("someoneElse");
         }
         if (!CollectionUtils.isEmpty(peopleLivingAtThisAddress)) {
             home.put("peopleLivingAtThisAddress", peopleLivingAtThisAddress);
