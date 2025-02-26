@@ -46,8 +46,8 @@ uk:
               sectionName: "3a - Domestic violence evidence"
             - groupNoMIAMChildProtectionConcerns:
               dependentFields:
-                - NoMIAM_subjectOfEnquiries_byLocalAuthority
-                - NoMIAM_subjectOfCPP_byLocalAuthority
+                - noMIAM_subjectOfEnquiries_byLocalAuthority
+                - noMIAM_subjectOfCPP_byLocalAuthority
               dependentFieldValue: "Yes"
               groupFieldName: NoMIAM_childProtectionConcerns
               groupValidationValue: "True"
@@ -152,7 +152,7 @@ uk:
               sectionName: "4b - Mediator Certifies Attended MIAM"
             - groupMediatorCertifiesDisputeResolutionNotProceeding:
               dependentFields:
-                - mediationNotProceeding_applicantAttendedMIAMAlone
+                - mediationNotProceeding_applicationAttendedMIAMAlone
                 - mediationNotProceeding_applicantsAndRespondentsAttendedMIAM
                 - mediationNotProceeding_hasStartedButBrokenWithSomeIssue
               dependentFieldValue: "true"

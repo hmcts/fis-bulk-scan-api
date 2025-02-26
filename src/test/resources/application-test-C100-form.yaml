@@ -137,8 +137,8 @@ uk:
               - NoMIAM_PreviousAttendence
               - NoMIAM_otherReasons
               - NoMIAM_otherExceptions
-              - NoMIAM_subjectOfEnquiries_byLocalAuthority
-              - NoMIAM_subjectOfCPP_byLocalAuthority
+              - noMIAM_subjectOfEnquiries_byLocalAuthority
+              - noMIAM_subjectOfCPP_byLocalAuthority
               - NoMIAM_urgency_risk_to_life_liberty_or_safety
               - NoMIAM_urgency_riskOfHarm
               - NoMIAM_urgency_risk_to_unlawfulRemoval
@@ -286,7 +286,7 @@ uk:
               - applicantOnly_AttendedMIAMTogether
               - applicantAndRespondentParty_AttendedMIAMSeparately
               - respondentPartyArranged_ToAttendMIAMSeparately
-              - mediationNotProceeding_applicantAttendedMIAMAlone
+              - mediationNotProceeding_applicationAttendedMIAMAlone
               - mediationNotProceeding_applicantsAndRespondentsAttendedMIAM
               - mediationNotProceeding_hasStartedButBrokenWithSomeIssue
               - fmc_RegistrationNumber

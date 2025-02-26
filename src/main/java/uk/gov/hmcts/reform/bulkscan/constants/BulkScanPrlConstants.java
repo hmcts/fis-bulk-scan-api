@@ -201,7 +201,7 @@ public final class BulkScanPrlConstants {
     public static final String MEDIATOR_CERTIFIES_DISPUTE_RESOLUTION_NOT_PROCEEDING =
             "mediatorCertifiesDisputeResolutionNotProceeding";
     public static final String MEDIATION_NOT_PROCEEDING_APPLICANT_ATTENDED_MIAM_ALONE =
-            "mediationNotProceeding_applicantAttendedMIAMAlone";
+            "mediationNotProceeding_applicationAttendedMIAMAlone";
     public static final String MEDIATION_NOT_PROCEEDING_APPLICANTS_AND_RESPONDENTS_ATTENDED_MIAM =
             "mediationNotProceeding_applicantsAndRespondentsAttendedMIAM";
     public static final String MEDIATION_NOT_PROCEEDING_HASSTARTED_BUT_BROKEN_WITH_SOMEISSUE =

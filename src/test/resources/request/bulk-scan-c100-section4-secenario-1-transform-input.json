@@ -377,11 +377,11 @@
       "value": "miamOtherGroundsChecklistEnum_Value_9"
     },
     {
-      "name": "NoMIAM_subjectOfEnquiries_byLocalAuthority",
+      "name": "noMIAM_subjectOfEnquiries_byLocalAuthority",
       "value": "true"
     },
     {
-      "name": "NoMIAM_subjectOfCPP_byLocalAuthority",
+      "name": "noMIAM_subjectOfCPP_byLocalAuthority",
       "value": "true"
     },
     {
@@ -937,7 +937,7 @@
       "value": "true"
     },
     {
-      "name": "mediationNotProceeding_applicantAttendedMIAMAlone",
+      "name": "mediationNotProceeding_applicationAttendedMIAMAlone",
       "value": "true"
     },
     {

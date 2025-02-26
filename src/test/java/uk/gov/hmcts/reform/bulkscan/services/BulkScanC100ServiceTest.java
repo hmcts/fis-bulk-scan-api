@@ -480,7 +480,7 @@ class BulkScanC100ServiceTest {
         c100GetProtectionConcernsWarningData.addAll(TestDataC100Util.getData());
 
         OcrDataField subjectOfEnquiries = new OcrDataField();
-        subjectOfEnquiries.setName("NoMIAM_subjectOfEnquiries_byLocalAuthority");
+        subjectOfEnquiries.setName("noMIAM_subjectOfEnquiries_byLocalAuthority");
         subjectOfEnquiries.setValue("Yes");
 
         c100GetProtectionConcernsWarningData.add(subjectOfEnquiries);

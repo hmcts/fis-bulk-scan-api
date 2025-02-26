@@ -654,7 +654,7 @@ public final class TestDataC100Util {
         fieldList.add(ocrNoMiamchildProtectionConcernsField);
 
         OcrDataField ocrNoMiamSubjectOfEnquiriesField = new OcrDataField();
-        ocrNoMiamSubjectOfEnquiriesField.setName("NoMIAM_subjectOfEnquiries_byLocalAuthority");
+        ocrNoMiamSubjectOfEnquiriesField.setName("noMIAM_subjectOfEnquiries_byLocalAuthority");
         ocrNoMiamSubjectOfEnquiriesField.setValue(TICK_BOX_YES);
         fieldList.add(ocrNoMiamSubjectOfEnquiriesField);
 
