@@ -24,10 +24,10 @@ public final class BulkScanFl401Constants {
     public static final String CHILD_LIVE_ADDRESS_ROW_2 = "childLivesAtAddress_Row2";
     public static final String CHILD_LIVE_ADDRESS_ROW_3 = "childLivesAtAddress_Row3";
     public static final String CHILD_LIVE_ADDRESS_ROW_4 = "childLivesAtAddress_Row4";
-    public static final String OTHER_CHILD_LIVE_ADDRESS_ROW_1 = "otherChildren_Row1";
-    public static final String OTHER_CHILD_LIVE_ADDRESS_ROW_2 = "otherChildren_Row2";
-    public static final String OTHER_CHILD_LIVE_ADDRESS_ROW_3 = "otherChildren_Row3";
-    public static final String OTHER_CHILD_LIVE_ADDRESS_ROW_4 = "otherChildren_Row4";
+    public static final String OTHER_CHILD_LIVE_ADDRESS_ROW_1 = "OtherChildren_Row1";
+    public static final String OTHER_CHILD_LIVE_ADDRESS_ROW_2 = "OtherChildren_Row2";
+    public static final String OTHER_CHILD_LIVE_ADDRESS_ROW_3 = "OtherChildren_Row3";
+    public static final String OTHER_CHILD_LIVE_ADDRESS_ROW_4 = "OtherChildren_Row4";
 
     public static final String FULL_NAME = "fullName";
     public static final String DOB = "dateOfBirth";

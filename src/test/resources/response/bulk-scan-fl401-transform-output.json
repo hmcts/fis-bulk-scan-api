@@ -340,6 +340,6 @@
     }
   },
   "warnings": [
-    "The following fields are not configured with our system: [doAnyChildrenLiveAtAddress,otherChildren_Row1,otherChildren_Row2,otherChildren_Row3,otherChildren_Row4] "
+    "The following fields are not configured with our system: [doAnyChildrenLiveAtAddress,OtherChildren_Row1,OtherChildren_Row2,OtherChildren_Row3,OtherChildren_Row4] "
   ]
 }
