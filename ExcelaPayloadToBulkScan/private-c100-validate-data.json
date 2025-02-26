@@ -773,51 +773,51 @@
       "metadata_field_value": "Step Mother"
     },
     {
-      "metadata_field_name": "otherChildren1FullName",
+      "metadata_field_name": "otherChildrenOneFullName",
       "metadata_field_value": "Raymond King"
     },
     {
-      "metadata_field_name": "otherChildren1DateOfBirth",
+      "metadata_field_name": "otherChildrenOneDateOfBirth",
       "metadata_field_value": "22/02/2002"
     },
     {
-      "metadata_field_name": "otherChildren1DateOfBirthDontKnow",
+      "metadata_field_name": "otherChildrenOneDateOfBirthDontKnow",
       "metadata_field_value": ""
     },
     {
-      "metadata_field_name": "otherChildren1Gender",
+      "metadata_field_name": "otherChildrenOneGender",
       "metadata_field_value": "Male"
     },
     {
-      "metadata_field_name": "otherChildren1RelationshipToApplicants",
+      "metadata_field_name": "otherChildrenOneRelationshipToApplicants",
       "metadata_field_value": "Cousin"
     },
     {
-      "metadata_field_name": "otherChildren1RelationshipToRespondents",
+      "metadata_field_name": "otherChildrenOneRelationshipToRespondents",
       "metadata_field_value": ""
     },
     {
-      "metadata_field_name": "otherChildren2FullName",
+      "metadata_field_name": "OtherChildrenTwoFullName",
       "metadata_field_value": "Rachel Queen"
     },
     {
-      "metadata_field_name": "otherChildren2DateOfBirth",
+      "metadata_field_name": "OtherChildrenTwoDateOfBirth",
       "metadata_field_value": "23/02/2002"
     },
     {
-      "metadata_field_name": "otherChildren2DateOfBirthDontKnow",
+      "metadata_field_name": "OtherChildrenTwoDateOfBirthDontKnow",
       "metadata_field_value": ""
     },
     {
-      "metadata_field_name": "otherChildren2Gender",
+      "metadata_field_name": "OtherChildrenTwoGender",
       "metadata_field_value": "Female"
     },
     {
-      "metadata_field_name": "otherChildren2RelationshipToApplicants",
+      "metadata_field_name": "OtherChildrenTwoRelationshipToApplicants",
       "metadata_field_value": "Cousin"
     },
     {
-      "metadata_field_name": "otherChildren2RelationshipToRespondents",
+      "metadata_field_name": "OtherChildrenTwoRelationshipToRespondents",
       "metadata_field_value": ""
     },
     {

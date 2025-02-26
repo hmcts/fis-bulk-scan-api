@@ -245,18 +245,18 @@ uk:
               - otherPeople2AddressPostcode
               - otherPeople2AddressDontKnow
               - otherPeople2RelationshipToChild
-              - otherChildren1FullName
-              - otherChildren1DateOfBirth
-              - otherChildren1DateOfBirthDontKnow
-              - otherChildren1Gender
-              - otherChildren1RelationshipToApplicants
-              - otherChildren1RelationshipToRespondents
-              - otherChildren2FullName
-              - otherChildren2DateOfBirth
-              - otherChildren2Gender
-              - otherChildren2DateOfBirthDontKnow
-              - otherChildren2RelationshipToApplicants
-              - otherChildren2RelationshipToRespondents
+              - otherChildrenOneFullName
+              - otherChildrenOneDateOfBirth
+              - otherChildrenOneDateOfBirthDontKnow
+              - otherChildrenOneGender
+              - otherChildrenOneRelationshipToApplicants
+              - otherChildrenOneRelationshipToRespondents
+              - OtherChildrenTwoFullName
+              - OtherChildrenTwoDateOfBirth
+              - OtherChildrenTwoGender
+              - OtherChildrenTwoDateOfBirthDontKnow
+              - OtherChildrenTwoRelationshipToApplicants
+              - OtherChildrenTwoRelationshipToRespondents
               - section1RelatingToChildCompleted
               - section2Section3Section4RelatingToMediationCompleted
               - section5Section6RelatingToApplicationReasonCompleted
@@ -305,8 +305,8 @@ uk:
                   - respondent2DateOfBirth
                   - otherPeople1DateOfBirth
                   - otherPeople2DateOfBirth
-                  - otherChildren1DateOfBirth
-                  - otherChildren2DateOfBirth
+                  - otherChildrenOneDateOfBirth
+                  - OtherChildrenTwoDateOfBirth
                 regex: dd/MM/yyyy
               emailFields:
                 fieldNames:

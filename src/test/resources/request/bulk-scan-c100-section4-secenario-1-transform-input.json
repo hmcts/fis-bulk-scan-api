@@ -813,51 +813,51 @@
       "value": "Step Mother"
     },
     {
-      "name": "otherChildren1FullName",
+      "name": "otherChildrenOneFullName",
       "value": "Raymond King"
     },
     {
-      "name": "otherChildren1DateOfBirth",
+      "name": "otherChildrenOneDateOfBirth",
       "value": "22/02/2002"
     },
     {
-      "name": "otherChildren1DateOfBirthDontKnow",
+      "name": "otherChildrenOneDateOfBirthDontKnow",
       "value": ""
     },
     {
-      "name": "otherChildren1Gender",
+      "name": "otherChildrenOneGender",
       "value": "Male"
     },
     {
-      "name": "otherChildren1RelationshipToApplicants",
+      "name": "otherChildrenOneRelationshipToApplicants",
       "value": "Cousin"
     },
     {
-      "name": "otherChildren1RelationshipToRespondents",
+      "name": "otherChildrenOneRelationshipToRespondents",
       "value": ""
     },
     {
-      "name": "otherChildren2FullName",
+      "name": "OtherChildrenTwoFullName",
       "value": "Rachel Queen"
     },
     {
-      "name": "otherChildren2DateOfBirth",
+      "name": "OtherChildrenTwoDateOfBirth",
       "value": "23/02/2002"
     },
     {
-      "name": "otherChildren2DateOfBirthDontKnow",
+      "name": "OtherChildrenTwoDateOfBirthDontKnow",
       "value": ""
     },
     {
-      "name": "otherChildren2Gender",
+      "name": "OtherChildrenTwoGender",
       "value": "Female"
     },
     {
-      "name": "otherChildren2RelationshipToApplicants",
+      "name": "OtherChildrenTwoRelationshipToApplicants",
       "value": "Cousin"
     },
     {
-      "name": "otherChildren2RelationshipToRespondents",
+      "name": "OtherChildrenTwoRelationshipToRespondents",
       "value": ""
     },
     {

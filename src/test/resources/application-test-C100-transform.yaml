@@ -221,19 +221,19 @@ uk:
                     relationshipToChild: otherPeople2relationshipToChild
               otherChildrenNotInTheCaseTable:
                 - value:
-                    fullName: otherChildren1FullName
-                    DateOfBirth: otherChildren1DateOfBirth
-                    DateOfBirthDontKnow: otherChildren1DateOfBirthDontKnow
-                    Gender: otherChildren1Gender
-                    RelationshipToApplicants: otherChildren1RelationshipToApplicants
-                    RelationshipToRespondents: otherChildren1RelationshipToRespondents
+                    fullName: otherChildrenOneFullName
+                    DateOfBirth: otherChildrenOneDateOfBirth
+                    DateOfBirthDontKnow: otherChildrenOneDateOfBirthDontKnow
+                    Gender: otherChildrenOneGender
+                    RelationshipToApplicants: otherChildrenOneRelationshipToApplicants
+                    RelationshipToRespondents: otherChildrenOneRelationshipToRespondents
                 - value:
-                    fullName: otherChildren2FullName
-                    DateOfBirth: otherChildren2DateOfBirth
-                    DateOfBirthDontKnow: otherChildren2DateOfBirthDontKnow
-                    Gender: otherChildren2Gender
-                    RelationshipToApplicants: otherChildren2RelationshipToApplicants
-                    RelationshipToRespondents: otherChildren2RelationshipToRespondents
+                    fullName: OtherChildrenTwoFullName
+                    DateOfBirth: OtherChildrenTwoDateOfBirth
+                    DateOfBirthDontKnow: OtherChildrenTwoDateOfBirthDontKnow
+                    Gender: OtherChildrenTwoGender
+                    RelationshipToApplicants: OtherChildrenTwoRelationshipToApplicants
+                    RelationshipToRespondents: OtherChildrenTwoRelationshipToRespondents
               checklistSection1Completed: section1RelatingToChildCompleted
               checklistSection2To4Completed: section2Section3Section4RelatingToMediationCompleted
               checklistSection5To6Completed: section5Section6RelatingToApplicationReasonCompleted

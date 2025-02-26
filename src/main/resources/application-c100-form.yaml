@@ -123,6 +123,7 @@ uk:
               - applicantOneMobilePhoneNumber
               - applicantOneEmailAddress
               - applicantOneAllAddressesForLastFiveYears
+              - hasApplicantOneLivedAtThisAddressForOverFiveYears
               - hasApplicantTwoLivedAtThisAddressForOverFiveYears
               - applicantTwoFirstName
               - applicantTwoLastName
@@ -183,16 +184,16 @@ uk:
               - otherPeopleTwoAddressPostcode
               - otherPeopleTwoAddressDontKnow
               - otherPeopleTwoRelationshipWithChildren
-              - otherChildren1FullName
-              - otherChildren1DateOfBirth
-              - otherChildren1DateOfBirthDontKnow
-              - otherChildren1Gender
+              - otherChildrenOneFullName
+              - otherChildrenOneDateOfBirth
+              - otherChildrenOneDateOfBirthDontKnow
+              - otherChildrenOneGender
               - OtherChildrenOneRelationshipWithApplicant
               - OtherChildrenOneRelationshipWithRespondent
-              - otherChildren2FullName
-              - otherChildren2DateOfBirth
-              - otherChildren2Gender
-              - otherChildren2DateOfBirthDontKnow
+              - OtherChildrenTwoFullName
+              - OtherChildrenTwoDateOfBirth
+              - OtherChildrenTwoGender
+              - OtherChildrenTwoDateOfBirthDontKnow
               - OtherChildrenTwoRelationshipWithApplicant
               - OtherChildrenTwoRelationshipWithRespondent
               - solicitorFirmName
@@ -200,6 +201,7 @@ uk:
               - solicitorFaxNumber
               - printFullName
               - applicantSolicitorsFirmName
+              - applicantAndApplicantSolicitorSigned
               - applicantAndApplicantsolicitorSignedDate
               - courtFee
               - isApplicantSolicitorPresent
@@ -291,6 +293,10 @@ uk:
               - assessmentByAdultLearningTeam
               - factorsAffectingPersonInCourt
               - familyMediationServiceName
+              - applicantRequiresWelsh_1_Both
+              - applicantRequiresWelsh_1_written
+              - applicantRequiresWelsh_1_Spoken
+              - nameOfPartyWhoNeedsWelsh_1
 
 
 
@@ -331,10 +337,10 @@ uk:
               - requiredSpecialArrangementDetails # requiredSpecialAssistanceOrFacilities_details
               - otherPeopleOneRelationshipToChild #withChildren
               - otherPeopleTwoRelationshipToChild
-              - otherChildren1RelationshipToApplicants
-              - otherChildren1RelationshipToRespondents
-              - otherChildren2RelationshipToApplicants
-              - otherChildren2RelationshipToRespondents
+              - otherChildrenOneRelationshipToApplicants
+              - otherChildrenOneRelationshipToRespondents
+              - OtherChildrenTwoRelationshipToApplicants
+              - OtherChildrenTwoRelationshipToRespondents
               - position_or_OfficeHeld
               - courtFeeConsent
               - mediationNotSuitable_NoneOfTheRespondentsWillingToAttendMIAM
@@ -355,8 +361,8 @@ uk:
                   - respondentTwoDateOfBirth
                   - otherPeopleOneDateOfBirth
                   - otherPeopleTwoDateOfBirth
-                  - otherChildren1DateOfBirth
-                  - otherChildren2DateOfBirth
+                  - otherChildrenOneDateOfBirth
+                  - OtherChildrenTwoDateOfBirth
                 regex: dd/MM/yyyy
               emailFields:
                 fieldNames:
