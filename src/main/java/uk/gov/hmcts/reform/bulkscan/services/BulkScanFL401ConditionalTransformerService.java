@@ -290,6 +290,11 @@ public class BulkScanFL401ConditionalTransformerService {
         } else {
             fl401Applicant.put("canYouProvideEmailAddress", NO);
         }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("applicant_LegalRepresenationNeeded"))) {
+            fl401Applicant.put("doTheyHaveLegalRepresentation", "yes");
+        } else {
+            fl401Applicant.put("doTheyHaveLegalRepresentation", "no");
+        }
 
         fl401Applicant.put("applicantPreferredContact", contactPreference);
         fl401Applicant.put("dateOfBirth", DateUtil.buildDate(
