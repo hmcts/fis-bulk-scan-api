@@ -33,7 +33,7 @@ public final class BulkScanPrlConstants {
     public static final String NO_MIAM_DVE_PROTECTIVE_INJUNCTION =
             "noMIAM_DVE_protectiveInjunction";
     public static final String NO_MIAM_DVE_NO_CROSS_UNDERTAKING_GIVEN =
-            "noMIAM_DVE_NoCrossUndertakingGiven";
+            "noMIAM_DVE_noCrossUndertakingGiven";
     public static final String NO_MIAM_DVE_COPY_OF_FACT_FINDING = "noMIAM_DVE_copyOfFactFinding";
     public static final String NO_MIAM_DVE_EXPERT_EVIDENCE_REPORT =
             "noMIAM_DVE_expertEvidenceReport";
