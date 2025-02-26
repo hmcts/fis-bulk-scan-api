@@ -114,7 +114,11 @@ public class BulkScanFL401ConditionalTransformerService {
         transformRespondentBehaviourDetails(populatedMap, inputFieldsMap);
 
         //transform Home
-        transformHome(populatedMap, inputFieldsMap);
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("ApplyingForOccupationOrder"))) {
+            transformHome(populatedMap, inputFieldsMap);
+        } else {
+            populatedMap.put("home", null);
+        }
 
         //transform case flags
         transformCaseFlags(inputFieldsMap, populatedMap);
