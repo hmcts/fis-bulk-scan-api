@@ -222,11 +222,11 @@ uk:
               otherChildrenNotInTheCaseTable:
                 - value:
                     fullName: otherChildrenOneFullName
-                    DateOfBirth: otherChildrenOneDateOfBirth
-                    DateOfBirthDontKnow: otherChildrenOneDateOfBirthDontKnow
-                    Gender: otherChildrenOneGender
-                    RelationshipToApplicants: otherChildrenOneRelationshipToApplicants
-                    RelationshipToRespondents: otherChildrenOneRelationshipToRespondents
+                    DateOfBirth: OtherChildrenOneDateOfBirth
+                    DateOfBirthDontKnow: OtherChildrenOneDateOfBirthDontKnow
+                    Gender: OtherChildrenOneGender
+                    RelationshipToApplicants: OtherChildrenOneRelationshipToApplicants
+                    RelationshipToRespondents: OtherChildrenOneRelationshipToRespondents
                 - value:
                     fullName: OtherChildrenTwoFullName
                     DateOfBirth: OtherChildrenTwoDateOfBirth

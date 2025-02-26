@@ -246,11 +246,11 @@ uk:
               - otherPeople2AddressDontKnow
               - otherPeople2RelationshipToChild
               - otherChildrenOneFullName
-              - otherChildrenOneDateOfBirth
-              - otherChildrenOneDateOfBirthDontKnow
-              - otherChildrenOneGender
-              - otherChildrenOneRelationshipToApplicants
-              - otherChildrenOneRelationshipToRespondents
+              - OtherChildrenOneDateOfBirth
+              - OtherChildrenOneDateOfBirthDontKnow
+              - OtherChildrenOneGender
+              - OtherChildrenOneRelationshipToApplicants
+              - OtherChildrenOneRelationshipToRespondents
               - OtherChildrenTwoFullName
               - OtherChildrenTwoDateOfBirth
               - OtherChildrenTwoGender
@@ -305,7 +305,7 @@ uk:
                   - respondent2DateOfBirth
                   - otherPeople1DateOfBirth
                   - otherPeople2DateOfBirth
-                  - otherChildrenOneDateOfBirth
+                  - OtherChildrenOneDateOfBirth
                   - OtherChildrenTwoDateOfBirth
                 regex: dd/MM/yyyy
               emailFields:

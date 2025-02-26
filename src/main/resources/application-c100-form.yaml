@@ -185,9 +185,9 @@ uk:
               - otherPeopleTwoAddressDontKnow
               - otherPeopleTwoRelationshipWithChildren
               - otherChildrenOneFullName
-              - otherChildrenOneDateOfBirth
-              - otherChildrenOneDateOfBirthDontKnow
-              - otherChildrenOneGender
+              - OtherChildrenOneDateOfBirth
+              - OtherChildrenOneDateOfBirthDontKnow
+              - OtherChildrenOneGender
               - OtherChildrenOneRelationshipWithApplicant
               - OtherChildrenOneRelationshipWithRespondent
               - OtherChildrenTwoFullName
@@ -337,8 +337,8 @@ uk:
               - requiredSpecialArrangementDetails # requiredSpecialAssistanceOrFacilities_details
               - otherPeopleOneRelationshipToChild #withChildren
               - otherPeopleTwoRelationshipToChild
-              - otherChildrenOneRelationshipToApplicants
-              - otherChildrenOneRelationshipToRespondents
+              - OtherChildrenOneRelationshipToApplicants
+              - OtherChildrenOneRelationshipToRespondents
               - OtherChildrenTwoRelationshipToApplicants
               - OtherChildrenTwoRelationshipToRespondents
               - position_or_OfficeHeld
@@ -361,7 +361,7 @@ uk:
                   - respondentTwoDateOfBirth
                   - otherPeopleOneDateOfBirth
                   - otherPeopleTwoDateOfBirth
-                  - otherChildrenOneDateOfBirth
+                  - OtherChildrenOneDateOfBirth
                   - OtherChildrenTwoDateOfBirth
                 regex: dd/MM/yyyy
               emailFields:
