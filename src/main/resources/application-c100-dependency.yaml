@@ -39,7 +39,7 @@ uk:
                 - noMIAM_DVE_publicAuthority_confirmationLetter
                 - noMIAM_DVE_secretaryOfState_letter
                 - noMIAM_DVE_evidenceFinancialMatters
-              dependentFieldValue: "Yes"
+              dependentFieldValue: "True"
               groupFieldName: noMIAM_domesticViolance
               groupValidationValue: "True"
               requiredFieldCount: 1
