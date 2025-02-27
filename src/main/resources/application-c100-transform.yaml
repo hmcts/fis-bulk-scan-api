@@ -92,7 +92,7 @@ uk:
               childrenKnownToLocalAuthorityTextArea: child1_localAuthority_or_socialWorker
               childrenSubjectOfChildProtectionPlan: subject_to_childProtectionPlan
               parentalResponsibilityDetails: parentalResponsibilityDetails
-              childrenParentsName: children_parentsName
+              #childrenParentsName: children_parentsName
               childParentsNameCollection: child_parentsName_collection
               personWhoLivesWithChild: child_living_with_others_details
               applicationPermissionRequiredReason: permissionRequiredReason
@@ -109,9 +109,7 @@ uk:
               doYouNeedAWithoutNoticeHearing: withoutNotice_abridged_or_informalNotice
               caseUrgencyTimeAndReason: application_timetable
               reasonsForApplicationWithoutNotice: reason_for_consideration
-              #doYouRequireAWithoutNoticeHearing: withoutNotice_frustrateTheOrder
               c100RebuildHearingUrgency: urgency_reason
-              #setWithoutNoticeHearing: withoutNotice_frustrateTheOrder_reason
 
               respondents:
                 - value:
