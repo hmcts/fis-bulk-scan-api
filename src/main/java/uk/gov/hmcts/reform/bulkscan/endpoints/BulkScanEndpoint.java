@@ -16,6 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import javax.validation.Valid;
+
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.EnumUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.slf4j.Logger;
@@ -43,6 +45,7 @@ import uk.gov.hmcts.reform.bulkscan.model.Status;
 import uk.gov.hmcts.reform.bulkscan.services.postcode.PostcodeLookupService;
 import uk.gov.hmcts.reform.bulkscan.utils.FileUtil;
 
+@Slf4j
 @RestController
 @RequestMapping(
         path = "/",
@@ -183,8 +186,7 @@ public class BulkScanEndpoint {
             @RequestHeader(CONTENT_TYPE) String contentType,
             @Valid @RequestBody Object dataMap) {
 
-        logger.info(
-                "Request received to transformScannedData ocr data from service new {}", dataMap);
+        log.info("Request received to transformScannedData ocr data from service new {}", dataMap);
 
         ObjectMapper objectMapper = new ObjectMapper();
         objectMapper.registerModule(new JavaTimeModule());
@@ -192,12 +194,12 @@ public class BulkScanEndpoint {
                 objectMapper.convertValue(dataMap, BulkScanTransformationRequest.class);
 
         String serviceName = authService.authenticate(s2sToken);
-        logger.info(
+        log.info(
                 "Request received to transformScannedData ocr data from service {}",
                 bulkScanTransformationRequest.getScannedDocuments());
 
         authService.assertIsAllowedToHandleService(serviceName);
-        logger.info(
+        log.info(
                 "1 scan docs {}",
                 objectMapper.convertValue(
                         bulkScanTransformationRequest.getScannedDocuments(), List.class));
@@ -207,10 +209,10 @@ public class BulkScanEndpoint {
                                         FormType.valueOf(
                                                 bulkScanTransformationRequest.getFormType())))
                         .transform(bulkScanTransformationRequest);
-        logger.info("2 scan docs {}",
+        log.info("2 scan docs {}",
                     objectMapper.convertValue(
                         bulkScanTransformationRequest.getScannedDocuments(), List.class));
-        logger.info(
+        log.info(
                 "response received to transformationOcrData ocr data from service {}",
                 bulkScanTransformationResponse.getCaseCreationDetails().getCaseData());
         return new ResponseEntity<>(bulkScanTransformationResponse, HttpStatus.OK);
