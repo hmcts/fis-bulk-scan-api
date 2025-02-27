@@ -365,7 +365,7 @@ public class BulkScanFL401ConditionalTransformerService {
                 getApplicantRespondentRelationshipOptions(inputFieldsMap);
             if (null != applicantRelationshipOptions) {
                 populatedMap.put("respondentRelationOptions", Map.of(FL401_APPLICANT_RELATIONSHIP_OPTIONS,
-                                                                     applicantRelationshipOptions));
+                                                                     applicantRelationshipOptions.toString()));
             }
         }
     }
