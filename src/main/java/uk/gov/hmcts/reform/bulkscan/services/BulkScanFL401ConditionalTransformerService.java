@@ -500,16 +500,31 @@ public class BulkScanFL401ConditionalTransformerService {
         final String otherChildrenRow3 = inputFieldsMap.get(OTHER_CHILD_LIVE_ADDRESS_ROW_3);
         final String otherChildrenRow4 = inputFieldsMap.get(OTHER_CHILD_LIVE_ADDRESS_ROW_4);
         ArrayList<String> childInput = new ArrayList<>();
-        childInput.add(row1);
-        childInput.add(row2);
-        childInput.add(row3);
-        childInput.add(row4);
+        if (StringUtils.hasText(row1)) {
+            childInput.add(row1);
+        }
+        if (StringUtils.hasText(row2)) {
+            childInput.add(row2);
+        }
+        if (StringUtils.hasText(row3)) {
+            childInput.add(row3);
+        }
+        if (StringUtils.hasText(row4)) {
+            childInput.add(row4);
+        }
         ArrayList<String> otherChildInput = new ArrayList<>();
-
-        otherChildInput.add(otherChildrenRow1);
-        otherChildInput.add(otherChildrenRow2);
-        otherChildInput.add(otherChildrenRow3);
-        otherChildInput.add(otherChildrenRow4);
+        if (StringUtils.hasText(otherChildrenRow1)) {
+            otherChildInput.add(otherChildrenRow1);
+        }
+        if (StringUtils.hasText(otherChildrenRow2)) {
+            otherChildInput.add(otherChildrenRow2);
+        }
+        if (StringUtils.hasText(otherChildrenRow3)) {
+            otherChildInput.add(otherChildrenRow3);
+        }
+        if (StringUtils.hasText(otherChildrenRow4)) {
+            otherChildInput.add(otherChildrenRow4);
+        }
         ArrayList<LinkedTreeMap<String, Object>> children = new ArrayList<>();
         updateChildDetails(children, childInput, YES);
         updateChildDetails(children, otherChildInput, NO);
@@ -535,7 +550,7 @@ public class BulkScanFL401ConditionalTransformerService {
                     log.warn(e.getMessage());
                 }
                 childDetails.put(CHILD_FULL_NAME, childName);
-                childDetails.put(CHILD_AGE, childAge);
+                childDetails.put(CHILD_AGE, childAge != null ? childAge.trim() : null);
                 childDetails.put(RESPONDENT_RESPONSIBLE_FOR_CHILD, isRespondentResponsibleForChild);
                 childDetails.put("keepChildrenInfoConfidential", NO);
                 childrenLinkedTreeMap.put("id", UUID.randomUUID().toString());
