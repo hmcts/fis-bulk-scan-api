@@ -14,6 +14,8 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.VALUE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.getTypeOfOrderEnumFields;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.getTypeOfOrderEnumMapping;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.TEXT_AND_NUMERIC_MONTH_PATTERN;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.TWO_DIGIT_MONTH_FORMAT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.APPLICANT_AND_RESPONDENT_PARTY_ATTENDED_MIAM_SEPARATELY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.APPLICANT_ONLY_ATTENDED_MIAM;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.APPLICANT_ONLY_ATTENDED_MIAM_TOGETHER;
@@ -91,6 +93,7 @@ import java.util.UUID;
 
 import com.microsoft.applicationinsights.core.dependencies.google.gson.internal.LinkedTreeMap;
 import org.apache.commons.lang3.BooleanUtils;
+import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 import uk.gov.hmcts.reform.bulkscan.enums.ChildLiveWithEnum;
@@ -108,6 +111,7 @@ import uk.gov.hmcts.reform.bulkscan.model.ResponseScanDocument;
 import uk.gov.hmcts.reform.bulkscan.model.ResponseScanDocumentNew;
 import uk.gov.hmcts.reform.bulkscan.model.ResponseScanDocumentValueNew;
 import uk.gov.hmcts.reform.bulkscan.model.ScannedDocuments;
+import uk.gov.hmcts.reform.bulkscan.utils.DateUtil;
 
 @SuppressWarnings({"PMD", "unchecked"})
 @Component
@@ -127,6 +131,9 @@ public class BulkScanC100ConditionalTransformerService {
             objectMapper.convertValue(transformScanDocuments(bulkScanTransformationRequest), List.class));
         //transform type of application
         populatedMap.put(ORDER_APPLIED_FOR, transformOrderAppliedFor(inputFieldsMap));
+
+        // transform initial checks
+        transformInitialChecks(inputFieldsMap, populatedMap);
 
         //transform child details
         transformChildDetails(inputFieldsMap, populatedMap);
@@ -168,6 +175,18 @@ public class BulkScanC100ConditionalTransformerService {
         //transformMediatorCertifiesDisputeResolutionNotProceeding(inputFieldsMap);
         transformFlags(inputFieldsMap, populatedMap);
         populatedMap.values().removeIf(Objects::isNull);
+    }
+
+    private void transformInitialChecks(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("isConsentOrder"))) {
+            populatedMap.put("consentOrder", YES);
+        }
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("welshRequired"))) {
+            populatedMap.put("welshLanguageRequirement", YES);
+        }
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("urgent_or_withoutHearing"))) {
+            populatedMap.put("isCaseUrgent", YES);
+        }
     }
 
     private void transformFlags(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
@@ -247,7 +266,14 @@ public class BulkScanC100ConditionalTransformerService {
         List<Map<String, Object>> parties = (List<Map<String, Object>>) populatedMap.get(partyType);
         populatedMap.put(partyType, parties.stream().map(party -> {
             party.put("id", UUID.randomUUID());
-            //Map<String, Object> value = (Map<String, Object>) party.get("value");
+            Map<String, Object> value = (Map<String, Object>) party.get("value");
+            if (ObjectUtils.isNotEmpty(value.get("dateOfBirth"))) {
+                value.put("dateOfBirth", DateUtil.transformDate(value.get("dateOfBirth").toString(),
+                                                                TEXT_AND_NUMERIC_MONTH_PATTERN,
+                                                                TWO_DIGIT_MONTH_FORMAT));
+                party.put("value", value);
+            }
+
             return party;
         }).toList());
     }
@@ -534,6 +560,11 @@ public class BulkScanC100ConditionalTransformerService {
             if (null != childValue.get("firstName")) {
                 childValue.put("childLiveWith", childLiveWith);
                 childValue.put("parentalResponsibilityDetails", inputFieldsMap.get("parentalResponsibilityDetails"));
+                if (ObjectUtils.isNotEmpty(childValue.get("dateOfBirth"))) {
+                    childValue.put("dateOfBirth", DateUtil.transformDate(childValue.get("dateOfBirth").toString(),
+                                                                         TEXT_AND_NUMERIC_MONTH_PATTERN,
+                                                                         TWO_DIGIT_MONTH_FORMAT));
+                }
                 child.put(VALUE, childValue);
                 childrenList.add(child);
             }
@@ -643,37 +674,37 @@ public class BulkScanC100ConditionalTransformerService {
         if (TRUE.equalsIgnoreCase(
                 inputFieldsMap.get(NO_MIAM_URGENCY_RISK_TO_LIFE_LIBERTY_OR_SAFETY))) {
             populatedMap.put(MIAM_URGENCY_REASON_CHECKLIST,
-                    MiamUrgencyReasonChecklistEnum.miamUrgencyReasonChecklistEnum_Value_1);
+                    MiamUrgencyReasonChecklistEnum.miamPolicyUpgradeUrgencyReason_Value_1);
         }
 
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_URGENCY_RISK_OF_HARM))) {
             populatedMap.put(MIAM_URGENCY_REASON_CHECKLIST,
-                    MiamUrgencyReasonChecklistEnum.miamUrgencyReasonChecklistEnum_Value_2);
+                    MiamUrgencyReasonChecklistEnum.miamPolicyUpgradeUrgencyReason_Value_4);
         }
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_URGENCY_RISK_TO_UNLAWFUL_REMOVAL))) {
             populatedMap.put(MIAM_URGENCY_REASON_CHECKLIST,
-                    MiamUrgencyReasonChecklistEnum.miamUrgencyReasonChecklistEnum_Value_3);
+                    MiamUrgencyReasonChecklistEnum.miamPolicyUpgradeUrgencyReason_Value_5);
         }
 
         if (TRUE.equalsIgnoreCase(
                 inputFieldsMap.get(NO_MIAM_URGENCY_RISK_TO_MISCARRIAGE_OF_JUSTICE))) {
             populatedMap.put(MIAM_URGENCY_REASON_CHECKLIST,
-                    MiamUrgencyReasonChecklistEnum.miamUrgencyReasonChecklistEnum_Value_4);
+                    MiamUrgencyReasonChecklistEnum.miamPolicyUpgradeUrgencyReason_Value_6);
         }
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_URGENCY_UNREASONABLEHARDSHIP))) {
             populatedMap.put(MIAM_URGENCY_REASON_CHECKLIST,
-                    MiamUrgencyReasonChecklistEnum.miamUrgencyReasonChecklistEnum_Value_5);
+                    MiamUrgencyReasonChecklistEnum.miamPolicyUpgradeUrgencyReason_Value_7);
         }
 
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_URGENCY_IRRETRIEVABLE_PROBLEM))) {
             populatedMap.put(MIAM_URGENCY_REASON_CHECKLIST,
-                    MiamUrgencyReasonChecklistEnum.miamUrgencyReasonChecklistEnum_Value_6);
+                    MiamUrgencyReasonChecklistEnum.miamPolicyUpgradeUrgencyReason_Value_3);
         }
 
         if (TRUE.equalsIgnoreCase(
                 inputFieldsMap.get(NO_MIAM_URGENCY_CONFLICT_WITH_OTHER_STATE_COURTS))) {
             populatedMap.put(MIAM_URGENCY_REASON_CHECKLIST,
-                    MiamUrgencyReasonChecklistEnum.miamUrgencyReasonChecklistEnum_Value_7);
+                    MiamUrgencyReasonChecklistEnum.miamPolicyUpgradeUrgencyReason_Value_2);
         }
     }
 
