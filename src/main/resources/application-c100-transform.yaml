@@ -109,7 +109,7 @@ uk:
               doYouNeedAWithoutNoticeHearing: withoutNotice_abridged_or_informalNotice
               caseUrgencyTimeAndReason: application_timetable
               reasonsForApplicationWithoutNotice: reason_for_consideration
-              doYouRequireAWithoutNoticeHearing: withoutNotice_frustrateTheOrder
+              #doYouRequireAWithoutNoticeHearing: withoutNotice_frustrateTheOrder
               c100RebuildHearingUrgency: urgency_reason
               #setWithoutNoticeHearing: withoutNotice_frustrateTheOrder_reason
 
@@ -152,12 +152,6 @@ uk:
                     canYouProvideEmailAddress: respondentTwoEmailAddressDontKnow
                     #isAtAddressLessThan5Years: respondentTwoLivedAtThisAddressForOverFiveYears
                     addressLivedLessThan5YearsDetails: respondentTwoAllAddressesForLastFiveYears
-              habitualResidentInOtherState: international_or_factorsAffectingLitigation
-              habitualResidentInOtherStateGiveReason: internationalElement_Resident_of_another_state_details
-              jurisdictionIssue: internationalElement_jurisdictionIssue
-              jurisdictionIssueGiveReason: withoutNotice_jurisdictionIssue_details
-              requestToForeignAuthority: internationalElement_request_toCentral_or_Consular_authority
-              requestToForeignAuthorityGiveReason: internationalElement_request_toCentral_or_Consular_authority_details
               litigationCapacityFactors: factorAffectingLitigationCapacity
               litigationCapacityReferrals: assessmentByAdultLearningTeam
               litigationCapacityOtherFactors: factorsAffectingPersonInCourt

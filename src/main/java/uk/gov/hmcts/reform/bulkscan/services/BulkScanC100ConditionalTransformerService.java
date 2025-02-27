@@ -144,7 +144,9 @@ public class BulkScanC100ConditionalTransformerService {
         transformPreviousOrOngoingProceedings(inputFieldsMap, populatedMap);
 
         //transform international elements
-        transformInternationalElements(inputFieldsMap, populatedMap);
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("international_or_factorsAffectingLitigation"))) {
+            transformInternationalElements(inputFieldsMap, populatedMap);
+        }
 
         //transform litigation capacity
         transformLitigationCapacity(inputFieldsMap, populatedMap);
@@ -349,6 +351,8 @@ public class BulkScanC100ConditionalTransformerService {
                 populatedMap.put("habitualResidentInOtherStateGiveReason",
                                  inputFieldsMap.get("internationalElement_Resident_of_another_state_details"));
             }
+        } else {
+            populatedMap.put("habitualResidentInOtherState", NO);
         }
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get("internationalElement_jurisdictionIssue"))) {
             populatedMap.put("jurisdictionIssue", YES);
@@ -356,6 +360,8 @@ public class BulkScanC100ConditionalTransformerService {
                 populatedMap.put("jurisdictionIssueGiveReason",
                                  inputFieldsMap.get("withoutNotice_jurisdictionIssue_details"));
             }
+        } else {
+            populatedMap.put("jurisdictionIssue", NO);
         }
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get("internationalElement_request_toCentral_or_Consular_authority"))) {
             populatedMap.put("requestToForeignAuthority", YES);
@@ -364,6 +370,8 @@ public class BulkScanC100ConditionalTransformerService {
                 populatedMap.put("requestToForeignAuthorityGiveReason",
                                  inputFieldsMap.get("internationalElement_request_toCentral_or_Consular_authority_details"));
             }
+        } else {
+            populatedMap.put("requestToForeignAuthority", NO);
         }
     }
 
