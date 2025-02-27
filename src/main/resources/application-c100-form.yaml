@@ -302,6 +302,8 @@ uk:
               - applicantRequiresWelsh_1_Spoken
               - nameOfPartyWhoNeedsWelsh_1
               - signed_authorizedFamilyMediator
+              - applicantAndRespondentPartysAttendedMIAMSeparately
+              - respondentPartysArrangedToAttendMIAMSeparately
 
 
 
