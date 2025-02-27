@@ -96,7 +96,7 @@ uk:
               sectionName: "Occupation order - Current occupant -> Someone else – please specify."
             - occupationOrderIntendedOccupantGroup:
               dependentFields:
-                - occupationOrderAddress_IntendedOccupant
+                - occupationOrderAddress_IntentedOccupant
               dependentFieldValue: "*"
               groupFieldName: occupationOrderAddress_PreviousOccupant
               groupValidationValue: "No"

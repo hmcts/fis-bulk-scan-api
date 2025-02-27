@@ -134,7 +134,7 @@ uk:
               - occupationOrderAddress_CurrentOccupant_other
               - occupationOrderAddress_CurrentOccupant_others
               - occupationOrderAddress_PreviousOccupant
-              - occupationOrderAddress_IntendedOccupant
+              - occupationOrderAddress_IntentedOccupant
               - childLivesAtAddress_Row1
               - childLivesAtAddress_Row2
               - childLivesAtAddress_Row3
