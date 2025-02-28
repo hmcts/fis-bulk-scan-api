@@ -746,10 +746,12 @@ public class BulkScanFL401ConditionalTransformerService {
         List<String> respondentBehaviourOptions = new ArrayList<>();
         for (FL401StopRespondentEnum l : EnumSet.allOf(FL401StopRespondentEnum.class)) {
             String key = l.getKey();
+            log.info("behavioour respondent : {} : {}", key, inputFieldsMap.get(key));
             if (null != inputFieldsMap.get(key) && inputFieldsMap.get(key).equalsIgnoreCase(YES)) {
                 respondentBehaviourOptions.add(FL401StopRespondentEnum.getValue(l.name()));
             }
         }
+        log.info("behavioour respondent : {}", respondentBehaviourOptions);
         return respondentBehaviourOptions;
     }
 
