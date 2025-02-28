@@ -25,8 +25,8 @@ public enum MiamUrgencyReasonChecklistEnum {
     ),
     miamPolicyUpgradeUrgencyReason_Value_3(
         "Any delay caused by attending a MIAM would cause a risk of unlawful removal"
-            + " of a child from the United Kingdom, or a risk of unlawful retention of a child who is currently " +
-            "outside England and Wales."
+            + " of a child from the United Kingdom, or a risk of unlawful retention of a child who is currently "
+            + "outside England and Wales."
     ),
     miamPolicyUpgradeUrgencyReason_Value_2(
         "Any delay caused by attending a MIAM would cause a risk of harm to a child."
