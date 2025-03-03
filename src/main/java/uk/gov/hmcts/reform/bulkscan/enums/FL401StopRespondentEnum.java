@@ -13,7 +13,7 @@ public enum FL401StopRespondentEnum {
             "StopRespondentFromDoing_3 ",
             "applicantStopFromRespondentEnum_Value_3"),
     CONTACTING_ME_DIRECTLY("StopRespondentFromDoing_4", "applicantStopFromRespondentEnum_Value_4"),
-    CAUSING_DAMAGE_TO_MY_POSSESSIONS("StopRespondentFromDoing_5 ", "applicantStopFromRespondentEnum_Value_5"),
+    CAUSING_DAMAGE_TO_MY_POSSESSIONS("StopRespondentFromDoing_5", "applicantStopFromRespondentEnum_Value_5"),
     CAUSING_DAMAGE_TO_MY_HOME("StopRespondentFromDoing_6", "applicantStopFromRespondentEnum_Value_6"),
     COMING_INTO_MY_HOME("StopRespondentFromDoing_7", "applicantStopFromRespondentEnum_Value_7"),
     COMING_NEAR_MY_HOME("StopRespondentFromDoing_8", "applicantStopFromRespondentEnum_Value_8"),
