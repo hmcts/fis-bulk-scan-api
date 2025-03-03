@@ -78,6 +78,7 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.SPECIA
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.SPECIFIC_ISSUE_ORDER_DESCRIPTION;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.WELSH_NEEDS_CCD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.WITHOUT_NOTICE_ABRIDGED_OR_INFORMAL_NOTICE_REASONS;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.WITHOUT_NOTICE_FRUSTRATE_THE_ORDER_REASON;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -144,10 +145,10 @@ public class BulkScanC100ConditionalTransformerService {
         //transform permission required
         transformPermissionRequiredFromCourt(inputFieldsMap, populatedMap);
 
-        //transform hearing urgency
+        //transform hearing urgency - Section 6a
         transformHearingUrgency(populatedMap, inputFieldsMap);
 
-        //transform previous or ongoing proceedings
+        //transform previous or ongoing proceedings - Section 7
         transformPreviousOrOngoingProceedings(inputFieldsMap, populatedMap);
 
         //transform international elements
@@ -625,18 +626,19 @@ public class BulkScanC100ConditionalTransformerService {
                                            inputFieldsMap.get("application_timetable"));
         }
         populatedMap.put("caseUrgencyTimeAndReason", urgencyReason);
-        if (StringUtils.isNotEmpty(inputFieldsMap.get("respondent_effort"))) {
-            populatedMap.put("effortsMadeWithRespondents", inputFieldsMap.get("respondent_effort"));
-        }
         if (StringUtils.isNotEmpty(inputFieldsMap.get("reason_for_consideration"))) {
             populatedMap.put("reasonsForApplicationWithoutNotice", inputFieldsMap.get("reason_for_consideration"));
             populatedMap.put("doYouNeedAWithoutNoticeHearing", YES);
         }
-        if (StringUtils.isNotEmpty(
-                inputFieldsMap.get(WITHOUT_NOTICE_ABRIDGED_OR_INFORMAL_NOTICE_REASONS))) {
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("withoutNotice_abridged_or_informalNotice"))) {
+            populatedMap.put("withoutAbridgedOrInformalNotice", YES);
             populatedMap.put(
-                    SET_OUT_REASONS_BELOW,
-                    inputFieldsMap.get(WITHOUT_NOTICE_ABRIDGED_OR_INFORMAL_NOTICE_REASONS));
+                SET_OUT_REASONS_BELOW,
+                inputFieldsMap.get(WITHOUT_NOTICE_ABRIDGED_OR_INFORMAL_NOTICE_REASONS));
+        }
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("withoutNotice_frustrateTheOrder"))) {
+            populatedMap.put("doesWithNoticeHearingFrustrateRespondent", YES);
+            populatedMap.put("reasonForFrustrationOfNotice", inputFieldsMap.get(WITHOUT_NOTICE_FRUSTRATE_THE_ORDER_REASON));
         }
     }
 

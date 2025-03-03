@@ -102,8 +102,6 @@ uk:
               setOutReasonsBelow: null
               effortsMadeWithRespondents: respondent_effort
               doYouRequireAHearingWithReducedNotice: withoutNotice_abridged_or_informalNotice
-              doYouNeedAWithoutNoticeHearing: withoutNotice_abridged_or_informalNotice
-              caseUrgencyTimeAndReason: application_timetable
               reasonsForApplicationWithoutNotice: reason_for_consideration
               c100RebuildHearingUrgency: urgency_reason
 
