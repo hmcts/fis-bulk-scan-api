@@ -244,7 +244,7 @@ uk:
               - noMIAM_urgency_removalFromUnitedKingdom
               - noMIAM_urgency_miscarriageOfJustice
               - noMIAM_urgency_financialHardship
-              - noMIAM_urgency_irretrievableProblems
+              - noMIAM_urgency_irretrievableProblemss
               - noMIAM_urgency_conflictWithOtherStateCourts
               - previousMIAM_nonCourtDisputeResolution_4month
               - previousMIAM_existingProceeding_exepmtMIAM
@@ -310,9 +310,9 @@ uk:
 
 
 
-              - noMIAM_urgency_risk_to_unlawfulRemoval  # noMIAM_urgency_removalFromUnitedKingdom
-              - noMIAM_urgency_risk_to_miscarriageOfJustice # noMIAM_urgency_miscarriageOfJustice
-              - noMIAM_urgency_unreasonablehardship # noMIAM_urgency_financialHardship
+              - noMIAM_urgency_removalFromUnitedKingdom  # noMIAM_urgency_removalFromUnitedKingdom
+              - noMIAM_urgency_miscarriageOfJustice # noMIAM_urgency_miscarriageOfJustice
+              - noMIAM_urgency_financialHardship # noMIAM_urgency_financialHardship
               - NoMIAM_PreviousAttendenceReason # previousMIAM_nonCourtDisputeResolution_4month
 
               - respondentOneGender

@@ -522,7 +522,7 @@ class BulkScanC100ServiceTest {
         List<OcrDataField> c100GetMiamUrgencyWarningData = new ArrayList<>();
         c100GetMiamUrgencyWarningData.addAll(TestDataC100Util.getData());
         OcrDataField noMiamUrgencyReason = new OcrDataField();
-        noMiamUrgencyReason.setName("NoMIAM_urgency_riskOfHarm");
+        noMiamUrgencyReason.setName("noMIAM_urgency_riskOfHarm");
         noMiamUrgencyReason.setValue("Yes");
 
         c100GetMiamUrgencyWarningData.add(noMiamUrgencyReason);

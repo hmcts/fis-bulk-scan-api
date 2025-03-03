@@ -664,7 +664,7 @@ public final class TestDataC100Util {
         fieldList.add(ocrNoMiamUrgencyField);
 
         OcrDataField ocrNoMiamUrgencyRiskOfHarmField = new OcrDataField();
-        ocrNoMiamUrgencyRiskOfHarmField.setName("NoMIAM_urgency_riskOfHarm");
+        ocrNoMiamUrgencyRiskOfHarmField.setName("noMIAM_urgency_riskOfHarm");
         ocrNoMiamUrgencyRiskOfHarmField.setValue(TICK_BOX_YES);
         fieldList.add(ocrNoMiamUrgencyRiskOfHarmField);
 

@@ -681,32 +681,32 @@ public class BulkScanC100ConditionalTransformerService {
 
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_URGENCY_RISK_OF_HARM))) {
             populatedMap.put(MIAM_URGENCY_REASON_CHECKLIST,
-                    MiamUrgencyReasonChecklistEnum.miamPolicyUpgradeUrgencyReason_Value_4);
+                    MiamUrgencyReasonChecklistEnum.miamPolicyUpgradeUrgencyReason_Value_2);
         }
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_URGENCY_RISK_TO_UNLAWFUL_REMOVAL))) {
-            populatedMap.put(MIAM_URGENCY_REASON_CHECKLIST,
-                    MiamUrgencyReasonChecklistEnum.miamPolicyUpgradeUrgencyReason_Value_5);
-        }
-
-        if (TRUE.equalsIgnoreCase(
-                inputFieldsMap.get(NO_MIAM_URGENCY_RISK_TO_MISCARRIAGE_OF_JUSTICE))) {
-            populatedMap.put(MIAM_URGENCY_REASON_CHECKLIST,
-                    MiamUrgencyReasonChecklistEnum.miamPolicyUpgradeUrgencyReason_Value_6);
-        }
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_URGENCY_UNREASONABLEHARDSHIP))) {
-            populatedMap.put(MIAM_URGENCY_REASON_CHECKLIST,
-                    MiamUrgencyReasonChecklistEnum.miamPolicyUpgradeUrgencyReason_Value_7);
-        }
-
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_URGENCY_IRRETRIEVABLE_PROBLEM))) {
             populatedMap.put(MIAM_URGENCY_REASON_CHECKLIST,
                     MiamUrgencyReasonChecklistEnum.miamPolicyUpgradeUrgencyReason_Value_3);
         }
 
         if (TRUE.equalsIgnoreCase(
+                inputFieldsMap.get(NO_MIAM_URGENCY_RISK_TO_MISCARRIAGE_OF_JUSTICE))) {
+            populatedMap.put(MIAM_URGENCY_REASON_CHECKLIST,
+                    MiamUrgencyReasonChecklistEnum.miamPolicyUpgradeUrgencyReason_Value_4);
+        }
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_URGENCY_UNREASONABLEHARDSHIP))) {
+            populatedMap.put(MIAM_URGENCY_REASON_CHECKLIST,
+                    MiamUrgencyReasonChecklistEnum.miamPolicyUpgradeUrgencyReason_Value_5);
+        }
+
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_URGENCY_IRRETRIEVABLE_PROBLEM))) {
+            populatedMap.put(MIAM_URGENCY_REASON_CHECKLIST,
+                    MiamUrgencyReasonChecklistEnum.miamPolicyUpgradeUrgencyReason_Value_6);
+        }
+
+        if (TRUE.equalsIgnoreCase(
                 inputFieldsMap.get(NO_MIAM_URGENCY_CONFLICT_WITH_OTHER_STATE_COURTS))) {
             populatedMap.put(MIAM_URGENCY_REASON_CHECKLIST,
-                    MiamUrgencyReasonChecklistEnum.miamPolicyUpgradeUrgencyReason_Value_2);
+                    MiamUrgencyReasonChecklistEnum.miamPolicyUpgradeUrgencyReason_Value_7);
         }
     }
 

@@ -71,13 +71,13 @@ public final class BulkScanPrlConstants {
             "noMIAM_urgency_risk_to_life_liberty_or_safety";
     public static final String NO_MIAM_URGENCY_RISK_OF_HARM = "noMIAM_urgency_riskOfHarm";
     public static final String NO_MIAM_URGENCY_RISK_TO_UNLAWFUL_REMOVAL =
-            "noMIAM_urgency_risk_to_unlawfulRemoval";
+            "noMIAM_urgency_removalFromUnitedKingdom";
     public static final String NO_MIAM_URGENCY_RISK_TO_MISCARRIAGE_OF_JUSTICE =
-            "noMIAM_urgency_risk_to_miscarriageOfJustice";
+            "noMIAM_urgency_miscarriageOfJustice";
     public static final String NO_MIAM_URGENCY_UNREASONABLEHARDSHIP =
-            "noMIAM_urgency_unreasonablehardship";
+            "noMIAM_urgency_financialHardship";
     public static final String NO_MIAM_URGENCY_IRRETRIEVABLE_PROBLEM =
-            "noMIAM_urgency_irretrievableProblem";
+            "noMIAM_urgency_irretrievableProblems";
     public static final String NO_MIAM_URGENCY_CONFLICT_WITH_OTHER_STATE_COURTS =
             "noMIAM_urgency_conflictWithOtherStateCourts";
     public static final String ORDER_APPLIED_FOR = "ordersApplyingFor";

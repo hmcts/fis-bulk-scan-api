@@ -58,9 +58,9 @@ uk:
                 - noMIAM_urgency_risk_to_life_liberty_or_safety
                 - noMIAM_urgency_riskOfHarm
                 - noMIAM_urgency_removalFromUnitedKingdom
-                - noMIAM_urgency_risk_to_miscarriageOfJustice
+                - noMIAM_urgency_miscarriageOfJustice
                 - noMIAM_urgency_financialHardship
-                - noMIAM_urgency_irretrievableProblem
+                - noMIAM_urgency_irretrievableProblems
                 - noMIAM_urgency_conflictWithOtherStateCourts
               dependentFieldValue: "Yes"
               groupFieldName: NoMIAM_Urgency

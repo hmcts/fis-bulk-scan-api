@@ -140,12 +140,12 @@ uk:
               - noMIAM_subjectOfEnquiries_byLocalAuthority
               - noMIAM_subjectOfCPP_byLocalAuthority
               - NoMIAM_urgency_risk_to_life_liberty_or_safety
-              - NoMIAM_urgency_riskOfHarm
-              - NoMIAM_urgency_risk_to_unlawfulRemoval
-              - NoMIAM_urgency_risk_to_miscarriageOfJustice
-              - NoMIAM_urgency_unreasonablehardship
-              - NoMIAM_urgency_irretrievableProblem
-              - NoMIAM_urgency_conflictWithOtherStateCourts
+              - noMIAM_urgency_riskOfHarm
+              - noMIAM_urgency_removalFromUnitedKingdom
+              - noMIAM_urgency_miscarriageOfJustice
+              - noMIAM_urgency_financialHardship
+              - noMIAM_urgency_irretrievableProblems
+              - noMIAM_urgency_conflictWithOtherStateCourts
               - NoMIAM_PreviousAttendenceReason
               - parentalResponsibilityDetails
               - respondent1FirstName
