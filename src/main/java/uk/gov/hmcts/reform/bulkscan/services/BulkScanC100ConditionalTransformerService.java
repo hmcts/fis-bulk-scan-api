@@ -551,19 +551,19 @@ public class BulkScanC100ConditionalTransformerService {
         List<String> childLiveWith = transformChildLiveWith(inputFieldsMap);
         populatedMap.put("children", populateChildren(children, childLiveWith, inputFieldsMap));
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get("children_of_same_parent"))) {
-            populatedMap.put("isChildrenWithSameParents", YES);
+            populatedMap.put("isChildrenWithSameParents", "yes");
         } else {
-            populatedMap.put("isChildrenWithSameParents", NO);
+            populatedMap.put("isChildrenWithSameParents", "no");
         }
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get("childrenServicesAuthority"))) {
-            populatedMap.put("childrenKnownToLocalAuthority", YES);
+            populatedMap.put("childrenKnownToLocalAuthority", "yes");
         } else {
-            populatedMap.put("childrenKnownToLocalAuthority", NO);
+            populatedMap.put("childrenKnownToLocalAuthority", "no");
         }
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get("subject_to_childProtectionPlan"))) {
-            populatedMap.put("childrenSubjectOfChildProtectionPlan", YES);
+            populatedMap.put("childrenSubjectOfChildProtectionPlan", "yes");
         } else {
-            populatedMap.put("childrenSubjectOfChildProtectionPlan", NO);
+            populatedMap.put("childrenSubjectOfChildProtectionPlan", "no");
         }
     }
 
