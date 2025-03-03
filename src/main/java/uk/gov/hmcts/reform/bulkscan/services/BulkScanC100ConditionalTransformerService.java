@@ -474,6 +474,7 @@ public class BulkScanC100ConditionalTransformerService {
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get("ExistingCase_onEmergencyProtection_Care_or_supervisionOrder"))) {
             populatedMap.put("mpuChildInvolvedInMiam", YES);
         } else {
+            populatedMap.put("mpuChildInvolvedInMiam", NO);
             if (TRUE.equalsIgnoreCase(inputFieldsMap.get("attended_MIAM"))) {
                 populatedMap.put("mpuApplicantAttendedMiam", YES);
                 populatedMap.put("soleTraderName", inputFieldsMap.get("soleTraderName"));
