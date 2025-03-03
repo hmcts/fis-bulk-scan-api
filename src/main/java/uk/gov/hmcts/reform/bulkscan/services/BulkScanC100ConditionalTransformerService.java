@@ -550,6 +550,21 @@ public class BulkScanC100ConditionalTransformerService {
         List<Map<String, Object>> children = (List<Map<String, Object>>) populatedMap.get("children");
         List<String> childLiveWith = transformChildLiveWith(inputFieldsMap);
         populatedMap.put("children", populateChildren(children, childLiveWith, inputFieldsMap));
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("children_of_same_parent"))) {
+            populatedMap.put("isChildrenWithSameParents", YES);
+        } else {
+            populatedMap.put("isChildrenWithSameParents", NO);
+        }
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("childrenServicesAuthority"))) {
+            populatedMap.put("childrenKnownToLocalAuthority", YES);
+        } else {
+            populatedMap.put("childrenKnownToLocalAuthority", NO);
+        }
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("subject_to_childProtectionPlan"))) {
+            populatedMap.put("childrenSubjectOfChildProtectionPlan", YES);
+        } else {
+            populatedMap.put("childrenSubjectOfChildProtectionPlan", NO);
+        }
     }
 
     private List<Map<String, Object>> populateChildren(List<Map<String, Object>> children, List<String> childLiveWith,
@@ -565,6 +580,19 @@ public class BulkScanC100ConditionalTransformerService {
                     childValue.put("dateOfBirth", DateUtil.transformDate(childValue.get("dateOfBirth").toString(),
                                                                          TEXT_AND_NUMERIC_MONTH_PATTERN,
                                                                          TWO_DIGIT_MONTH_FORMAT));
+                }
+                if ("male".equalsIgnoreCase((String) childValue.get("gender"))) {
+                    childValue.put("gender", "male");
+                } else {
+                    childValue.put("gender", "female");
+                }
+                if (StringUtils.isNotEmpty((String) childValue.get("applicantsRelationshipToChild"))) {
+                    childValue.put("applicantsRelationshipToChild", "other");
+                    childValue.put("otherApplicantsRelationshipToChild", childValue.get("applicantsRelationshipToChild"));
+                }
+                if (StringUtils.isNotEmpty((String) childValue.get("respondentsRelationshipToChild"))) {
+                    childValue.put("respondentsRelationshipToChild", "other");
+                    childValue.put("otherRespondentsRelationshipToChild", childValue.get("respondentsRelationshipToChild"));
                 }
                 child.put(VALUE, childValue);
                 childrenList.add(child);

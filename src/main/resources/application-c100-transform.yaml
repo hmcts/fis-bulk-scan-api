@@ -59,7 +59,6 @@ uk:
                     lastName: child1_lastName
                     dateOfBirth: child1_dateOfBirth
                     gender: child1_gender
-                    #orderAppliedFor: child1_orderAppliedFor
                     applicantsRelationshipToChild: child1_applicant1_relationship
                     respondentsRelationshipToChild: child1_respondent1_relationship
                 - value:
@@ -86,10 +85,7 @@ uk:
                     orderAppliedFor: child4_orderAppliedFor
                     applicantsRelationshipToChild: child4_applicant1_relationship
                     respondentsRelationshipToChild: child4_respondent1_relationship
-              isChildrenWithSameParents:  children_of_same_parent
-              childrenKnownToLocalAuthority: childrenServicesAuthority
               childrenKnownToLocalAuthorityTextArea: child1_localAuthority_or_socialWorker
-              childrenSubjectOfChildProtectionPlan: subject_to_childProtectionPlan
               parentalResponsibilityDetails: parentalResponsibilityDetails
               #childrenParentsName: children_parentsName
               childParentsNameCollection: child_parentsName_collection
