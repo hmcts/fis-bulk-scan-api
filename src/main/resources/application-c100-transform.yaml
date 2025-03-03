@@ -66,7 +66,6 @@ uk:
                     lastName: child2_lastName
                     dateOfBirth: child2_dateOfBirth
                     gender: child2_gender
-                    orderAppliedFor: child2_orderAppliedFor
                     applicantsRelationshipToChild: child2_applicant1_relationship
                     respondentsRelationshipToChild: child2_respondent1_relationship
                 - value:
@@ -74,7 +73,6 @@ uk:
                     lastName: child3_lastName
                     dateOfBirth: child3_dateOfBirth
                     gender: child3_gender
-                    orderAppliedFor: child3_orderAppliedFor
                     applicantsRelationshipToChild: child3_applicant1_relationship
                     respondentsRelationshipToChild: child3_respondent1_relationship
                 - value:
@@ -82,7 +80,6 @@ uk:
                     lastName: child4_lastName
                     dateOfBirth: child4_dateOfBirth
                     gender: child4_gender
-                    orderAppliedFor: child4_orderAppliedFor
                     applicantsRelationshipToChild: child4_applicant1_relationship
                     respondentsRelationshipToChild: child4_respondent1_relationship
               childrenKnownToLocalAuthorityTextArea: child1_localAuthority_or_socialWorker
