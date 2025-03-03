@@ -804,67 +804,67 @@ public class BulkScanC100ConditionalTransformerService {
                 new HashMap<>();
         miamDomesticViolenceChecklistEnumMap.put(
                 NO_MIAM_DVE_ARRESTED_FOR_SIMILAR_OFFENCE,
-                MiamDomesticViolenceChecklistEnum.miamDomesticViolenceChecklistEnum_Value_1);
+                MiamDomesticViolenceChecklistEnum.miamDomesticAbuseChecklistEnum_Value_1);
         miamDomesticViolenceChecklistEnumMap.put(
                 NO_MIAM_DVE_RELEVANT_POLICE_CAUTION,
-                MiamDomesticViolenceChecklistEnum.miamDomesticViolenceChecklistEnum_Value_2);
+                MiamDomesticViolenceChecklistEnum.miamDomesticAbuseChecklistEnum_Value_2);
         miamDomesticViolenceChecklistEnumMap.put(
                 NO_MIAM_DVE_RELEVANT_CRIMINAL_PROCEEDING,
-                MiamDomesticViolenceChecklistEnum.miamDomesticViolenceChecklistEnum_Value_3);
+                MiamDomesticViolenceChecklistEnum.miamDomesticAbuseChecklistEnum_Value_3);
         miamDomesticViolenceChecklistEnumMap.put(
                 NO_MIAM_DVE_RELEVANT_CONVICTION,
-                MiamDomesticViolenceChecklistEnum.miamDomesticViolenceChecklistEnum_Value_4);
+                MiamDomesticViolenceChecklistEnum.miamDomesticAbuseChecklistEnum_Value_4);
         miamDomesticViolenceChecklistEnumMap.put(
                 NO_MIAM_DVE_COURT_ORDER,
-                MiamDomesticViolenceChecklistEnum.miamDomesticViolenceChecklistEnum_Value_5);
+                MiamDomesticViolenceChecklistEnum.miamDomesticAbuseChecklistEnum_Value_5);
         miamDomesticViolenceChecklistEnumMap.put(
                 NO_MIAM_DVE_PROTECTION_NOTICE,
-                MiamDomesticViolenceChecklistEnum.miamDomesticViolenceChecklistEnum_Value_6);
+                MiamDomesticViolenceChecklistEnum.miamDomesticAbuseChecklistEnum_Value_6);
         miamDomesticViolenceChecklistEnumMap.put(
                 NO_MIAM_DVE_PROTECTIVE_INJUNCTION,
-                MiamDomesticViolenceChecklistEnum.miamDomesticViolenceChecklistEnum_Value_7);
+                MiamDomesticViolenceChecklistEnum.miamDomesticAbuseChecklistEnum_Value_7);
         miamDomesticViolenceChecklistEnumMap.put(
                 NO_MIAM_DVE_NO_CROSS_UNDERTAKING_GIVEN,
-                MiamDomesticViolenceChecklistEnum.miamDomesticViolenceChecklistEnum_Value_8);
+                MiamDomesticViolenceChecklistEnum.miamDomesticAbuseChecklistEnum_Value_8);
         miamDomesticViolenceChecklistEnumMap.put(
                 NO_MIAM_DVE_COPY_OF_FACT_FINDING,
-                MiamDomesticViolenceChecklistEnum.miamDomesticViolenceChecklistEnum_Value_9);
+                MiamDomesticViolenceChecklistEnum.miamDomesticAbuseChecklistEnum_Value_9);
         miamDomesticViolenceChecklistEnumMap.put(
                 NO_MIAM_DVE_EXPERT_EVIDENCE_REPORT,
-                MiamDomesticViolenceChecklistEnum.miamDomesticViolenceChecklistEnum_Value_10);
+                MiamDomesticViolenceChecklistEnum.miamDomesticAbuseChecklistEnum_Value_10);
         miamDomesticViolenceChecklistEnumMap.put(
                 NO_MIAM_DVE_HEALTH_PROFESSIONAL_REPORT,
-                MiamDomesticViolenceChecklistEnum.miamDomesticViolenceChecklistEnum_Value_11);
+                MiamDomesticViolenceChecklistEnum.miamDomesticAbuseChecklistEnum_Value_11);
         miamDomesticViolenceChecklistEnumMap.put(
                 NO_MIAM_DVE_REFERRAL_HEALTH_PROFESSIONAL_REPORT,
-                MiamDomesticViolenceChecklistEnum.miamDomesticViolenceChecklistEnum_Value_12);
+                MiamDomesticViolenceChecklistEnum.miamDomesticAbuseChecklistEnum_Value_12);
         miamDomesticViolenceChecklistEnumMap.put(
                 NO_MIAM_DVE_MEMBER_OF_MULTI_AGENCY_RISK_ASSESSMENT_CONFERRANCE_LETTER,
-                MiamDomesticViolenceChecklistEnum.miamDomesticViolenceChecklistEnum_Value_13);
+                MiamDomesticViolenceChecklistEnum.miamDomesticAbuseChecklistEnum_Value_13);
         miamDomesticViolenceChecklistEnumMap.put(
                 NO_MIAM_DVE_DOMESTIC_VIOLENCE_ADVISOR,
-                MiamDomesticViolenceChecklistEnum.miamDomesticViolenceChecklistEnum_Value_15);
+                MiamDomesticViolenceChecklistEnum.miamDomesticAbuseChecklistEnum_Value_15);
         miamDomesticViolenceChecklistEnumMap.put(
                 NO_MIAM_DVE_INDEPENDENT_SEXUAL_VIOLENCE_ADVISOR_LETTER,
-                MiamDomesticViolenceChecklistEnum.miamDomesticViolenceChecklistEnum_Value_16);
+                MiamDomesticViolenceChecklistEnum.miamDomesticAbuseChecklistEnum_Value_16);
         miamDomesticViolenceChecklistEnumMap.put(
                 NO_MIAM_DVE_OFFICER_EMPLOYED_LOCAL_AUTHORITY_LETTER,
-                MiamDomesticViolenceChecklistEnum.miamDomesticViolenceChecklistEnum_Value_17);
+                MiamDomesticViolenceChecklistEnum.miamDomesticAbuseChecklistEnum_Value_17);
         miamDomesticViolenceChecklistEnumMap.put(
                 NO_MIAM_DVE_DOMESTIC_VIOLENCE_SUPPORT_CHARITY_LETTER,
-                MiamDomesticViolenceChecklistEnum.miamDomesticViolenceChecklistEnum_Value_18);
+                MiamDomesticViolenceChecklistEnum.miamDomesticAbuseChecklistEnum_Value_18);
         miamDomesticViolenceChecklistEnumMap.put(
                 NO_MIAM_DVE_DOMESTIC_VIOLENCE_SUPPORT_CHARITY_REFUGE_LETTER,
-                MiamDomesticViolenceChecklistEnum.miamDomesticViolenceChecklistEnum_Value_19);
+                MiamDomesticViolenceChecklistEnum.miamDomesticAbuseChecklistEnum_Value_19);
         miamDomesticViolenceChecklistEnumMap.put(
                 NO_MIAM_DVE_PUBLIC_AUTHORITY_CONFIRMATION_LETTER,
-                MiamDomesticViolenceChecklistEnum.miamDomesticViolenceChecklistEnum_Value_20);
+                MiamDomesticViolenceChecklistEnum.miamDomesticAbuseChecklistEnum_Value_20);
         miamDomesticViolenceChecklistEnumMap.put(
                 NO_MIAM_DVE_SECRETARY_OF_STATE_LETTER,
-                MiamDomesticViolenceChecklistEnum.miamDomesticViolenceChecklistEnum_Value_21);
+                MiamDomesticViolenceChecklistEnum.miamDomesticAbuseChecklistEnum_Value_21);
         miamDomesticViolenceChecklistEnumMap.put(
                 NO_MIAM_DVE_EVIDENCE_FINANCIAL_MATTERS,
-                MiamDomesticViolenceChecklistEnum.miamDomesticViolenceChecklistEnum_Value_22);
+                MiamDomesticViolenceChecklistEnum.miamDomesticAbuseChecklistEnum_Value_22);
         return miamDomesticViolenceChecklistEnumMap;
     }
 
