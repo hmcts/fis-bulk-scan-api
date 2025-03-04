@@ -188,6 +188,11 @@ public class BulkScanC100ConditionalTransformerService {
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get("urgent_or_withoutHearing"))) {
             populatedMap.put("isCaseUrgent", YES);
         }
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("havePreviousParentingPlan"))) {
+            populatedMap.put("havePreviousParentingPlan", YES);
+        } else {
+            populatedMap.put("havePreviousParentingPlan", NO);
+        }
     }
 
     private void transformFlags(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
