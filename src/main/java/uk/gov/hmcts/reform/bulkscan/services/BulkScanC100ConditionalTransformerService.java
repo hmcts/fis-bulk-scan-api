@@ -978,7 +978,7 @@ public class BulkScanC100ConditionalTransformerService {
                 spokenOrWritten.add(SpokenOrWrittenWelshEnum.both.toString());
             }
             Map<String, Object> value = new HashMap<>();
-            value.put("whoNeedsWelsh", personName);
+            value.put("whoNeedsWelsh", inputFieldsMap.get(personName));
             value.put("spokenOrWritten", spokenOrWritten);
             welshNeed.put(VALUE, value);
             welshNeeds.add(welshNeed);
