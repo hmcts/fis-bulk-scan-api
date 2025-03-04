@@ -76,7 +76,7 @@ uk:
               courtpreferredDates: court_preferred_dates
               courtInterpreterAssistanceRequired: court_interpreter_assistance_required
               specialAssistanceFacilitiesRequired: special_assistance_facilities_required
-              children:
+              newChildDetails:
                 sexAtBirth: child_gender
                 dateOfBirth: child_dateOfBirth
                 approximateDateOfBirth: child_approximateDateOfBirth

@@ -53,7 +53,7 @@ uk:
                     isAtAddressLessThan5Years: hasApplicant2LivedAtThisAddressForOverFiveYears
                     addressLivedLessThan5YearsDetails: applicant2AllAddressesForLastFiveYears
               typeOfChildArrangementsOrder: childArrangement_order
-              children:
+              newChildDetails:
                 - value:
                     firstName: child1_firstName
                     lastName: child1_lastName
