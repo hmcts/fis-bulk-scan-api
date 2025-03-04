@@ -53,7 +53,7 @@ uk:
                     email: applicantTwoEmailAddress
                     #isAtAddressLessThan5Years: hasapplicantTwoLivedAtThisAddressForOverFiveYears
                     addressLivedLessThan5YearsDetails: applicantTwoAllAddressesForLastFiveYears
-              children:
+              newChildDetails:
                 - value:
                     firstName: child1_firstName
                     lastName: child1_lastName
