@@ -436,7 +436,6 @@ public class BulkScanC100ConditionalTransformerService {
             if (StringUtils.isNotEmpty(inputFieldsMap.get("withoutNotice_otherReasons_CAFCASS_Name_and_officeAddress"))) {
                 value.put("nameAndOffice", inputFieldsMap.get("withoutNotice_otherReasons_CAFCASS_Name_and_officeAddress"));
             }
-            value.put("caseNumber", inputFieldsMap.get("caseNumber"));
             proceeding.put(VALUE, value);
             List<String> typeOfOrders = new ArrayList<>();
             if (TRUE.equalsIgnoreCase(inputFieldsMap.get("withoutNotice_emergency_Protection_Order"))) {
@@ -466,9 +465,7 @@ public class BulkScanC100ConditionalTransformerService {
             if (TRUE.equalsIgnoreCase(inputFieldsMap.get("withoutNotice_childArrangementOrder"))) {
                 typeOfOrders.add("childArrangementsOrder");
             }
-            if (!typeOfOrders.isEmpty()) {
-                proceeding.put("tyoeOfOrder", typeOfOrders);
-            }
+            proceeding.put("tyoeOfOrder", typeOfOrders);
             List<Map<String, Object>> proceedings = new ArrayList<>();
             proceedings.add(proceeding);
             populatedMap.put("existingProceedings", proceedings);
