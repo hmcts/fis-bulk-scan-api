@@ -94,7 +94,6 @@ uk:
               #previousOrOngoingProceedings : previous_or_ongoingProceeding
               setOutReasonsBelow: null
               effortsMadeWithRespondents: respondent_effort
-              doYouRequireAHearingWithReducedNotice: withoutNotice_abridged_or_informalNotice
               reasonsForApplicationWithoutNotice: reason_for_consideration
               c100RebuildHearingUrgency: urgency_reason
 

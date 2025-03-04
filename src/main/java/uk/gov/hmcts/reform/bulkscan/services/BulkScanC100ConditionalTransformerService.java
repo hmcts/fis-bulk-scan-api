@@ -661,9 +661,7 @@ public class BulkScanC100ConditionalTransformerService {
         }
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get("withoutNotice_abridged_or_informalNotice"))) {
             populatedMap.put("withoutAbridgedOrInformalNotice", YES);
-            populatedMap.put(
-                SET_OUT_REASONS_BELOW,
-                inputFieldsMap.get(WITHOUT_NOTICE_ABRIDGED_OR_INFORMAL_NOTICE_REASONS));
+            populatedMap.put(SET_OUT_REASONS_BELOW, inputFieldsMap.get(WITHOUT_NOTICE_ABRIDGED_OR_INFORMAL_NOTICE_REASONS));
         }
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get("withoutNotice_frustrateTheOrder"))) {
             populatedMap.put("doesWithNoticeHearingFrustrateRespondent", YES);
