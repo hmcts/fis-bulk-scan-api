@@ -61,7 +61,7 @@ public final class BulkScanPrlConstants {
     public static final String NO_MIAM_DVE_EVIDENCE_FINANCIAL_MATTERS =
             "noMIAM_DVE_evidenceFinancialMatters";
     public static final String NO_MIAM_CHILD_PROTECTION_CONCERNS_CHECKLIST =
-            "miamChildProtectionConcernList";
+            "mpuChildProtectionConcernReason";
     public static final String NO_MIAM_SUBJECT_OF_ENQUIRIES_BY_LOCAL_AUTHORITY =
             "noMIAM_subjectOfEnquiries_byLocalAuthority";
     public static final String NO_MIAM_SUBJECT_OF_CPP_BY_LOCAL_AUTHORITY =

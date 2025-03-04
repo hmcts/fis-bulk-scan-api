@@ -755,11 +755,11 @@ public class BulkScanC100ConditionalTransformerService {
         if (TRUE.equalsIgnoreCase(
                 inputFieldsMap.get(NO_MIAM_SUBJECT_OF_ENQUIRIES_BY_LOCAL_AUTHORITY))) {
             populatedMap.put(NO_MIAM_CHILD_PROTECTION_CONCERNS_CHECKLIST,
-                             MiamChildProtectionConcernChecklistEnum.MIAMChildProtectionConcernChecklistEnum_value_1.toString());
+                             MiamChildProtectionConcernChecklistEnum.mpuChildProtectionConcern_value_1.toString());
         }
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_SUBJECT_OF_CPP_BY_LOCAL_AUTHORITY))) {
             populatedMap.put(NO_MIAM_CHILD_PROTECTION_CONCERNS_CHECKLIST,
-                             MiamChildProtectionConcernChecklistEnum.MIAMChildProtectionConcernChecklistEnum_value_2.toString());
+                             MiamChildProtectionConcernChecklistEnum.mpuChildProtectionConcern_value_2.toString());
         }
     }
 
