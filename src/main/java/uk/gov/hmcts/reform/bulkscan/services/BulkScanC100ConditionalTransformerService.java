@@ -404,7 +404,7 @@ public class BulkScanC100ConditionalTransformerService {
 
     private void transformPreviousOrOngoingProceedings(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get("previous_or_ongoingProceeding"))) {
-            populatedMap.put("previousOrOngoingProceedingsForChildren", YES);
+            populatedMap.put("previousOrOngoingProceedingsForChildren", "yes");
             Map<String, Object> proceeding = new HashMap<>();
             proceeding.put("id", UUID.randomUUID());
             List<String> children = new ArrayList<>();
@@ -467,6 +467,8 @@ public class BulkScanC100ConditionalTransformerService {
             List<Map<String, Object>> proceedings = new ArrayList<>();
             proceedings.add(proceeding);
             populatedMap.put("existingProceedings", proceedings);
+        } else {
+            populatedMap.put("previousOrOngoingProceedingsForChildren", "no");
         }
     }
 
@@ -748,11 +750,11 @@ public class BulkScanC100ConditionalTransformerService {
         if (TRUE.equalsIgnoreCase(
                 inputFieldsMap.get(NO_MIAM_SUBJECT_OF_ENQUIRIES_BY_LOCAL_AUTHORITY))) {
             populatedMap.put(NO_MIAM_CHILD_PROTECTION_CONCERNS_CHECKLIST,
-                             MiamChildProtectionConcernChecklistEnum.MIAMChildProtectionConcernChecklistEnum_value_1);
+                             MiamChildProtectionConcernChecklistEnum.MIAMChildProtectionConcernChecklistEnum_value_1.toString());
         }
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_SUBJECT_OF_CPP_BY_LOCAL_AUTHORITY))) {
             populatedMap.put(NO_MIAM_CHILD_PROTECTION_CONCERNS_CHECKLIST,
-                             MiamChildProtectionConcernChecklistEnum.MIAMChildProtectionConcernChecklistEnum_value_2);
+                             MiamChildProtectionConcernChecklistEnum.MIAMChildProtectionConcernChecklistEnum_value_2.toString());
         }
     }
 
