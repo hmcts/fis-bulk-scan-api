@@ -200,8 +200,12 @@ public class BulkScanC100ConditionalTransformerService {
         List<Map<String, Object>> childrenList = new ArrayList<>();
         if (StringUtils.isNotEmpty(inputFieldsMap.get("OtherChildrenOneFullName"))) {
             Map<String, Object> otherChild = new HashMap<>();
-            String dob = DateUtil.transformDate(inputFieldsMap.get("OtherChildrenOneDateOfBirth"),
-                                                "dd/mm/yyyy", "yyyy-MM-dd");
+            String dob = null;
+            if (StringUtils.isNotEmpty(inputFieldsMap.get("OtherChildrenOneDateOfBirth"))) {
+                dob = DateUtil.transformDate(inputFieldsMap.get("OtherChildrenOneDateOfBirth"),
+                                         "dd/mm/yyyy", "yyyy-MM-dd");
+            }
+
             otherChild.put("id", UUID.randomUUID());
             otherChild.put("value", OtherChildrenNotInTheCase.builder()
                 .firstName(inputFieldsMap.get("otherChildrenOneFullName"))
