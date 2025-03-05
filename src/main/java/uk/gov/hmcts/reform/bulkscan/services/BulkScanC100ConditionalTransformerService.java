@@ -117,12 +117,43 @@ import uk.gov.hmcts.reform.bulkscan.model.ResponseScanDocumentValueNew;
 import uk.gov.hmcts.reform.bulkscan.model.ScannedDocuments;
 import uk.gov.hmcts.reform.bulkscan.utils.DateUtil;
 
-@SuppressWarnings({"PMD", "unchecked"})
+@SuppressWarnings({"PMD", "unchecked", "java:S3740"})
 @Component
 public class BulkScanC100ConditionalTransformerService {
 
     public static final String RESPONDENT_REASON_NOT_ATTENDING_MIAM = "respondentReasonNotAttendingMiam";
     public static final String RESPONDENT_WILLING_TO_ATTEND_MIAM = "respondentWillingToAttendMiam";
+    public static final String APPLICANTS = "applicants";
+    public static final String RESPONDENTS = "respondents";
+    public static final String ID = "id";
+    public static final String ROLE_ON_CASE = "roleOnCase";
+    public static final String DETAILS = "details";
+    public static final String PARTY_NAME = "partyName";
+    public static final String APPLICANT_FULL_NAME = "applicantFullName";
+    public static final String LAST_NAME = "lastName";
+    public static final String FIRST_NAME = "firstName";
+    public static final String CHILD_FULL_NAME = "childFullName";
+    public static final String CHILD_AND_APPLICANT_RELATION = "childAndApplicantRelation";
+    public static final String CHILD_LIVES_WITH = "childLivesWith";
+    public static final String CA_APPLICANT_1_INTERNAL_FLAGS = "caApplicant1InternalFlags";
+    public static final String CHILD_ID = "childId";
+    public static final String APPLICANT_TWO_FIRST_NAME = "applicantTwoFirstName";
+    public static final String CA_APPLICANT_2_EXTERNAL_FLAGS = "caApplicant2ExternalFlags";
+    public static final String CA_APPLICANT_2_INTERNAL_FLAGS = "caApplicant2InternalFlags";
+    public static final String RESPONDENT_ONE_FIRST_NAME = "respondentOneFirstName";
+    public static final String CA_RESPONDENT_1_EXTERNAL_FLAGS = "caRespondent1ExternalFlags";
+    public static final String CA_RESPONDENT_1_INTERNAL_FLAGS = "caRespondent1InternalFlags";
+    public static final String HAVE_PREVIOUS_PARENTING_PLAN = "havePreviousParentingPlan";
+    public static final String DATE_OF_BIRTH = "dateOfBirth";
+    public static final String OTHER_EXEMPTION_ADDITONAL_INFORMATION = "otherExemption_additonalInformation";
+    public static final String GENDER = "gender";
+    public static final String APPLICANT_ONE_FIRST_NAME = "applicantOneFirstName";
+    public static final String CA_APPLICANT_1_EXTERNAL_FLAGS = "caApplicant1ExternalFlags";
+    public static final String RESPONDENT_TWO_FIRST_NAME = "respondentTwoFirstName";
+    public static final String CA_RESPONDENT_2_EXTERNAL_FLAGS = "caRespondent2ExternalFlags";
+    public static final String CA_RESPONDENT_2_INTERNAL_FLAGS = "caRespondent2InternalFlags";
+    public static final String MPU_OTHER_EXEMPTION_REASONS = "mpuOtherExemptionReasons";
+    public static final String NEW_CHILD_DETAILS = "newChildDetails";
 
     public void transform(
             Map<String, Object> populatedMap,
@@ -140,13 +171,13 @@ public class BulkScanC100ConditionalTransformerService {
         transformInitialChecks(inputFieldsMap, populatedMap);
 
         //transform applicant details
-        transformPartyDetails(inputFieldsMap, populatedMap, "applicants");
+        transformPartyDetails(populatedMap, APPLICANTS);
 
         //transform respondent details
-        transformPartyDetails(inputFieldsMap, populatedMap, "respondents");
+        transformPartyDetails(populatedMap, RESPONDENTS);
 
         //transform other person details
-        transformPartyDetails(inputFieldsMap, populatedMap, "otherPartyInTheCaseRevised");
+        transformPartyDetails(populatedMap, "otherPartyInTheCaseRevised");
 
         //transform child details
         transformChildDetails(inputFieldsMap, populatedMap);
@@ -198,38 +229,8 @@ public class BulkScanC100ConditionalTransformerService {
 
     private void tranformOtheChildrenNotInTheCase(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
         List<Map<String, Object>> childrenList = new ArrayList<>();
-        if (StringUtils.isNotEmpty(inputFieldsMap.get("OtherChildrenOneFullName"))) {
-            Map<String, Object> otherChild = new HashMap<>();
-            String dob = null;
-            if (StringUtils.isNotEmpty(inputFieldsMap.get("OtherChildrenOneDateOfBirth"))) {
-                dob = DateUtil.transformDate(inputFieldsMap.get("OtherChildrenOneDateOfBirth"),
-                                         "dd/mm/yyyy", "yyyy-MM-dd");
-            }
-
-            otherChild.put("id", UUID.randomUUID());
-            otherChild.put("value", OtherChildrenNotInTheCase.builder()
-                .firstName(inputFieldsMap.get("otherChildrenOneFullName"))
-                .gender("male".equalsIgnoreCase(inputFieldsMap.get("OtherChildrenOneGender")) ? Gender.male : Gender.female)
-                .isDateOfBirthKnown(TRUE.equalsIgnoreCase(inputFieldsMap.get("OtherChildrenOneDateOfBirthDontKnow"))
-                                        ? YesOrNo.Yes : YesOrNo.No)
-                .dateOfBirth(StringUtils.isNotEmpty(dob) ? LocalDate.parse(dob) : null)
-                .build());
-            childrenList.add(otherChild);
-        }
-        if (StringUtils.isNotEmpty(inputFieldsMap.get("OtherChildrenTwoFullName"))) {
-            Map<String, Object> otherChild = new HashMap<>();
-            String dob = DateUtil.transformDate(inputFieldsMap.get("OtherChildrenTwoDateOfBirth"),
-                                                "dd/mm/yyyy", "yyyy-MM-dd");
-            otherChild.put("id", UUID.randomUUID());
-            otherChild.put("value", OtherChildrenNotInTheCase.builder()
-                .firstName(inputFieldsMap.get("OtherChildrenTwoFullName"))
-                .gender("male".equalsIgnoreCase(inputFieldsMap.get("OtherChildrenTwoGender")) ? Gender.male : Gender.female)
-                .isDateOfBirthKnown(TRUE.equalsIgnoreCase(inputFieldsMap.get("OtherChildrenTwoDateOfBirthDontKnow"))
-                                        ? YesOrNo.Yes : YesOrNo.No)
-                .dateOfBirth(StringUtils.isNotEmpty(dob) ? LocalDate.parse(dob) : null)
-                .build());
-            childrenList.add(otherChild);
-        }
+        transformOtherChildOne(inputFieldsMap, childrenList);
+        transformOtherChildTwo(inputFieldsMap, childrenList);
         if (childrenList.isEmpty()) {
             populatedMap.put("childrenNotPartInTheCaseYesNo", YesOrNo.No);
         } else {
@@ -238,9 +239,47 @@ public class BulkScanC100ConditionalTransformerService {
         }
     }
 
+    private void transformOtherChildOne(Map<String, String> inputFieldsMap, List<Map<String, Object>> childrenList) {
+        if (StringUtils.isNotEmpty(inputFieldsMap.get("OtherChildrenOneFullName"))) {
+            Map<String, Object> otherChild = new HashMap<>();
+            String dob = null;
+            if (StringUtils.isNotEmpty(inputFieldsMap.get("OtherChildrenOneDateOfBirth"))) {
+                dob = DateUtil.transformDate(inputFieldsMap.get("OtherChildrenOneDateOfBirth"),
+                                             "dd/mm/yyyy", "yyyy-MM-dd");
+            }
+
+            otherChild.put(ID, UUID.randomUUID());
+            otherChild.put(VALUE, OtherChildrenNotInTheCase.builder()
+                .firstName(inputFieldsMap.get("otherChildrenOneFullName"))
+                .gender("male".equalsIgnoreCase(inputFieldsMap.get("OtherChildrenOneGender")) ? Gender.male : Gender.female)
+                .isDateOfBirthKnown(TRUE.equalsIgnoreCase(inputFieldsMap.get("OtherChildrenOneDateOfBirthDontKnow"))
+                                        ? YesOrNo.Yes : YesOrNo.No)
+                .dateOfBirth(StringUtils.isNotEmpty(dob) ? LocalDate.parse(dob) : null)
+                .build());
+            childrenList.add(otherChild);
+        }
+    }
+
+    private void transformOtherChildTwo(Map<String, String> inputFieldsMap, List<Map<String, Object>> childrenList) {
+        if (StringUtils.isNotEmpty(inputFieldsMap.get("OtherChildrenTwoFullName"))) {
+            Map<String, Object> otherChild = new HashMap<>();
+            String dob = DateUtil.transformDate(inputFieldsMap.get("OtherChildrenTwoDateOfBirth"),
+                                                "dd/mm/yyyy", "yyyy-MM-dd");
+            otherChild.put(ID, UUID.randomUUID());
+            otherChild.put(VALUE, OtherChildrenNotInTheCase.builder()
+                .firstName(inputFieldsMap.get("OtherChildrenTwoFullName"))
+                .gender("male".equalsIgnoreCase(inputFieldsMap.get("OtherChildrenTwoGender")) ? Gender.male : Gender.female)
+                .isDateOfBirthKnown(TRUE.equalsIgnoreCase(inputFieldsMap.get("OtherChildrenTwoDateOfBirthDontKnow"))
+                                        ? YesOrNo.Yes : YesOrNo.No)
+                .dateOfBirth(StringUtils.isNotEmpty(dob) ? LocalDate.parse(dob) : null)
+                .build());
+            childrenList.add(otherChild);
+        }
+    }
+
     private void transformRespondentChildRelationship(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
-        List<Map<String, Object>> childrenList = (List<Map<String, Object>>) populatedMap.get("newChildDetails");
-        List<Map<String, Object>> respondents = (List<Map<String, Object>>) populatedMap.get("respondents");
+        List<Map<String, Object>> childrenList = (List<Map<String, Object>>) populatedMap.get(NEW_CHILD_DETAILS);
+        List<Map<String, Object>> respondents = (List<Map<String, Object>>) populatedMap.get(RESPONDENTS);
         String key = "child%s_respondent%s_relationship";
         String childLivesWith = "";
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(CHILD_LIVING_WITH_RESPONDENT))) {
@@ -253,15 +292,15 @@ public class BulkScanC100ConditionalTransformerService {
             Map<String, Object> child = childrenList.get(i);
             for (int j = 0; j < respondents.size(); j++) {
                 Map<String, String> childRespondantRelation = new HashMap<>();
-                Map<String, Object> respondentValue = (Map<String, Object>) respondents.get(j).get("value");
+                Map<String, Object> respondentValue = (Map<String, Object>) respondents.get(j).get(VALUE);
                 String relationship = inputFieldsMap.get(String.format(key, i, j));
-                childRespondantRelation.put("applicantFullName", respondentValue.get("firstName") + " "
-                    + respondentValue.get("lastName"));
-                childRespondantRelation.put("childFullName", child.get("firstName") + " " + child.get("lastName"));
-                childRespondantRelation.put("childAndApplicantRelation", relationship);
-                childRespondantRelation.put("childLivesWith", childLivesWith);
-                childRespondantRelation.put("applicantId", String.valueOf(respondents.get(j).get("id")));
-                childRespondantRelation.put("childId", String.valueOf(child.get("id")));
+                childRespondantRelation.put("respondentFullName", respondentValue.get(FIRST_NAME) + " "
+                    + respondentValue.get(LAST_NAME));
+                childRespondantRelation.put(CHILD_FULL_NAME, child.get(FIRST_NAME) + " " + child.get(LAST_NAME));
+                childRespondantRelation.put("childAndRespondentRelation", relationship);
+                childRespondantRelation.put(CHILD_LIVES_WITH, childLivesWith);
+                childRespondantRelation.put("respondentId", String.valueOf(respondents.get(j).get(ID)));
+                childRespondantRelation.put(CHILD_ID, String.valueOf(child.get(ID)));
                 childRespondantRelations.add(childRespondantRelation);
             }
         }
@@ -269,8 +308,8 @@ public class BulkScanC100ConditionalTransformerService {
     }
 
     private void transformApplicantChildRelationship(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
-        List<Map<String, Object>> childrenList = (List<Map<String, Object>>) populatedMap.get("newChildDetails");
-        List<Map<String, Object>> applicants = (List<Map<String, Object>>) populatedMap.get("applicants");
+        List<Map<String, Object>> childrenList = (List<Map<String, Object>>) populatedMap.get(NEW_CHILD_DETAILS);
+        List<Map<String, Object>> applicants = (List<Map<String, Object>>) populatedMap.get(APPLICANTS);
         String key = "child%s_applicant%s_relationship";
         String childLivesWith = "";
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(CHILD_LIVING_WITH_APPLICANT))) {
@@ -283,15 +322,15 @@ public class BulkScanC100ConditionalTransformerService {
             Map<String, Object> child = childrenList.get(i);
             for (int j = 0; j < applicants.size(); j++) {
                 Map<String, String> childApplicantRelation = new HashMap<>();
-                Map<String, Object> applicantValue = (Map<String, Object>) applicants.get(j).get("value");
+                Map<String, Object> applicantValue = (Map<String, Object>) applicants.get(j).get(VALUE);
                 String relationship = inputFieldsMap.get(String.format(key, i, j));
-                childApplicantRelation.put("applicantFullName", applicantValue.get("firstName") + " "
-                    + applicantValue.get("lastName"));
-                childApplicantRelation.put("childFullName", child.get("firstName") + " " + child.get("lastName"));
-                childApplicantRelation.put("childAndApplicantRelation", relationship);
-                childApplicantRelation.put("childLivesWith", childLivesWith);
-                childApplicantRelation.put("applicantId", String.valueOf(applicants.get(j).get("id")));
-                childApplicantRelation.put("childId", String.valueOf(child.get("id")));
+                childApplicantRelation.put(APPLICANT_FULL_NAME, applicantValue.get(FIRST_NAME) + " "
+                    + applicantValue.get(LAST_NAME));
+                childApplicantRelation.put(CHILD_FULL_NAME, child.get(FIRST_NAME) + " " + child.get(LAST_NAME));
+                childApplicantRelation.put(CHILD_AND_APPLICANT_RELATION, relationship);
+                childApplicantRelation.put(CHILD_LIVES_WITH, childLivesWith);
+                childApplicantRelation.put("applicantId", String.valueOf(applicants.get(j).get(ID)));
+                childApplicantRelation.put(CHILD_ID, String.valueOf(child.get(ID)));
                 childApplicantRelations.add(childApplicantRelation);
             }
         }
@@ -299,8 +338,8 @@ public class BulkScanC100ConditionalTransformerService {
     }
 
     private void transformOtherPersonChildRelationship(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
-        List<Map<String, Object>> childrenList = (List<Map<String, Object>>) populatedMap.get("newChildDetails");
-        List<Map<String, Object>> applicants = (List<Map<String, Object>>) populatedMap.get("applicants");
+        List<Map<String, Object>> childrenList = (List<Map<String, Object>>) populatedMap.get(NEW_CHILD_DETAILS);
+        List<Map<String, Object>> applicants = (List<Map<String, Object>>) populatedMap.get(APPLICANTS);
         String key = "child%s_applicant%s_relationship";
         String childLivesWith = "";
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get(CHILD_LIVING_WITH_OTHERS))) {
@@ -314,13 +353,13 @@ public class BulkScanC100ConditionalTransformerService {
             for (int j = 0; j < applicants.size(); j++) {
                 Map<String, String> childApplicantRelation = new HashMap<>();
                 String relationship = inputFieldsMap.get(String.format(key, i, j));
-                childApplicantRelation.put("applicantFullName", applicants.get(j).get("firstName") + " "
-                    + applicants.get(j).get("lastName"));
-                childApplicantRelation.put("childFullName", child.get("firstName") + " " + child.get("lastName"));
-                childApplicantRelation.put("childAndApplicantRelation", relationship);
-                childApplicantRelation.put("childLivesWith", childLivesWith);
-                childApplicantRelation.put("applicantId", String.valueOf(applicants.get(j).get("id")));
-                childApplicantRelation.put("childId", String.valueOf(child.get("id")));
+                childApplicantRelation.put(APPLICANT_FULL_NAME, applicants.get(j).get(FIRST_NAME) + " "
+                    + applicants.get(j).get(LAST_NAME));
+                childApplicantRelation.put(CHILD_FULL_NAME, child.get(FIRST_NAME) + " " + child.get(LAST_NAME));
+                childApplicantRelation.put(CHILD_AND_APPLICANT_RELATION, relationship);
+                childApplicantRelation.put(CHILD_LIVES_WITH, childLivesWith);
+                childApplicantRelation.put("applicantId", String.valueOf(applicants.get(j).get(ID)));
+                childApplicantRelation.put(CHILD_ID, String.valueOf(child.get(ID)));
                 childApplicantRelations.add(childApplicantRelation);
             }
         }
@@ -337,101 +376,101 @@ public class BulkScanC100ConditionalTransformerService {
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get("urgent_or_withoutHearing"))) {
             populatedMap.put("isCaseUrgent", YES);
         }
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("havePreviousParentingPlan"))) {
-            populatedMap.put("havePreviousParentingPlan", YES);
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(HAVE_PREVIOUS_PARENTING_PLAN))) {
+            populatedMap.put(HAVE_PREVIOUS_PARENTING_PLAN, YES);
         } else {
-            populatedMap.put("havePreviousParentingPlan", NO);
+            populatedMap.put(HAVE_PREVIOUS_PARENTING_PLAN, NO);
         }
     }
 
     private void transformFlags(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
         List<String> details = new ArrayList<>();
-        if (StringUtils.isNotEmpty(inputFieldsMap.get("applicantOneFirstName"))) {
-            LinkedTreeMap caApplicant1ExternalFlags = (LinkedTreeMap) populatedMap.get("caApplicant1ExternalFlags");
-            LinkedTreeMap caApplicant1InternalFlags = (LinkedTreeMap) populatedMap.get("caApplicant1InternalFlags");
-            caApplicant1InternalFlags.put("partyName", inputFieldsMap.get("applicantOneFirstName") + " "
+        if (StringUtils.isNotEmpty(inputFieldsMap.get(APPLICANT_ONE_FIRST_NAME))) {
+            LinkedTreeMap caApplicant1ExternalFlags = (LinkedTreeMap) populatedMap.get(CA_APPLICANT_1_EXTERNAL_FLAGS);
+            LinkedTreeMap caApplicant1InternalFlags = (LinkedTreeMap) populatedMap.get(CA_APPLICANT_1_INTERNAL_FLAGS);
+            caApplicant1InternalFlags.put(PARTY_NAME, inputFieldsMap.get(APPLICANT_ONE_FIRST_NAME) + " "
                 + inputFieldsMap.get("applicantOneLastName"));
-            caApplicant1InternalFlags.put("roleOnCase", "Applicant 1");
-            caApplicant1ExternalFlags.put("details", details);
-            caApplicant1InternalFlags.put("details", details);
-            caApplicant1ExternalFlags.put("partyName", inputFieldsMap.get("applicantOneFirstName") + " "
+            caApplicant1InternalFlags.put(ROLE_ON_CASE, "Applicant 1");
+            caApplicant1ExternalFlags.put(DETAILS, details);
+            caApplicant1InternalFlags.put(DETAILS, details);
+            caApplicant1ExternalFlags.put(PARTY_NAME, inputFieldsMap.get(APPLICANT_ONE_FIRST_NAME) + " "
                 + inputFieldsMap.get("applicantOneLastName"));
-            caApplicant1ExternalFlags.put("roleOnCase", "Applicant 1");
-            populatedMap.put("caApplicant1ExternalFlags", caApplicant1ExternalFlags);
-            populatedMap.put("caApplicant1InternalFlags", caApplicant1InternalFlags);
+            caApplicant1ExternalFlags.put(ROLE_ON_CASE, "Applicant 1");
+            populatedMap.put(CA_APPLICANT_1_EXTERNAL_FLAGS, caApplicant1ExternalFlags);
+            populatedMap.put(CA_APPLICANT_1_INTERNAL_FLAGS, caApplicant1InternalFlags);
         } else {
-            populatedMap.remove("caApplicant1ExternalFlags");
-            populatedMap.remove("caApplicant1InternalFlags");
+            populatedMap.remove(CA_APPLICANT_1_EXTERNAL_FLAGS);
+            populatedMap.remove(CA_APPLICANT_1_INTERNAL_FLAGS);
         }
-        if (StringUtils.isNotEmpty(inputFieldsMap.get("applicantTwoFirstName"))) {
-            LinkedTreeMap caApplicant2ExternalFlags = (LinkedTreeMap) populatedMap.get("caApplicant2ExternalFlags");
-            LinkedTreeMap caApplicant2InternalFlags = (LinkedTreeMap) populatedMap.get("caApplicant2InternalFlags");
-            caApplicant2InternalFlags.put("partyName", inputFieldsMap.get("applicantTwoFirstName") + " "
+        if (StringUtils.isNotEmpty(inputFieldsMap.get(APPLICANT_TWO_FIRST_NAME))) {
+            LinkedTreeMap caApplicant2ExternalFlags = (LinkedTreeMap) populatedMap.get(CA_APPLICANT_2_EXTERNAL_FLAGS);
+            LinkedTreeMap caApplicant2InternalFlags = (LinkedTreeMap) populatedMap.get(CA_APPLICANT_2_INTERNAL_FLAGS);
+            caApplicant2InternalFlags.put(PARTY_NAME, inputFieldsMap.get(APPLICANT_TWO_FIRST_NAME) + " "
                 + inputFieldsMap.get("applicantTwoLastName"));
-            caApplicant2ExternalFlags.put("details", details);
-            caApplicant2InternalFlags.put("details", details);
-            caApplicant2InternalFlags.put("roleOnCase", "Applicant 2");
-            caApplicant2ExternalFlags.put("partyName", inputFieldsMap.get("applicantTwoFirstName") + " "
+            caApplicant2ExternalFlags.put(DETAILS, details);
+            caApplicant2InternalFlags.put(DETAILS, details);
+            caApplicant2InternalFlags.put(ROLE_ON_CASE, "Applicant 2");
+            caApplicant2ExternalFlags.put(PARTY_NAME, inputFieldsMap.get(APPLICANT_TWO_FIRST_NAME) + " "
                 + inputFieldsMap.get("applicantTwoLastName"));
-            caApplicant2ExternalFlags.put("roleOnCase", "Applicant 2");
-            populatedMap.put("caApplicant2ExternalFlags", caApplicant2ExternalFlags);
-            populatedMap.put("caApplicant2InternalFlags", caApplicant2InternalFlags);
+            caApplicant2ExternalFlags.put(ROLE_ON_CASE, "Applicant 2");
+            populatedMap.put(CA_APPLICANT_2_EXTERNAL_FLAGS, caApplicant2ExternalFlags);
+            populatedMap.put(CA_APPLICANT_2_INTERNAL_FLAGS, caApplicant2InternalFlags);
         } else {
-            populatedMap.remove("caApplicant2ExternalFlags");
-            populatedMap.remove("caApplicant2InternalFlags");
+            populatedMap.remove(CA_APPLICANT_2_EXTERNAL_FLAGS);
+            populatedMap.remove(CA_APPLICANT_2_INTERNAL_FLAGS);
         }
-        if (StringUtils.isNotEmpty(inputFieldsMap.get("respondentOneFirstName"))) {
-            LinkedTreeMap caRespondent1ExternalFlags = (LinkedTreeMap) populatedMap.get("caRespondent1ExternalFlags");
-            caRespondent1ExternalFlags.put("partyName", inputFieldsMap.get("respondentOneFirstName") + " "
+        if (StringUtils.isNotEmpty(inputFieldsMap.get(RESPONDENT_ONE_FIRST_NAME))) {
+            LinkedTreeMap caRespondent1ExternalFlags = (LinkedTreeMap) populatedMap.get(CA_RESPONDENT_1_EXTERNAL_FLAGS);
+            caRespondent1ExternalFlags.put(PARTY_NAME, inputFieldsMap.get(RESPONDENT_ONE_FIRST_NAME) + " "
                 + inputFieldsMap.get("respondentOneLastName"));
-            caRespondent1ExternalFlags.put("roleOnCase", "Respondent 1");
-            LinkedTreeMap caRespondent1InternalFlags = (LinkedTreeMap) populatedMap.get("caRespondent1InternalFlags");
-            caRespondent1InternalFlags.put("partyName", inputFieldsMap.get("respondentOneFirstName") + " "
+            caRespondent1ExternalFlags.put(ROLE_ON_CASE, "Respondent 1");
+            LinkedTreeMap caRespondent1InternalFlags = (LinkedTreeMap) populatedMap.get(CA_RESPONDENT_1_INTERNAL_FLAGS);
+            caRespondent1InternalFlags.put(PARTY_NAME, inputFieldsMap.get(RESPONDENT_ONE_FIRST_NAME) + " "
                 + inputFieldsMap.get("respondentOneLastName"));
-            caRespondent1InternalFlags.put("roleOnCase", "Respondent 1");
-            caRespondent1ExternalFlags.put("details", details);
-            caRespondent1InternalFlags.put("details", details);
-            populatedMap.put("caRespondent1ExternalFlags", caRespondent1ExternalFlags);
-            populatedMap.put("caRespondent1InternalFlags", caRespondent1InternalFlags);
+            caRespondent1InternalFlags.put(ROLE_ON_CASE, "Respondent 1");
+            caRespondent1ExternalFlags.put(DETAILS, details);
+            caRespondent1InternalFlags.put(DETAILS, details);
+            populatedMap.put(CA_RESPONDENT_1_EXTERNAL_FLAGS, caRespondent1ExternalFlags);
+            populatedMap.put(CA_RESPONDENT_1_INTERNAL_FLAGS, caRespondent1InternalFlags);
         } else {
-            populatedMap.put("caRespondent1ExternalFlags", null);
-            populatedMap.put("caRespondent1InternalFlags", null);
+            populatedMap.put(CA_RESPONDENT_1_EXTERNAL_FLAGS, null);
+            populatedMap.put(CA_RESPONDENT_1_INTERNAL_FLAGS, null);
         }
-        if (StringUtils.isNotEmpty(inputFieldsMap.get("respondentTwoFirstName"))) {
-            LinkedTreeMap caRespondent2ExternalFlags = (LinkedTreeMap) populatedMap.get("caRespondent2ExternalFlags");
-            caRespondent2ExternalFlags.put("partyName", inputFieldsMap.get("respondentTwoFirstName") + " "
+        if (StringUtils.isNotEmpty(inputFieldsMap.get(RESPONDENT_TWO_FIRST_NAME))) {
+            LinkedTreeMap caRespondent2ExternalFlags = (LinkedTreeMap) populatedMap.get(CA_RESPONDENT_2_EXTERNAL_FLAGS);
+            caRespondent2ExternalFlags.put(PARTY_NAME, inputFieldsMap.get(RESPONDENT_TWO_FIRST_NAME) + " "
                 + inputFieldsMap.get("respondentTwoLastName"));
-            caRespondent2ExternalFlags.put("roleOnCase", "Respondent 2");
-            LinkedTreeMap caRespondent2InternalFlags = (LinkedTreeMap) populatedMap.get("caRespondent2ExternalFlags");
-            caRespondent2InternalFlags.put("partyName", inputFieldsMap.get("respondentTwoFirstName") + " "
+            caRespondent2ExternalFlags.put(ROLE_ON_CASE, "Respondent 2");
+            LinkedTreeMap caRespondent2InternalFlags = (LinkedTreeMap) populatedMap.get(CA_RESPONDENT_2_EXTERNAL_FLAGS);
+            caRespondent2InternalFlags.put(PARTY_NAME, inputFieldsMap.get(RESPONDENT_TWO_FIRST_NAME) + " "
                 + inputFieldsMap.get("respondentTwoLastName"));
-            caRespondent2ExternalFlags.put("details", details);
-            caRespondent2InternalFlags.put("details", details);
-            caRespondent2InternalFlags.put("roleOnCase", "Respondent 2");
-            populatedMap.put("caRespondent2ExternalFlags", caRespondent2ExternalFlags);
-            populatedMap.put("caRespondent2InternalFlags", caRespondent2InternalFlags);
+            caRespondent2ExternalFlags.put(DETAILS, details);
+            caRespondent2InternalFlags.put(DETAILS, details);
+            caRespondent2InternalFlags.put(ROLE_ON_CASE, "Respondent 2");
+            populatedMap.put(CA_RESPONDENT_2_EXTERNAL_FLAGS, caRespondent2ExternalFlags);
+            populatedMap.put(CA_RESPONDENT_2_INTERNAL_FLAGS, caRespondent2InternalFlags);
         } else {
-            populatedMap.put("caRespondent2ExternalFlags", null);
-            populatedMap.put("caRespondent2InternalFlags", null);
+            populatedMap.put(CA_RESPONDENT_2_EXTERNAL_FLAGS, null);
+            populatedMap.put(CA_RESPONDENT_2_INTERNAL_FLAGS, null);
         }
     }
 
-    private void transformPartyDetails(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap,
+    private void transformPartyDetails(Map<String, Object> populatedMap,
                                        String partyType) {
         List<Map<String, Object>> parties = (List<Map<String, Object>>) populatedMap.get(partyType);
         populatedMap.put(partyType, parties.stream()
             .filter(party -> {
-                Map<String, Object> partyValue = (Map<String, Object>) party.get("value");
-                return partyValue.get("firstName") != null;
+                Map<String, Object> partyValue = (Map<String, Object>) party.get(VALUE);
+                return partyValue.get(FIRST_NAME) != null;
             })
             .map(party -> {
-                party.put("id", UUID.randomUUID());
-                Map<String, Object> value = (Map<String, Object>) party.get("value");
-                if (ObjectUtils.isNotEmpty(value.get("dateOfBirth"))) {
-                    value.put("dateOfBirth", DateUtil.transformDate(value.get("dateOfBirth").toString(),
+                party.put(ID, UUID.randomUUID());
+                Map<String, Object> value = (Map<String, Object>) party.get(VALUE);
+                if (ObjectUtils.isNotEmpty(value.get(DATE_OF_BIRTH))) {
+                    value.put(DATE_OF_BIRTH, DateUtil.transformDate(value.get(DATE_OF_BIRTH).toString(),
                                                                     TEXT_AND_NUMERIC_MONTH_PATTERN,
                                                                     TWO_DIGIT_MONTH_FORMAT));
-                    party.put("value", value);
+                    party.put(VALUE, value);
                 }
 
                 return party;
@@ -500,7 +539,7 @@ public class BulkScanC100ConditionalTransformerService {
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get("applicantRequiresInterpreter"))) {
             populatedMap.put("isInterpreterNeeded", YES);
             Map<String, Object> interpreterNeed = new HashMap<>();
-            interpreterNeed.put("id", UUID.randomUUID());
+            interpreterNeed.put(ID, UUID.randomUUID());
             Map<String, Object> value = new HashMap<>();
             value.put(PARTY_ENUM, transformParty(inputFieldsMap));
             if (StringUtils.isNotEmpty(inputFieldsMap.get("applicantRequiresInterpreter_otherParty_dialect"))) {
@@ -565,20 +604,8 @@ public class BulkScanC100ConditionalTransformerService {
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get("previous_or_ongoingProceeding"))) {
             populatedMap.put("previousOrOngoingProceedingsForChildren", "yes");
             Map<String, Object> proceeding = new HashMap<>();
-            proceeding.put("id", UUID.randomUUID());
-            List<String> children = new ArrayList<>();
-            if (StringUtils.isNotEmpty(inputFieldsMap.get("withoutNotice_otherReasons_child1_name"))) {
-                children.add(inputFieldsMap.get("withoutNotice_otherReasons_child1_name"));
-            }
-            if (StringUtils.isNotEmpty(inputFieldsMap.get("withoutNotice_otherReasons_child2_name"))) {
-                children.add(inputFieldsMap.get("withoutNotice_otherReasons_child2_name"));
-            }
-            if (StringUtils.isNotEmpty(inputFieldsMap.get("withoutNotice_otherReasons_child3_name"))) {
-                children.add(inputFieldsMap.get("withoutNotice_otherReasons_child3_name"));
-            }
-            if (StringUtils.isNotEmpty(inputFieldsMap.get("withoutNotice_otherReasons_child4_name"))) {
-                children.add(inputFieldsMap.get("withoutNotice_otherReasons_child4_name"));
-            }
+            proceeding.put(ID, UUID.randomUUID());
+            List<String> children = getChildrenInOtherProceedings(inputFieldsMap);
             Map<String, Object> value = new HashMap<>();
             value.put("nameOfChildrenInvolved", String.join(",", children));
             if (StringUtils.isNotEmpty(inputFieldsMap.get("withoutNotice_otherReasons_name_of_the_court"))) {
@@ -591,41 +618,32 @@ public class BulkScanC100ConditionalTransformerService {
                 value.put("nameAndOffice", inputFieldsMap.get("withoutNotice_otherReasons_CAFCASS_Name_and_officeAddress"));
             }
             proceeding.put(VALUE, value);
-            List<String> typeOfOrders = new ArrayList<>();
-            if (TRUE.equalsIgnoreCase(inputFieldsMap.get("withoutNotice_emergency_Protection_Order"))) {
-                typeOfOrders.add("emergencyProtectionOrder");
-            }
-            if (TRUE.equalsIgnoreCase(inputFieldsMap.get("withoutNotice_supervisionOrder"))) {
-                typeOfOrders.add("supervisionOrder");
-            }
-            if (TRUE.equalsIgnoreCase(inputFieldsMap.get("withoutNotice_caseOrder"))) {
-                typeOfOrders.add("careOrder");
-            }
-            if (TRUE.equalsIgnoreCase(inputFieldsMap.get("withoutNotice_childAbduction"))) {
-                typeOfOrders.add("childAbduction");
-            }
-            if (TRUE.equalsIgnoreCase(inputFieldsMap.get("withoutNotice_proceeding_for_NonMolestationOrder"))) {
-                typeOfOrders.add("familyLaw1996Part4");
-            }
-            if (TRUE.equalsIgnoreCase(inputFieldsMap.get("withoutNotice_contact_or_residentOrder"))) {
-                typeOfOrders.add("contactOrResidenceOrder");
-            }
-            if (TRUE.equalsIgnoreCase(inputFieldsMap.get("withoutNotice_contact_or_residentOrder_withAdoptionOrder"))) {
-                typeOfOrders.add("contactOrResidenceOrderWithAdoption");
-            }
-            if (TRUE.equalsIgnoreCase(inputFieldsMap.get("withoutNotice_childMaintenanceOrder"))) {
-                typeOfOrders.add("orderRelatingToChildMaintainance");
-            }
-            if (TRUE.equalsIgnoreCase(inputFieldsMap.get("withoutNotice_childArrangementOrder"))) {
-                typeOfOrders.add("childArrangementsOrder");
-            }
-            proceeding.put("tyoeOfOrder", typeOfOrders);
+
+            List<String> typeOfOrders = transformTypeOfOrder(inputFieldsMap);
+            proceeding.put("typeOfOrder", typeOfOrders);
             List<Map<String, Object>> proceedings = new ArrayList<>();
             proceedings.add(proceeding);
             populatedMap.put("existingProceedings", proceedings);
         } else {
             populatedMap.put("previousOrOngoingProceedingsForChildren", "no");
         }
+    }
+
+    private List<String> getChildrenInOtherProceedings(Map<String, String> inputFieldsMap) {
+        List<String> children = new ArrayList<>();
+        if (StringUtils.isNotEmpty(inputFieldsMap.get("withoutNotice_otherReasons_child1_name"))) {
+            children.add(inputFieldsMap.get("withoutNotice_otherReasons_child1_name"));
+        }
+        if (StringUtils.isNotEmpty(inputFieldsMap.get("withoutNotice_otherReasons_child2_name"))) {
+            children.add(inputFieldsMap.get("withoutNotice_otherReasons_child2_name"));
+        }
+        if (StringUtils.isNotEmpty(inputFieldsMap.get("withoutNotice_otherReasons_child3_name"))) {
+            children.add(inputFieldsMap.get("withoutNotice_otherReasons_child3_name"));
+        }
+        if (StringUtils.isNotEmpty(inputFieldsMap.get("withoutNotice_otherReasons_child4_name"))) {
+            children.add(inputFieldsMap.get("withoutNotice_otherReasons_child4_name"));
+        }
+        return children;
     }
 
     private void transformMiamDetails(Map<String, Object> populatedMap, Map<String, String> inputFieldsMap) {
@@ -639,54 +657,63 @@ public class BulkScanC100ConditionalTransformerService {
                 populatedMap.put("mediatorRegistrationNumber", inputFieldsMap.get("fmcRegistrationNumber"));
                 populatedMap.put("familyMediatorServiceName", inputFieldsMap.get("familyMediationServiceName"));
             } else {
-                if (TRUE.equalsIgnoreCase(inputFieldsMap.get("exemption_to_attend_MIAM"))) {
-                    populatedMap.put("mpuClaimingExemptionMiam", inputFieldsMap.get(""));
-                    populatedMap.put(
-                        MIAM_EXEMPTIONS_CHECKLIST, transformMiamExemptionsChecklist(inputFieldsMap));
-                    if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_DOMESTIC_VIOLENCE))) {
-                        populatedMap.put(
-                            "mpuDomesticAbuseEvidences",
-                            transformMiamDomesticViolenceChecklist(inputFieldsMap));
-                    }
-                    if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_CHILD_PROTECTION_CONCERNS))) {
-                        transformNoMiamChildProtectionConcerns(inputFieldsMap, populatedMap);
-                    }
-                    if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_URGENCY))) {
-                        transformMiamUrgencyReasonChecklist(inputFieldsMap, populatedMap);
-                    }
-                    if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_PREVIOUS_ATTENDENCE))) {
-                        transformMiamPreviousAttendance(populatedMap, inputFieldsMap);
-                    }
-                    if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_OTHER_REASONS))) {
-                        transformMiamOtherReasonsExemptions(populatedMap, inputFieldsMap);
-                    }
-
-                }
+                handleMiamExemptions(populatedMap, inputFieldsMap);
             }
+        }
+    }
+
+    private void handleMiamExemptions(Map<String, Object> populatedMap, Map<String, String> inputFieldsMap) {
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("exemption_to_attend_MIAM"))) {
+            populatedMap.put("mpuClaimingExemptionMiam", YesOrNo.Yes);
+            populatedMap.put(
+                MIAM_EXEMPTIONS_CHECKLIST, transformMiamExemptionsChecklist(inputFieldsMap));
+            if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_DOMESTIC_VIOLENCE))) {
+                populatedMap.put(
+                    "mpuDomesticAbuseEvidences",
+                    transformMiamDomesticViolenceChecklist(inputFieldsMap));
+            }
+            if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_CHILD_PROTECTION_CONCERNS))) {
+                transformNoMiamChildProtectionConcerns(inputFieldsMap, populatedMap);
+            }
+            if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_URGENCY))) {
+                transformMiamUrgencyReasonChecklist(inputFieldsMap, populatedMap);
+            }
+            if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_PREVIOUS_ATTENDENCE))) {
+                transformMiamPreviousAttendance(populatedMap, inputFieldsMap);
+            }
+            if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_OTHER_REASONS))) {
+                transformMiamOtherReasonsExemptions(populatedMap, inputFieldsMap);
+            }
+
+        } else {
+            populatedMap.put("mpuApplicantAttendedMiam", NO);
         }
     }
 
     private void transformMiamOtherReasonsExemptions(Map<String, Object> populatedMap, Map<String, String> inputFieldsMap) {
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get("otherExemption_withoutNotice"))) {
-            populatedMap.put("mpuOtherExemptionReasons", "miamPolicyUpgradeOtherGrounds_Value_1");
+            populatedMap.put(MPU_OTHER_EXEMPTION_REASONS, "miamPolicyUpgradeOtherGrounds_Value_1");
         }
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get("otherExemption_byVirture_of_Rule12_3"))) {
-            populatedMap.put("mpuOtherExemptionReasons", "miamPolicyUpgradeOtherGrounds_Value_2");
+            populatedMap.put(MPU_OTHER_EXEMPTION_REASONS, "miamPolicyUpgradeOtherGrounds_Value_2");
         }
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get("otherExemption_mediator_notAvailableToConduct"))) {
-            populatedMap.put("mpuOtherExemptionReasons", "miamPolicyUpgradeOtherGrounds_Value_3");
-            populatedMap.put("mpuApplicantUnableToAttendMiamReason1", inputFieldsMap.get("otherExemption_additonalInformation"));
+            populatedMap.put(MPU_OTHER_EXEMPTION_REASONS, "miamPolicyUpgradeOtherGrounds_Value_3");
+            populatedMap.put("mpuApplicantUnableToAttendMiamReason1", inputFieldsMap.get(
+                OTHER_EXEMPTION_ADDITONAL_INFORMATION));
         }
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get("otherExemption_disability_or_inabilityToAttend"))) {
-            populatedMap.put("mpuOtherExemptionReasons", "miamPolicyUpgradeOtherGrounds_Value_4");
-            populatedMap.put("mpuApplicantUnableToAttendMiamReason1", inputFieldsMap.get("otherExemption_additonalInformation"));
+            populatedMap.put(MPU_OTHER_EXEMPTION_REASONS, "miamPolicyUpgradeOtherGrounds_Value_4");
+            populatedMap.put("mpuApplicantUnableToAttendMiamReason1", inputFieldsMap.get(
+                OTHER_EXEMPTION_ADDITONAL_INFORMATION));
         }
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get("otherExemption_NotSufficient_Respondent_ContactDetails"))) {
-            populatedMap.put("mpuOtherExemptionReasons", "miamPolicyUpgradeOtherGrounds_Value_5");
-            populatedMap.put("mpuApplicantUnableToAttendMiamReason2", inputFieldsMap.get("otherExemption_additonalInformation"));
+            populatedMap.put(MPU_OTHER_EXEMPTION_REASONS, "miamPolicyUpgradeOtherGrounds_Value_5");
+            populatedMap.put("mpuApplicantUnableToAttendMiamReason2", inputFieldsMap.get(
+                OTHER_EXEMPTION_ADDITONAL_INFORMATION));
         }
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get("otherExemption_applicant_or_respondent_inPrison"))) {
-            populatedMap.put("mpuOtherExemptionReasons", "miamPolicyUpgradeOtherGrounds_Value_6");
+            populatedMap.put(MPU_OTHER_EXEMPTION_REASONS, "miamPolicyUpgradeOtherGrounds_Value_6");
         }
         if (StringUtils.isNotEmpty(inputFieldsMap.get("otherExemption_NoEvidence_reason"))) {
             populatedMap.put(
@@ -706,8 +733,8 @@ public class BulkScanC100ConditionalTransformerService {
     }
 
     private void transformChildDetails(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
-        List<Map<String, Object>> children = (List<Map<String, Object>>) populatedMap.get("newChildDetails");
-        populatedMap.put("newChildDetails", populateChildren(children, inputFieldsMap));
+        List<Map<String, Object>> children = (List<Map<String, Object>>) populatedMap.get(NEW_CHILD_DETAILS);
+        populatedMap.put(NEW_CHILD_DETAILS, populateChildren(children, inputFieldsMap));
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get("children_of_same_parent"))) {
             populatedMap.put("isChildrenWithSameParents", "yes");
         } else {
@@ -728,19 +755,19 @@ public class BulkScanC100ConditionalTransformerService {
     private List<Map<String, Object>> populateChildren(List<Map<String, Object>> children, Map<String, String> inputFieldsMap) {
         List<Map<String, Object>> childrenList = new ArrayList<>();
         for (Map<String, Object> child : children) {
-            child.put("id", UUID.randomUUID());
+            child.put(ID, UUID.randomUUID());
             Map<String, Object> childValue = (Map<String, Object>) child.get(VALUE);
-            if (null != childValue.get("firstName")) {
+            if (null != childValue.get(FIRST_NAME)) {
                 childValue.put("parentalResponsibilityDetails", inputFieldsMap.get("parentalResponsibilityDetails"));
-                if (ObjectUtils.isNotEmpty(childValue.get("dateOfBirth"))) {
-                    childValue.put("dateOfBirth", DateUtil.transformDate(childValue.get("dateOfBirth").toString(),
+                if (ObjectUtils.isNotEmpty(childValue.get(DATE_OF_BIRTH))) {
+                    childValue.put(DATE_OF_BIRTH, DateUtil.transformDate(childValue.get(DATE_OF_BIRTH).toString(),
                                                                          TEXT_AND_NUMERIC_MONTH_PATTERN,
                                                                          TWO_DIGIT_MONTH_FORMAT));
                 }
-                if ("male".equalsIgnoreCase((String) childValue.get("gender"))) {
-                    childValue.put("gender", "male");
+                if ("male".equalsIgnoreCase((String) childValue.get(GENDER))) {
+                    childValue.put(GENDER, "male");
                 } else {
-                    childValue.put("gender", "female");
+                    childValue.put(GENDER, "female");
                 }
                 child.put(VALUE, childValue);
                 childrenList.add(child);
@@ -1060,16 +1087,13 @@ public class BulkScanC100ConditionalTransformerService {
      * @param inputFieldsMap All input key-value pair from transformation request.
      * @return list of values for typeoforder field in the transformation output.
      */
-    private String transformTypeOfOrder(Map<String, String> inputFieldsMap) {
-        Optional<String> typeOfOrderField =
+    private List<String> transformTypeOfOrder(Map<String, String> inputFieldsMap) {
+        List<String> typeOfOrderField =
                 getTypeOfOrderEnumFields().stream()
-                        .filter(eachField -> YES.equalsIgnoreCase(inputFieldsMap.get(eachField)))
-                        .findFirst();
-
-        if (typeOfOrderField.isPresent()) {
-            return getTypeOfOrderEnumMapping().get(typeOfOrderField.get());
-        }
-        return null;
+                        .filter(eachField -> TRUE.equalsIgnoreCase(inputFieldsMap.get(eachField)))
+                    .map(orderType -> getTypeOfOrderEnumMapping().get(orderType))
+                    .toList();
+        return !typeOfOrderField.isEmpty() ? typeOfOrderField : null;
     }
 
     /**
@@ -1094,7 +1118,7 @@ public class BulkScanC100ConditionalTransformerService {
         String personName = "nameOfPartyWhoNeedsWelsh_" + personCount;
         if (StringUtils.isNotEmpty(inputFieldsMap.get(personName))) {
             Map<String, Object> welshNeed = new HashMap<>();
-            welshNeed.put("id", UUID.randomUUID());
+            welshNeed.put(ID, UUID.randomUUID());
             String spoken = String.format("applicantRequiresWelsh_%s_Spoken", personCount);
             String written = String.format("applicantRequiresWelsh_%s_written", personCount);
             String both = String.format("applicantRequiresWelsh_%s_Both", personCount);

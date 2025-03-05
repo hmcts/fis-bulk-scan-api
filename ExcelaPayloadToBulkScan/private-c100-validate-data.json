@@ -605,39 +605,39 @@
       "metadata_field_value": "case name and office name"
     },
     {
-      "metadata_field_name": "other_case_emergency_protection_order",
+      "metadata_field_name": "withoutNotice_emergency_Protection_Order",
       "metadata_field_value": "Yes"
     },
     {
-      "metadata_field_name": "other_case_supervision_order",
+      "metadata_field_name": "withoutNotice_supervisionOrder",
       "metadata_field_value": ""
     },
     {
-      "metadata_field_name": "other_case_care_order",
+      "metadata_field_name": "withoutNotice_caseOrder",
       "metadata_field_value": ""
     },
     {
-      "metadata_field_name": "other_case_childAbduction",
+      "metadata_field_name": "withoutNotice_childAbduction",
       "metadata_field_value": ""
     },
     {
-      "metadata_field_name": "other_case_proceeding_for_NonMolestatioNorder",
+      "metadata_field_name": "withoutNotice_proceeding_for_NonMolestationOrder",
       "metadata_field_value": ""
     },
     {
-      "metadata_field_name": "other_case_proceeding_for_contact_or_resident_order",
+      "metadata_field_name": "withoutNotice_contact_or_residentOrder",
       "metadata_field_value": ""
     },
     {
-      "metadata_field_name": "other_case_contact_or_residentOrder_withAdoptioNorder",
+      "metadata_field_name": "withoutNotice_contact_or_residentOrder_withAdoptionOrder",
       "metadata_field_value": ""
     },
     {
-      "metadata_field_name": "other_case_childMaintenanceOrder",
+      "metadata_field_name": "withoutNotice_childMaintenanceOrder",
       "metadata_field_value": ""
     },
     {
-      "metadata_field_name": "other_case_childArrangementOrder",
+      "metadata_field_name": "withoutNotice_childArrangementOrder",
       "metadata_field_value": ""
     },
     {

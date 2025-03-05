@@ -123,21 +123,23 @@ public final class BulkScanPrlConstants {
     public static final String OTHER_PROCEEDING_CASE_NUMBER = "other_case_case_number";
     public static final String OTHER_PROCEEDING_DATE_OF_YEAR = "other_case_date_or_year";
     public static final String OTHER_PROCEEDING_NAME_AND_OFFICE = "other_case_name_and_office";
+
     public static final String OTHER_PROCEEDING_TYPE_OF_ORDER_1 =
-            "other_case_emergency_protection_order";
-    public static final String OTHER_PROCEEDING_TYPE_OF_ORDER_2 = "other_case_supervision_order";
-    public static final String OTHER_PROCEEDING_TYPE_OF_ORDER_3 = "other_case_care_order";
-    public static final String OTHER_PROCEEDING_TYPE_OF_ORDER_4 = "other_case_childAbduction";
+            "withoutNotice_emergency_Protection_Order";
+    public static final String OTHER_PROCEEDING_TYPE_OF_ORDER_2 = "withoutNotice_supervisionOrder";
+    public static final String OTHER_PROCEEDING_TYPE_OF_ORDER_3 = "withoutNotice_caseOrder";
+    public static final String OTHER_PROCEEDING_TYPE_OF_ORDER_4 = "withoutNotice_childAbduction";
     public static final String OTHER_PROCEEDING_TYPE_OF_ORDER_5 =
-            "other_case_proceeding_for_NonMolestatioNorder";
+            "withoutNotice_proceeding_for_NonMolestationOrder";
     public static final String OTHER_PROCEEDING_TYPE_OF_ORDER_6 =
-            "other_case_proceeding_for_contact_or_resident_order";
+            "withoutNotice_contact_or_residentOrder";
     public static final String OTHER_PROCEEDING_TYPE_OF_ORDER_7 =
-            "other_case_contact_or_residentOrder_withAdoptioNorder";
+            "withoutNotice_contact_or_residentOrder_withAdoptionOrder";
     public static final String OTHER_PROCEEDING_TYPE_OF_ORDER_8 =
-            "other_case_childMaintenanceOrder";
+            "withoutNotice_childMaintenanceOrder";
     public static final String OTHER_PROCEEDING_TYPE_OF_ORDER_9 =
-            "other_case_childArrangementOrder";
+            "withoutNotice_childArrangementOrder";
+
     public static final String TYPE_OF_ORDER = "typeOfOrder";
     public static final String OTHER_PROCEEDINGS_DETAILS_TABLE = "otherProceedingsDetailsTable";
     public static final String URGENT_OR_WITHOUT_HEARING = "urgent_or_withoutHearing";

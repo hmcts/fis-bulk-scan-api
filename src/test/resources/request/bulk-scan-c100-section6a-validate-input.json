@@ -606,39 +606,39 @@
       "value": "case name and office name"
     },
     {
-      "name": "other_case_emergency_protection_order",
-      "value": "Yes"
+      "name": "withoutNotice_emergency_Protection_Order",
+      "value": "True"
     },
     {
-      "name": "other_case_supervision_order",
+      "name": "withoutNotice_supervisionOrder",
       "value": ""
     },
     {
-      "name": "other_case_care_order",
+      "name": "withoutNotice_caseOrder",
       "value": ""
     },
     {
-      "name": "other_case_childAbduction",
+      "name": "withoutNotice_childAbduction",
       "value": ""
     },
     {
-      "name": "other_case_proceeding_for_NonMolestatioNorder",
+      "name": "withoutNotice_proceeding_for_NonMolestationOrder",
       "value": ""
     },
     {
-      "name": "other_case_proceeding_for_contact_or_resident_order",
+      "name": "withoutNotice_contact_or_residentOrder",
       "value": ""
     },
     {
-      "name": "other_case_contact_or_residentOrder_withAdoptioNorder",
+      "name": "withoutNotice_contact_or_residentOrder_withAdoptionOrder",
       "value": ""
     },
     {
-      "name": "other_case_childMaintenanceOrder",
+      "name": "withoutNotice_childMaintenanceOrder",
       "value": ""
     },
     {
-      "name": "other_case_childArrangementOrder",
+      "name": "withoutNotice_childArrangementOrder",
       "value": ""
     },
     {

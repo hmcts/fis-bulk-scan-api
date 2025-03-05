@@ -423,27 +423,27 @@ public final class BulkScanConstants {
         Map<String, String> map = new HashMap<>();
         map.put(
                 OTHER_PROCEEDING_TYPE_OF_ORDER_1,
-                TypeOfOrderEnum.emergencyProtectionOrder.getDisplayedValue());
+                TypeOfOrderEnum.emergencyProtectionOrder.toString());
         map.put(
                 OTHER_PROCEEDING_TYPE_OF_ORDER_2,
-                TypeOfOrderEnum.superviosionOrder.getDisplayedValue());
-        map.put(OTHER_PROCEEDING_TYPE_OF_ORDER_3, TypeOfOrderEnum.careOrder.getDisplayedValue());
+                TypeOfOrderEnum.supervisionOrder.toString());
+        map.put(OTHER_PROCEEDING_TYPE_OF_ORDER_3, TypeOfOrderEnum.careOrder.toString());
         map.put(
                 OTHER_PROCEEDING_TYPE_OF_ORDER_4,
-                TypeOfOrderEnum.childAbduction.getDisplayedValue());
-        map.put(OTHER_PROCEEDING_TYPE_OF_ORDER_5, TypeOfOrderEnum.otherOrder.getDisplayedValue());
+                TypeOfOrderEnum.childAbduction.toString());
+        map.put(OTHER_PROCEEDING_TYPE_OF_ORDER_5, TypeOfOrderEnum.otherOrder.toString());
         map.put(
                 OTHER_PROCEEDING_TYPE_OF_ORDER_6,
-                TypeOfOrderEnum.contactOrResidenceOrder.getDisplayedValue());
+                TypeOfOrderEnum.contactOrResidenceOrder.toString());
         map.put(
                 OTHER_PROCEEDING_TYPE_OF_ORDER_7,
-                TypeOfOrderEnum.contactOrResidenceOrderWithAdoption.getDisplayedValue());
+                TypeOfOrderEnum.contactOrResidenceOrderWithAdoption.toString());
         map.put(
                 OTHER_PROCEEDING_TYPE_OF_ORDER_8,
-                TypeOfOrderEnum.orderRelatingToChildMaintainance.getDisplayedValue());
+                TypeOfOrderEnum.orderRelatingToChildMaintainance.toString());
         map.put(
                 OTHER_PROCEEDING_TYPE_OF_ORDER_9,
-                TypeOfOrderEnum.childArrangementsOrder.getDisplayedValue());
+                TypeOfOrderEnum.childArrangementsOrder.toString());
 
         return map;
     }
