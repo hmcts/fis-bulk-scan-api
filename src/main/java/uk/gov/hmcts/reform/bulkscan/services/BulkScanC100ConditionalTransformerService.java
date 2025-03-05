@@ -292,11 +292,12 @@ public class BulkScanC100ConditionalTransformerService {
             Map<String, Object> child = childrenList.get(i);
             for (int j = 0; j < respondents.size(); j++) {
                 Map<String, String> childRespondantRelation = new HashMap<>();
+                Map<String, Object> childValue = (Map<String, Object>) child.get(VALUE);
                 Map<String, Object> respondentValue = (Map<String, Object>) respondents.get(j).get(VALUE);
                 String relationship = inputFieldsMap.get(String.format(key, i, j));
                 childRespondantRelation.put("respondentFullName", respondentValue.get(FIRST_NAME) + " "
                     + respondentValue.get(LAST_NAME));
-                childRespondantRelation.put(CHILD_FULL_NAME, child.get(FIRST_NAME) + " " + child.get(LAST_NAME));
+                childRespondantRelation.put(CHILD_FULL_NAME, childValue.get(FIRST_NAME) + " " + childValue.get(LAST_NAME));
                 childRespondantRelation.put("childAndRespondentRelation", relationship);
                 childRespondantRelation.put(CHILD_LIVES_WITH, childLivesWith);
                 childRespondantRelation.put("respondentId", String.valueOf(respondents.get(j).get(ID)));
@@ -323,10 +324,11 @@ public class BulkScanC100ConditionalTransformerService {
             for (int j = 0; j < applicants.size(); j++) {
                 Map<String, String> childApplicantRelation = new HashMap<>();
                 Map<String, Object> applicantValue = (Map<String, Object>) applicants.get(j).get(VALUE);
+                Map<String, Object> childValue = (Map<String, Object>) child.get(VALUE);
                 String relationship = inputFieldsMap.get(String.format(key, i, j));
                 childApplicantRelation.put(APPLICANT_FULL_NAME, applicantValue.get(FIRST_NAME) + " "
                     + applicantValue.get(LAST_NAME));
-                childApplicantRelation.put(CHILD_FULL_NAME, child.get(FIRST_NAME) + " " + child.get(LAST_NAME));
+                childApplicantRelation.put(CHILD_FULL_NAME, childValue.get(FIRST_NAME) + " " + childValue.get(LAST_NAME));
                 childApplicantRelation.put(CHILD_AND_APPLICANT_RELATION, relationship);
                 childApplicantRelation.put(CHILD_LIVES_WITH, childLivesWith);
                 childApplicantRelation.put("applicantId", String.valueOf(applicants.get(j).get(ID)));
