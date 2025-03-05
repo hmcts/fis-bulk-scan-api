@@ -53,35 +53,46 @@ uk:
                     email: applicantTwoEmailAddress
                     #isAtAddressLessThan5Years: hasapplicantTwoLivedAtThisAddressForOverFiveYears
                     addressLivedLessThan5YearsDetails: applicantTwoAllAddressesForLastFiveYears
+              otherPartyInTheCaseRevised:
+                - value:
+                    firstName: otherPeopleOneFirstName
+                    lastName: otherPeopleOneLastName
+                    previousName: otherPeopleOnePreviousNames
+                    gender: otherPeopleOneGender
+                    dateOfBirth: otherPeopleOneDateOfBirth
+                    address:
+                      AddressLine1: otherPeopleOneAddress
+                    relationshipToChildren: otherPeopleOneRelationshipWithChildren
+                - value:
+                    firstName: otherPeopleTwoFirstName
+                    lastName: otherPeopleTwoLastName
+                    previousName: otherPeopleTwoPreviousNames
+                    gender: otherPeopleTwoGender
+                    dateOfBirth: otherPeopleTwoDateOfBirth
+                    address:
+                      AddressLine1: otherPeopleTwoAddress
+                    relationshipToChildren: otherPeopleOneRelationshipWithChildren
               newChildDetails:
                 - value:
                     firstName: child1_firstName
                     lastName: child1_lastName
                     dateOfBirth: child1_dateOfBirth
                     gender: child1_gender
-                    applicantsRelationshipToChild: child1_applicant1_relationship
-                    respondentsRelationshipToChild: child1_respondent1_relationship
                 - value:
                     firstName: child2_firstName
                     lastName: child2_lastName
                     dateOfBirth: child2_dateOfBirth
                     gender: child2_gender
-                    applicantsRelationshipToChild: child2_applicant1_relationship
-                    respondentsRelationshipToChild: child2_respondent1_relationship
                 - value:
                     firstName: child3_firstName
                     lastName: child3_lastName
                     dateOfBirth: child3_dateOfBirth
                     gender: child3_gender
-                    applicantsRelationshipToChild: child3_applicant1_relationship
-                    respondentsRelationshipToChild: child3_respondent1_relationship
                 - value:
                     firstName: child4_firstName
                     lastName: child4_lastName
                     dateOfBirth: child4_dateOfBirth
                     gender: child4_gender
-                    applicantsRelationshipToChild: child4_applicant1_relationship
-                    respondentsRelationshipToChild: child4_respondent1_relationship
               childrenKnownToLocalAuthorityTextArea: child1_localAuthority_or_socialWorker
               parentalResponsibilityDetails: parentalResponsibilityDetails
               #childrenParentsName: children_parentsName

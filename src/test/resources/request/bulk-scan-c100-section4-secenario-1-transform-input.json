@@ -258,7 +258,7 @@
     },
     {
       "name": "applicant2Gender",
-      "value": "Female"
+      "value": "female"
     },
     {
       "name": "applicant2DateOfBirth",
@@ -786,7 +786,7 @@
     },
     {
       "name": "otherPeople2Gender",
-      "value": "Female"
+      "value": "female"
     },
     {
       "name": "otherPeople2DateOfBirth",
@@ -850,7 +850,7 @@
     },
     {
       "name": "OtherChildrenTwoGender",
-      "value": "Female"
+      "value": "female"
     },
     {
       "name": "OtherChildrenTwoRelationshipToApplicants",

@@ -50,7 +50,7 @@
             "firstName":"Wendy",
             "lastName":"Chan",
             "previousName":"Walters",
-            "gender":"Female",
+            "gender":"female",
             "dateOfBirth":"03/09/45",
             "placeOfBirth":"Colchester",
             "AddressLine1":"London",
@@ -299,7 +299,7 @@
             "firstName":"Fausat",
             "lastName":"Adeyemi",
             "previousName":"",
-            "gender":"Female",
+            "gender":"female",
             "dateOfBirth":"21/02/2002",
             "isDateOfBirthKnown":"",
             "AddressLine1":"240 London Street",
@@ -329,7 +329,7 @@
             "fullName":"Rachel Queen",
             "DateOfBirth":"23/02/2002",
             "DateOfBirthDontKnow":"",
-            "Gender":"Female",
+            "Gender":"female",
             "RelationshipToApplicants":"Cousin",
             "RelationshipToRespondents":""
           }

@@ -126,7 +126,7 @@
     },
     {
       "metadata_field_name":"applicant2Gender",
-      "metadata_field_value":"Female"
+      "metadata_field_value":"female"
     },
     {
       "metadata_field_name":"applicant2DateOfBirth",
@@ -746,7 +746,7 @@
     },
     {
       "metadata_field_name": "otherPeople2Gender",
-      "metadata_field_value": "Female"
+      "metadata_field_value": "female"
     },
     {
       "metadata_field_name": "otherPeople2DateOfBirth",
@@ -810,7 +810,7 @@
     },
     {
       "metadata_field_name": "OtherChildrenTwoGender",
-      "metadata_field_value": "Female"
+      "metadata_field_value": "female"
     },
     {
       "metadata_field_name": "OtherChildrenTwoRelationshipToApplicants",

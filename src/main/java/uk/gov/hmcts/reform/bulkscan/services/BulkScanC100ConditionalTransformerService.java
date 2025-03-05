@@ -83,6 +83,7 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.WITHOU
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -97,7 +98,7 @@ import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
-import uk.gov.hmcts.reform.bulkscan.enums.ChildLiveWithEnum;
+import uk.gov.hmcts.reform.bulkscan.enums.Gender;
 import uk.gov.hmcts.reform.bulkscan.enums.GroupMediatorCertifiesEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.MiamChildProtectionConcernChecklistEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.MiamDomesticViolenceChecklistEnum;
@@ -107,7 +108,9 @@ import uk.gov.hmcts.reform.bulkscan.enums.PartyEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.PermissionRequiredEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.SpecialMeasuresEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.SpokenOrWrittenWelshEnum;
+import uk.gov.hmcts.reform.bulkscan.enums.YesOrNo;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
+import uk.gov.hmcts.reform.bulkscan.model.OtherChildrenNotInTheCase;
 import uk.gov.hmcts.reform.bulkscan.model.ResponseScanDocument;
 import uk.gov.hmcts.reform.bulkscan.model.ResponseScanDocumentNew;
 import uk.gov.hmcts.reform.bulkscan.model.ResponseScanDocumentValueNew;
@@ -136,8 +139,29 @@ public class BulkScanC100ConditionalTransformerService {
         // transform initial checks
         transformInitialChecks(inputFieldsMap, populatedMap);
 
+        //transform applicant details
+        transformPartyDetails(inputFieldsMap, populatedMap, "applicants");
+
+        //transform respondent details
+        transformPartyDetails(inputFieldsMap, populatedMap, "respondents");
+
+        //transform other person details
+        transformPartyDetails(inputFieldsMap, populatedMap, "otherPartyInTheCaseRevised");
+
         //transform child details
         transformChildDetails(inputFieldsMap, populatedMap);
+
+        //transform applicant child relationship
+        transformApplicantChildRelationship(inputFieldsMap, populatedMap);
+
+        //transform respondent child relationship
+        transformRespondentChildRelationship(inputFieldsMap, populatedMap);
+
+        //transform other person, child relationship
+        //transformOtherPersonChildRelationship(inputFieldsMap, populatedMap);
+
+        //transform other children not in the case
+        tranformOtheChildrenNotInTheCase(inputFieldsMap, populatedMap);
 
         //transform Miam details
         transformMiamDetails(populatedMap, inputFieldsMap);
@@ -162,12 +186,6 @@ public class BulkScanC100ConditionalTransformerService {
         //transform attending the court
         transformAttendingTheCourt(inputFieldsMap, populatedMap);
 
-        //transform applicant details
-        transformPartyDetails(inputFieldsMap, populatedMap, "applicants");
-
-        //transform respondent details
-        transformPartyDetails(inputFieldsMap, populatedMap, "respondents");
-
         //transform allegations of harm
         transformAllegationsOfHarm(inputFieldsMap, populatedMap);
 
@@ -176,6 +194,131 @@ public class BulkScanC100ConditionalTransformerService {
         //transformMediatorCertifiesDisputeResolutionNotProceeding(inputFieldsMap);
         transformFlags(inputFieldsMap, populatedMap);
         populatedMap.values().removeIf(Objects::isNull);
+    }
+
+    private void tranformOtheChildrenNotInTheCase(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
+        List<Map<String, Object>> childrenList = new ArrayList<>();
+        if (StringUtils.isNotEmpty(inputFieldsMap.get("OtherChildrenOneFullName"))) {
+            Map<String, Object> otherChild = new HashMap<>();
+            String dob = DateUtil.transformDate(inputFieldsMap.get("OtherChildrenOneDateOfBirth"),
+                                                "dd/mm/yyyy", "yyyy-MM-dd");
+            otherChild.put("id", UUID.randomUUID());
+            otherChild.put("value", OtherChildrenNotInTheCase.builder()
+                .firstName(inputFieldsMap.get("otherChildrenOneFullName"))
+                .gender(Gender.valueOf(inputFieldsMap.get("OtherChildrenOneGender")))
+                .isDateOfBirthKnown(TRUE.equalsIgnoreCase(inputFieldsMap.get("OtherChildrenOneDateOfBirthDontKnow"))
+                                        ? YesOrNo.Yes : YesOrNo.No)
+                .dateOfBirth(StringUtils.isNotEmpty(dob) ? LocalDate.parse(dob) : null)
+                .build());
+            childrenList.add(otherChild);
+        }
+        if (StringUtils.isNotEmpty(inputFieldsMap.get("OtherChildrenTwoFullName"))) {
+            Map<String, Object> otherChild = new HashMap<>();
+            String dob = DateUtil.transformDate(inputFieldsMap.get("OtherChildrenTwoDateOfBirth"),
+                                                "dd/mm/yyyy", "yyyy-MM-dd");
+            otherChild.put("id", UUID.randomUUID());
+            otherChild.put("value", OtherChildrenNotInTheCase.builder()
+                .firstName(inputFieldsMap.get("OtherChildrenTwoFullName"))
+                .gender(Gender.valueOf(inputFieldsMap.get("OtherChildrenTwoGender")))
+                .isDateOfBirthKnown(TRUE.equalsIgnoreCase(inputFieldsMap.get("OtherChildrenTwoDateOfBirthDontKnow"))
+                                        ? YesOrNo.Yes : YesOrNo.No)
+                .dateOfBirth(StringUtils.isNotEmpty(dob) ? LocalDate.parse(dob) : null)
+                .build());
+            childrenList.add(otherChild);
+        }
+        if (childrenList.isEmpty()) {
+            populatedMap.put("childrenNotPartInTheCaseYesNo", YesOrNo.No);
+        } else {
+            populatedMap.put("childrenNotPartInTheCaseYesNo", YesOrNo.Yes);
+            populatedMap.put("childrenNotInTheCase", childrenList);
+        }
+    }
+
+    private void transformRespondentChildRelationship(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
+        List<Map<String, Object>> childrenList = (List<Map<String, Object>>) populatedMap.get("newChildDetails");
+        List<Map<String, Object>> respondents = (List<Map<String, Object>>) populatedMap.get("respondents");
+        String key = "child%s_respondent%s_relationship";
+        String childLivesWith = "";
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(CHILD_LIVING_WITH_RESPONDENT))) {
+            childLivesWith = YES;
+        } else {
+            childLivesWith = NO;
+        }
+        List<Map<String, String>> childRespondantRelations = new ArrayList<>();
+        for (int i = 0; i < childrenList.size(); i++) {
+            Map<String, Object> child = childrenList.get(i);
+            for (int j = 0; j < respondents.size(); j++) {
+                Map<String, String> childRespondantRelation = new HashMap<>();
+                String relationship = inputFieldsMap.get(String.format(key, i, j));
+                childRespondantRelation.put("applicantFullName", respondents.get(j).get("firstName") + " "
+                    + respondents.get(j).get("lastName"));
+                childRespondantRelation.put("childFullName", child.get("firstName") + " " + child.get("lastName"));
+                childRespondantRelation.put("childAndApplicantRelation", relationship);
+                childRespondantRelation.put("childLivesWith", childLivesWith);
+                childRespondantRelation.put("applicantId", String.valueOf(respondents.get(j).get("id")));
+                childRespondantRelation.put("childId", String.valueOf(child.get("id")));
+                childRespondantRelations.add(childRespondantRelation);
+            }
+        }
+        populatedMap.put("childAndRespondentRelations", childRespondantRelations);
+    }
+
+    private void transformApplicantChildRelationship(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
+        List<Map<String, Object>> childrenList = (List<Map<String, Object>>) populatedMap.get("newChildDetails");
+        List<Map<String, Object>> applicants = (List<Map<String, Object>>) populatedMap.get("applicants");
+        String key = "child%s_applicant%s_relationship";
+        String childLivesWith = "";
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(CHILD_LIVING_WITH_APPLICANT))) {
+            childLivesWith = YES;
+        } else {
+            childLivesWith = NO;
+        }
+        List<Map<String, String>> childApplicantRelations = new ArrayList<>();
+        for (int i = 0; i < childrenList.size(); i++) {
+            Map<String, Object> child = childrenList.get(i);
+            for (int j = 0; j < applicants.size(); j++) {
+                Map<String, String> childApplicantRelation = new HashMap<>();
+                String relationship = inputFieldsMap.get(String.format(key, i, j));
+                childApplicantRelation.put("applicantFullName", applicants.get(j).get("firstName") + " "
+                    + applicants.get(j).get("lastName"));
+                childApplicantRelation.put("childFullName", child.get("firstName") + " " + child.get("lastName"));
+                childApplicantRelation.put("childAndApplicantRelation", relationship);
+                childApplicantRelation.put("childLivesWith", childLivesWith);
+                childApplicantRelation.put("applicantId", String.valueOf(applicants.get(j).get("id")));
+                childApplicantRelation.put("childId", String.valueOf(child.get("id")));
+                childApplicantRelations.add(childApplicantRelation);
+            }
+        }
+        populatedMap.put("childAndApplicantRelations", childApplicantRelations);
+    }
+
+    private void transformOtherPersonChildRelationship(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
+        List<Map<String, Object>> childrenList = (List<Map<String, Object>>) populatedMap.get("newChildDetails");
+        List<Map<String, Object>> applicants = (List<Map<String, Object>>) populatedMap.get("applicants");
+        String key = "child%s_applicant%s_relationship";
+        String childLivesWith = "";
+        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(CHILD_LIVING_WITH_OTHERS))) {
+            childLivesWith = YES;
+        } else {
+            childLivesWith = NO;
+        }
+        List<Map<String, String>> childApplicantRelations = new ArrayList<>();
+        for (int i = 0; i < childrenList.size(); i++) {
+            Map<String, Object> child = childrenList.get(i);
+            for (int j = 0; j < applicants.size(); j++) {
+                Map<String, String> childApplicantRelation = new HashMap<>();
+                String relationship = inputFieldsMap.get(String.format(key, i, j));
+                childApplicantRelation.put("applicantFullName", applicants.get(j).get("firstName") + " "
+                    + applicants.get(j).get("lastName"));
+                childApplicantRelation.put("childFullName", child.get("firstName") + " " + child.get("lastName"));
+                childApplicantRelation.put("childAndApplicantRelation", relationship);
+                childApplicantRelation.put("childLivesWith", childLivesWith);
+                childApplicantRelation.put("applicantId", String.valueOf(applicants.get(j).get("id")));
+                childApplicantRelation.put("childId", String.valueOf(child.get("id")));
+                childApplicantRelations.add(childApplicantRelation);
+            }
+        }
+        //populatedMap.put("childAndApplicantRelations", childApplicantRelations);
     }
 
     private void transformInitialChecks(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
@@ -553,8 +696,7 @@ public class BulkScanC100ConditionalTransformerService {
 
     private void transformChildDetails(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
         List<Map<String, Object>> children = (List<Map<String, Object>>) populatedMap.get("newChildDetails");
-        List<String> childLiveWith = transformChildLiveWith(inputFieldsMap);
-        populatedMap.put("newChildDetails", populateChildren(children, childLiveWith, inputFieldsMap));
+        populatedMap.put("newChildDetails", populateChildren(children, inputFieldsMap));
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get("children_of_same_parent"))) {
             populatedMap.put("isChildrenWithSameParents", "yes");
         } else {
@@ -572,14 +714,12 @@ public class BulkScanC100ConditionalTransformerService {
         }
     }
 
-    private List<Map<String, Object>> populateChildren(List<Map<String, Object>> children, List<String> childLiveWith,
-                                                       Map<String, String> inputFieldsMap) {
+    private List<Map<String, Object>> populateChildren(List<Map<String, Object>> children, Map<String, String> inputFieldsMap) {
         List<Map<String, Object>> childrenList = new ArrayList<>();
         for (Map<String, Object> child : children) {
             child.put("id", UUID.randomUUID());
             Map<String, Object> childValue = (Map<String, Object>) child.get(VALUE);
             if (null != childValue.get("firstName")) {
-                childValue.put("childLiveWith", childLiveWith);
                 childValue.put("parentalResponsibilityDetails", inputFieldsMap.get("parentalResponsibilityDetails"));
                 if (ObjectUtils.isNotEmpty(childValue.get("dateOfBirth"))) {
                     childValue.put("dateOfBirth", DateUtil.transformDate(childValue.get("dateOfBirth").toString(),
@@ -590,14 +730,6 @@ public class BulkScanC100ConditionalTransformerService {
                     childValue.put("gender", "male");
                 } else {
                     childValue.put("gender", "female");
-                }
-                if (StringUtils.isNotEmpty((String) childValue.get("applicantsRelationshipToChild"))) {
-                    childValue.put("applicantsRelationshipToChild", "other");
-                    childValue.put("otherApplicantsRelationshipToChild", childValue.get("applicantsRelationshipToChild"));
-                }
-                if (StringUtils.isNotEmpty((String) childValue.get("respondentsRelationshipToChild"))) {
-                    childValue.put("respondentsRelationshipToChild", "other");
-                    childValue.put("otherRespondentsRelationshipToChild", childValue.get("respondentsRelationshipToChild"));
                 }
                 child.put(VALUE, childValue);
                 childrenList.add(child);
@@ -897,20 +1029,6 @@ public class BulkScanC100ConditionalTransformerService {
                 NO_MIAM_DVE_EVIDENCE_FINANCIAL_MATTERS,
                 MiamDomesticViolenceChecklistEnum.miamDomesticAbuseChecklistEnum_Value_22);
         return miamDomesticViolenceChecklistEnumMap;
-    }
-
-    private List<String> transformChildLiveWith(Map<String, String> inputFieldsMap) {
-        List<String> childLiveWithList = new ArrayList<>();
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(CHILD_LIVING_WITH_APPLICANT))) {
-            childLiveWithList.add(ChildLiveWithEnum.APPLICANT.getName());
-        }
-        if (TRUE.equals(inputFieldsMap.get(CHILD_LIVING_WITH_RESPONDENT))) {
-            childLiveWithList.add(ChildLiveWithEnum.RESPONDENT.getName());
-        }
-        if (TRUE.equals(inputFieldsMap.get(CHILD_LIVING_WITH_OTHERS))) {
-            childLiveWithList.add(ChildLiveWithEnum.OTHERPEOPLE.getName());
-        }
-        return childLiveWithList;
     }
 
     private void transformPermissionRequiredFromCourt(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {

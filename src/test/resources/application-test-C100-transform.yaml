@@ -53,6 +53,25 @@ uk:
                     isAtAddressLessThan5Years: hasApplicant2LivedAtThisAddressForOverFiveYears
                     addressLivedLessThan5YearsDetails: applicant2AllAddressesForLastFiveYears
               typeOfChildArrangementsOrder: childArrangement_order
+              otherPartyInTheCaseRevised:
+                - value:
+                    firstName: otherPeopleOneFirstName
+                    lastName: otherPeopleOneLastName
+                    previousName: otherPeopleOnePreviousNames
+                    gender: otherPeopleOneGender
+                    dateOfBirth: otherPeopleOneDateOfBirth
+                    address:
+                      AddressLine1: otherPeopleOneAddress
+                    relationshipToChildren: otherPeopleOneRelationshipWithChildren
+                - value:
+                    firstName: otherPeopleTwoFirstName
+                    lastName: otherPeopleTwoLastName
+                    previousName: otherPeopleTwoPreviousNames
+                    gender: otherPeopleTwoGender
+                    dateOfBirth: otherPeopleTwoDateOfBirth
+                    address:
+                      AddressLine1: otherPeopleTwoAddress
+                    relationshipToChildren: otherPeopleOneRelationshipWithChildren
               newChildDetails:
                 - value:
                     firstName: child1_firstName
