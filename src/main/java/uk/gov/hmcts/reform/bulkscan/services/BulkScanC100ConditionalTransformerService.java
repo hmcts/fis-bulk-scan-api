@@ -205,7 +205,7 @@ public class BulkScanC100ConditionalTransformerService {
             otherChild.put("id", UUID.randomUUID());
             otherChild.put("value", OtherChildrenNotInTheCase.builder()
                 .firstName(inputFieldsMap.get("otherChildrenOneFullName"))
-                .gender(Gender.valueOf(inputFieldsMap.get("OtherChildrenOneGender")))
+                .gender("male".equalsIgnoreCase(inputFieldsMap.get("OtherChildrenOneGender")) ? Gender.male : Gender.female)
                 .isDateOfBirthKnown(TRUE.equalsIgnoreCase(inputFieldsMap.get("OtherChildrenOneDateOfBirthDontKnow"))
                                         ? YesOrNo.Yes : YesOrNo.No)
                 .dateOfBirth(StringUtils.isNotEmpty(dob) ? LocalDate.parse(dob) : null)
@@ -219,7 +219,7 @@ public class BulkScanC100ConditionalTransformerService {
             otherChild.put("id", UUID.randomUUID());
             otherChild.put("value", OtherChildrenNotInTheCase.builder()
                 .firstName(inputFieldsMap.get("OtherChildrenTwoFullName"))
-                .gender(Gender.valueOf(inputFieldsMap.get("OtherChildrenTwoGender")))
+                .gender("male".equalsIgnoreCase(inputFieldsMap.get("OtherChildrenTwoGender")) ? Gender.male : Gender.female)
                 .isDateOfBirthKnown(TRUE.equalsIgnoreCase(inputFieldsMap.get("OtherChildrenTwoDateOfBirthDontKnow"))
                                         ? YesOrNo.Yes : YesOrNo.No)
                 .dateOfBirth(StringUtils.isNotEmpty(dob) ? LocalDate.parse(dob) : null)
@@ -249,9 +249,10 @@ public class BulkScanC100ConditionalTransformerService {
             Map<String, Object> child = childrenList.get(i);
             for (int j = 0; j < respondents.size(); j++) {
                 Map<String, String> childRespondantRelation = new HashMap<>();
+                Map<String, Object> respondentValue = (Map<String, Object>) respondents.get(j).get("value");
                 String relationship = inputFieldsMap.get(String.format(key, i, j));
-                childRespondantRelation.put("applicantFullName", respondents.get(j).get("firstName") + " "
-                    + respondents.get(j).get("lastName"));
+                childRespondantRelation.put("applicantFullName", respondentValue.get("firstName") + " "
+                    + respondentValue.get("lastName"));
                 childRespondantRelation.put("childFullName", child.get("firstName") + " " + child.get("lastName"));
                 childRespondantRelation.put("childAndApplicantRelation", relationship);
                 childRespondantRelation.put("childLivesWith", childLivesWith);
@@ -278,9 +279,10 @@ public class BulkScanC100ConditionalTransformerService {
             Map<String, Object> child = childrenList.get(i);
             for (int j = 0; j < applicants.size(); j++) {
                 Map<String, String> childApplicantRelation = new HashMap<>();
+                Map<String, Object> applicantValue = (Map<String, Object>) applicants.get(j).get("value");
                 String relationship = inputFieldsMap.get(String.format(key, i, j));
-                childApplicantRelation.put("applicantFullName", applicants.get(j).get("firstName") + " "
-                    + applicants.get(j).get("lastName"));
+                childApplicantRelation.put("applicantFullName", applicantValue.get("firstName") + " "
+                    + applicantValue.get("lastName"));
                 childApplicantRelation.put("childFullName", child.get("firstName") + " " + child.get("lastName"));
                 childApplicantRelation.put("childAndApplicantRelation", relationship);
                 childApplicantRelation.put("childLivesWith", childLivesWith);
@@ -413,7 +415,12 @@ public class BulkScanC100ConditionalTransformerService {
     private void transformPartyDetails(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap,
                                        String partyType) {
         List<Map<String, Object>> parties = (List<Map<String, Object>>) populatedMap.get(partyType);
-        populatedMap.put(partyType, parties.stream().map(party -> {
+        populatedMap.put(partyType, parties.stream()
+            .filter(party -> {
+                Map<String, Object> partyValue = (Map<String, Object>) party.get("value");
+                return partyValue.get("firstName") != null;
+            })
+            .map(party -> {
             party.put("id", UUID.randomUUID());
             Map<String, Object> value = (Map<String, Object>) party.get("value");
             if (ObjectUtils.isNotEmpty(value.get("dateOfBirth"))) {
