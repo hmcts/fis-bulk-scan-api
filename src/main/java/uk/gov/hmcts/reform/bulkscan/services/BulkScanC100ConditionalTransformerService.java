@@ -421,17 +421,17 @@ public class BulkScanC100ConditionalTransformerService {
                 return partyValue.get("firstName") != null;
             })
             .map(party -> {
-            party.put("id", UUID.randomUUID());
-            Map<String, Object> value = (Map<String, Object>) party.get("value");
-            if (ObjectUtils.isNotEmpty(value.get("dateOfBirth"))) {
-                value.put("dateOfBirth", DateUtil.transformDate(value.get("dateOfBirth").toString(),
-                                                                TEXT_AND_NUMERIC_MONTH_PATTERN,
-                                                                TWO_DIGIT_MONTH_FORMAT));
-                party.put("value", value);
-            }
+                party.put("id", UUID.randomUUID());
+                Map<String, Object> value = (Map<String, Object>) party.get("value");
+                if (ObjectUtils.isNotEmpty(value.get("dateOfBirth"))) {
+                    value.put("dateOfBirth", DateUtil.transformDate(value.get("dateOfBirth").toString(),
+                                                                    TEXT_AND_NUMERIC_MONTH_PATTERN,
+                                                                    TWO_DIGIT_MONTH_FORMAT));
+                    party.put("value", value);
+                }
 
-            return party;
-        }).toList());
+                return party;
+            }).toList());
     }
 
     private void transformAttendingTheCourt(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
