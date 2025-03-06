@@ -83,7 +83,6 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.WITHOU
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
@@ -252,7 +251,8 @@ public class BulkScanC100ConditionalTransformerService {
             otherChildrenNotInTheCase.put(FIRST_NAME, inputFieldsMap.get("otherChildrenOneFullName"));
             otherChildrenNotInTheCase.put(GENDER, "male".equalsIgnoreCase(inputFieldsMap.get("OtherChildrenOneGender"))
                 ? Gender.male.toString() : Gender.female.toString());
-            otherChildrenNotInTheCase.put("isDateOfBirthKnown", TRUE.equalsIgnoreCase(inputFieldsMap.get("OtherChildrenOneDateOfBirthDontKnow"))
+            otherChildrenNotInTheCase.put("isDateOfBirthKnown",
+                                          TRUE.equalsIgnoreCase(inputFieldsMap.get("OtherChildrenOneDateOfBirthDontKnow"))
                 ? YesOrNo.Yes.toString() : YesOrNo.No.toString());
             otherChildrenNotInTheCase.put(DATE_OF_BIRTH, StringUtils.isNotEmpty(dob) ? dob : null);
             otherChild.put(VALUE, otherChildrenNotInTheCase);
@@ -274,7 +274,8 @@ public class BulkScanC100ConditionalTransformerService {
             otherChildrenNotInTheCase.put(FIRST_NAME, inputFieldsMap.get("OtherChildrenTwoFullName"));
             otherChildrenNotInTheCase.put(GENDER, "male".equalsIgnoreCase(inputFieldsMap.get("OtherChildrenTwoGender"))
                 ? Gender.male.toString() : Gender.female.toString());
-            otherChildrenNotInTheCase.put("isDateOfBirthKnown", TRUE.equalsIgnoreCase(inputFieldsMap.get("OtherChildrenTwoDateOfBirthDontKnow"))
+            otherChildrenNotInTheCase.put("isDateOfBirthKnown",
+                                          TRUE.equalsIgnoreCase(inputFieldsMap.get("OtherChildrenTwoDateOfBirthDontKnow"))
                 ? YesOrNo.Yes.toString() : YesOrNo.No.toString());
             otherChildrenNotInTheCase.put(DATE_OF_BIRTH, StringUtils.isNotEmpty(dob) ? dob : null);
             otherChild.put(VALUE, otherChildrenNotInTheCase);
