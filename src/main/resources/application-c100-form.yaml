@@ -360,12 +360,15 @@ uk:
                   - child2_dateOfBirth
                   - child3_dateOfBirth
                   - child4_dateOfBirth
+                  - applicantOneDateOfBirth
+                  - applicantTwoDateOfBirth
                   - respondentOneDateOfBirth
                   - respondentTwoDateOfBirth
                   - otherPeopleOneDateOfBirth
                   - otherPeopleTwoDateOfBirth
                   - OtherChildrenOneDateOfBirth
                   - OtherChildrenTwoDateOfBirth
+                  - authorizedFamilyMediator_date
                 regex: dd/MM/yyyy
               emailFields:
                 fieldNames:
@@ -377,14 +380,21 @@ uk:
                 regex: ^[0-9]*$
               postcodeFields:
                 fieldNames:
-                  -
+                  - otherPeopleOneAddressPostcode
+                  - otherPeopleTwoAddressPostcode
+                  - solicitorPostcode
                 regex: ^[A-Z]{1,2}[0-9R][0-9A-Z]? [0-9][ABD-HJLNP-UW-Z]{2}$
               phoneNumberFields:
                 fieldNames:
+                  - applicantOneHomePhoneNumber
+                  - applicantOneMobilePhoneNumber
+                  - applicantTwoHomePhoneNumber
+                  - applicantTwoMobilePhoneNumber
                   - respondentOneHomePhoneNumber
                   - respondentOneMobilePhoneNumber
                   - respondentTwoHomePhoneNumber
                   - respondentTwoMobilePhoneNumber
+                  - solicitorTelephoneNumber
                 regex: ^(?:0|\+?44)(?:\d\s?){9,10}$
               faxNumberFields:
                 fieldNames:
