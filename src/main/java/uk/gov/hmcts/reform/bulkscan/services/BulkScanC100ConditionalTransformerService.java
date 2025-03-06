@@ -287,10 +287,12 @@ public class BulkScanC100ConditionalTransformerService {
         } else {
             childLivesWith = NO;
         }
-        List<Map<String, String>> childRespondantRelations = new ArrayList<>();
+        List<Map<String, Object>> childRespondantRelations = new ArrayList<>();
         for (int i = 0; i < childrenList.size(); i++) {
             Map<String, Object> child = childrenList.get(i);
             for (int j = 0; j < respondents.size(); j++) {
+                Map<String, Object> childRespondantRelationElement = new HashMap<>();
+                childRespondantRelationElement.put("id", UUID.randomUUID());
                 Map<String, String> childRespondantRelation = new HashMap<>();
                 Map<String, Object> childValue = (Map<String, Object>) child.get(VALUE);
                 Map<String, Object> respondentValue = (Map<String, Object>) respondents.get(j).get(VALUE);
@@ -302,7 +304,8 @@ public class BulkScanC100ConditionalTransformerService {
                 childRespondantRelation.put(CHILD_LIVES_WITH, childLivesWith);
                 childRespondantRelation.put("respondentId", String.valueOf(respondents.get(j).get(ID)));
                 childRespondantRelation.put(CHILD_ID, String.valueOf(child.get(ID)));
-                childRespondantRelations.add(childRespondantRelation);
+                childRespondantRelationElement.put(VALUE, childRespondantRelation);
+                childRespondantRelations.add(childRespondantRelationElement);
             }
         }
         populatedMap.put("childAndRespondentRelations", childRespondantRelations);
@@ -318,14 +321,16 @@ public class BulkScanC100ConditionalTransformerService {
         } else {
             childLivesWith = NO;
         }
-        List<Map<String, String>> childApplicantRelations = new ArrayList<>();
+        List<Map<String, Object>> childApplicantRelations = new ArrayList<>();
         for (int i = 0; i < childrenList.size(); i++) {
             Map<String, Object> child = childrenList.get(i);
             for (int j = 0; j < applicants.size(); j++) {
-                Map<String, String> childApplicantRelation = new HashMap<>();
+                Map<String, Object> childApplicantRelationElement = new HashMap<>();
+                childApplicantRelationElement.put("id", UUID.randomUUID());
                 Map<String, Object> applicantValue = (Map<String, Object>) applicants.get(j).get(VALUE);
                 Map<String, Object> childValue = (Map<String, Object>) child.get(VALUE);
                 String relationship = inputFieldsMap.get(String.format(key, i, j));
+                Map<String, String> childApplicantRelation = new HashMap<>();
                 childApplicantRelation.put(APPLICANT_FULL_NAME, applicantValue.get(FIRST_NAME) + " "
                     + applicantValue.get(LAST_NAME));
                 childApplicantRelation.put(CHILD_FULL_NAME, childValue.get(FIRST_NAME) + " " + childValue.get(LAST_NAME));
@@ -333,7 +338,8 @@ public class BulkScanC100ConditionalTransformerService {
                 childApplicantRelation.put(CHILD_LIVES_WITH, childLivesWith);
                 childApplicantRelation.put("applicantId", String.valueOf(applicants.get(j).get(ID)));
                 childApplicantRelation.put(CHILD_ID, String.valueOf(child.get(ID)));
-                childApplicantRelations.add(childApplicantRelation);
+                childApplicantRelationElement.put(VALUE, childApplicantRelation);
+                childApplicantRelations.add(childApplicantRelationElement);
             }
         }
         populatedMap.put("childAndApplicantRelations", childApplicantRelations);
