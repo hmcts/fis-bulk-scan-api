@@ -14,8 +14,6 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.VALUE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.getTypeOfOrderEnumFields;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.getTypeOfOrderEnumMapping;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.TEXT_AND_NUMERIC_MONTH_PATTERN;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.TWO_DIGIT_MONTH_FORMAT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.APPLICANT_AND_RESPONDENT_PARTY_ATTENDED_MIAM_SEPARATELY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.APPLICANT_ONLY_ATTENDED_MIAM;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.APPLICANT_ONLY_ATTENDED_MIAM_TOGETHER;
@@ -482,8 +480,7 @@ public class BulkScanC100ConditionalTransformerService {
                 Map<String, Object> value = (Map<String, Object>) party.get(VALUE);
                 if (ObjectUtils.isNotEmpty(value.get(DATE_OF_BIRTH))) {
                     value.put(DATE_OF_BIRTH, DateUtil.transformDate(value.get(DATE_OF_BIRTH).toString(),
-                                                                    TEXT_AND_NUMERIC_MONTH_PATTERN,
-                                                                    TWO_DIGIT_MONTH_FORMAT));
+                                                                    "dd/mm/yyyy", "yyyy-MM-dd"));
                     party.put(VALUE, value);
                 }
 
@@ -774,8 +771,7 @@ public class BulkScanC100ConditionalTransformerService {
                 childValue.put("parentalResponsibilityDetails", inputFieldsMap.get("parentalResponsibilityDetails"));
                 if (ObjectUtils.isNotEmpty(childValue.get(DATE_OF_BIRTH))) {
                     childValue.put(DATE_OF_BIRTH, DateUtil.transformDate(childValue.get(DATE_OF_BIRTH).toString(),
-                                                                         TEXT_AND_NUMERIC_MONTH_PATTERN,
-                                                                         TWO_DIGIT_MONTH_FORMAT));
+                                                                         "dd/mm/yyyy", "yyyy-MM-dd"));
                 }
                 if ("male".equalsIgnoreCase((String) childValue.get(GENDER))) {
                     childValue.put(GENDER, "male");
