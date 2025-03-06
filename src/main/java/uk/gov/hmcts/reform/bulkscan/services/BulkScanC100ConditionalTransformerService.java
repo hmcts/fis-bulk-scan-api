@@ -110,7 +110,6 @@ import uk.gov.hmcts.reform.bulkscan.enums.SpecialMeasuresEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.SpokenOrWrittenWelshEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.YesOrNo;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
-import uk.gov.hmcts.reform.bulkscan.model.OtherChildrenNotInTheCase;
 import uk.gov.hmcts.reform.bulkscan.model.ResponseScanDocument;
 import uk.gov.hmcts.reform.bulkscan.model.ResponseScanDocumentNew;
 import uk.gov.hmcts.reform.bulkscan.model.ResponseScanDocumentValueNew;
@@ -249,13 +248,14 @@ public class BulkScanC100ConditionalTransformerService {
             }
 
             otherChild.put(ID, UUID.randomUUID());
-            otherChild.put(VALUE, OtherChildrenNotInTheCase.builder()
-                .firstName(inputFieldsMap.get("otherChildrenOneFullName"))
-                .gender("male".equalsIgnoreCase(inputFieldsMap.get("OtherChildrenOneGender")) ? Gender.male : Gender.female)
-                .isDateOfBirthKnown(TRUE.equalsIgnoreCase(inputFieldsMap.get("OtherChildrenOneDateOfBirthDontKnow"))
-                                        ? YesOrNo.Yes : YesOrNo.No)
-                .dateOfBirth(StringUtils.isNotEmpty(dob) ? LocalDate.parse(dob) : null)
-                .build());
+            Map<String,String> otherChildrenNotInTheCase = new HashMap<>();
+            otherChildrenNotInTheCase.put(FIRST_NAME, inputFieldsMap.get("otherChildrenOneFullName"));
+            otherChildrenNotInTheCase.put(GENDER, "male".equalsIgnoreCase(inputFieldsMap.get("OtherChildrenOneGender"))
+                ? Gender.male.toString() : Gender.female.toString());
+            otherChildrenNotInTheCase.put("isDateOfBirthKnown", TRUE.equalsIgnoreCase(inputFieldsMap.get("OtherChildrenOneDateOfBirthDontKnow"))
+                ? YesOrNo.Yes.toString() : YesOrNo.No.toString());
+            otherChildrenNotInTheCase.put(DATE_OF_BIRTH, StringUtils.isNotEmpty(dob) ? dob : null);
+            otherChild.put(VALUE, otherChildrenNotInTheCase);
             childrenList.add(otherChild);
         }
     }
@@ -270,13 +270,14 @@ public class BulkScanC100ConditionalTransformerService {
                 );
             }
             otherChild.put(ID, UUID.randomUUID());
-            otherChild.put(VALUE, OtherChildrenNotInTheCase.builder()
-                .firstName(inputFieldsMap.get("OtherChildrenTwoFullName"))
-                .gender("male".equalsIgnoreCase(inputFieldsMap.get("OtherChildrenTwoGender")) ? Gender.male : Gender.female)
-                .isDateOfBirthKnown(TRUE.equalsIgnoreCase(inputFieldsMap.get("OtherChildrenTwoDateOfBirthDontKnow"))
-                                        ? YesOrNo.Yes : YesOrNo.No)
-                .dateOfBirth(StringUtils.isNotEmpty(dob) ? LocalDate.parse(dob) : null)
-                .build());
+            Map<String,String> otherChildrenNotInTheCase = new HashMap<>();
+            otherChildrenNotInTheCase.put(FIRST_NAME, inputFieldsMap.get("OtherChildrenTwoFullName"));
+            otherChildrenNotInTheCase.put(GENDER, "male".equalsIgnoreCase(inputFieldsMap.get("OtherChildrenTwoGender"))
+                ? Gender.male.toString() : Gender.female.toString());
+            otherChildrenNotInTheCase.put("isDateOfBirthKnown", TRUE.equalsIgnoreCase(inputFieldsMap.get("OtherChildrenTwoDateOfBirthDontKnow"))
+                ? YesOrNo.Yes.toString() : YesOrNo.No.toString());
+            otherChildrenNotInTheCase.put(DATE_OF_BIRTH, StringUtils.isNotEmpty(dob) ? dob : null);
+            otherChild.put(VALUE, otherChildrenNotInTheCase);
             childrenList.add(otherChild);
         }
     }
