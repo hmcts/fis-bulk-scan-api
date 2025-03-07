@@ -483,7 +483,26 @@ public class BulkScanC100ConditionalTransformerService {
                                                                     "dd/mm/yyyy", "yyyy-MM-dd"));
                     party.put(VALUE, value);
                 }
-
+                Map<String, String> address = (Map<String, String>) value.get("address");
+                if (ObjectUtils.isEmpty(address.get("addressLine1"))) {
+                    party.put("isAddressConfidential", YesOrNo.Yes);
+                    address.put("addressLine1", "Marked confidential, to be added in c8");
+                    party.put("address", address);
+                } else {
+                    party.put("isAddressConfidential", YesOrNo.No);
+                }
+                if (ObjectUtils.isEmpty(address.get("email"))) {
+                    party.put("isEmailAddressConfidential", YesOrNo.Yes);
+                } else {
+                    party.put("canYouProvideEmailAddress", YesOrNo.Yes);
+                    party.put("isEmailAddressConfidential", YesOrNo.No);
+                }
+                if (ObjectUtils.isEmpty(address.get("phoneNumber")) && ObjectUtils.isEmpty(address.get("landline"))) {
+                    party.put("isPhoneNumberConfidential", YesOrNo.Yes);
+                } else {
+                    party.put("canYouProvidePhoneNumber", YesOrNo.Yes);
+                    party.put("isPhoneNumberConfidential", YesOrNo.No);
+                }
                 return party;
             }).toList());
     }
