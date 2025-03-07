@@ -1121,7 +1121,7 @@ public class BulkScanC100ConditionalTransformerService {
                         .filter(eachField -> TRUE.equalsIgnoreCase(inputFieldsMap.get(eachField)))
                     .map(orderType -> getTypeOfOrderEnumMapping().get(orderType))
                     .toList();
-        return !typeOfOrderField.isEmpty() ? typeOfOrderField : null;
+        return !typeOfOrderField.isEmpty() ? typeOfOrderField : new ArrayList<>();
     }
 
     /**
