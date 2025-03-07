@@ -91,6 +91,7 @@ import java.util.Optional;
 import java.util.UUID;
 
 import com.microsoft.applicationinsights.core.dependencies.google.gson.internal.LinkedTreeMap;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
@@ -113,6 +114,7 @@ import uk.gov.hmcts.reform.bulkscan.model.ResponseScanDocumentValueNew;
 import uk.gov.hmcts.reform.bulkscan.model.ScannedDocuments;
 import uk.gov.hmcts.reform.bulkscan.utils.DateUtil;
 
+@Slf4j
 @SuppressWarnings({"PMD", "unchecked", "java:S3740"})
 @Component
 public class BulkScanC100ConditionalTransformerService {
@@ -241,9 +243,9 @@ public class BulkScanC100ConditionalTransformerService {
             String dob = null;
             if (StringUtils.isNotEmpty(inputFieldsMap.get("OtherChildrenOneDateOfBirth"))) {
                 dob = DateUtil.transformDate(inputFieldsMap.get("OtherChildrenOneDateOfBirth"),
-                                             "dd/mm/yyyy", "yyyy-MM-dd");
+                                             "dd/MM/yyyy", "yyyy-MM-dd");
             }
-
+            log.info("Child one dob {} : {}", inputFieldsMap.get("OtherChildrenOneDateOfBirth"), dob);
             otherChild.put(ID, UUID.randomUUID());
             Map<String,String> otherChildrenNotInTheCase = new HashMap<>();
             otherChildrenNotInTheCase.put(FIRST_NAME, inputFieldsMap.get("otherChildrenOneFullName"));
@@ -264,9 +266,10 @@ public class BulkScanC100ConditionalTransformerService {
             String dob = null;
             if (StringUtils.isNotEmpty(inputFieldsMap.get("OtherChildrenTwoDateOfBirth"))) {
                 dob = DateUtil.transformDate(inputFieldsMap.get("OtherChildrenTwoDateOfBirth"),
-                                                    "dd/mm/yyyy", "yyyy-MM-dd"
+                                                    "dd/MM/yyyy", "yyyy-MM-dd"
                 );
             }
+            log.info("Child two dob {} : {}", inputFieldsMap.get("OtherChildrenTwoDateOfBirth"), dob);
             otherChild.put(ID, UUID.randomUUID());
             Map<String,String> otherChildrenNotInTheCase = new HashMap<>();
             otherChildrenNotInTheCase.put(FIRST_NAME, inputFieldsMap.get("OtherChildrenTwoFullName"));
@@ -300,11 +303,14 @@ public class BulkScanC100ConditionalTransformerService {
                 Map<String, String> childRespondantRelation = new HashMap<>();
                 Map<String, Object> childValue = (Map<String, Object>) child.get(VALUE);
                 Map<String, Object> respondentValue = (Map<String, Object>) respondents.get(j).get(VALUE);
-                String relationship = inputFieldsMap.get(String.format(key, i, j));
+                String relationship = inputFieldsMap.get(String.format(key, i + 1, j + 1));
+                log.info("Resp child relation {} : {}", inputFieldsMap.get(String.format(key, i + 1, j + 1)),
+                         String.format(key, i + 1, j + 1));
                 childRespondantRelation.put("respondentFullName", respondentValue.get(FIRST_NAME) + " "
                     + respondentValue.get(LAST_NAME));
                 childRespondantRelation.put(CHILD_FULL_NAME, childValue.get(FIRST_NAME) + " " + childValue.get(LAST_NAME));
-                childRespondantRelation.put("childAndRespondentRelation", relationship);
+                childRespondantRelation.put("childAndRespondentRelation", "other");
+                childRespondantRelation.put("childAndRespondentRelationOtherDetails", relationship);
                 childRespondantRelation.put(CHILD_LIVES_WITH, childLivesWith);
                 childRespondantRelation.put("respondentId", String.valueOf(respondents.get(j).get(ID)));
                 childRespondantRelation.put(CHILD_ID, String.valueOf(child.get(ID)));
@@ -333,12 +339,15 @@ public class BulkScanC100ConditionalTransformerService {
                 childApplicantRelationElement.put("id", UUID.randomUUID());
                 Map<String, Object> applicantValue = (Map<String, Object>) applicants.get(j).get(VALUE);
                 Map<String, Object> childValue = (Map<String, Object>) child.get(VALUE);
-                String relationship = inputFieldsMap.get(String.format(key, i, j));
+                String relationship = inputFieldsMap.get(String.format(key, i +1, j+1));
+                log.info("App child relation {} : {}", inputFieldsMap.get(String.format(key, i + 1, j + 1)),
+                         String.format(key, i + 1, j + 1));
                 Map<String, String> childApplicantRelation = new HashMap<>();
                 childApplicantRelation.put(APPLICANT_FULL_NAME, applicantValue.get(FIRST_NAME) + " "
                     + applicantValue.get(LAST_NAME));
                 childApplicantRelation.put(CHILD_FULL_NAME, childValue.get(FIRST_NAME) + " " + childValue.get(LAST_NAME));
-                childApplicantRelation.put(CHILD_AND_APPLICANT_RELATION, relationship);
+                childApplicantRelation.put(CHILD_AND_APPLICANT_RELATION, "other");
+                childApplicantRelation.put("childAndApplicantRelationOtherDetails", relationship);
                 childApplicantRelation.put(CHILD_LIVES_WITH, childLivesWith);
                 childApplicantRelation.put("applicantId", String.valueOf(applicants.get(j).get(ID)));
                 childApplicantRelation.put(CHILD_ID, String.valueOf(child.get(ID)));
@@ -480,7 +489,7 @@ public class BulkScanC100ConditionalTransformerService {
                 Map<String, Object> value = (Map<String, Object>) party.get(VALUE);
                 if (ObjectUtils.isNotEmpty(value.get(DATE_OF_BIRTH))) {
                     value.put(DATE_OF_BIRTH, DateUtil.transformDate(value.get(DATE_OF_BIRTH).toString(),
-                                                                    "dd/mm/yyyy", "yyyy-MM-dd"));
+                                                                    "dd/MM/yyyy", "yyyy-MM-dd"));
                     party.put(VALUE, value);
                 }
                 Map<String, String> address = (Map<String, String>) value.get("address");
@@ -790,7 +799,7 @@ public class BulkScanC100ConditionalTransformerService {
                 childValue.put("parentalResponsibilityDetails", inputFieldsMap.get("parentalResponsibilityDetails"));
                 if (ObjectUtils.isNotEmpty(childValue.get(DATE_OF_BIRTH))) {
                     childValue.put(DATE_OF_BIRTH, DateUtil.transformDate(childValue.get(DATE_OF_BIRTH).toString(),
-                                                                         "dd/mm/yyyy", "yyyy-MM-dd"));
+                                                                         "dd/MM/yyyy", "yyyy-MM-dd"));
                 }
                 if ("male".equalsIgnoreCase((String) childValue.get(GENDER))) {
                     childValue.put(GENDER, "male");
