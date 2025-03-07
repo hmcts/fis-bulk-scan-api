@@ -493,9 +493,9 @@ public class BulkScanC100ConditionalTransformerService {
                     party.put(VALUE, value);
                 }
                 Map<String, String> address = (Map<String, String>) value.get("address");
-                if (ObjectUtils.isEmpty(address.get("addressLine1"))) {
+                if (ObjectUtils.isEmpty(address.get("AddressLine1"))) {
                     party.put("isAddressConfidential", YesOrNo.Yes);
-                    address.put("addressLine1", "Marked confidential, to be added in c8");
+                    address.put("AddressLine1", "Marked confidential, to be added in c8");
                     party.put("address", address);
                 } else {
                     party.put("isAddressConfidential", YesOrNo.No);
