@@ -25,7 +25,6 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.RESPONDEN
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.APPLICANT_REQUIRES_INTERPRETER_APPLICANT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.APPLICANT_REQUIRES_INTERPRETER_OTHER_PARTY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.APPLICANT_REQUIRES_INTERPRETER_RESPONDENT;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDINGS_DETAILS_TABLE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDING_CASE_NUMBER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDING_TYPE_OF_ORDER_1;
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.EMPTY_STRING;
@@ -811,13 +810,9 @@ class BulkScanC100ServiceTest {
 
         BulkScanTransformationResponse res =
                 bulkScanValidationService.transform(bulkScanTransformationRequest);
-        assertEquals(
-                ((List)
-                                res.getCaseCreationDetails()
-                                        .getCaseData()
-                                        .get(OTHER_PROCEEDINGS_DETAILS_TABLE))
-                        .size(),
-                1);
+        assertEquals("no", res.getCaseCreationDetails()
+            .getCaseData()
+            .get("previousOrOngoingProceedingsForChildren"));
     }
 
     @Test
