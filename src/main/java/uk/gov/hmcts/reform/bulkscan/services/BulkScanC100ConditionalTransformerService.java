@@ -813,19 +813,31 @@ public class BulkScanC100ConditionalTransformerService {
 
     private void transformAllegationsOfHarm(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get("domesticAbuse"))) {
-            populatedMap.put("allegationsOfHarmDomesticAbuseYesNo", YES);
+            populatedMap.put("newAllegationsOfHarmYesNo", YesOrNo.Yes);
+            populatedMap.put("allegationsOfHarmDomesticAbuseYesNo", YesOrNo.Yes);
         }
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get("childAbduction"))) {
-            populatedMap.put("allegationsOfHarmChildAbductionYesNo", YES);
+            populatedMap.put("newAllegationsOfHarmYesNo", YesOrNo.Yes);
+            populatedMap.put("allegationsOfHarmChildAbductionYesNo", YesOrNo.Yes);
         }
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get("childAbuse"))) {
-            populatedMap.put("allegationsOfHarmChildAbuseYesNo", YES);
+            populatedMap.put("newAllegationsOfHarmYesNo", YesOrNo.Yes);
+            populatedMap.put("allegationsOfHarmChildAbuseYesNo", YesOrNo.Yes);
         }
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get("otherSafety_or_welfareAbuse"))) {
-            populatedMap.put("allegationsOfHarmOtherConcernsYesNo", YES);
+            populatedMap.put("newAllegationsOfHarmYesNo", YesOrNo.Yes);
+            populatedMap.put("allegationsOfHarmOtherConcernsYesNo", YesOrNo.Yes);
+            populatedMap.put("newAllegationsOfHarmOtherConcernsDetails", "Refer C1A form for details");
         }
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get("drugs_alcohol_substanceAbuse"))) {
-            populatedMap.put("allegationsOfHarmSubstanceAbuseYesNo", YES);
+            populatedMap.put("newAllegationsOfHarmYesNo", YesOrNo.Yes);
+            populatedMap.put("allegationsOfHarmSubstanceAbuseYesNo", YesOrNo.Yes);
+            populatedMap.put("newAllegationsOfHarmSubstanceAbuseDetails", "Refer C1A form for details");
+        }
+        if (ObjectUtils.isEmpty(populatedMap.get("newAllegationsOfHarmYesNo"))) {
+            populatedMap.put("newAllegationsOfHarmYesNo", YesOrNo.No);
+        } else {
+            populatedMap.put("newAllegationsOfHarmYesNo", YesOrNo.Yes);
         }
     }
 
