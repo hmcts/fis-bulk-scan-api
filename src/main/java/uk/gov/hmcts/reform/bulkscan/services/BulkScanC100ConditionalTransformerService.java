@@ -814,24 +814,24 @@ public class BulkScanC100ConditionalTransformerService {
     private void transformAllegationsOfHarm(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get("domesticAbuse"))) {
             populatedMap.put("newAllegationsOfHarmYesNo", YesOrNo.Yes);
-            populatedMap.put("allegationsOfHarmDomesticAbuseYesNo", YesOrNo.Yes);
+            populatedMap.put("newAllegationsOfHarmDomesticAbuseYesNo", YesOrNo.Yes);
         }
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get("childAbduction"))) {
             populatedMap.put("newAllegationsOfHarmYesNo", YesOrNo.Yes);
-            populatedMap.put("allegationsOfHarmChildAbductionYesNo", YesOrNo.Yes);
+            populatedMap.put("newAllegationsOfHarmChildAbductionYesNo", YesOrNo.Yes);
         }
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get("childAbuse"))) {
             populatedMap.put("newAllegationsOfHarmYesNo", YesOrNo.Yes);
-            populatedMap.put("allegationsOfHarmChildAbuseYesNo", YesOrNo.Yes);
+            populatedMap.put("newAllegationsOfHarmChildAbuseYesNo", YesOrNo.Yes);
         }
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get("otherSafety_or_welfareAbuse"))) {
             populatedMap.put("newAllegationsOfHarmYesNo", YesOrNo.Yes);
-            populatedMap.put("allegationsOfHarmOtherConcernsYesNo", YesOrNo.Yes);
+            populatedMap.put("newAllegationsOfHarmOtherConcerns", YesOrNo.Yes);
             populatedMap.put("newAllegationsOfHarmOtherConcernsDetails", "Refer C1A form for details");
         }
         if (TRUE.equalsIgnoreCase(inputFieldsMap.get("drugs_alcohol_substanceAbuse"))) {
             populatedMap.put("newAllegationsOfHarmYesNo", YesOrNo.Yes);
-            populatedMap.put("allegationsOfHarmSubstanceAbuseYesNo", YesOrNo.Yes);
+            populatedMap.put("newAllegationsOfHarmSubstanceAbuseYesNo", YesOrNo.Yes);
             populatedMap.put("newAllegationsOfHarmSubstanceAbuseDetails", "Refer C1A form for details");
         }
         if (ObjectUtils.isEmpty(populatedMap.get("newAllegationsOfHarmYesNo"))) {
