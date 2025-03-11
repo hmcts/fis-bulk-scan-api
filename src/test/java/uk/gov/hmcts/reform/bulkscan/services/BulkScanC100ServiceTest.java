@@ -248,12 +248,12 @@ class BulkScanC100ServiceTest {
                 .filter(
                         eachField ->
                                 CHILD_LIVING_WITH_APPLICANT.equalsIgnoreCase(eachField.getName()))
-                .forEach(field -> field.setValue("false"));
+                .forEach(field -> field.setValue("No"));
         bulkScanTransformationRequest.getOcrdatafields().stream()
                 .filter(
                         eachField ->
                                 CHILD_LIVING_WITH_RESPONDENT.equalsIgnoreCase(eachField.getName()))
-                .forEach(field -> field.setValue("true"));
+                .forEach(field -> field.setValue("Yes"));
         BulkScanTransformationResponse res =
                 bulkScanValidationService.transform(bulkScanTransformationRequest);
         assertNotEquals(
@@ -271,10 +271,10 @@ class BulkScanC100ServiceTest {
                 .filter(
                         eachField ->
                                 CHILD_LIVING_WITH_APPLICANT.equalsIgnoreCase(eachField.getName()))
-                .forEach(field -> field.setValue("false"));
+                .forEach(field -> field.setValue("No"));
         bulkScanTransformationRequest.getOcrdatafields().stream()
                 .filter(eachField -> CHILD_LIVING_WITH_OTHERS.equalsIgnoreCase(eachField.getName()))
-                .forEach(field -> field.setValue("true"));
+                .forEach(field -> field.setValue("Yes"));
         BulkScanTransformationResponse res =
                 bulkScanValidationService.transform(bulkScanTransformationRequest);
         assertNotEquals(
@@ -810,7 +810,7 @@ class BulkScanC100ServiceTest {
 
         BulkScanTransformationResponse res =
                 bulkScanValidationService.transform(bulkScanTransformationRequest);
-        assertEquals("no", res.getCaseCreationDetails()
+        assertEquals("yes", res.getCaseCreationDetails()
             .getCaseData()
             .get("previousOrOngoingProceedingsForChildren"));
     }

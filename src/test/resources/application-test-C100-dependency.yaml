@@ -11,7 +11,7 @@ uk:
                 - noMIAM_Urgency
                 - noMIAM_PreviousAttendence
                 - noMIAM_otherReasons
-              dependentFieldValue: "True"
+              dependentFieldValue: "Yes"
               groupFieldName: exemption_to_attend_MIAM
               groupValidationValue: "Yes"
               requiredFieldCount: 1

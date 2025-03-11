@@ -11,7 +11,7 @@ uk:
                 - noMIAM_Urgency
                 - noMIAM_PreviousAttendence
                 - noMIAM_otherReasons
-              dependentFieldValue: "True"
+              dependentFieldValue: "Yes"
               groupFieldName: exemption_to_attend_MIAM
               groupValidationValue: "Yes"
               requiredFieldCount: 1
@@ -39,9 +39,9 @@ uk:
                 - noMIAM_DVE_publicAuthority_confirmationLetter
                 - noMIAM_DVE_secretaryOfState_letter
                 - noMIAM_DVE_evidenceFinancialMatters
-              dependentFieldValue: "True"
+              dependentFieldValue: "Yes"
               groupFieldName: noMIAM_domesticViolance
-              groupValidationValue: "True"
+              groupValidationValue: "Yes"
               requiredFieldCount: 1
               sectionName: "3a - Domestic violence evidence"
             - groupNoMIAMChildProtectionConcerns:
@@ -50,7 +50,7 @@ uk:
                 - noMIAM_subjectOfCPP_byLocalAuthority
               dependentFieldValue: "Yes"
               groupFieldName: NoMIAM_childProtectionConcerns
-              groupValidationValue: "True"
+              groupValidationValue: "Yes"
               requiredFieldCount: 1
               sectionName: "3b - Child protection concerns"
             - groupNoMIAMUrgency:
@@ -64,7 +64,7 @@ uk:
                 - noMIAM_urgency_conflictWithOtherStateCourts
               dependentFieldValue: "Yes"
               groupFieldName: NoMIAM_Urgency
-              groupValidationValue: "True"
+              groupValidationValue: "Yes"
               requiredFieldCount: 1
               sectionName: "3c - Urgency"
             - groupNoMIAMPreviousAttendence:
@@ -72,7 +72,7 @@ uk:
                 - NoMIAM_PreviousAttendenceReason
               dependentFieldValue: "Yes"
               groupFieldName: NoMIAM_PreviousAttendence
-              groupValidationValue: "True"
+              groupValidationValue: "Yes"
               requiredFieldCount: 1
               sectionName: "3d - Previous MIAM attendance or MIAM exemption"
             - groupNoMIAMOtherReasons:
@@ -80,7 +80,7 @@ uk:
                 - NoMIAM_otherExceptions
               dependentFieldValue: "Yes"
               groupFieldName: NoMIAM_otherReasons
-              groupValidationValue: "True"
+              groupValidationValue: "Yes"
               requiredFieldCount: 1
               sectionName: "3e - Other exemptions"
             - groupInternationalFactorsAffectingLitigationCheckbox:
@@ -134,7 +134,7 @@ uk:
                 - mediationNotSuitable_NoneOfTheRespondentsWillingToAttendMIAM
                 - mediationNotSuitable_NoneOfTheRespondentsFailedToAttendMIAMWithoutGoodReason
                 - mediationNotSuitable_forResolvingTheDispute
-              dependentFieldValue: "true"
+              dependentFieldValue: "Yes"
               groupFieldName: familyMember_Intimation_on_No_MIAM
               groupValidationValue: "Yes"
               requiredFieldCount: 1
@@ -145,7 +145,7 @@ uk:
                 - attendedMIAMTogether
                 - applicantAndRespondentParty_AttendedMIAMSeparately
                 - respondentPartyArranged_ToAttendMIAMSeparately
-              dependentFieldValue: "true"
+              dependentFieldValue: "Yes"
               groupFieldName: attended_MIAM
               groupValidationValue: "Yes"
               requiredFieldCount: 1
@@ -155,7 +155,7 @@ uk:
                 - mediationNotProceeding_applicationAttendedMIAMAlone
                 - mediationNotProceeding_applicantsAndRespondentsAttendedMIAM
                 - mediationNotProceeding_hasStartedButBrokenWithSomeIssue
-              dependentFieldValue: "true"
+              dependentFieldValue: "Yes"
               groupFieldName: attended_MIAM
               groupValidationValue: "Yes"
               requiredFieldCount: 1

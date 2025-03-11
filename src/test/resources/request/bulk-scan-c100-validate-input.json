@@ -22,23 +22,23 @@
     },
     {
       "name": "noMIAM_domesticViolance",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "NoMIAM_childProtectionConcerns",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "NoMIAM_Urgency",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "NoMIAM_PreviousAttendence",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "NoMIAM_otherReasons",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "NoMIAM_DVE_arrestedForSimilarOffence",
@@ -238,7 +238,7 @@
     },
     {
       "name":"child_living_with_Applicant",
-      "value":"true"
+      "value":"Yes"
     },
     {
       "name":"child_living_with_Respondent",

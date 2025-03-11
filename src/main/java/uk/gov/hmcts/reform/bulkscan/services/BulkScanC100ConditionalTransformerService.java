@@ -1,7 +1,6 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
 import static java.util.Objects.nonNull;
-import static org.apache.commons.lang3.BooleanUtils.TRUE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICATION_PERMISSION_REQUIRED;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVING_WITH_APPLICANT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVING_WITH_OTHERS;
@@ -92,7 +91,6 @@ import java.util.UUID;
 
 import com.microsoft.applicationinsights.core.dependencies.google.gson.internal.LinkedTreeMap;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.BooleanUtils;
 import org.apache.commons.lang3.ObjectUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
@@ -205,7 +203,8 @@ public class BulkScanC100ConditionalTransformerService {
         transformPreviousOrOngoingProceedings(inputFieldsMap, populatedMap);
 
         //transform international elements
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("international_or_factorsAffectingLitigation"))) {
+        if (YesOrNo.Yes.getDisplayedValue()
+            .equalsIgnoreCase(inputFieldsMap.get("international_or_factorsAffectingLitigation"))) {
             transformInternationalElements(inputFieldsMap, populatedMap);
         }
 
@@ -251,9 +250,7 @@ public class BulkScanC100ConditionalTransformerService {
             otherChildrenNotInTheCase.put(FIRST_NAME, inputFieldsMap.get("otherChildrenOneFullName"));
             otherChildrenNotInTheCase.put(GENDER, "male".equalsIgnoreCase(inputFieldsMap.get("OtherChildrenOneGender"))
                 ? Gender.male.toString() : Gender.female.toString());
-            otherChildrenNotInTheCase.put("isDateOfBirthKnown",
-                                          TRUE.equalsIgnoreCase(inputFieldsMap.get("OtherChildrenOneDateOfBirthDontKnow"))
-                ? YesOrNo.Yes.toString() : YesOrNo.No.toString());
+            otherChildrenNotInTheCase.put("isDateOfBirthKnown", inputFieldsMap.get("OtherChildrenOneDateOfBirthDontKnow"));
             otherChildrenNotInTheCase.put(DATE_OF_BIRTH, StringUtils.isNotEmpty(dob) ? dob : null);
             otherChild.put(VALUE, otherChildrenNotInTheCase);
             childrenList.add(otherChild);
@@ -275,9 +272,7 @@ public class BulkScanC100ConditionalTransformerService {
             otherChildrenNotInTheCase.put(FIRST_NAME, inputFieldsMap.get("OtherChildrenTwoFullName"));
             otherChildrenNotInTheCase.put(GENDER, "male".equalsIgnoreCase(inputFieldsMap.get("OtherChildrenTwoGender"))
                 ? Gender.male.toString() : Gender.female.toString());
-            otherChildrenNotInTheCase.put("isDateOfBirthKnown",
-                                          TRUE.equalsIgnoreCase(inputFieldsMap.get("OtherChildrenTwoDateOfBirthDontKnow"))
-                ? YesOrNo.Yes.toString() : YesOrNo.No.toString());
+            otherChildrenNotInTheCase.put("isDateOfBirthKnown",inputFieldsMap.get("OtherChildrenTwoDateOfBirthDontKnow"));
             otherChildrenNotInTheCase.put(DATE_OF_BIRTH, StringUtils.isNotEmpty(dob) ? dob : null);
             otherChild.put(VALUE, otherChildrenNotInTheCase);
             childrenList.add(otherChild);
@@ -288,12 +283,6 @@ public class BulkScanC100ConditionalTransformerService {
         List<Map<String, Object>> childrenList = (List<Map<String, Object>>) populatedMap.get(NEW_CHILD_DETAILS);
         List<Map<String, Object>> respondents = (List<Map<String, Object>>) populatedMap.get(RESPONDENTS);
         String key = "child%s_respondent%s_relationship";
-        String childLivesWith = "";
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(CHILD_LIVING_WITH_RESPONDENT))) {
-            childLivesWith = YES;
-        } else {
-            childLivesWith = NO;
-        }
         List<Map<String, Object>> childRespondantRelations = new ArrayList<>();
         for (int i = 0; i < childrenList.size(); i++) {
             Map<String, Object> child = childrenList.get(i);
@@ -310,7 +299,7 @@ public class BulkScanC100ConditionalTransformerService {
                 childRespondantRelation.put(CHILD_FULL_NAME, childValue.get(FIRST_NAME) + " " + childValue.get(LAST_NAME));
                 childRespondantRelation.put("childAndRespondentRelation", "other");
                 childRespondantRelation.put("childAndRespondentRelationOtherDetails", relationship);
-                childRespondantRelation.put(CHILD_LIVES_WITH, childLivesWith);
+                childRespondantRelation.put(CHILD_LIVES_WITH, inputFieldsMap.get(CHILD_LIVING_WITH_RESPONDENT));
                 childRespondantRelation.put("respondentId", String.valueOf(respondents.get(j).get(ID)));
                 childRespondantRelation.put(CHILD_ID, String.valueOf(child.get(ID)));
                 childRespondantRelationElement.put(VALUE, childRespondantRelation);
@@ -324,12 +313,6 @@ public class BulkScanC100ConditionalTransformerService {
         List<Map<String, Object>> childrenList = (List<Map<String, Object>>) populatedMap.get(NEW_CHILD_DETAILS);
         List<Map<String, Object>> applicants = (List<Map<String, Object>>) populatedMap.get(APPLICANTS);
         String key = "child%s_applicant%s_relationship";
-        String childLivesWith = "";
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(CHILD_LIVING_WITH_APPLICANT))) {
-            childLivesWith = YES;
-        } else {
-            childLivesWith = NO;
-        }
         List<Map<String, Object>> childApplicantRelations = new ArrayList<>();
         for (int i = 0; i < childrenList.size(); i++) {
             Map<String, Object> child = childrenList.get(i);
@@ -346,7 +329,7 @@ public class BulkScanC100ConditionalTransformerService {
                 childApplicantRelation.put(CHILD_FULL_NAME, childValue.get(FIRST_NAME) + " " + childValue.get(LAST_NAME));
                 childApplicantRelation.put(CHILD_AND_APPLICANT_RELATION, "other");
                 childApplicantRelation.put("childAndApplicantRelationOtherDetails", relationship);
-                childApplicantRelation.put(CHILD_LIVES_WITH, childLivesWith);
+                childApplicantRelation.put(CHILD_LIVES_WITH, inputFieldsMap.get(CHILD_LIVING_WITH_APPLICANT));
                 childApplicantRelation.put("applicantId", String.valueOf(applicants.get(j).get(ID)));
                 childApplicantRelation.put(CHILD_ID, String.valueOf(child.get(ID)));
                 childApplicantRelationElement.put(VALUE, childApplicantRelation);
@@ -360,12 +343,6 @@ public class BulkScanC100ConditionalTransformerService {
         List<Map<String, Object>> childrenList = (List<Map<String, Object>>) populatedMap.get(NEW_CHILD_DETAILS);
         List<Map<String, Object>> applicants = (List<Map<String, Object>>) populatedMap.get(APPLICANTS);
         String key = "child%s_applicant%s_relationship";
-        String childLivesWith = "";
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(CHILD_LIVING_WITH_OTHERS))) {
-            childLivesWith = YES;
-        } else {
-            childLivesWith = NO;
-        }
         List<Map<String, String>> childApplicantRelations = new ArrayList<>();
         for (int i = 0; i < childrenList.size(); i++) {
             Map<String, Object> child = childrenList.get(i);
@@ -376,7 +353,7 @@ public class BulkScanC100ConditionalTransformerService {
                     + applicants.get(j).get(LAST_NAME));
                 childApplicantRelation.put(CHILD_FULL_NAME, child.get(FIRST_NAME) + " " + child.get(LAST_NAME));
                 childApplicantRelation.put(CHILD_AND_APPLICANT_RELATION, relationship);
-                childApplicantRelation.put(CHILD_LIVES_WITH, childLivesWith);
+                childApplicantRelation.put(CHILD_LIVES_WITH, inputFieldsMap.get(CHILD_LIVING_WITH_OTHERS));
                 childApplicantRelation.put("applicantId", String.valueOf(applicants.get(j).get(ID)));
                 childApplicantRelation.put(CHILD_ID, String.valueOf(child.get(ID)));
                 childApplicantRelations.add(childApplicantRelation);
@@ -386,16 +363,10 @@ public class BulkScanC100ConditionalTransformerService {
     }
 
     private void transformInitialChecks(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("isConsentOrder"))) {
-            populatedMap.put("consentOrder", YES);
-        }
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("welshRequired"))) {
-            populatedMap.put("welshLanguageRequirement", YES);
-        }
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("urgent_or_withoutHearing"))) {
-            populatedMap.put("isCaseUrgent", YES);
-        }
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(HAVE_PREVIOUS_PARENTING_PLAN))) {
+        populatedMap.put("consentOrder", inputFieldsMap.get("isConsentOrder"));
+        populatedMap.put("welshLanguageRequirement", inputFieldsMap.get("welshRequired"));
+        populatedMap.put("isCaseUrgent", inputFieldsMap.get("urgent_or_withoutHearing"));
+        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get(HAVE_PREVIOUS_PARENTING_PLAN))) {
             populatedMap.put(HAVE_PREVIOUS_PARENTING_PLAN, YES);
         } else {
             populatedMap.put(HAVE_PREVIOUS_PARENTING_PLAN, NO);
@@ -515,7 +486,7 @@ public class BulkScanC100ConditionalTransformerService {
     }
 
     private void transformAttendingTheCourt(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("applicantRequiresWelsh"))) {
+        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get("applicantRequiresWelsh"))) {
             populatedMap.put("isWelshNeeded", YES);
             populateWelshNeeds(inputFieldsMap, populatedMap);
         } else {
@@ -530,16 +501,16 @@ public class BulkScanC100ConditionalTransformerService {
     private void populateSpecialArrangementNeeds(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
         List<String> specialArrangements = new ArrayList<>();
 
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("Attendence_separateWaitingRoom"))) {
+        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get("Attendence_separateWaitingRoom"))) {
             specialArrangements.add(SpecialMeasuresEnum.separateWaitingRoom.toString());
         }
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("Attendence_separateEntryAndExit"))) {
+        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get("Attendence_separateEntryAndExit"))) {
             specialArrangements.add(SpecialMeasuresEnum.seperateEntranceExit.toString());
         }
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("Attendence_privacyScreen"))) {
+        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get("Attendence_privacyScreen"))) {
             specialArrangements.add(SpecialMeasuresEnum.shieldedByScreen.toString());
         }
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("Attendence_joinHearingByVideo"))) {
+        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get("Attendence_joinHearingByVideo"))) {
             specialArrangements.add(SpecialMeasuresEnum.joinByVideoLink.toString());
         }
         if (!specialArrangements.isEmpty()) {
@@ -549,7 +520,7 @@ public class BulkScanC100ConditionalTransformerService {
     }
 
     private void populateDisabilityNeeds(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("requiredSpecialAssistanceOrFacilities"))) {
+        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get("requiredSpecialAssistanceOrFacilities"))) {
             populatedMap.put("isDisabilityPresent", YES);
             if (StringUtils.isNotEmpty(inputFieldsMap.get("requiredSpecialAssistanceOrFacilities_details"))) {
                 populatedMap.put("adjustmentsRequired",
@@ -561,7 +532,8 @@ public class BulkScanC100ConditionalTransformerService {
     }
 
     private void populateIntermediaryNeeds(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("applicantRequiresInterpreter_intermediaryRequired"))) {
+        if (YesOrNo.Yes.getDisplayedValue()
+            .equalsIgnoreCase(inputFieldsMap.get("applicantRequiresInterpreter_intermediaryRequired"))) {
             populatedMap.put("isIntermediaryNeeded", YES);
             if (StringUtils.isNotEmpty(inputFieldsMap.get("applicantRequiresInterpreter_intermediaryRequired_details"))) {
                 populatedMap.put("reasonsForIntermediary",
@@ -573,7 +545,7 @@ public class BulkScanC100ConditionalTransformerService {
     }
 
     private void populateInterpreterNeeds(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("applicantRequiresInterpreter"))) {
+        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get("applicantRequiresInterpreter"))) {
             populatedMap.put("isInterpreterNeeded", YES);
             Map<String, Object> interpreterNeed = new HashMap<>();
             interpreterNeed.put(ID, UUID.randomUUID());
@@ -607,7 +579,8 @@ public class BulkScanC100ConditionalTransformerService {
     }
 
     private void transformInternationalElements(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("internationalElement_Resident_of_another_state"))) {
+        if (YesOrNo.Yes.getDisplayedValue()
+            .equalsIgnoreCase(inputFieldsMap.get("internationalElement_Resident_of_another_state"))) {
             populatedMap.put("habitualResidentInOtherState", YES);
             if (StringUtils.isNotEmpty(inputFieldsMap.get("internationalElement_Resident_of_another_state_details"))) {
                 populatedMap.put("habitualResidentInOtherStateGiveReason",
@@ -616,7 +589,7 @@ public class BulkScanC100ConditionalTransformerService {
         } else {
             populatedMap.put("habitualResidentInOtherState", NO);
         }
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("internationalElement_jurisdictionIssue"))) {
+        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get("internationalElement_jurisdictionIssue"))) {
             populatedMap.put("jurisdictionIssue", YES);
             if (StringUtils.isNotEmpty(inputFieldsMap.get("withoutNotice_jurisdictionIssue_details"))) {
                 populatedMap.put("jurisdictionIssueGiveReason",
@@ -625,7 +598,8 @@ public class BulkScanC100ConditionalTransformerService {
         } else {
             populatedMap.put("jurisdictionIssue", NO);
         }
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("internationalElement_request_toCentral_or_Consular_authority"))) {
+        if (YesOrNo.Yes.getDisplayedValue()
+            .equalsIgnoreCase(inputFieldsMap.get("internationalElement_request_toCentral_or_Consular_authority"))) {
             populatedMap.put("requestToForeignAuthority", YES);
             if (StringUtils.isNotEmpty(inputFieldsMap
                                            .get("internationalElement_request_toCentral_or_Consular_authority_details"))) {
@@ -638,7 +612,7 @@ public class BulkScanC100ConditionalTransformerService {
     }
 
     private void transformPreviousOrOngoingProceedings(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("previous_or_ongoingProceeding"))) {
+        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get("previous_or_ongoingProceeding"))) {
             populatedMap.put("previousOrOngoingProceedingsForChildren", "yes");
             Map<String, Object> proceeding = new HashMap<>();
             proceeding.put(ID, UUID.randomUUID());
@@ -683,11 +657,12 @@ public class BulkScanC100ConditionalTransformerService {
     }
 
     private void transformMiamDetails(Map<String, Object> populatedMap, Map<String, String> inputFieldsMap) {
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("ExistingCase_onEmergencyProtection_Care_or_supervisionOrder"))) {
+        if (YesOrNo.Yes.getDisplayedValue()
+            .equalsIgnoreCase(inputFieldsMap.get("ExistingCase_onEmergencyProtection_Care_or_supervisionOrder"))) {
             populatedMap.put("mpuChildInvolvedInMiam", YES);
         } else {
             populatedMap.put("mpuChildInvolvedInMiam", NO);
-            if (TRUE.equalsIgnoreCase(inputFieldsMap.get("attended_MIAM"))) {
+            if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get("attended_MIAM"))) {
                 populatedMap.put("mpuApplicantAttendedMiam", YES);
                 populatedMap.put("soleTraderName", inputFieldsMap.get("soleTraderName"));
                 populatedMap.put("mediatorRegistrationNumber", inputFieldsMap.get("fmcRegistrationNumber"));
@@ -699,25 +674,25 @@ public class BulkScanC100ConditionalTransformerService {
     }
 
     private void handleMiamExemptions(Map<String, Object> populatedMap, Map<String, String> inputFieldsMap) {
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("exemption_to_attend_MIAM"))) {
+        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get("exemption_to_attend_MIAM"))) {
             populatedMap.put("mpuClaimingExemptionMiam", YesOrNo.Yes);
             populatedMap.put(
                 MIAM_EXEMPTIONS_CHECKLIST, transformMiamExemptionsChecklist(inputFieldsMap));
-            if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_DOMESTIC_VIOLENCE))) {
+            if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_DOMESTIC_VIOLENCE))) {
                 populatedMap.put(
                     "mpuDomesticAbuseEvidences",
                     transformMiamDomesticViolenceChecklist(inputFieldsMap));
             }
-            if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_CHILD_PROTECTION_CONCERNS))) {
+            if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_CHILD_PROTECTION_CONCERNS))) {
                 transformNoMiamChildProtectionConcerns(inputFieldsMap, populatedMap);
             }
-            if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_URGENCY))) {
+            if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_URGENCY))) {
                 transformMiamUrgencyReasonChecklist(inputFieldsMap, populatedMap);
             }
-            if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_PREVIOUS_ATTENDENCE))) {
+            if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_PREVIOUS_ATTENDENCE))) {
                 transformMiamPreviousAttendance(populatedMap, inputFieldsMap);
             }
-            if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_OTHER_REASONS))) {
+            if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_OTHER_REASONS))) {
                 transformMiamOtherReasonsExemptions(populatedMap, inputFieldsMap);
             }
 
@@ -727,28 +702,32 @@ public class BulkScanC100ConditionalTransformerService {
     }
 
     private void transformMiamOtherReasonsExemptions(Map<String, Object> populatedMap, Map<String, String> inputFieldsMap) {
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("otherExemption_withoutNotice"))) {
+        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get("otherExemption_withoutNotice"))) {
             populatedMap.put(MPU_OTHER_EXEMPTION_REASONS, "miamPolicyUpgradeOtherGrounds_Value_1");
         }
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("otherExemption_byVirture_of_Rule12_3"))) {
+        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get("otherExemption_byVirture_of_Rule12_3"))) {
             populatedMap.put(MPU_OTHER_EXEMPTION_REASONS, "miamPolicyUpgradeOtherGrounds_Value_2");
         }
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("otherExemption_mediator_notAvailableToConduct"))) {
+        if (YesOrNo.Yes.getDisplayedValue()
+            .equalsIgnoreCase(inputFieldsMap.get("otherExemption_mediator_notAvailableToConduct"))) {
             populatedMap.put(MPU_OTHER_EXEMPTION_REASONS, "miamPolicyUpgradeOtherGrounds_Value_3");
             populatedMap.put("mpuApplicantUnableToAttendMiamReason1", inputFieldsMap.get(
                 OTHER_EXEMPTION_ADDITONAL_INFORMATION));
         }
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("otherExemption_disability_or_inabilityToAttend"))) {
+        if (YesOrNo.Yes.getDisplayedValue()
+            .equalsIgnoreCase(inputFieldsMap.get("otherExemption_disability_or_inabilityToAttend"))) {
             populatedMap.put(MPU_OTHER_EXEMPTION_REASONS, "miamPolicyUpgradeOtherGrounds_Value_4");
             populatedMap.put("mpuApplicantUnableToAttendMiamReason1", inputFieldsMap.get(
                 OTHER_EXEMPTION_ADDITONAL_INFORMATION));
         }
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("otherExemption_NotSufficient_Respondent_ContactDetails"))) {
+        if (YesOrNo.Yes.getDisplayedValue()
+            .equalsIgnoreCase(inputFieldsMap.get("otherExemption_NotSufficient_Respondent_ContactDetails"))) {
             populatedMap.put(MPU_OTHER_EXEMPTION_REASONS, "miamPolicyUpgradeOtherGrounds_Value_5");
             populatedMap.put("mpuApplicantUnableToAttendMiamReason2", inputFieldsMap.get(
                 OTHER_EXEMPTION_ADDITONAL_INFORMATION));
         }
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("otherExemption_applicant_or_respondent_inPrison"))) {
+        if (YesOrNo.Yes.getDisplayedValue()
+            .equalsIgnoreCase(inputFieldsMap.get("otherExemption_applicant_or_respondent_inPrison"))) {
             populatedMap.put(MPU_OTHER_EXEMPTION_REASONS, "miamPolicyUpgradeOtherGrounds_Value_6");
         }
         if (StringUtils.isNotEmpty(inputFieldsMap.get("otherExemption_NoEvidence_reason"))) {
@@ -760,10 +739,11 @@ public class BulkScanC100ConditionalTransformerService {
     }
 
     private void transformMiamPreviousAttendance(Map<String, Object> populatedMap, Map<String, String> inputFieldsMap) {
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("previousMIAM_nonCourtDisputeResolution_4month"))) {
+        if (YesOrNo.Yes.getDisplayedValue()
+            .equalsIgnoreCase(inputFieldsMap.get("previousMIAM_nonCourtDisputeResolution_4month"))) {
             populatedMap.put("mpuPreviousMiamAttendanceReason", "miamPolicyUpgradePreviousAttendance_Value_1");
         }
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("previousMIAM_existingProceeding_exepmtMIAM"))) {
+        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get("previousMIAM_existingProceeding_exepmtMIAM"))) {
             populatedMap.put("mpuPreviousMiamAttendanceReason", "miamPolicyUpgradePreviousAttendance_Value_2");
         }
     }
@@ -771,17 +751,17 @@ public class BulkScanC100ConditionalTransformerService {
     private void transformChildDetails(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
         List<Map<String, Object>> children = (List<Map<String, Object>>) populatedMap.get(NEW_CHILD_DETAILS);
         populatedMap.put(NEW_CHILD_DETAILS, populateChildren(children, inputFieldsMap));
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("children_of_same_parent"))) {
+        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get("children_of_same_parent"))) {
             populatedMap.put("isChildrenWithSameParents", "yes");
         } else {
             populatedMap.put("isChildrenWithSameParents", "no");
         }
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("childrenServicesAuthority"))) {
+        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get("childrenServicesAuthority"))) {
             populatedMap.put("childrenKnownToLocalAuthority", "yes");
         } else {
             populatedMap.put("childrenKnownToLocalAuthority", "no");
         }
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("subject_to_childProtectionPlan"))) {
+        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get("subject_to_childProtectionPlan"))) {
             populatedMap.put("childrenSubjectOfChildProtectionPlan", "yes");
         } else {
             populatedMap.put("childrenSubjectOfChildProtectionPlan", "no");
@@ -812,24 +792,24 @@ public class BulkScanC100ConditionalTransformerService {
     }
 
     private void transformAllegationsOfHarm(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("domesticAbuse"))) {
+        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get("domesticAbuse"))) {
             populatedMap.put("newAllegationsOfHarmYesNo", YesOrNo.Yes);
             populatedMap.put("newAllegationsOfHarmDomesticAbuseYesNo", YesOrNo.Yes);
         }
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("childAbduction"))) {
+        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get("childAbduction"))) {
             populatedMap.put("newAllegationsOfHarmYesNo", YesOrNo.Yes);
             populatedMap.put("newAllegationsOfHarmChildAbductionYesNo", YesOrNo.Yes);
         }
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("childAbuse"))) {
+        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get("childAbuse"))) {
             populatedMap.put("newAllegationsOfHarmYesNo", YesOrNo.Yes);
             populatedMap.put("newAllegationsOfHarmChildAbuseYesNo", YesOrNo.Yes);
         }
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("otherSafety_or_welfareAbuse"))) {
+        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get("otherSafety_or_welfareAbuse"))) {
             populatedMap.put("newAllegationsOfHarmYesNo", YesOrNo.Yes);
             populatedMap.put("newAllegationsOfHarmOtherConcerns", YesOrNo.Yes);
             populatedMap.put("newAllegationsOfHarmOtherConcernsDetails", "Refer C1A form for details");
         }
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("drugs_alcohol_substanceAbuse"))) {
+        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get("drugs_alcohol_substanceAbuse"))) {
             populatedMap.put("newAllegationsOfHarmYesNo", YesOrNo.Yes);
             populatedMap.put("newAllegationsOfHarmSubstanceAbuseYesNo", YesOrNo.Yes);
             populatedMap.put("newAllegationsOfHarmSubstanceAbuseDetails", "Refer C1A form for details");
@@ -880,11 +860,11 @@ public class BulkScanC100ConditionalTransformerService {
             populatedMap.put("reasonsForApplicationWithoutNotice", inputFieldsMap.get("reason_for_consideration"));
             populatedMap.put("doYouNeedAWithoutNoticeHearing", YES);
         }
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("withoutNotice_abridged_or_informalNotice"))) {
+        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get("withoutNotice_abridged_or_informalNotice"))) {
             populatedMap.put("withoutAbridgedOrInformalNotice", YES);
             populatedMap.put(SET_OUT_REASONS_BELOW, inputFieldsMap.get(WITHOUT_NOTICE_ABRIDGED_OR_INFORMAL_NOTICE_REASONS));
         }
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get("withoutNotice_frustrateTheOrder"))) {
+        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get("withoutNotice_frustrateTheOrder"))) {
             populatedMap.put("doesWithNoticeHearingFrustrateRespondent", YES);
             populatedMap.put("reasonForFrustrationOfNotice", inputFieldsMap.get(WITHOUT_NOTICE_FRUSTRATE_THE_ORDER_REASON));
         }
@@ -899,15 +879,15 @@ public class BulkScanC100ConditionalTransformerService {
     private List<String> transformOrderAppliedFor(Map<String, String> inputFieldsMap) {
         List<String> orderAppliedForList = new ArrayList<>();
 
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(CHILD_ARRANGEMENT_ORDER))) {
+        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get(CHILD_ARRANGEMENT_ORDER))) {
             orderAppliedForList.add(CHILD_ARRANGEMENTS_ORDER_DESCRIPTION);
         }
 
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(PROHIBITED_STEPS_ORDER))) {
+        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get(PROHIBITED_STEPS_ORDER))) {
             orderAppliedForList.add(PROHIBITED_STEPS_ORDER_DESCRIPTION);
         }
 
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(SPECIAL_ISSUE_ORDER))) {
+        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get(SPECIAL_ISSUE_ORDER))) {
             orderAppliedForList.add(SPECIFIC_ISSUE_ORDER_DESCRIPTION);
         }
         return orderAppliedForList;
@@ -921,37 +901,37 @@ public class BulkScanC100ConditionalTransformerService {
      */
     private void transformMiamUrgencyReasonChecklist(
         Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
-        if (TRUE.equalsIgnoreCase(
+        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(
                 inputFieldsMap.get(NO_MIAM_URGENCY_RISK_TO_LIFE_LIBERTY_OR_SAFETY))) {
             populatedMap.put(MIAM_URGENCY_REASON_CHECKLIST,
                     MiamUrgencyReasonChecklistEnum.miamPolicyUpgradeUrgencyReason_Value_1);
         }
 
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_URGENCY_RISK_OF_HARM))) {
+        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_URGENCY_RISK_OF_HARM))) {
             populatedMap.put(MIAM_URGENCY_REASON_CHECKLIST,
                     MiamUrgencyReasonChecklistEnum.miamPolicyUpgradeUrgencyReason_Value_2);
         }
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_URGENCY_RISK_TO_UNLAWFUL_REMOVAL))) {
+        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_URGENCY_RISK_TO_UNLAWFUL_REMOVAL))) {
             populatedMap.put(MIAM_URGENCY_REASON_CHECKLIST,
                     MiamUrgencyReasonChecklistEnum.miamPolicyUpgradeUrgencyReason_Value_3);
         }
 
-        if (TRUE.equalsIgnoreCase(
+        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(
                 inputFieldsMap.get(NO_MIAM_URGENCY_RISK_TO_MISCARRIAGE_OF_JUSTICE))) {
             populatedMap.put(MIAM_URGENCY_REASON_CHECKLIST,
                     MiamUrgencyReasonChecklistEnum.miamPolicyUpgradeUrgencyReason_Value_4);
         }
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_URGENCY_UNREASONABLEHARDSHIP))) {
+        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_URGENCY_UNREASONABLEHARDSHIP))) {
             populatedMap.put(MIAM_URGENCY_REASON_CHECKLIST,
                     MiamUrgencyReasonChecklistEnum.miamPolicyUpgradeUrgencyReason_Value_5);
         }
 
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_URGENCY_IRRETRIEVABLE_PROBLEM))) {
+        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_URGENCY_IRRETRIEVABLE_PROBLEM))) {
             populatedMap.put(MIAM_URGENCY_REASON_CHECKLIST,
                     MiamUrgencyReasonChecklistEnum.miamPolicyUpgradeUrgencyReason_Value_6);
         }
 
-        if (TRUE.equalsIgnoreCase(
+        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(
                 inputFieldsMap.get(NO_MIAM_URGENCY_CONFLICT_WITH_OTHER_STATE_COURTS))) {
             populatedMap.put(MIAM_URGENCY_REASON_CHECKLIST,
                     MiamUrgencyReasonChecklistEnum.miamPolicyUpgradeUrgencyReason_Value_7);
@@ -966,12 +946,12 @@ public class BulkScanC100ConditionalTransformerService {
      */
     private void transformNoMiamChildProtectionConcerns(
         Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
-        if (TRUE.equalsIgnoreCase(
+        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(
                 inputFieldsMap.get(NO_MIAM_SUBJECT_OF_ENQUIRIES_BY_LOCAL_AUTHORITY))) {
             populatedMap.put(NO_MIAM_CHILD_PROTECTION_CONCERNS_CHECKLIST,
                              MiamChildProtectionConcernChecklistEnum.mpuChildProtectionConcern_value_1.toString());
         }
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_SUBJECT_OF_CPP_BY_LOCAL_AUTHORITY))) {
+        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_SUBJECT_OF_CPP_BY_LOCAL_AUTHORITY))) {
             populatedMap.put(NO_MIAM_CHILD_PROTECTION_CONCERNS_CHECKLIST,
                              MiamChildProtectionConcernChecklistEnum.mpuChildProtectionConcern_value_2.toString());
         }
@@ -986,23 +966,23 @@ public class BulkScanC100ConditionalTransformerService {
     private List<String> transformMiamExemptionsChecklist(
             Map<String, String> inputFieldsMap) {
         List<String> miamExemptionsChecklist = new ArrayList<>();
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_DOMESTIC_VIOLENCE))) {
+        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_DOMESTIC_VIOLENCE))) {
             miamExemptionsChecklist.add(MiamExemptionsChecklistEnum.domesticViolence.toString());
         }
 
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_CHILD_PROTECTION_CONCERNS))) {
+        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_CHILD_PROTECTION_CONCERNS))) {
             miamExemptionsChecklist.add(MiamExemptionsChecklistEnum.childProtectionConcern.toString());
         }
 
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_URGENCY))) {
+        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_URGENCY))) {
             miamExemptionsChecklist.add(MiamExemptionsChecklistEnum.urgency.toString());
         }
 
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_PREVIOUS_ATTENDENCE))) {
+        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_PREVIOUS_ATTENDENCE))) {
             miamExemptionsChecklist.add(MiamExemptionsChecklistEnum.previousMIAMattendance.toString());
         }
 
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_OTHER_REASONS))) {
+        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_OTHER_REASONS))) {
             miamExemptionsChecklist.add(MiamExemptionsChecklistEnum.other.toString());
         }
         return miamExemptionsChecklist;
@@ -1031,7 +1011,7 @@ public class BulkScanC100ConditionalTransformerService {
                                     Optional.ofNullable(inputFieldsMap.get(key));
                             inputFieldOptional.ifPresent(
                                     s -> {
-                                        if (BooleanUtils.TRUE.equals(inputFieldOptional.get())) {
+                                        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldOptional.get())) {
                                             miamDomesticViolenceChecklistEnumList.add(
                                                     miamDomesticViolenceChecklistEnumMap.get(key));
                                         }
@@ -1137,7 +1117,7 @@ public class BulkScanC100ConditionalTransformerService {
     private List<String> transformTypeOfOrder(Map<String, String> inputFieldsMap) {
         List<String> typeOfOrderField =
                 getTypeOfOrderEnumFields().stream()
-                        .filter(eachField -> TRUE.equalsIgnoreCase(inputFieldsMap.get(eachField)))
+                        .filter(eachField -> YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get(eachField)))
                     .map(orderType -> getTypeOfOrderEnumMapping().get(orderType))
                     .toList();
         return !typeOfOrderField.isEmpty() ? typeOfOrderField : new ArrayList<>();
@@ -1170,13 +1150,13 @@ public class BulkScanC100ConditionalTransformerService {
             String written = String.format("applicantRequiresWelsh_%s_written", personCount);
             String both = String.format("applicantRequiresWelsh_%s_Both", personCount);
             List<String> spokenOrWritten = new ArrayList<>();
-            if (TRUE.equalsIgnoreCase(inputFieldsMap.get(spoken))) {
+            if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get(spoken))) {
                 spokenOrWritten.add(SpokenOrWrittenWelshEnum.spoken.toString());
             }
-            if (TRUE.equalsIgnoreCase(inputFieldsMap.get(written))) {
+            if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get(written))) {
                 spokenOrWritten.add(SpokenOrWrittenWelshEnum.written.toString());
             }
-            if (TRUE.equalsIgnoreCase(inputFieldsMap.get(both))) {
+            if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get(both))) {
                 spokenOrWritten.add(SpokenOrWrittenWelshEnum.both.toString());
             }
             Map<String, Object> value = new HashMap<>();
@@ -1194,21 +1174,21 @@ public class BulkScanC100ConditionalTransformerService {
      */
     private void transformMediatorCertifiesMiamExemption(Map<String, String> inputFieldsMap) {
 
-        if (TRUE.equalsIgnoreCase(
+        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(
                 inputFieldsMap.get(
                         MEDIATION_NOT_SUITABLE_NONEOFTHERESPONDENTS_WILLING_TO_ATTEND_MIAM))) {
             inputFieldsMap.put(RESPONDENT_WILLING_TO_ATTEND_MIAM, "No");
             inputFieldsMap.put(RESPONDENT_REASON_NOT_ATTENDING_MIAM, GroupMediatorCertifiesEnum
                 .MEDIATION_NOT_PROCEEDING_APPLICATION_ATTENDED_MIAM_ALONE
                 .getDescription());
-        } else if (TRUE.equals(
+        } else if (YesOrNo.Yes.getDisplayedValue().equals(
                 inputFieldsMap.get(
                         MEDIATION_NOT_SUITABLE_NONEOFTHERESPONDENTS_FAILED_TO_ATTEND_MIAM_WITHOUT_GOOD_REASON))) {
             inputFieldsMap.put(RESPONDENT_WILLING_TO_ATTEND_MIAM, "No");
             inputFieldsMap.put(RESPONDENT_REASON_NOT_ATTENDING_MIAM, GroupMediatorCertifiesEnum
                     .MEDIATION_NOT_SUITABLE_NONEOFTHERESPONDENTS_FAILED_TO_ATTEND_MIAM_WITHOUT_GOOD_REASON
                     .getDescription());
-        } else if (TRUE.equals(
+        } else if (YesOrNo.Yes.getDisplayedValue().equals(
                 inputFieldsMap.get(MEDIATION_NOT_SUITABLE_FOR_RESOLVING_THE_DISPUTE))) {
             inputFieldsMap.put(RESPONDENT_WILLING_TO_ATTEND_MIAM, "No");
             inputFieldsMap.put(
@@ -1229,17 +1209,17 @@ public class BulkScanC100ConditionalTransformerService {
     private String transformMediatorCertifiesApplicantAttendMiam(
             Map<String, String> inputFieldsMap) {
 
-        if (TRUE.equalsIgnoreCase(inputFieldsMap.get(APPLICANT_ONLY_ATTENDED_MIAM))) {
+        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get(APPLICANT_ONLY_ATTENDED_MIAM))) {
             return GroupMediatorCertifiesEnum.APPLICANT_ONLY_ATTENDED_MIAM.getDescription();
-        } else if (TRUE.equals(inputFieldsMap.get(APPLICANT_ONLY_ATTENDED_MIAM_TOGETHER))) {
+        } else if (YesOrNo.Yes.getDisplayedValue().equals(inputFieldsMap.get(APPLICANT_ONLY_ATTENDED_MIAM_TOGETHER))) {
             return GroupMediatorCertifiesEnum.APPLICANT_AND_RESPONDENT_ATTENDED_MIAM_TOGETHER
                     .getDescription();
-        } else if (TRUE.equals(
+        } else if (YesOrNo.Yes.getDisplayedValue().equals(
                 inputFieldsMap.get(APPLICANT_AND_RESPONDENT_PARTY_ATTENDED_MIAM_SEPARATELY))) {
             return GroupMediatorCertifiesEnum
                     .APPLICANT_AND_RESPONDENT_PARTY_ATTENDED_MIAM_SEPARATELY
                     .getDescription();
-        } else if (TRUE.equals(
+        } else if (YesOrNo.Yes.getDisplayedValue().equals(
                 inputFieldsMap.get(RESPONDENT_PARTY_ARRANGED_TO_ATTEND_MIAM_SEPARATELY))) {
             return GroupMediatorCertifiesEnum.RESPONDENT_PARTY_ARRANGED_TO_ATTEND_MIAM_SEPARATELY
                     .getDescription();
@@ -1256,18 +1236,18 @@ public class BulkScanC100ConditionalTransformerService {
     private String transformMediatorCertifiesDisputeResolutionNotProceeding(
             Map<String, String> inputFieldsMap) {
 
-        if (TRUE.equalsIgnoreCase(
+        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(
                 inputFieldsMap.get(MEDIATION_NOT_PROCEEDING_APPLICANT_ATTENDED_MIAM_ALONE))) {
             return GroupMediatorCertifiesEnum
                     .MEDIATION_NOT_PROCEEDING_APPLICATION_ATTENDED_MIAM_ALONE
                     .getDescription();
-        } else if (TRUE.equals(
+        } else if (YesOrNo.Yes.getDisplayedValue().equals(
                 inputFieldsMap.get(
                         MEDIATION_NOT_PROCEEDING_APPLICANTS_AND_RESPONDENTS_ATTENDED_MIAM))) {
             return GroupMediatorCertifiesEnum
                     .MEDIATION_NOT_PROCEEDING_APPLICANTS_AND_RESPONDENTS_ATTENDED_MIAM
                     .getDescription();
-        } else if (TRUE.equals(
+        } else if (YesOrNo.Yes.getDisplayedValue().equals(
                 inputFieldsMap.get(
                         MEDIATION_NOT_PROCEEDING_HASSTARTED_BUT_BROKEN_WITH_SOMEISSUE))) {
             return GroupMediatorCertifiesEnum.MEDIATION_NOT_PROCEEDING_BROKEN_DOWN_UNRESOLVED
