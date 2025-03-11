@@ -69,9 +69,9 @@ uk:
               sectionName: "3c - Urgency"
             - groupNoMIAMPreviousAttendence:
               dependentFields:
-                - NoMIAM_PreviousAttendenceReason
+                - noMIAM_PreviousAttendenceReason
               dependentFieldValue: "Yes"
-              groupFieldName: NoMIAM_PreviousAttendence
+              groupFieldName: noMIAM_PreviousAttendence
               groupValidationValue: "Yes"
               requiredFieldCount: 1
               sectionName: "3d - Previous MIAM attendance or MIAM exemption"

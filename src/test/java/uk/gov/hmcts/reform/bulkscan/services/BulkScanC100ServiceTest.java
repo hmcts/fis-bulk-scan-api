@@ -381,7 +381,7 @@ class BulkScanC100ServiceTest {
 
     @Test
     @DisplayName(
-            "Should generate warnings on [NoMIAM_PreviousAttendenceReason] checked but without"
+            "Should generate warnings on [noMIAM_PreviousAttendenceReason] checked but without"
                     + " dependent Part 3d field(s)")
     void testC100NoMiamPreviousAttendanceReasonWarning() {
         List<OcrDataField> c100GetDomesticViolenceWarningData = new ArrayList<>();
@@ -588,13 +588,13 @@ class BulkScanC100ServiceTest {
 
     @Test
     @DisplayName(
-            "Should generate SUCCESS status with NoMIAM_PreviousAttendence field in bulkscan"
+            "Should generate SUCCESS status with noMIAM_PreviousAttendence field in bulkscan"
                     + " request")
     void testC100NoMiamPreviousAttendanceSuccessData() {
         List<OcrDataField> c100GetDomesticViolenceWarningData = new ArrayList<>();
         c100GetDomesticViolenceWarningData.addAll(TestDataC100Util.getData());
         OcrDataField previousAttendanceReason = new OcrDataField();
-        previousAttendanceReason.setName("NoMIAM_PreviousAttendenceReason");
+        previousAttendanceReason.setName("noMIAM_PreviousAttendenceReason");
         previousAttendanceReason.setValue("Yes");
 
         c100GetDomesticViolenceWarningData.add(previousAttendanceReason);
@@ -620,7 +620,7 @@ class BulkScanC100ServiceTest {
                 bulkScanValidationRequest.getOcrdatafields().stream()
                         .filter(
                                 eachField ->
-                                        "NoMIAM_PreviousAttendence"
+                                        "noMIAM_PreviousAttendence"
                                                 .equalsIgnoreCase(eachField.getName()))
                         .findAny()
                         .orElse(null)

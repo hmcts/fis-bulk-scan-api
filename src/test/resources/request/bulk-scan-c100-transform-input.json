@@ -361,7 +361,7 @@
       "value": "Yes"
     },
     {
-      "name": "NoMIAM_PreviousAttendence",
+      "name": "noMIAM_PreviousAttendence",
       "value": "Yes"
     },
     {
@@ -369,7 +369,7 @@
       "value": "Yes"
     },
     {
-      "name": "NoMIAM_PreviousAttendenceReason",
+      "name": "noMIAM_PreviousAttendenceReason",
       "value": "miamPreviousAttendanceChecklistEnum_Value_4"
     },
     {
@@ -494,19 +494,19 @@
     },
     {
       "name": "NoMIAM_DVE_publicAuthority_confirmationLetter",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "NoMIAM_DVE_secretaryOfState_letter",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "NoMIAM_DVE_evidenceFinancialMatters",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "NoMIAM_DVE_ReferralHealthProfessionalReport",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "respondent1FirstName",
@@ -982,11 +982,11 @@
     },
     {
       "name": "mediationNotSuitable_NoneOfTheRespondentsWillingToAttendMIAM",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "applicantAndRespondentParty_AttendedMIAMSeparately",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "fmc_RegistrationNumber",

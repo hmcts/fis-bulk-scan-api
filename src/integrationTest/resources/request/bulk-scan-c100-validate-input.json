@@ -29,7 +29,7 @@
       "value": "Yes"
     },
     {
-      "name": "NoMIAM_PreviousAttendence",
+      "name": "noMIAM_PreviousAttendence",
       "value": "Yes"
     },
     {
@@ -49,7 +49,7 @@
       "value": "Yes"
     },
     {
-      "name": "NoMIAM_PreviousAttendenceReason",
+      "name": "noMIAM_PreviousAttendenceReason",
       "value": "Yes"
     },
     {

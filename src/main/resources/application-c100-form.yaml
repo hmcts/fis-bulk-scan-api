@@ -308,7 +308,7 @@ uk:
               - noMIAM_urgency_removalFromUnitedKingdom  # noMIAM_urgency_removalFromUnitedKingdom
               - noMIAM_urgency_miscarriageOfJustice # noMIAM_urgency_miscarriageOfJustice
               - noMIAM_urgency_financialHardship # noMIAM_urgency_financialHardship
-              - NoMIAM_PreviousAttendenceReason # previousMIAM_nonCourtDisputeResolution_4month
+              - noMIAM_PreviousAttendenceReason # previousMIAM_nonCourtDisputeResolution_4month
 
               - respondentOneGender
               - respondentOneAddressPostCode

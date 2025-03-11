@@ -599,7 +599,7 @@ public final class TestDataC100Util {
 
         OcrDataField ocrNoMiamDomesticViolenceOrderField = new OcrDataField();
         ocrNoMiamDomesticViolenceOrderField.setName(NOMIAM_DOMESTICVIOLENCE_FIELD);
-        ocrNoMiamDomesticViolenceOrderField.setValue(TICK_BOX_TRUE);
+        ocrNoMiamDomesticViolenceOrderField.setValue(TICK_BOX_YES);
         fieldList.add(ocrNoMiamDomesticViolenceOrderField);
 
         OcrDataField ocrNoMiamArrestSimilaOffenceOrderField = new OcrDataField();
@@ -674,7 +674,7 @@ public final class TestDataC100Util {
         fieldList.add(ocrNoMiamPreviousAttendanceField);
 
         OcrDataField ocrNoMiamPreviousAttendanceReasonField = new OcrDataField();
-        ocrNoMiamPreviousAttendanceReasonField.setName("NoMIAM_PreviousAttendenceReason");
+        ocrNoMiamPreviousAttendanceReasonField.setName("noMIAM_PreviousAttendenceReason");
         ocrNoMiamPreviousAttendanceReasonField.setValue(TICK_BOX_YES);
         fieldList.add(ocrNoMiamPreviousAttendanceReasonField);
 

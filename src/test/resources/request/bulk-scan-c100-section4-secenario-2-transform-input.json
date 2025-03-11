@@ -62,15 +62,15 @@
     },
     {
       "name": "child_living_with_Applicant",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "child_living_with_Respondent",
-      "value": "false"
+      "value": "No"
     },
     {
       "name": "child_living_with_others",
-      "value": "false"
+      "value": "No"
     },
     {
       "name": "child2_firstName",
@@ -350,26 +350,26 @@
     },
     {
       "name": "NoMIAM_childProtectionConcerns",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "noMIAM_domesticViolance",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "NoMIAM_Urgency",
-      "value": "true"
+      "value": "Yes"
     },
     {
-      "name": "NoMIAM_PreviousAttendence",
-      "value": "true"
+      "name": "noMIAM_PreviousAttendence",
+      "value": "Yes"
     },
     {
       "name": "NoMIAM_otherReasons",
-      "value": "true"
+      "value": "Yes"
     },
     {
-      "name": "NoMIAM_PreviousAttendenceReason",
+      "name": "noMIAM_PreviousAttendenceReason",
       "value": "miamPreviousAttendanceChecklistEnum_Value_4"
     },
     {
@@ -378,135 +378,135 @@
     },
     {
       "name": "noMIAM_subjectOfEnquiries_byLocalAuthority",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "noMIAM_subjectOfCPP_byLocalAuthority",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "NoMIAM_urgency_risk_to_life_liberty_or_safety",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "noMIAM_urgency_riskOfHarm",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "noMIAM_urgency_removalFromUnitedKingdom",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "noMIAM_urgency_miscarriageOfJustice",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "noMIAM_urgency_financialHardship",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "noMIAM_urgency_irretrievableProblems",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "noMIAM_urgency_conflictWithOtherStateCourts",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "childArrangement_order",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "prohibitedSteps_order",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "specialIssue_order",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "NoMIAM_DVE_arrestedForSimilarOffence",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "NoMIAM_DVE_relevantPoliceCaution",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "NoMIAM_DVE_relevantCriminalProceeding",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "NoMIAM_DVE_relevantConviction",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "NoMIAM_DVE_courtOrder",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "NoMIAM_DVE_protectionNotice",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "NoMIAM_DVE_protectiveInjunction",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "noMIAM_DVE_noCrossUndertakingGiven",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "NoMIAM_DVE_copyOfFactFinding",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "NoMIAM_DVE_expertEvidenceReport",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "NoMIAM_DVE_healthProfessionalReport",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "NoMIAM_DVE_memberOf_MultiAgencyRiskAssessmentConferrance_letter",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "NoMIAM_DVE_domesticViolenceAdvisor",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "NoMIAM_DVE_independentSexualViolenceAdvisor_Letter",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "NoMIAM_DVE_officerEmployed_localAuthority_letter",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "NoMIAM_DVE_domesticViolenceSupportCharity_letter",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "NoMIAM_DVE_domesticViolenceSupportCharity_refuge_letter",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "NoMIAM_DVE_publicAuthority_confirmationLetter",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "NoMIAM_DVE_secretaryOfState_letter",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "NoMIAM_DVE_evidenceFinancialMatters",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "NoMIAM_DVE_ReferralHealthProfessionalReport",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "respondent1FirstName",
@@ -930,15 +930,15 @@
     },
     {
       "name": "mediationNotSuitable_forResolvingTheDispute",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "applicantOnly_AttendedMIAMTogether",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "mediationNotProceeding_hasStartedButBrokenWithSomeIssue",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "fmc_RegistrationNumber",

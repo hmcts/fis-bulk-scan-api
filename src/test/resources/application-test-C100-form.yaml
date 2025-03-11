@@ -108,7 +108,7 @@ uk:
               - noMIAM_domesticViolance
               - NoMIAM_childProtectionConcerns
               - NoMIAM_Urgency
-              - NoMIAM_PreviousAttendence
+              - noMIAM_PreviousAttendence
               - NoMIAM_otherReasons
               - NoMIAM_DVE_arrestedForSimilarOffence
               - NoMIAM_DVE_relevantPoliceCaution
@@ -134,7 +134,7 @@ uk:
               - noMIAM_domesticViolance
               - NoMIAM_childProtectionConcerns
               - NoMIAM_Urgency
-              - NoMIAM_PreviousAttendence
+              - noMIAM_PreviousAttendence
               - NoMIAM_otherReasons
               - NoMIAM_otherExceptions
               - noMIAM_subjectOfEnquiries_byLocalAuthority
@@ -146,7 +146,7 @@ uk:
               - noMIAM_urgency_financialHardship
               - noMIAM_urgency_irretrievableProblems
               - noMIAM_urgency_conflictWithOtherStateCourts
-              - NoMIAM_PreviousAttendenceReason
+              - noMIAM_PreviousAttendenceReason
               - parentalResponsibilityDetails
               - respondent1FirstName
               - respondent1LastName
