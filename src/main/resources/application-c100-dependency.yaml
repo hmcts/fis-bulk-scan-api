@@ -103,12 +103,12 @@ uk:
               sectionName: "8 - Cases with an international element; 9 - Factors affecting ability to participate in proceedings"
             - groupWelshRequired:
               dependentFields:
-                - nameOfPartyWhoNeedsWelsh
+                - nameOfPartyWhoNeedsWelsh_1
               dependentFieldValue: "*"
               groupFieldName: applicantRequiresWelsh
               groupValidationValue: "Yes"
               requiredFieldCount: 1
-              sectionName: "Welsh Required"
+              sectionName: "Welsh Required - nameOfPartyWhoNeedsWelsh_1 is missing"
             - groupInterpreterRequired:
               dependentFields:
                 - applicantRequiresInterpreter_otherParty_dialect
