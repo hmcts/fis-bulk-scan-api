@@ -225,10 +225,6 @@
       "value":"living other details"
     },
     {
-      "name":"child_living_with_Applicant",
-      "value":"Yes"
-    },
-    {
       "name":"child_living_with_Respondent",
       "value":"false"
     },
