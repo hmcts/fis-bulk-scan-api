@@ -49,6 +49,8 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+
+import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -611,7 +613,12 @@ class BulkScanC100ServiceTest {
                                 NOMIAM_PREVIOUSATTENDENCE_FIELD.equalsIgnoreCase(
                                         eachField.getName()))
                 .forEach(field -> field.setValue(TICK_BOX_TRUE));
-
+        List<OcrDataField> ocrDataFields = bulkScanValidationRequest.getOcrdatafields().stream()
+                .filter(
+                        eachField ->
+                            StringUtils.isNotEmpty(eachField.getName()))
+                .toList();
+        bulkScanValidationRequest.setOcrdatafields(ocrDataFields);
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
