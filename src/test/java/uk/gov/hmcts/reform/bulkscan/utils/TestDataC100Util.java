@@ -782,13 +782,13 @@ public final class TestDataC100Util {
         fieldList.add(ocrrespondent1LastName);
 
         OcrDataField ocrrespondent1firstName = new OcrDataField();
-        ocrrespondent1FirstName.setName("respondent1_firstName");
-        ocrrespondent1FirstName.setValue("respondentOne_FirstName");
+        ocrrespondent1firstName.setName("respondent1_firstName");
+        ocrrespondent1firstName.setValue("respondentOne_FirstName");
         fieldList.add(ocrrespondent1firstName);
 
         OcrDataField ocrrespondent1lastName = new OcrDataField();
-        ocrrespondent1LastName.setName("respondent1_lastName");
-        ocrrespondent1LastName.setValue("respondentOne_LastName");
+        ocrrespondent1lastName.setName("respondent1_lastName");
+        ocrrespondent1lastName.setValue("respondentOne_LastName");
         fieldList.add(ocrrespondent1lastName);
 
         OcrDataField ocrrespondent1PreviousNames = new OcrDataField();
