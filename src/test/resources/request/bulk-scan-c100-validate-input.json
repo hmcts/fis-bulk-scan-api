@@ -225,6 +225,10 @@
       "value":"living other details"
     },
     {
+      "name":"child_living_with_applicant",
+      "value":"false"
+    },
+    {
       "name":"child_living_with_Respondent",
       "value":"false"
     },

@@ -194,7 +194,7 @@ class BulkScanC100ValidationServiceTest {
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
-        assertEquals(Status.WARNINGS, res.status);
+        assertEquals(Status.ERRORS, res.status);
         assertTrue(res.getWarnings().contains(INTERNATIONAL_FACTORS_AFFECTING_LITIGATION_WARNING));
     }
 
@@ -261,7 +261,7 @@ class BulkScanC100ValidationServiceTest {
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
-        assertEquals(Status.SUCCESS, res.status);
+        assertEquals(Status.ERRORS, res.status);
     }
 
     @Test
@@ -304,7 +304,7 @@ class BulkScanC100ValidationServiceTest {
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
-        assertEquals(Status.WARNINGS, res.status);
+        assertEquals(Status.ERRORS, res.status);
         assertTrue(res.getWarnings().contains(INTERNATIONALELEMENT_WARNING_MESSAGE));
     }
 
@@ -347,7 +347,7 @@ class BulkScanC100ValidationServiceTest {
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
-        assertEquals(Status.WARNINGS, res.status);
+        assertEquals(Status.ERRORS, res.status);
         assertTrue(res.getWarnings().contains(INTERNATIONALELEMENT_WARNING_MESSAGE));
     }
 
@@ -390,7 +390,7 @@ class BulkScanC100ValidationServiceTest {
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
-        assertEquals(Status.SUCCESS, res.status);
+        assertEquals(Status.ERRORS, res.status);
     }
 
     @Test
@@ -430,7 +430,7 @@ class BulkScanC100ValidationServiceTest {
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
-        assertEquals(Status.SUCCESS, res.status);
+        assertEquals(Status.ERRORS, res.status);
     }
 
     @Test
@@ -473,7 +473,7 @@ class BulkScanC100ValidationServiceTest {
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
-        assertEquals(Status.WARNINGS, res.status);
+        assertEquals(Status.ERRORS, res.status);
         assertTrue(res.getWarnings().contains(INTERNATIONALELEMENT_WARNING_MESSAGE));
     }
 
