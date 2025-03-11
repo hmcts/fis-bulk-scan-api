@@ -693,20 +693,7 @@ public final class TestDataC100Util {
     public static List<OcrDataField> getRespondent1Details() {
         List<OcrDataField> fieldList = new ArrayList<>();
 
-        OcrDataField ocrrespondent1FirstName = new OcrDataField();
-        ocrrespondent1FirstName.setName("respondentOneFirstName");
-        ocrrespondent1FirstName.setValue("respondentOne_FirstName");
-        fieldList.add(ocrrespondent1FirstName);
-
-        OcrDataField ocrrespondent1LastName = new OcrDataField();
-        ocrrespondent1LastName.setName("respondentOneLastName");
-        ocrrespondent1LastName.setValue("respondentOne_LastName");
-        fieldList.add(ocrrespondent1LastName);
-
-        OcrDataField ocrrespondent1PreviousNames = new OcrDataField();
-        ocrrespondent1PreviousNames.setName("respondentOnePreviousNames");
-        ocrrespondent1PreviousNames.setValue("respondentOne_PreviousNames");
-        fieldList.add(ocrrespondent1PreviousNames);
+        getRespondentNames(fieldList);
 
         OcrDataField ocrrespondent1Gender = new OcrDataField();
         ocrrespondent1Gender.setName("respondentOneGender");
@@ -781,6 +768,33 @@ public final class TestDataC100Util {
         fieldList.add(ocrrespondent1AllAddressesForLastFiveYears);
 
         return fieldList;
+    }
+
+    private static void getRespondentNames(List<OcrDataField> fieldList) {
+        OcrDataField ocrrespondent1FirstName = new OcrDataField();
+        ocrrespondent1FirstName.setName("respondentOneFirstName");
+        ocrrespondent1FirstName.setValue("respondentOne_FirstName");
+        fieldList.add(ocrrespondent1FirstName);
+
+        OcrDataField ocrrespondent1LastName = new OcrDataField();
+        ocrrespondent1LastName.setName("respondentOneLastName");
+        ocrrespondent1LastName.setValue("respondentOne_LastName");
+        fieldList.add(ocrrespondent1LastName);
+
+        OcrDataField ocrrespondent1firstName = new OcrDataField();
+        ocrrespondent1FirstName.setName("respondent1_firstName");
+        ocrrespondent1FirstName.setValue("respondentOne_FirstName");
+        fieldList.add(ocrrespondent1firstName);
+
+        OcrDataField ocrrespondent1lastName = new OcrDataField();
+        ocrrespondent1LastName.setName("respondent1_lastName");
+        ocrrespondent1LastName.setValue("respondentOne_LastName");
+        fieldList.add(ocrrespondent1lastName);
+
+        OcrDataField ocrrespondent1PreviousNames = new OcrDataField();
+        ocrrespondent1PreviousNames.setName("respondentOnePreviousNames");
+        ocrrespondent1PreviousNames.setValue("respondentOne_PreviousNames");
+        fieldList.add(ocrrespondent1PreviousNames);
     }
 
     public static List<OcrDataField> getRespondent2Details() {

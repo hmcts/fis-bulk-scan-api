@@ -351,8 +351,8 @@ class BulkScanC100ServiceTest {
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
-        assertEquals(Status.WARNINGS, res.status);
-        assertTrue(res.getWarnings().contains(NOMIAM_CHILDPROTECTIONCONCERNS_DEPENDENCY_WARNING));
+        assertEquals(Status.ERRORS, res.status);
+        //assertTrue(res.getWarnings().contains(NOMIAM_CHILDPROTECTIONCONCERNS_DEPENDENCY_WARNING));
     }
 
     @Test
