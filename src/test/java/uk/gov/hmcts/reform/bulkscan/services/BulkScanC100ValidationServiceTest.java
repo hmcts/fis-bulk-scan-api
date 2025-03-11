@@ -494,11 +494,6 @@ class BulkScanC100ValidationServiceTest {
         ocrProhibitedStepsOrderField.setValue("No");
         fieldList.add(ocrProhibitedStepsOrderField);
 
-        OcrDataField ocrSpecialIssueOrderField = new OcrDataField();
-        ocrSpecialIssueOrderField.setName("familyMember_Intimation_on_No_MIAM");
-        ocrSpecialIssueOrderField.setValue("No");
-        fieldList.add(ocrSpecialIssueOrderField);
-
         OcrDataField ocrAttendedMiamField = new OcrDataField();
         ocrAttendedMiamField.setName("attended_MIAM");
         ocrAttendedMiamField.setValue("No");

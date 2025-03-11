@@ -12,13 +12,13 @@ public final class PrlTestConstants {
     public static final String EMPTY_STRING = "";
 
     public static final String NOMIAM_CHILDPROTECTIONCONCERNS_FIELD =
-            "NoMIAM_childProtectionConcerns";
+            "noMIAM_childProtectionConcerns";
     public static final String NOMIAM_DOMESTICVIOLENCE_FIELD = "noMIAM_domesticViolance";
     public static final String NOMIAM_DVE_ARRESTEDFORSIMILAROFFENCE_FIELD =
-            "NoMIAM_DVE_arrestedForSimilarOffence";
-    public static final String NOMIAM_URGENCY_FIELD = "NoMIAM_Urgency";
-    public static final String NOMIAM_PREVIOUSATTENDENCE_FIELD = "NoMIAM_PreviousAttendence";
-    public static final String NOMIAM_OTHERREASONS_FIELD = "NoMIAM_otherReasons";
+            "noMIAM_DVE_arrestedForSimilarOffence";
+    public static final String NOMIAM_URGENCY_FIELD = "noMIAM_Urgency";
+    public static final String NOMIAM_PREVIOUSATTENDENCE_FIELD = "noMIAM_PreviousAttendence";
+    public static final String NOMIAM_OTHERREASONS_FIELD = "noMIAM_otherReasons";
     public static final String POST_CODE = "TW3 1NN";
     public static final String TICK_BOX_FALSE = "false";
     public static final String TICK_BOX_NO = "No";
@@ -27,10 +27,10 @@ public final class PrlTestConstants {
 
     public static final String RESPONDENT_ONE = "Respondent 1";
     public static final String RESPONDENT1ALLADDRESSESFORLASTFIVEYEARS =
-            "respondent1AllAddressesForLastFiveYears";
+            "respondentOneAllAddressesForLastFiveYears";
     public static final String RESPONDENT_TWO = "Respondent 2";
     public static final String RESPONDENT2ALLADDRESSESFORLASTFIVEYEARS =
-            "respondent2AllAddressesForLastFiveYears";
+            "respondentTwoAllAddressesForLastFiveYears";
 
     public static final String INTERNATIONAL_FACTORS_AFFECTING_LITIGATION_WARNING =
             "Some details are missing in the following section: 8 - Cases with an international"

@@ -549,19 +549,19 @@
     },
     {
       "metadata_field_name": "family_childrenDetails_row1",
-      "metadata_field_value": "Bill, 03/04/08, father, yes, mother"
+      "metadata_field_value": "Bill | 03/04/08 | father| yes| mother"
     },
     {
       "metadata_field_name": "family_childrenDetails_row2",
-      "metadata_field_value": "Will, 04/05/11, father, no, mother"
+      "metadata_field_value": "Will| 04/05/11| father| no| mother"
     },
     {
       "metadata_field_name": "family_childrenDetails_row3",
-      "metadata_field_value": "Ash, 11/05/16, Mother, no, father"
+      "metadata_field_value": "Ash|11/05/16| Mother| no| father"
     },
     {
       "metadata_field_name":"family_childrenDetails_row4",
-      "metadata_field_value":"Jerry, 12/05/17, father, no, mother"
+      "metadata_field_value":"Jerry| 12/05/17| father| no| mother"
     },
     {
       "metadata_field_name":"OngoingFamilyCourtProceeding",
@@ -569,15 +569,15 @@
     },
     {
       "metadata_field_name":"OngoingFamilyCourtProceeding_row1",
-      "metadata_field_value":"Windsor Ct, 232134, Civil"
+      "metadata_field_value":"Windsor Ct| 232134| Civil"
     },
     {
       "metadata_field_name":"OngoingFamilyCourtProceeding_row2",
-      "metadata_field_value":"Nottingham Ct, 432134, Adoption"
+      "metadata_field_value":"Nottingham Ct | 432134 | Adoption"
     },
     {
       "metadata_field_name":"OngoingFamilyCourtProceeding_row3",
-      "metadata_field_value":"Williamsburgh Ct, 762134, Removal of Child"
+      "metadata_field_value":"Williamsburgh Ct | 762134 | Removal of Child"
     },
     {
       "metadata_field_name":"StatementOfTruth_Line1",

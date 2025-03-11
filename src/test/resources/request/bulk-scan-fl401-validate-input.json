@@ -50,19 +50,19 @@
     },
     {
       "name":"childLivesAtAddress_Row1",
-      "value":"John 61"
+      "value":"John|61"
     },
     {
       "name":"childLivesAtAddress_Row2",
-      "value":"John 61"
+      "value":"John|61"
     },
     {
       "name":"childLivesAtAddress_Row3",
-      "value":"Johnny 43"
+      "value":"Johnny|43"
     },
     {
       "name":"childLivesAtAddress_Row4",
-      "value":"Boy 45"
+      "value":"Boy|45"
     },
     {
       "name":"OtherChildren_Row1",
@@ -461,19 +461,19 @@
     },
     {
       "name": "family_childrenDetails_row1",
-      "value": "Bill, 03/04/08, father, yes, mother"
+      "value": "Bill | 03/04/08 | father| yes| mother"
     },
     {
       "name": "family_childrenDetails_row2",
-      "value": "Will, 04/05/11, father, no, mother"
+      "value": "Will| 04/05/11| father| no| mother"
     },
     {
       "name": "family_childrenDetails_row3",
-      "value": "Ash, 11/05/16, Mother, no, father"
+      "value": "Ash|11/05/16| Mother| no| father"
     },
     {
       "name":"family_childrenDetails_row4",
-      "value":"Jerry, 12/05/17, father, no, mother"
+      "value":"Jerry| 12/05/17| father| no| mother"
     },
     {
       "name":"OngoingFamilyCourtProceeding",
@@ -481,15 +481,15 @@
     },
     {
       "name":"OngoingFamilyCourtProceeding_row1",
-      "value":"Windsor Ct, 232134, Civil"
+      "value":"Windsor Ct| 232134| Civil"
     },
     {
       "name":"OngoingFamilyCourtProceeding_row2",
-      "value":"Nottingham Ct, 432134, Adoption"
+      "value":"Nottingham Ct | 432134 | Adoption"
     },
     {
       "name":"OngoingFamilyCourtProceeding_row3",
-      "value":"Williamsburgh Ct, 762134, Removal of Child"
+      "value":"Williamsburgh Ct | 762134 | Removal of Child"
     },
     {
       "name":"StatementOfTruth_Line1",

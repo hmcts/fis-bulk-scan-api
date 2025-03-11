@@ -537,7 +537,7 @@ public class BulkScanFL401ConditionalTransformerService {
             LinkedTreeMap<String, String> childDetails = new LinkedTreeMap<>();
             final LinkedTreeMap<String, Object> childrenLinkedTreeMap = new LinkedTreeMap<>();
             if (null != input) {
-                final String[] columnDetails = input.split(COMMA);
+                final String[] columnDetails = input.split("|");
                 final String childName = columnDetails[0];
 
                 String childAge = null;
@@ -579,7 +579,7 @@ public class BulkScanFL401ConditionalTransformerService {
             Map<String, Object> childrenLinkedTreeMap = new HashMap<>();
 
             if (StringUtils.hasText(input)) {
-                final String[] columnDetails = input.split(COMMA);
+                final String[] columnDetails = input.split("|");
 
                 final String childName = columnDetails[0];
 
@@ -636,7 +636,7 @@ public class BulkScanFL401ConditionalTransformerService {
             final Map<String, Object> childrenLinkedTreeMap = new HashMap<>();
 
             if (StringUtils.hasText(input)) {
-                final String[] columnDetails = input.split(COMMA);
+                final String[] columnDetails = input.split("|");
 
                 final String nameOfCourt = columnDetails[0];
 

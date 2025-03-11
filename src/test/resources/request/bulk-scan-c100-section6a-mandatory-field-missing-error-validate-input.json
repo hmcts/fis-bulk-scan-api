@@ -13,35 +13,31 @@
       "value": "No"
     },
     {
-      "name": "familyMember_Intimation_on_No_MIAM",
-      "value": "No"
-    },
-    {
       "name": "attended_MIAM",
       "value": "No"
     },
     {
       "name": "noMIAM_domesticViolance",
-      "value": "true"
+      "value": "Yes"
     },
     {
-      "name": "NoMIAM_childProtectionConcerns",
-      "value": "true"
+      "name": "noMIAM_childProtectionConcerns",
+      "value": "Yes"
     },
     {
       "name": "NoMIAM_Urgency",
-      "value": "true"
+      "value": "Yes"
     },
     {
-      "name": "NoMIAM_PreviousAttendence",
-      "value": "true"
+      "name": "noMIAM_PreviousAttendence",
+      "value": "Yes"
     },
     {
-      "name": "NoMIAM_otherReasons",
-      "value": "true"
+      "name": "noMIAM_otherReasons",
+      "value": "Yes"
     },
     {
-      "name": "NoMIAM_DVE_arrestedForSimilarOffence",
+      "name": "noMIAM_DVE_arrestedForSimilarOffence",
       "value": "Yes"
     },
     {
@@ -53,11 +49,7 @@
       "value": "Yes"
     },
     {
-      "name": "NoMIAM_PreviousAttendanceReason",
-      "value": "Yes"
-    },
-    {
-      "name": "NoMIAM_otherExceptions",
+      "name": "otherExemption_withoutNotice",
       "value": "Yes"
     },
     {
@@ -94,11 +86,11 @@
     },
     {
       "name":"applicant1HomePhoneNumber",
-      "value":"7876540984"
+      "value":"07876540984"
     },
     {
       "name":"applicant1MobilePhoneNumber",
-      "value":"8766540984"
+      "value":"08766540984"
     },
     {
       "name":"applicant1EmailAddress",
@@ -146,11 +138,11 @@
     },
     {
       "name":"applicant2HomePhoneNumber",
-      "value":"7347678354"
+      "value":"07347678354"
     },
     {
       "name":"applicant2MobilePhoneNumber",
-      "value":"3476785563"
+      "value":"03476785563"
     },
     {
       "name":"applicant2EmailAddress",
@@ -238,15 +230,15 @@
     },
     {
       "name":"child_living_with_Applicant",
-      "value":"true"
+      "value":"Yes"
     },
     {
       "name":"child_living_with_Respondent",
-      "value":"false"
+      "value":"No"
     },
     {
       "name":"child_living_with_others",
-      "value":"false"
+      "value":"No"
     },
     {
       "name":"child2_firstName",
@@ -426,11 +418,11 @@
       "value": ""
     },
     {
-      "name": "respondent1LivedAtThisAddressForOverFiveYears",
+      "name": "respondentOneLivedAtThisAddressForOverFiveYears",
       "value": "No"
     },
     {
-      "name": "respondent1AllAddressesForLastFiveYears",
+      "name": "respondentOneAllAddressesForLastFiveYears",
       "value": "225, Topsfield Parade, N8 8PE"
     },
     {
@@ -494,11 +486,11 @@
       "value": ""
     },
     {
-      "name": "respondent2LivedAtThisAddressForOverFiveYears",
+      "name": "respondentTwoLivedAtThisAddressForOverFiveYears",
       "value": "No"
     },
     {
-      "name": "respondent2AllAddressesForLastFiveYears",
+      "name": "respondentTwoAllAddressesForLastFiveYears",
       "value": "227, Topsfield Parade, N8 8PE"
     },
     {

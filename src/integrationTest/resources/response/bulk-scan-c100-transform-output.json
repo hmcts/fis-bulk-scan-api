@@ -15,8 +15,8 @@
             "placeOfBirth": "Surrey",
             "AddressLine1": "Hackney",
             "PostCode": "w34fgt",
-            "landline": "7876540984",
-            "phoneNumber": "8766540984",
+            "landline": "07876540984",
+            "phoneNumber": "08766540984",
             "email": "johnnyj@hotmail.uk",
             "isAtAddressLessThan5Years": null,
             "addressLivedLessThan5YearsDetails": "Hackney",
@@ -55,8 +55,8 @@
             "placeOfBirth": "Colchester",
             "AddressLine1": "London",
             "PostCode": "w12ghw",
-            "landline": "7347678354",
-            "phoneNumber": "3476785563",
+            "landline": "07347678354",
+            "phoneNumber": "03476785563",
             "email": "wendy@hotmail.uk",
             "isAtAddressLessThan5Years": null,
             "addressLivedLessThan5YearsDetails": "Baker St"
@@ -242,7 +242,7 @@
       "claimingExemptionMiam": "yes",
       "reasonsForApplicationWithoutNotice": null,
       "authorizedFamilyMediatorDate": "01/01/2022",
-      "typeOfChildArrangementsOrder": "true",
+      "typeOfChildArrangementsOrder": "Yes",
       "otherProceedingsDetailsTable": [
         {
           "value": {
