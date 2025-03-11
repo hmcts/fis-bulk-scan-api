@@ -77,9 +77,14 @@ uk:
               sectionName: "3d - Previous MIAM attendance or MIAM exemption"
             - groupNoMIAMOtherReasons:
               dependentFields:
-                - NoMIAM_otherExceptions
+                - otherExemption_withoutNotice
+                - otherExemption_byVirture_of_Rule12_3
+                - otherExemption_mediator_notAvailableToConduct
+                - otherExemption_disability_or_inabilityToAttend
+                - otherExemption_NotSufficient_Respondent_ContactDetails
+                - otherExemption_applicant_or_respondent_inPrison
               dependentFieldValue: "Yes"
-              groupFieldName: NoMIAM_otherReasons
+              groupFieldName: noMIAM_otherReasons
               groupValidationValue: "Yes"
               requiredFieldCount: 1
               sectionName: "3e - Other exemptions"

@@ -405,7 +405,7 @@ class BulkScanC100ServiceTest {
 
     @Test
     @DisplayName(
-            "Should generate warnings on [NoMIAM_otherReasons] checked but without"
+            "Should generate warnings on [noMIAM_otherReasons] checked but without"
                     + " dependent Part 3e field(s)")
     void testC100NoMiamOtherReasonsWarning() {
         List<OcrDataField> c100GetDomesticViolenceWarningData = new ArrayList<>();
@@ -435,7 +435,7 @@ class BulkScanC100ServiceTest {
         c100GetDomesticViolenceWarningData.addAll(TestDataC100Util.getData());
 
         OcrDataField subjectOfEnquiries = new OcrDataField();
-        subjectOfEnquiries.setName("NoMIAM_DVE_protectionNotice");
+        subjectOfEnquiries.setName("noMIAM_DVE_protectionNotice");
         subjectOfEnquiries.setValue("Yes");
 
         c100GetDomesticViolenceWarningData.add(subjectOfEnquiries);
@@ -625,19 +625,19 @@ class BulkScanC100ServiceTest {
                         .findAny()
                         .orElse(null)
                         .getValue());
-        assertEquals(Status.SUCCESS, res.status);
+        assertEquals(Status.ERRORS, res.status);
         assertFalse(res.getWarnings().contains(NOMIAM_PREVIOUSATTENDENCE_DEPENDENCY_WARNING));
     }
 
     @Test
     @DisplayName(
-            "Should generate SUCCESS status with NoMIAM_otherReasons field in bulkscan request")
+            "Should generate SUCCESS status with noMIAM_otherReasons field in bulkscan request")
     void testC100NoMiamOtherReasonsSuccessData() {
         List<OcrDataField> c100GetOtherResonsWarningData = new ArrayList<>();
         c100GetOtherResonsWarningData.addAll(TestDataC100Util.getData());
 
         OcrDataField subjectOfEnquiries = new OcrDataField();
-        subjectOfEnquiries.setName("NoMIAM_otherExceptions");
+        subjectOfEnquiries.setName("otherExemption_withoutNotice");
         subjectOfEnquiries.setValue("Yes");
 
         c100GetOtherResonsWarningData.add(subjectOfEnquiries);

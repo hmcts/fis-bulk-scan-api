@@ -37,11 +37,11 @@
       "value": "Yes"
     },
     {
-      "name": "NoMIAM_otherReasons",
+      "name": "noMIAM_otherReasons",
       "value": "Yes"
     },
     {
-      "name": "NoMIAM_DVE_arrestedForSimilarOffence",
+      "name": "noMIAM_DVE_arrestedForSimilarOffence",
       "value": "Yes"
     },
     {
@@ -57,7 +57,7 @@
       "value": "Yes"
     },
     {
-      "name": "NoMIAM_otherExceptions",
+      "name": "otherExemption_withoutNotice",
       "value": "Yes"
     },
     {

@@ -41,7 +41,7 @@
       "metadata_field_value": "true"
     },
     {
-      "metadata_field_name": "NoMIAM_DVE_arrestedForSimilarOffence",
+      "metadata_field_name": "noMIAM_DVE_arrestedForSimilarOffence",
       "metadata_field_value": "Yes"
     },
     {
@@ -53,7 +53,7 @@
       "metadata_field_value": "Yes"
     },
     {
-      "metadata_field_name": "NoMIAM_otherExceptions",
+      "metadata_field_name": "otherExemption_withoutNotice",
       "metadata_field_value": "Yes"
     },
     {

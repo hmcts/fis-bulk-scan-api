@@ -365,7 +365,7 @@
       "value":"true"
     },
     {
-      "name":"NoMIAM_otherReasons",
+      "name":"noMIAM_otherReasons",
       "value":"true"
     },
     {
@@ -373,8 +373,8 @@
       "value":"miamPreviousAttendanceChecklistEnum_Value_4"
     },
     {
-      "name":"NoMIAM_otherExceptions",
-      "value":"miamOtherGroundsChecklistEnum_Value_9"
+      "name":"otherExemption_withoutNotice",
+      "value":"Yes"
     },
     {
       "name":"noMIAM_subjectOfEnquiries_byLocalAuthority",
@@ -425,31 +425,31 @@
       "value":"true"
     },
     {
-      "name":"NoMIAM_DVE_arrestedForSimilarOffence",
+      "name":"noMIAM_DVE_arrestedForSimilarOffence",
       "value":"true"
     },
     {
-      "name":"NoMIAM_DVE_relevantPoliceCaution",
+      "name":"noMIAM_DVE_relevantPoliceCaution",
       "value":"true"
     },
     {
-      "name":"NoMIAM_DVE_relevantCriminalProceeding",
+      "name":"noMIAM_DVE_relevantCriminalProceeding",
       "value":"true"
     },
     {
-      "name":"NoMIAM_DVE_relevantConviction",
+      "name":"noMIAM_DVE_relevantConviction",
       "value":"true"
     },
     {
-      "name":"NoMIAM_DVE_courtOrder",
+      "name":"noMIAM_DVE_courtOrder",
       "value":"true"
     },
     {
-      "name":"NoMIAM_DVE_protectionNotice",
+      "name":"noMIAM_DVE_protectionNotice",
       "value":"true"
     },
     {
-      "name":"NoMIAM_DVE_protectiveInjunction",
+      "name":"noMIAM_DVE_protectiveInjunction",
       "value":"true"
     },
     {
@@ -457,55 +457,55 @@
       "value":"true"
     },
     {
-      "name":"NoMIAM_DVE_copyOfFactFinding",
+      "name":"noMIAM_DVE_copyOfFactFinding",
       "value":"true"
     },
     {
-      "name":"NoMIAM_DVE_expertEvidenceReport",
+      "name":"noMIAM_DVE_expertEvidenceReport",
       "value":"true"
     },
     {
-      "name":"NoMIAM_DVE_healthProfessionalReport",
+      "name":"noMIAM_DVE_healthProfessionalReport",
       "value":"true"
     },
     {
-      "name":"NoMIAM_DVE_memberOf_MultiAgencyRiskAssessmentConferrance_letter",
+      "name":"noMIAM_DVE_memberOf_MultiAgencyRiskAssessmentConferrance_letter",
       "value":"true"
     },
     {
-      "name":"NoMIAM_DVE_domesticViolenceAdvisor",
+      "name":"noMIAM_DVE_domesticViolenceAdvisor",
       "value":"true"
     },
     {
-      "name":"NoMIAM_DVE_independentSexualViolenceAdvisor_Letter",
+      "name":"noMIAM_DVE_independentSexualViolenceAdvisor_Letter",
       "value":"true"
     },
     {
-      "name":"NoMIAM_DVE_officerEmployed_localAuthority_letter",
+      "name":"noMIAM_DVE_officerEmployed_localAuthority_letter",
       "value":"true"
     },
     {
-      "name":"NoMIAM_DVE_domesticViolenceSupportCharity_letter",
+      "name":"noMIAM_DVE_domesticViolenceSupportCharity_letter",
       "value":"true"
     },
     {
-      "name":"NoMIAM_DVE_domesticViolenceSupportCharity_refuge_letter",
+      "name":"noMIAM_DVE_domesticViolenceSupportCharity_refuge_letter",
       "value":"true"
     },
     {
-      "name":"NoMIAM_DVE_publicAuthority_confirmationLetter",
+      "name":"noMIAM_DVE_publicAuthority_confirmationLetter",
       "value":"true"
     },
     {
-      "name":"NoMIAM_DVE_secretaryOfState_letter",
+      "name":"noMIAM_DVE_secretaryOfState_letter",
       "value":"true"
     },
     {
-      "name":"NoMIAM_DVE_evidenceFinancialMatters",
+      "name":"noMIAM_DVE_evidenceFinancialMatters",
       "value":"true"
     },
     {
-      "name":"NoMIAM_DVE_ReferralHealthProfessionalReport",
+      "name":"noMIAM_DVE_ReferralHealthProfessionalReport",
       "value":"true"
     },
     {

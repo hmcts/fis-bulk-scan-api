@@ -166,22 +166,22 @@ public final class TestDataC100Util {
         List<OcrDataField> fieldList = new ArrayList<>();
 
         OcrDataField ocrDataApplicant1FirstName = new OcrDataField();
-        ocrDataApplicant1FirstName.setName("applicant1FirstName");
+        ocrDataApplicant1FirstName.setName("applicantOneFirstName");
         ocrDataApplicant1FirstName.setValue("John");
         fieldList.add(ocrDataApplicant1FirstName);
 
         OcrDataField ocrDataApplicant1LastName = new OcrDataField();
-        ocrDataApplicant1LastName.setName("applicant1LastName");
+        ocrDataApplicant1LastName.setName("applicantOneLastName");
         ocrDataApplicant1LastName.setValue("Peters");
         fieldList.add(ocrDataApplicant1LastName);
 
         OcrDataField ocrDataApplicant1DateOfBirth = new OcrDataField();
-        ocrDataApplicant1DateOfBirth.setName("applicant1DateOfBirth");
+        ocrDataApplicant1DateOfBirth.setName("applicantOneDateOfBirth");
         ocrDataApplicant1DateOfBirth.setValue("09/08/01");
         fieldList.add(ocrDataApplicant1DateOfBirth);
 
         OcrDataField ocrDataApplicant1PlaceOfBirth = new OcrDataField();
-        ocrDataApplicant1PlaceOfBirth.setName("applicant1PlaceOfBirth");
+        ocrDataApplicant1PlaceOfBirth.setName("applicantOnePlaceOfBirth");
         ocrDataApplicant1PlaceOfBirth.setValue("Petersburg");
         fieldList.add(ocrDataApplicant1PlaceOfBirth);
 
@@ -207,22 +207,22 @@ public final class TestDataC100Util {
         List<OcrDataField> fieldList = new ArrayList<>();
 
         OcrDataField ocrDataApplicant1FirstName = new OcrDataField();
-        ocrDataApplicant1FirstName.setName("applicant1FirstName");
+        ocrDataApplicant1FirstName.setName("applicantOneFirstName");
         ocrDataApplicant1FirstName.setValue("John");
         fieldList.add(ocrDataApplicant1FirstName);
 
         OcrDataField ocrDataApplicant1LastName = new OcrDataField();
-        ocrDataApplicant1LastName.setName("applicant1LastName");
+        ocrDataApplicant1LastName.setName("applicantOneLastName");
         ocrDataApplicant1LastName.setValue("Peters");
         fieldList.add(ocrDataApplicant1LastName);
 
         OcrDataField ocrDataApplicant1DateOfBirth = new OcrDataField();
-        ocrDataApplicant1DateOfBirth.setName("applicant1DateOfBirth");
+        ocrDataApplicant1DateOfBirth.setName("applicantOneDateOfBirth");
         ocrDataApplicant1DateOfBirth.setValue("09/08/01");
         fieldList.add(ocrDataApplicant1DateOfBirth);
 
         OcrDataField ocrDataApplicant1PlaceOfBirth = new OcrDataField();
-        ocrDataApplicant1PlaceOfBirth.setName("applicant1PlaceOfBirth");
+        ocrDataApplicant1PlaceOfBirth.setName("applicantOnePlaceOfBirth");
         ocrDataApplicant1PlaceOfBirth.setValue("Petersburg");
         fieldList.add(ocrDataApplicant1PlaceOfBirth);
 
@@ -683,7 +683,7 @@ public final class TestDataC100Util {
         fieldList.add(ocrNoMiamotherReasonsField);
 
         OcrDataField ocrNoMiamOtherExceptionsField = new OcrDataField();
-        ocrNoMiamOtherExceptionsField.setName("NoMIAM_otherExceptions");
+        ocrNoMiamOtherExceptionsField.setName("otherExemption_withoutNotice");
         ocrNoMiamOtherExceptionsField.setValue(TICK_BOX_YES);
         fieldList.add(ocrNoMiamOtherExceptionsField);
 
@@ -694,77 +694,77 @@ public final class TestDataC100Util {
         List<OcrDataField> fieldList = new ArrayList<>();
 
         OcrDataField ocrrespondent1FirstName = new OcrDataField();
-        ocrrespondent1FirstName.setName("respondent1FirstName");
-        ocrrespondent1FirstName.setValue("respondent1_FirstName");
+        ocrrespondent1FirstName.setName("respondentOneFirstName");
+        ocrrespondent1FirstName.setValue("respondentOne_FirstName");
         fieldList.add(ocrrespondent1FirstName);
 
         OcrDataField ocrrespondent1LastName = new OcrDataField();
-        ocrrespondent1LastName.setName("respondent1LastName");
-        ocrrespondent1LastName.setValue("respondent1_LastName");
+        ocrrespondent1LastName.setName("respondentOneLastName");
+        ocrrespondent1LastName.setValue("respondentOne_LastName");
         fieldList.add(ocrrespondent1LastName);
 
         OcrDataField ocrrespondent1PreviousNames = new OcrDataField();
-        ocrrespondent1PreviousNames.setName("respondent1PreviousNames");
-        ocrrespondent1PreviousNames.setValue("respondent1_PreviousNames");
+        ocrrespondent1PreviousNames.setName("respondentOnePreviousNames");
+        ocrrespondent1PreviousNames.setValue("respondentOne_PreviousNames");
         fieldList.add(ocrrespondent1PreviousNames);
 
         OcrDataField ocrrespondent1Gender = new OcrDataField();
-        ocrrespondent1Gender.setName("respondent1Gender");
+        ocrrespondent1Gender.setName("respondentOneGender");
         ocrrespondent1Gender.setValue("Yes");
         fieldList.add(ocrrespondent1Gender);
 
         OcrDataField ocrrespondent1DateOfBirth = new OcrDataField();
-        ocrrespondent1DateOfBirth.setName("respondent1DateOfBirth");
+        ocrrespondent1DateOfBirth.setName("respondentOneDateOfBirth");
         ocrrespondent1DateOfBirth.setValue("20/02/2002");
         fieldList.add(ocrrespondent1DateOfBirth);
 
         OcrDataField ocrrespondent1DateOfBirthDontKnow = new OcrDataField();
-        ocrrespondent1DateOfBirthDontKnow.setName("respondent1DateOfBirthDontKnow");
+        ocrrespondent1DateOfBirthDontKnow.setName("respondentOneDateOfBirthDontKnow");
         ocrrespondent1DateOfBirthDontKnow.setValue("");
         fieldList.add(ocrrespondent1DateOfBirthDontKnow);
 
         OcrDataField ocrrespondent1PlaceOfBirth = new OcrDataField();
-        ocrrespondent1PlaceOfBirth.setName("respondent1PlaceOfBirth");
+        ocrrespondent1PlaceOfBirth.setName("respondentOnePlaceOfBirth");
         ocrrespondent1PlaceOfBirth.setValue("London");
         fieldList.add(ocrrespondent1PlaceOfBirth);
 
         OcrDataField ocrrespondent1Address = new OcrDataField();
-        ocrrespondent1Address.setName("respondent1Address");
+        ocrrespondent1Address.setName("respondentOneAddress");
         ocrrespondent1Address.setValue("123, Topsfield Parade");
         fieldList.add(ocrrespondent1Address);
 
         OcrDataField ocrrespondent1AddressPostCode = new OcrDataField();
-        ocrrespondent1AddressPostCode.setName("respondent1AddressPostCode");
+        ocrrespondent1AddressPostCode.setName("respondentOneAddressPostCode");
         ocrrespondent1AddressPostCode.setValue("N8 8PE");
         fieldList.add(ocrrespondent1AddressPostCode);
 
         OcrDataField ocrrespondent1AddressDontKnow = new OcrDataField();
-        ocrrespondent1AddressDontKnow.setName("respondent1AddressDontKnow");
+        ocrrespondent1AddressDontKnow.setName("respondentOneAddressDontKnow");
         ocrrespondent1AddressDontKnow.setValue("");
         fieldList.add(ocrrespondent1AddressDontKnow);
 
         OcrDataField ocrrespondent1HomePhoneNumber = new OcrDataField();
-        ocrrespondent1HomePhoneNumber.setName("respondent1HomePhoneNumber");
+        ocrrespondent1HomePhoneNumber.setName("respondentOneHomePhoneNumber");
         ocrrespondent1HomePhoneNumber.setValue("+442083332222");
         fieldList.add(ocrrespondent1HomePhoneNumber);
 
         OcrDataField ocrrespondent1MobilePhoneNumber = new OcrDataField();
-        ocrrespondent1MobilePhoneNumber.setName("respondent1MobilePhoneNumber");
+        ocrrespondent1MobilePhoneNumber.setName("respondentOneMobilePhoneNumber");
         ocrrespondent1MobilePhoneNumber.setValue("+447999444444");
         fieldList.add(ocrrespondent1MobilePhoneNumber);
 
         OcrDataField ocrrespondent1MobilePhoneNumberDontKnow = new OcrDataField();
-        ocrrespondent1MobilePhoneNumberDontKnow.setName("respondent1MobilePhoneNumberDontKnow");
+        ocrrespondent1MobilePhoneNumberDontKnow.setName("respondentOneMobilePhoneNumberDontKnow");
         ocrrespondent1MobilePhoneNumberDontKnow.setValue("");
         fieldList.add(ocrrespondent1MobilePhoneNumberDontKnow);
 
         OcrDataField ocrrespondent1EmailAddress = new OcrDataField();
-        ocrrespondent1EmailAddress.setName("respondent1EmailAddress");
+        ocrrespondent1EmailAddress.setName("respondentOneEmailAddress");
         ocrrespondent1EmailAddress.setValue("test@test.com");
         fieldList.add(ocrrespondent1EmailAddress);
 
         OcrDataField ocrrespondent1EmailAddressDontKnow = new OcrDataField();
-        ocrrespondent1EmailAddressDontKnow.setName("respondent1EmailAddressDontKnow");
+        ocrrespondent1EmailAddressDontKnow.setName("respondentOneEmailAddressDontKnow");
         ocrrespondent1EmailAddressDontKnow.setValue("");
         fieldList.add(ocrrespondent1EmailAddressDontKnow);
 
