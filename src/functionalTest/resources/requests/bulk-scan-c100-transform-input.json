@@ -62,7 +62,7 @@
     },
     {
       "name": "child_living_with_Applicant",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "child_living_with_Respondent",
@@ -353,7 +353,7 @@
       "value":"true"
     },
     {
-      "name":"NoMIAM_childProtectionConcerns",
+      "name":"noMIAM_childProtectionConcerns",
       "value":"true"
     },
     {
@@ -385,7 +385,7 @@
       "value":"true"
     },
     {
-      "name":"NoMIAM_urgency_risk_to_life_liberty_or_safety",
+      "name":"noMIAM_urgency_risk_to_life_liberty_or_safety",
       "value":"true"
     },
     {
@@ -549,47 +549,55 @@
       "value": "test@test.com"
     },
     {
-      "name": "respondent1LivedAtThisAddressForOverFiveYears",
+      "name": "respondentOneLivedAtThisAddressForOverFiveYears",
       "value": "No"
     },
     {
-      "name": "respondent1AllAddressesForLastFiveYears",
+      "name": "respondentOneAllAddressesForLastFiveYears",
       "value": "225, Topsfield Parade, N8 8PE"
     },
     {
-      "name": "respondent2FirstName",
+      "name": "respondent2_firstName",
+      "value": "respondentFirstName"
+    },
+    {
+      "name": "respondent2_lastName",
+      "value": "respondentLastName"
+    },
+    {
+      "name": "respondentTwoFirstName",
       "value": "Rachel"
     },
     {
-      "name": "respondent2LastName",
+      "name": "respondentTwoLastName",
       "value": "Brandl"
     },
     {
-      "name": "respondent2Gender",
+      "name": "respondentTwoGender",
       "value": "female"
     },
     {
-      "name": "respondent2DateOfBirth",
+      "name": "respondentTwoDateOfBirth",
       "value": "21/02/2002"
     },
     {
-      "name": "respondent2PlaceOfBirth",
+      "name": "respondentTwoPlaceOfBirth",
       "value": "London"
     },
     {
-      "name": "respondent2Address",
+      "name": "respondentTwoAddress",
       "value": "124, Topsfield Parade"
     },
     {
-      "name": "respondent2AddressPostCode",
+      "name": "respondentTwoAddressPostCode",
       "value": "N8 8PE"
     },
     {
-      "name": "respondent2HomePhoneNumber",
+      "name": "respondentTwoHomePhoneNumber",
       "value": "+442081112222"
     },
     {
-      "name": "respondent2MobilePhoneNumber",
+      "name": "respondentTwoMobilePhoneNumber",
       "value": "+447999666666"
     },
     {
@@ -597,11 +605,11 @@
       "value": "test@test.com"
     },
     {
-      "name": "respondent2LivedAtThisAddressForOverFiveYears",
+      "name": "respondentTwoLivedAtThisAddressForOverFiveYears",
       "value": "No"
     },
     {
-      "name": "respondent2AllAddressesForLastFiveYears",
+      "name": "respondentTwoAllAddressesForLastFiveYears",
       "value": "227, Topsfield Parade, N8 8PE"
     },
     {

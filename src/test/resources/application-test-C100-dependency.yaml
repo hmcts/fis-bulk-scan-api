@@ -49,13 +49,13 @@ uk:
                 - noMIAM_subjectOfEnquiries_byLocalAuthority
                 - noMIAM_subjectOfCPP_byLocalAuthority
               dependentFieldValue: "Yes"
-              groupFieldName: NoMIAM_childProtectionConcerns
+              groupFieldName: noMIAM_childProtectionConcerns
               groupValidationValue: "Yes"
               requiredFieldCount: 1
               sectionName: "3b - Child protection concerns"
             - groupNoMIAMUrgency:
               dependentFields:
-                - NoMIAM_urgency_risk_to_life_liberty_or_safety
+                - noMIAM_urgency_risk_to_life_liberty_or_safety
                 - noMIAM_urgency_riskOfHarm
                 - noMIAM_urgency_removalFromUnitedKingdom
                 - noMIAM_urgency_miscarriageOfJustice
@@ -63,7 +63,7 @@ uk:
                 - noMIAM_urgency_irretrievableProblems
                 - noMIAM_urgency_conflictWithOtherStateCourts
               dependentFieldValue: "Yes"
-              groupFieldName: NoMIAM_Urgency
+              groupFieldName: noMIAM_Urgency
               groupValidationValue: "Yes"
               requiredFieldCount: 1
               sectionName: "3c - Urgency"
@@ -134,15 +134,6 @@ uk:
               groupValidationValue: "Yes"
               requiredFieldCount: 1
               sectionName: "Special Arrangements Required"
-            - groupMediatorCertifiesMIAMExemption:
-              dependentFields:
-                - mediationNotSuitable_NoneOfTheRespondentsWillingToAttendMIAM
-                - mediationNotSuitable_NoneOfTheRespondentsFailedToAttendMIAMWithoutGoodReason
-                - mediationNotSuitable_forResolvingTheDispute
-              dependentFieldValue: "Yes"
-              groupFieldName: familyMember_Intimation_on_No_MIAM
-              groupValidationValue: "Yes"
-              requiredFieldCount: 1
             - groupMediatorCertifiesAttendedMIAM:
               dependentFields:
                 - applicantOnly_AttendedMIAM

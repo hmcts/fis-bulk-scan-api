@@ -13,10 +13,6 @@
       "value": "No"
     },
     {
-      "name": "familyMember_Intimation_on_No_MIAM",
-      "value": "No"
-    },
-    {
       "name": "attended_MIAM",
       "value": "No"
     },
@@ -25,7 +21,7 @@
       "value": "Yes"
     },
     {
-      "name": "NoMIAM_childProtectionConcerns",
+      "name": "noMIAM_childProtectionConcerns",
       "value": "Yes"
     },
     {
@@ -422,11 +418,11 @@
       "value": ""
     },
     {
-      "name": "respondent1LivedAtThisAddressForOverFiveYears",
+      "name": "respondentOneLivedAtThisAddressForOverFiveYears",
       "value": "No"
     },
     {
-      "name": "respondent1AllAddressesForLastFiveYears",
+      "name": "respondentOneAllAddressesForLastFiveYears",
       "value": "225, Topsfield Parade, N8 8PE"
     },
     {
@@ -490,11 +486,11 @@
       "value": ""
     },
     {
-      "name": "respondent2LivedAtThisAddressForOverFiveYears",
+      "name": "respondentTwoLivedAtThisAddressForOverFiveYears",
       "value": "No"
     },
     {
-      "name": "respondent2AllAddressesForLastFiveYears",
+      "name": "respondentTwoAllAddressesForLastFiveYears",
       "value": "227, Topsfield Parade, N8 8PE"
     },
     {

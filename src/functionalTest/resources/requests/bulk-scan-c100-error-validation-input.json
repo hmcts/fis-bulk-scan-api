@@ -17,10 +17,6 @@
       "value": "No"
     },
     {
-      "name": "familyMember_Intimation_on_No_MIAM",
-      "value": "No"
-    },
-    {
       "name": "attended_MIAM",
       "value": "No"
     },
@@ -238,7 +234,7 @@
     },
     {
       "name":"child_living_with_Applicant",
-      "value":"true"
+      "value":"Yes"
     },
     {
       "name":"child_living_with_Respondent",

@@ -274,7 +274,7 @@ public class BulkScanValidationHelper {
     }
 
     public List<String> findDuplicateOcrFields(List<OcrDataField> ocrFields) {
-        return ocrFields.stream().filter(ocrDataField -> ocrDataField.getName() != null)
+        return ocrFields.stream()
             .collect(groupingBy(it -> it.name, counting())).entrySet().stream()
                 .filter(entry -> entry.getValue() > 1)
                 .map(Map.Entry::getKey)

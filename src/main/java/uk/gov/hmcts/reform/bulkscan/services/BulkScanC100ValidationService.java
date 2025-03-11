@@ -25,7 +25,6 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.ATTENDED_MIAM;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.EXEMPTION_TO_ATTEND_MIAM;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.EXISTING_CASE_ON_EMERGENCY_PROTECTION_CARE_OR_SUPERVISION_ORDER;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.FAMILY_MEMBER_INTIMATION_ON_NO_MIAM;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.PREVIOUS_OR_ONGOING_PROCEEDING;
 
 import java.util.ArrayList;
@@ -86,27 +85,7 @@ public class BulkScanC100ValidationService extends BulkScanC100OtherSectionValid
                         items,
                         EXEMPTION_TO_ATTEND_MIAM);
             }
-
-            if (ocrDataFieldsMap.containsKey(EXEMPTION_TO_ATTEND_MIAM)
-                    && StringUtils.hasText(ocrDataFieldsMap.get(EXEMPTION_TO_ATTEND_MIAM))
-                    && BulkScanConstants.NO.equalsIgnoreCase(
-                            ocrDataFieldsMap.get(EXEMPTION_TO_ATTEND_MIAM))) {
-                setErrorMsg(
-                        bulkScanValidationResponse,
-                        ocrDataFieldsMap,
-                        items,
-                        FAMILY_MEMBER_INTIMATION_ON_NO_MIAM);
-            }
-
-            if (ocrDataFieldsMap.containsKey(FAMILY_MEMBER_INTIMATION_ON_NO_MIAM)
-                    && StringUtils.hasText(
-                            ocrDataFieldsMap.get(FAMILY_MEMBER_INTIMATION_ON_NO_MIAM))
-                    && BulkScanConstants.NO.equalsIgnoreCase(
-                            ocrDataFieldsMap.get(FAMILY_MEMBER_INTIMATION_ON_NO_MIAM))) {
-                setErrorMsg(bulkScanValidationResponse, ocrDataFieldsMap, items, ATTENDED_MIAM);
-
-                isMiamAttended(ocrDataFieldsMap, bulkScanValidationResponse, items);
-            }
+            isMiamAttended(ocrDataFieldsMap, bulkScanValidationResponse, items);
         }
         return bulkScanValidationResponse;
     }

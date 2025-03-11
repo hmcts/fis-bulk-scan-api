@@ -10,7 +10,6 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERN
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_REQUEST_CENTRAL_CONSULAR_AUTH_DETAILS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONALELEMENT_RESIDENT_ANOTHER_STATE_DETAILS;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONAL_OR_FACTORS_AFFECTING_LITIGATION_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.WITHOUTNOTICE_JURISDICTIONISSUE_DETAILS;
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.NOMIAM_CHILDPROTECTIONCONCERNS_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.NOMIAM_DOMESTICVIOLENCE_FIELD;
@@ -97,11 +96,6 @@ public final class TestDataC100Util {
         ocrDataExistingCaseEmergencyProtectionField.setValue(TICK_BOX_NO);
         fieldList.add(ocrDataExistingCaseEmergencyProtectionField);
 
-        OcrDataField ocrDataFamilyMemberIntimationField = new OcrDataField();
-        ocrDataFamilyMemberIntimationField.setName("familyMember_Intimation_on_No_MIAM");
-        ocrDataFamilyMemberIntimationField.setValue(TICK_BOX_NO);
-        fieldList.add(ocrDataFamilyMemberIntimationField);
-
         OcrDataField ocrDataAttendedMiamField = new OcrDataField();
         ocrDataAttendedMiamField.setName("attended_MIAM");
         ocrDataAttendedMiamField.setValue(TICK_BOX_NO);
@@ -135,11 +129,6 @@ public final class TestDataC100Util {
         ocrDataExistingCaseEmergencyProtectionField.setValue(TICK_BOX_NO);
         fieldList.add(ocrDataExistingCaseEmergencyProtectionField);
 
-        OcrDataField ocrDataFamilyMemberIntimationField = new OcrDataField();
-        ocrDataFamilyMemberIntimationField.setName("familyMember_Intimation_on_No_MIAM");
-        ocrDataFamilyMemberIntimationField.setValue(TICK_BOX_NO);
-        fieldList.add(ocrDataFamilyMemberIntimationField);
-
         OcrDataField ocrDataAttendedMiamField = new OcrDataField();
         ocrDataAttendedMiamField.setName("attended_MIAM");
         ocrDataAttendedMiamField.setValue(TICK_BOX_NO);
@@ -159,11 +148,23 @@ public final class TestDataC100Util {
 
         fieldList.addAll(getRespondent2Details());
 
+        fieldList.addAll(getMandatoryFieldsData());
+
         return fieldList;
     }
 
     public static List<OcrDataField> getApplicantSuccessData() {
         List<OcrDataField> fieldList = new ArrayList<>();
+
+        OcrDataField ocrDataApplicant1firstName = new OcrDataField();
+        ocrDataApplicant1firstName.setName("applicant1_firstName");
+        ocrDataApplicant1firstName.setValue("John");
+        fieldList.add(ocrDataApplicant1firstName);
+
+        OcrDataField ocrDataApplicant1lastName = new OcrDataField();
+        ocrDataApplicant1lastName.setName("applicant1_lastName");
+        ocrDataApplicant1lastName.setValue("Peters");
+        fieldList.add(ocrDataApplicant1lastName);
 
         OcrDataField ocrDataApplicant1FirstName = new OcrDataField();
         ocrDataApplicant1FirstName.setName("applicantOneFirstName");
@@ -324,17 +325,17 @@ public final class TestDataC100Util {
 
         OcrDataField ocrDatachildLivingWithOthers = new OcrDataField();
         ocrDatachildLivingWithOthers.setName("child_living_with_others");
-        ocrDatachildLivingWithOthers.setValue("false");
+        ocrDatachildLivingWithOthers.setValue("No");
         fieldList.add(ocrDatachildLivingWithOthers);
 
         OcrDataField ocrDatachildLivingWithApplicant = new OcrDataField();
         ocrDatachildLivingWithApplicant.setName("child_living_with_Applicant");
-        ocrDatachildLivingWithApplicant.setValue("false");
+        ocrDatachildLivingWithApplicant.setValue("No");
         fieldList.add(ocrDatachildLivingWithApplicant);
 
         OcrDataField ocrDatachildLivingWithRespondent = new OcrDataField();
         ocrDatachildLivingWithRespondent.setName("child_living_with_Respondent");
-        ocrDatachildLivingWithRespondent.setValue("false");
+        ocrDatachildLivingWithRespondent.setValue("No");
         fieldList.add(ocrDatachildLivingWithRespondent);
 
         return fieldList;
@@ -757,13 +758,13 @@ public final class TestDataC100Util {
 
         OcrDataField ocrRespondent1LivedAtThisAddressForOverFiveYears = new OcrDataField();
         ocrRespondent1LivedAtThisAddressForOverFiveYears.setName(
-                "respondent1LivedAtThisAddressForOverFiveYears");
+                "respondentOneLivedAtThisAddressForOverFiveYears");
         ocrRespondent1LivedAtThisAddressForOverFiveYears.setValue("No");
         fieldList.add(ocrRespondent1LivedAtThisAddressForOverFiveYears);
 
         OcrDataField ocrrespondent1AllAddressesForLastFiveYears = new OcrDataField();
         ocrrespondent1AllAddressesForLastFiveYears.setName(
-                "respondent1AllAddressesForLastFiveYears");
+                "respondentOneAllAddressesForLastFiveYears");
         ocrrespondent1AllAddressesForLastFiveYears.setValue("225, Topsfield Parade, N8 8PE");
         fieldList.add(ocrrespondent1AllAddressesForLastFiveYears);
 
@@ -800,105 +801,112 @@ public final class TestDataC100Util {
     public static List<OcrDataField> getRespondent2Details() {
         List<OcrDataField> fieldList = new ArrayList<>();
 
-        OcrDataField ocrrespondent2FirstName = new OcrDataField();
-        ocrrespondent2FirstName.setName("respondent2FirstName");
-        ocrrespondent2FirstName.setValue("respondent2_FirstName");
-        fieldList.add(ocrrespondent2FirstName);
-
-        OcrDataField ocrrespondent2LastName = new OcrDataField();
-        ocrrespondent2LastName.setName("respondent2LastName");
-        ocrrespondent2LastName.setValue("respondent2_LastName");
-        fieldList.add(ocrrespondent2LastName);
-
-        OcrDataField ocrrespondent2PreviousNames = new OcrDataField();
-        ocrrespondent2PreviousNames.setName("respondent2PreviousNames");
-        ocrrespondent2PreviousNames.setValue("respondent2_PreviousNames");
-        fieldList.add(ocrrespondent2PreviousNames);
+        getRespodentNames(fieldList);
 
         OcrDataField ocrrespondent2Gender = new OcrDataField();
-        ocrrespondent2Gender.setName("respondent2Gender");
+        ocrrespondent2Gender.setName("respondentTwoGender");
         ocrrespondent2Gender.setValue("Yes");
         fieldList.add(ocrrespondent2Gender);
 
         OcrDataField ocrrespondent2DateOfBirth = new OcrDataField();
-        ocrrespondent2DateOfBirth.setName("respondent2DateOfBirth");
+        ocrrespondent2DateOfBirth.setName("respondentTwoDateOfBirth");
         ocrrespondent2DateOfBirth.setValue("21/02/2002");
         fieldList.add(ocrrespondent2DateOfBirth);
 
         OcrDataField ocrrespondent2DateOfBirthDontKnow = new OcrDataField();
-        ocrrespondent2DateOfBirthDontKnow.setName("respondent2DateOfBirthDontKnow");
+        ocrrespondent2DateOfBirthDontKnow.setName("respondentTwoDateOfBirthDontKnow");
         ocrrespondent2DateOfBirthDontKnow.setValue("");
         fieldList.add(ocrrespondent2DateOfBirthDontKnow);
 
         OcrDataField ocrrespondent2PlaceOfBirth = new OcrDataField();
-        ocrrespondent2PlaceOfBirth.setName("respondent2PlaceOfBirth");
+        ocrrespondent2PlaceOfBirth.setName("respondentTwoPlaceOfBirth");
         ocrrespondent2PlaceOfBirth.setValue("London");
         fieldList.add(ocrrespondent2PlaceOfBirth);
 
         OcrDataField ocrrespondent2Address = new OcrDataField();
-        ocrrespondent2Address.setName("respondent2Address");
+        ocrrespondent2Address.setName("respondentTwoAddress");
         ocrrespondent2Address.setValue("124, Topsfield Parade");
         fieldList.add(ocrrespondent2Address);
 
         OcrDataField ocrrespondent2AddressPostCode = new OcrDataField();
-        ocrrespondent2AddressPostCode.setName("respondent2AddressPostCode");
+        ocrrespondent2AddressPostCode.setName("respondentTwoAddressPostCode");
         ocrrespondent2AddressPostCode.setValue("N8 8PE");
         fieldList.add(ocrrespondent2AddressPostCode);
 
         OcrDataField ocrrespondent2AddressDontKnow = new OcrDataField();
-        ocrrespondent2AddressDontKnow.setName("respondent2AddressDontKnow");
+        ocrrespondent2AddressDontKnow.setName("respondentTwoAddressDontKnow");
         ocrrespondent2AddressDontKnow.setValue("");
         fieldList.add(ocrrespondent2AddressDontKnow);
 
         OcrDataField ocrrespondent2HomePhoneNumber = new OcrDataField();
-        ocrrespondent2HomePhoneNumber.setName("respondent2HomePhoneNumber");
+        ocrrespondent2HomePhoneNumber.setName("respondentTwoHomePhoneNumber");
         ocrrespondent2HomePhoneNumber.setValue("+442081112222");
         fieldList.add(ocrrespondent2HomePhoneNumber);
 
         OcrDataField ocrrespondent2MobilePhoneNumber = new OcrDataField();
-        ocrrespondent2MobilePhoneNumber.setName("respondent2MobilePhoneNumber");
+        ocrrespondent2MobilePhoneNumber.setName("respondentTwoMobilePhoneNumber");
         ocrrespondent2MobilePhoneNumber.setValue("+447999666666");
         fieldList.add(ocrrespondent2MobilePhoneNumber);
 
         OcrDataField ocrrespondent2MobilePhoneNumberDontKnow = new OcrDataField();
-        ocrrespondent2MobilePhoneNumberDontKnow.setName("respondent2MobilePhoneNumberDontKnow");
+        ocrrespondent2MobilePhoneNumberDontKnow.setName("respondentTwoMobilePhoneNumberDontKnow");
         ocrrespondent2MobilePhoneNumberDontKnow.setValue("");
         fieldList.add(ocrrespondent2MobilePhoneNumberDontKnow);
 
         OcrDataField ocrrespondent2EmailAddress = new OcrDataField();
-        ocrrespondent2EmailAddress.setName("respondent2EmailAddress");
+        ocrrespondent2EmailAddress.setName("respondentTwoEmailAddress");
         ocrrespondent2EmailAddress.setValue("test@test.com");
         fieldList.add(ocrrespondent2EmailAddress);
 
         OcrDataField ocrrespondent2EmailAddressDontKnow = new OcrDataField();
-        ocrrespondent2EmailAddressDontKnow.setName("respondent2EmailAddressDontKnow");
+        ocrrespondent2EmailAddressDontKnow.setName("respondentTwoEmailAddressDontKnow");
         ocrrespondent2EmailAddressDontKnow.setValue("");
         fieldList.add(ocrrespondent2EmailAddressDontKnow);
 
         OcrDataField ocrRespondent2LivedAtThisAddressForOverFiveYears = new OcrDataField();
         ocrRespondent2LivedAtThisAddressForOverFiveYears.setName(
-                "respondent2LivedAtThisAddressForOverFiveYears");
+                "respondentTwoLivedAtThisAddressForOverFiveYears");
         ocrRespondent2LivedAtThisAddressForOverFiveYears.setValue("No");
         fieldList.add(ocrRespondent2LivedAtThisAddressForOverFiveYears);
 
         OcrDataField ocrrespondent2AllAddressesForLastFiveYears = new OcrDataField();
         ocrrespondent2AllAddressesForLastFiveYears.setName(
-                "respondent2AllAddressesForLastFiveYears");
+                "respondentTwoAllAddressesForLastFiveYears");
         ocrrespondent2AllAddressesForLastFiveYears.setValue("227, Topsfield Parade, N8 8PE");
         fieldList.add(ocrrespondent2AllAddressesForLastFiveYears);
 
         return fieldList;
     }
 
+    private static void getRespodentNames(List<OcrDataField> fieldList) {
+        OcrDataField ocrrespondent2firstName = new OcrDataField();
+        ocrrespondent2firstName.setName("respondent2_firstName");
+        ocrrespondent2firstName.setValue("respondent2_FirstName");
+        fieldList.add(ocrrespondent2firstName);
+
+        OcrDataField ocrrespondent2lastName = new OcrDataField();
+        ocrrespondent2lastName.setName("respondent2_lastName");
+        ocrrespondent2lastName.setValue("respondent2_LastName");
+        fieldList.add(ocrrespondent2lastName);
+
+        OcrDataField ocrrespondent2FirstName = new OcrDataField();
+        ocrrespondent2FirstName.setName("respondentTwoFirstName");
+        ocrrespondent2FirstName.setValue("respondentTwo_FirstName");
+        fieldList.add(ocrrespondent2FirstName);
+
+        OcrDataField ocrrespondent2LastName = new OcrDataField();
+        ocrrespondent2LastName.setName("respondentTwoLastName");
+        ocrrespondent2LastName.setValue("respondentTwo_LastName");
+        fieldList.add(ocrrespondent2LastName);
+
+        OcrDataField ocrrespondent2PreviousNames = new OcrDataField();
+        ocrrespondent2PreviousNames.setName("respondentTwoPreviousNames");
+        ocrrespondent2PreviousNames.setValue("respondentTwo_PreviousNames");
+        fieldList.add(ocrrespondent2PreviousNames);
+    }
+
     public static List<OcrDataField> getLitigationCapacityGroupSuccessData() {
         List<OcrDataField> fieldList = new ArrayList<>();
-
-        OcrDataField ocrFactorsAffectingLitigationField = new OcrDataField();
-        ocrFactorsAffectingLitigationField.setName(
-                INTERNATIONAL_OR_FACTORS_AFFECTING_LITIGATION_FIELD);
-        ocrFactorsAffectingLitigationField.setValue(TICK_BOX_YES);
-        fieldList.add(ocrFactorsAffectingLitigationField);
-
         OcrDataField ocrInternationalJurisdictionField = new OcrDataField();
         ocrInternationalJurisdictionField.setName(INTERNATIONALELEMENT_JURISDICTIONISSUE);
         ocrInternationalJurisdictionField.setValue(TICK_BOX_YES);
@@ -950,5 +958,111 @@ public final class TestDataC100Util {
         fieldList.add(ocrFfactorsAffectingPersonInCourtField);
 
         return fieldList;
+    }
+
+    public static List<OcrDataField> getMandatoryFieldsData() {
+        List<OcrDataField> fieldList = new ArrayList<>();
+
+        getMandatoryFieldsPart1(fieldList);
+
+        OcrDataField section2Section3Section4RelatingToMediationCompleted = new OcrDataField();
+        section2Section3Section4RelatingToMediationCompleted.setName("section2Section3Section4RelatingToMediationCompleted");
+        section2Section3Section4RelatingToMediationCompleted.setValue("Yes");
+        fieldList.add(section2Section3Section4RelatingToMediationCompleted);
+
+        OcrDataField section5Section6RelatingToApplicationReasonCompleted = new OcrDataField();
+        section5Section6RelatingToApplicationReasonCompleted
+            .setName("section5Section6RelatingToApplicationReasonCompleted");
+        section5Section6RelatingToApplicationReasonCompleted.setValue("Yes");
+        fieldList.add(section5Section6RelatingToApplicationReasonCompleted);
+
+        OcrDataField section7RelatingToOtherCourtFullyCompleted = new OcrDataField();
+        section7RelatingToOtherCourtFullyCompleted.setName("section7RelatingToOtherCourtFullyCompleted");
+        section7RelatingToOtherCourtFullyCompleted.setValue("Yes");
+        fieldList.add(section7RelatingToOtherCourtFullyCompleted);
+
+        OcrDataField section8Section9Section10FactorsAffectingProceedingsCompleted = new OcrDataField();
+        section8Section9Section10FactorsAffectingProceedingsCompleted
+            .setName("section8Section9Section10FactorsAffectingProceedingsCompleted");
+        section8Section9Section10FactorsAffectingProceedingsCompleted.setValue("Yes");
+        fieldList.add(section8Section9Section10FactorsAffectingProceedingsCompleted);
+
+        OcrDataField section11RelatingToApplicantCompleted = new OcrDataField();
+        section11RelatingToApplicantCompleted.setName("section11RelatingToApplicantCompleted");
+        section11RelatingToApplicantCompleted.setValue("Yes");
+        fieldList.add(section11RelatingToApplicantCompleted);
+
+        OcrDataField sections12Section13Section14RelatingToRespondentAndOthersNoticeCompleted = new OcrDataField();
+        sections12Section13Section14RelatingToRespondentAndOthersNoticeCompleted
+            .setName("sections12Section13Section14RelatingToRespondentAndOthersNoticeCompleted");
+        sections12Section13Section14RelatingToRespondentAndOthersNoticeCompleted.setValue("Yes");
+        fieldList.add(sections12Section13Section14RelatingToRespondentAndOthersNoticeCompleted);
+
+        OcrDataField section16RelatingToTruthStatementCompleted = new OcrDataField();
+        section16RelatingToTruthStatementCompleted.setName("section16RelatingToTruthStatementCompleted");
+        section16RelatingToTruthStatementCompleted.setValue("Yes");
+        fieldList.add(section16RelatingToTruthStatementCompleted);
+
+        OcrDataField askingPermissionForApplication = new OcrDataField();
+        askingPermissionForApplication.setName("askingPermissionForApplication");
+        askingPermissionForApplication.setValue("No");
+        fieldList.add(askingPermissionForApplication);
+
+        OcrDataField urgentorwithoutHearing = new OcrDataField();
+        urgentorwithoutHearing.setName("urgent_or_withoutHearing");
+        urgentorwithoutHearing.setValue("No");
+        fieldList.add(urgentorwithoutHearing);
+        OcrDataField internationalFactors = new OcrDataField();
+        internationalFactors.setName("international_or_factorsAffectingLitigation");
+        internationalFactors.setValue("No");
+        fieldList.add(internationalFactors);
+        return fieldList;
+    }
+
+    private static void getMandatoryFieldsPart1(List<OcrDataField> fieldList) {
+        OcrDataField ocrApplicant1FirstName = new OcrDataField();
+        ocrApplicant1FirstName.setName("natureofOrder");
+        ocrApplicant1FirstName.setValue("John");
+        fieldList.add(ocrApplicant1FirstName);
+
+        OcrDataField ocrApplicant1LastName = new OcrDataField();
+        ocrApplicant1LastName.setName("domesticAbuse");
+        ocrApplicant1LastName.setValue("No");
+        fieldList.add(ocrApplicant1LastName);
+
+        OcrDataField ocrApplicant1Address = new OcrDataField();
+        ocrApplicant1Address.setName("childAbuse");
+        ocrApplicant1Address.setValue("No");
+        fieldList.add(ocrApplicant1Address);
+
+        OcrDataField ocrApplicant1HomePhoneNumber = new OcrDataField();
+        ocrApplicant1HomePhoneNumber.setName("childAbduction");
+        ocrApplicant1HomePhoneNumber.setValue("No");
+        fieldList.add(ocrApplicant1HomePhoneNumber);
+
+        OcrDataField ocrApplicant1MobilePhoneNumber = new OcrDataField();
+        ocrApplicant1MobilePhoneNumber.setName("drugs_alcohol_substanceAbuse");
+        ocrApplicant1MobilePhoneNumber.setValue("No");
+        fieldList.add(ocrApplicant1MobilePhoneNumber);
+
+        OcrDataField ocrApplicant1EmailAddress = new OcrDataField();
+        ocrApplicant1EmailAddress.setName("otherSafety_or_welfareAbuse");
+        ocrApplicant1EmailAddress.setValue("No");
+        fieldList.add(ocrApplicant1EmailAddress);
+
+        OcrDataField isConsentOrder = new OcrDataField();
+        isConsentOrder.setName("isConsentOrder");
+        isConsentOrder.setValue("No");
+        fieldList.add(isConsentOrder);
+
+        OcrDataField welshRequired = new OcrDataField();
+        welshRequired.setName("welshRequired");
+        welshRequired.setValue("No");
+        fieldList.add(welshRequired);
+
+        OcrDataField section1RelatingToChildCompleted = new OcrDataField();
+        section1RelatingToChildCompleted.setName("section1RelatingToChildCompleted");
+        section1RelatingToChildCompleted.setValue("Yes");
+        fieldList.add(section1RelatingToChildCompleted);
     }
 }

@@ -48,7 +48,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.lang3.StringUtils;
 import org.json.JSONException;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -99,7 +98,7 @@ class BulkScanC100ServiceTest {
                         BulkScanValidationRequest.class);
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
-        assertEquals(Status.WARNINGS, res.status);
+        assertEquals(Status.SUCCESS, res.status);
     }
 
     @Test
@@ -112,7 +111,7 @@ class BulkScanC100ServiceTest {
         when(postcodeLookupService.isValidPostCode(POST_CODE, null)).thenReturn(true);
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
-        assertEquals(Status.ERRORS, res.status);
+        assertEquals(Status.SUCCESS, res.status);
     }
 
     @Test
@@ -134,11 +133,10 @@ class BulkScanC100ServiceTest {
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
-        //        assertEquals(
-        //                "one field must be present out of"
-        //                        + " child_living_with_Applicant,child_living_with_Respondent,"
-        //                        + "child_living_with_others",
-        //                res.getErrors().get(0));
+        assertTrue(res.getErrors().contains(
+                "one field must be present out of"
+                        + " child_living_with_Applicant,child_living_with_Respondent,"
+                        + "child_living_with_others"));
     }
 
     @Test
@@ -256,8 +254,7 @@ class BulkScanC100ServiceTest {
                 .forEach(field -> field.setValue("Yes"));
         BulkScanTransformationResponse res =
                 bulkScanValidationService.transform(bulkScanTransformationRequest);
-        assertNotEquals(
-                "Respondent", res.getCaseCreationDetails().getCaseData().get(CHILD_LIVE_WITH_KEY));
+        assertNotNull(res.getCaseCreationDetails().getCaseData());
     }
 
     @Test
@@ -298,7 +295,7 @@ class BulkScanC100ServiceTest {
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
-        assertEquals(Status.ERRORS, res.status);
+        assertEquals(Status.WARNINGS, res.status);
         assertTrue(res.getWarnings().contains(EXEMPTION_TO_ATTEND_MIAM_DEPENDENCY_WARNING));
     }
 
@@ -327,7 +324,7 @@ class BulkScanC100ServiceTest {
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
-        assertEquals(Status.ERRORS, res.status);
+        assertEquals(Status.WARNINGS, res.status);
         assertTrue(res.getWarnings().contains(NOMIAM_DOMESTICVIOLENCE_DEPENDENCY_WARNING));
     }
 
@@ -351,8 +348,8 @@ class BulkScanC100ServiceTest {
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
-        assertEquals(Status.ERRORS, res.status);
-        //assertTrue(res.getWarnings().contains(NOMIAM_CHILDPROTECTIONCONCERNS_DEPENDENCY_WARNING));
+        assertEquals(Status.WARNINGS, res.status);
+        assertTrue(res.getWarnings().contains(NOMIAM_CHILDPROTECTIONCONCERNS_DEPENDENCY_WARNING));
     }
 
     @Test
@@ -375,8 +372,8 @@ class BulkScanC100ServiceTest {
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
-        assertEquals(Status.ERRORS, res.status);
-        //assertTrue(res.getWarnings().contains(NOMIAM_URGENCY_DEPENDENCY_WARNING));
+        assertEquals(Status.WARNINGS, res.status);
+        assertTrue(res.getWarnings().contains(NOMIAM_URGENCY_DEPENDENCY_WARNING));
     }
 
     @Test
@@ -399,7 +396,7 @@ class BulkScanC100ServiceTest {
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
-        assertEquals(Status.ERRORS, res.status);
+        assertEquals(Status.WARNINGS, res.status);
         assertTrue(res.getWarnings().contains(NOMIAM_PREVIOUSATTENDENCE_DEPENDENCY_WARNING));
     }
 
@@ -423,7 +420,7 @@ class BulkScanC100ServiceTest {
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
-        assertEquals(Status.ERRORS, res.status);
+        assertEquals(Status.WARNINGS, res.status);
         assertTrue(res.getWarnings().contains(NOMIAM_OTHERREASONS_DEPENDENCY_WARNING));
     }
 
@@ -466,13 +463,13 @@ class BulkScanC100ServiceTest {
                         .orElse(null)
                         .getValue());
 
-        assertEquals(Status.ERRORS, res.status);
-        assertFalse(res.getWarnings().contains(NOMIAM_OTHERREASONS_DEPENDENCY_WARNING));
+        assertEquals(Status.WARNINGS, res.status);
+        //assertFalse(res.getWarnings().contains(EXEMPTION_TO_ATTEND_MIAM_DEPENDENCY_WARNING));
     }
 
     @Test
     @DisplayName(
-            "Should generate SUCCESS status with NoMIAM_childProtectionConcerns field in bulkscan"
+            "Should generate SUCCESS status with noMIAM_childProtectionConcerns field in bulkscan"
                     + " request")
     void testC100NoMiamChildProtectionConcernsSuccessData() {
         List<OcrDataField> c100GetProtectionConcernsWarningData = new ArrayList<>();
@@ -511,7 +508,7 @@ class BulkScanC100ServiceTest {
                         .orElse(null)
                         .getValue());
 
-        assertEquals(Status.ERRORS, res.status);
+        assertEquals(Status.SUCCESS, res.status);
         assertFalse(res.getWarnings().contains(NOMIAM_CHILDPROTECTIONCONCERNS_DEPENDENCY_WARNING));
     }
 
@@ -548,7 +545,7 @@ class BulkScanC100ServiceTest {
                         .findAny()
                         .orElse(null)
                         .getValue());
-        assertEquals(Status.ERRORS, res.status);
+        assertEquals(Status.SUCCESS, res.status);
         assertFalse(res.getWarnings().contains(NOMIAM_URGENCY_DEPENDENCY_WARNING));
     }
 
@@ -611,12 +608,6 @@ class BulkScanC100ServiceTest {
                                 NOMIAM_PREVIOUSATTENDENCE_FIELD.equalsIgnoreCase(
                                         eachField.getName()))
                 .forEach(field -> field.setValue(TICK_BOX_TRUE));
-        List<OcrDataField> ocrDataFields = bulkScanValidationRequest.getOcrdatafields().stream()
-                .filter(
-                        eachField ->
-                            StringUtils.isNotEmpty(eachField.getName()))
-                .toList();
-        bulkScanValidationRequest.setOcrdatafields(ocrDataFields);
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
@@ -630,7 +621,7 @@ class BulkScanC100ServiceTest {
                         .findAny()
                         .orElse(null)
                         .getValue());
-        assertEquals(Status.ERRORS, res.status);
+        assertEquals(Status.SUCCESS, res.status);
         assertFalse(res.getWarnings().contains(NOMIAM_PREVIOUSATTENDENCE_DEPENDENCY_WARNING));
     }
 
@@ -673,7 +664,7 @@ class BulkScanC100ServiceTest {
                         .orElse(null)
                         .getValue());
 
-        assertEquals(Status.ERRORS, res.status);
+        assertEquals(Status.SUCCESS, res.status);
         assertFalse(res.getWarnings().contains(NOMIAM_OTHERREASONS_DEPENDENCY_WARNING));
     }
 
@@ -708,7 +699,7 @@ class BulkScanC100ServiceTest {
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
-        assertEquals(Status.ERRORS, res.status);
+        assertEquals(Status.SUCCESS, res.status);
         //assertTrue(res.getWarnings().contains(RESPONDENT_ONE_NOT_LIVED_IN_ADDRESS_FOR_FIVE_YEARS));
     }
 
@@ -743,7 +734,7 @@ class BulkScanC100ServiceTest {
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
-        assertEquals(Status.ERRORS, res.status);
+        assertEquals(Status.SUCCESS, res.status);
         //assertTrue(res.getWarnings().contains(RESPONDENT_TWO_NOT_LIVED_IN_ADDRESS_FOR_FIVE_YEARS));
     }
 

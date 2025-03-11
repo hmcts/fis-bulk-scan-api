@@ -13,10 +13,6 @@
       "metadata_field_value": "Yes"
     },
     {
-      "metadata_field_name": "familyMember_Intimation_on_No_MIAM",
-      "metadata_field_value": "No"
-    },
-    {
       "metadata_field_name": "attended_MIAM",
       "metadata_field_value": "No"
     },
@@ -238,15 +234,15 @@
     },
     {
       "metadata_field_name":"child_living_with_Applicant",
-      "metadata_field_value":"true"
+      "metadata_field_value":"Yes"
     },
     {
       "metadata_field_name":"child_living_with_Respondent",
-      "metadata_field_value":"false"
+      "metadata_field_value":"No"
     },
     {
       "metadata_field_name":"child_living_with_others",
-      "metadata_field_value":"false"
+      "metadata_field_value":"No"
     },
     {
       "metadata_field_name":"child2_firstName",
@@ -425,11 +421,11 @@
       "metadata_field_value": ""
     },
     {
-      "metadata_field_name": "respondent1LivedAtThisAddressForOverFiveYears",
+      "metadata_field_name": "respondentOneLivedAtThisAddressForOverFiveYears",
       "metadata_field_value": "No"
     },
     {
-      "metadata_field_name": "respondent1AllAddressesForLastFiveYears",
+      "metadata_field_name": "respondentOneAllAddressesForLastFiveYears",
       "metadata_field_value": "225, Topsfield Parade, N8 8PE"
     },
     {
@@ -493,11 +489,11 @@
       "metadata_field_value": ""
     },
     {
-      "metadata_field_name": "respondent2LivedAtThisAddressForOverFiveYears",
+      "metadata_field_name": "respondentTwoLivedAtThisAddressForOverFiveYears",
       "metadata_field_value": "No"
     },
     {
-      "metadata_field_name": "respondent2AllAddressesForLastFiveYears",
+      "metadata_field_name": "respondentTwoAllAddressesForLastFiveYears",
       "metadata_field_value": "227, Topsfield Parade, N8 8PE"
     },
     {

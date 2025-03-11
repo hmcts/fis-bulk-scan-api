@@ -205,9 +205,6 @@ public final class BulkScanConstants {
 
     public static final String EXEMPTION_TO_ATTEND_MIAM = "exemption_to_attend_MIAM";
 
-    public static final String FAMILY_MEMBER_INTIMATION_ON_NO_MIAM =
-            "familyMember_Intimation_on_No_MIAM";
-
     public static final String ATTENDED_MIAM = "attended_MIAM";
 
     public static final String HAS_APPLICANT_ONE_LIVED_AT_THIS_ADDRESS_FOR_OVER_FIVE_YEARS =
@@ -236,15 +233,15 @@ public final class BulkScanConstants {
 
     // C100 form section 12 validation fields
     public static final String RESPONDENT1LIVEDATTHISADDRESSFOROVERFIVEYEARS =
-            "respondent1LivedAtThisAddressForOverFiveYears";
+            "respondentOneLivedAtThisAddressForOverFiveYears";
     public static final String RESPONDENT2LIVEDATTHISADDRESSFOROVERFIVEYEARS =
-            "respondent2LivedAtThisAddressForOverFiveYears";
+            "respondentTwoLivedAtThisAddressForOverFiveYears";
     public static final String RESPONDENT_ONE = "Respondent 1";
     public static final String RESPONDENT1ALLADDRESSESFORLASTFIVEYEARS =
-            "respondent1AllAddressesForLastFiveYears";
+            "respondentOneAllAddressesForLastFiveYears";
     public static final String RESPONDENT_TWO = "Respondent 2";
     public static final String RESPONDENT2ALLADDRESSESFORLASTFIVEYEARS =
-            "respondent2AllAddressesForLastFiveYears";
+            "respondentTwoAllAddressesForLastFiveYears";
 
     // END C100 form section 12 validation fields
 

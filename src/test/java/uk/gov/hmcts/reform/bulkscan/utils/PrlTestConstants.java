@@ -27,10 +27,10 @@ public final class PrlTestConstants {
 
     public static final String RESPONDENT_ONE = "Respondent 1";
     public static final String RESPONDENT1ALLADDRESSESFORLASTFIVEYEARS =
-            "respondent1AllAddressesForLastFiveYears";
+            "respondentOneAllAddressesForLastFiveYears";
     public static final String RESPONDENT_TWO = "Respondent 2";
     public static final String RESPONDENT2ALLADDRESSESFORLASTFIVEYEARS =
-            "respondent2AllAddressesForLastFiveYears";
+            "respondentTwoAllAddressesForLastFiveYears";
 
     public static final String INTERNATIONAL_FACTORS_AFFECTING_LITIGATION_WARNING =
             "Some details are missing in the following section: 8 - Cases with an international"

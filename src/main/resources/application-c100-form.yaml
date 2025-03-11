@@ -91,7 +91,6 @@ uk:
               - parentalResponsibilityDetails
               - child_living_with_others_details
               - fmcRegistrationNumber
-              - familyMember_Intimation_on_No_MIAM
               - soleTraderName
               - authorizedFamilyMediator_address
               - authorizedFamilyMediator_date
@@ -300,6 +299,30 @@ uk:
               - applicantRequiresWelsh_1_written
               - applicantRequiresWelsh_1_Spoken
               - nameOfPartyWhoNeedsWelsh_1
+              - applicantRequiresWelsh_2_Both
+              - applicantRequiresWelsh_2_written
+              - applicantRequiresWelsh_2_Spoken
+              - nameOfPartyWhoNeedsWelsh_2
+              - applicantRequiresWelsh_3_Both
+              - applicantRequiresWelsh_3_written
+              - applicantRequiresWelsh_3_Spoken
+              - nameOfPartyWhoNeedsWelsh_3
+              - applicantRequiresWelsh_4_Both
+              - applicantRequiresWelsh_4_written
+              - applicantRequiresWelsh_4_Spoken
+              - nameOfPartyWhoNeedsWelsh_4
+              - applicantRequiresWelsh_5_Both
+              - applicantRequiresWelsh_5_written
+              - applicantRequiresWelsh_5_Spoken
+              - nameOfPartyWhoNeedsWelsh_5
+              - applicantRequiresWelsh_6_Both
+              - applicantRequiresWelsh_6_written
+              - applicantRequiresWelsh_6_Spoken
+              - nameOfPartyWhoNeedsWelsh_6
+              - applicantRequiresWelsh_7_Both
+              - applicantRequiresWelsh_7_written
+              - applicantRequiresWelsh_7_Spoken
+              - nameOfPartyWhoNeedsWelsh_7
               - signed_authorizedFamilyMediator
               - applicantAndRespondentPartysAttendedMIAMSeparately
               - respondentPartysArrangedToAttendMIAMSeparately

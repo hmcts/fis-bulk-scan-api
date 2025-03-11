@@ -17,8 +17,6 @@ public final class BulkScanPrlConstants {
     public static final String EXISTING_CASE_ON_EMERGENCY_PROTECTION_CARE_OR_SUPERVISION_ORDER =
             "ExistingCase_onEmergencyProtection_Care_or_supervisionOrder";
     public static final String EXEMPTION_TO_ATTEND_MIAM = "exemption_to_attend_MIAM";
-    public static final String FAMILY_MEMBER_INTIMATION_ON_NO_MIAM =
-            "familyMember_Intimation_on_No_MIAM";
     public static final String ATTENDED_MIAM = "attended_MIAM";
     public static final String MIAM_DOMESTIC_VIOLENCE_CHECKLIST = "miamDomesticViolenceChecklist";
     public static final String NO_MIAM_DVE_ARRESTED_FOR_SIMILAR_OFFENCE =

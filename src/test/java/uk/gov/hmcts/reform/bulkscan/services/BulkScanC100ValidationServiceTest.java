@@ -194,7 +194,7 @@ class BulkScanC100ValidationServiceTest {
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
-        assertEquals(Status.ERRORS, res.status);
+        assertEquals(Status.WARNINGS, res.status);
         assertTrue(res.getWarnings().contains(INTERNATIONAL_FACTORS_AFFECTING_LITIGATION_WARNING));
     }
 
@@ -261,7 +261,7 @@ class BulkScanC100ValidationServiceTest {
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
-        assertEquals(Status.ERRORS, res.status);
+        assertEquals(Status.SUCCESS, res.status);
     }
 
     @Test
@@ -304,7 +304,7 @@ class BulkScanC100ValidationServiceTest {
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
-        assertEquals(Status.ERRORS, res.status);
+        assertEquals(Status.WARNINGS, res.status);
         assertTrue(res.getWarnings().contains(INTERNATIONALELEMENT_WARNING_MESSAGE));
     }
 
@@ -347,7 +347,7 @@ class BulkScanC100ValidationServiceTest {
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
-        assertEquals(Status.ERRORS, res.status);
+        assertEquals(Status.WARNINGS, res.status);
         assertTrue(res.getWarnings().contains(INTERNATIONALELEMENT_WARNING_MESSAGE));
     }
 
@@ -390,7 +390,7 @@ class BulkScanC100ValidationServiceTest {
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
-        assertEquals(Status.ERRORS, res.status);
+        assertEquals(Status.SUCCESS, res.status);
     }
 
     @Test
@@ -430,7 +430,7 @@ class BulkScanC100ValidationServiceTest {
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
-        assertEquals(Status.ERRORS, res.status);
+        assertEquals(Status.SUCCESS, res.status);
     }
 
     @Test
@@ -473,7 +473,7 @@ class BulkScanC100ValidationServiceTest {
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
-        assertEquals(Status.ERRORS, res.status);
+        assertEquals(Status.WARNINGS, res.status);
         assertTrue(res.getWarnings().contains(INTERNATIONALELEMENT_WARNING_MESSAGE));
     }
 
@@ -493,11 +493,6 @@ class BulkScanC100ValidationServiceTest {
         ocrProhibitedStepsOrderField.setName("exemption_to_attend_MIAM");
         ocrProhibitedStepsOrderField.setValue("No");
         fieldList.add(ocrProhibitedStepsOrderField);
-
-        OcrDataField ocrSpecialIssueOrderField = new OcrDataField();
-        ocrSpecialIssueOrderField.setName("familyMember_Intimation_on_No_MIAM");
-        ocrSpecialIssueOrderField.setValue("No");
-        fieldList.add(ocrSpecialIssueOrderField);
 
         OcrDataField ocrAttendedMiamField = new OcrDataField();
         ocrAttendedMiamField.setName("attended_MIAM");
