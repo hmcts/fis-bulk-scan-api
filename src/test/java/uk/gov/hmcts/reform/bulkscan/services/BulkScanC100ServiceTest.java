@@ -333,7 +333,7 @@ class BulkScanC100ServiceTest {
 
     @Test
     @DisplayName(
-            "Should generate warnings on [NoMiam_ChildProtectionConcerns] checked but without"
+            "Should generate warnings on [noMIAM_childProtectionConcerns] checked but without"
                     + " dependent Part 3b field(s)")
     void testC100NoMiamChildProtectionConcernsWarning() {
         List<OcrDataField> c100GetDomesticViolenceWarningData = new ArrayList<>();
