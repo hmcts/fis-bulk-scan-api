@@ -169,7 +169,7 @@ uk:
               - hasRespondentTwoLivedAtThisAddressForOverFiveYears
               - otherPeopleOneFirstName
               - otherPeopleOneLastName
-              - otherPeopleOnePreviousName
+              - otherPeopleOnePreviousNames
               - otherPeopleOneGender
               - otherPeopleOneDateOfBirth
               - otherPeopleOneDateOfBirthDontKnow
