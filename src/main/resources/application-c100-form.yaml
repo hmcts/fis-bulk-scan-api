@@ -383,6 +383,7 @@ uk:
               - applicantOnly_AttendedMIAMTogether
               - family_Mediation_ServiceName #familyMediationServiceName
               - sole_TraderName #soleTraderName
+              - section7AdditionalSheetsAttached
             regexValidationFields:
               dateFields:
                 fieldNames:
