@@ -57,6 +57,10 @@ uk:
               - applicant2_lastName
               - respondent2_firstName
               - respondent2_lastName
+              - child1_dateOfBirth_dontKnow
+              - child2_dateOfBirth_dontKnow
+              - child3_dateOfBirth_dontKnow
+              - child4_dateOfBirth_dontKnow
               - child1_dateOfBirth
               - child2_firstName
               - child2_lastName
@@ -169,7 +173,7 @@ uk:
               - hasRespondentTwoLivedAtThisAddressForOverFiveYears
               - otherPeopleOneFirstName
               - otherPeopleOneLastName
-              - otherPeopleOnePreviousName
+              - otherPeopleOnePreviousNames
               - otherPeopleOneGender
               - otherPeopleOneDateOfBirth
               - otherPeopleOneDateOfBirthDontKnow
@@ -326,6 +330,7 @@ uk:
               - signed_authorizedFamilyMediator
               - applicantAndRespondentPartysAttendedMIAMSeparately
               - respondentPartysArrangedToAttendMIAMSeparately
+              - mediationNotProceeding_applicantsAttendedMIAMAlone
 
 
               - noMIAM_urgency_removalFromUnitedKingdom  # noMIAM_urgency_removalFromUnitedKingdom
@@ -346,6 +351,10 @@ uk:
               - solicitor_fee_account_No # solicitorFeeAccountNo
               - solicitor_email_address # applicantSolicitorEmailAddress
               - withoutNotice_otherReasons_child1_name
+              - withoutNotice_otherReasons_child2_name
+              - withoutNotice_otherReasons_child3_name
+              - withoutNotice_otherReasons_child4_name
+              - nameOfParticipantsInMiam
               - withoutNotice_otherReasons_name_of_the_court
               - withoutNotice_otherReasons_CaseNo
               - withoutNotice_otherReasons_HearingDate_or_Yea
