@@ -69,8 +69,10 @@ uk:
               sectionName: "3c - Urgency"
             - groupNoMIAMPreviousAttendence:
               dependentFields:
-                - noMIAM_PreviousAttendenceReason
-              dependentFieldValue: "Yes"
+                - previousMIAM_nonCourtDisputeResolution_4month
+                - previousMIAM_existingProceeding_exepmtMIAM
+                - otherExemption_NoEvidence_reason
+              dependentFieldValue: "*"
               groupFieldName: noMIAM_PreviousAttendence
               groupValidationValue: "Yes"
               requiredFieldCount: 1

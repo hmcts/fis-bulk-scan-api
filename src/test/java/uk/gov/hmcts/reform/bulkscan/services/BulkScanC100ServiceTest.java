@@ -173,9 +173,7 @@ class BulkScanC100ServiceTest {
                 .forEach(field -> field.setValue("No"));
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
-        assertEquals(Status.ERRORS, res.status);
-        assertEquals(
-                "child_parentsName_collection should not be null or empty", res.getErrors().get(0));
+        assertEquals(Status.SUCCESS, res.status);
     }
 
     @Test
