@@ -6,9 +6,6 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_TWO;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_TWO_ALL_ADDRESSES_FOR_FIVE_LAST_YEARS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ASKING_PERMISSION_FOR_APPLICATION;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILDREN_OF_SAME_PARENT;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILDREN_PARENTS_NAME;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILDREN_PARENTS_NAME_COLLECTION;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILDREN_SOCIAL_AUTHORITY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVING_WITH_APPLICANT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVING_WITH_OTHERS;
@@ -168,18 +165,18 @@ public class BulkScanC100ValidationService extends BulkScanC100OtherSectionValid
                                     .concat(",")
                                     .concat(CHILD_LIVING_WITH_OTHERS)));
         }
-
-        if (YES.equalsIgnoreCase(inputFieldsMap.get(CHILDREN_OF_SAME_PARENT))
-                && org.apache.commons.lang3.StringUtils.isEmpty(
-                        inputFieldsMap.get(CHILDREN_PARENTS_NAME))) {
-            errors.add(String.format(MANDATORY_ERROR_MESSAGE, CHILDREN_PARENTS_NAME));
-        }
-
-        if (NO.equalsIgnoreCase(inputFieldsMap.get(CHILDREN_OF_SAME_PARENT))
-                && org.apache.commons.lang3.StringUtils.isEmpty(
-                        inputFieldsMap.get(CHILDREN_PARENTS_NAME_COLLECTION))) {
-            errors.add(String.format(MANDATORY_ERROR_MESSAGE, CHILDREN_PARENTS_NAME_COLLECTION));
-        }
+        // commenting out since optional
+        //        if (YES.equalsIgnoreCase(inputFieldsMap.get(CHILDREN_OF_SAME_PARENT))
+        //                && org.apache.commons.lang3.StringUtils.isEmpty(
+        //                        inputFieldsMap.get(CHILDREN_PARENTS_NAME))) {
+        //            errors.add(String.format(MANDATORY_ERROR_MESSAGE, CHILDREN_PARENTS_NAME));
+        //        }
+        //
+        //        if (NO.equalsIgnoreCase(inputFieldsMap.get(CHILDREN_OF_SAME_PARENT))
+        //                && org.apache.commons.lang3.StringUtils.isEmpty(
+        //                        inputFieldsMap.get(CHILDREN_PARENTS_NAME_COLLECTION))) {
+        //            errors.add(String.format(MANDATORY_ERROR_MESSAGE, CHILDREN_PARENTS_NAME_COLLECTION));
+        //        }
 
         if (YES.equalsIgnoreCase(inputFieldsMap.get(CHILDREN_SOCIAL_AUTHORITY))
                 && org.apache.commons.lang3.StringUtils.isEmpty(

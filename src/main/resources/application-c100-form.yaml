@@ -183,7 +183,7 @@ uk:
               - otherPeopleOneRelationshipWithChildren
               - otherPeopleTwoFirstName
               - otherPeopleTwoLastName
-              - otherPeopleTwoPreviousName
+              - otherPeopleTwoPreviousNames
               - otherPeopleTwoGender
               - otherPeopleTwoDateOfBirth
               - otherPeopleTwoDateOfBirthDontKnow
