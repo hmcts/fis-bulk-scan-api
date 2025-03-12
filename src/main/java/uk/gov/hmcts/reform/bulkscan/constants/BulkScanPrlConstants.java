@@ -117,10 +117,10 @@ public final class BulkScanPrlConstants {
     // C100 Other Proceeding Fields.
     public static final String OTHER_PROCEEDING_AVAILABLE =
             "ExistingCase_onEmergencyProtection_Care_or_supervisionOrder";
-    public static final String OTHER_PROCEEDING_NAME_OF_CHILDREN = "other_case_name_of_children";
-    public static final String OTHER_PROCEEDING_CASE_NUMBER = "other_case_case_number";
-    public static final String OTHER_PROCEEDING_DATE_OF_YEAR = "other_case_date_or_year";
-    public static final String OTHER_PROCEEDING_NAME_AND_OFFICE = "other_case_name_and_office";
+    public static final String OTHER_PROCEEDING_NAME_OF_CHILDREN = "withoutNotice_otherReasons_child1_name";
+    public static final String OTHER_PROCEEDING_CASE_NUMBER = "withoutNotice_otherReasons_CaseNo";
+    public static final String OTHER_PROCEEDING_DATE_OF_YEAR = "withoutNotice_otherReasons_HearingDate_or_Yea";
+    public static final String OTHER_PROCEEDING_NAME_AND_OFFICE = "withoutNotice_otherReasons_CAFCASS_Name_and_officeAddress";
 
     public static final String OTHER_PROCEEDING_TYPE_OF_ORDER_1 =
             "withoutNotice_emergency_Protection_Order";

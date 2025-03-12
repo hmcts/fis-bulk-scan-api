@@ -685,23 +685,23 @@
       "value": "Yes"
     },
     {
-      "name": "other_case_name_of_children",
+      "name": "withoutNotice_otherReasons_child1_name",
       "value": "child1, child2"
     },
     {
-      "name": "other_case_name_of_court",
+      "name": "withoutNotice_otherReasons_name_of_the_court",
       "value": "court name"
     },
     {
-      "name": "other_case_case_number",
+      "name": "withoutNotice_otherReasons_CaseNo",
       "value": "1234567890"
     },
     {
-      "name": "other_case_date_or_year",
+      "name": "withoutNotice_otherReasons_HearingDate_or_Yea",
       "value": "22-01-2020"
     },
     {
-      "name": "other_case_name_and_office",
+      "name": "withoutNotice_otherReasons_CAFCASS_Name_and_officeAddress",
       "value": "case name and office name"
     },
     {

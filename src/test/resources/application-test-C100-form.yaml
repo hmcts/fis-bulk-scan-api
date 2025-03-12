@@ -321,11 +321,10 @@ uk:
               - respondentTwoLivedAtThisAddressForOverFiveYears
               - solicitor_fee_account_No # solicitorFeeAccountNo
               - solicitor_email_address # applicantSolicitorEmailAddress
-              - other_case_name_of_children
-              - other_case_name_of_court
-              - other_case_case_number
-              - other_case_date_or_year
-              - other_case_name_and_office
+              - withoutNotice_otherReasons_child1_name
+              - withoutNotice_otherReasons_name_of_the_court
+              - withoutNotice_otherReasons_CaseNo
+              - withoutNotice_otherReasons_HearingDate_or_Yea
               - withoutNotice_emergency_Protection_Order
               - withoutNotice_supervisionOrder
               - withoutNotice_caseOrder

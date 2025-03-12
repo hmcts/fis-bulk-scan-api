@@ -1,8 +1,6 @@
 package uk.gov.hmcts.reform.bulkscan.constants;
 
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDING_CASE_NUMBER;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDING_DATE_OF_YEAR;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDING_NAME_AND_OFFICE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDING_NAME_OF_CHILDREN;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDING_TYPE_OF_ORDER_1;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDING_TYPE_OF_ORDER_2;
@@ -447,10 +445,9 @@ public final class BulkScanConstants {
 
     public static List<String> getOtherProceedingFields() {
         return Arrays.asList(
-                OTHER_PROCEEDING_CASE_NUMBER,
-                OTHER_PROCEEDING_NAME_OF_CHILDREN,
-                OTHER_PROCEEDING_NAME_AND_OFFICE,
-                OTHER_PROCEEDING_DATE_OF_YEAR);
+            OTHER_PROCEEDING_CASE_NUMBER,
+            OTHER_PROCEEDING_NAME_OF_CHILDREN,
+            "withoutNotice_otherReasons_name_of_the_court");
     }
 
     public static List<String> getTypeOfOrderEnumFields() {
