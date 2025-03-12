@@ -39,7 +39,7 @@ import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.NOMIAM_PREVIOU
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.NOMIAM_PREVIOUSATTENDENCE_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.NOMIAM_URGENCY_DEPENDENCY_WARNING;
 import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.NOMIAM_URGENCY_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.TICK_BOX_TRUE;
+import static uk.gov.hmcts.reform.bulkscan.utils.PrlTestConstants.TICK_BOX_YES;
 import static uk.gov.hmcts.reform.bulkscan.utils.TestDataC100Util.POST_CODE;
 import static uk.gov.hmcts.reform.bulkscan.utils.TestResourceUtil.readFileFrom;
 
@@ -447,13 +447,13 @@ class BulkScanC100ServiceTest {
                 .filter(
                         eachField ->
                                 NOMIAM_DOMESTICVIOLENCE_FIELD.equalsIgnoreCase(eachField.getName()))
-                .forEach(field -> field.setValue(TICK_BOX_TRUE));
+                .forEach(field -> field.setValue(TICK_BOX_YES));
 
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
         assertEquals(
-                TICK_BOX_TRUE,
+                TICK_BOX_YES,
                 bulkScanValidationRequest.getOcrdatafields().stream()
                         .filter(
                                 eachField ->
@@ -463,8 +463,7 @@ class BulkScanC100ServiceTest {
                         .orElse(null)
                         .getValue());
 
-        assertEquals(Status.WARNINGS, res.status);
-        //assertFalse(res.getWarnings().contains(EXEMPTION_TO_ATTEND_MIAM_DEPENDENCY_WARNING));
+        assertEquals(Status.SUCCESS, res.status);
     }
 
     @Test
@@ -492,13 +491,13 @@ class BulkScanC100ServiceTest {
                         eachField ->
                                 NOMIAM_CHILDPROTECTIONCONCERNS_FIELD.equalsIgnoreCase(
                                         eachField.getName()))
-                .forEach(field -> field.setValue(TICK_BOX_TRUE));
+                .forEach(field -> field.setValue(TICK_BOX_YES));
 
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
         assertEquals(
-                TICK_BOX_TRUE,
+                TICK_BOX_YES,
                 bulkScanValidationRequest.getOcrdatafields().stream()
                         .filter(
                                 eachField ->
@@ -531,13 +530,13 @@ class BulkScanC100ServiceTest {
 
         bulkScanValidationRequest.getOcrdatafields().stream()
                 .filter(eachField -> NOMIAM_URGENCY_FIELD.equalsIgnoreCase(eachField.getName()))
-                .forEach(field -> field.setValue(TICK_BOX_TRUE));
+                .forEach(field -> field.setValue(TICK_BOX_YES));
 
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
         assertEquals(
-                TICK_BOX_TRUE,
+                TICK_BOX_YES,
                 bulkScanValidationRequest.getOcrdatafields().stream()
                         .filter(
                                 eachField ->
@@ -607,12 +606,12 @@ class BulkScanC100ServiceTest {
                         eachField ->
                                 NOMIAM_PREVIOUSATTENDENCE_FIELD.equalsIgnoreCase(
                                         eachField.getName()))
-                .forEach(field -> field.setValue(TICK_BOX_TRUE));
+                .forEach(field -> field.setValue(TICK_BOX_YES));
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
         assertEquals(
-                TICK_BOX_TRUE,
+                TICK_BOX_YES,
                 bulkScanValidationRequest.getOcrdatafields().stream()
                         .filter(
                                 eachField ->
@@ -648,13 +647,13 @@ class BulkScanC100ServiceTest {
                 .filter(
                         eachField ->
                                 NOMIAM_OTHERREASONS_FIELD.equalsIgnoreCase(eachField.getName()))
-                .forEach(field -> field.setValue(TICK_BOX_TRUE));
+                .forEach(field -> field.setValue(TICK_BOX_YES));
 
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
 
         assertEquals(
-                TICK_BOX_TRUE,
+                TICK_BOX_YES,
                 bulkScanValidationRequest.getOcrdatafields().stream()
                         .filter(
                                 eachField ->
@@ -786,7 +785,7 @@ class BulkScanC100ServiceTest {
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
-        //assertEquals("other_case_case_number should not be null or empty", res.getErrors().get(0));
+        //assertEquals("withoutNotice_otherReasons_CaseNo should not be null or empty", res.getErrors().get(0));
     }
 
     @Test

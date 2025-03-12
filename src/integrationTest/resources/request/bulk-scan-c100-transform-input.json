@@ -442,71 +442,71 @@
     },
     {
       "name":"noMIAM_DVE_courtOrder",
-      "value":"true"
+      "value":"Yes"
     },
     {
       "name":"noMIAM_DVE_protectionNotice",
-      "value":"true"
+      "value":"Yes"
     },
     {
       "name":"noMIAM_DVE_protectiveInjunction",
-      "value":"true"
+      "value":"Yes"
     },
     {
       "name":"noMIAM_DVE_noCrossUndertakingGiven",
-      "value":"true"
+      "value":"Yes"
     },
     {
       "name":"noMIAM_DVE_copyOfFactFinding",
-      "value":"true"
+      "value":"Yes"
     },
     {
       "name":"noMIAM_DVE_expertEvidenceReport",
-      "value":"true"
+      "value":"Yes"
     },
     {
       "name":"noMIAM_DVE_healthProfessionalReport",
-      "value":"true"
+      "value":"Yes"
     },
     {
       "name":"noMIAM_DVE_memberOf_MultiAgencyRiskAssessmentConferrance_letter",
-      "value":"true"
+      "value":"Yes"
     },
     {
       "name":"noMIAM_DVE_domesticViolenceAdvisor",
-      "value":"true"
+      "value":"Yes"
     },
     {
       "name":"noMIAM_DVE_independentSexualViolenceAdvisor_Letter",
-      "value":"true"
+      "value":"Yes"
     },
     {
       "name":"noMIAM_DVE_officerEmployed_localAuthority_letter",
-      "value":"true"
+      "value":"Yes"
     },
     {
       "name":"noMIAM_DVE_domesticViolenceSupportCharity_letter",
-      "value":"true"
+      "value":"Yes"
     },
     {
       "name":"noMIAM_DVE_domesticViolenceSupportCharity_refuge_letter",
-      "value":"true"
+      "value":"Yes"
     },
     {
       "name":"noMIAM_DVE_publicAuthority_confirmationLetter",
-      "value":"true"
+      "value":"Yes"
     },
     {
       "name":"noMIAM_DVE_secretaryOfState_letter",
-      "value":"true"
+      "value":"Yes"
     },
     {
       "name":"noMIAM_DVE_evidenceFinancialMatters",
-      "value":"true"
+      "value":"Yes"
     },
     {
       "name":"noMIAM_DVE_ReferralHealthProfessionalReport",
-      "value":"true"
+      "value":"Yes"
     },
     {
       "name": "respondent1_firstName",
@@ -693,23 +693,23 @@
       "value": "Yes"
     },
     {
-      "name": "other_case_name_of_children",
+      "name": "withoutNotice_otherReasons_child1_name",
       "value": "child1, child2"
     },
     {
-      "name": "other_case_name_of_court",
+      "name": "withoutNotice_otherReasons_name_of_the_court",
       "value": "court name"
     },
     {
-      "name": "other_case_case_number",
+      "name": "withoutNotice_otherReasons_CaseNo",
       "value": "1234567890"
     },
     {
-      "name": "other_case_date_or_year",
+      "name": "withoutNotice_otherReasons_HearingDate_or_Yea",
       "value": "22-01-2020"
     },
     {
-      "name": "other_case_name_and_office",
+      "name": "withoutNotice_otherReasons_CAFCASS_Name_and_officeAddress",
       "value": "case name and office name"
     },
     {
@@ -998,11 +998,11 @@
     },
     {
       "name": "mediationNotSuitable_NoneOfTheRespondentsWillingToAttendMIAM",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "applicantAndRespondentParty_AttendedMIAMSeparately",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "fmc_RegistrationNumber",

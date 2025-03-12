@@ -581,23 +581,23 @@
       "metadata_field_value": "FBurnsBBB@gmail.com"
     },
     {
-      "metadata_field_name": "other_case_name_of_children",
+      "metadata_field_name": "withoutNotice_otherReasons_child1_name",
       "metadata_field_value": "child1, child2"
     },
     {
-      "metadata_field_name": "other_case_name_of_court",
+      "metadata_field_name": "withoutNotice_otherReasons_name_of_the_court",
       "metadata_field_value": "court name"
     },
     {
-      "metadata_field_name": "other_case_case_number",
+      "metadata_field_name": "withoutNotice_otherReasons_CaseNo",
       "metadata_field_value": "1234567890"
     },
     {
-      "metadata_field_name": "other_case_date_or_year",
+      "metadata_field_name": "withoutNotice_otherReasons_HearingDate_or_Yea",
       "metadata_field_value": "22-01-2020"
     },
     {
-      "metadata_field_name": "other_case_name_and_office",
+      "metadata_field_name": "withoutNotice_otherReasons_CAFCASS_Name_and_officeAddress",
       "metadata_field_value": "case name and office name"
     },
     {

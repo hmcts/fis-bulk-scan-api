@@ -20,9 +20,7 @@ public final class PrlTestConstants {
     public static final String NOMIAM_PREVIOUSATTENDENCE_FIELD = "noMIAM_PreviousAttendence";
     public static final String NOMIAM_OTHERREASONS_FIELD = "noMIAM_otherReasons";
     public static final String POST_CODE = "TW3 1NN";
-    public static final String TICK_BOX_FALSE = "false";
     public static final String TICK_BOX_NO = "No";
-    public static final String TICK_BOX_TRUE = "true";
     public static final String TICK_BOX_YES = "Yes";
 
     public static final String RESPONDENT_ONE = "Respondent 1";
