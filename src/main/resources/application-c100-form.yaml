@@ -52,6 +52,7 @@ uk:
               - requiredSpecialAssistanceOrFacilities
               - applicantOneDateOfBirth
             optionalFields:
+              - helpWithFeesReferenceNumber
               - applicantOnePlaceOfBirth
               - applicant2_firstName
               - applicant2_lastName

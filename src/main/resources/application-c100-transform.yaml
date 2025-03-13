@@ -8,6 +8,7 @@ uk:
               CASE_TYPE_ID: PRLAPPS
               EVENT_ID: create-case-privatelaw-bs-c100
             caseDataFields:
+              helpWithFeesNumber: helpWithFeesReferenceNumber
               natureOfOrder: natureofOrder
               applicants:
                 - value:
@@ -94,7 +95,6 @@ uk:
                     dateOfBirth: child4_dateOfBirth
                     gender: child4_gender
               childrenKnownToLocalAuthorityTextArea: child1_localAuthority_or_socialWorker
-              parentalResponsibilityDetails: parentalResponsibilityDetails
               #childrenParentsName: children_parentsName
               childParentsNameCollection: child_parentsName_collection
               personWhoLivesWithChild: child_living_with_others_details
