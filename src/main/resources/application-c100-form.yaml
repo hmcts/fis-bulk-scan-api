@@ -239,6 +239,9 @@ uk:
               - noMIAM_DVE_publicAuthority_confirmationLetter
               - noMIAM_DVE_secretaryOfState_letter
               - noMIAM_DVE_evidenceFinancialMatters
+              - noMIAM_DVE_relevantConviction
+              - noMIAM_DVE_courtOrder
+              - noMIAM_DVE_protectionNotice
               - noMIAM_subjectOfEnquiries_byLocalAuthority
               - noMIAM_subjectOfCPP_byLocalAuthority
               - noMIAM_urgency_risk_to_life_liberty_or_safety
@@ -294,9 +297,6 @@ uk:
               - solicitorFeeAccountNo
               - applicantSolicitorEmailAddress
               - Checklist_claimingMIAMExemption
-              - noMIAM_DVE_relevantConviction
-              - noMIAM_DVE_courtOrder
-              - noMIAM_DVE_protectionNotice
               - assessmentByAdultLearningTeam
               - factorsAffectingPersonInCourt
               - familyMediationServiceName

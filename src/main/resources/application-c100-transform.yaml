@@ -115,12 +115,12 @@ uk:
                     previousName: respondentOnePreviousNames
                     gender: respondentOneGender
                     dateOfBirth: respondentOneDateOfBirth
-                    isDateOfBirthUnknown: respondentOneDateOfBirthDontKnow
+                    isDateOfBirthKnown: respondentOneDateOfBirthDontKnow
                     placeOfBirth: respondentOnePlaceOfBirth
                     address:
                       AddressLine1: respondentOneAddress
                     #PostCode: respondentOneAddressPostCode
-                    isAddressUnknown: respondentOneAddressDontKnow
+                    isCurrentAddressKnown: respondentOneAddressDontKnow
                     landline: respondentOneHomePhoneNumber
                     phoneNumber: respondentOneMobilePhoneNumber
                     canYouProvidePhoneNumber: respondentOneMobilePhoneNumberDontKnow
@@ -134,12 +134,12 @@ uk:
                     previousName: respondentTwoPreviousNames
                     gender: respondentTwoGender
                     dateOfBirth: respondentTwoDateOfBirth
-                    isDateOfBirthUnknown: respondentTwoDateOfBirthDontKnow
+                    isDateOfBirthKnown: respondentTwoDateOfBirthDontKnow
                     placeOfBirth: respondentTwoPlaceOfBirth
                     address:
                       AddressLine1: respondentTwoAddress
                     #PostCode: respondentTwoAddressPostCode
-                    isAddressUnknown: respondentTwoAddressDontKnow
+                    isCurrentAddressKnown: respondentTwoAddressDontKnow
                     landline: respondentTwoHomePhoneNumber
                     phoneNumber: respondentTwoMobilePhoneNumber
                     canYouProvidePhoneNumber: respondentTwoMobilePhoneNumberDontKnow
