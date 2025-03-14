@@ -404,7 +404,12 @@ uk:
                 regex: dd/MM/yyyy
               emailFields:
                 fieldNames:
-                  -
+                  - applicantOneEmailAddress
+                  - applicantTwoEmailAddress
+                  - respondentOneEmailAddress
+                  - respondentTwoEmailAddress
+                  - solicitor_email_address
+                  - applicantSolicitorEmailAddress
                 regex: ^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,6}$
               numericFields:
                 fieldNames:
@@ -412,6 +417,10 @@ uk:
                 regex: ^[0-9]*$
               postcodeFields:
                 fieldNames:
+                  - respondentOneAddressPostCode
+                  - respondentTwoAddressPostCode
+                  - applicantOneAddressPostCode
+                  - applicantTwoAddressPostCode
                   - otherPeopleOneAddressPostcode
                   - otherPeopleTwoAddressPostcode
                   - solicitorPostcode
