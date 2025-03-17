@@ -16,7 +16,6 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.getTypeOf
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.getTypeOfOrderEnumMapping;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.APPLICANT_AND_RESPONDENT_PARTY_ATTENDED_MIAM_SEPARATELY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.APPLICANT_ONLY_ATTENDED_MIAM;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.APPLICANT_ONLY_ATTENDED_MIAM_TOGETHER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.APPLICANT_REQUIRES_INTERPRETER_APPLICANT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.APPLICANT_REQUIRES_INTERPRETER_OTHER_PARTY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.APPLICANT_REQUIRES_INTERPRETER_RESPONDENT;
@@ -70,7 +69,6 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.ORDER_
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.PARTY_ENUM;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.PROHIBITED_STEPS_ORDER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.PROHIBITED_STEPS_ORDER_DESCRIPTION;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.RESPONDENT_PARTY_ARRANGED_TO_ATTEND_MIAM_SEPARATELY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.SET_OUT_REASONS_BELOW;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.SPECIAL_ISSUE_ORDER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.SPECIFIC_ISSUE_ORDER_DESCRIPTION;
@@ -1219,17 +1217,10 @@ public class BulkScanC100ConditionalTransformerService {
 
         if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get(APPLICANT_ONLY_ATTENDED_MIAM))) {
             return GroupMediatorCertifiesEnum.APPLICANT_ONLY_ATTENDED_MIAM.getDescription();
-        } else if (YesOrNo.Yes.getDisplayedValue().equals(inputFieldsMap.get(APPLICANT_ONLY_ATTENDED_MIAM_TOGETHER))) {
-            return GroupMediatorCertifiesEnum.APPLICANT_AND_RESPONDENT_ATTENDED_MIAM_TOGETHER
-                    .getDescription();
         } else if (YesOrNo.Yes.getDisplayedValue().equals(
                 inputFieldsMap.get(APPLICANT_AND_RESPONDENT_PARTY_ATTENDED_MIAM_SEPARATELY))) {
             return GroupMediatorCertifiesEnum
                     .APPLICANT_AND_RESPONDENT_PARTY_ATTENDED_MIAM_SEPARATELY
-                    .getDescription();
-        } else if (YesOrNo.Yes.getDisplayedValue().equals(
-                inputFieldsMap.get(RESPONDENT_PARTY_ARRANGED_TO_ATTEND_MIAM_SEPARATELY))) {
-            return GroupMediatorCertifiesEnum.RESPONDENT_PARTY_ARRANGED_TO_ATTEND_MIAM_SEPARATELY
                     .getDescription();
         }
         return EMPTY;

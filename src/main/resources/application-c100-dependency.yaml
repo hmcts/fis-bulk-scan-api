@@ -139,9 +139,7 @@ uk:
             - groupMediatorCertifiesAttendedMIAM:
               dependentFields:
                 - applicantOnlyAttended
-                - attendedMIAMTogether
                 - applicantAndRespondentParty_AttendedMIAMSeparately
-                - respondentPartyArranged_ToAttendMIAMSeparately
               dependentFieldValue: "Yes"
               groupFieldName: attended_MIAM
               groupValidationValue: "Yes"

@@ -139,7 +139,6 @@ uk:
                 - applicantOnly_AttendedMIAM
                 - applicantOnly_AttendedMIAMTogether
                 - applicantAndRespondentParty_AttendedMIAMSeparately
-                - respondentPartyArranged_ToAttendMIAMSeparately
               dependentFieldValue: "Yes"
               groupFieldName: attended_MIAM
               groupValidationValue: "Yes"

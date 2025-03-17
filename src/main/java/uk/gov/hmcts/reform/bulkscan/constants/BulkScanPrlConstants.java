@@ -192,12 +192,8 @@ public final class BulkScanPrlConstants {
     public static final String MEDIATOR_CERTIFIES_APPLICANT_ATTEND_MIAM =
             "mediatorCertifiesApplicantAttendMIAM";
     public static final String APPLICANT_ONLY_ATTENDED_MIAM = "applicantOnly_AttendedMIAM";
-    public static final String APPLICANT_ONLY_ATTENDED_MIAM_TOGETHER =
-            "applicantOnly_AttendedMIAMTogether";
     public static final String APPLICANT_AND_RESPONDENT_PARTY_ATTENDED_MIAM_SEPARATELY =
             "applicantAndRespondentParty_AttendedMIAMSeparately";
-    public static final String RESPONDENT_PARTY_ARRANGED_TO_ATTEND_MIAM_SEPARATELY =
-            "respondentPartyArranged_ToAttendMIAMSeparately";
     public static final String MEDIATOR_CERTIFIES_DISPUTE_RESOLUTION_NOT_PROCEEDING =
             "mediatorCertifiesDisputeResolutionNotProceeding";
     public static final String MEDIATION_NOT_PROCEEDING_APPLICANT_ATTENDED_MIAM_ALONE =

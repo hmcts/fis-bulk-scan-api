@@ -8,7 +8,7 @@ uk:
               CASE_TYPE_ID: PRLAPPS
               EVENT_ID: create-case-privatelaw-bs-c100
             caseDataFields:
-              helpWithFeesNumber: helpWithFeesReferenceNumber
+              helpWithFeesReferenceNumber: helpWithFeesReferenceNumber
               natureOfOrder: natureofOrder
               applicants:
                 - value:

@@ -265,7 +265,6 @@ uk:
               - applicantOnlyAttended
               - attendedMIAMTogether
               - applicantAndRespondentParty_AttendedMIAMSeparately
-              - respondentPartyArranged_ToAttendMIAMSeparately
               - mediationNotProceeding_applicationAttendedMIAMAlone
               - mediationNotProceeding_applicantsAndRespondentsAttendedMIAM
               - mediationNotProceeding_hasStartedButBrokenWithSomeIssue
