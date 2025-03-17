@@ -2,6 +2,7 @@ package uk.gov.hmcts.reform.bulkscan.services;
 
 import static java.util.Objects.nonNull;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICATION_PERMISSION_REQUIRED;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ASKING_PERMISSION_FOR_APPLICATION;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVING_WITH_APPLICANT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVING_WITH_OTHERS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVING_WITH_RESPONDENT;
@@ -370,6 +371,13 @@ public class BulkScanC100ConditionalTransformerService {
             populatedMap.put(HAVE_PREVIOUS_PARENTING_PLAN, YES);
         } else {
             populatedMap.put(HAVE_PREVIOUS_PARENTING_PLAN, NO);
+        }
+        if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get(ASKING_PERMISSION_FOR_APPLICATION))) {
+            populatedMap.put(APPLICATION_PERMISSION_REQUIRED, "yes");
+        } else if ("no, permission not required".equalsIgnoreCase(inputFieldsMap.get(ASKING_PERMISSION_FOR_APPLICATION))) {
+            populatedMap.put(APPLICATION_PERMISSION_REQUIRED, "notNotRequired");
+        } else if ("no, permission now sought".equalsIgnoreCase(inputFieldsMap.get(ASKING_PERMISSION_FOR_APPLICATION))) {
+            populatedMap.put(APPLICATION_PERMISSION_REQUIRED, "noNowSought");
         }
     }
 

@@ -70,7 +70,7 @@
           }
         }
       ],
-      "personWhoLivesWithChild": "living other details",
+      "childLivingWithOthersDetails": "living other details",
       "childrenOfSameParent": "Yes",
       "childLiveWith": "Applicant",
       "specialIssueOrder": "true",

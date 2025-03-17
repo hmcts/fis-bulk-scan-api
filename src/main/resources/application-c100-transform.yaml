@@ -95,14 +95,13 @@ uk:
                     dateOfBirth: child4_dateOfBirth
                     gender: child4_gender
               childrenKnownToLocalAuthorityTextArea: child1_localAuthority_or_socialWorker
-              #childrenParentsName: children_parentsName
+              childrenParentsName: children_parentsName
+              childrenOfSameParent: children_of_same_parent
               childParentsNameCollection: child_parentsName_collection
-              personWhoLivesWithChild: child_living_with_others_details
+              childLivingWithOthersDetails: child_living_with_others_details
               applicationPermissionRequiredReason: permissionRequiredReason
               applicationDetails: briefDetailsOnTheApplication
               havePreviousParentingPlan: havePreviousParentingPlan
-              #applicationPermissionRequired : askingPermissionForApplication
-              #previousOrOngoingProceedings : previous_or_ongoingProceeding
               setOutReasonsBelow: null
               effortsMadeWithRespondents: respondent_effort
               reasonsForApplicationWithoutNotice: reason_for_consideration

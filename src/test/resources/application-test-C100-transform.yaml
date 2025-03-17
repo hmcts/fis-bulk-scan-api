@@ -97,7 +97,7 @@ uk:
               parentalResponsibilityDetails: parentalResponsibilityDetails
               #childrenParentsName: children_parentsName
               childParentsNameCollection: child_parentsName_collection
-              personWhoLivesWithChild: child_living_with_others_details
+              childLivingWithOthersDetails: child_living_with_others_details
               applicationPermissionRequiredReason: permissionRequiredReason
               applicationDetails: briefDetailsOnTheApplication
               havePreviousParentingPlan: havePreviousParentingPlan
