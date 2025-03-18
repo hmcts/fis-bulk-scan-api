@@ -6,8 +6,6 @@ uk:
           FL401:
             mandatoryFields:
               - orderWithout_GivingNotice
-              - applicant_PhoneNumber
-              - applicant_Email
               - applicantFirstName
               - applicantLastName
               - applicantDoB_DD
@@ -15,13 +13,15 @@ uk:
               - applicantDoB_YYYY
               - applicantContact_Confidentiality
               - ApplyingFor_NonMolestationOrder
-              - applicant_Address_BuildingAndStreet
-              - applicant_Address_TownOrCity
-              - applicant_Address_Postcode
               - applicant_18yr_or_older
               - applicant_16 to_18y
               - applicant_under_16yr
             optionalFields:
+              - applicant_Address_BuildingAndStreet
+              - applicant_Address_TownOrCity
+              - applicant_Address_Postcode
+              - applicant_PhoneNumber
+              - applicant_Email
               - orderApplyingFor_nonmolestation
               - orderApplyingFor_occupation
               - orderWithoutGivingNoticeReason1

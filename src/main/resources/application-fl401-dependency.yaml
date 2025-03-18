@@ -52,7 +52,7 @@ uk:
               groupFieldName: applicantContact_Confidentiality
               groupValidationValue: "Yes"
               requiredFieldCount: 5
-              sectionName: "2 - your details"
+              sectionName: "2 - Address, email and phone number are mandatory"
             - occupationOrderAddressGroup:
               dependentFields:
                 - occupationOrderAddress_BuildingAndStreet
