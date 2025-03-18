@@ -30,12 +30,14 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.TreeMap;
 
+import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.Status;
 import uk.gov.hmcts.reform.bulkscan.utils.DateUtil;
 
+@Slf4j
 @Service
 public class BulkScanFL401ValidationService {
 
@@ -85,7 +87,8 @@ public class BulkScanFL401ValidationService {
 
             warningItems = new ArrayList<>();
             errorItems = new ArrayList<>();
-
+            log.info("Validating Applicant Respondent Relationship to you section {}",
+                     ocrSecApplicantRespondentRelationshipFieldsMap);
             setApplicantRespondentErrorWarningMsg(
                 bulkScanValidationResponse,
                     warningItems,
