@@ -260,6 +260,18 @@ implementation 'junit:junit:4.13.2'
 
 implementation group: 'commons-io', name: 'commons-io', version: '2.18.0'
 
+  implementation(group: 'org.springframework.boot', name: 'spring-boot-starter-logging') {
+    exclude group: 'ch.qos.logback', module: 'logback-classic'
+    exclude group: 'ch.qos.logback', module: 'logback-core'
+  }
+
+  implementation(group: 'com.microsoft.azure', name: 'applicationinsights-logging-logback') {
+    exclude group: 'ch.qos.logback', module: 'logback-classic'
+  }
+
+  implementation group: 'ch.qos.logback', name: 'logback-classic', version: '1.4.11'
+  implementation group: 'ch.qos.logback', name: 'logback-core', version: '1.4.11'
+
 implementation(group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign', version: versions.springCloud)
 	{
 	exclude group: 'io.reactivex', module: 'io.reactivex'
