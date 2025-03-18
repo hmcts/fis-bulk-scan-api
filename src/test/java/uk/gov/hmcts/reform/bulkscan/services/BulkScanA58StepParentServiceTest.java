@@ -68,7 +68,7 @@ class BulkScanA58StepParentServiceTest {
                 bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
         assertTrue(
-                res.getErrors()
+                res.getWarnings()
                         .contains(String.format(MANDATORY_ERROR_MESSAGE, "applicant1_firstName")));
     }
 
@@ -82,7 +82,7 @@ class BulkScanA58StepParentServiceTest {
                 bulkScanValidationService.validate(bulkScanValidationRequest);
         assertEquals(Status.ERRORS, res.status);
         assertTrue(
-                res.getErrors()
+                res.getWarnings()
                         .contains(String.format(MISSING_FIELD_MESSAGE, "applicant1_lastName")));
     }
 

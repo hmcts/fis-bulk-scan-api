@@ -55,7 +55,7 @@ public class BulkScanC100ValidationService extends BulkScanC100OtherSectionValid
 
         if (null != ocrDataFieldsMap && !ocrDataFieldsMap.isEmpty()) {
 
-            List<String> items = bulkScanValidationResponse.getErrors();
+            List<String> items = bulkScanValidationResponse.getWarnings();
 
             if (ocrDataFieldsMap.containsKey(PREVIOUS_OR_ONGOING_PROCEEDING)
                     && StringUtils.hasText(ocrDataFieldsMap.get(PREVIOUS_OR_ONGOING_PROCEEDING))

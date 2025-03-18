@@ -132,8 +132,8 @@ class BulkScanC100ServiceTest {
                 .forEach(field -> field.setValue(EMPTY_STRING));
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
-        assertEquals(Status.ERRORS, res.status);
-        assertTrue(res.getErrors().contains(
+        assertEquals(Status.WARNINGS, res.status);
+        assertTrue(res.getWarnings().contains(
                 "one field must be present out of"
                         + " child_living_with_Applicant,child_living_with_Respondent,"
                         + "child_living_with_others"));
@@ -211,10 +211,10 @@ class BulkScanC100ServiceTest {
                 .forEach(field -> field.setValue(EMPTY_STRING));
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
-        assertEquals(Status.ERRORS, res.status);
+        assertEquals(Status.WARNINGS, res.status);
         assertEquals(
                 "child1_localAuthority_or_socialWorker should not be null or empty",
-                res.getErrors().get(0));
+                res.getWarnings().get(0));
     }
 
     @Test
@@ -754,7 +754,7 @@ class BulkScanC100ServiceTest {
                 .forEach(field -> field.setValue(""));
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
-        assertEquals(Status.ERRORS, res.status);
+        assertEquals(Status.WARNINGS, res.status);
         assertEquals(
                 "one field must be present out of withoutNotice_emergency_Protection_Order,"
                     + "withoutNotice_supervisionOrder,withoutNotice_caseOrder,withoutNotice_childAbduction,"
@@ -762,7 +762,7 @@ class BulkScanC100ServiceTest {
                     + "withoutNotice_contact_or_residentOrder,"
                     + "withoutNotice_contact_or_residentOrder_withAdoptionOrder,"
                     + "withoutNotice_childMaintenanceOrder,withoutNotice_childArrangementOrder",
-                res.getErrors().get(0));
+                res.getWarnings().get(0));
     }
 
     @Test
@@ -779,7 +779,7 @@ class BulkScanC100ServiceTest {
                 .forEach(field -> field.setValue(""));
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
-        assertEquals(Status.ERRORS, res.status);
+        assertEquals(Status.WARNINGS, res.status);
         //assertEquals("withoutNotice_otherReasons_CaseNo should not be null or empty", res.getErrors().get(0));
     }
 
@@ -824,7 +824,7 @@ class BulkScanC100ServiceTest {
                 .forEach(field -> field.setValue(EMPTY_STRING));
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
-        assertEquals(Status.ERRORS, res.status);
+        assertEquals(Status.WARNINGS, res.status);
     }
 
     @Test

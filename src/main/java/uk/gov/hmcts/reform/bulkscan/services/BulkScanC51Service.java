@@ -63,7 +63,7 @@ public class BulkScanC51Service implements BulkScanService {
 
         // validate conditional fields
 
-        if (bulkScanValidationResponse.getErrors().isEmpty()) {
+        if (bulkScanValidationResponse.getWarnings().isEmpty()) {
             validateConditionalFields(ocrDataFields, bulkScanValidationResponse);
         }
 

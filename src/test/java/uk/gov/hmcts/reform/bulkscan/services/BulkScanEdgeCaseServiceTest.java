@@ -44,9 +44,9 @@ class BulkScanEdgeCaseServiceTest {
                         .ocrdatafields(TestDataUtil.getErrorData())
                         .build();
         BulkScanValidationResponse res = bulkScanService.validate(bulkScanValidationRequest);
-        assertEquals(Status.ERRORS, res.status);
+        assertEquals(Status.WARNINGS, res.status);
         assertTrue(
-                res.getErrors()
+                res.getWarnings()
                         .contains(String.format(MANDATORY_ERROR_MESSAGE, "appellant_lastName")));
     }
 
@@ -57,7 +57,7 @@ class BulkScanEdgeCaseServiceTest {
                         .ocrdatafields(TestDataUtil.getDateErrorData())
                         .build();
         BulkScanValidationResponse res = bulkScanService.validate(bulkScanValidationRequest);
-        assertEquals(Status.ERRORS, res.status);
+        assertEquals(Status.WARNINGS, res.status);
         assertTrue(
                 res.getWarnings()
                         .contains(String.format(DATE_FORMAT_MESSAGE, "appellant_dateOfBirth")));
@@ -70,9 +70,9 @@ class BulkScanEdgeCaseServiceTest {
                         .ocrdatafields(TestDataUtil.getEmailErrorData())
                         .build();
         BulkScanValidationResponse res = bulkScanService.validate(bulkScanValidationRequest);
-        assertEquals(Status.ERRORS, res.status);
+        assertEquals(Status.WARNINGS, res.status);
         assertTrue(
-                res.getErrors().contains(String.format(EMAIL_FORMAT_MESSAGE, "appellant_email")));
+                res.getWarnings().contains(String.format(EMAIL_FORMAT_MESSAGE, "appellant_email")));
     }
 
     @Test

@@ -59,13 +59,13 @@ public class BulkScanC100Service implements BulkScanService {
                         bulkRequest.getOcrdatafields(),
                         validationConfig);
         // Validating the Fields..child related fields
-        response.addErrors(bulkScanC100ValidationService.doChildRelatedValidation(inputFieldMap));
+        response.addWarning(bulkScanC100ValidationService.doChildRelatedValidation(inputFieldMap));
 
         // Validating the Fields..permission related fields
-        response.addErrors(bulkScanC100ValidationService.doPermissionRelatedFieldValidation(inputFieldMap));
+        response.addWarning(bulkScanC100ValidationService.doPermissionRelatedFieldValidation(inputFieldMap));
 
         // Validating the Fields..other proceeding fields
-        response.addErrors(bulkScanC100ValidationService.validateOtherProceedingFields(inputFieldMap, validationConfig));
+        response.addWarning(bulkScanC100ValidationService.validateOtherProceedingFields(inputFieldMap, validationConfig));
 
         //Dependancy warnings
         response.addWarning(
@@ -86,7 +86,7 @@ public class BulkScanC100Service implements BulkScanService {
         bulkScanC100Section6ValidationService.validate(bulkRequest, response);
 
         // Validating the Fields..Attending the Hearing
-        response.addErrors(bulkScanC100ValidationService.validateAttendingTheHearing(inputFieldMap));
+        response.addWarning(bulkScanC100ValidationService.validateAttendingTheHearing(inputFieldMap));
 
         response.changeStatus();
 

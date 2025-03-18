@@ -40,7 +40,6 @@ public class BulkScanC100Section6ValidationService implements BulkScanSectionVal
             BulkScanValidationResponse bulkScanValidationResponse) {
         Map<String, String> ocrDataFieldsMap =
                 this.getOcrDataFieldAsMap(bulkScanValidationRequest.getOcrdatafields());
-        List<String> errorItemList = bulkScanValidationResponse.getErrors();
         List<String> warningItemList = bulkScanValidationResponse.getWarnings();
 
         if (null != ocrDataFieldsMap
@@ -53,7 +52,7 @@ public class BulkScanC100Section6ValidationService implements BulkScanSectionVal
             if (section6aNonEmpty.isEmpty() && section6bNonEmpty.isEmpty()) {
                 warningItemList.add(NEITHER_6A_NOR_6B_HAS_BEEN_FILLED_UP);
             } else if (!section6aNonEmpty.isEmpty()) {
-                validateSection6a(ocrDataFieldsMap, errorItemList);
+                validateSection6a(ocrDataFieldsMap, warningItemList);
             } else if (section6bNonEmpty.size() == 1
                     && StringUtils.isEmpty(ocrDataFieldsMap.get(section6bNonEmpty.get(0)))) {
                 warningItemList.add(SECTION_6_B_WITHOUT_NOTICE_HEARING_DETAILS_IS_MISSING);
@@ -104,17 +103,17 @@ public class BulkScanC100Section6ValidationService implements BulkScanSectionVal
     }
 
     private void validateSection6a(
-            Map<String, String> ocrDataFieldsMap, List<String> errorItemList) {
+            Map<String, String> ocrDataFieldsMap, List<String> warningItemList) {
         if (!ocrDataFieldsMap.containsKey(ORDER_DIRECTION_SOUGHT)) {
-            errorItemList.add(String.format(MISSING_FIELD_MESSAGE, ORDER_DIRECTION_SOUGHT));
+            warningItemList.add(String.format(MISSING_FIELD_MESSAGE, ORDER_DIRECTION_SOUGHT));
         } else if (StringUtils.isEmpty(ocrDataFieldsMap.get(ORDER_DIRECTION_SOUGHT))) {
-            errorItemList.add(String.format(MANDATORY_ERROR_MESSAGE, ORDER_DIRECTION_SOUGHT));
+            warningItemList.add(String.format(MANDATORY_ERROR_MESSAGE, ORDER_DIRECTION_SOUGHT));
         }
 
         if (!ocrDataFieldsMap.containsKey(URGENCY_REASON)) {
-            errorItemList.add(String.format(MISSING_FIELD_MESSAGE, URGENCY_REASON));
+            warningItemList.add(String.format(MISSING_FIELD_MESSAGE, URGENCY_REASON));
         } else if (StringUtils.isEmpty(ocrDataFieldsMap.get(URGENCY_REASON))) {
-            errorItemList.add(String.format(MANDATORY_ERROR_MESSAGE, URGENCY_REASON));
+            warningItemList.add(String.format(MANDATORY_ERROR_MESSAGE, URGENCY_REASON));
         }
     }
 
