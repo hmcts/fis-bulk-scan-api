@@ -140,13 +140,6 @@ uk:
               dependentFields:
                 - applicantOnlyAttended
                 - applicantAndRespondentParty_AttendedMIAMSeparately
-              dependentFieldValue: "Yes"
-              groupFieldName: attended_MIAM
-              groupValidationValue: "Yes"
-              requiredFieldCount: 1
-              sectionName: "4b - Mediator Certifies Attended MIAM"
-            - groupMediatorCertifiesDisputeResolutionNotProceeding:
-              dependentFields:
                 - mediationNotProceeding_applicationAttendedMIAMAlone
                 - mediationNotProceeding_applicantsAndRespondentsAttendedMIAM
                 - mediationNotProceeding_hasStartedButBrokenWithSomeIssue
@@ -154,7 +147,7 @@ uk:
               groupFieldName: attended_MIAM
               groupValidationValue: "Yes"
               requiredFieldCount: 1
-              sectionName: "4b - Mediator Certifies Dispute Resolution not proceeding"
+              sectionName: "4 - MIAM provider confrms attendance at a MIAM - checkbox missing"
             - groupMediatorCertifiesMIAMTable:
               dependentFields:
                 - fmcRegistrationNumber
