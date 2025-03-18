@@ -409,7 +409,7 @@
       "value": "2024"
     },
     {
-      "name": "ApplicantContact_Confidentiality",
+      "name": "applicantContact_Confidentiality",
       "value": "Yes"
     },{
       "name":"ApplyingFor_NonMolestationOrder",
@@ -456,7 +456,7 @@
       "value": "No"
     },
     {
-      "name": "applicationFor_YourFamily",
+      "name": "applicationFor_Yourfamily",
       "value": "Yes"
     },
     {

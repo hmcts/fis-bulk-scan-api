@@ -345,7 +345,7 @@
       "metadata_field_value": "2001-03-26"
     },
     {
-      "metadata_field_name": "ApplicantContact_Confidentiality",
+      "metadata_field_name": "applicantContact_Confidentiality",
       "metadata_field_value": "No"
     },
     {
@@ -544,7 +544,7 @@
       "metadata_field_value": "No"
     },
     {
-      "metadata_field_name": "applicationFor_YourFamily",
+      "metadata_field_name": "applicationFor_Yourfamily",
       "metadata_field_value": "Yes"
     },
     {

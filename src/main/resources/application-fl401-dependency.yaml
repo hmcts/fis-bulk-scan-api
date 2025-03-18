@@ -49,8 +49,8 @@ uk:
                 - applicant_PhoneNumber
                 - applicant_Email
               dependentFieldValue: "*"
-              groupFieldName: ApplicantContact_Confidentiality
-              groupValidationValue: "No"
+              groupFieldName: applicantContact_Confidentiality
+              groupValidationValue: "Yes"
               requiredFieldCount: 5
               sectionName: "2 - your details"
             - occupationOrderAddressGroup:
@@ -163,7 +163,7 @@ uk:
                 - family_childrenDetails_row4
                 - OngoingFamilyCourtProceeding
               dependentFieldValue: "*"
-              groupFieldName: applicationFor_YourFamily
+              groupFieldName: applicationFor_Yourfamily
               groupValidationValue: "Yes"
               requiredFieldCount: 1
               sectionName: "5.3 - Details of the child or children to be protected by the order"

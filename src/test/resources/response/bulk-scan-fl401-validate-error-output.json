@@ -8,7 +8,7 @@
       "applicantDoB_DD is missing",
       "applicantDoB_MM is missing",
       "applicantDoB_YYYY is missing",
-      "ApplicantContact_Confidentiality is missing",
+      "applicantContact_Confidentiality is missing",
       "Please enter valid date for Applicant date of birth"
     ],
     "errors": [

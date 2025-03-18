@@ -13,7 +13,7 @@ uk:
               - applicantDoB_DD
               - applicantDoB_MM
               - applicantDoB_YYYY
-              - ApplicantContact_Confidentiality
+              - applicantContact_Confidentiality
               - ApplyingFor_NonMolestationOrder
               - applicant_Address_BuildingAndStreet
               - applicant_Address_TownOrCity
@@ -98,7 +98,7 @@ uk:
               - appliantRespondent_Relationship_23
               - needForParentalResponsiblity
               - applicationFor_YouOnly
-              - applicationFor_YourFamily
+              - applicationFor_Yourfamily
               - family_childrenDetails_row1
               - family_childrenDetails_row2
               - family_childrenDetails_row3

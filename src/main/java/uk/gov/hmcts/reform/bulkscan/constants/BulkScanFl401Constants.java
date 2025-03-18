@@ -48,7 +48,7 @@ public final class BulkScanFl401Constants {
 
     public static final String APPLICATION_FOR_YOU_ONLY = "applicationFor_YouOnly";
 
-    public static final String APPLICATION_FOR_YOUR_FAMILY = "applicationFor_YourFamily";
+    public static final String APPLICATION_FOR_YOUR_FAMILY = "applicationFor_Yourfamily";
 
     public static final String DOES_APPLICANT_HAVE_CHILDREN = "doesApplicantHaveChildren";
 
@@ -82,7 +82,7 @@ public final class BulkScanFl401Constants {
     public static final String APPLICANT_DATE_OF_BIRTH_MESSAGE = "Applicant date of birth";
     public static final String FL401_APPLICANT_TABLE = "fl401ApplicantTable";
     public static final String APPLICANT_CONTACT_CONFIDENTIALITY =
-            "ApplicantContact_Confidentiality";
+            "applicantContact_Confidentiality";
     public static final String IS_ADDRESS_CONFIDENTIAL = "isAddressConfidential";
     public static final String IS_PHONE_NUMBER_CONFIDENTIAL = "isPhoneNumberConfidential";
     public static final String IS_EMAIL_ADDRESS_CONFIDENTIAL = "isEmailAddressConfidential";

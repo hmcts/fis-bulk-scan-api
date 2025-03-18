@@ -345,7 +345,7 @@
       "value": "2001-03-26"
     },
     {
-      "name": "ApplicantContact_Confidentiality",
+      "name": "applicantContact_Confidentiality",
       "value": "No"
     },
     {
@@ -556,7 +556,7 @@
       "value": "No"
     },
     {
-      "name": "applicationFor_YourFamily",
+      "name": "applicationFor_Yourfamily",
       "value": "Yes"
     },
     {

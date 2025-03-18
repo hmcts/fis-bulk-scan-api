@@ -771,14 +771,14 @@ public class BulkScanFL401ConditionalTransformerService {
             LinkedTreeMap<String, Object> applicantDetails, String applicantContactConfidentiality) {
 
         if (null != applicantContactConfidentiality
-                && applicantContactConfidentiality.equalsIgnoreCase(YES)) {
+                && applicantContactConfidentiality.equalsIgnoreCase(NO)) {
 
             applicantDetails.put(IS_ADDRESS_CONFIDENTIAL, YES);
             applicantDetails.put(IS_PHONE_NUMBER_CONFIDENTIAL, YES);
             applicantDetails.put(IS_EMAIL_ADDRESS_CONFIDENTIAL, YES);
 
         } else if (null != applicantContactConfidentiality
-                && applicantContactConfidentiality.equalsIgnoreCase(NO)) {
+                && applicantContactConfidentiality.equalsIgnoreCase(YES)) {
             applicantDetails.put(IS_ADDRESS_CONFIDENTIAL, NO);
             applicantDetails.put(IS_PHONE_NUMBER_CONFIDENTIAL, NO);
             applicantDetails.put(IS_EMAIL_ADDRESS_CONFIDENTIAL, NO);
