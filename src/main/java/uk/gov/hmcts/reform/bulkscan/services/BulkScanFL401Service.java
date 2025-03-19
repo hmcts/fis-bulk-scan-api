@@ -32,7 +32,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
-import org.springframework.util.StringUtils;
 import org.springframework.web.client.HttpClientErrorException;
 import uk.gov.hmcts.reform.bulkscan.clients.CourtFinderApi;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanFormValidationConfigManager;
@@ -224,7 +223,7 @@ public class BulkScanFL401Service implements BulkScanService {
             objectMapper.convertValue(BulkScanC100ConditionalTransformerService
                                           .transformScanDocuments(bulkScanTransformationRequest), List.class));
         populatedMap.put("caseTypeOfApplication", "FL401");
-        if (StringUtils.hasText(inputFieldsMap.get("applicant_Address_Postcode"))) {
+        if (hasText(inputFieldsMap.get("applicant_Address_Postcode"))) {
             populatedMap.put("courtName", getNearestFamilyCourt(inputFieldsMap.get("applicant_Address_Postcode")));
         }
         String caseName = buildCaseName(inputFieldsMap);
