@@ -132,6 +132,7 @@ public class BulkScanC100Service implements BulkScanService {
                                 .eventId(caseTypeAndEventId.get(EVENT_ID))
                                 .caseData(populatedMap)
                                 .build())
+            .warnings(List.of("Testing warnings for transform end point"))
                 .build();
     }
 
