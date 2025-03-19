@@ -31,6 +31,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.client.HttpClientErrorException;
 import uk.gov.hmcts.reform.bulkscan.clients.CourtFinderApi;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanFormValidationConfigManager;
@@ -293,7 +294,7 @@ public class BulkScanFL401Service implements BulkScanService {
         }
         Court court = null;
         if (serviceArea != null
-            && !serviceArea.getCourts().isEmpty()) {
+            && !CollectionUtils.isEmpty(serviceArea.getCourts())) {
             court = courtFinderApi.getCourtDetails(serviceArea.getCourts()
                                                        .get(0)
                                                        .getCourtSlug());
