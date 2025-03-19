@@ -533,10 +533,12 @@ public class BulkScanFL401ConditionalTransformerService {
 
     private void updateChildDetails(ArrayList<LinkedTreeMap<String, Object>> children, ArrayList<String> childInput,
                                     String isRespondentResponsibleForChild) {
+        log.info("childInput: {}", childInput);
         for (String input : childInput) {
             LinkedTreeMap<String, String> childDetails = new LinkedTreeMap<>();
             final LinkedTreeMap<String, Object> childrenLinkedTreeMap = new LinkedTreeMap<>();
             if (null != input) {
+                log.info("input: {}", input);
                 final String[] columnDetails = input.split("|");
                 final String childName = columnDetails[0];
                 log.info("child name: {}", childName);
