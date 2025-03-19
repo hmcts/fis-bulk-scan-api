@@ -539,7 +539,7 @@ public class BulkScanFL401ConditionalTransformerService {
             final LinkedTreeMap<String, Object> childrenLinkedTreeMap = new LinkedTreeMap<>();
             if (null != input) {
                 log.info("input: {}", input);
-                final String[] columnDetails = input.split("|");
+                final String[] columnDetails = input.split("\\|");
                 final String childName = columnDetails[0];
                 log.info("child name: {}", childName);
                 String childAge = null;
@@ -583,7 +583,7 @@ public class BulkScanFL401ConditionalTransformerService {
             Map<String, Object> childrenLinkedTreeMap = new HashMap<>();
 
             if (StringUtils.hasText(input)) {
-                final String[] columnDetails = input.split("|");
+                final String[] columnDetails = input.split("\\|");
 
                 final String childName = columnDetails[0];
 
@@ -640,7 +640,7 @@ public class BulkScanFL401ConditionalTransformerService {
             final Map<String, Object> childrenLinkedTreeMap = new HashMap<>();
 
             if (StringUtils.hasText(input)) {
-                final String[] columnDetails = input.split("|");
+                final String[] columnDetails = input.split("\\|");
 
                 final String nameOfCourt = columnDetails[0];
 
@@ -750,12 +750,10 @@ public class BulkScanFL401ConditionalTransformerService {
         List<String> respondentBehaviourOptions = new ArrayList<>();
         for (FL401StopRespondentEnum l : EnumSet.allOf(FL401StopRespondentEnum.class)) {
             String key = l.getKey();
-            log.info("behavioour respondent : {} : {}", key, inputFieldsMap.get(key));
             if (null != inputFieldsMap.get(key) && inputFieldsMap.get(key).equalsIgnoreCase(YES)) {
                 respondentBehaviourOptions.add(FL401StopRespondentEnum.getValue(l.name()));
             }
         }
-        log.info("behavioour respondent : {}", respondentBehaviourOptions);
         return respondentBehaviourOptions;
     }
 

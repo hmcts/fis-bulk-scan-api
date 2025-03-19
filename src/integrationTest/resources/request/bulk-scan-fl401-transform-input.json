@@ -396,6 +396,10 @@
       "value":"JohnsCounty"
     },
     {
+      "name": "ApplyingForOccupationOrder",
+      "value": "Yes"
+    },
+    {
       "name": "occupationOrderAddress_CurrentOccupant",
       "value": "Clark Wells"
     },
