@@ -206,7 +206,7 @@ springfoxSwagger  : '3.0.0',
 s2sClient         : '4.0.3',
 springCloud       : '3.1.9',
 commonsIo         :  '2.7',
-reformsJavaLogging: '6.1.6'
+reformsJavaLogging: '6.1.8'
 ]
 
 ext {
@@ -274,7 +274,7 @@ functionalTestImplementation group: 'com.github.hmcts', name: 'service-auth-prov
 
 testImplementation(platform('org.junit:junit-bom:5.11.4'))
 testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
-testImplementation group: 'org.springframework.cloud', name: 'spring-cloud-contract-wiremock', version: '3.1.10'
+testImplementation group: 'org.springframework.cloud', name: 'spring-cloud-contract-wiremock', version: versions.springCloud
 testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test', {
 	exclude group: 'junit', module: 'junit'
 	exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
