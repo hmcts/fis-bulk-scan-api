@@ -539,12 +539,13 @@ public class BulkScanFL401ConditionalTransformerService {
             if (null != input) {
                 final String[] columnDetails = input.split("|");
                 final String childName = columnDetails[0];
-
+                log.info("child name: {}", childName);
                 String childAge = null;
 
                 try {
                     if (columnDetails.length > 1) {
                         childAge = columnDetails[1];
+                        log.info("child age: {}", childAge);
                     }
                 } catch (Exception e) {
                     log.warn(e.getMessage());
@@ -558,6 +559,7 @@ public class BulkScanFL401ConditionalTransformerService {
                 children.add(childrenLinkedTreeMap);
             }
         }
+        log.info("children: {}", children);
     }
 
     private List<Map<String, Object>> transformApplicantChild(Map<String, String> inputFieldsMap) {
