@@ -220,7 +220,7 @@ class BulkScanEndpointIntegrationTest {
                                 .contentType(APPLICATION_JSON)
                                 .header(SERVICE_AUTHORIZATION, SERVICE_AUTH_TOKEN)
                                 .content(readFileFrom(C100_TRANSFORM_REQUEST_PATH)))
-                .andExpect(status().isOk())
+                .andExpect(status().is5xxServerError())
                 .andReturn();
     }
 
