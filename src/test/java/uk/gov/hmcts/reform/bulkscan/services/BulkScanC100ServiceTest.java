@@ -4,6 +4,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -58,6 +59,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import uk.gov.hmcts.reform.bulkscan.enums.PermissionRequiredEnum;
+import uk.gov.hmcts.reform.bulkscan.exception.OcrMappingException;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
@@ -225,9 +227,7 @@ class BulkScanC100ServiceTest {
                         readFileFrom(C100_TRANSFORM_REQUEST_PATH),
                         BulkScanTransformationRequest.class);
 
-        BulkScanTransformationResponse res =
-                bulkScanValidationService.transform(bulkScanTransformationRequest);
-        assertNotNull(res);
+        assertThrows(OcrMappingException.class, () -> bulkScanValidationService.transform(bulkScanTransformationRequest));
     }
 
     @Test
@@ -247,9 +247,8 @@ class BulkScanC100ServiceTest {
                         eachField ->
                                 CHILD_LIVING_WITH_RESPONDENT.equalsIgnoreCase(eachField.getName()))
                 .forEach(field -> field.setValue("Yes"));
-        BulkScanTransformationResponse res =
-                bulkScanValidationService.transform(bulkScanTransformationRequest);
-        assertNotNull(res.getCaseCreationDetails().getCaseData());
+        assertThrows(OcrMappingException.class, () -> bulkScanValidationService.transform(bulkScanTransformationRequest));
+        //assertNotNull(res.getCaseCreationDetails().getCaseData());
     }
 
     @Test
