@@ -1,6 +1,5 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
-import static java.util.Objects.nonNull;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CASE_TYPE_ID;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.EVENT_ID;
 
@@ -16,8 +15,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanFormValidationConfigManager;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanTransformConfigManager;
-import uk.gov.hmcts.reform.bulkscan.exception.OCRMappingException;
-import uk.gov.hmcts.reform.bulkscan.group.util.BulkScanGroupValidatorUtil;
+import uk.gov.hmcts.reform.bulkscan.exception.OcrMappingException;
 import uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper;
 import uk.gov.hmcts.reform.bulkscan.helper.BulkScanValidationHelper;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
@@ -106,7 +104,7 @@ public class BulkScanC100Service implements BulkScanService {
                          .ocrdatafields(bulkScanTransformationRequest.getOcrdatafields()).build());
         if (!CollectionUtils.isEmpty(bulkScanValidationResponse.getWarnings())) {
             log.warn(bulkScanValidationResponse.getWarnings().toString());
-            throw new OCRMappingException("Please resolve all warnings before creating the case",
+            throw new OcrMappingException("Please resolve all warnings before creating the case",
                                           bulkScanValidationResponse.getWarnings());
         }
         List<OcrDataField> inputFieldsList = bulkScanTransformationRequest.getOcrdatafields();

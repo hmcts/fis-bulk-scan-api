@@ -8,15 +8,15 @@ import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class OCRMappingException extends RuntimeException {
+public class OcrMappingException extends RuntimeException {
 
     List<String> warnings = new ArrayList<>();
 
-    public OCRMappingException(String message) {
+    public OcrMappingException(String message) {
         super(message);
     }
 
-    public OCRMappingException(String message, List<String> warnings) {
+    public OcrMappingException(String message, List<String> warnings) {
         super(message);
         this.warnings = warnings;
     }
