@@ -13,6 +13,7 @@ import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import javax.validation.Valid;
@@ -22,6 +23,7 @@ import org.apache.commons.lang3.EnumUtils;
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -35,11 +37,13 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.HttpClientErrorException;
 import uk.gov.hmcts.reform.bulkscan.auth.AuthService;
+import uk.gov.hmcts.reform.bulkscan.exception.OcrMappingException;
 import uk.gov.hmcts.reform.bulkscan.factory.BulkScanServiceFactory;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationResponse;
+import uk.gov.hmcts.reform.bulkscan.model.ExceptionRecordErrorResponse;
 import uk.gov.hmcts.reform.bulkscan.model.FormType;
 import uk.gov.hmcts.reform.bulkscan.model.Status;
 import uk.gov.hmcts.reform.bulkscan.services.postcode.PostcodeLookupService;
@@ -256,13 +260,30 @@ public class BulkScanEndpoint {
         return status(HttpStatus.BAD_REQUEST).body(errors);
     }
 
+    @ExceptionHandler(OcrMappingException.class)
+    public ResponseEntity<ExceptionRecordErrorResponse> handle(OcrMappingException exception) {
+        log.error("An error has occured during the bulk scanning OCR transformation process: {}",
+                  exception.getMessage(), exception);
+        HttpHeaders headers = new HttpHeaders();
+        headers.setContentType(MediaType.APPLICATION_JSON);
+        List<String> warnings;
+        if (!exception.getWarnings().isEmpty()) {
+            warnings = exception.getWarnings();
+        } else {
+            warnings = Arrays.asList("OCR Data Mapping Error:" + exception.getMessage());
+        }
+        List<String> errors = Arrays.asList("OCR fields could not be mapped to a case");
+        ExceptionRecordErrorResponse errorResponse = new ExceptionRecordErrorResponse(errors, warnings);
+        return new ResponseEntity<>(errorResponse, headers, HttpStatus.UNPROCESSABLE_ENTITY);
+    }
+
     @ExceptionHandler(Exception.class)
     protected ResponseEntity<String> handleDefaultException(Exception exception) {
         logger.info("Default exception handler handling the exception {}", exception.getMessage());
         logger.error(exception.getMessage(), exception);
         String errors =
-                "Default exception handler handling the exception "
-                        + ExceptionUtils.getStackTrace(exception);
+                "Default exception handler - handling the exception "
+                        + exception.getMessage();
         return status(HttpStatus.INTERNAL_SERVER_ERROR).body(errors);
     }
 }
