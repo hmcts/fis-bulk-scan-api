@@ -1,7 +1,6 @@
 package uk.gov.hmcts.reform.bulkscan.controllers;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertThrows;
 import static org.mockito.Mockito.when;
 import static org.springframework.http.HttpHeaders.CONTENT_TYPE;
 import static uk.gov.hmcts.reform.bulkscan.model.FormType.C100;
@@ -20,11 +19,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import uk.gov.hmcts.reform.bulkscan.auth.AuthService;
 import uk.gov.hmcts.reform.bulkscan.endpoints.BulkScanEndpoint;
-import uk.gov.hmcts.reform.bulkscan.exception.OcrMappingException;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationRequest;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanTransformationResponse;
 import uk.gov.hmcts.reform.bulkscan.model.BulkScanValidationRequest;
 import uk.gov.hmcts.reform.bulkscan.services.postcode.PostcodeLookupService;
+import uk.gov.hmcts.reform.bulkscan.utils.TestDataC100Util;
 import uk.gov.hmcts.reform.bulkscan.utils.TestDataUtil;
 
 @SpringBootTest
@@ -84,15 +83,15 @@ class BulkScanEndpointTest {
         // Given
         BulkScanTransformationRequest bulkScanTransformationRequest =
                 BulkScanTransformationRequest.builder()
-                        .ocrdatafields(TestDataUtil.getData())
+                        .ocrdatafields(TestDataC100Util.getData())
                         .formType(C100.name())
                         .build();
 
         // When
-        assertThrows(OcrMappingException.class, () -> bulkScanEndpoint.transformationOcrData(
-            S2S_TOKEN, CONTENT_TYPE, bulkScanTransformationRequest));
+        ResponseEntity<BulkScanTransformationResponse> response = bulkScanEndpoint
+            .transformationOcrData(S2S_TOKEN, CONTENT_TYPE, bulkScanTransformationRequest);
         // Then
-        //assertEquals(response.getStatusCode(), HttpStatus.OK);
+        assertEquals(response.getStatusCode(), HttpStatus.OK);
     }
 
     @Test

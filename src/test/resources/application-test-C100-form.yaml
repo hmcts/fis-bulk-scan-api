@@ -348,8 +348,8 @@ uk:
               - applicantTwoAddressPostCode
               - respondentTwoAddressPostCode
               - respondentTwoLivedAtThisAddressForOverFiveYears
-              - solicitor_fee_account_No # solicitorFeeAccountNo
-              - solicitor_email_address # applicantSolicitorEmailAddress
+              - solicitorFeeAccountNo # solicitorFeeAccountNo
+              - applicantSolicitorEmailAddress #solicitor_email_address
               - withoutNotice_otherReasons_child1_name
               - withoutNotice_otherReasons_child2_name
               - withoutNotice_otherReasons_child3_name
@@ -407,7 +407,7 @@ uk:
                   - applicantTwoEmailAddress
                   - respondentOneEmailAddress
                   - respondentTwoEmailAddress
-                  - solicitor_email_address
+                  - applicantSolicitorEmailAddress
                   - applicantSolicitorEmailAddress
                 regex: ^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,6}$
               numericFields:

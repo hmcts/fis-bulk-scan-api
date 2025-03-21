@@ -14,7 +14,7 @@
             "dateOfBirth":"02/09/87",
             "placeOfBirth":"Surrey",
             "AddressLine1":"Hackney",
-            "PostCode":"w34fgt",
+            "PostCode":"LE3 0AW",
             "landline":"07876540984",
             "phoneNumber":"08766540984",
             "email":"johnnyj@hotmail.uk",
@@ -33,11 +33,11 @@
               {
                 "value":{
                   "AddressLine1":"Richmond",
-                  "PostCode":"W93qb"
+                  "PostCode":"LE2 0NN"
                 }
               }
             ],
-            "solicitorTelephone":"7876567984",
+            "solicitorTelephone":"07876567984",
             "solicitorFaxNumber":"8766509984",
             "dxNumber":"8766509984",
             "solicitorReference":"IO908765",
@@ -54,7 +54,7 @@
             "dateOfBirth":"03/09/45",
             "placeOfBirth":"Colchester",
             "AddressLine1":"London",
-            "PostCode":"w12ghw",
+            "PostCode":"LE2 0NN",
             "landline":"07347678354",
             "phoneNumber":"03476785563",
             "email":"wendy@hotmail.uk",

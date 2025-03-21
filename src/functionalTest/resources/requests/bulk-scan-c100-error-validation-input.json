@@ -86,7 +86,7 @@
     },
     {
       "name":"applicant1AddressPostCode",
-      "value":"w34fgt"
+      "value":"LE3 0AW"
     },
     {
       "name":"applicant1HomePhoneNumber",
@@ -129,35 +129,35 @@
       "value":"03/09/45"
     },
     {
-      "name":"applicant2PlaceOfBirth",
+      "name":"applicantTwoPlaceOfBirth",
       "value":"Colchester"
     },
     {
-      "name":"applicant2Address",
+      "name":"applicantTwoAddress",
       "value":"London"
     },
     {
-      "name":"applicant2AddressPostCode",
-      "value":"w12ghw"
+      "name":"applicantTwoAddressPostCode",
+      "value":"LE2 0NN"
     },
     {
-      "name":"applicant2HomePhoneNumber",
+      "name":"applicantTwoHomePhoneNumber",
       "value":"07347678354"
     },
     {
-      "name":"applicant2MobilePhoneNumber",
+      "name":"applicantTwoMobilePhoneNumber",
       "value":"03476785563"
     },
     {
-      "name":"applicant2EmailAddress",
+      "name":"applicantTwoEmailAddress",
       "value":"wendy@hotmail.uk"
     },
     {
-      "name":"applicant2LivedAtThisAddressForOverFiveYears",
+      "name":"applicantTwoLivedAtThisAddressForOverFiveYears",
       "value":"Yes"
     },
     {
-      "name":"applicant2AllAddressesForLastFiveYears",
+      "name":"applicantTwoAllAddressesForLastFiveYears",
       "value":"Baker St"
     },
     {
@@ -362,47 +362,47 @@
       "value":"yes"
     },
     {
-      "name":"doYouHaveSolicitor",
+      "name":"isApplicantSolicitorPresent",
       "value":"yes"
     },
     {
-      "name":"your_solicitor_name",
+      "name":"solicitorFullName",
       "value":"Frank Burns"
     },
     {
-      "name":"solicitor_firm_name",
+      "name":"solicitorFirmName",
       "value":"Burns, Burns and Burns"
     },
     {
-      "name":"solicitor_address",
+      "name":"solicitorAddress",
       "value":"Richmond"
     },
     {
-      "name":"solicitor_postcode",
-      "value":"W93qb"
+      "name":"solicitorPostcode",
+      "value":"LE2 0NN"
     },
     {
-      "name":"solicitor_telephone_number",
-      "value":"7876567984"
+      "name":"solicitorTelephoneNumber",
+      "value":"07876567984"
     },
     {
-      "name":"solicitor_fax_number",
+      "name":"solicitorFaxNumber",
       "value":"8766509984"
     },
     {
-      "name":"solicitor_dx_number",
+      "name":"solicitorDxNumber",
       "value":"8766509984"
     },
     {
-      "name":"solicitor_reference",
+      "name":"solicitorReference",
       "value":"IO908765"
     },
     {
-      "name":"solicitor_fee_account_No",
+      "name":"solicitorFeeAccountNo",
       "value":"9876567984"
     },
     {
-      "name":"solicitor_email_address",
+      "name":"applicantSolicitorEmailAddress",
       "value":"FBurnsBBB@gmail.com"
     }
   ]
