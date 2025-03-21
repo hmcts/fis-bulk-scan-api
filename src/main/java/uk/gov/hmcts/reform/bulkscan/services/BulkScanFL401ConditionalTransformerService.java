@@ -71,6 +71,7 @@ import java.util.Map;
 import java.util.UUID;
 
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
@@ -537,28 +538,30 @@ public class BulkScanFL401ConditionalTransformerService {
         for (String input : childInput) {
             LinkedTreeMap<String, String> childDetails = new LinkedTreeMap<>();
             final LinkedTreeMap<String, Object> childrenLinkedTreeMap = new LinkedTreeMap<>();
-            if (null != input) {
+            if (StringUtils.hasText(input)) {
                 log.info("input: {}", input);
                 final String[] columnDetails = input.split("\\|");
-                final String childName = columnDetails[0];
-                log.info("child name: {}", childName);
-                String childAge = null;
+                if (!ArrayUtils.isEmpty(columnDetails)) {
+                    final String childName = columnDetails[0];
+                    log.info("child name: {}", childName);
+                    String childAge = null;
 
-                try {
-                    if (columnDetails.length > 1) {
-                        childAge = columnDetails[1];
-                        log.info("child age: {}", childAge);
+                    try {
+                        if (columnDetails.length > 1) {
+                            childAge = columnDetails[1];
+                            log.info("child age: {}", childAge);
+                        }
+                    } catch (Exception e) {
+                        log.warn(e.getMessage());
                     }
-                } catch (Exception e) {
-                    log.warn(e.getMessage());
+                    childDetails.put(CHILD_FULL_NAME, childName);
+                    childDetails.put(CHILD_AGE, childAge != null ? childAge.trim() : null);
+                    childDetails.put(RESPONDENT_RESPONSIBLE_FOR_CHILD, isRespondentResponsibleForChild);
+                    childDetails.put("keepChildrenInfoConfidential", NO);
+                    childrenLinkedTreeMap.put("id", UUID.randomUUID().toString());
+                    childrenLinkedTreeMap.put(VALUE, childDetails);
+                    children.add(childrenLinkedTreeMap);
                 }
-                childDetails.put(CHILD_FULL_NAME, childName);
-                childDetails.put(CHILD_AGE, childAge != null ? childAge.trim() : null);
-                childDetails.put(RESPONDENT_RESPONSIBLE_FOR_CHILD, isRespondentResponsibleForChild);
-                childDetails.put("keepChildrenInfoConfidential", NO);
-                childrenLinkedTreeMap.put("id", UUID.randomUUID().toString());
-                childrenLinkedTreeMap.put(VALUE, childDetails);
-                children.add(childrenLinkedTreeMap);
             }
         }
         log.info("children: {}", children);
