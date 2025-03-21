@@ -16,6 +16,7 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.HAS_APPLI
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_ATTENDED_MIAM_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_ERROR_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NO;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PERMISSION_REQUIRED;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PERMISSION_REQUIRED_REASON;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.XOR_CONDITIONAL_FIELDS_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES;
@@ -134,9 +135,9 @@ public class BulkScanC100ValidationService extends BulkScanC100OtherSectionValid
      */
     public List<String> doPermissionRelatedFieldValidation(Map<String, String> inputFieldsMap) {
         List<String> errors = new ArrayList<>();
-        if (null != inputFieldsMap.get(ASKING_PERMISSION_FOR_APPLICATION)
-                && YES.equalsIgnoreCase(inputFieldsMap.get(ASKING_PERMISSION_FOR_APPLICATION))
-                && null == inputFieldsMap.get(PERMISSION_REQUIRED_REASON)) {
+        if ((YES.equalsIgnoreCase(inputFieldsMap.get(ASKING_PERMISSION_FOR_APPLICATION))
+                || YES.equalsIgnoreCase(inputFieldsMap.get(PERMISSION_REQUIRED)))
+                && !StringUtils.hasText(inputFieldsMap.get(PERMISSION_REQUIRED_REASON))) {
             errors.add(String.format(MANDATORY_ERROR_MESSAGE, PERMISSION_REQUIRED_REASON));
         }
         return errors;
