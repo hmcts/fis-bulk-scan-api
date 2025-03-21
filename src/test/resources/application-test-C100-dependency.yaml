@@ -69,8 +69,10 @@ uk:
               sectionName: "3c - Urgency - atleast 1 required of noMIAM_urgency_{*}"
             - groupNoMIAMPreviousAttendence:
               dependentFields:
-                - noMIAM_PreviousAttendenceReason
-              dependentFieldValue: "Yes"
+                - previousMIAM_nonCourtDisputeResolution_4month
+                - previousMIAM_existingProceeding_exepmtMIAM
+                - otherExemption_NoEvidence_reason
+              dependentFieldValue: "*"
               groupFieldName: noMIAM_PreviousAttendence
               groupValidationValue: "Yes"
               requiredFieldCount: 1
@@ -103,12 +105,12 @@ uk:
               sectionName: "Section 8,9 - atleast 1 required of internationalElement_Resident_of_another_state, internationalElement_jurisdictionIssue, internationalElement_request_toCentral_or_Consular_authority, factorAffectingLitigationCapacity, assessmentByAdultLearningTeam, factorsAffectingPersonInCourt"
             - groupWelshRequired:
               dependentFields:
-                - nameOfPartyWhoNeedsWelsh
+                - nameOfPartyWhoNeedsWelsh_1
               dependentFieldValue: "*"
               groupFieldName: applicantRequiresWelsh
               groupValidationValue: "Yes"
               requiredFieldCount: 1
-              sectionName: "Welsh Required"
+              sectionName: "Welsh Required - nameOfPartyWhoNeedsWelsh_1 is missing"
             - groupInterpreterRequired:
               dependentFields:
                 - applicantRequiresInterpreter_otherParty_dialect
@@ -116,7 +118,7 @@ uk:
               groupFieldName: applicantRequiresInterpreter
               groupValidationValue: "Yes"
               requiredFieldCount: 1
-              sectionName: "Interpreter Required"
+              sectionName: "Interpreter Required - applicantRequiresInterpreter_otherParty_dialect is missing"
             - groupIntermediaryRequired:
               dependentFields:
                 - applicantRequiresInterpreter_intermediaryRequired_details
@@ -124,7 +126,7 @@ uk:
               groupFieldName: applicantRequiresInterpreter_intermediaryRequired
               groupValidationValue: "Yes"
               requiredFieldCount: 1
-              sectionName: "Intermediary Required"
+              sectionName: "Intermediary Required - applicantRequiresInterpreter_intermediaryRequired_details is missing"
             - groupSpecialArrangementsRequired:
               dependentFields:
                 - requiredSpecialAssistanceOrFacilities_details
@@ -133,18 +135,11 @@ uk:
               groupFieldName: requiredSpecialAssistanceOrFacilities
               groupValidationValue: "Yes"
               requiredFieldCount: 1
-              sectionName: "Special Arrangements Required"
+              sectionName: "Special Arrangements Required - atleast 1 required of requiredSpecialAssistanceOrFacilities_details, requiredSpecialArrangementDetails"
             - groupMediatorCertifiesAttendedMIAM:
               dependentFields:
-                - applicantOnly_AttendedMIAM
-                - applicantOnly_AttendedMIAMTogether
+                - applicantOnlyAttended
                 - applicantAndRespondentParty_AttendedMIAMSeparately
-              dependentFieldValue: "Yes"
-              groupFieldName: attended_MIAM
-              groupValidationValue: "Yes"
-              requiredFieldCount: 1
-            - groupMediatorCertifiesDisputeResolutionNotProceeding:
-              dependentFields:
                 - mediationNotProceeding_applicationAttendedMIAMAlone
                 - mediationNotProceeding_applicantsAndRespondentsAttendedMIAM
                 - mediationNotProceeding_hasStartedButBrokenWithSomeIssue
@@ -152,15 +147,41 @@ uk:
               groupFieldName: attended_MIAM
               groupValidationValue: "Yes"
               requiredFieldCount: 1
+              sectionName: "4 - MIAM provider - atleast 1 required of applicantOnlyAttended, applicantAndRespondentParty_AttendedMIAMSeparately, mediationNotProceeding_applicationAttendedMIAMAlone, mediationNotProceeding_applicantsAndRespondentsAttendedMIAM, mediationNotProceeding_hasStartedButBrokenWithSomeIssue"
             - groupMediatorCertifiesMIAMTable:
               dependentFields:
-                - fmc_RegistrationNumber
-                - family_Mediation_ServiceName
-                - sole_TraderName
+                - fmcRegistrationNumber
+                - familyMediationServiceName
+                - soleTraderName
                 - authorizedFamilyMediator_address
                 - authorizedFamilyMediator_date
               dependentFieldValue: "*"
               groupFieldName: attended_MIAM
               groupValidationValue: "Yes"
               requiredFieldCount: 5
+              sectionName: "4b - Mediation broken/unresolved - missing one of fmcRegistrationNumber, familyMediationServiceName, soleTraderName, authorizedFamilyMediator_address, authorizedFamilyMediator_date"
+            - groupPreviousOrOngoingProceedings:
+              dependentFields:
+                - withoutNotice_otherReasons_child1_name
+                - withoutNotice_otherReasons_name_of_the_court
+                - withoutNotice_otherReasons_CaseNo
+              dependentFieldValue: "*"
+              groupFieldName: previous_or_ongoingProceeding
+              groupValidationValue: "Yes"
+              requiredFieldCount: 3
+              sectionName: "Section 7: Without Notice - missing one of required of withoutNotice_otherReasons_child1_name, withoutNotice_otherReasons_name_of_the_court, withoutNotice_otherReasons_CaseNo"
 
+            - groupApplicantSolicitor:
+              dependentFields:
+                - solicitorFullName
+                - solicitorAddress
+                - solicitorPostcode
+                - solicitorDxNumber
+                - solicitorReference
+                - solicitorFeeAccountNo
+                - applicantSolicitorEmailAddress
+              dependentFieldValue: "*"
+              groupFieldName: isApplicantSolicitorPresent
+              groupValidationValue: "Yes"
+              requiredFieldCount: 7
+              sectionName: "Section 14 - one of the fields is missing: solicitorFullName, solicitorAddress, solicitorPostcode, solicitorDxNumber, solicitorReference, solicitorFeeAccountNo, applicantSolicitorEmailAddress"

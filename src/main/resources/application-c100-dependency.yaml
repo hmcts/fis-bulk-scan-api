@@ -169,7 +169,7 @@ uk:
               groupFieldName: previous_or_ongoingProceeding
               groupValidationValue: "Yes"
               requiredFieldCount: 3
-              sectionName: "Section 7: Without Notice - atleast 1 required of withoutNotice_otherReasons_child1_name, withoutNotice_otherReasons_name_of_the_court, withoutNotice_otherReasons_CaseNo"
+              sectionName: "Section 7: Without Notice - missing one of withoutNotice_otherReasons_child1_name, withoutNotice_otherReasons_name_of_the_court, withoutNotice_otherReasons_CaseNo"
 
             - groupApplicantSolicitor:
               dependentFields:

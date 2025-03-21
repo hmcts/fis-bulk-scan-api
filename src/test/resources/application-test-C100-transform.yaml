@@ -8,6 +8,7 @@ uk:
               CASE_TYPE_ID: PRLAPPS
               EVENT_ID: create-case-privatelaw-bs-c100
             caseDataFields:
+              helpWithFeesReferenceNumber: helpWithFeesReferenceNumber
               natureOfOrder: natureofOrder
               applicants:
                 - value:
@@ -94,15 +95,13 @@ uk:
                     dateOfBirth: child4_dateOfBirth
                     gender: child4_gender
               childrenKnownToLocalAuthorityTextArea: child1_localAuthority_or_socialWorker
-              parentalResponsibilityDetails: parentalResponsibilityDetails
-              #childrenParentsName: children_parentsName
+              childrenParentsName: children_parentsName
+              childrenOfSameParent: children_of_same_parent
               childParentsNameCollection: child_parentsName_collection
               childLivingWithOthersDetails: child_living_with_others_details
               applicationPermissionRequiredReason: permissionRequiredReason
               applicationDetails: briefDetailsOnTheApplication
               havePreviousParentingPlan: havePreviousParentingPlan
-              #applicationPermissionRequired : askingPermissionForApplication
-              #previousOrOngoingProceedings : previous_or_ongoingProceeding
               setOutReasonsBelow: null
               effortsMadeWithRespondents: respondent_effort
               reasonsForApplicationWithoutNotice: reason_for_consideration
@@ -174,3 +173,20 @@ uk:
               caRespondent2InternalFlags:
                 groupId: caRespondent2
                 visibility: Internal
+
+              #printFullName: printFullName
+              #agreedBy: applicantSolicitorsFirmName
+              #SignedDate: applicantAndApplicantsolicitorSignedDate
+              #positionOrOfficeHeld: position_or_OfficeHeld
+              #courtFeeConsent: courtFeeConsent
+              #isInterpreterNeeded: applicantRequiresInterpreter
+              #interpreterNeeds:
+              #  - value:
+              #      language: applicantRequiresInterpreter_otherParty_dialect
+              #      otherAssistance: applicantRequiresInterpreter_otherParty_details
+              #isIntermediaryNeeded: applicantRequiresInterpreter_intermediaryRequired
+              #isSpecialArrangementsRequired: requiredSpecialAssistanceOrFacilities
+              #reasonsForIntermediary: applicantRequiresInterpreter_intermediaryRequired_details
+              #specialArrangementsRequired: requiredSpecialAssistanceOrFacilities_details
+              #authorizedFamilyMediatorAddress: authorizedFamilyMediator_address
+              #authorizedFamilyMediatorDate: authorizedFamilyMediator_date

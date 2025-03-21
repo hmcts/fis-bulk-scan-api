@@ -602,8 +602,8 @@ class BulkScanC100ServiceTest {
                         .findAny()
                         .orElse(null)
                         .getValue());
-        assertEquals(Status.SUCCESS, res.status);
-        assertFalse(res.getWarnings().contains(NOMIAM_PREVIOUSATTENDENCE_DEPENDENCY_WARNING));
+        assertEquals(Status.WARNINGS, res.status);
+        assertTrue(res.getWarnings().contains(NOMIAM_PREVIOUSATTENDENCE_DEPENDENCY_WARNING));
     }
 
     @Test

@@ -566,6 +566,7 @@ public class BulkScanC100ConditionalTransformerService {
             interpreterNeed.put(VALUE, value);
             List<Map<String, Object>> interpreterNeeds = new ArrayList<>();
             interpreterNeeds.add(interpreterNeed);
+            populatedMap.put("interpreterNeeds", interpreterNeeds);
         } else {
             populatedMap.put("isInterpreterNeeded", NO);
         }

@@ -52,11 +52,16 @@ uk:
               - requiredSpecialAssistanceOrFacilities
               - applicantOneDateOfBirth
             optionalFields:
+              - helpWithFeesReferenceNumber
               - applicantOnePlaceOfBirth
               - applicant2_firstName
               - applicant2_lastName
               - respondent2_firstName
               - respondent2_lastName
+              - child1_dateOfBirth_dontKnow
+              - child2_dateOfBirth_dontKnow
+              - child3_dateOfBirth_dontKnow
+              - child4_dateOfBirth_dontKnow
               - child1_dateOfBirth
               - child2_firstName
               - child2_lastName
@@ -234,6 +239,9 @@ uk:
               - noMIAM_DVE_publicAuthority_confirmationLetter
               - noMIAM_DVE_secretaryOfState_letter
               - noMIAM_DVE_evidenceFinancialMatters
+              - noMIAM_DVE_relevantConviction
+              - noMIAM_DVE_courtOrder
+              - noMIAM_DVE_protectionNotice
               - noMIAM_subjectOfEnquiries_byLocalAuthority
               - noMIAM_subjectOfCPP_byLocalAuthority
               - noMIAM_urgency_risk_to_life_liberty_or_safety
@@ -288,9 +296,6 @@ uk:
               - solicitorFeeAccountNo
               - applicantSolicitorEmailAddress
               - Checklist_claimingMIAMExemption
-              - noMIAM_DVE_relevantConviction
-              - noMIAM_DVE_courtOrder
-              - noMIAM_DVE_protectionNotice
               - assessmentByAdultLearningTeam
               - factorsAffectingPersonInCourt
               - familyMediationServiceName
@@ -298,9 +303,34 @@ uk:
               - applicantRequiresWelsh_1_written
               - applicantRequiresWelsh_1_Spoken
               - nameOfPartyWhoNeedsWelsh_1
+              - applicantRequiresWelsh_2_Both
+              - applicantRequiresWelsh_2_written
+              - applicantRequiresWelsh_2_Spoken
+              - nameOfPartyWhoNeedsWelsh_2
+              - applicantRequiresWelsh_3_Both
+              - applicantRequiresWelsh_3_written
+              - applicantRequiresWelsh_3_Spoken
+              - nameOfPartyWhoNeedsWelsh_3
+              - applicantRequiresWelsh_4_Both
+              - applicantRequiresWelsh_4_written
+              - applicantRequiresWelsh_4_Spoken
+              - nameOfPartyWhoNeedsWelsh_4
+              - applicantRequiresWelsh_5_Both
+              - applicantRequiresWelsh_5_written
+              - applicantRequiresWelsh_5_Spoken
+              - nameOfPartyWhoNeedsWelsh_5
+              - applicantRequiresWelsh_6_Both
+              - applicantRequiresWelsh_6_written
+              - applicantRequiresWelsh_6_Spoken
+              - nameOfPartyWhoNeedsWelsh_6
+              - applicantRequiresWelsh_7_Both
+              - applicantRequiresWelsh_7_written
+              - applicantRequiresWelsh_7_Spoken
+              - nameOfPartyWhoNeedsWelsh_7
               - signed_authorizedFamilyMediator
               - applicantAndRespondentPartysAttendedMIAMSeparately
               - respondentPartysArrangedToAttendMIAMSeparately
+              - mediationNotProceeding_applicantsAttendedMIAMAlone
 
 
               - noMIAM_urgency_removalFromUnitedKingdom  # noMIAM_urgency_removalFromUnitedKingdom
@@ -321,6 +351,10 @@ uk:
               - solicitor_fee_account_No # solicitorFeeAccountNo
               - solicitor_email_address # applicantSolicitorEmailAddress
               - withoutNotice_otherReasons_child1_name
+              - withoutNotice_otherReasons_child2_name
+              - withoutNotice_otherReasons_child3_name
+              - withoutNotice_otherReasons_child4_name
+              - nameOfParticipantsInMiam
               - withoutNotice_otherReasons_name_of_the_court
               - withoutNotice_otherReasons_CaseNo
               - withoutNotice_otherReasons_HearingDate_or_Yea
@@ -349,6 +383,7 @@ uk:
               - applicantOnly_AttendedMIAMTogether
               - family_Mediation_ServiceName #familyMediationServiceName
               - sole_TraderName #soleTraderName
+              - section7AdditionalSheetsAttached
             regexValidationFields:
               dateFields:
                 fieldNames:
@@ -368,7 +403,12 @@ uk:
                 regex: dd/MM/yyyy
               emailFields:
                 fieldNames:
-                  -
+                  - applicantOneEmailAddress
+                  - applicantTwoEmailAddress
+                  - respondentOneEmailAddress
+                  - respondentTwoEmailAddress
+                  - solicitor_email_address
+                  - applicantSolicitorEmailAddress
                 regex: ^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,6}$
               numericFields:
                 fieldNames:
@@ -376,6 +416,10 @@ uk:
                 regex: ^[0-9]*$
               postcodeFields:
                 fieldNames:
+                  - respondentOneAddressPostCode
+                  - respondentTwoAddressPostCode
+                  - applicantOneAddressPostCode
+                  - applicantTwoAddressPostCode
                   - otherPeopleOneAddressPostcode
                   - otherPeopleTwoAddressPostcode
                   - solicitorPostcode
