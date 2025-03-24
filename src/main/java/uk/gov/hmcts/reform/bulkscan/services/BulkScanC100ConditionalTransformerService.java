@@ -467,10 +467,14 @@ public class BulkScanC100ConditionalTransformerService {
                                                                     "dd/MM/yyyy", "yyyy-MM-dd"));
                     party.put(VALUE, value);
                 }
-                if (ObjectUtils.isNotEmpty(value.get("doTheyHaveLegalRepresentation"))
-                    && YES.equalsIgnoreCase(String.valueOf(value.get("doTheyHaveLegalRepresentation")))) {
-                    value.put("doTheyHaveLegalRepresentation", "yes");
-                    party.put(VALUE, value);
+                if (ObjectUtils.isNotEmpty(value.get("doTheyHaveLegalRepresentation"))) {
+                    if (YES.equalsIgnoreCase(String.valueOf(value.get("doTheyHaveLegalRepresentation")))) {
+                        value.put("doTheyHaveLegalRepresentation", "yes");
+                        party.put(VALUE, value);
+                    } else {
+                        value.put("doTheyHaveLegalRepresentation", "no");
+                        party.put(VALUE, value);
+                    }
                 }
                 Map<String, String> address = (Map<String, String>) value.get("address");
                 if (ObjectUtils.isEmpty(address.get("AddressLine1"))) {
