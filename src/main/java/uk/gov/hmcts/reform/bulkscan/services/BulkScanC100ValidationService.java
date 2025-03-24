@@ -166,18 +166,6 @@ public class BulkScanC100ValidationService extends BulkScanC100OtherSectionValid
                                     .concat(",")
                                     .concat(CHILD_LIVING_WITH_OTHERS)));
         }
-        // commenting out since optional
-        //        if (YES.equalsIgnoreCase(inputFieldsMap.get(CHILDREN_OF_SAME_PARENT))
-        //                && org.apache.commons.lang3.StringUtils.isEmpty(
-        //                        inputFieldsMap.get(CHILDREN_PARENTS_NAME))) {
-        //            errors.add(String.format(MANDATORY_ERROR_MESSAGE, CHILDREN_PARENTS_NAME));
-        //        }
-        //
-        //        if (NO.equalsIgnoreCase(inputFieldsMap.get(CHILDREN_OF_SAME_PARENT))
-        //                && org.apache.commons.lang3.StringUtils.isEmpty(
-        //                        inputFieldsMap.get(CHILDREN_PARENTS_NAME_COLLECTION))) {
-        //            errors.add(String.format(MANDATORY_ERROR_MESSAGE, CHILDREN_PARENTS_NAME_COLLECTION));
-        //        }
 
         if (YES.equalsIgnoreCase(inputFieldsMap.get(CHILDREN_SOCIAL_AUTHORITY))
                 && org.apache.commons.lang3.StringUtils.isEmpty(

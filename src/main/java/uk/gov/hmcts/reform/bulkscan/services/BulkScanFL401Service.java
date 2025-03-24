@@ -38,6 +38,7 @@ import uk.gov.hmcts.reform.bulkscan.config.BulkScanFormValidationConfigManager;
 import uk.gov.hmcts.reform.bulkscan.config.BulkScanTransformConfigManager;
 import uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants;
 import uk.gov.hmcts.reform.bulkscan.enums.FL401StopRespondentEnum;
+import uk.gov.hmcts.reform.bulkscan.exception.OcrMappingException;
 import uk.gov.hmcts.reform.bulkscan.exception.PostCodeValidationException;
 import uk.gov.hmcts.reform.bulkscan.group.util.BulkScanGroupValidatorUtil;
 import uk.gov.hmcts.reform.bulkscan.helper.BulkScanTransformHelper;
@@ -198,6 +199,13 @@ public class BulkScanFL401Service implements BulkScanService {
     @SuppressWarnings("unchecked")
     public BulkScanTransformationResponse transform(
             BulkScanTransformationRequest bulkScanTransformationRequest) {
+        BulkScanValidationResponse bulkScanValidationResponse = validate(BulkScanValidationRequest.builder()
+                     .ocrdatafields(bulkScanTransformationRequest.getOcrdatafields()).build());
+        if (!CollectionUtils.isEmpty(bulkScanValidationResponse.getWarnings())) {
+            log.warn(bulkScanValidationResponse.getWarnings().toString());
+            throw new OcrMappingException("Please resolve all warnings before creating the case",
+                                          bulkScanValidationResponse.getWarnings());
+        }
         List<OcrDataField> inputFieldsList = bulkScanTransformationRequest.getOcrdatafields();
 
         FormType formType = getCaseType();
