@@ -396,14 +396,18 @@ public class BulkScanFL401ConditionalTransformerService {
             populatedMap.put("isInterpreterNeeded", YesOrNo.No);
         }
         if (YES.equalsIgnoreCase(inputFieldsMap.get("disabilitySupport_NeededAtCourt"))) {
-            populatedMap.put("isDisabilityPresent", YesOrNo.Yes);
             populatedMap.put("adjustmentsRequired", inputFieldsMap.get("disabilitySupport_details"));
+        } else {
+            populatedMap.put("isDisabilityPresent", YesOrNo.No);
         }
         String specialArrangements = getFormattedSpecialMeasureAtCourt(inputFieldsMap);
-        if (null != specialArrangements) {
+        if (StringUtils.hasText(specialArrangements)) {
             populatedMap.put("isSpecialArrangementsRequired", YES);
-
+        } else {
+            populatedMap.put("isSpecialArrangementsRequired", NO);
         }
+        populatedMap.put("isIntermediaryNeeded", NO);
+        populatedMap.put("isWelshNeeded", NO);
     }
 
     private void tranformReasonForWithoutNotice(Map<String, Object> populatedMap, Map<String, String> inputFieldsMap) {
