@@ -9,8 +9,8 @@ import lombok.RequiredArgsConstructor;
 public enum TypeOfOrderEnum {
     @JsonProperty("emergencyProtectionOrder")
     emergencyProtectionOrder("emergencyProtectionOrder", "Emergency Protection Order"),
-    @JsonProperty("superviosionOrder")
-    superviosionOrder("superviosionOrder", "Supervision Order"),
+    @JsonProperty("supervisionOrder")
+    supervisionOrder("supervisionOrder", "Supervision Order"),
     @JsonProperty("careOrder")
     careOrder("careOrder", "Care Order"),
     @JsonProperty("childAbduction")

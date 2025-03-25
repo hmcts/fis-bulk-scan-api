@@ -89,7 +89,7 @@
       "value":"0908776545"
     },
     {
-      "name":"occupationOrderAddress_IntendedOccupant",
+      "name":"occupationOrderAddress_IntentedOccupant",
       "value":"Johnny"
     },
     {
@@ -137,8 +137,8 @@
       "value":"Johnny"
     },
     {
-      "name":"MortgageOnProperty_Person",
-      "value":"Boy"
+      "name":"MortgageOnProperty_Person_applicant",
+      "value":"applicant"
     },
     {
       "name":"MortgageOnProperty_Person_Others",
@@ -273,39 +273,39 @@
       "value": "Yes"
     },
     {
-      "name": "applicantRespondent_Relationship_01",
+      "name": "applicantRespondent_Relationship_1",
       "value": "No"
     },
     {
-      "name": "applicantRespondent_Relationship_02",
+      "name": "applicantRespondent_Relationship_2",
       "value": "No"
     },
     {
-      "name": "applicantRespondent_Relationship_03",
+      "name": "applicantRespondent_Relationship_3",
       "value": "No"
     },
     {
-      "name": "applicantRespondent_Relationship_04",
+      "name": "applicantRespondent_Relationship_4",
       "value": "No"
     },
     {
-      "name": "applicantRespondent_Relationship_05",
+      "name": "applicantRespondent_Relationship_5",
       "value": "No"
     },
     {
-      "name": "applicantRespondent_Relationship_06",
+      "name": "applicantRespondent_Relationship_6",
       "value": "No"
     },
     {
-      "name": "applicantRespondent_Relationship_07",
+      "name": "applicantRespondent_Relationship_7",
       "value": "No"
     },
     {
-      "name": "applicantRespondent_Relationship_08",
+      "name": "applicantRespondent_Relationship_8",
       "value": "No"
     },
     {
-      "name": "applicantRespondent_Relationship_09",
+      "name": "applicantRespondent_Relationship_9",
       "value": "No"
     },
     {
@@ -393,24 +393,24 @@
       "value": "No"
     },
     {
-      "name": "applicationFor_YourFamily",
+      "name": "applicationFor_Yourfamily",
       "value": "Yes"
     },
     {
       "name": "family_childrenDetails_row1",
-      "value": "Bill, 03/04/08, father, yes, mother"
+      "value": "Bill | 03/04/08 | father| yes| mother"
     },
     {
       "name": "family_childrenDetails_row2",
-      "value": "Will, 04/05/11, father, no, mother"
+      "value": "Will| 04/05/11| father| no| mother"
     },
     {
       "name": "family_childrenDetails_row3",
-      "value": "Ash, 11/05/16, Mother, no, father"
+      "value": "Ash|11/05/16| Mother| no| father"
     },
     {
       "name":"family_childrenDetails_row4",
-      "value":"Jerry, 12/05/17, father, no, mother"
+      "value":"Jerry| 12/05/17| father| no| mother"
     },
     {
       "name":"OngoingFamilyCourtProceeding",
@@ -418,46 +418,54 @@
     },
     {
       "name":"OngoingFamilyCourtProceeding_row1",
-      "value":"Windsor Ct, 232134, Civil"
+      "value":"Windsor Ct | 232134 | Civil"
     },
     {
       "name":"OngoingFamilyCourtProceeding_row2",
-      "value":"Nottingham Ct, 432134, Adoption"
+      "value":"Nottingham Ct | 432134 | Adoption"
     },
     {
       "name":"OngoingFamilyCourtProceeding_row3",
-      "value":"Williamsburgh Ct, 762134, Removal of Child"
+      "value":"Williamsburgh Ct | 762134 | Removal of Child"
     },
     {
-      "name":"statementOfTruth_Line1",
+      "name":"StatementOfTruth_Line1",
       "value":"Yes"
     },
     {
-      "name":"statementOfTruth_Line2",
+      "name":"StatementOfTruth_Line2",
       "value":"Yes"
     },
     {
-      "name":"statementOfTruth_ApplicantFlag",
+      "name":"StatementOfTruth_ApplicantFlag",
       "value":"John North"
     },
     {
-      "name":"statementOfTruth_LegalRepresentative",
+      "name":"StatementOfTruth_LegalRepresentative",
       "value":"Gene Wilder"
     },
     {
-      "name":"statementOfTruth_Date",
-      "value":"02/04/22"
+      "name":"StatementOfTruth_Date_DD",
+      "value":"02"
     },
     {
-      "name":"statementOfTruth_FullName",
+      "name":"StatementOfTruth_Date_MM",
+      "value":"02"
+    },
+    {
+      "name":"StatementOfTruth_Date_YYYY",
+      "value":"2022"
+    },
+    {
+      "name":"StatementOfTruth_FullName",
       "value":"John B. North"
     },
     {
-      "name":"statementOfTruth_FirmName",
+      "name":"StatementOfTruth_FirmName",
       "value":"Wilder and Wilder"
     },
     {
-      "name":"statementOfTruth_PositionHeld",
+      "name":"StatementOfTruth_PositionHeld",
       "value":"Legal Rep"
     }
   ]

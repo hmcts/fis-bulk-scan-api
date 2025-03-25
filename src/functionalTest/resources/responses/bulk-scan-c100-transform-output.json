@@ -1,7 +1,7 @@
 {
   "case_creation_details":{
     "case_type_id":"PRLAPPS",
-    "event_id":"create-case-privatelaw-bs",
+    "event_id":"create-case-privatelaw-bs-c100",
     "case_data":{
       "miamOtherGroundsChecklist":"miamOtherGroundsChecklistEnum_Value_9",
       "applicants":[
@@ -14,9 +14,9 @@
             "dateOfBirth":"02/09/87",
             "placeOfBirth":"Surrey",
             "AddressLine1":"Hackney",
-            "PostCode":"w34fgt",
-            "landline":"7876540984",
-            "phoneNumber":"8766540984",
+            "PostCode":"LE3 0AW",
+            "landline":"07876540984",
+            "phoneNumber":"08766540984",
             "email":"johnnyj@hotmail.uk",
             "isAtAddressLessThan5Years":null,
             "addressLivedLessThan5YearsDetails":"Hackney",
@@ -33,11 +33,11 @@
               {
                 "value":{
                   "AddressLine1":"Richmond",
-                  "PostCode":"W93qb"
+                  "PostCode":"LE2 0NN"
                 }
               }
             ],
-            "solicitorTelephone":"7876567984",
+            "solicitorTelephone":"07876567984",
             "solicitorFaxNumber":"8766509984",
             "dxNumber":"8766509984",
             "solicitorReference":"IO908765",
@@ -50,13 +50,13 @@
             "firstName":"Wendy",
             "lastName":"Chan",
             "previousName":"Walters",
-            "gender":"Female",
+            "gender":"female",
             "dateOfBirth":"03/09/45",
             "placeOfBirth":"Colchester",
             "AddressLine1":"London",
-            "PostCode":"w12ghw",
-            "landline":"7347678354",
-            "phoneNumber":"3476785563",
+            "PostCode":"LE2 0NN",
+            "landline":"07347678354",
+            "phoneNumber":"03476785563",
             "email":"wendy@hotmail.uk",
             "isAtAddressLessThan5Years":null,
             "addressLivedLessThan5YearsDetails":"Baker St"
@@ -149,7 +149,7 @@
       "parentalResponsibilityDetails":"parentResponsibility",
       "familyMediatorMiam":null,
       "miamPreviousAttendanceChecklist":"miamPreviousAttendanceChecklistEnum_Value_4",
-      "childrenKNownToLocalAuthorityTextArea":"socialWorker",
+      "childrenKnownToLocalAuthorityTextArea":"socialWorker",
       "isSpecialArrangementsRequired":"Yes",
       "welshNeeds":[
         {
@@ -178,7 +178,7 @@
         "MIAMChildProtectionConcernChecklistEnum_value_2"
       ],
       "litigationCapacityReferrals":"Assessment by adult learning team",
-      "childrenKNownToLocalAuthority":"Yes",
+      "childrenKnownToLocalAuthority":"Yes",
       "respondents":[
         {
           "value":{
@@ -187,11 +187,11 @@
             "previousName":null,
             "gender":"male",
             "dateOfBirth":"20/02/2002",
-            "isDateOfBirthUnknown":null,
+            "isDateOfBirthKnown":null,
             "placeOfBirth":"London",
             "AddressLine1":"123, Topsfield Parade",
             "PostCode":"N8 8PE",
-            "isAddressUnknown":null,
+            "isCurrentAddressKnown":null,
             "landline":"+442083332222",
             "phoneNumber":"+447999444444",
             "canYouProvidePhoneNumber":null,
@@ -208,11 +208,11 @@
             "previousName":null,
             "gender":"female",
             "dateOfBirth":"21/02/2002",
-            "isDateOfBirthUnknown":null,
+            "isDateOfBirthKnown":null,
             "placeOfBirth":"London",
             "AddressLine1":"124, Topsfield Parade",
             "PostCode":"N8 8PE",
-            "isAddressUnknown":null,
+            "isCurrentAddressKnown":null,
             "landline":"+442081112222",
             "phoneNumber":"+447999666666",
             "canYouProvidePhoneNumber":null,
@@ -286,7 +286,7 @@
       "positionOrOfficeHeld":"Manager",
       "setWithoutNoticeHearing":null,
       "doYouRequireAWithoutNoticeHearing":null,
-      "personWhoLivesWithChild":"living other details",
+      "childLivingWithOthersDetails":"living other details",
       "soleTraderName":"tet teradder",
       "doYouRequireAHearingWithReducedNotice":null,
       "jurisdictionIssueGiveReason":"International jurisdiction big issue",
@@ -312,7 +312,7 @@
             "firstName":"Fausat",
             "lastName":"Adeyemi",
             "previousName":"",
-            "gender":"Female",
+            "gender":"female",
             "dateOfBirth":"21/02/2002",
             "isDateOfBirthKnown":"",
             "AddressLine1":"240 London Street",
@@ -342,7 +342,7 @@
             "fullName":"Rachel Queen",
             "DateOfBirth":"23/02/2002",
             "DateOfBirthDontKnow":"",
-            "Gender":"Female",
+            "Gender":"female",
             "RelationshipToApplicants":"Cousin",
             "RelationshipToRespondents":""
           }

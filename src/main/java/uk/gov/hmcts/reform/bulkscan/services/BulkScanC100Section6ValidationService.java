@@ -3,7 +3,6 @@ package uk.gov.hmcts.reform.bulkscan.services;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_ERROR_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MISSING_FIELD_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.APPLICATION_TIMETABLE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.EITHER_SECTION_6_A_OR_6_B_SHOULD_BE_BE_FILLED_UP_NOT_BOTH;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.NEITHER_6A_NOR_6B_HAS_BEEN_FILLED_UP;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.ORDER_DIRECTION_SOUGHT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.REASON_FOR_CONSIDERATION;
@@ -41,7 +40,6 @@ public class BulkScanC100Section6ValidationService implements BulkScanSectionVal
             BulkScanValidationResponse bulkScanValidationResponse) {
         Map<String, String> ocrDataFieldsMap =
                 this.getOcrDataFieldAsMap(bulkScanValidationRequest.getOcrdatafields());
-        List<String> errorItemList = bulkScanValidationResponse.getErrors();
         List<String> warningItemList = bulkScanValidationResponse.getWarnings();
 
         if (null != ocrDataFieldsMap
@@ -51,12 +49,10 @@ public class BulkScanC100Section6ValidationService implements BulkScanSectionVal
                         ocrDataFieldsMap.get(URGENT_OR_WITHOUT_HEARING))) {
             List<String> section6aNonEmpty = getSection6aNonEmptyFields(ocrDataFieldsMap);
             List<String> section6bNonEmpty = getSection6bNonEmptyFields(ocrDataFieldsMap);
-            if (!section6aNonEmpty.isEmpty() && !section6bNonEmpty.isEmpty()) {
-                warningItemList.add(EITHER_SECTION_6_A_OR_6_B_SHOULD_BE_BE_FILLED_UP_NOT_BOTH);
-            } else if (section6aNonEmpty.isEmpty() && section6bNonEmpty.isEmpty()) {
+            if (section6aNonEmpty.isEmpty() && section6bNonEmpty.isEmpty()) {
                 warningItemList.add(NEITHER_6A_NOR_6B_HAS_BEEN_FILLED_UP);
             } else if (!section6aNonEmpty.isEmpty()) {
-                validateSection6a(ocrDataFieldsMap, errorItemList);
+                validateSection6a(ocrDataFieldsMap, warningItemList);
             } else if (section6bNonEmpty.size() == 1
                     && StringUtils.isEmpty(ocrDataFieldsMap.get(section6bNonEmpty.get(0)))) {
                 warningItemList.add(SECTION_6_B_WITHOUT_NOTICE_HEARING_DETAILS_IS_MISSING);
@@ -107,17 +103,17 @@ public class BulkScanC100Section6ValidationService implements BulkScanSectionVal
     }
 
     private void validateSection6a(
-            Map<String, String> ocrDataFieldsMap, List<String> errorItemList) {
+            Map<String, String> ocrDataFieldsMap, List<String> warningItemList) {
         if (!ocrDataFieldsMap.containsKey(ORDER_DIRECTION_SOUGHT)) {
-            errorItemList.add(String.format(MISSING_FIELD_MESSAGE, ORDER_DIRECTION_SOUGHT));
+            warningItemList.add(String.format(MISSING_FIELD_MESSAGE, ORDER_DIRECTION_SOUGHT));
         } else if (StringUtils.isEmpty(ocrDataFieldsMap.get(ORDER_DIRECTION_SOUGHT))) {
-            errorItemList.add(String.format(MANDATORY_ERROR_MESSAGE, ORDER_DIRECTION_SOUGHT));
+            warningItemList.add(String.format(MANDATORY_ERROR_MESSAGE, ORDER_DIRECTION_SOUGHT));
         }
 
         if (!ocrDataFieldsMap.containsKey(URGENCY_REASON)) {
-            errorItemList.add(String.format(MISSING_FIELD_MESSAGE, URGENCY_REASON));
+            warningItemList.add(String.format(MISSING_FIELD_MESSAGE, URGENCY_REASON));
         } else if (StringUtils.isEmpty(ocrDataFieldsMap.get(URGENCY_REASON))) {
-            errorItemList.add(String.format(MANDATORY_ERROR_MESSAGE, URGENCY_REASON));
+            warningItemList.add(String.format(MANDATORY_ERROR_MESSAGE, URGENCY_REASON));
         }
     }
 

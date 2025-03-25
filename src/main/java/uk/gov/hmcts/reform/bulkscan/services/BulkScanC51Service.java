@@ -63,7 +63,7 @@ public class BulkScanC51Service implements BulkScanService {
 
         // validate conditional fields
 
-        if (bulkScanValidationResponse.getErrors().isEmpty()) {
+        if (bulkScanValidationResponse.getWarnings().isEmpty()) {
             validateConditionalFields(ocrDataFields, bulkScanValidationResponse);
         }
 
@@ -124,7 +124,7 @@ public class BulkScanC51Service implements BulkScanService {
 
         FormType formType = getCaseType();
 
-        caseData.put(BULK_SCAN_CASE_REFERENCE, bulkScanTransformationRequest.getId());
+        caseData.put(BULK_SCAN_CASE_REFERENCE, bulkScanTransformationRequest.getEnvelopeId());
 
         Map<String, String> inputFieldsMap = getOcrDataFieldAsMap(inputFieldsList);
 

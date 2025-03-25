@@ -485,7 +485,7 @@ class BulkScanC100ValidationServiceTest {
         fieldList.add(ocrDataFirstNameField);
 
         OcrDataField ocrDataLastNameField = new OcrDataField();
-        ocrDataLastNameField.setName("existingCase_onEmergencyProtection_Care_or_supervisioNorder");
+        ocrDataLastNameField.setName("ExistingCase_onEmergencyProtection_Care_or_supervisionOrder");
         ocrDataLastNameField.setValue("No");
         fieldList.add(ocrDataLastNameField);
 
@@ -493,11 +493,6 @@ class BulkScanC100ValidationServiceTest {
         ocrProhibitedStepsOrderField.setName("exemption_to_attend_MIAM");
         ocrProhibitedStepsOrderField.setValue("No");
         fieldList.add(ocrProhibitedStepsOrderField);
-
-        OcrDataField ocrSpecialIssueOrderField = new OcrDataField();
-        ocrSpecialIssueOrderField.setName("familyMember_Intimation_on_No_MIAM");
-        ocrSpecialIssueOrderField.setValue("No");
-        fieldList.add(ocrSpecialIssueOrderField);
 
         OcrDataField ocrAttendedMiamField = new OcrDataField();
         ocrAttendedMiamField.setName("attended_MIAM");

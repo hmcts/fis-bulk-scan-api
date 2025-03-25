@@ -1,8 +1,6 @@
 package uk.gov.hmcts.reform.bulkscan.constants;
 
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDING_CASE_NUMBER;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDING_DATE_OF_YEAR;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDING_NAME_AND_OFFICE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDING_NAME_OF_CHILDREN;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDING_TYPE_OF_ORDER_1;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.OTHER_PROCEEDING_TYPE_OF_ORDER_2;
@@ -200,15 +198,10 @@ public final class BulkScanConstants {
 
     // C100 form section 2 validation fields
 
-    public static final String PREVIOUS_OR_ONGOING_PROCEEDING = "previous_or_ongoingProceeding";
-
     public static final String EXISTING_CASE_ON_EMERGENCY_PROTECTION_CARE_OR_SUPERVISION_ORDER =
-            "existingCase_onEmergencyProtection_Care_or_supervisioNorder";
+            "ExistingCase_onEmergencyProtection_Care_or_supervisionOrder";
 
     public static final String EXEMPTION_TO_ATTEND_MIAM = "exemption_to_attend_MIAM";
-
-    public static final String FAMILY_MEMBER_INTIMATION_ON_NO_MIAM =
-            "familyMember_Intimation_on_No_MIAM";
 
     public static final String ATTENDED_MIAM = "attended_MIAM";
 
@@ -238,15 +231,15 @@ public final class BulkScanConstants {
 
     // C100 form section 12 validation fields
     public static final String RESPONDENT1LIVEDATTHISADDRESSFOROVERFIVEYEARS =
-            "respondent1LivedAtThisAddressForOverFiveYears";
+            "respondentOneLivedAtThisAddressForOverFiveYears";
     public static final String RESPONDENT2LIVEDATTHISADDRESSFOROVERFIVEYEARS =
-            "respondent2LivedAtThisAddressForOverFiveYears";
+            "respondentTwoLivedAtThisAddressForOverFiveYears";
     public static final String RESPONDENT_ONE = "Respondent 1";
     public static final String RESPONDENT1ALLADDRESSESFORLASTFIVEYEARS =
-            "respondent1AllAddressesForLastFiveYears";
+            "respondentOneAllAddressesForLastFiveYears";
     public static final String RESPONDENT_TWO = "Respondent 2";
     public static final String RESPONDENT2ALLADDRESSESFORLASTFIVEYEARS =
-            "respondent2AllAddressesForLastFiveYears";
+            "respondentTwoAllAddressesForLastFiveYears";
 
     // END C100 form section 12 validation fields
 
@@ -425,37 +418,36 @@ public final class BulkScanConstants {
         Map<String, String> map = new HashMap<>();
         map.put(
                 OTHER_PROCEEDING_TYPE_OF_ORDER_1,
-                TypeOfOrderEnum.emergencyProtectionOrder.getDisplayedValue());
+                TypeOfOrderEnum.emergencyProtectionOrder.toString());
         map.put(
                 OTHER_PROCEEDING_TYPE_OF_ORDER_2,
-                TypeOfOrderEnum.superviosionOrder.getDisplayedValue());
-        map.put(OTHER_PROCEEDING_TYPE_OF_ORDER_3, TypeOfOrderEnum.careOrder.getDisplayedValue());
+                TypeOfOrderEnum.supervisionOrder.toString());
+        map.put(OTHER_PROCEEDING_TYPE_OF_ORDER_3, TypeOfOrderEnum.careOrder.toString());
         map.put(
                 OTHER_PROCEEDING_TYPE_OF_ORDER_4,
-                TypeOfOrderEnum.childAbduction.getDisplayedValue());
-        map.put(OTHER_PROCEEDING_TYPE_OF_ORDER_5, TypeOfOrderEnum.otherOrder.getDisplayedValue());
+                TypeOfOrderEnum.childAbduction.toString());
+        map.put(OTHER_PROCEEDING_TYPE_OF_ORDER_5, TypeOfOrderEnum.otherOrder.toString());
         map.put(
                 OTHER_PROCEEDING_TYPE_OF_ORDER_6,
-                TypeOfOrderEnum.contactOrResidenceOrder.getDisplayedValue());
+                TypeOfOrderEnum.contactOrResidenceOrder.toString());
         map.put(
                 OTHER_PROCEEDING_TYPE_OF_ORDER_7,
-                TypeOfOrderEnum.contactOrResidenceOrderWithAdoption.getDisplayedValue());
+                TypeOfOrderEnum.contactOrResidenceOrderWithAdoption.toString());
         map.put(
                 OTHER_PROCEEDING_TYPE_OF_ORDER_8,
-                TypeOfOrderEnum.orderRelatingToChildMaintainance.getDisplayedValue());
+                TypeOfOrderEnum.orderRelatingToChildMaintainance.toString());
         map.put(
                 OTHER_PROCEEDING_TYPE_OF_ORDER_9,
-                TypeOfOrderEnum.childArrangementsOrder.getDisplayedValue());
+                TypeOfOrderEnum.childArrangementsOrder.toString());
 
         return map;
     }
 
     public static List<String> getOtherProceedingFields() {
         return Arrays.asList(
-                OTHER_PROCEEDING_CASE_NUMBER,
-                OTHER_PROCEEDING_NAME_OF_CHILDREN,
-                OTHER_PROCEEDING_NAME_AND_OFFICE,
-                OTHER_PROCEEDING_DATE_OF_YEAR);
+            OTHER_PROCEEDING_CASE_NUMBER,
+            OTHER_PROCEEDING_NAME_OF_CHILDREN,
+            "withoutNotice_otherReasons_name_of_the_court");
     }
 
     public static List<String> getTypeOfOrderEnumFields() {

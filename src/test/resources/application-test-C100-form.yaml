@@ -5,49 +5,17 @@ uk:
         caseTypeofApplication:
           C100:
             mandatoryFields:
-              - applicant1FirstName
-              - applicant1LastName
-              - applicant1DateOfBirth
-              - applicant1PlaceOfBirth
+              - applicantOneFirstName
+              - applicantOneLastName
+              - applicant1_firstName
+              - applicant1_lastName
+              - respondentOneFirstName
+              - respondentOneLastName
+              - respondent1_firstName
+              - respondent1_lastName
               - childArrangement_order
               - prohibitedSteps_order
               - specialIssue_order
-              - child1_firstName
-              - child1_lastName
-              - child1_dateOfBirth
-              - child1_gender
-              - childrenServicesAuthority
-              - children_of_same_parent
-              - subject_to_childProtectionPlan
-              - applicantRequiresWelsh
-              - applicantRequiresInterpreter
-              - applicantRequiresInterpreter_intermediaryRequired
-              - requiredSpecialAssistanceOrFacilities
-            optionalFields:
-              - applicant1Gender
-              - applicant1PreviousNames
-              - applicant1Address
-              - applicant1AddressPostCode
-              - applicant1HomePhoneNumber
-              - applicant1MobilePhoneNumber
-              - applicant1EmailAddress
-              - applicant1LivedAtThisAddressForOverFiveYears
-              - applicant1AllAddressesForLastFiveYears
-              - applicant2FirstName
-              - applicant2LastName
-              - applicant2PreviousNames
-              - applicant2Gender
-              - applicant2DateOfBirth
-              - applicant2PlaceOfBirth
-              - applicant2Address
-              - applicant2AddressPostCode
-              - applicant2HomePhoneNumber
-              - applicant2MobilePhoneNumber
-              - applicant2EmailAddress
-              - applicant2LivedAtThisAddressForOverFiveYears
-              - applicant2AllAddressesForLastFiveYears
-              - respondent1_firstName
-              - respondent1_lastName
               - natureofOrder
               - domesticAbuse
               - childAbduction
@@ -60,203 +28,16 @@ uk:
               - isConsentOrder
               - international_or_factorsAffectingLitigation
               - welshRequired
+              - child1_firstName
+              - child1_lastName
+              - child1_gender
               - child1_orderAppliedFor
               - child1_applicant1_relationship
               - child1_respondent1_relationship
-              - child1_localAuthority_or_socialWorker
-              - children_parentsName
-              - child_parentsName_collection
-              - parentalResponsibilityDetails
-              - child_living_with_others_details
               - child_living_with_Applicant
               - child_living_with_Respondent
               - child_living_with_others
-              - child2_firstName
-              - child2_lastName
-              - child2_dateOfBirth
-              - child2_gender
-              - child2_orderAppliedFor
-              - child2_applicant1_relationship
-              - child2_respondent1_relationship
-              - child2_localAuthority_or_socialWorker
-              - child3_firstName
-              - child3_lastName
-              - child3_dateOfBirth
-              - child3_gender
-              - child3_orderAppliedFor
-              - child3_applicant1_relationship
-              - child3_respondent1_relationship
-              - child3_localAuthority_or_socialWorker
-              - child4_firstName
-              - child4_lastName
-              - child4_dateOfBirth
-              - child4_gender
-              - child4_orderAppliedFor
-              - child4_applicant1_relationship
-              - child4_respondent1_relationship
-              - child4_localAuthority_or_socialWorker
-              - previous_or_ongoingProceeding
-              - existingCase_onEmergencyProtection_Care_or_supervisioNorder
-              - exemption_to_attend_MIAM
-              - familyMember_Intimation_on_No_MIAM
-              - attended_MIAM
-              - permissionRequired
-              - permissionRequiredReason
-              - briefDetailsOnTheApplication
-              - havePreviousParentingPlan
-              - askingPermissionForApplication
-              - NoMIAM_domesticViolence
-              - NoMIAM_childProtectionConcerns
-              - NoMIAM_Urgency
-              - NoMIAM_PreviousAttendence
-              - NoMIAM_otherReasons
-              - NoMIAM_DVE_arrestedForSimilarOffence
-              - NoMIAM_DVE_relevantPoliceCaution
-              - NoMIAM_DVE_relevantCriminalProceeding
-              - NoMIAM_DVE_relevantConviction
-              - NoMIAM_DVE_courtOrder
-              - NoMIAM_DVE_protectionNotice
-              - NoMIAM_DVE_protectiveInjunction
-              - NoMIAM_DVE_NoCrossUndertakingGiven
-              - NoMIAM_DVE_copyOfFactFinding
-              - NoMIAM_DVE_expertEvidenceReport
-              - NoMIAM_DVE_healthProfessionalReport
-              - NoMIAM_DVE_ReferralHealthProfessionalReport
-              - NoMIAM_DVE_memberOf_MultiAgencyRiskAssessmentConferrance_letter
-              - NoMIAM_DVE_domesticViolenceAdvisor
-              - NoMIAM_DVE_independentSexualViolenceAdvisor_Letter
-              - NoMIAM_DVE_officerEmployed_localAuthority_letter
-              - NoMIAM_DVE_domesticViolenceSupportCharity_letter
-              - NoMIAM_DVE_domesticViolenceSupportCharity_refuge_letter
-              - NoMIAM_DVE_publicAuthority_confirmationLetter
-              - NoMIAM_DVE_secretaryOfState_letter
-              - NoMIAM_DVE_evidenceFinancialMatters
-              - NoMIAM_domesticViolence
-              - NoMIAM_childProtectionConcerns
-              - NoMIAM_Urgency
-              - NoMIAM_PreviousAttendence
-              - NoMIAM_otherReasons
-              - NoMIAM_otherExceptions
-              - NoMIAM_subjectOfEnquiries_byLocalAuthority
-              - NoMIAM_subjectOfCPP_byLocalAuthority
-              - NoMIAM_urgency_risk_to_life_liberty_or_safety
-              - NoMIAM_urgency_riskOfHarm
-              - NoMIAM_urgency_risk_to_unlawfulRemoval
-              - NoMIAM_urgency_risk_to_miscarriageOfJustice
-              - NoMIAM_urgency_unreasonablehardship
-              - NoMIAM_urgency_irretrievableProblem
-              - NoMIAM_urgency_conflictWithOtherStateCourts
-              - NoMIAM_PreviousAttendenceReason
-              - parentalResponsibilityDetails
-              - respondent1FirstName
-              - respondent1LastName
-              - respondent1PreviousNames
-              - respondent1Gender
-              - respondent1DateOfBirth
-              - respondent1DateOfBirthDontKnow
-              - respondent1PlaceOfBirth
-              - respondent1Address
-              - respondent1AddressPostCode
-              - respondent1AddressDontKnow
-              - respondent1HomePhoneNumber
-              - respondent1MobilePhoneNumber
-              - respondent1MobilePhoneNumberDontKnow
-              - respondent1EmailAddress
-              - respondent1EmailAddressDontKnow
-              - respondent1LivedAtThisAddressForOverFiveYears
-              - respondent1AllAddressesForLastFiveYears
-              - respondent2FirstName
-              - respondent2LastName
-              - respondent2PreviousNames
-              - respondent2Gender
-              - respondent2DateOfBirth
-              - respondent2DateOfBirthDontKnow
-              - respondent2PlaceOfBirth
-              - respondent2Address
-              - respondent2AddressDontKnow
-              - respondent2AddressPostCode
-              - respondent2HomePhoneNumber
-              - respondent2MobilePhoneNumber
-              - respondent2MobilePhoneNumberDontKnow
-              - respondent2EmailAddress
-              - respondent2EmailAddressDontKnow
-              - respondent2LivedAtThisAddressForOverFiveYears
-              - respondent2AllAddressesForLastFiveYears
-              - internationalElement_Resident_of_another_state
-              - internationalElement_Resident_of_another_state_details
-              - internationalElement_jurisdictionIssue
-              - withoutNotice_jurisdictionIssue_details
-              - internationalElement_request_toCentral_or_Consular_authority
-              - internationalElement_request_toCentral_or_Consular_authority_details
-              - factorAffectingLitigationCapacity
-              - assessmentByAdultLearningTeam
-              - factorsAffectingPersonInCourt
-              - doYouHaveSolicitor
-              - your_solicitor_name
-              - solicitor_firm_name
-              - solicitor_address
-              - solicitor_postcode
-              - solicitor_telephone_number
-              - solicitor_fax_number
-              - solicitor_dx_number
-              - solicitor_reference
-              - solicitor_fee_account_No
-              - solicitor_email_address
-              - other_case_name_of_children
-              - other_case_name_of_court
-              - other_case_case_number
-              - other_case_date_or_year
-              - other_case_name_and_office
-              - other_case_emergency_protection_order
-              - other_case_supervision_order
-              - other_case_care_order
-              - other_case_childAbduction
-              - other_case_proceeding_for_NonMolestatioNorder
-              - other_case_proceeding_for_contact_or_resident_order
-              - other_case_contact_or_residentOrder_withAdoptioNorder
-              - other_case_childMaintenanceOrder
-              - other_case_childArrangementOrder
-              - applicantRequiresInterpreter_applicant
-              - applicantRequiresInterpreter_respondent
-              - applicantRequiresInterpreter_otherParty
-              - applicantRequiresInterpreter_otherParty_details
-              - applicantRequiresInterpreter_otherParty_dialect
-              - applicantRequiresInterpreter_intermediaryRequired_details
-              - requiredSpecialAssistanceOrFacilities_details
-              - requiredSpecialArrangementDetails
-              - nameOfPartyWhoNeedsWelsh
-              - otherPeople1FirstName
-              - otherPeople1LastName
-              - otherPeople1PreviousName
-              - otherPeople1Gender
-              - otherPeople1DateOfBirth
-              - otherPeople1DateOfBirthDontKnow
-              - otherPeople1Address
-              - otherPeople1AddressPostcode
-              - otherPeople1AddressDontKnow
-              - otherPeople1RelationshipToChild
-              - otherPeople2FirstName
-              - otherPeople2LastName
-              - otherPeople2PreviousName
-              - otherPeople2Gender
-              - otherPeople2DateOfBirth
-              - otherPeople2DateOfBirthDontKnow
-              - otherPeople2Address
-              - otherPeople2AddressPostcode
-              - otherPeople2AddressDontKnow
-              - otherPeople2RelationshipToChild
-              - otherChildren1FullName
-              - otherChildren1DateOfBirth
-              - otherChildren1DateOfBirthDontKnow
-              - otherChildren1Gender
-              - otherChildren1RelationshipToApplicants
-              - otherChildren1RelationshipToRespondents
-              - otherChildren2FullName
-              - otherChildren2DateOfBirth
-              - otherChildren2Gender
-              - otherChildren2DateOfBirthDontKnow
-              - otherChildren2RelationshipToApplicants
-              - otherChildren2RelationshipToRespondents
+              - ExistingCase_onEmergencyProtection_Care_or_supervisionOrder
               - section1RelatingToChildCompleted
               - section2Section3Section4RelatingToMediationCompleted
               - section5Section6RelatingToApplicationReasonCompleted
@@ -265,11 +46,228 @@ uk:
               - section11RelatingToApplicantCompleted
               - sections12Section13Section14RelatingToRespondentAndOthersNoticeCompleted
               - section16RelatingToTruthStatementCompleted
+              - applicantRequiresWelsh
+              - applicantRequiresInterpreter
+              - applicantRequiresInterpreter_intermediaryRequired
+              - requiredSpecialAssistanceOrFacilities
+              - applicantOneDateOfBirth
+            optionalFields:
+              - helpWithFeesReferenceNumber
+              - applicantOnePlaceOfBirth
+              - applicant2_firstName
+              - applicant2_lastName
+              - respondent2_firstName
+              - respondent2_lastName
+              - child1_dateOfBirth_dontKnow
+              - child2_dateOfBirth_dontKnow
+              - child3_dateOfBirth_dontKnow
+              - child4_dateOfBirth_dontKnow
+              - child1_dateOfBirth
+              - child2_firstName
+              - child2_lastName
+              - child2_dateOfBirth
+              - child2_gender
+              - child2_orderAppliedFor
+              - child2_applicant1_relationship
+              - child2_respondent1_relationship
+              - child3_firstName
+              - child3_lastName
+              - child3_dateOfBirth
+              - child3_gender
+              - child3_orderAppliedFor
+              - child3_applicant1_relationship
+              - child3_respondent1_relationship
+              - child4_firstName
+              - child4_lastName
+              - child4_dateOfBirth
+              - child4_gender
+              - child4_orderAppliedFor
+              - child4_applicant1_relationship
+              - child4_respondent1_relationship
+              - childrenServicesAuthority
+              - child1_localAuthority_or_socialWorker
+              - child2_localAuthority_or_socialWorker
+              - child3_localAuthority_or_socialWorker
+              - child4_localAuthority_or_socialWorker
+              - subject_to_childProtectionPlan
+              - children_of_same_parent
+              - children_parentsName
+              - child_parentsName_collection
+              - parentalResponsibilityDetails
+              - child_living_with_others_details
+              - fmcRegistrationNumber
+              - soleTraderName
+              - authorizedFamilyMediator_address
+              - authorizedFamilyMediator_date
+              - permissionRequired
+              - permissionRequiredReason
+              - briefDetailsOnTheApplication
+              - havePreviousParentingPlan
+              - withoutNotice_frustrateTheOrder
+              - withoutNotice_otherReasons_HearingDate_or_Year
+              - withoutNotice_otherReasons_CAFCASS_Name_and_officeAddress
+              - withoutNotice_emergency_Protection_Order
+              - withoutNotice_supervisionOrder
+              - withoutNotice_caseOrder
+              - withoutNotice_childAbduction
+              - withoutNotice_proceeding_for_NonMolestationOrder
+              - withoutNotice_contact_or_residentOrder
+              - withoutNotice_contact_or_residentOrder_withAdoptionOrder
+              - withoutNotice_childMaintenanceOrder
+              - withoutNotice_childArrangementOrder
+              - internationalElement_Resident_of_another_state
+              - internationalElement_Resident_of_another_state_details
+              - internationalElement_jurisdictionIssue
+              - withoutNotice_jurisdictionIssue_details
+              - internationalElement_request_toCentral_or_Consular_authority
+              - internationalElement_request_toCentral_or_Consular_authority_details
+              - factorAffectingLitigationCapacity
+              - applicantOnePreviousNames
+              - applicantOneHomePhoneNumber
+              - applicantOneMobilePhoneNumber
+              - applicantOneEmailAddress
+              - applicantOneAllAddressesForLastFiveYears
+              - hasApplicantOneLivedAtThisAddressForOverFiveYears
+              - hasApplicantTwoLivedAtThisAddressForOverFiveYears
+              - applicantTwoFirstName
+              - applicantTwoLastName
+              - applicantTwoPreviousNames
+              - applicantTwoGender
+              - applicantTwoDateOfBirth
+              - applicantTwoPlaceOfBirth
+              - applicantTwoAddress
+              - applicantTwoHomePhoneNumber
+              - applicantTwoMobilePhoneNumber
+              - applicantTwoEmailAddress
+              - applicantTwoLivedAtThisAddressForOverFiveYears
+              - applicantTwoAllAddressesForLastFiveYears
+              - respondentOneFirstName
+              - respondentOneLastName
+              - respondentOnePreviousNames
+              - respondentOneDateOfBirth
+              - respondentOneDateOfBirthDontKnow
+              - respondentOnePlaceOfBirth
+              - respondentOneAddress
+              - respondentOneAddressDontKnow
+              - respondentOneHomePhoneNumber
+              - respondentOneMobilePhoneNumber
+              - respondentOneMobilePhoneNumberDontKnow
+              - respondentOneEmailAddress
+              - respondentOneEmailAddressDontKnow
+              - hasRespondentOneLivedAtThisAddressForOverFiveYears
+              - respondentOneAllAddressesForLastFiveYears
+              - respondentTwoFirstName
+              - respondentTwoLastName
+              - respondentTwoPreviousNames
+              - respondentTwoGender
+              - respondentTwoDateOfBirth
+              - respondentTwoDateOfBirthDontKnow
+              - respondentTwoPlaceOfBirth
+              - respondentTwoAddress
+              - respondentTwoAddressDontKnow
+              - respondentTwoHomePhoneNumber
+              - respondentTwoMobilePhoneNumber
+              - respondentTwoMobilePhoneNumberDontKnow
+              - respondentTwoEmailAddress
+              - respondentTwoEmailAddressDontKnow
+              - respondentTwoAllAddressesForLastFiveYears
+              - hasRespondentTwoLivedAtThisAddressForOverFiveYears
+              - otherPeopleOneFirstName
+              - otherPeopleOneLastName
+              - otherPeopleOnePreviousNames
+              - otherPeopleOneGender
+              - otherPeopleOneDateOfBirth
+              - otherPeopleOneDateOfBirthDontKnow
+              - otherPeopleOneAddress
+              - otherPeopleOneAddressPostcode
+              - otherPeopleOneAddressDontKnow
+              - otherPeopleOneRelationshipWithChildren
+              - otherPeopleTwoFirstName
+              - otherPeopleTwoLastName
+              - otherPeopleTwoPreviousNames
+              - otherPeopleTwoGender
+              - otherPeopleTwoDateOfBirth
+              - otherPeopleTwoDateOfBirthDontKnow
+              - otherPeopleTwoAddress
+              - otherPeopleTwoAddressPostcode
+              - otherPeopleTwoAddressDontKnow
+              - otherPeopleTwoRelationshipWithChildren
+              - otherChildrenOneFullName
+              - OtherChildrenOneDateOfBirth
+              - OtherChildrenOneDateOfBirthDontKnow
+              - OtherChildrenOneGender
+              - OtherChildrenOneRelationshipWithApplicant
+              - OtherChildrenOneRelationshipWithRespondent
+              - OtherChildrenTwoFullName
+              - OtherChildrenTwoDateOfBirth
+              - OtherChildrenTwoGender
+              - OtherChildrenTwoDateOfBirthDontKnow
+              - OtherChildrenTwoRelationshipWithApplicant
+              - OtherChildrenTwoRelationshipWithRespondent
+              - solicitorFirmName
+              - solicitorTelephoneNumber
+              - solicitorFaxNumber
               - printFullName
               - applicantSolicitorsFirmName
+              - applicantAndApplicantSolicitorSigned
               - applicantAndApplicantsolicitorSignedDate
-              - position_or_OfficeHeld
-              - courtFeeConsent
+              - courtFee
+              - isApplicantSolicitorPresent
+              - attended_MIAM
+              - exemption_to_attend_MIAM
+              - noMIAM_domesticViolance
+              - noMIAM_childProtectionConcerns
+              - noMIAM_Urgency
+              - noMIAM_PreviousAttendence
+              - noMIAM_otherReasons
+              - noMIAM_DVE_arrestedForSimilarOffence
+              - noMIAM_DVE_relevantPoliceCaution
+              - noMIAM_DVE_relevantCriminalProceeding
+              - noMIAM_DVE_protectionNotice_DAbuseAct
+              - noMIAM_DVE_protectiveInjunction
+              - noMIAM_DVE_noCrossUndertakingGiven
+              - noMIAM_DVE_copyOfFactFinding
+              - noMIAM_DVE_expertEvidenceReport
+              - noMIAM_DVE_healthProfessionalReport
+              - noMIAM_DVE_ReferralHealthProfessionalReport
+              - noMIAM_DVE_memberOf_MultiAgencyRiskAssessmentConferrance_letter
+              - noMIAM_DVE_domesticViolenceAdvisor
+              - noMIAM_DVE_independentSexualViolenceAdvisor_Letter
+              - noMIAM_DVE_officerEmployed_localAuthority_letter
+              - noMIAM_DVE_domesticViolenceSupportCharity_letter
+              - noMIAM_DVE_domesticViolenceSupportCharity_refuge_letter
+              - noMIAM_DVE_publicAuthority_confirmationLetter
+              - noMIAM_DVE_secretaryOfState_letter
+              - noMIAM_DVE_evidenceFinancialMatters
+              - noMIAM_DVE_relevantConviction
+              - noMIAM_DVE_courtOrder
+              - noMIAM_DVE_protectionNotice
+              - noMIAM_subjectOfEnquiries_byLocalAuthority
+              - noMIAM_subjectOfCPP_byLocalAuthority
+              - noMIAM_urgency_risk_to_life_liberty_or_safety
+              - noMIAM_urgency_AnyDelayflag
+              - noMIAM_urgency_riskOfHarm
+              - noMIAM_urgency_removalFromUnitedKingdom
+              - noMIAM_urgency_miscarriageOfJustice
+              - noMIAM_urgency_financialHardship
+              - noMIAM_urgency_irretrievableProblems
+              - noMIAM_urgency_conflictWithOtherStateCourts
+              - previousMIAM_nonCourtDisputeResolution_4month
+              - previousMIAM_existingProceeding_exepmtMIAM
+              - otherExemption_withoutNotice
+              - otherExemption_byVirture_of_Rule12_3
+              - otherExemption_mediator_notAvailableToConduct
+              - otherExemption_disability_or_inabilityToAttend
+              - otherExemption_NotSufficient_Respondent_ContactDetails
+              - otherExemption_applicant_or_respondent_inPrison
+              - otherExemption_additonalInformation
+              - otherExemption_NoEvidence_reason
+              - applicantOnlyAttended
+              - attendedMIAMTogether
+              - applicantAndRespondentParty_AttendedMIAMSeparately
+              - mediationNotProceeding_applicationAttendedMIAMAlone
+              - mediationNotProceeding_applicantsAndRespondentsAttendedMIAM
+              - mediationNotProceeding_hasStartedButBrokenWithSomeIssue
               - order_direction_sought
               - urgency_reason
               - application_timetable
@@ -277,23 +275,115 @@ uk:
               - reason_for_consideration
               - withoutNotice_abridged_or_informalNotice
               - withoutNotice_abridged_or_informalNotice_reasons
-              - withoutNotice_frustrateTheOrder
               - withoutNotice_frustrateTheOrder_reason
+              - nameOfPartyWhoNeedsWelsh
+              - applicantRequiresInterpreter_applicant
+              - applicantRequiresInterpreter_respondent
+              - applicantRequiresInterpreter_otherParty
+              - applicantRequiresInterpreter_otherParty_details
+              - applicantRequiresInterpreter_otherParty_dialect
+              - applicantRequiresInterpreter_intermediaryRequired_details
+              - requiredSpecialAssistanceOrFacilities_details
+              - Attendence_separateWaitingRoom
+              - Attendence_separateEntryAndExit
+              - Attendence_privacyScreen
+              - Attendence_joinHearingByVideo
+              - solicitorFullName
+              - solicitorAddress
+              - solicitorDxNumber
+              - solicitorPostcode
+              - solicitorReference
+              - solicitorFeeAccountNo
+              - applicantSolicitorEmailAddress
+              - Checklist_claimingMIAMExemption
+              - assessmentByAdultLearningTeam
+              - factorsAffectingPersonInCourt
+              - familyMediationServiceName
+              - applicantRequiresWelsh_1_Both
+              - applicantRequiresWelsh_1_written
+              - applicantRequiresWelsh_1_Spoken
+              - nameOfPartyWhoNeedsWelsh_1
+              - applicantRequiresWelsh_2_Both
+              - applicantRequiresWelsh_2_written
+              - applicantRequiresWelsh_2_Spoken
+              - nameOfPartyWhoNeedsWelsh_2
+              - applicantRequiresWelsh_3_Both
+              - applicantRequiresWelsh_3_written
+              - applicantRequiresWelsh_3_Spoken
+              - nameOfPartyWhoNeedsWelsh_3
+              - applicantRequiresWelsh_4_Both
+              - applicantRequiresWelsh_4_written
+              - applicantRequiresWelsh_4_Spoken
+              - nameOfPartyWhoNeedsWelsh_4
+              - applicantRequiresWelsh_5_Both
+              - applicantRequiresWelsh_5_written
+              - applicantRequiresWelsh_5_Spoken
+              - nameOfPartyWhoNeedsWelsh_5
+              - applicantRequiresWelsh_6_Both
+              - applicantRequiresWelsh_6_written
+              - applicantRequiresWelsh_6_Spoken
+              - nameOfPartyWhoNeedsWelsh_6
+              - applicantRequiresWelsh_7_Both
+              - applicantRequiresWelsh_7_written
+              - applicantRequiresWelsh_7_Spoken
+              - nameOfPartyWhoNeedsWelsh_7
+              - signed_authorizedFamilyMediator
+              - applicantAndRespondentPartysAttendedMIAMSeparately
+              - respondentPartysArrangedToAttendMIAMSeparately
+              - mediationNotProceeding_applicantsAttendedMIAMAlone
+
+
+              - noMIAM_urgency_removalFromUnitedKingdom  # noMIAM_urgency_removalFromUnitedKingdom
+              - noMIAM_urgency_miscarriageOfJustice # noMIAM_urgency_miscarriageOfJustice
+              - noMIAM_urgency_financialHardship # noMIAM_urgency_financialHardship
+              - noMIAM_PreviousAttendenceReason # previousMIAM_nonCourtDisputeResolution_4month
+
+              - respondentOneGender
+              - respondentOneAddressPostCode
+              - respondentOneLivedAtThisAddressForOverFiveYears
+              - applicantOneGender
+              - applicantOneAddress
+              - applicantOneAddressPostCode
+              - applicantOneLivedAtThisAddressForOverFiveYears
+              - applicantTwoAddressPostCode
+              - respondentTwoAddressPostCode
+              - respondentTwoLivedAtThisAddressForOverFiveYears
+              - solicitorFeeAccountNo # solicitorFeeAccountNo
+              - applicantSolicitorEmailAddress #solicitor_email_address
+              - withoutNotice_otherReasons_child1_name
+              - withoutNotice_otherReasons_child2_name
+              - withoutNotice_otherReasons_child3_name
+              - withoutNotice_otherReasons_child4_name
+              - nameOfParticipantsInMiam
+              - withoutNotice_otherReasons_name_of_the_court
+              - withoutNotice_otherReasons_CaseNo
+              - withoutNotice_otherReasons_HearingDate_or_Yea
+              - withoutNotice_emergency_Protection_Order
+              - withoutNotice_supervisionOrder
+              - withoutNotice_caseOrder
+              - withoutNotice_childAbduction
+              - withoutNotice_proceeding_for_NonMolestationOrder
+              - withoutNotice_contact_or_residentOrder
+              - withoutNotice_contact_or_residentOrder_withAdoptionOrder
+              - withoutNotice_childMaintenanceOrder
+              - withoutNotice_childArrangementOrder
+              - requiredSpecialArrangementDetails # requiredSpecialAssistanceOrFacilities_details
+              - otherPeopleOneRelationshipToChild #withChildren
+              - otherPeopleTwoRelationshipToChild
+              - OtherChildrenOneRelationshipToApplicants
+              - OtherChildrenOneRelationshipToRespondents
+              - OtherChildrenTwoRelationshipToApplicants
+              - OtherChildrenTwoRelationshipToRespondents
+              - position_or_OfficeHeld
+              - courtFeeConsent
               - mediationNotSuitable_NoneOfTheRespondentsWillingToAttendMIAM
               - mediationNotSuitable_NoneOfTheRespondentsFailedToAttendMIAMWithoutGoodReason
               - mediationNotSuitable_forResolvingTheDispute
               - applicantOnly_AttendedMIAM
               - applicantOnly_AttendedMIAMTogether
-              - applicantAndRespondentParty_AttendedMIAMSeparately
-              - respondentPartyArranged_ToAttendMIAMSeparately
-              - mediationNotProceeding_applicantAttendedMIAMAlone
-              - mediationNotProceeding_applicantsAndRespondentsAttendedMIAM
-              - mediationNotProceeding_hasStartedButBrokenWithSomeIssue
-              - fmc_RegistrationNumber
-              - family_Mediation_ServiceName
-              - sole_TraderName
-              - authorizedFamilyMediator_address
-              - authorizedFamilyMediator_date
+              - family_Mediation_ServiceName #familyMediationServiceName
+              - sole_TraderName #soleTraderName
+              - section7AdditionalSheetsAttached
             regexValidationFields:
               dateFields:
                 fieldNames:
@@ -301,16 +391,24 @@ uk:
                   - child2_dateOfBirth
                   - child3_dateOfBirth
                   - child4_dateOfBirth
-                  - respondent1DateOfBirth
-                  - respondent2DateOfBirth
-                  - otherPeople1DateOfBirth
-                  - otherPeople2DateOfBirth
-                  - otherChildren1DateOfBirth
-                  - otherChildren2DateOfBirth
+                  - applicantOneDateOfBirth
+                  - applicantTwoDateOfBirth
+                  - respondentOneDateOfBirth
+                  - respondentTwoDateOfBirth
+                  - otherPeopleOneDateOfBirth
+                  - otherPeopleTwoDateOfBirth
+                  - OtherChildrenOneDateOfBirth
+                  - OtherChildrenTwoDateOfBirth
+                  - authorizedFamilyMediator_date
                 regex: dd/MM/yyyy
               emailFields:
                 fieldNames:
-                  -
+                  - applicantOneEmailAddress
+                  - applicantTwoEmailAddress
+                  - respondentOneEmailAddress
+                  - respondentTwoEmailAddress
+                  - applicantSolicitorEmailAddress
+                  - applicantSolicitorEmailAddress
                 regex: ^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,6}$
               numericFields:
                 fieldNames:
@@ -318,14 +416,25 @@ uk:
                 regex: ^[0-9]*$
               postcodeFields:
                 fieldNames:
-                  -
+                  - respondentOneAddressPostCode
+                  - respondentTwoAddressPostCode
+                  - applicantOneAddressPostCode
+                  - applicantTwoAddressPostCode
+                  - otherPeopleOneAddressPostcode
+                  - otherPeopleTwoAddressPostcode
+                  - solicitorPostcode
                 regex: ^[A-Z]{1,2}[0-9R][0-9A-Z]? [0-9][ABD-HJLNP-UW-Z]{2}$
               phoneNumberFields:
                 fieldNames:
-                  - respondent1HomePhoneNumber
-                  - respondent1MobilePhoneNumber
-                  - respondent2HomePhoneNumber
-                  - respondent2MobilePhoneNumber
+                  - applicantOneHomePhoneNumber
+                  - applicantOneMobilePhoneNumber
+                  - applicantTwoHomePhoneNumber
+                  - applicantTwoMobilePhoneNumber
+                  - respondentOneHomePhoneNumber
+                  - respondentOneMobilePhoneNumber
+                  - respondentTwoHomePhoneNumber
+                  - respondentTwoMobilePhoneNumber
+                  - solicitorTelephoneNumber
                 regex: ^(?:0|\+?44)(?:\d\s?){9,10}$
               faxNumberFields:
                 fieldNames:

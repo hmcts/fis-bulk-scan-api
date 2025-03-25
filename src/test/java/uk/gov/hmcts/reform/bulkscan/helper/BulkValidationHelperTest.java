@@ -48,9 +48,9 @@ class BulkValidationHelperTest {
         BulkScanValidationResponse res =
                 bulkScanValidationHelper.validateMandatoryAndOptionalFields(
                         TestDataUtil.getErrorData(), validationConfig.getConfig());
-        assertEquals(Status.ERRORS, res.status);
+        assertEquals(Status.WARNINGS, res.status);
         assertTrue(
-                res.getErrors()
+                res.getWarnings()
                         .contains(String.format(MANDATORY_ERROR_MESSAGE, "appellant_lastName")));
     }
 
@@ -86,14 +86,14 @@ class BulkValidationHelperTest {
         BulkScanValidationResponse res =
                 bulkScanValidationHelper.validateMandatoryAndOptionalFields(
                         TestDataUtil.getA1ErrorData(), validationConfig.getConfig());
-        assertEquals(Status.ERRORS, res.status);
+        assertEquals(Status.WARNINGS, res.status);
         Assert.assertTrue(
-                res.getErrors()
+                res.getWarnings()
                         .contains(String.format(ALPHA_NUMERIC_FIELDS_MESSAGE, "applicant_ref")));
         Assert.assertTrue(
-                res.getErrors().contains(String.format(POST_CODE_MESSAGE, "applicant_postcode")));
+                res.getWarnings().contains(String.format(POST_CODE_MESSAGE, "applicant_postcode")));
         Assert.assertTrue(
-                res.getErrors()
+                res.getWarnings()
                         .contains(String.format(PHONE_NUMBER_MESSAGE, "applicant_telephone_no")));
     }
 
@@ -104,8 +104,8 @@ class BulkValidationHelperTest {
         BulkScanValidationResponse res =
                 bulkScanValidationHelper.validateMandatoryAndOptionalFields(
                         TestDataUtil.getFL401AErrorData(), validationConfig.getConfig());
-        assertEquals(Status.ERRORS, res.status);
+        assertEquals(Status.WARNINGS, res.status);
         assertTrue(
-                res.getErrors().contains(String.format(POST_CODE_MESSAGE, "applicant_postcode")));
+                res.getWarnings().contains(String.format(POST_CODE_MESSAGE, "applicant_postcode")));
     }
 }

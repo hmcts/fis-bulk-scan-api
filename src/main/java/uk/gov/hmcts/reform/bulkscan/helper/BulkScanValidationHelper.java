@@ -66,9 +66,9 @@ public class BulkScanValidationHelper {
         }
 
         if (duplicateOcrFields.isEmpty() && !ocrDatafields.isEmpty()) {
-            errors.addAll(findMissingFields(validationConfg.getMandatoryFields(), ocrDatafields));
+            warnings.addAll(findMissingFields(validationConfg.getMandatoryFields(), ocrDatafields));
 
-            errors.addAll(
+            warnings.addAll(
                     validateMandatoryAndOptionalFields(ocrDatafields, validationConfg, false));
 
             warnings.addAll(
@@ -78,7 +78,7 @@ public class BulkScanValidationHelper {
             log.info("Found duplicate fields in OCR data. {}", duplicateFields);
 
             String errorMessage = String.format(DUPLICATE_FIELDS_MESSAGE, duplicateFields);
-            errors.add(errorMessage);
+            warnings.add(errorMessage);
         }
 
         Status status =
@@ -224,6 +224,7 @@ public class BulkScanValidationHelper {
                 .filter(
                         eachField ->
                                 !ocrDataFields.stream()
+                                    .filter(ocrDataField -> StringUtils.hasText(ocrDataField.getName()))
                                         .anyMatch(
                                                 inputField ->
                                                         inputField
@@ -273,7 +274,8 @@ public class BulkScanValidationHelper {
     }
 
     public List<String> findDuplicateOcrFields(List<OcrDataField> ocrFields) {
-        return ocrFields.stream().collect(groupingBy(it -> it.name, counting())).entrySet().stream()
+        return ocrFields.stream()
+            .collect(groupingBy(it -> it.name, counting())).entrySet().stream()
                 .filter(entry -> entry.getValue() > 1)
                 .map(Map.Entry::getKey)
                 .collect(toList());

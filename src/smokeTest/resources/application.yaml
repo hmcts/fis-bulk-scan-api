@@ -26,3 +26,7 @@ postcodelookup:
   api:
     url: https://api.os.uk/search/places/v1
     key: ${POST_CODE_LOOKUP_KEY:REPLACE_ME}
+
+courtfinder:
+  api:
+    url: ${FACT_API:http://fact-api-demo.service.core-compute-demo.internal}

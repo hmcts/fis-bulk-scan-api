@@ -6,7 +6,7 @@ uk:
           FGM001:
             caseFields:
               CASE_TYPE_ID: PRLAPPS
-              EVENT_ID: create-case-privatelaw-bs
+              EVENT_ID: create-case-privatelaw-bs-fgm001
             caseDataFields: #These are new fields for Edgecases to be created in CCD
               applicantFullName: applicant_fullName
               applicantAddress: applicant_address

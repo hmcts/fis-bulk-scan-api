@@ -1,12 +1,10 @@
 {
   "status": "WARNINGS",
     "warnings": [
-      "The following fields are not configured with our system: [applicant1_dateOfBirth] ",
-      "Some details are missing in the following section: 1.3 - Why do you want to apply without giving notice to the respondent?.",
-      "Some details are missing in the following section: 2 - your details.",
+      "The following fields are not configured with our system: [applicant1_dateOfBirth,applicant_firstName,applicant_lastName,applyingForOccupationOrder,respondentDoB,appliantRespondent_Relationship_StartDate,appliantRespondent_Relationship_EndDate,applicantRespondent_PreviousMarried_Date,applicantDateOfBirth] ",
+      "Some details are missing in the following section: 1.3 - atleast one required of orderWithoutGivingNoticeReason1, orderWithoutGivingNoticeReason2, orderWithoutGivingNoticeReason3.",
       "Section 4.1 - Applicant has more than one relationship with the respondent",
       "Section 4.4 - Applicant has more than one relationship with the respondent",
-      "Please enter valid date for Applicant date of birth",
       "applicant_Address_Postcode is not a valid postcode"
     ],
     "errors": []

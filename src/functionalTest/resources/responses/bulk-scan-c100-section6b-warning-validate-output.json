@@ -1,7 +1,7 @@
 {
   "status": "WARNINGS",
   "warnings": [
-    "Some details are missing in the following section: 3d - Previous MIAM attendance or MIAM exemption.",
+    "Some details are missing in the following section: 3d - Previous MIAM attendance or exemption - atleast 1 required of previousMIAM_nonCourtDisputeResolution_4month, previousMIAM_existingProceeding_exepmtMIAM, otherExemption_NoEvidence_reason.",
     "Some details are missing in the following section: Welsh Required."
   ],
   "errors": []

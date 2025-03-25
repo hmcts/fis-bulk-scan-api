@@ -81,7 +81,7 @@ public class BulkScanC63Service implements BulkScanService {
 
         FormType formType = C63;
 
-        caseData.put(BULK_SCAN_CASE_REFERENCE, bulkScanTransformationRequest.getId());
+        caseData.put(BULK_SCAN_CASE_REFERENCE, bulkScanTransformationRequest.getEnvelopeId());
 
         Map<String, String> inputFieldsMap = getOcrDataFieldAsMap(inputFieldsList);
 

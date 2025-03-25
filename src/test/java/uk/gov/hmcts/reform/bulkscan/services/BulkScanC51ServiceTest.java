@@ -61,9 +61,9 @@ class BulkScanC51ServiceTest {
                         .build();
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
-        assertEquals(Status.ERRORS, res.status);
+        assertEquals(Status.WARNINGS, res.status);
         assertTrue(
-                res.getErrors()
+                res.getWarnings()
                         .contains(String.format(MANDATORY_ERROR_MESSAGE, APPLICANT_1_FIRST_NAME)));
     }
 
@@ -75,9 +75,9 @@ class BulkScanC51ServiceTest {
                         .build();
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
-        assertEquals(Status.ERRORS, res.status);
+        assertEquals(Status.WARNINGS, res.status);
         assertTrue(
-                res.getErrors()
+                res.getWarnings()
                         .contains(String.format(MISSING_FIELD_MESSAGE, APPLICANT_1_LAST_NAME)));
     }
 

@@ -54,9 +54,9 @@ class BulkScanA59ServiceTest {
                         .build();
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
-        assertEquals(Status.ERRORS, res.status);
+        assertEquals(Status.WARNINGS, res.status);
         assertTrue(
-                res.getErrors()
+                res.getWarnings()
                         .contains(String.format(MANDATORY_ERROR_MESSAGE, "applicant1_firstName")));
     }
 
@@ -68,9 +68,9 @@ class BulkScanA59ServiceTest {
                         .build();
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
-        assertEquals(Status.ERRORS, res.status);
+        assertEquals(Status.WARNINGS, res.status);
         assertTrue(
-                res.getErrors()
+                res.getWarnings()
                         .contains(String.format(MISSING_FIELD_MESSAGE, "applicant1_lastName")));
     }
 
@@ -83,7 +83,7 @@ class BulkScanA59ServiceTest {
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
         assertTrue(
-                res.getErrors()
+                res.getWarnings()
                         .contains(
                                 String.format(PHONE_NUMBER_MESSAGE, "applicant1_telephoneNumber")));
     }

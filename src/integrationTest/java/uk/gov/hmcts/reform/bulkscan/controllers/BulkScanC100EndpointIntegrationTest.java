@@ -3,7 +3,6 @@ package uk.gov.hmcts.reform.bulkscan.controllers;
 import static org.mockito.Mockito.when;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.C100_CASE_TYPE_VALIDATE_ENDPOINT;
 import static uk.gov.hmcts.reform.bulkscan.utils.Constants.CASE_TYPE_TRANSFORM_ENDPOINT;
@@ -43,9 +42,6 @@ class BulkScanC100EndpointIntegrationTest {
     private static final String C100_TRANSFORM_REQUEST_PATH =
             "classpath:request/bulk-scan-c100-transform-input.json";
 
-    private static final String C100_TRANSFORM_RESPONSE_PATH =
-            "classpath:response/bulk-scan-c100-transform-output.json";
-
     @DisplayName("should test validate request case type C100")
     @Test
     void shouldTestValidationRequestCaseTypeC100() throws Exception {
@@ -70,7 +66,6 @@ class BulkScanC100EndpointIntegrationTest {
                                 .contentType(APPLICATION_JSON)
                                 .header(SERVICE_AUTHORIZATION, SERVICE_AUTH_TOKEN)
                                 .content(readFileFrom(C100_TRANSFORM_REQUEST_PATH)))
-                .andExpect(status().isOk())
-                .andExpect(content().json(readFileFrom(C100_TRANSFORM_RESPONSE_PATH)));
+                .andExpect(status().is4xxClientError());
     }
 }

@@ -8,78 +8,76 @@ import uk.gov.hmcts.reform.bulkscan.enums.PartyEnum;
 public final class BulkScanPrlConstants {
 
     public static final String MIAM_EXEMPTIONS_CHECKLIST = "miamExemptionsChecklist";
-    public static final String NO_MIAM_DOMESTIC_VIOLENCE = "NoMIAM_domesticViolence";
-    public static final String NO_MIAM_CHILD_PROTECTION_CONCERNS = "NoMIAM_childProtectionConcerns";
-    public static final String NO_MIAM_URGENCY = "NoMIAM_Urgency";
-    public static final String NO_MIAM_PREVIOUS_ATTENDENCE = "NoMIAM_PreviousAttendence";
-    public static final String NO_MIAM_OTHER_REASONS = "NoMIAM_otherReasons";
+    public static final String NO_MIAM_DOMESTIC_VIOLENCE = "noMIAM_domesticViolance";
+    public static final String NO_MIAM_CHILD_PROTECTION_CONCERNS = "noMIAM_childProtectionConcerns";
+    public static final String NO_MIAM_URGENCY = "noMIAM_Urgency";
+    public static final String NO_MIAM_PREVIOUS_ATTENDENCE = "noMIAM_PreviousAttendence";
+    public static final String NO_MIAM_OTHER_REASONS = "noMIAM_otherReasons";
     public static final String PREVIOUS_OR_ONGOING_PROCEEDING = "previous_or_ongoingProceeding";
     public static final String EXISTING_CASE_ON_EMERGENCY_PROTECTION_CARE_OR_SUPERVISION_ORDER =
-            "existingCase_onEmergencyProtection_Care_or_supervisioNorder";
+            "ExistingCase_onEmergencyProtection_Care_or_supervisionOrder";
     public static final String EXEMPTION_TO_ATTEND_MIAM = "exemption_to_attend_MIAM";
-    public static final String FAMILY_MEMBER_INTIMATION_ON_NO_MIAM =
-            "familyMember_Intimation_on_No_MIAM";
     public static final String ATTENDED_MIAM = "attended_MIAM";
     public static final String MIAM_DOMESTIC_VIOLENCE_CHECKLIST = "miamDomesticViolenceChecklist";
     public static final String NO_MIAM_DVE_ARRESTED_FOR_SIMILAR_OFFENCE =
-            "NoMIAM_DVE_arrestedForSimilarOffence";
+            "noMIAM_DVE_arrestedForSimilarOffence";
     public static final String NO_MIAM_DVE_RELEVANT_POLICE_CAUTION =
-            "NoMIAM_DVE_relevantPoliceCaution";
+            "noMIAM_DVE_relevantPoliceCaution";
     public static final String NO_MIAM_DVE_RELEVANT_CRIMINAL_PROCEEDING =
-            "NoMIAM_DVE_relevantCriminalProceeding";
-    public static final String NO_MIAM_DVE_RELEVANT_CONVICTION = "NoMIAM_DVE_relevantConviction";
-    public static final String NO_MIAM_DVE_COURT_ORDER = "NoMIAM_DVE_courtOrder";
-    public static final String NO_MIAM_DVE_PROTECTION_NOTICE = "NoMIAM_DVE_protectionNotice";
+            "noMIAM_DVE_relevantCriminalProceeding";
+    public static final String NO_MIAM_DVE_RELEVANT_CONVICTION = "noMIAM_DVE_relevantConviction";
+    public static final String NO_MIAM_DVE_COURT_ORDER = "noMIAM_DVE_courtOrder";
+    public static final String NO_MIAM_DVE_PROTECTION_NOTICE = "noMIAM_DVE_protectionNotice";
     public static final String NO_MIAM_DVE_PROTECTIVE_INJUNCTION =
-            "NoMIAM_DVE_protectiveInjunction";
+            "noMIAM_DVE_protectiveInjunction";
     public static final String NO_MIAM_DVE_NO_CROSS_UNDERTAKING_GIVEN =
-            "NoMIAM_DVE_NoCrossUndertakingGiven";
-    public static final String NO_MIAM_DVE_COPY_OF_FACT_FINDING = "NoMIAM_DVE_copyOfFactFinding";
+            "noMIAM_DVE_noCrossUndertakingGiven";
+    public static final String NO_MIAM_DVE_COPY_OF_FACT_FINDING = "noMIAM_DVE_copyOfFactFinding";
     public static final String NO_MIAM_DVE_EXPERT_EVIDENCE_REPORT =
-            "NoMIAM_DVE_expertEvidenceReport";
+            "noMIAM_DVE_expertEvidenceReport";
     public static final String NO_MIAM_DVE_HEALTH_PROFESSIONAL_REPORT =
-            "NoMIAM_DVE_healthProfessionalReport";
+            "noMIAM_DVE_healthProfessionalReport";
     public static final String NO_MIAM_DVE_REFERRAL_HEALTH_PROFESSIONAL_REPORT =
-            "NoMIAM_DVE_ReferralHealthProfessionalReport";
+            "noMIAM_DVE_ReferralHealthProfessionalReport";
     public static final String
             NO_MIAM_DVE_MEMBER_OF_MULTI_AGENCY_RISK_ASSESSMENT_CONFERRANCE_LETTER =
-                    "NoMIAM_DVE_memberOf_MultiAgencyRiskAssessmentConferrance_letter";
+                    "noMIAM_DVE_memberOf_MultiAgencyRiskAssessmentConferrance_letter";
     public static final String NO_MIAM_DVE_DOMESTIC_VIOLENCE_ADVISOR =
-            "NoMIAM_DVE_domesticViolenceAdvisor";
+            "noMIAM_DVE_domesticViolenceAdvisor";
     public static final String NO_MIAM_DVE_INDEPENDENT_SEXUAL_VIOLENCE_ADVISOR_LETTER =
-            "NoMIAM_DVE_independentSexualViolenceAdvisor_Letter";
+            "noMIAM_DVE_independentSexualViolenceAdvisor_Letter";
     public static final String NO_MIAM_DVE_OFFICER_EMPLOYED_LOCAL_AUTHORITY_LETTER =
-            "NoMIAM_DVE_officerEmployed_localAuthority_letter";
+            "noMIAM_DVE_officerEmployed_localAuthority_letter";
     public static final String NO_MIAM_DVE_DOMESTIC_VIOLENCE_SUPPORT_CHARITY_LETTER =
-            "NoMIAM_DVE_domesticViolenceSupportCharity_letter";
+            "noMIAM_DVE_domesticViolenceSupportCharity_letter";
     public static final String NO_MIAM_DVE_DOMESTIC_VIOLENCE_SUPPORT_CHARITY_REFUGE_LETTER =
-            "NoMIAM_DVE_domesticViolenceSupportCharity_refuge_letter";
+            "noMIAM_DVE_domesticViolenceSupportCharity_refuge_letter";
     public static final String NO_MIAM_DVE_PUBLIC_AUTHORITY_CONFIRMATION_LETTER =
-            "NoMIAM_DVE_publicAuthority_confirmationLetter";
+            "noMIAM_DVE_publicAuthority_confirmationLetter";
     public static final String NO_MIAM_DVE_SECRETARY_OF_STATE_LETTER =
-            "NoMIAM_DVE_secretaryOfState_letter";
+            "noMIAM_DVE_secretaryOfState_letter";
     public static final String NO_MIAM_DVE_EVIDENCE_FINANCIAL_MATTERS =
-            "NoMIAM_DVE_evidenceFinancialMatters";
+            "noMIAM_DVE_evidenceFinancialMatters";
     public static final String NO_MIAM_CHILD_PROTECTION_CONCERNS_CHECKLIST =
-            "miamChildProtectionConcernList";
+            "mpuChildProtectionConcernReason";
     public static final String NO_MIAM_SUBJECT_OF_ENQUIRIES_BY_LOCAL_AUTHORITY =
-            "NoMIAM_subjectOfEnquiries_byLocalAuthority";
+            "noMIAM_subjectOfEnquiries_byLocalAuthority";
     public static final String NO_MIAM_SUBJECT_OF_CPP_BY_LOCAL_AUTHORITY =
-            "NoMIAM_subjectOfCPP_byLocalAuthority";
-    public static final String MIAM_URGENCY_REASON_CHECKLIST = "miamUrgencyReasonChecklist";
+            "noMIAM_subjectOfCPP_byLocalAuthority";
+    public static final String MIAM_URGENCY_REASON_CHECKLIST = "mpuUrgencyReason";
     public static final String NO_MIAM_URGENCY_RISK_TO_LIFE_LIBERTY_OR_SAFETY =
-            "NoMIAM_urgency_risk_to_life_liberty_or_safety";
-    public static final String NO_MIAM_URGENCY_RISK_OF_HARM = "NoMIAM_urgency_riskOfHarm";
+            "noMIAM_urgency_risk_to_life_liberty_or_safety";
+    public static final String NO_MIAM_URGENCY_RISK_OF_HARM = "noMIAM_urgency_riskOfHarm";
     public static final String NO_MIAM_URGENCY_RISK_TO_UNLAWFUL_REMOVAL =
-            "NoMIAM_urgency_risk_to_unlawfulRemoval";
+            "noMIAM_urgency_removalFromUnitedKingdom";
     public static final String NO_MIAM_URGENCY_RISK_TO_MISCARRIAGE_OF_JUSTICE =
-            "NoMIAM_urgency_risk_to_miscarriageOfJustice";
+            "noMIAM_urgency_miscarriageOfJustice";
     public static final String NO_MIAM_URGENCY_UNREASONABLEHARDSHIP =
-            "NoMIAM_urgency_unreasonablehardship";
+            "noMIAM_urgency_financialHardship";
     public static final String NO_MIAM_URGENCY_IRRETRIEVABLE_PROBLEM =
-            "NoMIAM_urgency_irretrievableProblem";
+            "noMIAM_urgency_irretrievableProblems";
     public static final String NO_MIAM_URGENCY_CONFLICT_WITH_OTHER_STATE_COURTS =
-            "NoMIAM_urgency_conflictWithOtherStateCourts";
+            "noMIAM_urgency_conflictWithOtherStateCourts";
     public static final String ORDER_APPLIED_FOR = "ordersApplyingFor";
     public static final String CHILD_ARRANGEMENT_ORDER = "childArrangement_order";
     public static final String PROHIBITED_STEPS_ORDER = "prohibitedSteps_order";
@@ -118,26 +116,28 @@ public final class BulkScanPrlConstants {
 
     // C100 Other Proceeding Fields.
     public static final String OTHER_PROCEEDING_AVAILABLE =
-            "existingCase_onEmergencyProtection_Care_or_supervisioNorder";
-    public static final String OTHER_PROCEEDING_NAME_OF_CHILDREN = "other_case_name_of_children";
-    public static final String OTHER_PROCEEDING_CASE_NUMBER = "other_case_case_number";
-    public static final String OTHER_PROCEEDING_DATE_OF_YEAR = "other_case_date_or_year";
-    public static final String OTHER_PROCEEDING_NAME_AND_OFFICE = "other_case_name_and_office";
+            "ExistingCase_onEmergencyProtection_Care_or_supervisionOrder";
+    public static final String OTHER_PROCEEDING_NAME_OF_CHILDREN = "withoutNotice_otherReasons_child1_name";
+    public static final String OTHER_PROCEEDING_CASE_NUMBER = "withoutNotice_otherReasons_CaseNo";
+    public static final String OTHER_PROCEEDING_DATE_OF_YEAR = "withoutNotice_otherReasons_HearingDate_or_Yea";
+    public static final String OTHER_PROCEEDING_NAME_AND_OFFICE = "withoutNotice_otherReasons_CAFCASS_Name_and_officeAddress";
+
     public static final String OTHER_PROCEEDING_TYPE_OF_ORDER_1 =
-            "other_case_emergency_protection_order";
-    public static final String OTHER_PROCEEDING_TYPE_OF_ORDER_2 = "other_case_supervision_order";
-    public static final String OTHER_PROCEEDING_TYPE_OF_ORDER_3 = "other_case_care_order";
-    public static final String OTHER_PROCEEDING_TYPE_OF_ORDER_4 = "other_case_childAbduction";
+            "withoutNotice_emergency_Protection_Order";
+    public static final String OTHER_PROCEEDING_TYPE_OF_ORDER_2 = "withoutNotice_supervisionOrder";
+    public static final String OTHER_PROCEEDING_TYPE_OF_ORDER_3 = "withoutNotice_caseOrder";
+    public static final String OTHER_PROCEEDING_TYPE_OF_ORDER_4 = "withoutNotice_childAbduction";
     public static final String OTHER_PROCEEDING_TYPE_OF_ORDER_5 =
-            "other_case_proceeding_for_NonMolestatioNorder";
+            "withoutNotice_proceeding_for_NonMolestationOrder";
     public static final String OTHER_PROCEEDING_TYPE_OF_ORDER_6 =
-            "other_case_proceeding_for_contact_or_resident_order";
+            "withoutNotice_contact_or_residentOrder";
     public static final String OTHER_PROCEEDING_TYPE_OF_ORDER_7 =
-            "other_case_contact_or_residentOrder_withAdoptioNorder";
+            "withoutNotice_contact_or_residentOrder_withAdoptionOrder";
     public static final String OTHER_PROCEEDING_TYPE_OF_ORDER_8 =
-            "other_case_childMaintenanceOrder";
+            "withoutNotice_childMaintenanceOrder";
     public static final String OTHER_PROCEEDING_TYPE_OF_ORDER_9 =
-            "other_case_childArrangementOrder";
+            "withoutNotice_childArrangementOrder";
+
     public static final String TYPE_OF_ORDER = "typeOfOrder";
     public static final String OTHER_PROCEEDINGS_DETAILS_TABLE = "otherProceedingsDetailsTable";
     public static final String URGENT_OR_WITHOUT_HEARING = "urgent_or_withoutHearing";
@@ -192,20 +192,20 @@ public final class BulkScanPrlConstants {
     public static final String MEDIATOR_CERTIFIES_APPLICANT_ATTEND_MIAM =
             "mediatorCertifiesApplicantAttendMIAM";
     public static final String APPLICANT_ONLY_ATTENDED_MIAM = "applicantOnly_AttendedMIAM";
-    public static final String APPLICANT_ONLY_ATTENDED_MIAM_TOGETHER =
-            "applicantOnly_AttendedMIAMTogether";
     public static final String APPLICANT_AND_RESPONDENT_PARTY_ATTENDED_MIAM_SEPARATELY =
             "applicantAndRespondentParty_AttendedMIAMSeparately";
-    public static final String RESPONDENT_PARTY_ARRANGED_TO_ATTEND_MIAM_SEPARATELY =
-            "respondentPartyArranged_ToAttendMIAMSeparately";
     public static final String MEDIATOR_CERTIFIES_DISPUTE_RESOLUTION_NOT_PROCEEDING =
             "mediatorCertifiesDisputeResolutionNotProceeding";
     public static final String MEDIATION_NOT_PROCEEDING_APPLICANT_ATTENDED_MIAM_ALONE =
-            "mediationNotProceeding_applicantAttendedMIAMAlone";
+            "mediationNotProceeding_applicationAttendedMIAMAlone";
     public static final String MEDIATION_NOT_PROCEEDING_APPLICANTS_AND_RESPONDENTS_ATTENDED_MIAM =
             "mediationNotProceeding_applicantsAndRespondentsAttendedMIAM";
     public static final String MEDIATION_NOT_PROCEEDING_HASSTARTED_BUT_BROKEN_WITH_SOMEISSUE =
             "mediationNotProceeding_hasStartedButBrokenWithSomeIssue";
+
+    public static final String SEARCH_RESULTS_POSTCODE_POSTCODE_SERVICE_AREA = "search/results?postcode={postcode}&serviceArea=";
+    public static final String DOMESTIC_ABUSE_POSTCODE_URL = SEARCH_RESULTS_POSTCODE_POSTCODE_SERVICE_AREA + "domestic-abuse";
+    public static final String COURT_DETAILS_URL = "courts/{court-slug}";
 
     // // C100 - section 4 ENDS
 

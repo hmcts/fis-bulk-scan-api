@@ -192,7 +192,7 @@ public class BulkScanDependencyValidationService {
 
     private Map<String, String> getOcrDataFieldsMap(List<OcrDataField> ocrDataFields) {
         return null != ocrDataFields
-                ? ocrDataFields.stream()
+                ? ocrDataFields.stream().filter(ocrDataField -> StringUtils.hasText(ocrDataField.getValue()))
                         .collect(Collectors.toMap(OcrDataField::getName, OcrDataField::getValue))
                 : null;
     }

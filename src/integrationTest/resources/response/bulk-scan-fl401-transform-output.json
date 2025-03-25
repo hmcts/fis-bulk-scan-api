@@ -1,10 +1,10 @@
 {
   "case_creation_details": {
     "case_type_id": "PRLAPPS",
-    "event_id": "create-case-privatelaw-bs",
+    "event_id": "create-case-privatelaw-bs-fl401",
     "case_data": {
-      "statementOfTruthLegalRepresentative": "Gene Wilder",
-      "statementOfTruthFirmName": "Wilder and Wilder",
+      "StatementOfTruthLegalRepresentative": "Gene Wilder",
+      "StatementOfTruthFirmName": "Wilder and Wilder",
       "applicantFamilyTable": {
         "applicantChild": [
           {
@@ -52,7 +52,7 @@
         "relationshipDateComplexEndDate": "2012-12-02",
         "applicantRelationshipDate": "2003-12-02",
         "applicantRelationshipOptions": null,
-        "needForParentalResponsibility": null
+        "doesApplicantHaveChildren": null
       },
       "respondentBehaviourTable": {
         "applicantWantToStopFromRespondentDoing": "Being violent towards me or threatening me,Harassing or intimidating me,Causing damage to my home,",
@@ -208,9 +208,9 @@
           }
         }
       ],
-      "statementOfTruthLine1": "Yes",
-      "statementOfTruthDate": "02/04/22",
-      "statementOfTruthLine2": "Yes",
+      "StatementOfTruthLine1": "Yes",
+      "StatementOfTruthDate": "02/04/22",
+      "StatementOfTruthLine2": "Yes",
       "doAnyChildrenLiveAtAddress": "yes",
       "children": [
         {
@@ -288,8 +288,8 @@
         "representativeFirstName": "solicitot",
         "representativeLastName": "name"
       },
-      "statementOfTruthFullName": "John B. North",
-      "statementOfTruthPositionHeld": "Legal Rep",
+      "StatementOfTruthFullName": "John B. North",
+      "StatementOfTruthPositionHeld": "Legal Rep",
       "attendingTheHearingTable": {
         "isInterpreterNeeded": "Yes",
         "isDisabilityPresent": "john@gmail.com",
@@ -311,7 +311,7 @@
             "lastName": "Maxwell",
             "previousName": "Connor",
             "dateOfBirth": "2022/12/04",
-            "liveWithApplicant": "yes",
+            "isRespondentLiveWithApplicant": "yes",
             "phoneNumber": "09866534424",
             "email": "john@gmail.com",
             "address": [
@@ -333,13 +333,13 @@
         "anyOtherDtailsForWithoutNoticeOrder": "more reason",
         "isRespondentAlreadyInBailCondition": "Yes",
         "bailConditionEndDate": "2021-02-07",
-        "furtherDetails": "XYZ",
+        "futherDetails": "XYZ",
         "reasonForOrderWithoutGivingNotice": "there is risk of significant harm to the applicant or a relevant child, attributable to conduct of the respondent, if the order is not made immediately,it is likely that I will be deterred or prevented from pursuing the application if an order is not made immediately,I believe that the respondent is aware of the proceedings but is deliberately evading service and that I or a relevant child will be seriously prejudiced by the delay in effecting substituted service"
       },
-      "statementOfTruthApplicant": "John North"
+      "StatementOfTruthApplicant": "John North"
     }
   },
   "warnings": [
-    "The following fields are not configured with our system: [doAnyChildrenLiveAtAddress,otherChildren_Row1,otherChildren_Row2,otherChildren_Row3,otherChildren_Row4] "
+    "The following fields are not configured with our system: [doAnyChildrenLiveAtAddress,OtherChildren_Row1,OtherChildren_Row2,OtherChildren_Row3,OtherChildren_Row4] "
   ]
 }
