@@ -24,7 +24,7 @@ uk:
                     landline: applicantOneHomePhoneNumber
                     phoneNumber: applicantOneMobilePhoneNumber
                     email: applicantOneEmailAddress
-                    #isAtAddressLessThan5Years: hasapplicantOneLivedAtThisAddressForOverFiveYears
+                    isAtAddressLessThan5Years: hasapplicantOneLivedAtThisAddressForOverFiveYears
                     addressLivedLessThan5YearsDetails: applicantOneAllAddressesForLastFiveYears
                     doTheyHaveLegalRepresentation: isApplicantSolicitorPresent
                     representativeFirstName: solicitorFullName
@@ -52,7 +52,7 @@ uk:
                     landline: applicantTwoHomePhoneNumber
                     phoneNumber: applicantTwoMobilePhoneNumber
                     email: applicantTwoEmailAddress
-                    #isAtAddressLessThan5Years: hasapplicantTwoLivedAtThisAddressForOverFiveYears
+                    isAtAddressLessThan5Years: hasapplicantTwoLivedAtThisAddressForOverFiveYears
                     addressLivedLessThan5YearsDetails: applicantTwoAllAddressesForLastFiveYears
               otherPartyInTheCaseRevised:
                 - value:
@@ -125,7 +125,7 @@ uk:
                     canYouProvidePhoneNumber: respondentOneMobilePhoneNumberDontKnow
                     email: respondentOneEmailAddress
                     canYouProvideEmailAddress: respondentOneEmailAddressDontKnow
-                    #isAtAddressLessThan5Years: respondentOneLivedAtThisAddressForOverFiveYears
+                    isAtAddressLessThan5Years: respondentOneLivedAtThisAddressForOverFiveYears
                     addressLivedLessThan5YearsDetails: respondentOneAllAddressesForLastFiveYears
                 - value:
                     firstName: respondentTwoFirstName
@@ -144,7 +144,7 @@ uk:
                     canYouProvidePhoneNumber: respondentTwoMobilePhoneNumberDontKnow
                     email: respondentTwoEmailAddress
                     canYouProvideEmailAddress: respondentTwoEmailAddressDontKnow
-                    #isAtAddressLessThan5Years: respondentTwoLivedAtThisAddressForOverFiveYears
+                    isAtAddressLessThan5Years: respondentTwoLivedAtThisAddressForOverFiveYears
                     addressLivedLessThan5YearsDetails: respondentTwoAllAddressesForLastFiveYears
               litigationCapacityFactors: factorAffectingLitigationCapacity
               litigationCapacityReferrals: assessmentByAdultLearningTeam

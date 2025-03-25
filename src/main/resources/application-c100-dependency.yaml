@@ -148,6 +148,14 @@ uk:
               groupValidationValue: "Yes"
               requiredFieldCount: 1
               sectionName: "4 - MIAM provider - atleast 1 required of applicantOnlyAttended, applicantAndRespondentParty_AttendedMIAMSeparately, mediationNotProceeding_applicationAttendedMIAMAlone, mediationNotProceeding_applicantsAndRespondentsAttendedMIAM, mediationNotProceeding_hasStartedButBrokenWithSomeIssue"
+            - cannotProceedWithApplication:
+              dependentFields:
+                - exemption_to_attend_MIAM
+              dependentFieldValue: "Yes"
+              groupFieldName: attended_MIAM
+              groupValidationValue: "No"
+              requiredFieldCount: 1
+              sectionName: "if attended_MIAM is No, exemption_to_attend_MIAM should be Yes"
             - groupMediatorCertifiesMIAMTable:
               dependentFields:
                 - fmcRegistrationNumber

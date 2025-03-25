@@ -149,6 +149,8 @@ public class BulkScanC100ConditionalTransformerService {
     public static final String CA_RESPONDENT_2_INTERNAL_FLAGS = "caRespondent2InternalFlags";
     public static final String MPU_OTHER_EXEMPTION_REASONS = "mpuOtherExemptionReasons";
     public static final String NEW_CHILD_DETAILS = "newChildDetails";
+    public static final String DO_THEY_HAVE_LEGAL_REPRESENTATION = "doTheyHaveLegalRepresentation";
+    public static final String IS_AT_ADDRESS_LESS_THAN_5_YEARS = "isAtAddressLessThan5Years";
 
     public void transform(
             Map<String, Object> populatedMap,
@@ -465,37 +467,53 @@ public class BulkScanC100ConditionalTransformerService {
                 if (ObjectUtils.isNotEmpty(value.get(DATE_OF_BIRTH))) {
                     value.put(DATE_OF_BIRTH, DateUtil.transformDate(value.get(DATE_OF_BIRTH).toString(),
                                                                     "dd/MM/yyyy", "yyyy-MM-dd"));
-                    party.put(VALUE, value);
                 }
-                if (ObjectUtils.isNotEmpty(value.get("doTheyHaveLegalRepresentation"))) {
-                    if (YES.equalsIgnoreCase(String.valueOf(value.get("doTheyHaveLegalRepresentation")))) {
-                        value.put("doTheyHaveLegalRepresentation", "yes");
-                        party.put(VALUE, value);
+                if (ObjectUtils.isNotEmpty(value.get(DO_THEY_HAVE_LEGAL_REPRESENTATION))) {
+                    if (YES.equalsIgnoreCase(String.valueOf(value.get(DO_THEY_HAVE_LEGAL_REPRESENTATION)))) {
+                        value.put(DO_THEY_HAVE_LEGAL_REPRESENTATION, "yes");
                     } else {
-                        value.put("doTheyHaveLegalRepresentation", "no");
-                        party.put(VALUE, value);
+                        value.put(DO_THEY_HAVE_LEGAL_REPRESENTATION, "no");
+                    }
+                }
+                if (ObjectUtils.isNotEmpty(value.get(IS_AT_ADDRESS_LESS_THAN_5_YEARS))) {
+                    if (YES.equalsIgnoreCase(String.valueOf(value.get(IS_AT_ADDRESS_LESS_THAN_5_YEARS)))) {
+                        if (APPLICANTS.equalsIgnoreCase(partyType)) {
+                            value.put(IS_AT_ADDRESS_LESS_THAN_5_YEARS, YesOrNo.No);
+                        } else if (RESPONDENTS.equalsIgnoreCase(partyType)) {
+                            value.put(IS_AT_ADDRESS_LESS_THAN_5_YEARS, "no");
+                        }
+                    } else if (NO.equalsIgnoreCase(String.valueOf(value.get(IS_AT_ADDRESS_LESS_THAN_5_YEARS)))) {
+                        if (APPLICANTS.equalsIgnoreCase(partyType)) {
+                            value.put(IS_AT_ADDRESS_LESS_THAN_5_YEARS, YesOrNo.Yes);
+                        } else if (RESPONDENTS.equalsIgnoreCase(partyType)) {
+                            value.put(IS_AT_ADDRESS_LESS_THAN_5_YEARS, "yes");
+                        }
+                    } else if (RESPONDENTS.equalsIgnoreCase(partyType)) {
+                        value.put(IS_AT_ADDRESS_LESS_THAN_5_YEARS, "dontKnow");
                     }
                 }
                 Map<String, String> address = (Map<String, String>) value.get("address");
                 if (ObjectUtils.isEmpty(address.get("AddressLine1"))) {
-                    party.put("isAddressConfidential", YesOrNo.Yes);
+                    value.put("isAddressConfidential", YesOrNo.Yes);
                     address.put("AddressLine1", "Marked confidential, to be added in c8");
-                    party.put("address", address);
+                    value.put("address", address);
                 } else {
-                    party.put("isAddressConfidential", YesOrNo.No);
+                    value.put("isCurrentAddressKnown", YesOrNo.Yes);
+                    value.put("isAddressConfidential", YesOrNo.No);
                 }
                 if (ObjectUtils.isEmpty(address.get("email"))) {
-                    party.put("isEmailAddressConfidential", YesOrNo.Yes);
+                    value.put("isEmailAddressConfidential", YesOrNo.Yes);
                 } else {
-                    party.put("canYouProvideEmailAddress", YesOrNo.Yes);
-                    party.put("isEmailAddressConfidential", YesOrNo.No);
+                    value.put("canYouProvideEmailAddress", YesOrNo.Yes);
+                    value.put("isEmailAddressConfidential", YesOrNo.No);
                 }
                 if (ObjectUtils.isEmpty(address.get("phoneNumber")) && ObjectUtils.isEmpty(address.get("landline"))) {
-                    party.put("isPhoneNumberConfidential", YesOrNo.Yes);
+                    value.put("isPhoneNumberConfidential", YesOrNo.Yes);
                 } else {
-                    party.put("canYouProvidePhoneNumber", YesOrNo.Yes);
-                    party.put("isPhoneNumberConfidential", YesOrNo.No);
+                    value.put("canYouProvidePhoneNumber", YesOrNo.Yes);
+                    value.put("isPhoneNumberConfidential", YesOrNo.No);
                 }
+                party.put(VALUE, value);
                 return party;
             }).toList());
     }

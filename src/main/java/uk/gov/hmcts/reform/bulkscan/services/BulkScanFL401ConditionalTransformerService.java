@@ -80,6 +80,7 @@ import uk.gov.hmcts.reform.bulkscan.enums.ApplicantRespondentRelationshipEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.FL401StopRespondentBehaviourChildEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.FL401StopRespondentEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.ReasonForOrderWithoutGivingNoticeEnum;
+import uk.gov.hmcts.reform.bulkscan.enums.YesOrNo;
 import uk.gov.hmcts.reform.bulkscan.utils.DateUtil;
 
 @SuppressWarnings({"PMD", "unchecked"})
@@ -391,6 +392,8 @@ public class BulkScanFL401ConditionalTransformerService {
                 Map.entry("id", UUID.randomUUID()),
                 Map.entry(VALUE, values)
             )));
+        } else {
+            populatedMap.put("isInterpreterNeeded", YesOrNo.No);
         }
         if (YES.equalsIgnoreCase(inputFieldsMap.get("disabilitySupport_NeededAtCourt"))) {
             populatedMap.put("adjustmentsRequired", inputFieldsMap.get("disabilitySupport_details"));
