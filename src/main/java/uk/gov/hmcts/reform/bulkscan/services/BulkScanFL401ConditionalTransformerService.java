@@ -396,6 +396,7 @@ public class BulkScanFL401ConditionalTransformerService {
             populatedMap.put("isInterpreterNeeded", YesOrNo.No);
         }
         if (YES.equalsIgnoreCase(inputFieldsMap.get("disabilitySupport_NeededAtCourt"))) {
+            populatedMap.put("isDisabilityPresent", YesOrNo.Yes);
             populatedMap.put("adjustmentsRequired", inputFieldsMap.get("disabilitySupport_details"));
         }
         String specialArrangements = getFormattedSpecialMeasureAtCourt(inputFieldsMap);
