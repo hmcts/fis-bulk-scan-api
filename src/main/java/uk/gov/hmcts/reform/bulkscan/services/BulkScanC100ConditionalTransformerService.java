@@ -818,6 +818,7 @@ public class BulkScanC100ConditionalTransformerService {
                 } else {
                     childValue.put(GENDER, "female");
                 }
+                childValue.put("orderAppliedFor", transformOrderAppliedFor(inputFieldsMap));
                 child.put(VALUE, childValue);
                 childrenList.add(child);
             }
