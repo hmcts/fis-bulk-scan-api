@@ -1016,23 +1016,23 @@ public class BulkScanC100ConditionalTransformerService {
             Map<String, String> inputFieldsMap) {
         List<String> miamExemptionsChecklist = new ArrayList<>();
         if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_DOMESTIC_VIOLENCE))) {
-            miamExemptionsChecklist.add(MiamExemptionsChecklistEnum.domesticViolence.toString());
+            miamExemptionsChecklist.add(MiamExemptionsChecklistEnum.mpuDomesticAbuse.toString());
         }
 
         if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_CHILD_PROTECTION_CONCERNS))) {
-            miamExemptionsChecklist.add(MiamExemptionsChecklistEnum.childProtectionConcern.toString());
+            miamExemptionsChecklist.add(MiamExemptionsChecklistEnum.mpuChildProtectionConcern.toString());
         }
 
         if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_URGENCY))) {
-            miamExemptionsChecklist.add(MiamExemptionsChecklistEnum.urgency.toString());
+            miamExemptionsChecklist.add(MiamExemptionsChecklistEnum.mpuUrgency.toString());
         }
 
         if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_PREVIOUS_ATTENDENCE))) {
-            miamExemptionsChecklist.add(MiamExemptionsChecklistEnum.previousMIAMattendance.toString());
+            miamExemptionsChecklist.add(MiamExemptionsChecklistEnum.mpuPreviousMiamAttendance.toString());
         }
 
         if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get(NO_MIAM_OTHER_REASONS))) {
-            miamExemptionsChecklist.add(MiamExemptionsChecklistEnum.other.toString());
+            miamExemptionsChecklist.add(MiamExemptionsChecklistEnum.mpuOther.toString());
         }
         return miamExemptionsChecklist;
     }
