@@ -7,7 +7,7 @@ import uk.gov.hmcts.reform.bulkscan.enums.PartyEnum;
 /** All private law form case types constants (Edge cases plus c100). */
 public final class BulkScanPrlConstants {
 
-    public static final String MIAM_EXEMPTIONS_CHECKLIST = "miamExemptionsChecklist";
+    public static final String MIAM_EXEMPTIONS_CHECKLIST = "mpuExemptionReasons";
     public static final String NO_MIAM_DOMESTIC_VIOLENCE = "noMIAM_domesticViolance";
     public static final String NO_MIAM_CHILD_PROTECTION_CONCERNS = "noMIAM_childProtectionConcerns";
     public static final String NO_MIAM_URGENCY = "noMIAM_Urgency";
