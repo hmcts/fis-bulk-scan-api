@@ -547,16 +547,16 @@ public class BulkScanC100ConditionalTransformerService {
         List<String> specialArrangements = new ArrayList<>();
 
         if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get("Attendence_separateWaitingRoom"))) {
-            specialArrangements.add(SpecialMeasuresEnum.separateWaitingRoom.toString());
+            specialArrangements.add(SpecialMeasuresEnum.separateWaitingRoom.getDisplayedValue());
         }
         if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get("Attendence_separateEntryAndExit"))) {
-            specialArrangements.add(SpecialMeasuresEnum.seperateEntranceExit.toString());
+            specialArrangements.add(SpecialMeasuresEnum.seperateEntranceExit.getDisplayedValue());
         }
         if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get("Attendence_privacyScreen"))) {
-            specialArrangements.add(SpecialMeasuresEnum.shieldedByScreen.toString());
+            specialArrangements.add(SpecialMeasuresEnum.shieldedByScreen.getDisplayedValue());
         }
         if (YesOrNo.Yes.getDisplayedValue().equalsIgnoreCase(inputFieldsMap.get("Attendence_joinHearingByVideo"))) {
-            specialArrangements.add(SpecialMeasuresEnum.joinByVideoLink.toString());
+            specialArrangements.add(SpecialMeasuresEnum.joinByVideoLink.getDisplayedValue());
         }
         if (!specialArrangements.isEmpty()) {
             populatedMap.put("isSpecialArrangementsRequired", YES);
