@@ -560,7 +560,7 @@ public class BulkScanC100ConditionalTransformerService {
         }
         if (!specialArrangements.isEmpty()) {
             populatedMap.put("isSpecialArrangementsRequired", YES);
-            populatedMap.put("specialArrangementsRequired", String.join(",", specialArrangements));
+            populatedMap.put("specialArrangementsRequired", String.join(", ", specialArrangements));
         }
     }
 
