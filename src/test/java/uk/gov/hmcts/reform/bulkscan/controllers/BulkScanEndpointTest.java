@@ -105,11 +105,8 @@ class BulkScanEndpointTest {
                         .formType(FL401.name())
                         .build();
 
-        // When
         assertThrows(OcrMappingException.class, () -> bulkScanEndpoint.transformationOcrData(
             S2S_TOKEN, CONTENT_TYPE, bulkScanTransformationRequest));
-        // Then
-        //assertNotNull(response);
     }
 
     @Test

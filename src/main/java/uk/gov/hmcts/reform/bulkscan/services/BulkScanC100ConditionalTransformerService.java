@@ -21,6 +21,7 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.APPLIC
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.APPLICANT_REQUIRES_INTERPRETER_RESPONDENT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.CHILD_ARRANGEMENTS_ORDER_DESCRIPTION;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.CHILD_ARRANGEMENT_ORDER;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.INTERNATIONAL_OR_FACTORS_AFFECTING_LITIGATION_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.MEDIATION_NOT_PROCEEDING_APPLICANTS_AND_RESPONDENTS_ATTENDED_MIAM;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.MEDIATION_NOT_PROCEEDING_APPLICANT_ATTENDED_MIAM_ALONE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.MEDIATION_NOT_PROCEEDING_HASSTARTED_BUT_BROKEN_WITH_SOMEISSUE;
@@ -151,6 +152,8 @@ public class BulkScanC100ConditionalTransformerService {
     public static final String NEW_CHILD_DETAILS = "newChildDetails";
     public static final String DO_THEY_HAVE_LEGAL_REPRESENTATION = "doTheyHaveLegalRepresentation";
     public static final String IS_AT_ADDRESS_LESS_THAN_5_YEARS = "isAtAddressLessThan5Years";
+    public static final String DD_MM_YYYY = "dd/MM/yyyy";
+    public static final String YYYY_MM_DD = "yyyy-MM-dd";
 
     public void transform(
             Map<String, Object> populatedMap,
@@ -205,7 +208,7 @@ public class BulkScanC100ConditionalTransformerService {
 
         //transform international elements
         if (YesOrNo.Yes.getDisplayedValue()
-            .equalsIgnoreCase(inputFieldsMap.get("international_or_factorsAffectingLitigation"))) {
+            .equalsIgnoreCase(inputFieldsMap.get(INTERNATIONAL_OR_FACTORS_AFFECTING_LITIGATION_FIELD))) {
             transformInternationalElements(inputFieldsMap, populatedMap);
         }
 
@@ -243,7 +246,7 @@ public class BulkScanC100ConditionalTransformerService {
             String dob = null;
             if (StringUtils.isNotEmpty(inputFieldsMap.get("OtherChildrenOneDateOfBirth"))) {
                 dob = DateUtil.transformDate(inputFieldsMap.get("OtherChildrenOneDateOfBirth"),
-                                             "dd/MM/yyyy", "yyyy-MM-dd");
+                                             DD_MM_YYYY, YYYY_MM_DD);
             }
             log.info("Child one dob {} : {}", inputFieldsMap.get("OtherChildrenOneDateOfBirth"), dob);
             otherChild.put(ID, UUID.randomUUID());
@@ -264,7 +267,7 @@ public class BulkScanC100ConditionalTransformerService {
             String dob = null;
             if (StringUtils.isNotEmpty(inputFieldsMap.get("OtherChildrenTwoDateOfBirth"))) {
                 dob = DateUtil.transformDate(inputFieldsMap.get("OtherChildrenTwoDateOfBirth"),
-                                                    "dd/MM/yyyy", "yyyy-MM-dd"
+                                             DD_MM_YYYY, YYYY_MM_DD
                 );
             }
             log.info("Child two dob {} : {}", inputFieldsMap.get("OtherChildrenTwoDateOfBirth"), dob);
@@ -466,7 +469,8 @@ public class BulkScanC100ConditionalTransformerService {
                 Map<String, Object> value = (Map<String, Object>) party.get(VALUE);
                 if (ObjectUtils.isNotEmpty(value.get(DATE_OF_BIRTH))) {
                     value.put(DATE_OF_BIRTH, DateUtil.transformDate(value.get(DATE_OF_BIRTH).toString(),
-                                                                    "dd/MM/yyyy", "yyyy-MM-dd"));
+                                                                    DD_MM_YYYY, YYYY_MM_DD
+                    ));
                 }
                 if (ObjectUtils.isNotEmpty(value.get(DO_THEY_HAVE_LEGAL_REPRESENTATION))) {
                     if (YES.equalsIgnoreCase(String.valueOf(value.get(DO_THEY_HAVE_LEGAL_REPRESENTATION)))) {
@@ -702,6 +706,7 @@ public class BulkScanC100ConditionalTransformerService {
                 populatedMap.put("mediatorRegistrationNumber", inputFieldsMap.get("fmcRegistrationNumber"));
                 populatedMap.put("familyMediatorServiceName", inputFieldsMap.get("familyMediationServiceName"));
             } else {
+                populatedMap.put("mpuApplicantAttendedMiam", NO);
                 handleMiamExemptions(populatedMap, inputFieldsMap);
             }
         }
@@ -811,7 +816,8 @@ public class BulkScanC100ConditionalTransformerService {
                 childValue.put("parentalResponsibilityDetails", inputFieldsMap.get("parentalResponsibilityDetails"));
                 if (ObjectUtils.isNotEmpty(childValue.get(DATE_OF_BIRTH))) {
                     childValue.put(DATE_OF_BIRTH, DateUtil.transformDate(childValue.get(DATE_OF_BIRTH).toString(),
-                                                                         "dd/MM/yyyy", "yyyy-MM-dd"));
+                                                                         DD_MM_YYYY, YYYY_MM_DD
+                    ));
                 }
                 if ("male".equalsIgnoreCase((String) childValue.get(GENDER))) {
                     childValue.put(GENDER, "male");
