@@ -505,13 +505,13 @@ public class BulkScanC100ConditionalTransformerService {
                     value.put("isCurrentAddressKnown", YesOrNo.Yes);
                     value.put("isAddressConfidential", YesOrNo.No);
                 }
-                if (ObjectUtils.isEmpty(address.get("email"))) {
+                if (ObjectUtils.isEmpty(value.get("email"))) {
                     value.put("isEmailAddressConfidential", YesOrNo.Yes);
                 } else {
                     value.put("canYouProvideEmailAddress", YesOrNo.Yes);
                     value.put("isEmailAddressConfidential", YesOrNo.No);
                 }
-                if (ObjectUtils.isEmpty(address.get("phoneNumber")) && ObjectUtils.isEmpty(address.get("landline"))) {
+                if (ObjectUtils.isEmpty(value.get("phoneNumber")) && ObjectUtils.isEmpty(address.get("landline"))) {
                     value.put("isPhoneNumberConfidential", YesOrNo.Yes);
                 } else {
                     value.put("canYouProvidePhoneNumber", YesOrNo.Yes);
