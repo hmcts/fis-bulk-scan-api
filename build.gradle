@@ -224,10 +224,10 @@ dependencyManagement {
 }
 
 dependencies {
-compileOnly("org.projectlombok:lombok:1.18.36")
-testCompileOnly("org.projectlombok:lombok:1.18.36")
-annotationProcessor("org.projectlombok:lombok:1.18.36")
-testAnnotationProcessor("org.projectlombok:lombok:1.18.36")
+compileOnly("org.projectlombok:lombok:1.18.38")
+testCompileOnly("org.projectlombok:lombok:1.18.38")
+annotationProcessor("org.projectlombok:lombok:1.18.38")
+testAnnotationProcessor("org.projectlombok:lombok:1.18.38")
 
 implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web'
 implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator'
@@ -251,7 +251,7 @@ implementation group: 'com.github.hmcts.java-logging', name: 'logging', version:
 
 implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: log4JVersion
 implementation group: 'org.apache.logging.log4j', name: 'log4j-to-slf4j', version: log4JVersion
-implementation 'org.projectlombok:lombok:1.18.36'
+implementation 'org.projectlombok:lombok:1.18.38'
 //implementation group: 'io.springfox', name: 'springfox-boot-starter', version: '3.0.0'
 implementation group: 'io.springfox', name: 'springfox-swagger2', version: '3.0.0'
 implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '3.0.0'
