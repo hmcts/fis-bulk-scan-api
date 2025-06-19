@@ -5,5 +5,20 @@
     <cve>CVE-2023-35116</cve>
     <cve>CVE-2023-6378</cve>
     <cve>CVE-2023-6481</cve>
+    <cve>CVE-2024-22259</cve>
+    <cve>CVE-2024-38820</cve>
+    <cve>CVE-2024-38808</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[file name: tomcat-embed-core-9.0.83.jar]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.apache\.tomcat\.embed/tomcat\-embed\-core@.*$</packageUrl>
+    <cve>CVE-2024-52316</cve>
+    <cve>CVE-2025-24813</cve>
+    <cve>CVE-2025-31651</cve>
+    <cve>CVE-2024-24549</cve>
+    <cve>CVE-2024-34750</cve>
+    <cve>CVE-2024-38286</cve>
+    <cve>CVE-2025-31650</cve>
+    <cve>CVE-2024-23672</cve>
   </suppress>
 </suppressions>
