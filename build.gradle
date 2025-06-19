@@ -174,39 +174,30 @@ rejectVersionIf { selection -> // <---- notice how the closure argument is named
 
 // https://jeremylong.github.io/DependencyCheck/dependency-check-gradle/configuration.html
 dependencyCheck {
-failBuildOnCVSS = System.getProperty('dependencyCheck.failBuild') == 'true' ? 0 : 11
-suppressionFile = 'config/owasp/suppressions.xml'
-outputDirectory = 'build/reports/'
+  failBuildOnCVSS = System.getProperty('dependencyCheck.failBuild') == 'true' ? 0 : 11
+  suppressionFile = 'config/owasp/suppressions.xml'
+  outputDirectory = 'build/reports/'
 
-analyzers {
-	// Disable scanning of .NET related binaries
-	assemblyEnabled = false
-}
-/*skipConfigurations = [
-	"checkstyle",
-	"compileOnly",
-	"pmd",
-	"integrationTest",
-	"functionalTest",
-	"smokeTest",
-	"contractTestRuntimeClasspath",
-	"contractTestCompileClasspath"
-]*/
+  analyzers {
+    // Disable scanning of .NET related binaries
+    assemblyEnabled = false
+  }
 }
 
 repositories {
-mavenLocal()
-mavenCentral()
-maven { url 'https://jitpack.io' }
-jcenter()
+  mavenLocal()
+  mavenCentral()
+  maven {
+    url = uri('https://pkgs.dev.azure.com/hmcts/Artifacts/_packaging/hmcts-lib/maven/v1')
+  }
 }
 
 def versions = [
 springfoxSwagger  : '3.0.0',
 s2sClient         : '4.0.3',
 springCloud       : '3.1.9',
-commonsIo         :  '2.7',
-reformsJavaLogging: '6.1.8'
+commonsIo         : '2.7',
+reformsJavaLogging: '6.1.9'
 ]
 
 ext {
@@ -236,14 +227,10 @@ implementation group: 'org.springframework.boot', name: 'spring-boot-starter-jso
 
 implementation group: 'org.springframework.cloud', name: 'spring-cloud-starter-bootstrap', version: versions.springCloud
 
-//implementation group: 'uk.gov.hmcts.reform', name: 'service-auth-provider-client', version: versions.s2sClient
 implementation group: 'com.github.hmcts', name: 'service-auth-provider-java-client', version: versions.s2sClient
 
 implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.8.0'
 
-//implementation group: 'uk.gov.hmcts.reform', name: 'logging', version: versions.reformsJavaLogging
-//implementation group: 'uk.gov.hmcts.reform', name: 'logging-appinsights', version: versions.reformsJavaLogging
-//implementation group: 'uk.gov.hmcts.reform', name: 'logging-spring', version: versions.reformsJavaLogging
 implementation group: 'com.github.hmcts.java-logging', name: 'logging', version: versions.reformsJavaLogging
 implementation group: 'com.github.hmcts.java-logging', name: 'logging-appinsights', version: versions.reformsJavaLogging
 
@@ -252,7 +239,7 @@ implementation group: 'com.github.hmcts.java-logging', name: 'logging', version:
 implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: log4JVersion
 implementation group: 'org.apache.logging.log4j', name: 'log4j-to-slf4j', version: log4JVersion
 implementation 'org.projectlombok:lombok:1.18.36'
-//implementation group: 'io.springfox', name: 'springfox-boot-starter', version: '3.0.0'
+
 implementation group: 'io.springfox', name: 'springfox-swagger2', version: '3.0.0'
 implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '3.0.0'
 implementation group: 'io.springfox', name: 'springfox-spring-webflux', version: '3.0.0'
@@ -268,17 +255,13 @@ implementation(group: 'org.springframework.cloud', name: 'spring-cloud-starter-o
 	exclude group: 'io.reactivex', module: 'rxnetty-servo'
 	}
 implementation group: 'net.logstash.logback', name: 'logstash-logback-encoder', version:'7.4'
-//functionalTestImplementation group: 'uk.gov.hmcts.reform', name: 'service-auth-provider-client', version: versions.s2sClient
 functionalTestImplementation group: 'com.github.hmcts', name: 'service-auth-provider-java-client', version: versions.s2sClient
 
 
 testImplementation(platform('org.junit:junit-bom:5.11.4'))
 testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
 testImplementation group: 'org.springframework.cloud', name: 'spring-cloud-contract-wiremock', version: versions.springCloud
-testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test', {
-	exclude group: 'junit', module: 'junit'
-	exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
-}
+testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test'
 
 testImplementation group: 'io.rest-assured', name: 'rest-assured'
 
