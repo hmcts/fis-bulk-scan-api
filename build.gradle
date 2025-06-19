@@ -12,7 +12,7 @@ plugins {
 }
 
 application {
-  mainClassName = 'uk.gov.hmcts.reform.bulkscan.Application'
+  mainClass = 'uk.gov.hmcts.reform.bulkscan.Application'
   group = 'uk.gov.hmcts.reform'
   version = '0.0.1'
 }
