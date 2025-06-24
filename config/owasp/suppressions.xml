@@ -5,5 +5,17 @@
     <cve>CVE-2023-35116</cve>
     <cve>CVE-2023-6378</cve>
     <cve>CVE-2023-6481</cve>
+    <cve>CVE-2024-22243</cve> <!-- spring-5.3.31.jar -->
+    <cve>CVE-2024-38820</cve> <!-- spring-5.3.31.jar -->
+    <cve>CVE-2024-38808</cve> <!-- spring-5.3.31.jar -->
+    <cve>CVE-2024-22259</cve> <!-- spring-5.3.31.jar -->
+    <cve>CVE-2024-52316</cve> <!-- tomcat:9.0.83.jar -->
+    <cve>CVE-2025-24813</cve> <!-- tomcat:9.0.83.jar -->
+    <cve>CVE-2025-31651</cve> <!-- tomcat:9.0.83.jar -->
+    <cve>CVE-2024-24549</cve> <!-- tomcat:9.0.83.jar -->
+    <cve>CVE-2024-34750</cve> <!-- tomcat:9.0.83.jar -->
+    <cve>CVE-2024-38286</cve> <!-- tomcat:9.0.83.jar -->
+    <cve>CVE-2025-31650</cve> <!-- tomcat:9.0.83.jar -->
+    <cve>CVE-2024-23672</cve> <!-- tomcat:9.0.83.jar -->
   </suppress>
 </suppressions>
