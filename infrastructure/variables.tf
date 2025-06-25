@@ -4,7 +4,10 @@ variable "common_tags" {
 
 variable "product" {
   type    = string
-  default = "prl"
+  default = "fis"
+}
+variable "location" {
+  default = "UK South"
 }
 
 variable "component" {
