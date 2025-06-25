@@ -1,23 +1,17 @@
-variable "product" {}
-
-variable "component" {}
-
-variable "raw_product" {
-  default = "fis"
-}
-
-variable "location" {
-  default = "UK South"
-}
-
-variable "env" {}
-
-variable "subscription" {}
-
-variable "deployment_namespace" {}
-
 variable "common_tags" {
-  type = map(string)
+  type = map(any)
 }
 
-variable "aks_subscription_id" {}
+variable "product" {
+  type    = string
+  default = "prl"
+}
+
+variable "component" {
+  type    = string
+  default = "cos"
+}
+
+variable "env" {
+  type = string
+}
