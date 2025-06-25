@@ -258,7 +258,7 @@ implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '3.
 implementation group: 'io.springfox', name: 'springfox-spring-webflux', version: '3.0.0'
 implementation 'junit:junit:4.13.2'
 
-implementation group: 'commons-io', name: 'commons-io', version: '2.18.0'
+implementation group: 'commons-io', name: 'commons-io', version: '2.19.0'
 
 implementation(group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign', version: versions.springCloud)
 	{
