@@ -18,4 +18,16 @@
     <cve>CVE-2025-31650</cve> <!-- tomcat:9.0.83.jar -->
     <cve>CVE-2024-23672</cve> <!-- tomcat:9.0.83.jar -->
   </suppress>
+  <suppress>
+    <notes><![CDATA[file name: tomcat-embed-core-9.0.104.jar]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.apache\.tomcat\.embed/tomcat\-embed\-core@.*$</packageUrl>
+    <cve>CVE-2025-48988</cve>
+    <cve>CVE-2025-46701</cve>
+  </suppress>
+  <suppress>
+    <notes><![CDATA[file name: tomcat-embed-websocket-9.0.104.jar]]></notes>
+    <packageUrl regex="true">^pkg:maven/org\.apache\.tomcat\.embed/tomcat\-embed\-websocket@.*$</packageUrl>
+    <cve>CVE-2025-48988</cve>
+    <cve>CVE-2025-46701</cve>
+  </suppress>
 </suppressions>
