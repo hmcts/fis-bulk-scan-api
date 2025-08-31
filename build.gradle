@@ -210,7 +210,7 @@ reformsJavaLogging: '6.1.9'
 ]
 
 ext {
-log4JVersion = "2.24.3"
+log4JVersion = "2.25.1"
 }
 
 dependencyManagement {
