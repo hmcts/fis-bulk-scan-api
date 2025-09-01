@@ -1,21 +1,20 @@
-variable "product" {}
-
-variable "component" {}
-
-variable "raw_product" {
-  default = "fis"
+variable "common_tags" {
+  type = map(any)
 }
 
+variable "product" {
+  type    = string
+  default = "fis"
+}
 variable "location" {
   default = "UK South"
 }
 
-variable "env" {}
+variable "component" {
+  type    = string
+  default = "cos"
+}
 
-variable "subscription" {}
-
-variable "deployment_namespace" {}
-
-variable "common_tags" {
-  type = "map"
+variable "env" {
+  type = string
 }
