@@ -122,7 +122,7 @@ getConfigDirectory().set(new File(rootDir, 'config/checkstyle'))
 }
 
 pmd {
-toolVersion = "6.41.0"
+toolVersion = "6.55.0"
 sourceSets = [sourceSets.main, sourceSets.test, sourceSets.integrationTest, sourceSets.smokeTest]
 reportsDir = file("$project.buildDir/reports/pmd")
 // https://github.com/pmd/pmd/issues/876
