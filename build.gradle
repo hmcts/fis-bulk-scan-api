@@ -196,9 +196,6 @@ analyzers {
 
 repositories {
 mavenLocal()
-mavenCentral()
-maven { url 'https://jitpack.io' }
-jcenter()
 }
 
 def versions = [
