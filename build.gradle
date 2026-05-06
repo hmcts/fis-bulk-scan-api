@@ -191,7 +191,6 @@ analyzers {
 repositories {
 mavenLocal()
 mavenCentral()
-maven { url 'https://jitpack.io' }
 jcenter()
 }
 
@@ -201,7 +200,7 @@ s2sClient         : '4.0.3',
 springCloud       : '3.1.9',
 commonsIo         : '2.7',
 jacksonDatabind   : '2.17.2',
-reformsJavaLogging: '6.1.8'
+reformsJavaLogging: '6.1.8',
 commonsIo         :  '2.7',
 reformsJavaLogging: '6.1.9'
 ]
