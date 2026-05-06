@@ -189,8 +189,9 @@ analyzers {
 }
 
 repositories {
-mavenLocal()
-mavenCentral()
+maven {
+  url 'https://artifactory.platform.hmcts.net/artifactory/maven-remotes'
+}
 jcenter()
 }
 
