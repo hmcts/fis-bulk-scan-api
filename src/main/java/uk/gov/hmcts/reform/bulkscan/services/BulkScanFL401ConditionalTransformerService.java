@@ -1,40 +1,20 @@
 package uk.gov.hmcts.reform.bulkscan.services;
 
-import static org.springframework.util.StringUtils.hasText;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NAME_OF_COURT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NO;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.VALUE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.ADDRESS;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.ADDRESS_LINE1;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.ADDRESS_LINE2;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_ADDRESS_BUILDING_AND_STREET;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_ADDRESS_COUNTY;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_ADDRESS_POSTCODE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_ADDRESS_SECOND_LINE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_ADDRESS_TOWN_OR_CITY;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_CHILD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_CHILD_RELATIONSHIP;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_CONTACT_CONFIDENTIALITY;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_EMAIL;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_FAMILY_TABLE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_PHONE_NUMBER;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_PREFER_TO_BE_CONTACTED;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_RESPONDENT_OTHER_RELATIONSHIP_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_RESPONDENT_RELATIONSHIP_FIELDS;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_RESPONDENT_RELATIONSHIP_OPTIONS_FIELDS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_RESPONDENT_SHARE_PARENTAL;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICANT_SOLICITOR_NAME;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICATION_FOR_YOUR_FAMILY;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLICATION_FOR_YOU_ONLY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.APPLYING_FOR_NON_MOLES_STATION_ORDER;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.ATTEND_HEARING_TABLE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.BAIL_CONDITION_END_DATE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.CASE_NUMBER;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.CCD_APPLICANT_RELATIONSHIOP_DATE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.CCD_RELATIONSHIP_DATE_COMPLEX_END_DATE_FIELD;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.CCD_RELATIONSHIP_DATE_COMPLEX_START_DATE_FIELD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.CCD_RELATIONSHIP_TO_RESPONDENT_TABLE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.CHILDREN;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.CHILD_AGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.CHILD_FULL_NAME;
@@ -43,13 +23,7 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.CHIL
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.CHILD_LIVE_ADDRESS_ROW_3;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.CHILD_LIVE_ADDRESS_ROW_4;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.COMMA;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.COUNTY;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.DELIVERATELY_EVADING_SERVICE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.DETERREDOR_PREVENTED;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.DOB;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.DOES_APPLICANT_HAVE_CHILDREN;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.DO_CHILDREN_LIVE_ADDRESS;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.EMAIL;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.EMPTY_SPACE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.FAM_CHILD_DETAILS_ROW_1;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.FAM_CHILD_DETAILS_ROW_2;
@@ -57,13 +31,11 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.FAM_
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.FAM_CHILD_DETAILS_ROW_4;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.FL401_APPLICANT_RELATIONSHIP;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.FL401_APPLICANT_RELATIONSHIP_OPTIONS;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.FL401_APPLICANT_TABLE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.FL401_OTHER_PROCEEDINGS_TABLE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.FL401_SOLICITOR_TABLE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.FULL_NAME;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.IS_ADDRESS_CONFIDENTIAL;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.IS_EMAIL_ADDRESS_CONFIDENTIAL;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.IS_PHONE_NUMBER_CONFIDENTIAL;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.NEED_FOR_PARENTAL_RESPONSIBILITY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.ONGOING_COURT_PROCEEDING_ROW1;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.ONGOING_COURT_PROCEEDING_ROW2;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.ONGOING_COURT_PROCEEDING_ROW3;
@@ -72,18 +44,12 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.OTHE
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.OTHER_CHILD_LIVE_ADDRESS_ROW_2;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.OTHER_CHILD_LIVE_ADDRESS_ROW_3;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.OTHER_CHILD_LIVE_ADDRESS_ROW_4;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.PHONE_NUMBER;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.POSTCODE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.POSTTOWN;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.PREFER_TO_BE_CONTACTED;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.REASON_FOR_ORDER_WITHOUT_GIVING_NOTICE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.REPRESENTATIVE_FIRST_NAME;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.REPRESENTATIVE_LAST_NAME;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.RESPONDENT_CHILD_RELATIONSHIP;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.RESPONDENT_RESPONSIBLE_FOR_CHILD;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.RISK_OF_SIGNIFICANT_HARM;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.SPACE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.SPECIAL_MEASURE_AT_COURT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.SPECIAL_MEASURE_AT_COURT_ROW_1;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.SPECIAL_MEASURE_AT_COURT_ROW_2;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.SPECIAL_MEASURE_AT_COURT_ROW_3;
@@ -91,28 +57,30 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.SPEC
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.STOP_RESPONDENT_BEHAVIOUR_CHILD_OPTIONS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.STOP_RESPONDENT_BEHAVIOUR_OPTIONS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.STOP_RESPONDENT_BEHAVIOUR_OPTIONS_6;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.STOP_RESPONDENT_BEHAVIOUR_TABLE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.TEXT_AND_NUMERIC_MONTH_PATTERN;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.TWO_DIGIT_MONTH_FORMAT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.TYPE_OF_CASE;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanFl401Constants.WITHOUT_NOTICE_ORDER_TABLE;
-import static uk.gov.hmcts.reform.bulkscan.enums.OrderWithouGivingNoticeReasonEnum.RISKOF_SIGNIFICANT_HARM;
 
 import com.microsoft.applicationinsights.core.dependencies.google.gson.internal.LinkedTreeMap;
+
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.TreeMap;
+import java.util.UUID;
+
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.BooleanUtils;
+import org.apache.commons.lang3.ArrayUtils;
 import org.springframework.stereotype.Component;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
+import uk.gov.hmcts.reform.bulkscan.enums.ApplicantRelationshipEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.ApplicantRespondentRelationshipEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.FL401StopRespondentBehaviourChildEnum;
 import uk.gov.hmcts.reform.bulkscan.enums.FL401StopRespondentEnum;
-import uk.gov.hmcts.reform.bulkscan.enums.OrderWithouGivingNoticeReasonEnum;
+import uk.gov.hmcts.reform.bulkscan.enums.ReasonForOrderWithoutGivingNoticeEnum;
+import uk.gov.hmcts.reform.bulkscan.enums.YesOrNo;
 import uk.gov.hmcts.reform.bulkscan.utils.DateUtil;
 
 @SuppressWarnings({"PMD", "unchecked"})
@@ -120,137 +88,402 @@ import uk.gov.hmcts.reform.bulkscan.utils.DateUtil;
 @Slf4j
 public class BulkScanFL401ConditionalTransformerService {
 
+    public static final String INTERPRETER_NEEDED_AT_COURT_LANGUAGE = "InterpreterNeededAtCourt_Language";
+    public static final String INTERPRETER_NEEDED_AT_COURT_DIALECT = "InterpreterNeededAtCourt_Dialect";
+    public static final String APPLICANT = "applicant";
+
     public void transform(Map<String, Object> populatedMap, Map<String, String> inputFieldsMap) {
 
-        LinkedTreeMap withoutNoticeOrderTableMap =
-                (LinkedTreeMap) populatedMap.get(WITHOUT_NOTICE_ORDER_TABLE);
-        final String bailConditionEndDate =
-                (String) withoutNoticeOrderTableMap.get(BAIL_CONDITION_END_DATE);
+        // transforming Orders Applying for
+        transFormOrdersApplyingFor(populatedMap, inputFieldsMap);
 
-        withoutNoticeOrderTableMap.put(
-                BAIL_CONDITION_END_DATE,
-                DateUtil.transformDate(
-                        bailConditionEndDate,
-                        TEXT_AND_NUMERIC_MONTH_PATTERN,
-                        TWO_DIGIT_MONTH_FORMAT));
+        // transforming without notice order
+        tranformReasonForWithoutNotice(populatedMap, inputFieldsMap);
 
-        withoutNoticeOrderTableMap.put(
-                REASON_FOR_ORDER_WITHOUT_GIVING_NOTICE,
-                transformReasonForOrderWithoutGivingNotice(inputFieldsMap));
+        //transform applicant details
+        transformApplicantDetails(populatedMap, inputFieldsMap);
 
-        LinkedTreeMap relationshipToRespondentTableMap =
-                (LinkedTreeMap) populatedMap.get(CCD_RELATIONSHIP_TO_RESPONDENT_TABLE);
+        //transform relationship to respondent
+        transformRelationshipToRespondent(populatedMap, inputFieldsMap);
 
-        final String relationshipDateComplexStartDate =
-                (String)
-                        relationshipToRespondentTableMap.get(
-                                CCD_RELATIONSHIP_DATE_COMPLEX_START_DATE_FIELD);
+        //transform applicant family
+        transformApplicantFamily(populatedMap, inputFieldsMap);
 
-        if (null != relationshipDateComplexStartDate
-                && !relationshipDateComplexStartDate.isEmpty()) {
-            relationshipToRespondentTableMap.put(
-                    CCD_RELATIONSHIP_DATE_COMPLEX_START_DATE_FIELD,
-                    DateUtil.transformDate(
-                            relationshipDateComplexStartDate,
-                            TEXT_AND_NUMERIC_MONTH_PATTERN,
-                            TWO_DIGIT_MONTH_FORMAT));
+        //transform other proceedings
+        transformOtherProceedingsToCourt(populatedMap, inputFieldsMap);
+
+        //transform respondent behaviour
+        transformRespondentBehaviourDetails(populatedMap, inputFieldsMap);
+
+        //transform Home
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("ApplyingForOccupationOrder"))) {
+            transformHome(populatedMap, inputFieldsMap);
+        } else {
+            populatedMap.put("home", null);
         }
-        final String relationshipDateComplexEndDate =
-                (String)
-                        relationshipToRespondentTableMap.get(
-                                CCD_RELATIONSHIP_DATE_COMPLEX_END_DATE_FIELD);
+
+        //transform case flags
+        transformCaseFlags(inputFieldsMap, populatedMap);
+
+        //transform attending the hearing
+        getInterpreterNeeds(inputFieldsMap, populatedMap);
+        LinkedTreeMap stmtOfTruth = (LinkedTreeMap) populatedMap.get("fl401StmtOfTruth");
+        if (StringUtils.hasText(inputFieldsMap.get("StatementOfTruth_Date_DD"))) {
+            stmtOfTruth.put("date", DateUtil.buildDate(
+                inputFieldsMap.get("StatementOfTruth_Date_DD"),
+                inputFieldsMap.get("StatementOfTruth_Date_MM"),
+                inputFieldsMap.get("StatementOfTruth_Date_YYYY")));
+        }
+    }
+
+    private void transformCaseFlags(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
+        List<String> details = new ArrayList<>();
+        if (org.apache.commons.lang3.StringUtils.isNotEmpty(inputFieldsMap.get("applicantFirstName"))) {
+            LinkedTreeMap daApplicantExternalFlags = (LinkedTreeMap) populatedMap.get("daApplicantExternalFlags");
+            LinkedTreeMap daApplicantInternalFlags = (LinkedTreeMap) populatedMap.get("daApplicantInternalFlags");
+            daApplicantInternalFlags.put("partyName", inputFieldsMap.get("applicantFirstName") + " "
+                + inputFieldsMap.get("applicantLastName"));
+            daApplicantInternalFlags.put("roleOnCase", "Applicant");
+            daApplicantExternalFlags.put("details", details);
+            daApplicantInternalFlags.put("details", details);
+            daApplicantExternalFlags.put("partyName", inputFieldsMap.get("applicantFirstName") + " "
+                + inputFieldsMap.get("applicantLastName"));
+            daApplicantExternalFlags.put("roleOnCase", "Applicant");
+            populatedMap.put("daApplicantExternalFlags", daApplicantExternalFlags);
+            populatedMap.put("daApplicantInternalFlags", daApplicantInternalFlags);
+        } else {
+            populatedMap.remove("daApplicantExternalFlags");
+            populatedMap.remove("daApplicantInternalFlags");
+        }
+        if (org.apache.commons.lang3.StringUtils.isNotEmpty(inputFieldsMap.get("respondentFirstName"))) {
+            LinkedTreeMap daRespondentExternalFlags = (LinkedTreeMap) populatedMap.get("daRespondentExternalFlags");
+            daRespondentExternalFlags.put("partyName", inputFieldsMap.get("respondentFirstName") + " "
+                + inputFieldsMap.get("respondentLastName"));
+            daRespondentExternalFlags.put("roleOnCase", "Respondent");
+            LinkedTreeMap daRespondentInternalFlags = (LinkedTreeMap) populatedMap.get("daRespondentInternalFlags");
+            daRespondentInternalFlags.put("partyName", inputFieldsMap.get("respondentFirstName") + " "
+                + inputFieldsMap.get("respondentLastName"));
+            daRespondentInternalFlags.put("roleOnCase", "Respondent");
+            daRespondentExternalFlags.put("details", details);
+            daRespondentInternalFlags.put("details", details);
+            populatedMap.put("daRespondentExternalFlags", daRespondentExternalFlags);
+            populatedMap.put("daRespondentInternalFlags", daRespondentInternalFlags);
+        } else {
+            populatedMap.put("daRespondentExternalFlags", null);
+            populatedMap.put("daRespondentInternalFlags", null);
+        }
+    }
+
+    private void transformOtherProceedingsToCourt(Map<String, Object> populatedMap, Map<String, String> inputFieldsMap) {
+        Map<String, Object> fl401OtherProceedingDetails = new HashMap<>();
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("OngoingFamilyCourtProceeding"))) {
+            fl401OtherProceedingDetails.put("hasPrevOrOngoingOtherProceeding", "yes");
+            transformOngoingFamilyCourtProceedings(inputFieldsMap, fl401OtherProceedingDetails);
+        } else {
+            fl401OtherProceedingDetails.put("hasPrevOrOngoingOtherProceeding", "no");
+        }
+        populatedMap.put("fl401OtherProceedingDetails", fl401OtherProceedingDetails);
+    }
+
+    private void transformApplicantFamily(Map<String, Object> populatedMap, Map<String, String> inputFieldsMap) {
+        Map<String, Object> applicantFamily = new HashMap<>();
+        if (YES.equalsIgnoreCase(inputFieldsMap.get(NEED_FOR_PARENTAL_RESPONSIBILITY))) {
+            applicantFamily.put("applicantFamilyDetails", Map.of("doesApplicantHaveChildren", YES));
+            applicantFamily.put("applicantChildDetails", transformApplicantChild(inputFieldsMap));
+        } else {
+            applicantFamily.put("applicantFamilyDetails", Map.of("doesApplicantHaveChildren", NO));
+        }
+        populatedMap.putAll(applicantFamily);
+    }
+
+    private void transformHome(Map<String, Object> populatedMap, Map<String, String> inputFieldsMap) {
+        LinkedTreeMap<String, Object> home = (LinkedTreeMap<String, Object>) populatedMap.get("home");
+        if (YES.equalsIgnoreCase(String.valueOf(home.get("isThereMortgageOnProperty")))) {
+            List<String> mortgageNamedAfterList = new ArrayList<>();
+            if (StringUtils.hasText(inputFieldsMap.get("MortgageOnProperty_Person_applicant"))) {
+                mortgageNamedAfterList.add(inputFieldsMap.get("MortgageOnProperty_Person_applicant"));
+            }
+            if (StringUtils.hasText(inputFieldsMap.get("MortgageOnProperty_Person_respondant"))) {
+                mortgageNamedAfterList.add(inputFieldsMap.get("MortgageOnProperty_Person_respondant"));
+            }
+            if (StringUtils.hasText(inputFieldsMap.get("MortgageOnProperty_Person_other"))) {
+                mortgageNamedAfterList.add(inputFieldsMap.get("MortgageOnProperty_Person_other"));
+            }
+            LinkedTreeMap<String, Object> mortgage = (LinkedTreeMap<String, Object>) home.get("mortgages");
+            mortgage.put("mortgageNamedAfter", mortgageNamedAfterList);
+        }
+        if (YES.equalsIgnoreCase(String.valueOf(home.get(inputFieldsMap.get("isPropertyRented"))))
+            && StringUtils.hasText(inputFieldsMap.get("RentedProperty_Person"))) {
+            LinkedTreeMap<String, Object> rented = (LinkedTreeMap<String, Object>) home.get("landlords");
+            rented.put("mortgageNamedAfterList", List.of(inputFieldsMap.get("RentedProperty_Person")));
+        }
+        home.put(CHILDREN, buildTransformChild(inputFieldsMap));
+        home.put("livingSituation", buildLivingSituation(inputFieldsMap));
+        if (StringUtils.hasText(inputFieldsMap.get("occupationOrderAddress_IntentedOccupant"))) {
+            home.put("intendToLiveAtTheAddress", transformLivedAtAddress(inputFieldsMap
+                                                                             .get("occupationOrderAddress_IntentedOccupant")));
+        }
+        if (StringUtils.hasText(inputFieldsMap.get("occupationOrderAddress_PreviousOccupant"))) {
+            home.put("everLivedAtTheAddress", transformLivedAtAddress(inputFieldsMap
+                                                                          .get("occupationOrderAddress_PreviousOccupant")));
+        }
+        home.put("familyHome", buildFamilyHome(inputFieldsMap));
+        List<String> peopleLivingAtThisAddress = new ArrayList<>();
+        if (StringUtils.hasText(inputFieldsMap.get("occupationOrderAddress_CurrentOccupant_applicant"))) {
+            peopleLivingAtThisAddress.add("applicant");
+        }
+        if (StringUtils.hasText(inputFieldsMap.get("occupationOrderAddress_CurrentOccupant_respondent"))) {
+            peopleLivingAtThisAddress.add("respondent");
+        }
+        if (StringUtils.hasText(inputFieldsMap.get("occupationOrderAddress_CurrentOccupant_children"))) {
+            peopleLivingAtThisAddress.add("applicantChildren");
+        }
+        if (StringUtils.hasText(inputFieldsMap.get("occupationOrderAddress_CurrentOccupant_other"))) {
+            peopleLivingAtThisAddress.add("someoneElse");
+        }
+        if (!CollectionUtils.isEmpty(peopleLivingAtThisAddress)) {
+            home.put("peopleLivingAtThisAddress", peopleLivingAtThisAddress);
+        }
+        if (StringUtils.hasText(inputFieldsMap.get(CHILD_LIVE_ADDRESS_ROW_1))) {
+            home.put("doAnyChildrenLiveAtAddress", YES);
+        } else {
+            home.put("doAnyChildrenLiveAtAddress", NO);
+        }
+    }
+
+    private Object transformLivedAtAddress(String occupationOrderAddressPreviousOccupant) {
+        switch (occupationOrderAddressPreviousOccupant) {
+            case "Both": return "yesBothOfThem";
+            case "Myself": return "yesApplicant";
+            case "Respondent": return "yesRespondent";
+            case "No": return "No";
+            default: return "";
+        }
+    }
+
+    private void transformRespondentBehaviourDetails(Map<String, Object> populatedMap, Map<String, String> inputFieldsMap) {
+        if (YES.equalsIgnoreCase(inputFieldsMap.get(APPLYING_FOR_NON_MOLES_STATION_ORDER))) {
+            Map<String, Object> respondentBehaviourData = new HashMap<>();
+            respondentBehaviourData.put(
+                STOP_RESPONDENT_BEHAVIOUR_OPTIONS,
+                getRespondentBehaviourOptions(inputFieldsMap));
+            respondentBehaviourData.put(
+                STOP_RESPONDENT_BEHAVIOUR_CHILD_OPTIONS,
+                getRespondentBehaviourChildOptions(inputFieldsMap));
+            respondentBehaviourData.put(
+                OTHERS_STOP_RESPONDENT_BEHAVIOUR_OPTIONS,
+                inputFieldsMap.get(STOP_RESPONDENT_BEHAVIOUR_OPTIONS_6));
+            populatedMap.put("respondentBehaviourData", respondentBehaviourData);
+        }
+    }
+
+    private void transformApplicantDetails(Map<String, Object> populatedMap, Map<String, String> inputFieldsMap) {
+        LinkedTreeMap<String, Object> fl401Applicant = (LinkedTreeMap<String, Object>) populatedMap.get("applicantsFL401");
+        //transform confidentiality for applicant details
+        String applicantContactConfidentiality =
+            inputFieldsMap.get(APPLICANT_CONTACT_CONFIDENTIALITY);
+        transformApplicantConfidentiality(fl401Applicant, applicantContactConfidentiality);
+        //transform address for applicant details
+        List<String> contactPreference = new ArrayList<>();
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("PreferToBeContactedPost"))) {
+            contactPreference.add(inputFieldsMap.get("PreferToBeContactedPost"));
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("PreferToBeContactedEmail"))) {
+            contactPreference.add(inputFieldsMap.get("PreferToBeContactedEmail"));
+        }
+        if (StringUtils.hasText(inputFieldsMap.get("applicant_Email"))) {
+            fl401Applicant.put("canYouProvideEmailAddress", YES);
+        } else {
+            fl401Applicant.put("canYouProvideEmailAddress", NO);
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("applicant_LegalRepresenationNeeded"))) {
+            fl401Applicant.put("doTheyHaveLegalRepresentation", "yes");
+        } else {
+            fl401Applicant.put("doTheyHaveLegalRepresentation", "no");
+        }
+
+        fl401Applicant.put("applicantPreferredContact", contactPreference);
+        fl401Applicant.put("dateOfBirth", DateUtil.buildDate(
+            inputFieldsMap.get("applicantDoB_DD"),
+            inputFieldsMap.get("applicantDoB_MM"),
+            inputFieldsMap.get("applicantDoB_YYYY")));
+        transformSolicitorName(inputFieldsMap, fl401Applicant);
+    }
+
+    private void transformRelationshipToRespondent(Map<String, Object> populatedMap, Map<String, String> inputFieldsMap) {
+        Map<String, Object> respondentRelationDateInfoObject = new HashMap<>();
+        Map<String, Object> relationStartAndEndComplexType = new HashMap<>();
+
+        final String relationshipDateComplexStartDate = DateUtil
+            .buildDate(inputFieldsMap.get("relationship_Start_DD"), inputFieldsMap.get("relationship_Start_MM"),
+                       inputFieldsMap.get("relationship_Start_YYYY"));
+
+        if (StringUtils.hasText(relationshipDateComplexStartDate)) {
+            String startDate = DateUtil.transformDate(
+                relationshipDateComplexStartDate,
+                TEXT_AND_NUMERIC_MONTH_PATTERN,
+                TWO_DIGIT_MONTH_FORMAT);
+            relationStartAndEndComplexType.put(CCD_RELATIONSHIP_DATE_COMPLEX_START_DATE_FIELD, startDate);
+        }
+        final String relationshipDateComplexEndDate = DateUtil
+            .buildDate(inputFieldsMap.get("relationship_End_DD"), inputFieldsMap.get("relationship_End_MM"),
+                       inputFieldsMap.get("relationship_End_YYYY"));
 
         if (null != relationshipDateComplexEndDate && !relationshipDateComplexEndDate.isEmpty()) {
-            relationshipToRespondentTableMap.put(
-                    CCD_RELATIONSHIP_DATE_COMPLEX_END_DATE_FIELD,
-                    DateUtil.transformDate(
-                            relationshipDateComplexEndDate,
-                            TEXT_AND_NUMERIC_MONTH_PATTERN,
-                            TWO_DIGIT_MONTH_FORMAT));
+            String endDate = DateUtil.transformDate(
+                relationshipDateComplexEndDate,
+                TEXT_AND_NUMERIC_MONTH_PATTERN,
+                TWO_DIGIT_MONTH_FORMAT);
+            relationStartAndEndComplexType.put(CCD_RELATIONSHIP_DATE_COMPLEX_END_DATE_FIELD, endDate);
         }
-        final String applicantRelationshipDate =
-                (String) relationshipToRespondentTableMap.get(CCD_APPLICANT_RELATIONSHIOP_DATE);
-
-        if (null != applicantRelationshipDate && !applicantRelationshipDate.isEmpty()) {
-            relationshipToRespondentTableMap.put(
-                    CCD_APPLICANT_RELATIONSHIOP_DATE,
-                    DateUtil.transformDate(
-                            applicantRelationshipDate,
-                            TEXT_AND_NUMERIC_MONTH_PATTERN,
-                            TWO_DIGIT_MONTH_FORMAT));
+        if (!relationStartAndEndComplexType.isEmpty()) {
+            respondentRelationDateInfoObject.put("relationStartAndEndComplexType", relationStartAndEndComplexType);
         }
+        final String applicantRelationshipDate = DateUtil
+            .buildDate(
+                inputFieldsMap.get("relationship_PreviousMarried_DD"),
+                inputFieldsMap.get("relationship_PreviousMarried_MM"),
+                inputFieldsMap.get("relationship_PreviousMarried_YYYY"));
 
-        final String applicantRelationship =
-                (String) relationshipToRespondentTableMap.get(FL401_APPLICANT_RELATIONSHIP);
-
-        if (null != applicantRelationship && !applicantRelationship.isEmpty()) {
-            relationshipToRespondentTableMap.put(
-                    FL401_APPLICANT_RELATIONSHIP,
-                    getApplicantRelationships(
-                            inputFieldsMap, APPLICANT_RESPONDENT_RELATIONSHIP_FIELDS));
+        if (StringUtils.hasText(applicantRelationshipDate)) {
+            String applicantRelationshipFormattedDate = DateUtil.transformDate(applicantRelationshipDate,
+                                                                               TEXT_AND_NUMERIC_MONTH_PATTERN,
+                                                                  TWO_DIGIT_MONTH_FORMAT);
+            respondentRelationDateInfoObject.put(CCD_APPLICANT_RELATIONSHIOP_DATE, applicantRelationshipFormattedDate);
         }
+        if (!respondentRelationDateInfoObject.isEmpty()) {
+            populatedMap.put("respondentRelationDateInfoObject", respondentRelationDateInfoObject);
+        }
+        String applicantRelationship = getApplicantRelationships(inputFieldsMap);
+        Map<String, Object> applicantRelationshipMap = new HashMap<>();
+        if (null != applicantRelationship) {
+            applicantRelationshipMap.put(FL401_APPLICANT_RELATIONSHIP, applicantRelationship);
+        }
+        populatedMap.put("respondentRelationObject", applicantRelationshipMap);
 
-        final String applicantRelationshipOptions =
-                (String) relationshipToRespondentTableMap.get(FL401_APPLICANT_RELATIONSHIP_OPTIONS);
+        if (null != inputFieldsMap.get(APPLICANT_RESPONDENT_OTHER_RELATIONSHIP_FIELD)
+                && inputFieldsMap.get(APPLICANT_RESPONDENT_OTHER_RELATIONSHIP_FIELD).equalsIgnoreCase(YES)) {
+            ApplicantRespondentRelationshipEnum applicantRelationshipOptions =
+                getApplicantRespondentRelationshipOptions(inputFieldsMap);
+            if (null != applicantRelationshipOptions) {
+                populatedMap.put("respondentRelationOptions", Map.of(FL401_APPLICANT_RELATIONSHIP_OPTIONS,
+                                                                     applicantRelationshipOptions.toString()));
+            }
+        }
+    }
 
-        if (null != applicantRelationshipOptions
-                && !applicantRelationshipOptions.isEmpty()
-                && null != inputFieldsMap.get(APPLICANT_RESPONDENT_OTHER_RELATIONSHIP_FIELD)
-                && inputFieldsMap
-                        .get(APPLICANT_RESPONDENT_OTHER_RELATIONSHIP_FIELD)
-                        .equalsIgnoreCase(YES)) {
-            relationshipToRespondentTableMap.put(
-                    FL401_APPLICANT_RELATIONSHIP_OPTIONS,
-                    getApplicantRelationships(
-                            inputFieldsMap, APPLICANT_RESPONDENT_RELATIONSHIP_OPTIONS_FIELDS));
+    private void getInterpreterNeeds(Map<String, String> inputFieldsMap, Map<String, Object> populatedMap) {
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("InterpreterNeededAtCourt"))) {
+            Map<String, Object> values = new HashMap<>();
+            if (StringUtils.hasText(inputFieldsMap.get(INTERPRETER_NEEDED_AT_COURT_LANGUAGE))
+                || StringUtils.hasText(inputFieldsMap.get(INTERPRETER_NEEDED_AT_COURT_DIALECT))) {
+                List<String> languageAndDialect = new ArrayList<>();
+                if (StringUtils.hasText(inputFieldsMap.get(INTERPRETER_NEEDED_AT_COURT_LANGUAGE))) {
+                    languageAndDialect.add(inputFieldsMap.get(INTERPRETER_NEEDED_AT_COURT_LANGUAGE));
+                }
+                if (StringUtils.hasText(inputFieldsMap.get(INTERPRETER_NEEDED_AT_COURT_DIALECT))) {
+                    languageAndDialect.add(inputFieldsMap.get(INTERPRETER_NEEDED_AT_COURT_DIALECT));
+                }
+                values.put("language", String.join(",", languageAndDialect));
+            }
+            values.put("party", List.of(APPLICANT));
+            values.put("name", APPLICANT);
+            populatedMap.put("interpreterNeeds", List.of(Map.ofEntries(
+                Map.entry("id", UUID.randomUUID()),
+                Map.entry(VALUE, values)
+            )));
         } else {
-            relationshipToRespondentTableMap.put(FL401_APPLICANT_RELATIONSHIP_OPTIONS, null);
+            populatedMap.put("isInterpreterNeeded", YesOrNo.No);
         }
-
-        LinkedTreeMap attendHearingTableMap =
-                (LinkedTreeMap) populatedMap.get(ATTEND_HEARING_TABLE);
-
-        attendHearingTableMap.put(
-                SPECIAL_MEASURE_AT_COURT, getFormattedSpecialMeasureAtCourt(inputFieldsMap));
-        LinkedTreeMap respondentBehaviourTable =
-                (LinkedTreeMap) populatedMap.get(STOP_RESPONDENT_BEHAVIOUR_TABLE);
-
-        if (StringUtils.hasText(inputFieldsMap.get(APPLYING_FOR_NON_MOLES_STATION_ORDER))
-                && inputFieldsMap.get(APPLYING_FOR_NON_MOLES_STATION_ORDER).equalsIgnoreCase(YES)) {
-            respondentBehaviourTable.put(
-                    STOP_RESPONDENT_BEHAVIOUR_OPTIONS,
-                    getRespondentBehaviourOptions(inputFieldsMap));
-            respondentBehaviourTable.put(
-                    STOP_RESPONDENT_BEHAVIOUR_CHILD_OPTIONS,
-                    getRespondentBehaviourChildOptions(inputFieldsMap));
-            respondentBehaviourTable.put(
-                    OTHERS_STOP_RESPONDENT_BEHAVIOUR_OPTIONS,
-                    inputFieldsMap.get(STOP_RESPONDENT_BEHAVIOUR_OPTIONS_6));
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("disabilitySupport_NeededAtCourt"))) {
+            populatedMap.put("adjustmentsRequired", inputFieldsMap.get("disabilitySupport_details"));
+        } else {
+            populatedMap.put("isDisabilityPresent", YesOrNo.No);
         }
+        String specialArrangements = getFormattedSpecialMeasureAtCourt(inputFieldsMap);
+        if (StringUtils.hasText(specialArrangements)) {
+            populatedMap.put("isSpecialArrangementsRequired", YES);
+        } else {
+            populatedMap.put("isSpecialArrangementsRequired", NO);
+        }
+        populatedMap.put("isIntermediaryNeeded", NO);
+        populatedMap.put("isWelshNeeded", NO);
+    }
 
-        LinkedTreeMap fl401ApplicantTable = (LinkedTreeMap) populatedMap.get(FL401_APPLICANT_TABLE);
+    private void tranformReasonForWithoutNotice(Map<String, Object> populatedMap, Map<String, String> inputFieldsMap) {
+        List<String> reasonForOrderWithoutGivingNoticeList = new ArrayList<>();
+        if (StringUtils.hasText(inputFieldsMap.get("orderWithoutGivingNoticeReason1"))) {
+            reasonForOrderWithoutGivingNoticeList.add(ReasonForOrderWithoutGivingNoticeEnum.harmToApplicantOrChild.toString());
+        }
+        if (StringUtils.hasText(inputFieldsMap.get("orderWithoutGivingNoticeReason2"))) {
+            reasonForOrderWithoutGivingNoticeList.add(ReasonForOrderWithoutGivingNoticeEnum.deferringApplicationIfNotImmediate
+                                                          .toString());
+        }
+        if (StringUtils.hasText(inputFieldsMap.get("orderWithoutGivingNoticeReason3"))) {
+            reasonForOrderWithoutGivingNoticeList.add(ReasonForOrderWithoutGivingNoticeEnum.prejudiced.toString());
+        }
+        LinkedTreeMap<String, Object> reasonForOrderWithoutGivingNotice = (LinkedTreeMap<String, Object>) populatedMap
+            .get("reasonForOrderWithoutGivingNotice");
+        reasonForOrderWithoutGivingNotice.put(REASON_FOR_ORDER_WITHOUT_GIVING_NOTICE, reasonForOrderWithoutGivingNoticeList);
 
-        String applicantContactConfidentiality =
-                inputFieldsMap.get(APPLICANT_CONTACT_CONFIDENTIALITY);
+        //transform Bail conditions
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("respondentBailConditions"))) {
+            LinkedTreeMap<String, Object> bailConditions = (LinkedTreeMap<String, Object>) populatedMap.get("bailDetails");
+            String bailConditionEndDate = DateUtil
+                .transformDate(DateUtil.buildDate(inputFieldsMap.get("respondentBailConditions_EndDate_Day"),
+                                                  inputFieldsMap.get("respondentBailConditions_EndDate_Month"),
+                                                  inputFieldsMap.get("respondentBailConditions_EndDate_Year")),
+                               TEXT_AND_NUMERIC_MONTH_PATTERN,
+                               TWO_DIGIT_MONTH_FORMAT);
+            bailConditions.put(BAIL_CONDITION_END_DATE, bailConditionEndDate);
+        }
+    }
 
-        transformApplicantConfidentiality(fl401ApplicantTable, applicantContactConfidentiality);
-        fl401ApplicantTable.put(
-                ADDRESS,
-                transformApplicantAddress(inputFieldsMap, applicantContactConfidentiality));
-        transformContactDetails(
-                inputFieldsMap, fl401ApplicantTable, applicantContactConfidentiality);
+    private void transFormOrdersApplyingFor(Map<String, Object> populatedMap, Map<String, String> inputFieldsMap) {
+        LinkedTreeMap<String, Object> typeOfApplicationOrders =
+            (LinkedTreeMap<String, Object>) populatedMap.get("typeOfApplicationOrders");
+        List<String> orderApplyingFor = new ArrayList<>();
+        if (StringUtils.hasText(inputFieldsMap.get("orderApplyingFor_nonmolestation"))) {
+            orderApplyingFor.add("nonMolestationOrder");
+        }
+        if (StringUtils.hasText(inputFieldsMap.get("orderApplyingFor_occupation"))) {
+            orderApplyingFor.add("occupationOrder");
+        }
+        typeOfApplicationOrders.put("orderType", orderApplyingFor);
+    }
 
-        LinkedTreeMap fl401SolicitorDetailsTable =
-                (LinkedTreeMap) populatedMap.get(FL401_SOLICITOR_TABLE);
-        transformSolicitorName(inputFieldsMap, fl401SolicitorDetailsTable);
+    private List<String> buildFamilyHome(Map<String, String> inputFieldsMap) {
+        List<String> familyHome = new ArrayList<>();
+        if (StringUtils.hasText(inputFieldsMap.get("ChangesToFamilyHome_Row1"))) {
+            familyHome.add("payForRepairs");
+        }
+        if (StringUtils.hasText(inputFieldsMap.get("ChangesToFamilyHome_Row2"))) {
+            familyHome.add("payOrContributeRent");
+        }
+        if (StringUtils.hasText(inputFieldsMap.get("ChangesToFamilyHome_Row3"))) {
+            familyHome.add("useHouseholdContents");
+        }
+        return familyHome;
+    }
 
-        populatedMap.put(CHILDREN, buildTransformChild(populatedMap, inputFieldsMap));
-
-        populatedMap.put(APPLICANT_FAMILY_TABLE, transformApplicantChildObjects(inputFieldsMap));
-
-        populatedMap.put(
-                FL401_OTHER_PROCEEDINGS_TABLE,
-                transformOngoingFamilyCourtProceedings(inputFieldsMap));
+    private List<String> buildLivingSituation(Map<String, String> inputFieldsMap) {
+        List<String> livingSituation = new ArrayList<>();
+        if (StringUtils.hasText(inputFieldsMap.get("ChangesToLivingSituation_Row1"))) {
+            livingSituation.add("ableToStayInHome");
+        }
+        if (StringUtils.hasText(inputFieldsMap.get("ChangesToLivingSituation_Row2"))) {
+            livingSituation.add("ableToReturnHome");
+        }
+        if (StringUtils.hasText(inputFieldsMap.get("ChangesToLivingSituation_Row3"))) {
+            livingSituation.add("restrictFromEnteringHome");
+        }
+        if (StringUtils.hasText(inputFieldsMap.get("ChangesToLivingSituation_Row4"))) {
+            livingSituation.add("awayFromHome");
+        }
+        if (StringUtils.hasText(inputFieldsMap.get("ChangesToLivingSituation_Row5"))) {
+            livingSituation.add("limitRespondentInHome");
+        }
+        return livingSituation;
     }
 
     private String getFormattedSpecialMeasureAtCourt(Map<String, String> inputFieldsMap) {
@@ -263,13 +496,10 @@ public class BulkScanFL401ConditionalTransformerService {
                         + (row2 != null ? row2 + COMMA : SPACE)
                         + (row3 != null ? row3 + COMMA : SPACE)
                         + (row4 != null ? row4 : SPACE);
-        return str;
+        return StringUtils.hasText(str) ? str : null;
     }
 
-    private List buildTransformChild(
-            Map<String, Object> populatedMap, Map<String, String> inputFieldsMap) {
-        ArrayList<LinkedTreeMap> children = new ArrayList<>();
-
+    private List<LinkedTreeMap<String, Object>> buildTransformChild(Map<String, String> inputFieldsMap) {
         final String row1 = inputFieldsMap.get(CHILD_LIVE_ADDRESS_ROW_1);
         final String row2 = inputFieldsMap.get(CHILD_LIVE_ADDRESS_ROW_2);
         final String row3 = inputFieldsMap.get(CHILD_LIVE_ADDRESS_ROW_3);
@@ -278,76 +508,75 @@ public class BulkScanFL401ConditionalTransformerService {
         final String otherChildrenRow2 = inputFieldsMap.get(OTHER_CHILD_LIVE_ADDRESS_ROW_2);
         final String otherChildrenRow3 = inputFieldsMap.get(OTHER_CHILD_LIVE_ADDRESS_ROW_3);
         final String otherChildrenRow4 = inputFieldsMap.get(OTHER_CHILD_LIVE_ADDRESS_ROW_4);
-
-        if (row1 != null) {
-            populatedMap.put(DO_CHILDREN_LIVE_ADDRESS, BooleanUtils.YES);
-        }
-
         ArrayList<String> childInput = new ArrayList<>();
-        childInput.add(row1);
-        childInput.add(row2);
-        childInput.add(row3);
-        childInput.add(row4);
-        childInput.add(otherChildrenRow1);
-        childInput.add(otherChildrenRow2);
-        childInput.add(otherChildrenRow3);
-        childInput.add(otherChildrenRow4);
-
-        for (String input : childInput) {
-            LinkedTreeMap<String, String> childDetails = new LinkedTreeMap<>();
-
-            final LinkedTreeMap<String, LinkedTreeMap<String, String>> childrenLinkedTreeMap =
-                    new LinkedTreeMap();
-
-            if (null != input) {
-                final String[] columnDetails = input.split(COMMA);
-
-                final String childName = columnDetails[0];
-
-                String childAge = null;
-                String isRespondentResponsibleForChild = null;
-
-                try {
-                    if (columnDetails.length > 1) {
-                        childAge = columnDetails[1];
-                        isRespondentResponsibleForChild = columnDetails[2];
-                    }
-                } catch (Exception e) {
-                    log.warn(e.getMessage());
-                }
-
-                childDetails.put(CHILD_FULL_NAME, childName);
-                childDetails.put(CHILD_AGE, childAge);
-                childDetails.put(RESPONDENT_RESPONSIBLE_FOR_CHILD, isRespondentResponsibleForChild);
-
-                childrenLinkedTreeMap.put(VALUE, childDetails);
-
-                children.add(childrenLinkedTreeMap);
-            }
+        if (StringUtils.hasText(row1)) {
+            childInput.add(row1);
         }
+        if (StringUtils.hasText(row2)) {
+            childInput.add(row2);
+        }
+        if (StringUtils.hasText(row3)) {
+            childInput.add(row3);
+        }
+        if (StringUtils.hasText(row4)) {
+            childInput.add(row4);
+        }
+        ArrayList<String> otherChildInput = new ArrayList<>();
+        if (StringUtils.hasText(otherChildrenRow1)) {
+            otherChildInput.add(otherChildrenRow1);
+        }
+        if (StringUtils.hasText(otherChildrenRow2)) {
+            otherChildInput.add(otherChildrenRow2);
+        }
+        if (StringUtils.hasText(otherChildrenRow3)) {
+            otherChildInput.add(otherChildrenRow3);
+        }
+        if (StringUtils.hasText(otherChildrenRow4)) {
+            otherChildInput.add(otherChildrenRow4);
+        }
+        ArrayList<LinkedTreeMap<String, Object>> children = new ArrayList<>();
+        updateChildDetails(children, childInput, YES);
+        updateChildDetails(children, otherChildInput, NO);
         return children;
     }
 
-    private Map transformApplicantChildObjects(Map<String, String> inputFieldsMap) {
+    private void updateChildDetails(ArrayList<LinkedTreeMap<String, Object>> children, ArrayList<String> childInput,
+                                    String isRespondentResponsibleForChild) {
+        log.info("childInput: {}", childInput);
+        for (String input : childInput) {
+            LinkedTreeMap<String, String> childDetails = new LinkedTreeMap<>();
+            final LinkedTreeMap<String, Object> childrenLinkedTreeMap = new LinkedTreeMap<>();
+            if (StringUtils.hasText(input)) {
+                log.info("input: {}", input);
+                final String[] columnDetails = input.split("\\|");
+                if (!ArrayUtils.isEmpty(columnDetails)) {
+                    final String childName = columnDetails[0];
+                    log.info("child name: {}", childName);
+                    String childAge = null;
 
-        Map<String, Object> applicantChildMap = new HashMap<>();
-        applicantChildMap.put(APPLICANT_CHILD, transformApplicantChild(inputFieldsMap));
-
-        final String row1 = inputFieldsMap.get(APPLICATION_FOR_YOU_ONLY);
-        final String row2 = inputFieldsMap.get(APPLICATION_FOR_YOUR_FAMILY);
-
-        if (hasText(row1) && row1.equalsIgnoreCase(YES)) {
-            applicantChildMap.put(DOES_APPLICANT_HAVE_CHILDREN, YES);
-
-        } else if (hasText(row2) && row2.equalsIgnoreCase(YES)) {
-            applicantChildMap.put(DOES_APPLICANT_HAVE_CHILDREN, YES);
+                    try {
+                        if (columnDetails.length > 1) {
+                            childAge = columnDetails[1];
+                            log.info("child age: {}", childAge);
+                        }
+                    } catch (Exception e) {
+                        log.warn(e.getMessage());
+                    }
+                    childDetails.put(CHILD_FULL_NAME, childName);
+                    childDetails.put(CHILD_AGE, childAge != null ? childAge.trim() : null);
+                    childDetails.put(RESPONDENT_RESPONSIBLE_FOR_CHILD, isRespondentResponsibleForChild);
+                    childDetails.put("keepChildrenInfoConfidential", NO);
+                    childrenLinkedTreeMap.put("id", UUID.randomUUID().toString());
+                    childrenLinkedTreeMap.put(VALUE, childDetails);
+                    children.add(childrenLinkedTreeMap);
+                }
+            }
         }
-
-        return applicantChildMap;
+        log.info("children: {}", children);
     }
 
-    private List transformApplicantChild(Map<String, String> inputFieldsMap) {
-        ArrayList<LinkedTreeMap> childrenDetailsLst = new ArrayList<>();
+    private List<Map<String, Object>> transformApplicantChild(Map<String, String> inputFieldsMap) {
+        ArrayList<Map<String, Object>> childrenDetailsLst = new ArrayList<>();
 
         final String row1 = inputFieldsMap.get(FAM_CHILD_DETAILS_ROW_1);
         final String row2 = inputFieldsMap.get(FAM_CHILD_DETAILS_ROW_2);
@@ -361,13 +590,11 @@ public class BulkScanFL401ConditionalTransformerService {
         childInput.add(row4);
 
         for (String input : childInput) {
-            LinkedTreeMap<String, String> childDetails = new LinkedTreeMap<>();
-
-            LinkedTreeMap<String, LinkedTreeMap<String, String>> childrenLinkedTreeMap =
-                    new LinkedTreeMap();
+            Map<String, String> childDetails = new LinkedTreeMap<>();
+            Map<String, Object> childrenLinkedTreeMap = new HashMap<>();
 
             if (StringUtils.hasText(input)) {
-                final String[] columnDetails = input.split(COMMA);
+                final String[] columnDetails = input.split("\\|");
 
                 final String childName = columnDetails[0];
 
@@ -386,15 +613,18 @@ public class BulkScanFL401ConditionalTransformerService {
                 } catch (Exception e) {
                     log.warn(e.getMessage());
                 }
-
                 childDetails.put(FULL_NAME, childName);
-                childDetails.put(DOB, childDoB);
+                if (StringUtils.hasText(childDoB)) {
+                    childDetails.put(DOB, DateUtil.transformDate(childDoB, TEXT_AND_NUMERIC_MONTH_PATTERN,
+                                                                 TWO_DIGIT_MONTH_FORMAT));
+                }
                 childDetails.put(APPLICANT_CHILD_RELATIONSHIP, yourRelationshipWithChild);
-                childDetails.put(
-                        APPLICANT_RESPONDENT_SHARE_PARENTAL,
-                        doYouAndRespondentHaveParentalResponsibility);
+                if (StringUtils.hasText(doYouAndRespondentHaveParentalResponsibility)) {
+                    childDetails.put(APPLICANT_RESPONDENT_SHARE_PARENTAL, doYouAndRespondentHaveParentalResponsibility
+                        .toLowerCase().contains("yes") ? "Yes" : "No");
+                }
                 childDetails.put(RESPONDENT_CHILD_RELATIONSHIP, respondentsRelationshipWithChild);
-
+                childrenLinkedTreeMap.put("id", UUID.randomUUID().toString());
                 childrenLinkedTreeMap.put(VALUE, childDetails);
 
                 childrenDetailsLst.add(childrenLinkedTreeMap);
@@ -403,9 +633,9 @@ public class BulkScanFL401ConditionalTransformerService {
         return childrenDetailsLst;
     }
 
-    private List transformOngoingFamilyCourtProceedings(Map<String, String> inputFieldsMap) {
-        ArrayList<LinkedTreeMap> familyCourtProceedingsDetails = new ArrayList<>();
-
+    private void transformOngoingFamilyCourtProceedings(Map<String, String> inputFieldsMap,
+                                                        Map<String, Object> fl401OtherProceedingDetails) {
+        ArrayList<Map<String, Object>> familyCourtProceedingsDetails = new ArrayList<>();
         final String row1 = inputFieldsMap.get(ONGOING_COURT_PROCEEDING_ROW1);
         final String row2 = inputFieldsMap.get(ONGOING_COURT_PROCEEDING_ROW2);
         final String row3 = inputFieldsMap.get(ONGOING_COURT_PROCEEDING_ROW3);
@@ -416,13 +646,12 @@ public class BulkScanFL401ConditionalTransformerService {
         courtInput.add(row3);
 
         for (String input : courtInput) {
-            LinkedTreeMap<String, String> caseDetails = new LinkedTreeMap<>();
+            Map<String, String> caseDetails = new HashMap<>();
 
-            final LinkedTreeMap<String, LinkedTreeMap<String, String>> childrenLinkedTreeMap =
-                    new LinkedTreeMap();
+            final Map<String, Object> childrenLinkedTreeMap = new HashMap<>();
 
             if (StringUtils.hasText(input)) {
-                final String[] columnDetails = input.split(COMMA);
+                final String[] columnDetails = input.split("\\|");
 
                 final String nameOfCourt = columnDetails[0];
 
@@ -441,168 +670,143 @@ public class BulkScanFL401ConditionalTransformerService {
                 caseDetails.put(NAME_OF_COURT, nameOfCourt);
                 caseDetails.put(CASE_NUMBER, caseNumber);
                 caseDetails.put(TYPE_OF_CASE, typeOfCase);
-
+                childrenLinkedTreeMap.put("id", UUID.randomUUID());
                 childrenLinkedTreeMap.put(VALUE, caseDetails);
-
                 familyCourtProceedingsDetails.add(childrenLinkedTreeMap);
             }
         }
-        return familyCourtProceedingsDetails;
-    }
-
-    private String transformReasonForOrderWithoutGivingNotice(Map<String, String> inputFieldsMap) {
-
-        StringBuilder orderWithoutGivingNoticeReason = new StringBuilder();
-
-        if (YES.equalsIgnoreCase(inputFieldsMap.get(RISK_OF_SIGNIFICANT_HARM))) {
-            orderWithoutGivingNoticeReason.append(RISKOF_SIGNIFICANT_HARM.getDescription());
-        }
-        if (YES.equalsIgnoreCase(inputFieldsMap.get(DETERREDOR_PREVENTED))) {
-
-            orderWithoutGivingNoticeReason =
-                    orderWithoutGivingNoticeReason.length() != 0
-                            ? orderWithoutGivingNoticeReason
-                                    .append(COMMA)
-                                    .append(
-                                            OrderWithouGivingNoticeReasonEnum.DETERRED_OR_PREVENTED
-                                                    .getDescription())
-                            : orderWithoutGivingNoticeReason.append(
-                                    OrderWithouGivingNoticeReasonEnum.DETERRED_OR_PREVENTED
-                                            .getDescription());
-        }
-        if (YES.equalsIgnoreCase(inputFieldsMap.get(DELIVERATELY_EVADING_SERVICE))) {
-
-            orderWithoutGivingNoticeReason =
-                    orderWithoutGivingNoticeReason.length() != 0
-                            ? orderWithoutGivingNoticeReason
-                                    .append(COMMA)
-                                    .append(
-                                            OrderWithouGivingNoticeReasonEnum
-                                                    .DELIBERATELYEVADING_SERVICE
-                                                    .getDescription())
-                            : orderWithoutGivingNoticeReason.append(
-                                    OrderWithouGivingNoticeReasonEnum.DELIBERATELYEVADING_SERVICE
-                                            .getDescription());
-        }
-
-        return orderWithoutGivingNoticeReason.toString();
+        fl401OtherProceedingDetails.put("fl401OtherProceedings", familyCourtProceedingsDetails);
     }
 
     private String getApplicantRelationships(
-            Map<String, String> inputFieldsMap, String relationshipField) {
-        TreeMap<String, String> orderedRelationshipFieldMap = new TreeMap<>();
+            Map<String, String> inputFieldsMap) {
 
-        if (null == inputFieldsMap || inputFieldsMap.isEmpty()) {
-            return null;
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_1"))) {
+            return ApplicantRelationshipEnum.marriedOrCivil.getId();
         }
-
-        for (Map.Entry<String, String> relationship : inputFieldsMap.entrySet()) {
-            if (relationship.getKey().matches(relationshipField)) {
-                orderedRelationshipFieldMap.put(relationship.getKey(), relationship.getValue());
-            }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_2"))) {
+            return ApplicantRelationshipEnum.formerlyMarriedOrCivil.getId();
         }
-
-        if (!orderedRelationshipFieldMap.isEmpty()) {
-            for (Map.Entry<String, String> relationShipField :
-                    orderedRelationshipFieldMap.entrySet()) {
-                if (null != relationShipField.getValue()
-                        && relationShipField.getValue().equalsIgnoreCase(YES)
-                        && ApplicantRespondentRelationshipEnum.getValue(relationShipField.getKey())
-                                        .getRelationshipDescription()
-                                != null) {
-                    return ApplicantRespondentRelationshipEnum.getValue(relationShipField.getKey())
-                            .getRelationshipDescription();
-                }
-            }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_3"))) {
+            return ApplicantRelationshipEnum.engagedOrProposed.getId();
         }
-
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_4"))) {
+            return ApplicantRelationshipEnum.formerlyEngagedOrProposed.getId();
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_5"))) {
+            return ApplicantRelationshipEnum.liveTogether.getId();
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_6"))) {
+            return ApplicantRelationshipEnum.foremerlyLivedTogether.getId();
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_7"))) {
+            return ApplicantRelationshipEnum.bfGfOrPartnerNotLivedTogether.getId();
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_8"))) {
+            return ApplicantRelationshipEnum.formerBfGfOrPartnerNotLivedTogether.getId();
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_9"))) {
+            return ApplicantRelationshipEnum.noneOfTheAbove.getId();
+        }
         return null;
     }
 
-    private String getRespondentBehaviourOptions(Map<String, String> inputFieldsMap) {
-        StringBuilder sb = new StringBuilder();
+    private ApplicantRespondentRelationshipEnum getApplicantRespondentRelationshipOptions(Map<String, String> inputFieldsMap) {
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_10"))) {
+            return ApplicantRespondentRelationshipEnum.father;
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_11"))) {
+            return ApplicantRespondentRelationshipEnum.mother;
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_12"))) {
+            return ApplicantRespondentRelationshipEnum.son;
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_13"))) {
+            return ApplicantRespondentRelationshipEnum.daughter;
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_14"))) {
+            return ApplicantRespondentRelationshipEnum.brother;
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_15"))) {
+            return ApplicantRespondentRelationshipEnum.sister;
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_16"))) {
+            return ApplicantRespondentRelationshipEnum.grandfather;
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_17"))) {
+            return ApplicantRespondentRelationshipEnum.grandmother;
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_18"))) {
+            return ApplicantRespondentRelationshipEnum.uncle;
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_19"))) {
+            return ApplicantRespondentRelationshipEnum.aunt;
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_20"))) {
+            return ApplicantRespondentRelationshipEnum.nephew;
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_21"))) {
+            return ApplicantRespondentRelationshipEnum.niece;
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_22"))) {
+            return ApplicantRespondentRelationshipEnum.cousin;
+        }
+        if (YES.equalsIgnoreCase(inputFieldsMap.get("appliantRespondent_Relationship_23"))) {
+            return ApplicantRespondentRelationshipEnum.other;
+        }
+        return null;
+    }
+
+    private List<String> getRespondentBehaviourOptions(Map<String, String> inputFieldsMap) {
+        List<String> respondentBehaviourOptions = new ArrayList<>();
         for (FL401StopRespondentEnum l : EnumSet.allOf(FL401StopRespondentEnum.class)) {
             String key = l.getKey();
             if (null != inputFieldsMap.get(key) && inputFieldsMap.get(key).equalsIgnoreCase(YES)) {
-
-                sb.append(l.getValue(l.name())).append(COMMA);
+                respondentBehaviourOptions.add(FL401StopRespondentEnum.getValue(l.name()));
             }
         }
-
-        return sb.toString();
+        return respondentBehaviourOptions;
     }
 
-    private String getRespondentBehaviourChildOptions(Map<String, String> inputFieldsMap) {
-        StringBuilder sb = new StringBuilder();
+    private List<String> getRespondentBehaviourChildOptions(Map<String, String> inputFieldsMap) {
+        List<String> respondentBehaviourChildOptions = new ArrayList<>();
         for (FL401StopRespondentBehaviourChildEnum l :
                 EnumSet.allOf(FL401StopRespondentBehaviourChildEnum.class)) {
             String key = l.getKey();
             if (null != inputFieldsMap.get(key) && inputFieldsMap.get(key).equalsIgnoreCase(YES)) {
-
-                sb.append(l.getValue(l.name())).append(COMMA);
+                respondentBehaviourChildOptions.add(FL401StopRespondentBehaviourChildEnum.getValue(l.name()));
             }
         }
-
-        return sb.toString();
+        return respondentBehaviourChildOptions;
     }
 
     private void transformApplicantConfidentiality(
-            LinkedTreeMap fl401ApplicantTable, String applicantContactConfidentiality) {
+            LinkedTreeMap<String, Object> applicantDetails, String applicantContactConfidentiality) {
 
         if (null != applicantContactConfidentiality
-                && applicantContactConfidentiality.equalsIgnoreCase(YES)) {
+                && applicantContactConfidentiality.equalsIgnoreCase(NO)) {
 
-            fl401ApplicantTable.put(IS_ADDRESS_CONFIDENTIAL, YES);
-            fl401ApplicantTable.put(IS_PHONE_NUMBER_CONFIDENTIAL, YES);
-            fl401ApplicantTable.put(IS_EMAIL_ADDRESS_CONFIDENTIAL, YES);
+            applicantDetails.put(IS_ADDRESS_CONFIDENTIAL, YES);
+            applicantDetails.put(IS_PHONE_NUMBER_CONFIDENTIAL, YES);
+            applicantDetails.put(IS_EMAIL_ADDRESS_CONFIDENTIAL, YES);
 
         } else if (null != applicantContactConfidentiality
-                && applicantContactConfidentiality.equalsIgnoreCase(NO)) {
-            fl401ApplicantTable.put(IS_ADDRESS_CONFIDENTIAL, NO);
-            fl401ApplicantTable.put(IS_PHONE_NUMBER_CONFIDENTIAL, NO);
-            fl401ApplicantTable.put(IS_EMAIL_ADDRESS_CONFIDENTIAL, NO);
-        }
-    }
-
-    private LinkedTreeMap transformApplicantAddress(
-            Map<String, String> inputFieldsMap, String applicantContactConfidentiality) {
-        LinkedTreeMap address = new LinkedTreeMap<>();
-        if (null != applicantContactConfidentiality
-                && applicantContactConfidentiality.equalsIgnoreCase(NO)) {
-            address.put(ADDRESS_LINE1, inputFieldsMap.get(APPLICANT_ADDRESS_BUILDING_AND_STREET));
-            address.put(ADDRESS_LINE2, inputFieldsMap.get(APPLICANT_ADDRESS_SECOND_LINE));
-            address.put(POSTTOWN, inputFieldsMap.get(APPLICANT_ADDRESS_TOWN_OR_CITY));
-            address.put(COUNTY, inputFieldsMap.get(APPLICANT_ADDRESS_COUNTY));
-            address.put(POSTCODE, inputFieldsMap.get(APPLICANT_ADDRESS_POSTCODE));
-        }
-        return address;
-    }
-
-    private void transformContactDetails(
-            Map<String, String> inputFieldsMap,
-            LinkedTreeMap fl401ApplicantTable,
-            String applicantContactConfidentiality) {
-        if (null != applicantContactConfidentiality
-                && applicantContactConfidentiality.equalsIgnoreCase(NO)) {
-
-            fl401ApplicantTable.put(PHONE_NUMBER, inputFieldsMap.get(APPLICANT_PHONE_NUMBER));
-            fl401ApplicantTable.put(EMAIL, inputFieldsMap.get(APPLICANT_EMAIL));
-            ;
-            fl401ApplicantTable.put(
-                    PREFER_TO_BE_CONTACTED, inputFieldsMap.get(APPLICANT_PREFER_TO_BE_CONTACTED));
+                && applicantContactConfidentiality.equalsIgnoreCase(YES)) {
+            applicantDetails.put(IS_ADDRESS_CONFIDENTIAL, NO);
+            applicantDetails.put(IS_PHONE_NUMBER_CONFIDENTIAL, NO);
+            applicantDetails.put(IS_EMAIL_ADDRESS_CONFIDENTIAL, NO);
         }
     }
 
     private void transformSolicitorName(
-            Map<String, String> inputFieldsMap, LinkedTreeMap fl401SolicitorDetailsTable) {
+        Map<String, String> inputFieldsMap, LinkedTreeMap<String, Object> fl401Applicant) {
 
         final String applicantSolicitorName = inputFieldsMap.get(APPLICANT_SOLICITOR_NAME);
-
         if (applicantSolicitorName != null) {
             final String[] representativeName = applicantSolicitorName.split(EMPTY_SPACE);
-            fl401SolicitorDetailsTable.put(REPRESENTATIVE_FIRST_NAME, representativeName[0]);
+            fl401Applicant.put(REPRESENTATIVE_FIRST_NAME, applicantSolicitorName);
             if (representativeName.length == 2) {
-                fl401SolicitorDetailsTable.put(REPRESENTATIVE_LAST_NAME, representativeName[1]);
+                fl401Applicant.put(REPRESENTATIVE_LAST_NAME, representativeName[1]);
             }
         }
     }

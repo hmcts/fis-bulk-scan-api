@@ -29,7 +29,7 @@ public class BulkScanC100OtherSectionValidationService {
             BulkScanFormValidationConfigManager.ValidationConfig validationConfig) {
         List<String> errors = new ArrayList<>();
         if (YES.equalsIgnoreCase(
-                inputFieldMap.get("existingCase_onEmergencyProtection_Care_or_supervisioNorder"))) {
+                inputFieldMap.get("ExistingCase_onEmergencyProtection_Care_or_supervisionOrder"))) {
             List<String> mandatoryListFields =
                     getOtherProceedingFields().stream()
                             .filter(

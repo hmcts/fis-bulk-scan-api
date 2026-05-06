@@ -46,9 +46,9 @@ class BulkScanFL403ServiceTest {
                         .ocrdatafields(TestDataUtil.getErrorData())
                         .build();
         BulkScanValidationResponse res = bulkScanService.validate(bulkScanValidationRequest);
-        assertEquals(Status.ERRORS, res.status);
+        assertEquals(Status.WARNINGS, res.status);
         assertTrue(
-                res.getErrors()
+                res.getWarnings()
                         .contains(String.format(MANDATORY_ERROR_MESSAGE, "appellant_lastName")));
     }
 
@@ -84,9 +84,9 @@ class BulkScanFL403ServiceTest {
                         .ocrdatafields(TestDataUtil.getFirstNameData())
                         .build();
         BulkScanValidationResponse res = bulkScanService.validate(bulkScanValidationRequest);
-        assertEquals(Status.ERRORS, res.status);
+        assertEquals(Status.WARNINGS, res.status);
         assertTrue(
-                res.getErrors()
+                res.getWarnings()
                         .contains(String.format(MISSING_FIELD_MESSAGE, "appellant_lastName")));
     }
 

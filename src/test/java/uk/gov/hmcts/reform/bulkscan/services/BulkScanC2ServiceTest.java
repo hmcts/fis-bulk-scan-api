@@ -46,9 +46,9 @@ class BulkScanC2ServiceTest {
                         .build();
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
-        assertEquals(Status.ERRORS, res.status);
+        assertEquals(Status.WARNINGS, res.status);
         assertTrue(
-                res.getErrors()
+                res.getWarnings()
                         .contains(
                                 String.format(
                                         XOR_CONDITIONAL_FIELDS_MESSAGE,
@@ -63,9 +63,9 @@ class BulkScanC2ServiceTest {
                         .build();
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
-        assertEquals(Status.ERRORS, res.status);
+        assertEquals(Status.WARNINGS, res.status);
         assertTrue(
-                res.getErrors()
+                res.getWarnings()
                         .contains(String.format(DATE_FORMAT_MESSAGE, "applicant1_dateOfBirth")));
     }
 
@@ -77,9 +77,9 @@ class BulkScanC2ServiceTest {
                         .build();
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
-        assertEquals(Status.ERRORS, res.status);
+        assertEquals(Status.WARNINGS, res.status);
         assertTrue(
-                res.getErrors()
+                res.getWarnings()
                         .contains(String.format(MISSING_FIELD_MESSAGE, "applicant1_fullName")));
     }
 
