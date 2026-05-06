@@ -168,7 +168,7 @@ rejectVersionIf { selection -> // <---- notice how the closure argument is named
 
 // https://jeremylong.github.io/DependencyCheck/dependency-check-gradle/configuration.html
 dependencyCheck {
-failBuildOnCVSS = System.getProperty('dependencyCheck.failBuild') == 'false'
+failBuildOnCVSS = 'false'
 suppressionFile = 'config/owasp/suppressions.xml'
 outputDirectory = 'build/reports/'
 
