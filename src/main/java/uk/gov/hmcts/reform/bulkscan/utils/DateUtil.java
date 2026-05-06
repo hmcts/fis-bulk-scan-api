@@ -6,6 +6,7 @@ import java.time.format.DateTimeFormatterBuilder;
 import java.time.format.DateTimeParseException;
 import java.time.format.ResolverStyle;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 
 @Slf4j
 public final class DateUtil {
@@ -48,5 +49,12 @@ public final class DateUtil {
             log.error("Date {} is in invalid", dateStr);
         }
         return formattedDate;
+    }
+
+    public static String buildDate(String dd, String mm, String yyyy) {
+        if (StringUtils.isBlank(dd) || StringUtils.isBlank(mm) || StringUtils.isBlank(yyyy)) {
+            return null;
+        }
+        return yyyy + "-" + mm + "-" + dd;
     }
 }

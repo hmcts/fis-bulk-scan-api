@@ -1,10 +1,10 @@
 {
   "case_creation_details": {
     "case_type_id": "PRLAPPS",
-    "event_id": "create-case-privatelaw-bs",
+    "event_id": "create-case-privatelaw-bs-c100",
     "case_data": {
       "parentalResponsibilityDetails": "parentResponsibility",
-      "childrenKNownToLocalAuthorityTextArea": "socialWorker",
+      "childrenKnownToLocalAuthorityTextArea": "socialWorker",
       "applicants": {
         "value": {
           "firstName": "applicant1_firstName",
@@ -22,7 +22,7 @@
           }
         }
       ],
-      "childrenKNownToLocalAuthority": "Yes",
+      "childrenKnownToLocalAuthority": "Yes",
       "prohibitedStepsOrder": "true",
       "children": [
         {
@@ -70,7 +70,7 @@
           }
         }
       ],
-      "personWhoLivesWithChild": "living other details",
+      "childLivingWithOthersDetails": "living other details",
       "childrenOfSameParent": "Yes",
       "childLiveWith": "Applicant",
       "specialIssueOrder": "true",

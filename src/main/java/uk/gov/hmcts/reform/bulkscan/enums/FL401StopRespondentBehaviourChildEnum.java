@@ -7,19 +7,19 @@ import lombok.Getter;
 @Getter
 public enum FL401StopRespondentBehaviourChildEnum {
     BEING_VIOLENT_TOWARDS_MY_CHILDREN(
-            "stopRespondentFromDoingToChild_1",
-            "Being violent towards my children or threatening my children"),
+            "StopRespondentFromDoingToChild_1",
+            "applicantStopFromRespondentDoingToChildEnum_Value_1"),
     HARASSING_OR_INTIMIDATING_MY_CHILDREN(
-            "stopRespondentFromDoingToChild_2 ", "Harassing or intimidating my children"),
+            "StopRespondentFromDoingToChild_2", "applicantStopFromRespondentDoingToChildEnum_Value_2"),
     POSTING_OR_PUBLISHING_ANYTHING_ABOUT_MY_CHILDREN_IN_PRINT(
-            "stopRespondentFromDoingToChild_3 ",
-            "Posting or publishing anything about my children in print,  or digitally"),
+            "StopRespondentFromDoingToChild_3",
+            "applicantStopFromRespondentDoingToChildEnum_Value_3"),
     CONTACTING_MY_CHILDREN_DIRECTLY_WITHOUT_MY_CONSENT(
-            "stopRespondentFromDoingToChild_4 ",
-            "Contacting my children directly without my consent"),
+            "StopRespondentFromDoingToChild_4",
+            "applicantStopFromRespondentDoingToChildEnum_Value_4"),
     GOING_TO_OR_NEAR_MY_CHILDREN_S_SCHOOL_OR_NURSERY(
-            "stopRespondentFromDoingToChild_5 ",
-            "Going to or near my children’s school or nursery");
+            "StopRespondentFromDoingToChild_5",
+            "applicantStopFromRespondentDoingToChildEnum_Value_5");
 
     private final String key;
     private final String description;

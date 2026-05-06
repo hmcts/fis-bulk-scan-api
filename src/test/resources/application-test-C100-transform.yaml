@@ -6,259 +6,187 @@ uk:
           C100:
             caseFields:
               CASE_TYPE_ID: PRLAPPS
-              EVENT_ID: create-case-privatelaw-bs
+              EVENT_ID: create-case-privatelaw-bs-c100
             caseDataFields:
+              helpWithFeesReferenceNumber: helpWithFeesReferenceNumber
+              natureOfOrder: natureofOrder
               applicants:
                 - value:
-                    firstName: applicant1FirstName
-                    lastName: applicant1LastName
-                    previousName: applicant1PreviousNames
-                    gender: applicant1Gender
-                    dateOfBirth: applicant1DateOfBirth
-                    placeOfBirth: applicant1PlaceOfBirth
-                    AddressLine1: applicant1Address
-                    PostCode: applicant1AddressPostCode
-                    landline: applicant1HomePhoneNumber
-                    phoneNumber: applicant1MobilePhoneNumber
-                    email: applicant1EmailAddress
-                    isAtAddressLessThan5Years: hasApplicant1LivedAtThisAddressForOverFiveYears
-                    addressLivedLessThan5YearsDetails: applicant1AllAddressesForLastFiveYears
-                    doTheyHaveLegalRepresentation: doYouHaveSolicitor
-                    representativeFirstName: your_solicitor_name
+                    firstName: applicantOneFirstName
+                    lastName: applicantOneLastName
+                    previousName: applicantOnePreviousNames
+                    gender: applicantOneGender
+                    dateOfBirth: applicantOneDateOfBirth
+                    placeOfBirth: applicantOnePlaceOfBirth
+                    address:
+                      AddressLine1: applicantOneAddress
+                    #PostCode: applicantOneAddressPostCode
+                    landline: applicantOneHomePhoneNumber
+                    phoneNumber: applicantOneMobilePhoneNumber
+                    email: applicantOneEmailAddress
+                    #isAtAddressLessThan5Years: hasapplicantOneLivedAtThisAddressForOverFiveYears
+                    addressLivedLessThan5YearsDetails: applicantOneAllAddressesForLastFiveYears
+                    doTheyHaveLegalRepresentation: isApplicantSolicitorPresent
+                    representativeFirstName: solicitorFullName
                     solicitorOrg:
-                      - value:
-                          OrganisationName: solicitor_firm_name
+                      OrganisationName: solicitorFirmName
                     solicitorAddress:
-                      - value:
-                          AddressLine1: solicitor_address
-                          PostCode: solicitor_postcode
-                    solicitorTelephone: solicitor_telephone_number
-                    solicitorFaxNumber: solicitor_fax_number
-                    dxNumber: solicitor_dx_number
-                    solicitorReference: solicitor_reference
-                    solicitorFeeAccount: solicitor_fee_account_No
-                    solicitorEmail: solicitor_email_address
+                      AddressLine1: solicitorAddress
+                      PostCode: solicitorPostcode
+                    solicitorTelephone: solicitorTelephoneNumber
+                    #solicitorFaxNumber: solicitorFaxNumber
+                    dxNumber: solicitorDxNumber
+                    solicitorReference: solicitorReference
+                    #solicitorFeeAccount: solicitorFeeAccountNo
+                    solicitorEmail: applicantSolicitorEmailAddress
                 - value:
-                    firstName: applicant2FirstName
-                    lastName: applicant2LastName
-                    previousName: applicant2PreviousNames
-                    gender: applicant2Gender
-                    dateOfBirth: applicant2DateOfBirth
-                    placeOfBirth: applicant2PlaceOfBirth
-                    AddressLine1: applicant2Address
-                    PostCode: applicant2AddressPostCode
-                    landline: applicant2HomePhoneNumber
-                    phoneNumber: applicant2MobilePhoneNumber
-                    email: applicant2EmailAddress
-                    isAtAddressLessThan5Years: hasApplicant2LivedAtThisAddressForOverFiveYears
-                    addressLivedLessThan5YearsDetails: applicant2AllAddressesForLastFiveYears
-              typeOfChildArrangementsOrder: childArrangement_order
-              children:
+                    firstName: applicantTwoFirstName
+                    lastName: applicantTwoLastName
+                    previousName: applicantTwoPreviousNames
+                    gender: applicantTwoGender
+                    dateOfBirth: applicantTwoDateOfBirth
+                    placeOfBirth: applicantTwoPlaceOfBirth
+                    address:
+                      AddressLine1: applicantTwoAddress
+                    #PostCode: applicantTwoAddressPostCode
+                    landline: applicantTwoHomePhoneNumber
+                    phoneNumber: applicantTwoMobilePhoneNumber
+                    email: applicantTwoEmailAddress
+                    #isAtAddressLessThan5Years: hasapplicantTwoLivedAtThisAddressForOverFiveYears
+                    addressLivedLessThan5YearsDetails: applicantTwoAllAddressesForLastFiveYears
+              otherPartyInTheCaseRevised:
+                - value:
+                    firstName: otherPeopleOneFirstName
+                    lastName: otherPeopleOneLastName
+                    previousName: otherPeopleOnePreviousNames
+                    gender: otherPeopleOneGender
+                    dateOfBirth: otherPeopleOneDateOfBirth
+                    address:
+                      AddressLine1: otherPeopleOneAddress
+                    relationshipToChildren: otherPeopleOneRelationshipWithChildren
+                - value:
+                    firstName: otherPeopleTwoFirstName
+                    lastName: otherPeopleTwoLastName
+                    previousName: otherPeopleTwoPreviousNames
+                    gender: otherPeopleTwoGender
+                    dateOfBirth: otherPeopleTwoDateOfBirth
+                    address:
+                      AddressLine1: otherPeopleTwoAddress
+                    relationshipToChildren: otherPeopleOneRelationshipWithChildren
+              newChildDetails:
                 - value:
                     firstName: child1_firstName
                     lastName: child1_lastName
                     dateOfBirth: child1_dateOfBirth
                     gender: child1_gender
-                    orderAppliedFor: child1_orderAppliedFor
-                    applicantsRelationshipToChild: child1_applicant1_relationship
-                    respondentsRelationshipToChild: child1_respondent1_relationship
                 - value:
                     firstName: child2_firstName
                     lastName: child2_lastName
                     dateOfBirth: child2_dateOfBirth
                     gender: child2_gender
-                    orderAppliedFor: child2_orderAppliedFor
-                    applicantsRelationshipToChild: child2_applicant1_relationship
-                    respondentsRelationshipToChild: child2_respondent1_relationship
                 - value:
                     firstName: child3_firstName
                     lastName: child3_lastName
                     dateOfBirth: child3_dateOfBirth
                     gender: child3_gender
-                    orderAppliedFor: child3_orderAppliedFor
-                    applicantsRelationshipToChild: child3_applicant1_relationship
-                    respondentsRelationshipToChild: child3_respondent1_relationship
                 - value:
                     firstName: child4_firstName
                     lastName: child4_lastName
                     dateOfBirth: child4_dateOfBirth
                     gender: child4_gender
-                    orderAppliedFor: child4_orderAppliedFor
-                    applicantsRelationshipToChild: child4_applicant1_relationship
-                    respondentsRelationshipToChild: child4_respondent1_relationship
-              miamPreviousAttendanceChecklist: NoMIAM_PreviousAttendenceReason
-              miamOtherGroundsChecklist: NoMIAM_otherExceptions
-              childrenKNownToLocalAuthority: childrenServicesAuthority
-              childrenKNownToLocalAuthorityTextArea: child1_localAuthority_or_socialWorker
-              childrenSubjectOfChildProtectionPlan: subject_to_childProtectionPlan
-              parentalResponsibilityDetails: parentalResponsibilityDetails
-              childrenOfSameParent:  children_of_same_parent
+              childrenKnownToLocalAuthorityTextArea: child1_localAuthority_or_socialWorker
               childrenParentsName: children_parentsName
+              childrenOfSameParent: children_of_same_parent
               childParentsNameCollection: child_parentsName_collection
-              personWhoLivesWithChild: child_living_with_others_details
-              claimingExemptionMiam: exemption_to_attend_MIAM
-              familyMediatorMiam: familyMember_Intimation_on_No_MIAM
-              applicantAttendedMiam: attended_MIAM
+              childLivingWithOthersDetails: child_living_with_others_details
               applicationPermissionRequiredReason: permissionRequiredReason
-              briefDetailsOnTheApplication: briefDetailsOnTheApplication
+              applicationDetails: briefDetailsOnTheApplication
               havePreviousParentingPlan: havePreviousParentingPlan
-              applicationPermissionRequired : askingPermissionForApplication
-              isCaseUrgent : urgent_or_withoutHearing
-              previousOrOngoingProceedings : previous_or_ongoingProceeding
-              consentOrder : isConsentOrder
-              welshLanguageRequirement : welshRequired
-
-              miamTable:
-                claimingExemptionMiam: exemption_to_attend_MIAM
-                familyMediatorMiam: familyMember_Intimation_on_No_MIAM
-                applicantAttendedMiam: attended_MIAM
-              allegationsOfHarmOverviewTable :
-                allegationsOfHarmDomesticAbuseYesNo: domesticAbuse
-                allegationsOfHarmChildAbductionYesNo: childAbduction
-                allegationsOfHarmChildAbuseYesNo: childAbuse
-                allegationsOfHarmSubstanceAbuseYesNo : drugs_alcohol_substanceAbuse
-                allegationsOfHarmOtherConcernsYesNo: otherSafety_or_welfareAbuse
-              typeOfApplicationTable :
-                applicationPermissionRequired : askingPermissionForApplication
-              hearingUrgencyTable:
-                isCaseUrgent: urgent_or_withoutHearing
-                setOutReasonsBelow: null
-                effortsMadeWithRespondents: respondent_effort
-                doYouRequireAHearingWithReducedNotice: withoutNotice_abridged_or_informalNotice
-                doYouNeedAWithoutNoticeHearing: withoutNotice_abridged_or_informalNotice
-                caseUrgencyTimeAndReason: application_timetable
-                reasonsForApplicationWithoutNotice: reason_for_consideration
-                setOutOrderDirectionSought: order_direction_sought
-                doYouRequireAWithoutNoticeHearing: withoutNotice_frustrateTheOrder
-                setWithoutNoticeHearing: withoutNotice_frustrateTheOrder_reason
-              setOutReasonsBelow: urgency_reason
+              setOutReasonsBelow: null
               effortsMadeWithRespondents: respondent_effort
-              doYouRequireAHearingWithReducedNotice: withoutNotice_abridged_or_informalNotice
-              doYouNeedAWithoutNoticeHearing: withoutNotice_abridged_or_informalNotice
-              caseUrgencyTimeAndReason: application_timetable
               reasonsForApplicationWithoutNotice: reason_for_consideration
-              setOutOrderDirectionSought: order_direction_sought
-              doYouRequireAWithoutNoticeHearing: withoutNotice_frustrateTheOrder
-              setWithoutNoticeHearing: withoutNotice_frustrateTheOrder_reason
-              otherProceedingsTable :
-                previousOrOngoingProceedings : previous_or_ongoingProceeding
-              otherProceedingsDetailsTable:
-                - value:
-                    previousOrOngoingProceedings: previous_or_ongoingProceeding
-                    caseNumber: other_case_case_number
-                    dateOrYear: other_case_date_or_year
-                    nameOfCourt: other_case_name_of_court
-                    nameOfChildrenInvolved: other_case_name_of_children
-                    nameAndOffice: other_case_name_and_office
+              c100RebuildHearingUrgency: urgency_reason
+
               respondents:
                 - value:
-                    firstName: respondent1FirstName
-                    lastName: respondent1LastName
-                    previousName: respondent1PreviousNames
-                    gender: respondent1Gender
-                    dateOfBirth: respondent1DateOfBirth
-                    isDateOfBirthUnknown: respondent1DateOfBirthDontKnow
-                    placeOfBirth: respondent1PlaceOfBirth
-                    AddressLine1: respondent1Address
-                    PostCode: respondent1AddressPostCode
-                    isAddressUnknown: respondent1AddressDontKnow
-                    landline: respondent1HomePhoneNumber
-                    phoneNumber: respondent1MobilePhoneNumber
-                    canYouProvidePhoneNumber: respondent1MobilePhoneNumberDontKnow
-                    email: respondent1EmailAddress
-                    canYouProvideEmailAddress: respondent1EmailAddressDontKnow
-                    isAtAddressLessThan5Years: respondent1LivedAtThisAddressForOverFiveYears
-                    addressLivedLessThan5YearsDetails: respondent1AllAddressesForLastFiveYears
+                    firstName: respondentOneFirstName
+                    lastName: respondentOneLastName
+                    previousName: respondentOnePreviousNames
+                    gender: respondentOneGender
+                    dateOfBirth: respondentOneDateOfBirth
+                    isDateOfBirthKnown: respondentOneDateOfBirthDontKnow
+                    placeOfBirth: respondentOnePlaceOfBirth
+                    address:
+                      AddressLine1: respondentOneAddress
+                    #PostCode: respondentOneAddressPostCode
+                    isCurrentAddressKnown: respondentOneAddressDontKnow
+                    landline: respondentOneHomePhoneNumber
+                    phoneNumber: respondentOneMobilePhoneNumber
+                    canYouProvidePhoneNumber: respondentOneMobilePhoneNumberDontKnow
+                    email: respondentOneEmailAddress
+                    canYouProvideEmailAddress: respondentOneEmailAddressDontKnow
+                    #isAtAddressLessThan5Years: respondentOneLivedAtThisAddressForOverFiveYears
+                    addressLivedLessThan5YearsDetails: respondentOneAllAddressesForLastFiveYears
                 - value:
-                    firstName: respondent2FirstName
-                    lastName: respondent2LastName
-                    previousName: respondent2PreviousNames
-                    gender: respondent2Gender
-                    dateOfBirth: respondent2DateOfBirth
-                    isDateOfBirthUnknown: respondent2DateOfBirthDontKnow
-                    placeOfBirth: respondent2PlaceOfBirth
-                    AddressLine1: respondent2Address
-                    PostCode: respondent2AddressPostCode
-                    isAddressUnknown: respondent2AddressDontKnow
-                    landline: respondent2HomePhoneNumber
-                    phoneNumber: respondent2MobilePhoneNumber
-                    canYouProvidePhoneNumber: respondent2MobilePhoneNumberDontKnow
-                    email: respondent2EmailAddress
-                    canYouProvideEmailAddress: respondent2EmailAddressDontKnow
-                    isAtAddressLessThan5Years: respondent2LivedAtThisAddressForOverFiveYears
-                    addressLivedLessThan5YearsDetails: respondent2AllAddressesForLastFiveYears
-              habitualResidentInOtherState: international_or_factorsAffectingLitigation
-              habitualResidentInOtherStateGiveReason: internationalElement_Resident_of_another_state_details
-              jurisdictionIssue: internationalElement_jurisdictionIssue
-              jurisdictionIssueGiveReason: withoutNotice_jurisdictionIssue_details
-              requestToForeignAuthority: internationalElement_request_toCentral_or_Consular_authority
-              requestToForeignAuthorityGiveReason: internationalElement_request_toCentral_or_Consular_authority_details
+                    firstName: respondentTwoFirstName
+                    lastName: respondentTwoLastName
+                    previousName: respondentTwoPreviousNames
+                    gender: respondentTwoGender
+                    dateOfBirth: respondentTwoDateOfBirth
+                    isDateOfBirthKnown: respondentTwoDateOfBirthDontKnow
+                    placeOfBirth: respondentTwoPlaceOfBirth
+                    address:
+                      AddressLine1: respondentTwoAddress
+                    #PostCode: respondentTwoAddressPostCode
+                    isCurrentAddressKnown: respondentTwoAddressDontKnow
+                    landline: respondentTwoHomePhoneNumber
+                    phoneNumber: respondentTwoMobilePhoneNumber
+                    canYouProvidePhoneNumber: respondentTwoMobilePhoneNumberDontKnow
+                    email: respondentTwoEmailAddress
+                    canYouProvideEmailAddress: respondentTwoEmailAddressDontKnow
+                    #isAtAddressLessThan5Years: respondentTwoLivedAtThisAddressForOverFiveYears
+                    addressLivedLessThan5YearsDetails: respondentTwoAllAddressesForLastFiveYears
               litigationCapacityFactors: factorAffectingLitigationCapacity
               litigationCapacityReferrals: assessmentByAdultLearningTeam
               litigationCapacityOtherFactors: factorsAffectingPersonInCourt
-              otherPeopleInTheCaseTable:
-                - value:
-                    firstName: otherPeople1FirstName
-                    lastName: otherPeople1LastName
-                    previousName: otherPeople1PreviousName
-                    gender: otherPeople1Gender
-                    dateOfBirth: otherPeople1DateOfBirth
-                    isDateOfBirthKnown: otherPeople1DateOfBirthDontKnow
-                    AddressLine1: otherPeople1Address
-                    PostCode: otherPeople1AddressPostCode
-                    isCurrentAddressKnown: otherPeople1AddressDontKnow
-                    relationshipToChild: otherPeople1relationshipToChild
-                - value:
-                    firstName: otherPeople2FirstName
-                    lastName: otherPeople2LastName
-                    previousName: otherPeople2PreviousName
-                    gender: otherPeople2Gender
-                    dateOfBirth: otherPeople2DateOfBirth
-                    isDateOfBirthKnown: otherPeople2DateOfBirthDontKnow
-                    AddressLine1: otherPeople2Address
-                    PostCode: otherPeople2AddressPostCode
-                    isCurrentAddressKnown: otherPeople2AddressDontKnow
-                    relationshipToChild: otherPeople2relationshipToChild
-              otherChildrenNotInTheCaseTable:
-                - value:
-                    fullName: otherChildren1FullName
-                    DateOfBirth: otherChildren1DateOfBirth
-                    DateOfBirthDontKnow: otherChildren1DateOfBirthDontKnow
-                    Gender: otherChildren1Gender
-                    RelationshipToApplicants: otherChildren1RelationshipToApplicants
-                    RelationshipToRespondents: otherChildren1RelationshipToRespondents
-                - value:
-                    fullName: otherChildren2FullName
-                    DateOfBirth: otherChildren2DateOfBirth
-                    DateOfBirthDontKnow: otherChildren2DateOfBirthDontKnow
-                    Gender: otherChildren2Gender
-                    RelationshipToApplicants: otherChildren2RelationshipToApplicants
-                    RelationshipToRespondents: otherChildren2RelationshipToRespondents
-              checklistSection1Completed: section1RelatingToChildCompleted
-              checklistSection2To4Completed: section2Section3Section4RelatingToMediationCompleted
-              checklistSection5To6Completed: section5Section6RelatingToApplicationReasonCompleted
-              checklistSection7Completed: section7RelatingToOtherCourtFullyCompleted
-              checklistSection8To10Completed: section8Section9Section10FactorsAffectingProceedingsCompleted
-              checklistSection11Completed: section11RelatingToApplicantCompleted
-              checklistSection12To14Completed: sections12Section13Section14RelatingToRespondentAndOthersNoticeCompleted
-              checklistSection16Completed: section16RelatingToTruthStatementCompleted
-              printFullName: printFullName
-              agreedBy: applicantSolicitorsFirmName
-              SignedDate: applicantAndApplicantsolicitorSignedDate
-              positionOrOfficeHeld: position_or_OfficeHeld
-              courtFeeConsent: courtFeeConsent
-              isWelshNeeded: applicantRequiresWelsh
-              isInterpreterNeeded: applicantRequiresInterpreter
-              interpreterNeeds:
-                - value:
-                    language: applicantRequiresInterpreter_otherParty_dialect
-                    otherAssistance: applicantRequiresInterpreter_otherParty_details
-              isIntermediaryNeeded: applicantRequiresInterpreter_intermediaryRequired
-              isSpecialArrangementsRequired: requiredSpecialAssistanceOrFacilities
-              reasonsForIntermediary: applicantRequiresInterpreter_intermediaryRequired_details
-              specialArrangementsRequired: requiredSpecialAssistanceOrFacilities_details
-              mediatorRegistrationNumber: fmc_RegistrationNumber
-              familyMediatorServiceName: family_Mediation_ServiceName
-              soleTraderName: sole_TraderName
-              authorizedFamilyMediatorAddress: authorizedFamilyMediator_address
-              authorizedFamilyMediatorDate: authorizedFamilyMediator_date
+              caApplicant1ExternalFlags:
+                groupId: caApplicant1
+                visibility: External
+              caApplicant1InternalFlags:
+                groupId: caApplicant1
+                visibility: Internal
+              caApplicant2ExternalFlags:
+                groupId: caApplicant2
+                visibility: External
+              caApplicant2InternalFlags:
+                groupId: caApplicant2
+                visibility: Internal
+              caRespondent1ExternalFlags:
+                groupId: caRespondent1
+                visibility: External
+              caRespondent1InternalFlags:
+                groupId: caRespondent1
+                visibility: Internal
+              caRespondent2ExternalFlags:
+                groupId: caRespondent2
+                visibility: External
+              caRespondent2InternalFlags:
+                groupId: caRespondent2
+                visibility: Internal
+
+              #printFullName: printFullName
+              #agreedBy: applicantSolicitorsFirmName
+              #SignedDate: applicantAndApplicantsolicitorSignedDate
+              #positionOrOfficeHeld: position_or_OfficeHeld
+              #courtFeeConsent: courtFeeConsent
+              #isInterpreterNeeded: applicantRequiresInterpreter
+              #interpreterNeeds:
+              #  - value:
+              #      language: applicantRequiresInterpreter_otherParty_dialect
+              #      otherAssistance: applicantRequiresInterpreter_otherParty_details
+              #isIntermediaryNeeded: applicantRequiresInterpreter_intermediaryRequired
+              #isSpecialArrangementsRequired: requiredSpecialAssistanceOrFacilities
+              #reasonsForIntermediary: applicantRequiresInterpreter_intermediaryRequired_details
+              #specialArrangementsRequired: requiredSpecialAssistanceOrFacilities_details
+              #authorizedFamilyMediatorAddress: authorizedFamilyMediator_address
+              #authorizedFamilyMediatorDate: authorizedFamilyMediator_date

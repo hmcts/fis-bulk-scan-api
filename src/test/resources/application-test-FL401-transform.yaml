@@ -6,68 +6,88 @@ uk:
           FL401:
             caseFields:
               CASE_TYPE_ID: PRLAPPS
-              EVENT_ID: create-case-privatelaw-bs
+              EVENT_ID: create-case-privatelaw-bs-fl401
             caseDataFields:
+              typeOfApplicationOrders:
+                orderType:
+              orderWithoutGivingNoticeToRespondent:
+                orderWithoutGivingNotice: orderWithout_GivingNotice
+              reasonForOrderWithoutGivingNotice:
+                reasonForOrderWithoutGivingNotice:
+                futherDetails: orderWithoutGivingNotice_moreReason
+              bailDetails:
+                isRespondentAlreadyInBailCondition: respondentBailConditions
+                bailConditionEndDate:
+              anyOtherDtailsForWithoutNoticeOrder:
+                otherDetails: situationCourtToKnow
+              applicantsFL401:
+                firstName: applicantFirstName
+                lastName: applicantLastName
+                previousName: applicantPreviousNames
+                email: applicant_Email
+                phoneNumber: applicant_PhoneNumber
+                isAddressConfidential:
+                isPhoneNumberConfidential:
+                isEmailAddressConfidential:
+                applicantPreferredContact:
+                doTheyHaveLegalRepresentation: applicant_LegalRepresenationNeeded
+                address:
+                  addressLine1: applicant_Address_BuildingAndStreet
+                  addressLine2: applicant_Address_SecondLine
+                  postTown: applicant_Address_TownOrCity
+                  county: applicant_Address_County
+                  postCode: applicant_Address_Postcode
               relationshipToRespondentTable:
-                applicantRelationship: applicantRespondent_Relationship_01
-                relationshipDateComplexStartDate: applicantRespondent_Relationship_StartDate
-                relationshipDateComplexEndDate: applicantRespondent_Relationship_EndDate
+                applicantRelationship: appliantRespondent_Relationship_1
+                relationshipDateComplexStartDate: appliantRespondent_Relationship_StartDate
+                relationshipDateComplexEndDate: appliantRespondent_Relationship_EndDate
                 applicantRelationshipDate: applicantRespondent_PreviousMarried_Date
-                applicantRelationshipOptions: applicantRespondent_Relationship_10
-                needForParentalResponsibility: needForParentalResponsibility
-              applicant:
-                - value:
-                    firstName: applicant_firstName
-                    lastName: applicant_lastName
-                    address: applicant_address
-                    phoneNumber: telephone_number
-              statementOfTruthLine1: statementOfTruth_Line1
-              statementOfTruthLine2: statementOfTruth_Line2
-              statementOfTruthApplicant: statementOfTruth_ApplicantFlag
-              statementOfTruthLegalRepresentative: statementOfTruth_LegalRepresentative
-              statementOfTruthDate: statementOfTruth_Date
-              statementOfTruthFullName: statementOfTruth_FullName
-              statementOfTruthFirmName: statementOfTruth_FirmName
-              statementOfTruthPositionHeld: statementOfTruth_PositionHeld
+                applicantRelationshipOptions: appliantRespondent_Relationship_10
+                doesApplicantHaveChildren: needForParentalResponsibility
+              fl401StmtOfTruth:
+                fullname: StatementOfTruth_FullName
+                signature:
+                nameOfFirm: StatementOfTruth_FirmName
+                signOnBehalf: StatementOfTruth_PositionHeld
               fl401RespondentTable:
-                - value:
-                    firstName: respondentFirstName
-                    lastName: respondentLastName
-                    previousName: respondentPreviousNames
-                    dateOfBirth: respondentDoB
-                    liveWithApplicant: respondent_LiveWithApplicant
-                    phoneNumber: respondent_PhoneNumber
-                    email: respondent_Email
-                    address:
-                      - value:
-                          AddressLine1: respondent_Address_BuildingAndStreet
-                          AddressLine2: respondent_Address_SecondLine
-                          PostTown: respondent_Address_TownOrCity
-                          County: respondent_Address_County
-                          PostCode: respondent_Address_Postcode
+                firstName: respondentFirstName
+                lastName: respondentLastName
+                previousName: respondentPreviousNames
+                dateOfBirth: respondentDoB
+                isRespondentLiveWithApplicant: respondent_LiveWithApplicant
+                phoneNumber: respondent_PhoneNumber
+                email: respondent_Email
+                address:
+                  AddressLine1: respondent_Address_BuildingAndStreet
+                  AddressLine2: respondent_Address_SecondLine
+                  PostTown: respondent_Address_TownOrCity
+                  County: respondent_Address_County
+                  PostCode: respondent_Address_Postcode
               applicationTypeDetails:
-                typesOfApplication: orderApplyingFor
+                typesOfApplication: orderApplyingFor_nonmolestation
               withoutNoticeOrderTable:
                 orderWithoutGivingNotice: orderWithout_GivingNotice
                 anyOtherDtailsForWithoutNoticeOrder: orderWithoutGivingNotice_moreReason
                 isRespondentAlreadyInBailCondition: respondentBailConditions
                 bailConditionEndDate: respondent_BailConditionsEndDate
-                furtherDetails: situationCourtToKnow
+                futherDetails: situationCourtToKnow
               attendingTheHearingTable:
-                isInterpreterNeeded: interpreterNeededAtCourt
+                isInterpreterNeeded: InterpreterNeededAtCourt
                 isDisabilityPresent: disabilitySupport_NeededAtCourt
                 adjustmentsRequired: disabilitySupport_details
-                specialMeasureAtCourt: specialMeasureAtCourt_Row1
+                specialMeasureAtCourt: SpecialMeasureAtCourt_Row1
                 interpreterNeeds:
                   - value:
-                      language: interpreterNeededAtCourt_Language
-                      dialect: interpreterNeededAtCourt_Dialect
+                      language: InterpreterNeededAtCourt_Language
+                      dialect: InterpreterNeededAtCourt_Dialect
               respondentBehaviourTable:
                 applicantWantToStopFromRespondentDoing:
                 applicantWantToStopFromRespondentDoingToChild:
+                otherReasonApplicantWantToStopFromRespondentDoing:
               fl401ApplicantTable:
                 firstName: applicantFirstName
                 lastName: applicantLastName
+                email: applicant_Email
                 previousName: applicantPreviousNames
                 dateOfBirth: applicantDateOfBirth
                 applicantContactInstructions: applicant_ContactInstructions
@@ -88,62 +108,39 @@ uk:
               otherProceedingsTable:
                 previousOrOngoingProceedings: OngoingFamilyCourtProceeding
               home:
-                - value:
-                    address:
-                      - value:
-                          AddressLine1: occupationOrderAddress_BuildingAndStreet
-                          AddressLine2: occupationOrderAddress_SecondLine
-                          PostTown: occupationOrderAddress_TownOrCity
-                          PostCode: occupationOrderAddress_Postcode
-                          County: occupationOrderAddress_County
-                    peopleLivingAtThisAddress: occupationOrderAddress_CurrentOccupant
-                    textAreaSomethingElse: occupationOrderAddress_CurrentOccupant_Others
-                    everLivedAtTheAddress: occupationOrderAddress_PreviousOccupant
-                    intendToLiveAtTheAddress: occupationOrderAddress_IntendedOccupant
-                    isPropertyAdapted: propertySpeciallyAdapted
-                    howIsThePropertyAdapted: propertySpeciallyAdapted_Details
-                    isThereMortgageOnProperty: MortgageOnProperty
-                    mortgages:
-                      - value:
-                          mortgageLenderName: MortgageLender_Name
-                          address:
-                            - value:
-                                AddressLine1: MortgageLender_BuildingAndStreet
-                                AddressLine2: MortgageLender_SecondLine
-                                PostTown: MortgageLender_TownOrCity
-                                County: MortgageLender_County
-                                PostCode: MortgageLender_Postcode
-                          mortgageNamedAfter: MortgageOnProperty_Person
-                          textAreaSomethingElse: MortgageOnProperty_Person_Others
-                          mortgageNumber: MortgageOnProperty_Number
-                    isPropertyRented: RentedProperty
-                    mortgageNamedAfterList: RentedProperty_Person
-                    landlords:
-                      textAreaSomethingElse: RentedProperty_Person_Others
-                      landlordName: LandlordDetails_Name
-                      address:
-                        - value:
-                            AddressLine1: LandlordDetails_BuildingAndStreet
-                            AddressLine2: LandlordDetails_SecondLine
-                            PostTown: LandlordDetails_TownOrCity
-                            County: LandlordDetails_County
-                            PostCode: LandlordDetails_Postcode
-                    doesApplicantHaveHomeRights: HomeRights
-                    livingSituation:
-                      - value:
-                          ableToStayInHome: ChangesToLivingSituation_Row1
-                          restrictFromEnteringHome: ChangesToLivingSituation_Row2
-                          awayFromHome: ChangesToLivingSituation_Row3
-                          limitRespondentInHome: ChangesToLivingSituation_Row4
-                          ableToReturnHome: ChangesToLivingSituation_Row5
-                    familyHome:
-                      payForRepairs: ChangesToFamilyHome_Row1
-                      useHouseholdContents: ChangesToFamilyHome_Row2
-                      payOrContributeRent: ChangesToFamilyHome_Row3
-                    furtherInformation: CourtToConsider
-
-
-
-
-
-
+                address:
+                  AddressLine1: occupationOrderAddress_BuildingAndStreet
+                  AddressLine2: occupationOrderAddress_SecondLine
+                  PostTown: occupationOrderAddress_TownOrCity
+                  PostCode: occupationOrderAddress_Postcode
+                  County: occupationOrderAddress_County
+                peopleLivingAtThisAddress: occupationOrderAddress_CurrentOccupant
+                textAreaSomethingElse: occupationOrderAddress_CurrentOccupant_Others
+                everLivedAtTheAddress: occupationOrderAddress_PreviousOccupant
+                intendToLiveAtTheAddress: occupationOrderAddress_IntentedOccupant
+                isPropertyAdapted: propertySpeciallyAdapted
+                howIsThePropertyAdapted: propertySpeciallyAdapted_Details
+                isThereMortgageOnProperty: MortgageOnProperty
+                mortgages:
+                  mortgageLenderName: MortgageLender_Name
+                  address:
+                    AddressLine1: MortgageLender_BuildingAndStreet
+                    AddressLine2: MortgageLender_SecondLine
+                    PostTown: MortgageLender_TownOrCity
+                    County: MortgageLender_County
+                    PostCode: MortgageLender_Postcode
+                  mortgageNamedAfter:
+                  textAreaSomethingElse: MortgageOnProperty_Person_Others
+                  mortgageNumber: MortgageOnProperty_Number
+                isPropertyRented: RentedProperty
+                landlords:
+                  textAreaSomethingElse: RentedProperty_Person_Others
+                  landlordName: LandlordDetails_Name
+                  address:
+                    AddressLine1: LandlordDetails_BuildingAndStreet
+                    AddressLine2: LandlordDetails_SecondLine
+                    PostTown: LandlordDetails_TownOrCity
+                    County: LandlordDetails_County
+                    PostCode: LandlordDetails_Postcode
+                doesApplicantHaveHomeRights: HomeRights
+                furtherInformation: CourtToConsider
