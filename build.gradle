@@ -202,10 +202,12 @@ springCloud       : '3.1.9',
 commonsIo         : '2.7',
 jacksonDatabind   : '2.17.2',
 reformsJavaLogging: '6.1.8'
+commonsIo         :  '2.7',
+reformsJavaLogging: '6.1.9'
 ]
 
 ext {
-log4JVersion = "2.24.3"
+log4JVersion = "2.25.3"
 }
 
 dependencyManagement {
@@ -213,7 +215,7 @@ dependencyManagement {
   dependencies {
 
     //CVE-2022-25857
-    dependency group: 'org.yaml',name: 'snakeyaml', version: '1.33'
+    dependency group: 'org.yaml',name: 'snakeyaml', version: '2.5'
     dependencySet(
       group: 'com.fasterxml.jackson.core',
       version: versions.jacksonDatabind
@@ -238,10 +240,10 @@ dependencyManagement {
 }
 
 dependencies {
-compileOnly("org.projectlombok:lombok:1.18.36")
-testCompileOnly("org.projectlombok:lombok:1.18.36")
-annotationProcessor("org.projectlombok:lombok:1.18.36")
-testAnnotationProcessor("org.projectlombok:lombok:1.18.36")
+compileOnly("org.projectlombok:lombok:1.18.38")
+testCompileOnly("org.projectlombok:lombok:1.18.38")
+annotationProcessor("org.projectlombok:lombok:1.18.38")
+testAnnotationProcessor("org.projectlombok:lombok:1.18.38")
 
 implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web'
 implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator'
@@ -261,18 +263,18 @@ implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1
 implementation group: 'com.github.hmcts.java-logging', name: 'logging', version: versions.reformsJavaLogging
 implementation group: 'com.github.hmcts.java-logging', name: 'logging-appinsights', version: versions.reformsJavaLogging
 
-implementation group: 'com.github.hmcts.java-logging', name: 'logging', version: '6.1.8'
+implementation group: 'com.github.hmcts.java-logging', name: 'logging', version: '6.1.9'
 
 implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: log4JVersion
 implementation group: 'org.apache.logging.log4j', name: 'log4j-to-slf4j', version: log4JVersion
-implementation 'org.projectlombok:lombok:1.18.36'
+implementation 'org.projectlombok:lombok:1.18.38'
 //implementation group: 'io.springfox', name: 'springfox-boot-starter', version: '3.0.0'
 implementation group: 'io.springfox', name: 'springfox-swagger2', version: '3.0.0'
 implementation group: 'io.springfox', name: 'springfox-swagger-ui', version: '3.0.0'
 implementation group: 'io.springfox', name: 'springfox-spring-webflux', version: '3.0.0'
 implementation 'junit:junit:4.13.2'
 
-implementation group: 'commons-io', name: 'commons-io', version: '2.18.0'
+implementation group: 'commons-io', name: 'commons-io', version: '2.21.0'
 
 implementation(group: 'org.springframework.cloud', name: 'spring-cloud-starter-openfeign', version: versions.springCloud)
 	{
@@ -293,7 +295,7 @@ implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', versio
 functionalTestImplementation group: 'com.github.hmcts', name: 'service-auth-provider-java-client', version: versions.s2sClient
 
 
-testImplementation(platform('org.junit:junit-bom:5.11.4'))
+testImplementation(platform('org.junit:junit-bom:5.14.3'))
 testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine'
 testImplementation group: 'org.springframework.cloud', name: 'spring-cloud-contract-wiremock', version: versions.springCloud
 testImplementation group: 'org.springframework.boot', name: 'spring-boot-starter-test', {
