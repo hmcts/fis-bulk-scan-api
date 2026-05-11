@@ -12,43 +12,52 @@ public final class PrlTestConstants {
     public static final String EMPTY_STRING = "";
 
     public static final String NOMIAM_CHILDPROTECTIONCONCERNS_FIELD =
-            "NoMIAM_childProtectionConcerns";
-    public static final String NOMIAM_DOMESTICVIOLENCE_FIELD = "NoMIAM_domesticViolence";
+            "noMIAM_childProtectionConcerns";
+    public static final String NOMIAM_DOMESTICVIOLENCE_FIELD = "noMIAM_domesticViolance";
     public static final String NOMIAM_DVE_ARRESTEDFORSIMILAROFFENCE_FIELD =
-            "NoMIAM_DVE_arrestedForSimilarOffence";
-    public static final String NOMIAM_URGENCY_FIELD = "NoMIAM_Urgency";
-    public static final String NOMIAM_PREVIOUSATTENDENCE_FIELD = "NoMIAM_PreviousAttendence";
-    public static final String NOMIAM_OTHERREASONS_FIELD = "NoMIAM_otherReasons";
+            "noMIAM_DVE_arrestedForSimilarOffence";
+    public static final String NOMIAM_URGENCY_FIELD = "noMIAM_Urgency";
+    public static final String NOMIAM_PREVIOUSATTENDENCE_FIELD = "noMIAM_PreviousAttendence";
+    public static final String NOMIAM_OTHERREASONS_FIELD = "noMIAM_otherReasons";
     public static final String POST_CODE = "TW3 1NN";
-    public static final String TICK_BOX_FALSE = "false";
     public static final String TICK_BOX_NO = "No";
-    public static final String TICK_BOX_TRUE = "true";
     public static final String TICK_BOX_YES = "Yes";
 
     public static final String RESPONDENT_ONE = "Respondent 1";
     public static final String RESPONDENT1ALLADDRESSESFORLASTFIVEYEARS =
-            "respondent1AllAddressesForLastFiveYears";
+            "respondentOneAllAddressesForLastFiveYears";
     public static final String RESPONDENT_TWO = "Respondent 2";
     public static final String RESPONDENT2ALLADDRESSESFORLASTFIVEYEARS =
-            "respondent2AllAddressesForLastFiveYears";
+            "respondentTwoAllAddressesForLastFiveYears";
 
     public static final String INTERNATIONAL_FACTORS_AFFECTING_LITIGATION_WARNING =
-            "Some details are missing in the following section: 8 - Cases with an international"
-                    + " element; 9 - Factors affecting ability to participate in proceedings.";
+            "Some details are missing in the following section: Section 8,9 - "
+                + "atleast 1 required of internationalElement_Resident_of_another_state,"
+                + " internationalElement_jurisdictionIssue, internationalElement_request_toCentral_or_Consular_authority, "
+                + "factorAffectingLitigationCapacity,"
+                + " assessmentByAdultLearningTeam, factorsAffectingPersonInCourt.";
     public static final String EXEMPTION_TO_ATTEND_MIAM_DEPENDENCY_WARNING =
             "Some details are missing in the following section: 2b - Applicant claiming exemption "
-                    + "from the requirement to attend a MIAM.";
+                + "- atleast 1 required - noMIAM_domesticViolance, noMIAM_childProtectionConcerns, noMIAM_Urgency,"
+                + " noMIAM_PreviousAttendence, noMIAM_otherReasons.";
     public static final String NOMIAM_CHILDPROTECTIONCONCERNS_DEPENDENCY_WARNING =
-            "Some details are missing in the following section: 3b - Child protection concerns.";
+            "Some details are missing in the following section: 3b - Child protection concerns - atleast 1 required of "
+                + "noMIAM_subjectOfEnquiries_byLocalAuthority, noMIAM_subjectOfCPP_byLocalAuthority.";
     public static final String NOMIAM_PREVIOUSATTENDENCE_DEPENDENCY_WARNING =
-            "Some details are missing in the following section: 3d - Previous MIAM attendance or"
-                    + " MIAM exemption.";
+            "Some details are missing in the following section: 3d - Previous MIAM attendance or exemption - "
+                + "atleast 1 required of previousMIAM_nonCourtDisputeResolution_4month, "
+                + "previousMIAM_existingProceeding_exepmtMIAM,"
+                + " otherExemption_NoEvidence_reason.";
     public static final String NOMIAM_OTHERREASONS_DEPENDENCY_WARNING =
-            "Some details are missing in the following section: 3e - Other exemptions.";
+            "Some details are missing in the following section: 3e - Other exemptions - atleast 1 required of "
+                + "otherExemption_withoutNotice, otherExemption_byVirture_of_Rule12_3, "
+                + "otherExemption_mediator_notAvailableToConduct, otherExemption_disability_or_inabilityToAttend,"
+                + " otherExemption_NotSufficient_Respondent_ContactDetails, otherExemption_applicant_or_respondent_inPrison.";
     public static final String NOMIAM_URGENCY_DEPENDENCY_WARNING =
-            "Some details are missing in the following section: 3c - Urgency.";
+            "Some details are missing in the following section: 3c - Urgency - atleast 1 required of noMIAM_urgency_{*}.";
     public static final String NOMIAM_DOMESTICVIOLENCE_DEPENDENCY_WARNING =
-            "Some details are missing in the following section: 3a - Domestic violence evidence.";
+            "Some details are missing in the following section: 3a - Domestic violence evidence - "
+                + "atleast 1 required of noMIAM_DVE_{*}.";
     public static final String FL401A_APPLICANT_FULL_NAME_FIELD = "applicant_full_name";
     public static final String FL401A_APPLICANT_ADDRESS_FIELD = "applicant_address";
     public static final String FL401A_APPLICANT_POSTCODE_FIELD = "applicant_postcode";

@@ -1,6 +1,6 @@
 java:
   applicationPort: 8090
-  image: 'hmctspublic.azurecr.io/fis/bulk-scan-api:latest'
+  image: 'hmctsprod.azurecr.io/fis/bulk-scan-api:latest'
   ingressHost: fis-bulk-scan-api-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal
   aadIdentityName: fis
 
@@ -12,6 +12,7 @@ java:
     SERVICE_AUTH_PROVIDER_URL: 'http://rpe-service-auth-provider-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal'
     IDAM_WEB_URL: 'https://idam-web-public.{{ .Values.global.environment }}.platform.hmcts.net/login'
     IDAM_API_URL: 'https://idam-api.{{ .Values.global.environment }}.platform.hmcts.net/o/token'
+    FACT_API: http://fact-api-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal
 
   keyVaults:
     fis-kv:

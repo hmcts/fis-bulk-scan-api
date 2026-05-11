@@ -6,9 +6,6 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_TWO;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.APPLICANT_TWO_ALL_ADDRESSES_FOR_FIVE_LAST_YEARS;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.ASKING_PERMISSION_FOR_APPLICATION;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILDREN_OF_SAME_PARENT;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILDREN_PARENTS_NAME;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILDREN_PARENTS_NAME_COLLECTION;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILDREN_SOCIAL_AUTHORITY;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVING_WITH_APPLICANT;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.CHILD_LIVING_WITH_OTHERS;
@@ -19,13 +16,13 @@ import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.HAS_APPLI
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_ATTENDED_MIAM_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.MANDATORY_ERROR_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.NO;
+import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PERMISSION_REQUIRED;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.PERMISSION_REQUIRED_REASON;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.XOR_CONDITIONAL_FIELDS_MESSAGE;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanConstants.YES;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.ATTENDED_MIAM;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.EXEMPTION_TO_ATTEND_MIAM;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.EXISTING_CASE_ON_EMERGENCY_PROTECTION_CARE_OR_SUPERVISION_ORDER;
-import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.FAMILY_MEMBER_INTIMATION_ON_NO_MIAM;
 import static uk.gov.hmcts.reform.bulkscan.constants.BulkScanPrlConstants.PREVIOUS_OR_ONGOING_PROCEEDING;
 
 import java.util.ArrayList;
@@ -59,7 +56,7 @@ public class BulkScanC100ValidationService extends BulkScanC100OtherSectionValid
 
         if (null != ocrDataFieldsMap && !ocrDataFieldsMap.isEmpty()) {
 
-            List<String> items = bulkScanValidationResponse.getErrors();
+            List<String> items = bulkScanValidationResponse.getWarnings();
 
             if (ocrDataFieldsMap.containsKey(PREVIOUS_OR_ONGOING_PROCEEDING)
                     && StringUtils.hasText(ocrDataFieldsMap.get(PREVIOUS_OR_ONGOING_PROCEEDING))
@@ -86,27 +83,7 @@ public class BulkScanC100ValidationService extends BulkScanC100OtherSectionValid
                         items,
                         EXEMPTION_TO_ATTEND_MIAM);
             }
-
-            if (ocrDataFieldsMap.containsKey(EXEMPTION_TO_ATTEND_MIAM)
-                    && StringUtils.hasText(ocrDataFieldsMap.get(EXEMPTION_TO_ATTEND_MIAM))
-                    && BulkScanConstants.NO.equalsIgnoreCase(
-                            ocrDataFieldsMap.get(EXEMPTION_TO_ATTEND_MIAM))) {
-                setErrorMsg(
-                        bulkScanValidationResponse,
-                        ocrDataFieldsMap,
-                        items,
-                        FAMILY_MEMBER_INTIMATION_ON_NO_MIAM);
-            }
-
-            if (ocrDataFieldsMap.containsKey(FAMILY_MEMBER_INTIMATION_ON_NO_MIAM)
-                    && StringUtils.hasText(
-                            ocrDataFieldsMap.get(FAMILY_MEMBER_INTIMATION_ON_NO_MIAM))
-                    && BulkScanConstants.NO.equalsIgnoreCase(
-                            ocrDataFieldsMap.get(FAMILY_MEMBER_INTIMATION_ON_NO_MIAM))) {
-                setErrorMsg(bulkScanValidationResponse, ocrDataFieldsMap, items, ATTENDED_MIAM);
-
-                isMiamAttended(ocrDataFieldsMap, bulkScanValidationResponse, items);
-            }
+            isMiamAttended(ocrDataFieldsMap, bulkScanValidationResponse, items);
         }
         return bulkScanValidationResponse;
     }
@@ -158,9 +135,9 @@ public class BulkScanC100ValidationService extends BulkScanC100OtherSectionValid
      */
     public List<String> doPermissionRelatedFieldValidation(Map<String, String> inputFieldsMap) {
         List<String> errors = new ArrayList<>();
-        if (null != inputFieldsMap.get(ASKING_PERMISSION_FOR_APPLICATION)
-                && YES.equalsIgnoreCase(inputFieldsMap.get(ASKING_PERMISSION_FOR_APPLICATION))
-                && null == inputFieldsMap.get(PERMISSION_REQUIRED_REASON)) {
+        if ((YES.equalsIgnoreCase(inputFieldsMap.get(ASKING_PERMISSION_FOR_APPLICATION))
+                || YES.equalsIgnoreCase(inputFieldsMap.get(PERMISSION_REQUIRED)))
+                && !StringUtils.hasText(inputFieldsMap.get(PERMISSION_REQUIRED_REASON))) {
             errors.add(String.format(MANDATORY_ERROR_MESSAGE, PERMISSION_REQUIRED_REASON));
         }
         return errors;
@@ -188,18 +165,6 @@ public class BulkScanC100ValidationService extends BulkScanC100OtherSectionValid
                                     .concat(CHILD_LIVING_WITH_RESPONDENT)
                                     .concat(",")
                                     .concat(CHILD_LIVING_WITH_OTHERS)));
-        }
-
-        if (YES.equalsIgnoreCase(inputFieldsMap.get(CHILDREN_OF_SAME_PARENT))
-                && org.apache.commons.lang3.StringUtils.isEmpty(
-                        inputFieldsMap.get(CHILDREN_PARENTS_NAME))) {
-            errors.add(String.format(MANDATORY_ERROR_MESSAGE, CHILDREN_PARENTS_NAME));
-        }
-
-        if (NO.equalsIgnoreCase(inputFieldsMap.get(CHILDREN_OF_SAME_PARENT))
-                && org.apache.commons.lang3.StringUtils.isEmpty(
-                        inputFieldsMap.get(CHILDREN_PARENTS_NAME_COLLECTION))) {
-            errors.add(String.format(MANDATORY_ERROR_MESSAGE, CHILDREN_PARENTS_NAME_COLLECTION));
         }
 
         if (YES.equalsIgnoreCase(inputFieldsMap.get(CHILDREN_SOCIAL_AUTHORITY))

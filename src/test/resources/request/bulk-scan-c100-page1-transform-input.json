@@ -62,15 +62,15 @@
     },
     {
       "name":"child_living_with_Applicant",
-      "value":"true"
+      "value":"Yes"
     },
     {
       "name":"child_living_with_Respondent",
-      "value":"false"
+      "value":"No"
     },
     {
       "name":"child_living_with_others",
-      "value":"false"
+      "value":"No"
     },
 
 
@@ -185,15 +185,15 @@
     },
     {
       "name": "childArrangement_order",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "prohibitedSteps_order",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "specialIssue_order",
-      "value": "true"
+      "value": "Yes"
     }
   ],
   "scanned_documents": [

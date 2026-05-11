@@ -103,7 +103,7 @@ class BulkScanA58PostPlacementServiceTest {
         BulkScanValidationResponse res =
                 bulkScanValidationService.validate(bulkScanValidationRequest);
         assertTrue(
-                res.getErrors()
+                res.getWarnings()
                         .contains(String.format(MANDATORY_ERROR_MESSAGE, "applicant1_firstName")));
         assertTrue(
                 res.getErrors().contains(String.format(MANDATORY_ERROR_MESSAGE, APPLICANT2_SOT)));

@@ -1,7 +1,7 @@
 {
   "case_creation_details": {
     "case_type_id": "PRLAPPS",
-    "event_id": "create-case-privatelaw-bs",
+    "event_id": "create-case-privatelaw-bs-fgm001",
     "case_data": {
       "applicantFullName": "Oluremi Kilanko Ogabi",
       "applicantAddress": "21 Lakeside Avenue",

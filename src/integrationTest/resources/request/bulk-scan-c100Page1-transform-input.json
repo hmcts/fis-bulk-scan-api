@@ -10,15 +10,15 @@
     },
     {
       "name": "childArrangement_order",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "prohibitedSteps_order",
-      "value": "true"
+      "value": "Yes"
     },
     {
       "name": "specialIssue_order",
-      "value": "true"
+      "value": "Yes"
     }
   ],
   "scanned_documents": [

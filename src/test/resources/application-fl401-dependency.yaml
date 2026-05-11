@@ -4,36 +4,104 @@ uk:
       dependency:
         fieldGroupDependency:
           FL401:
-            - occupationOrderGroup:
+            - applyingWithoutGivingNotice:
+              dependentFields:
+                - orderWithoutGivingNoticeReason1
+                - orderWithoutGivingNoticeReason2
+                - orderWithoutGivingNoticeReason3
+              dependentFieldValue: "*"
+              groupFieldName: orderWithout_GivingNotice
+              groupValidationValue: "Yes"
+              requiredFieldCount: 1
+              sectionName: "1.3 - atleast one required of orderWithoutGivingNoticeReason1, orderWithoutGivingNoticeReason2, orderWithoutGivingNoticeReason3"
+            - bailCondition:
+              dependentFields:
+                - respondentBailConditions_EndDate_Day
+                - respondentBailConditions_EndDate_Month
+                - respondentBailConditions_EndDate_Year
+              dependentFieldValue: "*"
+              groupFieldName: respondentBailConditions
+              groupValidationValue: "Yes"
+              requiredFieldCount: 1
+              sectionName: "1.6 - atleast one required of respondentBailConditions_EndDate_Day, respondentBailConditions_EndDate_Month, respondentBailConditions_EndDate_Year"
+            - goingToCourt:
+              dependentFields:
+                - disabilitySupport_details
+              dependentFieldValue: "*"
+              groupFieldName: disabilitySupport_NeededAtCourt
+              groupValidationValue: "Yes"
+              requiredFieldCount: 1
+              sectionName: "8 - disabilitySupport_details is required if disabilitySupport_NeededAtCourt is Yes"
+            - interpreterNeededAtCourt:
+              dependentFields:
+                - InterpreterNeededAtCourt_Language
+                - InterpreterNeededAtCourt_Dialect
+              dependentFieldValue: "*"
+              groupFieldName: InterpreterNeededAtCourt
+              groupValidationValue: "Yes"
+              requiredFieldCount: 1
+              sectionName: "8 - atleast one required of InterpreterNeededAtCourt_Language, InterpreterNeededAtCourt_Dialect"
+            - contactDetails:
+              dependentFields:
+                - applicant_Address_BuildingAndStreet
+                - applicant_Address_TownOrCity
+                - applicant_Address_Postcode
+                - applicant_PhoneNumber
+                - applicant_Email
+              dependentFieldValue: "*"
+              groupFieldName: applicantContact_Confidentiality
+              groupValidationValue: "Yes"
+              requiredFieldCount: 5
+              sectionName: "2 - one of applicant_Address_BuildingAndStreet, applicant_Address_TownOrCity, applicant_Address_Postcode, applicant_PhoneNumber, applicant_Email is missing"
+            - occupationOrderAddressGroup:
               dependentFields:
                 - occupationOrderAddress_BuildingAndStreet
                 - occupationOrderAddress_SecondLine
                 - occupationOrderAddress_TownOrCity
                 - occupationOrderAddress_Postcode
-                - occupationOrderAddress_CurrentOccupant
-                - occupationOrderAddress_CurrentOccupant_Others
                 - occupationOrderAddress_PreviousOccupant
               dependentFieldValue: "*"
-              groupFieldName: applyingForOccupationOrder
+              groupFieldName: ApplyingForOccupationOrder
               groupValidationValue: "Yes"
               requiredFieldCount: 2
-              sectionName: "To what address do you want the occupation order to apply?"
-            - occupationOrderIntendedOccupantGroup:
+              sectionName: "Occupation order - atleast 2 required of occupationOrderAddress_BuildingAndStreet, occupationOrderAddress_SecondLine, occupationOrderAddress_TownOrCity, occupationOrderAddress_Postcode, occupationOrderAddress_PreviousOccupant"
+            - occupationOrderCurrentOccupantGroup:
               dependentFields:
-                - occupationOrderAddress_CurrentOccupant_Others
+                - occupationOrderAddress_CurrentOccupant_applicant
+                - occupationOrderAddress_CurrentOccupant_respondent
+                - occupationOrderAddress_CurrentOccupant_children
+                - occupationOrderAddress_CurrentOccupant_other
               dependentFieldValue: "*"
-              groupFieldName: occupationOrderAddress_CurrentOccupant
-              groupValidationValue: "Someone else – please specify"
+              groupFieldName: ApplyingForOccupationOrder
+              groupValidationValue: "Yes"
               requiredFieldCount: 1
-              sectionName: "Someone else – please specify."
+              sectionName: "Occupation order - Current occupant - atleast one required of occupationOrderAddress_CurrentOccupant_applicant, occupationOrderAddress_CurrentOccupant_respondent, occupationOrderAddress_CurrentOccupant_children, occupationOrderAddress_CurrentOccupant_other"
+            - occupationOrderMandatoryHomeGroup:
+              dependentFields:
+                - MortgageOnProperty
+                - RentedProperty
+                - HomeRights
+              dependentFieldValue: "*"
+              groupFieldName: ApplyingForOccupationOrder
+              groupValidationValue: "Yes"
+              requiredFieldCount: 3
+              sectionName: "MortgageOnProperty, RentedProperty, HomeRights, please provide Yes or No"
+            - occupationOrderCurrentOccupantOtherGroup:
+              dependentFields:
+                - occupationOrderAddress_CurrentOccupant_others
+              dependentFieldValue: "*"
+              groupFieldName: occupationOrderAddress_CurrentOccupant_other
+              groupValidationValue: "Others"
+              requiredFieldCount: 1
+              sectionName: "occupationOrderAddress_CurrentOccupant_others is required if occupationOrderAddress_CurrentOccupant_other is Others"
             - occupationOrderIntendedOccupantGroup:
               dependentFields:
-                - occupationOrderAddress_IntendedOccupant
+                - occupationOrderAddress_IntentedOccupant
               dependentFieldValue: "*"
               groupFieldName: occupationOrderAddress_PreviousOccupant
               groupValidationValue: "No"
               requiredFieldCount: 1
-              sectionName: "If you answered ‘No’ to question 7.4, did you or the respondent ever intend to live at the address?"
+              sectionName: "If you answered ‘No’ to question 7.4, occupationOrderAddress_IntentedOccupant is required"
             - propertySpeciallyAdaptedGroup:
               dependentFields:
                 - propertySpeciallyAdapted_Details
@@ -41,10 +109,12 @@ uk:
               groupFieldName: propertySpeciallyAdapted
               groupValidationValue: "Yes"
               requiredFieldCount: 1
-              sectionName: "Please provide details of how the property is specially adapted."
+              sectionName: "If you answered ‘Yes’ to propertySpeciallyAdapted, propertySpeciallyAdapted_Details is required"
             - mortgageOnPropertyGroup:
               dependentFields:
-                - MortgageOnProperty_Person
+                - MortgageOnProperty_Person_applicant
+                - MortgageOnProperty_Person_respondant
+                - MortgageOnProperty_Person_other
                 - MortgageOnProperty_Number
                 - MortgageLender_Name
                 - MortgageLender_BuildingAndStreet
@@ -55,15 +125,15 @@ uk:
               groupFieldName: MortgageOnProperty
               groupValidationValue: "Yes"
               requiredFieldCount: 1
-              sectionName: "Is there a mortgage on the property?"
+              sectionName: "Mortgage on property - atleast one required of MortgageOnProperty_Person_applicant, MortgageOnProperty_Person_respondant, MortgageOnProperty_Person_other, MortgageOnProperty_Number, MortgageLender_Name, MortgageLender_BuildingAndStreet, MortgageLender_SecondLine, MortgageLender_TownOrCity, MortgageLender_Postcode"
             - mortgageOnPropertySomeoneElseGroup:
               dependentFields:
                 - MortgageOnProperty_Person_Others
               dependentFieldValue: "*"
-              groupFieldName: MortgageOnProperty_Person
-              groupValidationValue: "Someone else – please specify"
+              groupFieldName: MortgageOnProperty_Person_other
+              groupValidationValue: "someoneElse"
               requiredFieldCount: 1
-              sectionName: "Someone else – please specify"
+              sectionName: "Mortgage on property - someone else - provide details for MortgageOnProperty_Person_Others"
             - propertyRentedGroup:
               dependentFields:
                 - RentedProperty_Person
@@ -76,7 +146,7 @@ uk:
               groupFieldName: RentedProperty
               groupValidationValue: "Yes"
               requiredFieldCount: 1
-              sectionName: "Who is named on the rental agreement? Please select all that apply"
+              sectionName: "Property rented - atleast one required of RentedProperty_Person, LandlordDetails_Name, LandlordDetails_BuildingAndStreet, LandlordDetails_SecondLine, LandlordDetails_TownOrCity, LandlordDetails_Postcode"
             - propertyRentedSomeoneElseGroup:
               dependentFields:
                 - RentedProperty_Person_Others
@@ -84,4 +154,34 @@ uk:
               groupFieldName: RentedProperty
               groupValidationValue: "Someone else – please specify"
               requiredFieldCount: 1
-              sectionName: "Someone else – please specify"
+              sectionName: "Property rented - someone else - provide details for RentedProperty_Person_Others"
+            - yourFamilyGroup:
+              dependentFields:
+                - family_childrenDetails_row1
+                - family_childrenDetails_row2
+                - family_childrenDetails_row3
+                - family_childrenDetails_row4
+                - OngoingFamilyCourtProceeding
+              dependentFieldValue: "*"
+              groupFieldName: applicationFor_Yourfamily
+              groupValidationValue: "Yes"
+              requiredFieldCount: 1
+              sectionName: "5.3 - at least one required of family_childrenDetails_row1, family_childrenDetails_row2, family_childrenDetails_row3, family_childrenDetails_row4, OngoingFamilyCourtProceeding"
+            - OngoingCourtProceedingGroup:
+              dependentFields:
+                - OngoingFamilyCourtProceeding_row1
+                - OngoingFamilyCourtProceeding_row2
+                - OngoingFamilyCourtProceeding_row3
+              dependentFieldValue: "*"
+              groupFieldName: OngoingFamilyCourtProceeding
+              groupValidationValue: "Yes"
+              requiredFieldCount: 1
+              sectionName: "5.4 - at least one required of OngoingFamilyCourtProceeding_row1, OngoingFamilyCourtProceeding_row2, OngoingFamilyCourtProceeding_row3"
+            - OccupationOrderGroup:
+              dependentFields:
+                - ApplyingForOccupationOrder
+              dependentFieldValue: "*"
+              groupFieldName: orderApplyingFor_occupation
+              groupValidationValue: "occupationOrder"
+              requiredFieldCount: 1
+              sectionName: "7.1 - Applying for occupation order - please provide Yes or No"

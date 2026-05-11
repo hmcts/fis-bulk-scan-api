@@ -82,20 +82,20 @@ class BulkScanFL401AServiceTest {
 
         BulkScanValidationResponse res =
                 bulkScanFL401AValidationService.validate(bulkScanValidationRequest);
-        assertEquals(Status.ERRORS, res.status);
+        assertEquals(Status.WARNINGS, res.status);
         assertTrue(
-                res.getErrors()
+                res.getWarnings()
                         .contains(
                                 String.format(
                                         MANDATORY_ERROR_MESSAGE,
                                         FL401A_APPLICANT_FULL_NAME_FIELD)));
         assertTrue(
-                res.getErrors()
+                res.getWarnings()
                         .contains(
                                 String.format(
                                         MANDATORY_ERROR_MESSAGE, FL401A_APPLICANT_ADDRESS_FIELD)));
         assertTrue(
-                res.getErrors()
+                res.getWarnings()
                         .contains(
                                 String.format(
                                         MANDATORY_ERROR_MESSAGE, FL401A_APPLICANT_POSTCODE_FIELD)));
