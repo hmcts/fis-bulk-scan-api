@@ -29,7 +29,7 @@ spotless {
 
 java {
 toolchain {
-	languageVersion = JavaLanguageVersion.of(17)
+	languageVersion = JavaLanguageVersion.of(21)
 }
 }
 
@@ -206,7 +206,7 @@ springfoxSwagger  : '3.0.0',
 s2sClient         : '4.0.3',
 springCloud       : '3.1.9',
 commonsIo         :  '2.7',
-reformsJavaLogging: '6.1.9'
+reformsJavaLogging: '8.0.0'
 ]
 
 ext {
@@ -241,13 +241,7 @@ implementation group: 'com.github.hmcts', name: 'service-auth-provider-java-clie
 
 implementation group: 'org.springdoc', name: 'springdoc-openapi-ui', version: '1.8.0'
 
-//implementation group: 'uk.gov.hmcts.reform', name: 'logging', version: versions.reformsJavaLogging
-//implementation group: 'uk.gov.hmcts.reform', name: 'logging-appinsights', version: versions.reformsJavaLogging
-//implementation group: 'uk.gov.hmcts.reform', name: 'logging-spring', version: versions.reformsJavaLogging
 implementation group: 'com.github.hmcts.java-logging', name: 'logging', version: versions.reformsJavaLogging
-implementation group: 'com.github.hmcts.java-logging', name: 'logging-appinsights', version: versions.reformsJavaLogging
-
-implementation group: 'com.github.hmcts.java-logging', name: 'logging', version: '6.1.9'
 
 implementation group: 'org.apache.logging.log4j', name: 'log4j-api', version: log4JVersion
 implementation group: 'org.apache.logging.log4j', name: 'log4j-to-slf4j', version: log4JVersion
