@@ -1,6 +1,6 @@
 java:
   applicationPort: 8090
-  image: 'hmctspublic.azurecr.io/fis/bulk-scan-api:latest'
+  image: 'hmctsprod.azurecr.io/fis/bulk-scan-api:latest'
   ingressHost: fis-bulk-scan-api-{{ .Values.global.environment }}.service.core-compute-{{ .Values.global.environment }}.internal
   aadIdentityName: fis
 
